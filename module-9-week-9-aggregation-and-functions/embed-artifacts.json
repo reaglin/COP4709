@@ -1,0 +1,57 @@
+﻿[
+  {
+    "title": "Module 9 (Week 9) - Aggregation and Functions (module page)",
+    "href": "index.html",
+    "type": "Module page"
+  },
+  {
+    "title": "Module 9 (Week 9) - Aggregation and Functions \u2014 Topics \u0026 Learning Outcomes",
+    "href": "topics-outcomes.html",
+    "type": "Page"
+  },
+  {
+    "title": "Module 9 (Week 9) - Aggregation and Functions \u2014 Module Topics",
+    "href": "topics.html",
+    "type": "Page"
+  },
+  {
+    "title": "Assignment 9 - Aggregation Operators",
+    "href": "assignments/assignment-9-aggregation-operators.html",
+    "type": "Assignments"
+  },
+  {
+    "title": "Assignments \u2014 Module 9 (Week 9) - Aggregation and Functions",
+    "href": "assignments/index.html",
+    "type": "Assignments"
+  },
+  {
+    "title": "Graded Discussion 9",
+    "href": "content/disc_Graded_Discussion_9.html",
+    "type": "Content"
+  },
+  {
+    "title": "Guide to Aggregation in SQL",
+    "href": "content/Guide_to_Aggregation_in_SQL.html",
+    "type": "Content"
+  },
+  {
+    "title": "Quiz \u2014 Module 9 (Week 9) - Aggregation and Functions",
+    "href": "quiz/index.html",
+    "type": "Quiz"
+  },
+  {
+    "title": "Assignment 9 - Aggregation Operators",
+    "href": "source-materials/A001_Case_Study_Analy_Assignment_9_Aggregation_Opera.html",
+    "type": "Source-materials"
+  },
+  {
+    "title": "Graded Discussion 9",
+    "href": "source-materials/disc_Graded_Discussion_9.html",
+    "type": "Source-materials"
+  },
+  {
+    "title": "Guide to Aggregation in SQL",
+    "href": "source-materials/Guide_to_Aggregation_in_SQL.html",
+    "type": "Source-materials"
+  }
+]

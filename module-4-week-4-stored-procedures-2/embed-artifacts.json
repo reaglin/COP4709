@@ -1,0 +1,67 @@
+﻿[
+  {
+    "title": "Module 4 (Week 4) - Stored Procedures 2 (module page)",
+    "href": "index.html",
+    "type": "Module page"
+  },
+  {
+    "title": "Module 4 (Week 4) - Stored Procedures 2 \u2014 Topics \u0026 Learning Outcomes",
+    "href": "topics-outcomes.html",
+    "type": "Page"
+  },
+  {
+    "title": "Module 4 (Week 4) - Stored Procedures 2 \u2014 Module Topics",
+    "href": "topics.html",
+    "type": "Page"
+  },
+  {
+    "title": "Assignment 4 - Stored Functions",
+    "href": "assignments/assignment-4-stored-functions.html",
+    "type": "Assignments"
+  },
+  {
+    "title": "Assignments \u2014 Module 4 (Week 4) - Stored Procedures 2",
+    "href": "assignments/index.html",
+    "type": "Assignments"
+  },
+  {
+    "title": "Graded Discussion 4",
+    "href": "content/disc_Graded_Discussion_4.html",
+    "type": "Content"
+  },
+  {
+    "title": "Lecture 4-1 Stored Functions",
+    "href": "content/Lecture_4_1_Stored_Functions.html",
+    "type": "Content"
+  },
+  {
+    "title": "Using Stored Functions in T-SQL",
+    "href": "content/Using_Stored_Functions_in_T_SQL.html",
+    "type": "Content"
+  },
+  {
+    "title": "Quiz \u2014 Module 4 (Week 4) - Stored Procedures 2",
+    "href": "quiz/index.html",
+    "type": "Quiz"
+  },
+  {
+    "title": "Assignment 4 - Stored Functions",
+    "href": "source-materials/A001_Case_Study_Analy_Assignment_4_Stored_Functions.html",
+    "type": "Source-materials"
+  },
+  {
+    "title": "Graded Discussion 4",
+    "href": "source-materials/disc_Graded_Discussion_4.html",
+    "type": "Source-materials"
+  },
+  {
+    "title": "Lecture 4-1 Stored Functions",
+    "href": "source-materials/Lecture_4_1_Stored_Functions.html",
+    "type": "Source-materials"
+  },
+  {
+    "title": "Using Stored Functions in T-SQL",
+    "href": "source-materials/Using_Stored_Functions_in_T_SQL.html",
+    "type": "Source-materials"
+  }
+]

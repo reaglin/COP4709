@@ -1,0 +1,64 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Assignment 1 - Creating Databases</title>
+<style>body{font-family:Segoe UI,Arial,sans-serif;max-width:900px;margin:24px auto;padding:0 16px;line-height:1.5;color:#222}h1{font-size:1.6em;margin-bottom:.3em}h2{font-size:1.25em;margin-top:1.4em;border-bottom:1px solid #ddd;padding-bottom:.2em}h3{font-size:1.05em;margin-bottom:.2em}.lead{color:#555}.summary{color:#444;margin:.2em 0 .4em}.bloom{color:#777;font-size:.9em}ul,ol{padding-left:1.4em}pre{background:#f6f6f6;padding:12px;border-radius:4px}.mo{display:grid;grid-template-columns:56px 1fr;gap:2px 10px;margin:0 0 10px;padding:8px 10px;background:#f7f9fc;border-left:3px solid #2e6cb4;border-radius:3px}.mo .code{font-weight:600;color:#2e6cb4}.mo .statement{grid-column:2}.mo .meta{grid-column:2;font-size:.85em;color:#777}.mo .meta span{margin-right:12px}</style>
+</head>
+<body>
+<div class="pm-backlink" style="font-family:'Segoe UI',Arial,sans-serif;padding:8px 16px;background:#f5f8fc;border-bottom:1px solid #dce3ec"><a href="../index.html" style="color:#1a3c6e;font-weight:600;text-decoration:none">↑ Module 1 (Week 1) - Review</a></div>
+<div class="pm-injected-nav"><a href="index.html">← Back to Assignments</a><span class="sep">|</span><a href="../index.html">↑ Back to Module</a></div>
+<div class="pm-injected-spacer"></div>
+<h1>Assignment 1 - Creating Databases</h1>
+<h1 align="center">Databases in SQL Server</h1>
+<h3>Objectives</h3>
+<p>Demonstrate ability to get SQL Server operational and create a database within SQL Server.</p>
+<p>This is a review assignment.</p>
+<h3>Assignment</h3>
+<ul>
+<li>1. You will need to install SQL Server and&nbsp; SQL Server Management Studio. You can download these at&nbsp;<a rel="noopener" target="_blank" href="https://www.microsoft.com/en-us/sql-server/sql-server-downloads">https://www.microsoft.com/en-us/sql-server/sql-server-downloads</a>&nbsp;the Developer Edition will work fine for you.</li>
+<li>2. You will use either one of the supplied data dictionaries or one of your own designs to create a database in SQL Server. Your database design (if you do your own) should contain
+<ul>
+<li>At least one N:1 relationship</li>
+<li>At least one M:N relationship (with a join table).</li>
+</ul>
+</li>
+<li>3. After creating the table structure, you can use the SQL Server diagram tool to create a diagram of your database.</li>
+<li>4. Create simple documentation of your database with a data dictionary, SQL code for creation, and database diagram.</li>
+</ul>
+<p>You can select one of the database dictionaries below or propose your own database. You may also begin work towards your database project design and use this database in this assignment.&nbsp;</p>
+<h3><strong>Requirements</strong></h3>
+<ul style="list-style-type: disc;">
+<li>Install the correct version of SQL Server (you will need to research and discuss)</li>
+<li>Create a new database based on specifications (you can use one from the module or make up your own)
+<ul style="list-style-type: disc;">
+<li>The database must have a 1:n and an m:n relationship</li>
+</ul>
+</li>
+<li>Create a diagram of the database (recommend using SQL Server Management Studio diagram tool)</li>
+<li>Create a Data Dictionary of the Database (my examples are supplied)</li>
+<li>Put all these into your into documentation</li>
+</ul>
+<p>You will turn in (to the drop box) a word doc or pdf file of the documentation. The documentation should contain</p>
+<p>1. Data dictionary (all fields, field types, description)<br>2. ERD Diagram (with keys shown) screen capture. SQL Server SSMS will do this.</p>
+<h3>Information</h3>
+<p>This assignment covers all the basics of getting started with SQL Server, creating a database, and the basic database objects (tables, keys, etc…).</p>
+<p>This is a relatively straightforward review example – it is a good opportunity to get database management up and running.</p>
+<p>You can also run the database on Azure.&nbsp; You will need to be able to run SQL Server Management Studio locally. You can use SQL Server Management Studio to connect to the database instance you have created on Azure.</p>
+<p><strong>SQL Server Management Studio</strong>&nbsp;– This is a client tool that can be used to manage database. It is NOT a database itself, but is simply a tool. You will need to connect to a database to manage it.</p>
+<p><strong>SQL Server Instance or SQL Express</strong>&nbsp;– You can run an instance of these on your local machine. These are database servers and run as a service on your local machine (or remote) to manage databases running in an instance of the server.</p>
+<p><strong>Azure</strong>&nbsp;– Azure is a cloud service and will allow you to run an instance of SQL Server in the cloud. This will be required in some later assignments.</p>
+<h3>Estimated Completion Time</h3>
+<p>This is a review assignment. This should take experienced users 3-6 hours, for less experienced database users you should allot up to 10-20 hours.</p>
+<h3>External Resources</h3>
+<p>Here is a simple guide to connecting – just in case you need it. This is a pretty easy install so you should be OK –&nbsp;<a rel="noopener" href="https://msdn.microsoft.com/en-us/library/ms345318.aspx">https://msdn.microsoft.com/en-us/library/ms345318.aspx</a></p>
+<h3>Grading Criteria</h3>
+<p>A well structured database that handles all the requirements is worth full credit.</p>
+<p>– Database created</p>
+<p>– Database has required elements (1:1, 1:n, n:n relationships)</p>
+<p>– Documentation complete (data dictionary, SQL script, Diagram)</p>
+
+<footer class="presemaker-credit" data-credit="2" style="margin-top:2rem;padding:14px 8px;border-top:1px solid #ddd;background:#fff;text-align:center;font:13px/1.5 -apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;color:#595959;"><svg width="20" height="20" viewBox="0 0 2048 2048" aria-hidden="true" focusable="false" style="vertical-align:-5px;margin-right:7px"><rect width="2048" height="2048" rx="384" fill="#0F6E6E"/><path fill="#0A5050" d="M1024 1000 344 832v816l680 168zm0 0 680-168v816l-680 168z"/><path fill="#fff" d="M1024 944 384 784v808l640 160zm0 0 640-160v808l-640 160z"/><rect x="1002" y="944" width="44" height="808" fill="#0F6E6E"/><rect x="936" y="246" width="176" height="448" rx="44" fill="#fff"/><rect x="800" y="382" width="448" height="176" rx="44" fill="#fff"/></svg>Created with <a href="https://softwareplus.ai/coursebuilder/" target="_blank" rel="noopener" style="color:#2f5d8f;font-weight:600;text-decoration:none;">CourseBuilder+</a><span aria-hidden="true"> · </span><a href="https://softwareplus.ai/" target="_blank" rel="noopener" style="color:#2f5d8f;text-decoration:none;">SoftwarePlus.ai</a></footer>
+</body>
+</html>

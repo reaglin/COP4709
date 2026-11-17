@@ -1,0 +1,100 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Assignment 3 - Stored Procedures</title>
+<style>body{font-family:Segoe UI,Arial,sans-serif;max-width:900px;margin:24px auto;padding:0 16px;line-height:1.5;color:#222}h1{font-size:1.6em;margin-bottom:.3em}h2{font-size:1.25em;margin-top:1.4em;border-bottom:1px solid #ddd;padding-bottom:.2em}h3{font-size:1.05em;margin-bottom:.2em}.lead{color:#555}.summary{color:#444;margin:.2em 0 .4em}.bloom{color:#777;font-size:.9em}ul,ol{padding-left:1.4em}pre{background:#f6f6f6;padding:12px;border-radius:4px}.mo{display:grid;grid-template-columns:56px 1fr;gap:2px 10px;margin:0 0 10px;padding:8px 10px;background:#f7f9fc;border-left:3px solid #2e6cb4;border-radius:3px}.mo .code{font-weight:600;color:#2e6cb4}.mo .statement{grid-column:2}.mo .meta{grid-column:2;font-size:.85em;color:#777}.mo .meta span{margin-right:12px}</style>
+</head>
+<body>
+<div class="pm-backlink" style="font-family:'Segoe UI',Arial,sans-serif;padding:8px 16px;background:#f5f8fc;border-bottom:1px solid #dce3ec"><a href="../index.html" style="color:#1a3c6e;font-weight:600;text-decoration:none">↑ Module 3 (Week 3) - Stored Procedures</a></div>
+<h1>Assignment 3 - Stored Procedures</h1>
+<div>
+<div>
+<div><main>
+<article>
+<div>
+<h1 align="center"><strong>Assignment 3 – Stored Procedure</strong></h1>
+<h3><strong>Objectives</strong></h3>
+<p>To learn to create stored procedures and programmable elements in a database.</p>
+<p>Note: You will probably be using stored procedures from this point on – they are one of the most powerful elements of modern databases.</p>
+<h3><strong>Assignment</strong></h3>
+<p>Below is a database script. Use this for this assignment (or any other database you might be using with n:n join tables. <em>Note – I did NOT include the Identity designation on the PK fields. You WILL need to do this (a little research will make this very easy. You can also do this after you run the script, but it is an easy add to the script and will take about 1 minute to add.&nbsp;</em></p>
+<pre>USE MenuDatabase
+
+CREATE TABLE [dbo].[Menu](
+[ID] INT PRIMARY KEY,
+[MenuTitle] [nvarchar](50) NULL,
+[MenuDescriptionText] [nvarchar](50) NULL)
+
+CREATE TABLE [dbo].[MenuGroups](
+[ID] INT PRIMARY KEY,
+[MenuID] INT NOT NULL,
+[MenuGroupText] [nvarchar](50) NOT NULL,
+[MenuGroupDescriptionText] [nvarchar](50) NULL, 
+FOREIGN KEY (MenuID) REFERENCES Menu(ID))
+
+CREATE TABLE [dbo].[MenuItems](
+[ID] INT PRIMARY KEY,
+[MenuGroupsID] INT NOT NULL,
+[MenuItemTitle] [nvarchar](50) NOT NULL,
+[MenuItemDescriptionText] [nvarchar](50) NULL,
+FOREIGN KEY (MenuGroupsID) REFERENCES MenuGroups(ID))
+
+CREATE TABLE [dbo].[Ingredients](
+[ID] INT PRIMARY KEY,
+[IngredientTitleText] [NVARCHAR](50) NOT NULL,
+[IngredientDescriptionText] [NVARCHAR](200) NULL
+)
+
+CREATE TABLE [dbo].[IngredientsInItems](
+[ID] INT PRIMARY KEY,
+[IngredientsID] INT NOT NULL,
+[MenuItemID] INT NOT NULL, 
+[DescriptionText] [NVARCHAR](200), 
+FOREIGN KEY (IngredientsID) REFERENCES Ingredients(ID),
+FOREIGN KEY (MenuItemID) REFERENCES MenuItems(ID))<br><br></pre>
+<p><img height="202" width="621" alt="" src="https://roneaglin.online/COP4709/wp-content/uploads/2022/02/Database_Image-300x202.png" style="height: 418px; display: block; margin-left: auto; margin-right: auto;"></p>
+<p><strong>You will create a stored procedure to insert a menu item into the database. It must check to see if data elements that are unique exist in the database.</strong> Here are the steps;</p>
+<p>sp_InsertNewMenuItem</p>
+<p>1. The stored procedure should accept as arguments (at a minimum) MenuTitle, MenuGroupText, MenuItemTitle</p>
+<p>2. The stored procedure should check to see if the MenuTitle exists, if not create a new Menu (with Title), if so use the ID</p>
+<p>3. The stored procedure should check to see if the MenuGroupText exists, if not create a new MenuGroup, if so use the ID</p>
+<p>4. The stored procedure should create a new MenuItem</p>
+<p>5. Create a stored procedure sp_InsertIngredient that INSERTS an ingredient to and places it in a Menu Item.</p>
+<p>Test Data:</p>
+<p>Create a Basic Taco (often called the American Taco on menus. Tacos should be in the MenuGroup “Tacos” which will have multiple tacos in it. One of your Tacos should have the Ingredients;</p>
+<p>Ground Beef<br>Tomatoes<br>Onions<br>Lettuce<br>Salsa</p>
+<p>Create a second taco with your own ingredients. Add at least 2 more menu items (can be simple).</p>
+<table style="width: 971px;">
+<tbody>
+<tr>
+<td style="width: 953.297px;">Note: If you have your&nbsp;<strong><span style="text-decoration: underline;">own</span></strong>&nbsp;database with the same level of complexity and write insertion stored procedures (and include diagrams and description of your database) I will also accept the assignment. Please note that you will be expected to post a description and design of your database to the discussion boards if you choose to do this.
+<p></p>
+<p>The level of complexity expected is that the table has at least 1 1:n relations and 1 n:n relations with a join table.</p>
+</td>
+</tr>
+</tbody>
+</table>
+<h3><strong>Information</strong></h3>
+<p>What you need to do for this stored procedure very closely follows the example in the lectures. I recommend you create multiple stored procedures for entering artists too (you will need to do this for later assignments). It will not hurt also to practice entering more data into your database.</p>
+<p><strong>Estimated Completion Time</strong></p>
+<p>Watching the lectures and completing this assignment should take 1-2 hours for experienced database users, 5-10 hours if this is your first stored procedure.<strong></strong></p>
+<p><strong>External Resources</strong></p>
+<p>Stored procedures open an entirely new world of database programming to you. Now you can create incredibly more complex queries and perform tasks that you could not perform before. This is all with the bonus of them being stored in the database. Some tutorial resources are below (if you find good tutorials and post to the discussion board – I will add them here).</p>
+<p><a rel="noopener" href="https://www.mssqltips.com/sqlservertutorial/160/sql-server-stored-procedure-tutorial/" target="_blank">https://www.mssqltips.com/sqlservertutorial/160/sql-server-stored-procedure-tutorial/</a></p>
+<p>WiseOwl Video – Stored Procedure Basics –&nbsp;<a rel="noopener" target="_blank" href="https://www.youtube.com/watch?v=fjNsRV4zLdc">https://www.youtube.com/watch?v=fjNsRV4zLdc</a></p>
+<p>WiseOwl Video – Stored Procedure Parameters –&nbsp;<a rel="noopener" target="_blank" href="https://www.youtube.com/watch?v=Vs-atxMs4mw">https://www.youtube.com/watch?v=Vs-atxMs4mw</a></p>
+<p><strong>Grading Criteria</strong></p>
+<p>Report format (Title, Name, Data, Objective, Methodology, Results)</p>
+<p>A complete working stored procedure is worth 10 points. You will create a Word Document that will have (1) the text of the stored procedure and (2) a screen capture of you executing the stored procedure in SQL Manager. A successful working stored procedure is worth 10 points.</p>
+</div>
+</article>
+</main></div>
+</div>
+</div>
+<footer>
+<div></div>
+</footer>
+</body>
+</html>

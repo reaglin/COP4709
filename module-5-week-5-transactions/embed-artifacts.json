@@ -1,0 +1,77 @@
+﻿[
+  {
+    "title": "Module 5 (Week 5) - Transactions (module page)",
+    "href": "index.html",
+    "type": "Module page"
+  },
+  {
+    "title": "Module 5 (Week 5) - Transactions \u2014 Topics \u0026 Learning Outcomes",
+    "href": "topics-outcomes.html",
+    "type": "Page"
+  },
+  {
+    "title": "Module 5 (Week 5) - Transactions \u2014 Module Topics",
+    "href": "topics.html",
+    "type": "Page"
+  },
+  {
+    "title": "Assignment 5 - Transactions",
+    "href": "assignments/assignment-5-transactions.html",
+    "type": "Assignments"
+  },
+  {
+    "title": "Assignments \u2014 Module 5 (Week 5) - Transactions",
+    "href": "assignments/index.html",
+    "type": "Assignments"
+  },
+  {
+    "title": "Graded Discussion 5",
+    "href": "content/disc_Graded_Discussion_5.html",
+    "type": "Content"
+  },
+  {
+    "title": "Guide to Creating and Using Transactions",
+    "href": "content/Guide_to_Creating_and_Using_Transactions.html",
+    "type": "Content"
+  },
+  {
+    "title": "Lecture 5-1 Transaction Stored Procedure",
+    "href": "content/Lecture_5_1_Transaction_Stored_Procedure.html",
+    "type": "Content"
+  },
+  {
+    "title": "Module 5 External Resources",
+    "href": "content/Page_Module_5_External_Resources.html",
+    "type": "Content"
+  },
+  {
+    "title": "Quiz \u2014 Module 5 (Week 5) - Transactions",
+    "href": "quiz/index.html",
+    "type": "Quiz"
+  },
+  {
+    "title": "Assignment 5 - Transactions",
+    "href": "source-materials/A001_Case_Study_Analy_Assignment_5_Transactions.html",
+    "type": "Source-materials"
+  },
+  {
+    "title": "Graded Discussion 5",
+    "href": "source-materials/disc_Graded_Discussion_5.html",
+    "type": "Source-materials"
+  },
+  {
+    "title": "Guide to Creating and Using Transactions",
+    "href": "source-materials/Guide_to_Creating_and_Using_Transactions.html",
+    "type": "Source-materials"
+  },
+  {
+    "title": "Lecture 5-1 Transaction Stored Procedure",
+    "href": "source-materials/Lecture_5_1_Transaction_Stored_Procedure.html",
+    "type": "Source-materials"
+  },
+  {
+    "title": "Module 5 External Resources",
+    "href": "source-materials/Page_Module_5_External_Resources.html",
+    "type": "Source-materials"
+  }
+]

@@ -18,7 +18,15 @@
     </div>
   </header>
   <main class="page-wrap" id="main">
-    
+    <form class="site-search" role="search" action="https://www.google.com/search" method="get" target="_blank" rel="noopener">
+  <label for="site-search-q">Search this site</label>
+  <div class="site-search-row">
+    <input type="search" id="site-search-q" name="q" placeholder="Words to find" required aria-describedby="site-search-note">
+    <input type="hidden" name="as_sitesearch" value="reaglin.github.io/COP4709">
+    <button type="submit">Search</button>
+  </div>
+  <p class="site-search-note" id="site-search-note">Searches this course with Google (opens in a new tab). Pages appear once Google has added them.</p>
+</form>
     <div style="border:1px solid #c9d4e3;background:#f5f8fc;border-radius:8px;padding:10px 16px;margin:0 0 18px;display:flex;gap:14px;flex-wrap:wrap;align-items:center;font-family:'Segoe UI',Arial,sans-serif"><strong style="color:#1a3c6e">Outcomes:</strong><a href="course-topics-outcomes.html" style="color:#1a3c6e;font-weight:600;text-decoration:none"><span aria-hidden="true">📋 </span>Course and module learning outcomes</a></div>
     <h2>Modules</h2>
     <p class="section-intro">Open a module to see its topics and everything in it.</p>
@@ -40,122 +48,122 @@
   </a>
 </li>
 <li>
-  <a class="module-card" href="module-1-week-1/index.html">
+  <a class="module-card" href="module-1-week-1-review/index.html">
     <div class="module-card-num">Module 3</div>
-    <h3 class="module-card-title">Module 1 (Week 1)</h3>
-    
+    <h3 class="module-card-title">Module 1 (Week 1) - Review</h3>
+    <p class="module-card-desc">This module introduces the four-tier Database Skill Level Framework (L1 Foundational through L4 Expert/Architect) and the skills-by-role matrix covering seven career paths — DBA, database developer, data analyst, BI developer, data engineer, data scientist, and database architect — so you can audit your own competencies and plan certification and portfolio work. Alongside this roadmap, you install SQL Server Developer Edition and SQL Server Management Studio and build a working database, creating tables with primary and foreign keys and implementing both 1:N relationships and M:N relationships through join tables. Working from a supplied data dictionary (class advising, sports statistics, or music) or your own design, you will produce a reusable DDL script and an ERD using the SSMS diagram tool.</p>
     <span class="module-card-count">11 items</span>
   </a>
 </li>
 <li>
-  <a class="module-card" href="module-2-week-2/index.html">
+  <a class="module-card" href="module-2-week-2-etl-and-query/index.html">
     <div class="module-card-num">Module 4</div>
-    <h3 class="module-card-title">Module 2 (Week 2)</h3>
-    
+    <h3 class="module-card-title">Module 2 (Week 2) - ETL and Query</h3>
+    <p class="module-card-desc">This module takes on ETL/ELT in practice: downloading public datasets from Data.gov and the College Scorecard, using Excel to inspect and clean XML and CSV flat files by resolving blanks and placeholder values, converting formulas to static values, and trimming to the columns you need, then loading the result into a SQL Server table with SQL Server&#39;s free import and integration tools. Students then query the imported data — ranking institutions on the cumulative loan debt fields (CUML_DEBT_P10 through P90) with WHERE, ORDER BY, and row-limiting clauses, excluding zero values and small sample sizes, and appending Daytona State College for comparison. The work is delivered as a professional database results report that documents the data source and import process, shows the SQL used, and presents query output as formatted tables with interpretation.</p>
     <span class="module-card-count">5 items</span>
   </a>
 </li>
 <li>
-  <a class="module-card" href="module-3-week-3/index.html">
+  <a class="module-card" href="module-3-week-3-stored-procedures/index.html">
     <div class="module-card-num">Module 5</div>
-    <h3 class="module-card-title">Module 3 (Week 3)</h3>
-    
+    <h3 class="module-card-title">Module 3 (Week 3) - Stored Procedures</h3>
+    <p class="module-card-desc">This module covers writing T-SQL INSERT stored procedures for schemas with foreign key dependencies: declaring IDENTITY(seed, increment) columns, retrieving generated keys with SCOPE_IDENTITY(), @@IDENTITY, IDENT_CURRENT() or the OUTPUT clause, returning those keys through OUTPUT parameters, and using find-or-create logic for lookup parents such as artists or menu groups. Students assign dependency levels from foreign key constraints to derive a correct parent-to-child insert order, wrap multi-table inserts in BEGIN TRY/BEGIN TRANSACTION blocks with SET XACT_ABORT ON and @@TRANCOUNT checks, and handle failures with RAISERROR, THROW, and a reusable usp_LogError procedure writing to an ErrorLog table. The module also introduces user-defined table types and READONLY table-valued parameters for batch inserts, and compares the stored procedure approach with Entity Framework and ADO.NET alternatives.</p>
     <span class="module-card-count">5 items</span>
   </a>
 </li>
 <li>
-  <a class="module-card" href="module-4-week-4/index.html">
+  <a class="module-card" href="module-4-week-4-stored-procedures-2/index.html">
     <div class="module-card-num">Module 6</div>
-    <h3 class="module-card-title">Module 4 (Week 4)</h3>
-    
+    <h3 class="module-card-title">Module 4 (Week 4) - Stored Procedures 2</h3>
+    <p class="module-card-desc">This module covers user-defined functions in T-SQL: scalar functions, inline table-valued functions, and multi-statement table-valued functions, including their syntax, return types, the read-only rule, determinism and SCHEMABINDING, and how functions differ from stored procedures in DML, transaction, and TRY...CATCH support. Students write scalar functions for logic such as age calculation, tiered discounts, lookups with NULL handling, and string formatting, build parameterized table-valued functions over filtered and joined tables, and invoke them in SELECT, WHERE, ORDER BY, GROUP BY, CROSS APPLY, and OUTER APPLY. In the assignment, students create a table-valued function returning the menu items for a given menu ID and a scalar function returning a menu item description, then combine them in a working query, while also evaluating scalar UDF performance pitfalls and alternatives like inline TVFs, views, computed columns, and CTEs.</p>
     <span class="module-card-count">5 items</span>
   </a>
 </li>
 <li>
-  <a class="module-card" href="module-5-week-5/index.html">
+  <a class="module-card" href="module-5-week-5-transactions/index.html">
     <div class="module-card-num">Module 7</div>
-    <h3 class="module-card-title">Module 5 (Week 5)</h3>
-    
+    <h3 class="module-card-title">Module 5 (Week 5) - Transactions</h3>
+    <p class="module-card-desc">This module covers database transactions and the ACID properties, using the bank transfer problem to show why atomicity, consistency, isolation, and durability matter, and compares how SQL Server, PostgreSQL, MySQL/InnoDB, Oracle, and NoSQL systems implement those guarantees under the CAP theorem. Students work with T-SQL transaction control — BEGIN/COMMIT/ROLLBACK, SAVE TRANSACTION, @@TRANCOUNT, SET XACT_ABORT ON, and TRY...CATCH rollback patterns — and distinguish the READ UNCOMMITTED through SERIALIZABLE and SNAPSHOT isolation levels by the dirty, non-repeatable, and phantom reads each prevents, along with lock types, granularity, and deadlock handling. By the end, students write a validation-first transactional stored procedure that transfers funds between accounts in a user-credit database, log transaction attempts, and judge when two-phase commit with MS-DTC or the Saga pattern with compensating transactions fits a distributed scenario.</p>
     <span class="module-card-count">6 items</span>
   </a>
 </li>
 <li>
-  <a class="module-card" href="module-6-week-6/index.html">
+  <a class="module-card" href="module-6-week-6-cursors-and-iteration/index.html">
     <div class="module-card-num">Module 8</div>
-    <h3 class="module-card-title">Module 6 (Week 6)</h3>
-    
+    <h3 class="module-card-title">Module 6 (Week 6) - Cursors and Iteration</h3>
+    <p class="module-card-desc">This module covers database cursors and row-by-row (RBAR) processing in T-SQL: the full DECLARE, OPEN, FETCH, CLOSE, and DEALLOCATE lifecycle, looping with @@FETCH_STATUS, and the declaration options for scope (LOCAL/GLOBAL), scrollability (FORWARD_ONLY/SCROLL), type (STATIC, KEYSET, DYNAMIC, FAST_FORWARD), and concurrency (READ_ONLY, SCROLL_LOCKS, OPTIMISTIC), along with cursor syntax in Oracle PL/SQL, MySQL, and PostgreSQL. Students build cursor-based stored procedures with parameterized SELECT statements, per-row transaction control, and TRY-CATCH cleanup using CURSOR_STATUS, and complete an assignment writing sp_DisplayCollege, which iterates over colleges matching a partial name and reports each institution&#39;s values against plain and enrollment-weighted averages. Students also learn to weigh cursors against set-based alternatives — window functions for running totals, JOINs for cross-table updates, and batch processing for large datasets — and to apply a decision tree and pre-production checklist for judging when row-by-row work is genuinely warranted.</p>
     <span class="module-card-count">3 items</span>
   </a>
 </li>
 <li>
-  <a class="module-card" href="module-7-week-7/index.html">
+  <a class="module-card" href="module-7-week-7-reporting/index.html">
     <div class="module-card-num">Module 9</div>
-    <h3 class="module-card-title">Module 7 (Week 7)</h3>
-    
+    <h3 class="module-card-title">Module 7 (Week 7) - Reporting</h3>
+    <p class="module-card-desc">This module turns query results into delivered reports, distinguishing operational, analytical, tactical, and strategic report types and weighing SSRS, Power BI, Crystal Reports, Tableau, and Jaspersoft on cost, learning curve, and fit before settling on SSRS Report Builder as the working tool. Students install Report Builder, connect a data source, build a dataset, bind fields to a table, format headers and numbers, add totals, and save an .rdl file, then extend it with matrix (crosstab) layouts, charts, cascading parameters, drill-through and drill-down visibility toggles, interactive sorting, and Visual Basic expressions. Using the US Aid database, they produce a matrix report of fiscal year by continent summing financial aid, troubleshoot expression, parameter, and deployment errors, and check finished reports against query performance, caching, number formatting, naming, and security standards.</p>
     <span class="module-card-count">6 items</span>
   </a>
 </li>
 <li>
-  <a class="module-card" href="module-8-week-8/index.html">
+  <a class="module-card" href="module-8-week-8-lookup-tables/index.html">
     <div class="module-card-num">Module 10</div>
-    <h3 class="module-card-title">Module 8 (Week 8)</h3>
-    
+    <h3 class="module-card-title">Module 8 (Week 8) - Lookup Tables</h3>
+    <p class="module-card-desc">This module covers lookup (reference/code) tables: their structure of primary key, value, and optional description, sort order, and active flags; criteria for deciding when a column warrants a lookup table versus a CHECK constraint; and design practices including surrogate versus natural keys, foreign key enforcement, soft deletes, indexing, and pitfalls such as hard-coding lookup IDs or breaking historical data. Students compare a single-table-per-field design with the two-table Categories/Codes architecture, build it in SQL Server with foreign keys, a CatCodes view, stored procedures that populate lookup values, and a scalar function that decodes codes. Working with coded Census Bureau PUMS microdata (fields such as ACR) and its data dictionary, students import raw coded records and produce grouped counts and cross-tabulations of two coded variables by joining to their lookup structures.</p>
     <span class="module-card-count">6 items</span>
   </a>
 </li>
 <li>
-  <a class="module-card" href="module-9-week-9/index.html">
+  <a class="module-card" href="module-9-week-9-aggregation-and-functions/index.html">
     <div class="module-card-num">Module 11</div>
-    <h3 class="module-card-title">Module 9 (Week 9)</h3>
-    
+    <h3 class="module-card-title">Module 9 (Week 9) - Aggregation and Functions</h3>
+    <p class="module-card-desc">This module covers SQL aggregation: COUNT(*), COUNT(column), and COUNT(DISTINCT) and how NULLs and duplicates change their results, plus SUM, AVG, MIN, and MAX applied to numeric, date, and string columns of a sample bookstore orders table. Students work with AS aliases, GROUP BY on single columns, multiple columns, and date expressions, the rule that every selected column must be grouped or aggregated, and the choice between WHERE and HAVING as explained by SQL&#39;s six-step logical execution order; vendor-specific features such as GROUP_CONCAT, STRING_AGG, STDDEV, VARIANCE, and WITH ROLLUP are compared across Oracle, SQL Server, MySQL, PostgreSQL, and Db2. The assignment applies these tools to a US government food database, writing a stored procedure that splits foods into quartiles by fat-to-energy ratio and ranks the top and bottom ten by sugar and vitamin content.</p>
     <span class="module-card-count">4 items</span>
   </a>
 </li>
 <li>
-  <a class="module-card" href="module-10-week-10/index.html">
+  <a class="module-card" href="module-10-week-10-full-text-indexing/index.html">
     <div class="module-card-num">Module 12</div>
-    <h3 class="module-card-title">Module 10 (Week 10)</h3>
-    
+    <h3 class="module-card-title">Module 10 (Week 10) - Full Text Indexing</h3>
+    <p class="module-card-desc">This module covers full-text indexing in SQL Server: how the full-text engine&#39;s word breaker, stopword filtering, stemming, and thesaurus expansion build an inverted index, why `LIKE &#39;%term%&#39;` forces a full scan, and how to create a full-text catalog and index with a unique key, language, and change-tracking options. Students write CONTAINS queries using exact phrases, AND/OR/AND NOT logic, prefix wildcards, FORMSOF, and NEAR proximity, compare them to FREETEXT for precision versus recall, and rank results with CONTAINSTABLE and FREETEXTTABLE using top_n_by_rank and rank thresholds, while managing custom stoplists and the XML thesaurus. In the assignment they build a full-text index on menu item descriptions and return items matching two search terms grouped by menu group, then contrast SQL Server&#39;s syntax with Oracle Text, MySQL MATCH...AGAINST, and other platforms&#39; equivalents to decide when full-text, a B-Tree index, or a dedicated search engine is the right tool.</p>
     <span class="module-card-count">3 items</span>
   </a>
 </li>
 <li>
-  <a class="module-card" href="module-11-week-11/index.html">
+  <a class="module-card" href="module-11-week-11-performance/index.html">
     <div class="module-card-num">Module 13</div>
-    <h3 class="module-card-title">Module 11 (Week 11)</h3>
-    
+    <h3 class="module-card-title">Module 11 (Week 11) - Performance</h3>
+    <p class="module-card-desc">This module turns to SQL Server query performance: measuring logical and physical reads with SET STATISTICS IO and TIME to establish a pre-tuning baseline, querying Dynamic Management Views and Query Store for expensive queries, wait statistics, index usage and file I/O latency, and reading execution plans to distinguish index seeks, scans, key lookups and join operators. Students build clustered, non-clustered, covering (INCLUDE), filtered and columnstore indexes, weigh the read/write trade-off along with fragmentation, REORGANIZE versus REBUILD and statistics upkeep, and rewrite queries for SARGability while avoiding SELECT *, implicit conversions and poor EXISTS/IN/JOIN choices. The assignment applies this to the housing database with Category and Code lookup tables, profiling the Assignment 8 aggregation query, selecting and justifying an optimization — indexing, denormalization, summary tables or indexed views — and reporting pre- and post-optimization timings.</p>
     <span class="module-card-count">4 items</span>
   </a>
 </li>
 <li>
-  <a class="module-card" href="module-12-week-12/index.html">
+  <a class="module-card" href="module-12-week-12-security/index.html">
     <div class="module-card-num">Module 14</div>
-    <h3 class="module-card-title">Module 12 (Week 12)</h3>
-    
+    <h3 class="module-card-title">Module 12 (Week 12) - Security</h3>
+    <p class="module-card-desc">This module covers database security as a layered discipline: the seven defence-in-depth layers (network, OS, authentication, authorization, data, audit, application), least-privilege design with role-based GRANT/DENY, Row-Level Security and Dynamic Data Masking, encryption through Transparent Data Encryption, column-level and Always Encrypted, TLS connections and certificate/key backup, plus SQL Server Audit specifications, failed-login alerting, surface area reduction, port and browser service restrictions, and post-incident forensics using volatile session state, the transaction log and audit timelines. Students write a two-part Hacker/Defender report that plans and demonstrates a SQL injection attack to extract user credentials, then documents the parameterized queries, input validation and backdoor hardening used to defend against it, with screen captures of both. They will also audit a database environment against a hardening checklist and argue a prioritised remediation order, and debate in discussion which database security risk is greatest and how to mitigate it.</p>
     <span class="module-card-count">4 items</span>
   </a>
 </li>
 <li>
-  <a class="module-card" href="module-13-week-13/index.html">
+  <a class="module-card" href="module-13-week-13-advanced-query/index.html">
     <div class="module-card-num">Module 15</div>
-    <h3 class="module-card-title">Module 13 (Week 13)</h3>
-    
+    <h3 class="module-card-title">Module 13 (Week 13) - Advanced Query</h3>
+    <p class="module-card-desc">This module turns SQL into an analysis tool: it contrasts OLTP and OLAP uses of a relational database, walks the six-stage analysis pipeline, distinguishes dimensions from measures, and covers cleaning raw operational data with COALESCE, ROW_NUMBER for duplicate removal, CASE for category standardisation, and z-scores for outlier detection. Students write descriptive summaries, trend queries using LAG, running totals and rolling averages, and segmentation queries with RANK, DENSE_RANK and NTILE, then build rate-based KPIs protected by NULLIF and package them as date-parameterised cyclic reports in stored procedures. The assignment applies this to real Fall 2014 grade data, comparing short versus full terms and live, hybrid and online delivery using course GPA and course success score, with a discussion on advanced SQL puzzles covering join logic.</p>
     <span class="module-card-count">3 items</span>
   </a>
 </li>
 <li>
-  <a class="module-card" href="module-14-week-14/index.html">
+  <a class="module-card" href="module-14-week-14-nosql/index.html">
     <div class="module-card-num">Module 16</div>
-    <h3 class="module-card-title">Module 14 (Week 14)</h3>
-    
+    <h3 class="module-card-title">Module 14 (Week 14) - NoSQL</h3>
+    <p class="module-card-desc">This module moves beyond the relational model to NoSQL, covering the four database families — document, key-value, column-family, and graph — and using MongoDB as the working example: documents, collections, BSON types, the _id field, and schema flexibility in mongosh. Students perform CRUD with insertOne, insertMany, find, findOne, projection, comparison and logical operators (including IN, AND, OR), updateOne/updateMany with update and array operators, upserts, and deleteOne/deleteMany; build aggregation pipelines with $match, $group, $project, $sort, $unwind, and $lookup; and create single-field, compound, unique, text, and TTL indexes, reading explain() output to tell a COLLSCAN from an IXSCAN. The assignment requires standing up a local or Atlas MongoDB instance, loading a dataset such as the restaurant collection, demonstrating IN/AND/OR queries, and documenting NoSQL&#39;s limitations and appropriate uses — including embedding versus referencing decisions, the 16MB document limit, and polyglot persistence.</p>
     <span class="module-card-count">4 items</span>
   </a>
 </li>
 <li>
-  <a class="module-card" href="module-15-week-15/index.html">
+  <a class="module-card" href="module-15-week-15-summary/index.html">
     <div class="module-card-num">Module 17</div>
-    <h3 class="module-card-title">Module 15 (Week 15)</h3>
-    
+    <h3 class="module-card-title">Module 15 (Week 15) - Summary</h3>
+    <p class="module-card-desc">The final week consolidates the full arc of the course — ETL and query design, stored procedures, transactions, cursors, reporting, lookup tables, aggregation and user-defined functions, full-text indexing, performance tuning, security, advanced query techniques, and NoSQL — into a single integrated picture of how these pieces fit together in a working database solution. Students review terminology and the models introduced in earlier weeks, map the connections between them, and then work a database case: framing the scenario, choosing which techniques apply, deciding under incomplete information, and defending a recommendation with evidence drawn from the case and the course material. A 45-question quiz bank supports preparation for the final assessment, and students close by auditing their performance against the course outcomes and drafting an action plan naming remaininggaps and concrete next steps for continued work with SQL and database design.</p>
     <span class="module-card-count">1 item</span>
   </a>
 </li>

@@ -1,0 +1,221 @@
+﻿<!DOCTYPE html><html><head><link rel="stylesheet" href="https://templates.lcs.brightspace.com/lib/assets/css/styles.min.css"><title>Lecture 5-1 Transaction Stored Procedure</title></head><body style="color: rgb(32, 33, 34); font-family: undefined;">
+<div class="pm-backlink" style="font-family:'Segoe UI',Arial,sans-serif;padding:8px 16px;background:#f5f8fc;border-bottom:1px solid #dce3ec"><a href="../index.html" style="color:#1a3c6e;font-weight:600;text-decoration:none">↑ Module 5 (Week 5) - Transactions</a></div><h1><strong>Getting Started with Transactions in T-SQL</strong></h1>
+<h2>&nbsp;<strong>Summary of Video</strong></h2>
+<p>Covers the ACID test and how to perform transactions using stored procedures with T-SQL<strong></strong></p>
+<h2><strong>Video Link</strong></h2>
+<p><iframe allowfullscreen="allowfullscreen" frameborder="0" height="315" width="560" src="https://www.youtube.com/embed/3F23j783wFs"></iframe></p>
+<h2><strong>Support Materials</strong></h2>
+<p>&nbsp;</p>
+<p><img style="height: auto;" alt="" src="https://roneaglin.online/COP4709/wp-content/uploads/2018/12/BankDB.png" id="pbImage775815" decoding="async"></p>
+<table style="width: 786.125px;" border="0">
+<tbody>
+<tr>
+<td>
+<pre>CREATE PROCEDURE [dbo].[performTransaction]
+(
+&nbsp; @FromAccountID INT,
+&nbsp; @ToAccountID INT, 
+&nbsp; @Amount FLOAT
+)
+AS
+BEGIN
+-- Check to see if accounts exist
+DECLARE @FromAccountTest INT
+SELECT @FromAccountTest = (SELECT Count(*) 
+&nbsp; FROM Accounts
+&nbsp; WHERE AccountID = @FromAccountID)
+IF @FromAccountTest &lt;&gt; 1 
+BEGIN
+&nbsp;RAISERROR('From Account Does Not Exist', 10, 1)
+END
+DECLARE @ToAccountTest INT
+SELECT @ToAccountTest = (SELECT Count(*) 
+&nbsp; FROM Accounts
+&nbsp; WHERE AccountID = @ToAccountID)
+IF @FromAccountTest &lt;&gt; 1 
+BEGIN
+&nbsp;RAISERROR('To Account Does Not Exist', 10, 2)
+END
+-- At this point we can log the transaction
+DECLARE @TransactionID INT 
+EXEC @TransactionID = LogTransactionAttempt @FromAccountID, @ToAccountID, @Amount 
+-- Check to see if sufficient balance
+DECLARE @FromAccountBalance&nbsp; FLOAT
+SELECT @FromAccountBalance = (SELECT Balance
+&nbsp;&nbsp; &nbsp;FROM Accounts 
+&nbsp;&nbsp; &nbsp;WHERE AccountID = @FromAccountID)
+
+IF (@FromAccountBalance &lt; @Amount)&nbsp; &nbsp; &nbsp;
+BEGIN
+&nbsp; RAISERROR('Insufficient Balance', 10, 3)
+END
+-- Now we can start the transaction
+BEGIN TRANSACTION 
+UPDATE Accounts
+&nbsp;SET Balance = Balance - @Amount
+&nbsp;WHERE AccountID = @FromAccountID
+
+IF (@@ERROR &lt;&gt; 0)
+&nbsp;&nbsp; BEGIN
+&nbsp;&nbsp; &nbsp;ROLLBACK TRANSACTION&nbsp;&nbsp; /* if errors - rollback transaction */
+&nbsp;&nbsp; &nbsp;RETURN 
+&nbsp;&nbsp; END
+UPDATE Accounts
+SET Balance = Balance + @Amount
+&nbsp;WHERE AccountID = @ToAccountID
+IF (@@ERROR &lt;&gt; 0)
+   BEGIN
+&nbsp;&nbsp; &nbsp;ROLLBACK TRANSACTION&nbsp;&nbsp; /* if errors - rollback transaction */
+&nbsp;&nbsp; &nbsp;RETURN 
+&nbsp;&nbsp; END
+
+UPDATE TransactionLog
+&nbsp; SET Successful = 1
+&nbsp; WHERE TransactionID = @TransactionID
+
+IF (@@ERROR &lt;&gt; 0)
+   BEGIN
+&nbsp;&nbsp; &nbsp;ROLLBACK TRANSACTION&nbsp;&nbsp; /* if errors - rollback transaction */
+&nbsp;&nbsp; &nbsp;RETURN 
+&nbsp;&nbsp; END
+-- Transaction
+COMMIT TRANSACTION
+END -- Procedure</pre>
+</td>
+</tr>
+</tbody>
+</table>
+<table style="width: 524.312px;" border="0">
+<tbody>
+<tr>
+<td>
+<pre>CREATE PROCEDURE [dbo].[LogTransactionAttempt]
+(
+&nbsp; @FromAccountID INT,
+&nbsp; @ToAccountID INT, 
+&nbsp; @Amount FLOAT
+)
+&nbsp;AS
+&nbsp;BEGIN
+&nbsp; INSERT INTO TransactionLog
+&nbsp; (
+&nbsp;&nbsp;&nbsp; FromAccountID,
+&nbsp;&nbsp;&nbsp; ToAccountID,
+&nbsp;&nbsp;&nbsp; Amount, 
+&nbsp;&nbsp;&nbsp; TransactionDate
+&nbsp; )
+&nbsp; VALUES 
+&nbsp; (
+&nbsp;&nbsp;&nbsp; @FromAccountID,
+&nbsp;&nbsp;&nbsp; @ToAccountID,
+&nbsp;&nbsp;&nbsp; @Amount,
+&nbsp;&nbsp;&nbsp; GETDATE()
+&nbsp; )
+&nbsp; RETURN @@IDENTITY
+ END</pre>
+</td>
+</tr>
+</tbody>
+</table>
+<div dir="ltr" id="model-response-message-contentr_82676327e720ac87" _ngcontent-ng-c2526952497="">
+<p data-sourcepos="1:1-1:139"></p>
+<h2 data-sourcepos="3:1-3:19"><strong>ACID Properties</strong></h2>
+<p data-sourcepos="5:1-5:291">ACID is an acronym that represents the four fundamental properties that guarantee reliable transaction processing in database systems. These properties are essential for maintaining data integrity and consistency, especially in situations with concurrent access or potential system failures.</p>
+<ul data-sourcepos="7:1-18:0">
+<li data-sourcepos="7:1-9:0">
+<p data-sourcepos="7:5-7:205"><strong>Atomicity:</strong> This property ensures that a transaction is treated as a single, indivisible unit of work. Either all changes within the transaction are made, or none are. There's no partial completion.</p>
+<ul data-sourcepos="8:5-9:0">
+<li data-sourcepos="8:5-9:0"><strong>Example:</strong> In a bank transfer, both debiting the source account and crediting the destination account must happen together. If one fails, the entire transaction is rolled back.</li>
+</ul>
+</li>
+<li data-sourcepos="10:1-12:0">
+<p data-sourcepos="10:5-10:146"><strong>Consistency:</strong> A transaction must maintain the database's integrity constraints. It transforms the database from one valid state to another.</p>
+<ul data-sourcepos="11:5-12:0">
+<li data-sourcepos="11:5-12:0"><strong>Example:</strong> If a rule states that account balances cannot go below zero, the transaction system must prevent a withdrawal that would violate this rule.</li>
+</ul>
+</li>
+<li data-sourcepos="13:1-15:0">
+<p data-sourcepos="13:5-13:160"><strong>Isolation:</strong> Transactions should operate independently of each other. Concurrent transactions should not interfere with each other's execution or results.</p>
+<ul data-sourcepos="14:5-15:0">
+<li data-sourcepos="14:5-15:0"><strong>Example:</strong> If two users try to book the last seat on a flight simultaneously, the system must ensure that only one booking is successful.</li>
+</ul>
+</li>
+<li data-sourcepos="16:1-18:0">
+<p data-sourcepos="16:5-16:143"><strong>Durability:</strong> Once a transaction is committed, the changes are permanent and survive even system failures (e.g., power outages, crashes).</p>
+<ul data-sourcepos="17:5-18:0">
+<li data-sourcepos="17:5-18:0"><strong>Example:</strong> After a successful purchase, the record of that purchase remains in the database even if the server crashes immediately afterward.</li>
+</ul>
+</li>
+</ul>
+<p data-sourcepos="19:1-19:28"><strong>Discussion of Importance</strong></p>
+<ul data-sourcepos="21:1-28:0">
+<li data-sourcepos="21:1-22:0">
+<p data-sourcepos="21:5-21:209"><strong>Data Integrity:</strong> ACID properties are crucial for ensuring the accuracy and reliability of data. They prevent data corruption and inconsistencies that can arise from partial updates or concurrent access.</p>
+</li>
+<li data-sourcepos="23:1-24:0">
+<p data-sourcepos="23:5-23:199"><strong>Business Criticality:</strong> In many applications (e.g., finance, e-commerce, healthcare), data integrity is paramount. ACID transactions provide the necessary guarantees for these critical systems.</p>
+</li>
+<li data-sourcepos="25:1-26:0">
+<p data-sourcepos="25:5-25:199"><strong>Simplified Development:</strong> Developers can rely on ACID properties to simplify application logic. They don't need to implement complex error handling or concurrency control mechanisms themselves.</p>
+</li>
+<li data-sourcepos="27:1-28:0">
+<p data-sourcepos="27:5-27:158"><strong>System Reliability:</strong> ACID properties enhance the overall reliability of database systems, making them more resilient to failures and unexpected events.</p>
+</li>
+</ul>
+<p data-sourcepos="29:1-29:33"><strong>Implementation Considerations</strong></p>
+<ul data-sourcepos="31:1-34:0">
+<li data-sourcepos="31:1-32:0">
+<p data-sourcepos="31:5-31:215"><strong>Performance Trade-offs:</strong> Achieving full ACID compliance can sometimes impact performance. Database systems often offer different isolation levels that allow for trade-offs between consistency and concurrency.</p>
+</li>
+<li data-sourcepos="33:1-34:0">
+<p data-sourcepos="33:5-33:179"><strong>Distributed Systems:</strong> Implementing ACID properties in distributed database systems is more complex due to the challenges of coordinating transactions across multiple nodes.</p>
+</li>
+</ul>
+<p data-sourcepos="35:1-35:14"><strong>In Summary</strong></p>
+<p data-sourcepos="37:1-37:357">ACID properties are fundamental to reliable transaction processing in database systems. They ensure data integrity, consistency, and durability, which are essential for many critical applications. While there can be performance trade-offs, the benefits of ACID compliance generally outweigh the costs, especially in systems where data accuracy is paramount.</p>
+<div dir="ltr" id="model-response-message-contentr_f02ca470ed35e0fc" _ngcontent-ng-c2526952497="">
+<h2 data-sourcepos="1:1-1:255">Implementing ACID</h2>
+<p data-sourcepos="1:1-1:255">Let's explore how databases implement the ACID properties. It's a complex area, and the specific implementations vary between database systems (e.g., MySQL, PostgreSQL, Oracle, SQL Server, MongoDB), but the underlying principles are similar.<sup data-turn-source-index="1" _ngcontent-ng-c3163841646="">1</sup><sources-carousel-inline _nghost-ng-c2638263894="" ng-version="0.0.0-PLACEHOLDER"><!----><!----><!----></sources-carousel-inline></p>
+<p data-sourcepos="3:1-3:16"><strong>1. Atomicity</strong></p>
+<ul data-sourcepos="5:1-8:0">
+<li data-sourcepos="5:1-5:341"><strong>Write-Ahead Logging (WAL):</strong> Before any changes are made to the actual data files, they are first written to a log file.<sup data-turn-source-index="2" _ngcontent-ng-c3163841646="">2</sup> This log is durable (usually on disk). This ensures that even if the system crashes during a transaction, the database can use the log to either complete the transaction or roll it back.<sup data-turn-source-index="3" _ngcontent-ng-c3163841646="">3</sup><sources-carousel-inline _nghost-ng-c2638263894="" ng-version="0.0.0-PLACEHOLDER"><!----><!----><!----></sources-carousel-inline></li>
+<li data-sourcepos="6:1-6:201"><strong>Transactions Logs:</strong> Databases maintain logs of all operations within a transaction.<sup data-turn-source-index="4" _ngcontent-ng-c3163841646="">4</sup> These logs contain enough information to undo the changes if the transaction needs to be aborted.<sources-carousel-inline _nghost-ng-c2638263894="" ng-version="0.0.0-PLACEHOLDER"><!----><!----><!----></sources-carousel-inline></li>
+<li data-sourcepos="7:1-8:0"><strong>Rollback:</strong> If a transaction fails or is aborted, the database uses the transaction log to undo any changes that were made. It restores the database to the state it was in before the transaction began.<sup data-turn-source-index="5" _ngcontent-ng-c3163841646="">5</sup><sources-carousel-inline _nghost-ng-c2638263894="" ng-version="0.0.0-PLACEHOLDER"><!----><!----><!----></sources-carousel-inline></li>
+</ul>
+<p data-sourcepos="9:1-9:18"><strong>2. Consistency</strong></p>
+<ul data-sourcepos="11:1-14:0">
+<li data-sourcepos="11:1-11:295"><strong>Constraints:</strong> Databases define rules (constraints) about the data, such as data types, uniqueness, and referential integrity (e.g., foreign keys).<sup data-turn-source-index="6" _ngcontent-ng-c3163841646="">6</sup> The database system enforces these constraints. A transaction that violates a constraint is not allowed to commit.<sup data-turn-source-index="7" _ngcontent-ng-c3163841646="">7</sup><sources-carousel-inline _nghost-ng-c2638263894="" ng-version="0.0.0-PLACEHOLDER"><!----><!----><!----></sources-carousel-inline></li>
+<li data-sourcepos="12:1-12:237"><strong>Triggers:</strong> Triggers are pieces of code that are automatically executed when certain events occur in the database (e.g., insert, update, delete).<sup data-turn-source-index="8" _ngcontent-ng-c3163841646="">8</sup> Triggers can be used to enforce complex consistency rules.<sup data-turn-source-index="9" _ngcontent-ng-c3163841646="">9</sup><sources-carousel-inline _nghost-ng-c2638263894="" ng-version="0.0.0-PLACEHOLDER"><!----><!----><!----></sources-carousel-inline></li>
+<li data-sourcepos="13:1-14:0"><strong>Data Validation:</strong> Before committing a transaction, the database system validates the changes to ensure they adhere to all defined rules and constraints.</li>
+</ul>
+<p data-sourcepos="15:1-15:16"><strong>3. Isolation</strong></p>
+<ul data-sourcepos="17:1-22:0">
+<li data-sourcepos="17:1-20:232"><strong>Concurrency Control:</strong> Databases use various techniques to manage concurrent transactions, preventing them from interfering with each other.<sup data-turn-source-index="10" _ngcontent-ng-c3163841646="">10</sup> Common methods include:
+<ul data-sourcepos="18:5-20:232">
+<li data-sourcepos="18:5-18:260"><strong>Locking:</strong> Transactions can acquire locks on data items to prevent other transactions from accessing or modifying them.<sup data-turn-source-index="11" _ngcontent-ng-c3163841646="">11</sup> Different types of locks (e.g., shared locks, exclusive locks) provide varying levels of isolation.<sup data-turn-source-index="12" _ngcontent-ng-c3163841646="">12</sup><sources-carousel-inline _nghost-ng-c2638263894="" ng-version="0.0.0-PLACEHOLDER"><!----><!----><!----></sources-carousel-inline></li>
+<li data-sourcepos="19:5-19:363"><strong>Multi-Version Concurrency Control (MVCC):</strong> MVCC allows each transaction to see a snapshot of the database at a particular point in time.<sup data-turn-source-index="13" _ngcontent-ng-c3163841646="">13</sup> This avoids many locking scenarios and improves concurrency. Each row has version information. A transaction reads the version of the data that was current when the transaction began.<sup data-turn-source-index="14" _ngcontent-ng-c3163841646="">14</sup><sources-carousel-inline _nghost-ng-c2638263894="" ng-version="0.0.0-PLACEHOLDER"><!----><!----><!----></sources-carousel-inline></li>
+<li data-sourcepos="20:5-20:232"><strong>Optimistic Concurrency Control:</strong> Transactions proceed without acquiring locks.<sup data-turn-source-index="15" _ngcontent-ng-c3163841646="">15</sup> Before committing, the database checks if any conflicts have occurred. If there are conflicts, the transaction is rolled back.<sources-carousel-inline _nghost-ng-c2638263894="" ng-version="0.0.0-PLACEHOLDER"><!----><!----><!----></sources-carousel-inline></li>
+</ul>
+<sources-carousel-inline _nghost-ng-c2638263894="" ng-version="0.0.0-PLACEHOLDER"><!----><!----><!----></sources-carousel-inline></li>
+<li data-sourcepos="21:1-22:0"><strong>Isolation Levels:</strong> SQL defines different isolation levels, which offer varying degrees of protection against concurrency problems (e.g., read uncommitted, read committed, repeatable read, serializable).<sup data-turn-source-index="16" _ngcontent-ng-c3163841646="">16</sup> Higher isolation levels provide more protection but can reduce concurrency.<sup data-turn-source-index="17" _ngcontent-ng-c3163841646="">17</sup><sources-carousel-inline _nghost-ng-c2638263894="" ng-version="0.0.0-PLACEHOLDER"><!----><!----><!----></sources-carousel-inline></li>
+</ul>
+<p data-sourcepos="23:1-23:17"><strong>4. Durability</strong></p>
+<ul data-sourcepos="25:1-28:0">
+<li data-sourcepos="25:1-25:251"><strong>Write-Ahead Logging (WAL):</strong> As mentioned earlier, WAL is crucial for durability.<sup data-turn-source-index="18" _ngcontent-ng-c3163841646="">18</sup> Changes are written to the log first, ensuring that they are persisted even if the system crashes before the data files are updated.<sup data-turn-source-index="19" _ngcontent-ng-c3163841646="">19</sup><sources-carousel-inline _nghost-ng-c2638263894="" ng-version="0.0.0-PLACEHOLDER"><!----><!----><!----></sources-carousel-inline></li>
+<li data-sourcepos="26:1-26:208"><strong>Data Replication:</strong> Many databases support data replication, where data is copied to multiple servers.<sup data-turn-source-index="20" _ngcontent-ng-c3163841646="">20</sup> This provides redundancy and ensures that data is not lost even if one server fails.<sources-carousel-inline _nghost-ng-c2638263894="" ng-version="0.0.0-PLACEHOLDER"><!----><!----><!----></sources-carousel-inline></li>
+<li data-sourcepos="27:1-28:0"><strong>Backup and Recovery:</strong> Databases provide mechanisms for backing up data.<sup data-turn-source-index="21" _ngcontent-ng-c3163841646="">21</sup> These backups can be used to restore the database to a previous state in the event of data loss.<sup data-turn-source-index="22" _ngcontent-ng-c3163841646="">22</sup> Recovery procedures use the WAL to replay changes since the last backup.<sup data-turn-source-index="23" _ngcontent-ng-c3163841646="">23</sup><sources-carousel-inline _nghost-ng-c2638263894="" ng-version="0.0.0-PLACEHOLDER"><!----><!----><!----></sources-carousel-inline></li>
+</ul>
+<p data-sourcepos="29:1-29:39"><strong>Example: A Simplified Bank Transfer</strong></p>
+<p data-sourcepos="31:1-31:58">Let's imagine a bank transfer from account A to account B.</p>
+<ol data-sourcepos="33:1-37:0">
+<li data-sourcepos="33:1-33:278"><strong>Atomicity:</strong> The transfer involves two operations: debiting A and crediting B. The database ensures that either both operations happen, or neither does.<sup data-turn-source-index="24" _ngcontent-ng-c3163841646="">24</sup> If the system crashes halfway through, the transaction log will be used to roll back the debit from A.<sources-carousel-inline _nghost-ng-c2638263894="" ng-version="0.0.0-PLACEHOLDER"><!----><!----><!----></sources-carousel-inline></li>
+<li data-sourcepos="34:1-34:196"><strong>Consistency:</strong> The database has a constraint that account balances cannot be negative. If the debit from A would violate this constraint, the transaction is aborted, and B is not credited.</li>
+<li data-sourcepos="35:1-35:385"><strong>Isolation:</strong> If two transfers try to debit A simultaneously, the database's concurrency control mechanism (e.g., locking) ensures that these operations are performed in a way that prevents a "race condition" (where the final balance of A is incorrect). MVCC would allow the two transactions to read A's balance concurrently, but only one would be able to successfully update it.</li>
+<li data-sourcepos="36:1-37:0"><strong>Durability:</strong> Once the transfer is committed, the changes to the balances of A and B are written to the transaction log and eventually to the data files. These changes are permanent, even if the system crashes immediately afterward.</li>
+</ol>
+<p data-sourcepos="38:1-38:247">It's important to understand that the specific implementation details can be quite complex and vary significantly between database systems. However, the core principles of ACID remain the same, providing a foundation for reliable data management.</p>
+</div>
+</div>
+<p>&nbsp;</p>
+<footer class="presemaker-credit" data-credit="2" style="margin-top:2rem;padding:14px 8px;border-top:1px solid #ddd;background:#fff;text-align:center;font:13px/1.5 -apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;color:#595959;"><svg width="20" height="20" viewBox="0 0 2048 2048" aria-hidden="true" focusable="false" style="vertical-align:-5px;margin-right:7px"><rect width="2048" height="2048" rx="384" fill="#0F6E6E"/><path fill="#0A5050" d="M1024 1000 344 832v816l680 168zm0 0 680-168v816l-680 168z"/><path fill="#fff" d="M1024 944 384 784v808l640 160zm0 0 640-160v808l-640 160z"/><rect x="1002" y="944" width="44" height="808" fill="#0F6E6E"/><rect x="936" y="246" width="176" height="448" rx="44" fill="#fff"/><rect x="800" y="382" width="448" height="176" rx="44" fill="#fff"/></svg>Created with <a href="https://softwareplus.ai/coursebuilder/" target="_blank" rel="noopener" style="color:#2f5d8f;font-weight:600;text-decoration:none;">CourseBuilder+</a><span aria-hidden="true"> · </span><a href="https://softwareplus.ai/" target="_blank" rel="noopener" style="color:#2f5d8f;text-decoration:none;">SoftwarePlus.ai</a></footer>
+</body></html>

@@ -1,0 +1,67 @@
+﻿[
+  {
+    "title": "Module 2 (Week 2) - ETL and Query (module page)",
+    "href": "index.html",
+    "type": "Module page"
+  },
+  {
+    "title": "Module 2 (Week 2) - ETL and Query \u2014 Topics \u0026 Learning Outcomes",
+    "href": "topics-outcomes.html",
+    "type": "Page"
+  },
+  {
+    "title": "Module 2 (Week 2) - ETL and Query \u2014 Module Topics",
+    "href": "topics.html",
+    "type": "Page"
+  },
+  {
+    "title": "Assignment 2 - Import and Analyze Data",
+    "href": "assignments/assignment-2-import-and-analyze-data.html",
+    "type": "Assignments"
+  },
+  {
+    "title": "Assignments \u2014 Module 2 (Week 2) - ETL and Query",
+    "href": "assignments/index.html",
+    "type": "Assignments"
+  },
+  {
+    "title": "Graded Discussion 2",
+    "href": "content/disc_Graded_Discussion_2.html",
+    "type": "Content"
+  },
+  {
+    "title": "Lecture 2-1 - Importing Data",
+    "href": "content/Lecture_2_1_Importing_Data.html",
+    "type": "Content"
+  },
+  {
+    "title": "Lecture 2-2 - Preparing a CSV Flat File for Import",
+    "href": "content/Lecture_2_2_Preparing_a_CSV_Flat_File_for_Import.html",
+    "type": "Content"
+  },
+  {
+    "title": "Quiz \u2014 Module 2 (Week 2) - ETL and Query",
+    "href": "quiz/index.html",
+    "type": "Quiz"
+  },
+  {
+    "title": "Assignment 2 - Import and Analyze Data",
+    "href": "source-materials/A001_Case_Study_Analy_Assignment_2_Import_and.html",
+    "type": "Source-materials"
+  },
+  {
+    "title": "Graded Discussion 2",
+    "href": "source-materials/disc_Graded_Discussion_2.html",
+    "type": "Source-materials"
+  },
+  {
+    "title": "Lecture 2-1 - Importing Data",
+    "href": "source-materials/Lecture_2_1_Importing_Data.html",
+    "type": "Source-materials"
+  },
+  {
+    "title": "Lecture 2-2 - Preparing a CSV Flat File for Import",
+    "href": "source-materials/Lecture_2_2_Preparing_a_CSV_Flat_File_for_Import.html",
+    "type": "Source-materials"
+  }
+]

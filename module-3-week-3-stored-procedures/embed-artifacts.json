@@ -1,0 +1,67 @@
+﻿[
+  {
+    "title": "Module 3 (Week 3) - Stored Procedures (module page)",
+    "href": "index.html",
+    "type": "Module page"
+  },
+  {
+    "title": "Module 3 (Week 3) - Stored Procedures \u2014 Topics \u0026 Learning Outcomes",
+    "href": "topics-outcomes.html",
+    "type": "Page"
+  },
+  {
+    "title": "Module 3 (Week 3) - Stored Procedures \u2014 Module Topics",
+    "href": "topics.html",
+    "type": "Page"
+  },
+  {
+    "title": "Assignment 3 - Stored Procedures",
+    "href": "assignments/assignment-3-stored-procedures.html",
+    "type": "Assignments"
+  },
+  {
+    "title": "Assignments \u2014 Module 3 (Week 3) - Stored Procedures",
+    "href": "assignments/index.html",
+    "type": "Assignments"
+  },
+  {
+    "title": "Graded Discussion 3",
+    "href": "content/disc_Graded_Discussion_3.html",
+    "type": "Content"
+  },
+  {
+    "title": "Lecture 3-1 Stored Procedures Part I",
+    "href": "content/Lecture_3_1_Stored_Procedures_Part_I.html",
+    "type": "Content"
+  },
+  {
+    "title": "Using Stored Procedures to Manage INSERT",
+    "href": "content/Using_Stored_Procedures_to_Manage_INSERT.html",
+    "type": "Content"
+  },
+  {
+    "title": "Quiz \u2014 Module 3 (Week 3) - Stored Procedures",
+    "href": "quiz/index.html",
+    "type": "Quiz"
+  },
+  {
+    "title": "Assignment 3 - Stored Procedures",
+    "href": "source-materials/A001_Case_Study_Analy_Assignment_3_Stored_Procedures.html",
+    "type": "Source-materials"
+  },
+  {
+    "title": "Graded Discussion 3",
+    "href": "source-materials/disc_Graded_Discussion_3.html",
+    "type": "Source-materials"
+  },
+  {
+    "title": "Lecture 3-1 Stored Procedures Part I",
+    "href": "source-materials/Lecture_3_1_Stored_Procedures_Part_I.html",
+    "type": "Source-materials"
+  },
+  {
+    "title": "Using Stored Procedures to Manage INSERT",
+    "href": "source-materials/Using_Stored_Procedures_to_Manage_INSERT.html",
+    "type": "Source-materials"
+  }
+]

@@ -1,10 +1,10 @@
 ﻿{
-  "RepoUrl": "",
+  "RepoUrl": "https://github.com/reaglin/COP4709",
   "Branch": "gh-pages",
   "IncludeQuizzes": true,
   "Theme": "classic",
-  "SiteSearch": false,
-  "SiteUrl": "",
+  "SiteSearch": true,
+  "SiteUrl": "https://reaglin.github.io/COP4709/",
   "SiteUrlTyped": "",
   "GoogleVerification": "",
   "GoogleVerificationTyped": ""

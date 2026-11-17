@@ -1,0 +1,112 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Module 1 (Week 1) - Review — Module Topics</title>
+<style>
+body{font-family:'Segoe UI',Arial,sans-serif;max-width:880px;margin:0 auto;padding:32px 24px;color:#222;line-height:1.55}
+h1{font-size:1.6rem;border-bottom:2px solid #dcdcdc;padding-bottom:8px}
+h2{font-size:1.2rem;margin-top:28px;color:#1a3c6e}
+.summary{color:#555;font-style:italic;margin:4px 0 10px}
+ul{margin:6px 0 6px 4px}
+li{margin:5px 0}
+.el-body{color:#555}
+.empty{color:#595959}
+</style>
+</head>
+<body>
+<div class="pm-backlink" style="font-family:'Segoe UI',Arial,sans-serif;padding:8px 16px;background:#f5f8fc;border-bottom:1px solid #dce3ec"><a href="index.html" style="color:#1a3c6e;font-weight:600;text-decoration:none">↑ Module 1 (Week 1) - Review</a></div>
+<h1>Module 1 (Week 1) - Review — Module Topics</h1>
+<h2>The Database Skill Level Framework</h2>
+<div class="summary">Introduces the four-tier model (L1 Foundational, L2 Intermediate, L3 Advanced, L4 Expert/Architect) used to classify every database topic by depth of knowledge and years of experience. Explains how to use the framework as a self-assessment checklist, study roadmap, and career planning tool.</div>
+<ul>
+<li><strong>Why a Skill Level Framework Exists</strong> <span class="el-body">— Database knowledge spans an enormous range, from writing a first SELECT statement to architecting multi-region data platforms. The framework tags every topic in the guide with one of four skill levels so you can see where a topic sits in that range.</span></li>
+<li><strong>L1 — Foundational (COP4708 / Entry Level)</strong> <span class="el-body">— L1 covers the core concepts every person who works with databases must know. These are the bedrock skills of relational database work and form the baseline for any meaningful database job.</span></li>
+<li><strong>L2 — Intermediate (COP4709 / 1–3 Years)</strong> <span class="el-body">— L2 represents the skills of a working database professional with roughly one to three years of hands-on experience. These are the topics covered in Database Management (COP4709).</span></li>
+<li><strong>L3 — Advanced (Professional / 3–6 Years)</strong> <span class="el-body">— L3 skills go beyond coursework and are developed through hands-on professional experience, typically over three to six years or through dedicated specialised study. They are expected of senior developers, experienced DBAs, and emerging specialists.</span></li>
+<li><strong>L4 — Expert / Architect (Senior / 6+ Years)</strong> <span class="el-body">— L4 is the level of a senior DBA, database architect, or principal engineer, typically reached after six or more years of work on complex, large-scale production systems. It combines system design, cross-functional architecture decisions, and deep internals knowledge.</span></li>
+<li><strong>Using the Framework as a Self-Assessment Checklist</strong> <span class="el-body">— The most immediate use of the framework is honest self-assessment: work through the tagged topics and mark which you can perform confidently without assistance.</span></li>
+<li><strong>Using the Framework as a Study Roadmap and Career Tool</strong> <span class="el-body">— Beyond self-assessment, the levels sequence your learning and connect directly to career planning through the skills-by-role matrix.</span></li>
+</ul>
+<h2>Foundational Database Knowledge (L1)</h2>
+<div class="summary">Reviews the bedrock relational concepts expected of every database practitioner: the relational model, keys and constraints, ERDs, normalization, DDL/DML, SQL querying, JOINs, aggregation, subqueries, views, basic stored procedures, transactions and ACID, data types, basic indexing, and permissions. These are the prerequisite skills from Applied Databases I that must be solid before progressing.</div>
+<ul>
+<li><strong>The Relational Model and Schema Structure</strong> <span class="el-body">— A relational database organises data into tables (relations) made up of rows (tuples) and columns (attributes), each drawn from a defined domain. The schema enforces structure before any data is inserted, which is what distinguishes relational systems from loosely structured stores.</span></li>
+<li><strong>Keys and Constraints for Data Integrity</strong> <span class="el-body">— Keys and constraints are the mechanisms the database uses to guarantee integrity without relying on application code. Primary keys identify rows uniquely, while foreign keys link related tables together.</span></li>
+<li><strong>Entity-Relationship Diagrams and Relationship Modelling</strong> <span class="el-body">— An ERD is the visual model that translates a business description into entities, attributes, and relationships before any table is created. Reading and drawing ERDs is a core design skill for every database practitioner.</span></li>
+<li><strong>Normalization from 1NF to BCNF</strong> <span class="el-body">— Normalization is the systematic process of organising columns and tables to eliminate redundancy and update anomalies. Most practical designs target third normal form, with Boyce-Codd Normal Form for edge cases.</span></li>
+<li><strong>DDL and DML — Defining and Changing Data</strong> <span class="el-body">— SQL splits into Data Definition Language, which shapes the schema, and Data Manipulation Language, which reads and changes the data inside it. Knowing which category a statement belongs to tells you how it behaves and what permissions it needs.</span></li>
+<li><strong>Core SQL Querying — SELECT, JOINs, and Aggregation</strong> <span class="el-body">— The ability to retrieve exactly the rows you need across multiple tables is the single most used database skill. This combines filtering, joining, and summarising in one query.</span></li>
+<li><strong>Subqueries, Views, and Basic Programmability</strong> <span class="el-body">— Beyond single statements, foundational SQL includes nesting queries, saving them as views, and packaging logic into stored procedures and functions. These are the building blocks of a maintainable data layer.</span></li>
+<li><strong>Transactions, Data Types, Indexing, and Permissions</strong> <span class="el-body">— Rounding out the foundation are the operational essentials: keeping multi-step changes safe, choosing correct storage types, making queries fast, and controlling who can do what.</span></li>
+</ul>
+<h2>Intermediate Database Skills (L2)</h2>
+<div class="summary">Covers the Database Management course scope: advanced SQL (window functions, CTEs, MERGE, temp tables, advanced procedures, triggers), performance and indexing strategy, execution plans, data design and analysis patterns, NoSQL/MongoDB, and security topics including encryption, auditing, and SQL injection prevention.</div>
+<ul>
+<li><strong>What the L2 Intermediate Level Means</strong> <span class="el-body">— Intermediate (L2) covers the topics taught in Database Management (COP4709) and represents the working skill set of a database professional with roughly one to three years of hands-on experience.</span></li>
+<li><strong>Advanced SQL Constructs</strong> <span class="el-body">— The advanced SQL block extends foundational querying with analytic functions, reusable query structures, and set-based upsert logic.</span></li>
+<li><strong>Programmatic SQL: Procedures and Triggers</strong> <span class="el-body">— Intermediate work moves beyond simple procedures into robust, secure, event-driven database code.</span></li>
+<li><strong>Performance and Indexing Strategy</strong> <span class="el-body">— Performance work at L2 means designing indexes deliberately and diagnosing slow queries with the engine&#39;s own tooling.</span></li>
+<li><strong>Data Design and Analysis Patterns</strong> <span class="el-body">— Intermediate data design focuses on clean reference structures and on multi-dimensional analysis patterns used in reporting.</span></li>
+<li><strong>NoSQL Concepts and MongoDB</strong> <span class="el-body">— Working beyond the relational model is part of the intermediate skill set, starting with document databases such as MongoDB.</span></li>
+<li><strong>Security at the Intermediate Level</strong> <span class="el-body">— L2 security covers controlling access, protecting data at rest and in transit, proving what happened, and preventing injection attacks.</span></li>
+</ul>
+<h2>Advanced Professional Topics (L3)</h2>
+<div class="summary">Explores skills built through 3–6 years of production experience: performance at scale (partitioning, columnstore, In-Memory OLTP, wait statistics), high availability and disaster recovery, cloud databases, data warehousing and ETL/CDC/temporal tables, plus regulatory compliance and database forensics.</div>
+<ul>
+<li><strong>What Defines the Advanced (L3) Level</strong> <span class="el-body">— L3 topics go beyond coursework and are developed through hands-on professional experience, typically over 3–6 years. They require architectural thinking and the ability to make design decisions that affect production systems at scale.</span></li>
+<li><strong>Performance at Scale</strong> <span class="el-body">— When tables grow to hundreds of millions of rows, ordinary indexing is no longer enough. Advanced engine features reshape how data is stored, processed, and diagnosed.</span></li>
+<li><strong>Wait Statistics Analysis</strong> <span class="el-body">— Wait statistics tell you what the SQL Server engine is waiting on, turning vague &quot;the database is slow&quot; complaints into a specific, targetable bottleneck.</span></li>
+<li><strong>High Availability &amp; Disaster Recovery</strong> <span class="el-body">— HA/DR work protects the business from outages and data loss. It combines replica architectures, disciplined backup chains, and tested restore procedures.</span></li>
+<li><strong>Cloud Databases</strong> <span class="el-body">— Cloud platforms shift much of the operational burden of database management to the provider, but introduce new decisions about hosting model, scaling, and migration.</span></li>
+<li><strong>Data Warehousing, ETL and Change Tracking</strong> <span class="el-body">— Analytical systems require different modelling and loading patterns than transactional systems. This cluster covers warehouse design, pipeline construction, and efficient incremental data movement.</span></li>
+<li><strong>Regulatory Compliance &amp; Database Forensics</strong> <span class="el-body">— Advanced security work moves from configuring controls to proving they exist and investigating when they fail. Both compliance and forensics demand documentation as much as technical skill.</span></li>
+</ul>
+<h2>Expert and Architect-Level Topics (L4)</h2>
+<div class="summary">Surveys the architectural and internals knowledge of senior DBAs and database architects, including data platform architecture patterns, distributed systems and the CAP theorem, sharding, storage engine internals, advanced modelling, schema migration, lakehouse architecture, governance, polyglot persistence, and capacity planning.</div>
+<ul>
+<li><strong>Database Architecture Patterns</strong> <span class="el-body">— Expert-level architects design entire data platforms rather than individual databases, deciding how transactional, analytical, caching, and messaging components fit together. These decisions shape cost, scalability, and resilience for years.</span></li>
+<li><strong>Distributed Database Systems and the CAP Theorem</strong> <span class="el-body">— Once data spans multiple nodes or regions, trade-offs between consistency, availability, and partition tolerance become unavoidable. Experts understand these trade-offs conceptually and in the behaviour of real products.</span></li>
+<li><strong>Sharding Strategies</strong> <span class="el-body">— Sharding spreads a single logical dataset horizontally across multiple database nodes to exceed the capacity of one server. It is powerful but introduces permanent operational complexity.</span></li>
+<li><strong>Storage Engine Internals</strong> <span class="el-body">— Expert tuning decisions rest on knowing how the engine physically stores and writes data. SQL Server internals explain why certain index and configuration choices succeed or fail.</span></li>
+<li><strong>Advanced Data Modelling and Schema Migration</strong> <span class="el-body">— At architect level, modelling goes beyond third normal form to include specialised patterns, and schema change must happen without taking production offline.</span></li>
+<li><strong>Data Lake, Lakehouse, and Governance</strong> <span class="el-body">— Modern analytics platforms blend warehouse structure with lake flexibility, and that scale makes governance and lineage essential rather than optional.</span></li>
+<li><strong>Polyglot Persistence and Capacity Planning</strong> <span class="el-body">— Expert architects intentionally combine multiple database technologies and then forecast the capacity and cost those systems will require over time.</span></li>
+</ul>
+<h2>Database Career Roles and the Skills-by-Role Matrix</h2>
+<div class="summary">Profiles the seven major database career paths — DBA, Database Developer, Data Analyst, Data Engineer, Database Architect, BI Developer, and Data Scientist — with their responsibilities, required skills, and progression. Uses the skills-by-role matrix to map which skill level each role requires for each topic area.</div>
+<ul>
+<li><strong>Why Roles Matter: Mapping Skills to Career Targets</strong> <span class="el-body">— Database professionals work under several different titles, each with a distinct focus area, and the same person may wear multiple hats at a smaller organisation. Understanding these roles helps you target your learning toward a specific career goal rather than trying to learn everything at once.</span></li>
+<li><strong>Database Administrator (DBA) and Database Developer</strong> <span class="el-body">— These two roles sit closest to the database engine and its code. The DBA keeps the engine running, healthy, and secure, while the Database Developer builds the data layer that applications run on.</span></li>
+<li><strong>Data Analyst and Business Intelligence Developer</strong> <span class="el-body">— These roles translate raw database data into reports, metrics, and dashboards for business users. The Analyst answers business questions with queries and visualisations; the BI Developer builds the reporting platform and semantic models underneath them.</span></li>
+<li><strong>Data Engineer and Data Scientist</strong> <span class="el-body">— Data Engineers build the pipelines and platforms that move and transform data at scale, while Data Scientists consume that data to build statistical and machine learning models. Both sit at the intersection of databases and software engineering.</span></li>
+<li><strong>Database Architect — The Senior Design Role</strong> <span class="el-body">— Database Architects design the overall data strategy and system architecture for entire organisations. This is typically a senior role reached after substantial DBA or developer experience.</span></li>
+<li><strong>Reading the Skills-by-Role Matrix</strong> <span class="el-body">— The matrix shows which skill level is expected for each of fourteen topic areas across the seven primary roles. Use it to identify the skills required for the role you are targeting and where your current gaps are.</span></li>
+<li><strong>Patterns and Gaps Revealed by the Matrix</strong> <span class="el-body">— Comparing columns in the matrix exposes clear patterns about which skills are universal and which are role-specific. These patterns help explain why certain roles are gateways into others.</span></li>
+</ul>
+<h2>Certifications and Building Skills Beyond Coursework</h2>
+<div class="summary">Reviews respected Microsoft/Azure and vendor-neutral certifications aligned to each skill level and role, and outlines practical ways to develop real expertise through portfolio projects, practice on real datasets, internals reading, and production experience.</div>
+<ul>
+<li><strong>What Certifications Do (and Don&#39;t Do)</strong> <span class="el-body">— Certifications validate your skills to employers and clients, but they are a complement to hands-on experience rather than a substitute for it. Their main value is accelerating credibility, especially early in a career.</span></li>
+<li><strong>Microsoft SQL Server and Azure Certification Path</strong> <span class="el-body">— The Microsoft data certification track covers fundamentals through role-based associate credentials for administrators, engineers, and analysts. These map cleanly onto the skill-level framework used in this guide.</span></li>
+<li><strong>Vendor-Neutral and Other Platform Certifications</strong> <span class="el-body">— Beyond the Microsoft stack, several platform-specific credentials are well respected for cloud, NoSQL, big-data, and open-source database work. Choose these when your target employer or specialism uses that platform.</span></li>
+<li><strong>Build Something Real: Portfolio Projects</strong> <span class="el-body">— Designing and building a complete database project end-to-end demonstrates capability better than any certificate. A finished project shows design judgement, not just recall.</span></li>
+<li><strong>Practice on Real Datasets</strong> <span class="el-body">— Toy tables with ten rows hide the performance and data-quality problems that define professional work. Practising on realistic datasets exposes you to scale, messiness, and tuning trade-offs.</span></li>
+<li><strong>Read the Internals and Follow Practitioners</strong> <span class="el-body">— Moving from intermediate to advanced requires deliberate reading about how the engine actually works, not just more query practice. Internals knowledge is what drives correct tuning decisions.</span></li>
+<li><strong>Get Into Production Environments Early</strong> <span class="el-body">— The most important career advice is that no database professional became an expert from coursework alone. L3–L4 skills come from real operational pressure.</span></li>
+</ul>
+<h2>Getting Started: SQL Server Setup and Database Creation</h2>
+<div class="summary">Applies foundational knowledge in practice by installing SQL Server and SSMS, creating a database with tables, keys, and 1:N and M:N relationships, and documenting it with a data dictionary, SQL script, and ERD diagram. Includes worked examples from the music, class advising, and sports statistics data dictionaries.</div>
+<ul>
+<li><strong>Installing SQL Server and SQL Server Management Studio</strong> <span class="el-body">— Before any database work can begin, you need a running database engine and a client tool to manage it. SQL Server Developer Edition is free and fully featured, making it the recommended choice for coursework.</span></li>
+<li><strong>Creating a Database and Tables in SSMS</strong> <span class="el-body">— Once connected, you create a new database and then populate it with tables using either the graphical wizards or hand-written DDL. Both approaches produce the same result, but writing the SQL gives you a reusable, version-controllable script.</span></li>
+<li><strong>Modelling 1:N Relationships with Foreign Keys</strong> <span class="el-body">— A one-to-many relationship is implemented by placing a foreign key column on the &#39;many&#39; side that references the primary key of the &#39;one&#39; side. This is the most common relationship type in relational design.</span></li>
+<li><strong>Modelling M:N Relationships with Join Tables</strong> <span class="el-body">— Relational tables cannot express many-to-many relationships directly, so you resolve them with a join (bridge) table that holds foreign keys to both parent tables. Thinking in terms of object relationships can simplify these designs.</span></li>
+<li><strong>Worked Data Dictionary Examples</strong> <span class="el-body">— Three supplied data dictionaries give you ready-made business scenarios to model, or you may propose your own design. Each naturally contains both 1:N and M:N relationships.</span></li>
+<li><strong>Documenting the Database: Data Dictionary, Script, and ERD</strong> <span class="el-body">— The deliverable for this work is not just a working database but clear documentation that another developer could use to rebuild and understand it. Three artefacts are required.</span></li>
+</ul>
+
+<footer class="presemaker-credit" data-credit="2" style="margin-top:2rem;padding:14px 8px;border-top:1px solid #ddd;background:#fff;text-align:center;font:13px/1.5 -apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;color:#595959;"><svg width="20" height="20" viewBox="0 0 2048 2048" aria-hidden="true" focusable="false" style="vertical-align:-5px;margin-right:7px"><rect width="2048" height="2048" rx="384" fill="#0F6E6E"/><path fill="#0A5050" d="M1024 1000 344 832v816l680 168zm0 0 680-168v816l-680 168z"/><path fill="#fff" d="M1024 944 384 784v808l640 160zm0 0 640-160v808l-640 160z"/><rect x="1002" y="944" width="44" height="808" fill="#0F6E6E"/><rect x="936" y="246" width="176" height="448" rx="44" fill="#fff"/><rect x="800" y="382" width="448" height="176" rx="44" fill="#fff"/></svg>Created with <a href="https://softwareplus.ai/coursebuilder/" target="_blank" rel="noopener" style="color:#2f5d8f;font-weight:600;text-decoration:none;">CourseBuilder+</a><span aria-hidden="true"> · </span><a href="https://softwareplus.ai/" target="_blank" rel="noopener" style="color:#2f5d8f;text-decoration:none;">SoftwarePlus.ai</a></footer>
+</body>
+</html>

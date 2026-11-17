@@ -1,0 +1,14 @@
+﻿<!DOCTYPE html>
+<html><head><link rel="stylesheet" href="https://templates.lcs.brightspace.com/lib/assets/css/styles.min.css"><title>Lecture 1-1 Getting Started in SQL Server Management Studio</title></head><body style="color: rgb(32, 33, 34); font-family: undefined;">
+<div class="pm-backlink" style="font-family:'Segoe UI',Arial,sans-serif;padding:8px 16px;background:#f5f8fc;border-bottom:1px solid #dce3ec"><a href="../index.html" style="color:#1a3c6e;font-weight:600;text-decoration:none">↑ Module 1 (Week 1) - Review</a></div><h1>Lecture – Getting Started with SQL Server Management Studio</h1>
+<h2>Summary of Video</h2>
+<p>This is a very simple video of creating a database inside of SQL Server Management Studio. It demonstrates creating a database, creating tables using both SQL and the wizards, setting up simple relationships, and the tools available in Management Studio.</p>
+<h2>Prerequisites</h2>
+<p>This is a first lecture in COP4709, students should have had a previous course in databases (COP4708 or COP2700)</p>
+<h2>Video Link</h2>
+<p><iframe allowfullscreen="allowfullscreen" referrerpolicy="strict-origin-when-cross-origin" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" frameborder="0" src="https://www.youtube.com/embed/4n63lvs7LyU?start=42&amp;feature=oembed" height="394" width="525" title="Database - Getting Started With SQL Server Management Studio"></iframe></p>
+<h2>Support Materials</h2>
+<p>SQL Script to create tables as shown in Video</p>
+<p>CREATE TABLE [dbo].[Artists](<br>[id] [int] PRIMARY KEY IDENTITY(1,1) NOT NULL,<br>[name] [nvarchar](200) NULL)</p>
+<p>CREATE TABLE [dbo].[Albums](<br>[id] [int] PRIMARY KEY IDENTITY(1,1) NOT NULL,<br>[artistID] [int] FOREIGN KEY REFERENCES Artists(id) NULL,<br>[name] [nvarchar](200) NULL,<br>[year] [nvarchar](4) NULL)</p>
+<p>CREATE TABLE [dbo].[Songs](<br>[id] [int] PRIMARY KEY IDENTITY(1,1) NOT NULL,<br>[name] [nvarchar](200) NULL,<br>[albumID] [int] FOREIGN KEY REFERENCES Albums(id) NULL,<br>[TrackNumber] [int] NULL)</p></body></html>

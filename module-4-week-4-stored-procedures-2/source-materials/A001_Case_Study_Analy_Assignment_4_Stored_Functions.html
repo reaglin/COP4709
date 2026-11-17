@@ -1,0 +1,58 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Assignment 4 - Stored Functions</title>
+<style>body{font-family:Segoe UI,Arial,sans-serif;max-width:900px;margin:24px auto;padding:0 16px;line-height:1.5;color:#222}h1{font-size:1.6em;margin-bottom:.3em}h2{font-size:1.25em;margin-top:1.4em;border-bottom:1px solid #ddd;padding-bottom:.2em}h3{font-size:1.05em;margin-bottom:.2em}.lead{color:#555}.summary{color:#444;margin:.2em 0 .4em}.bloom{color:#777;font-size:.9em}ul,ol{padding-left:1.4em}pre{background:#f6f6f6;padding:12px;border-radius:4px}.mo{display:grid;grid-template-columns:56px 1fr;gap:2px 10px;margin:0 0 10px;padding:8px 10px;background:#f7f9fc;border-left:3px solid #2e6cb4;border-radius:3px}.mo .code{font-weight:600;color:#2e6cb4}.mo .statement{grid-column:2}.mo .meta{grid-column:2;font-size:.85em;color:#777}.mo .meta span{margin-right:12px}</style>
+</head>
+<body>
+<div class="pm-backlink" style="font-family:'Segoe UI',Arial,sans-serif;padding:8px 16px;background:#f5f8fc;border-bottom:1px solid #dce3ec"><a href="../index.html" style="color:#1a3c6e;font-weight:600;text-decoration:none">↑ Module 4 (Week 4) - Stored Procedures 2</a></div>
+<h1>Assignment 4 - Stored Functions</h1>
+<h1 align="center"><strong>Assignment 4 – Stored Functions</strong></h1>
+<h3><strong>Objectives</strong></h3>
+<p>To write a stored function that can be used in Queries and Stored Procedures</p>
+<p>Stored functions, along with stored procedures, are one of the best tools to have in your SQL toolkit. They are incredibly useful for encapsulating commonly used SQL statements. They are also useful for shielding the inner details of the database from external development when databases are used in large systems.</p>
+<p><strong>Assignment</strong></p>
+<p>You will be writing 2 stored functions for this assignment. One function will be a table-valued function (they will return a set of values), the other will be a Scalar function.</p>
+<p><strong>Function 1</strong>: func_GetMenuItemsForMenu – For this function, you will pass the ID of the menu to the function. The function will find all MenuItems that are on the menu. It will return a table.</p>
+<p><strong>Function 2</strong>: func_GetMenuItemDescriptionForMenuItemID – This will operate as expected in the title. You will pass a MenuItemID to the function and it will return the Menu Item Description. This will return a scalar (varchar)</p>
+<p>With these 2 functions, you will demonstrate that you can create a single SQL Query or Stored Procedure that uses the function call to return the description of all menu items that appear on a given menu. Demonstrate this with a real query.</p>
+<p>You will turn in a report (report format) that contains; (1) the text of the 2 functions (2) a screen capture of your query, and (3) the results of the query.</p>
+<table style="width: 972px;" border=".5">
+<tbody>
+<tr>
+<td style="width: 954px;">NOTE You may substitute tables of your own design and write 2 function that meet the same requirements as these functions. The function must use multiple tables, one must return a table, the other a scalar (varchar or text). Please include design details of your tables if you use this option.&nbsp; If you do this you are expected to also include a discussion (purpose, design) about your database on the discussion boards.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Information</strong></p>
+<p>Below is an example of creating a Stored Function (with 3 parameters) and an example of calling the stored function.</p>
+<table style="width: 968.156px;" border="1">
+<tbody>
+<tr>
+<td>
+<p><code>-- Create a function that calculates the total order value with discount</code><br><code>CREATE FUNCTION CalculateOrderTotal</code><br><code>(</code><br><code>&nbsp; &nbsp; @Quantity INT,</code><br><code>&nbsp; &nbsp; @UnitPrice DECIMAL(10,2),</code><br><code>&nbsp; &nbsp; @DiscountPercentage DECIMAL(5,2)</code><br><code>)</code><br><code>RETURNS DECIMAL(10,2)</code><br><code>AS</code><br><code>BEGIN</code><br><code>&nbsp; &nbsp; DECLARE @TotalAmount DECIMAL(10,2)</code><br><code>&nbsp; &nbsp; DECLARE @DiscountAmount DECIMAL(10,2)</code><br><code>&nbsp; &nbsp;&nbsp;</code><br><code>&nbsp; &nbsp; -- Calculate initial total</code><br><code>&nbsp; &nbsp; SET @TotalAmount = @Quantity * @UnitPrice</code><br><code>&nbsp; &nbsp;&nbsp;</code><br><code>&nbsp; &nbsp; -- Calculate discount amount</code><br><code>&nbsp; &nbsp; SET @DiscountAmount = @TotalAmount * (@DiscountPercentage / 100.0)</code><br><code>&nbsp; &nbsp;&nbsp;</code><br><code>&nbsp; &nbsp; -- Return total after discount</code><br><code>&nbsp; &nbsp; RETURN @TotalAmount - @DiscountAmount</code><br><code>END</code><br><code>GO</code></p>
+<p><code>-- Example usage of the function</code></p>
+<p><code>-- Single value example</code><br><code>SELECT dbo.CalculateOrderTotal(10, 25.99, 15) AS OrderTotal;</code></p>
+<p><code>-- Using in a query with a table</code><br><code>CREATE TABLE Orders (</code><br><code>&nbsp; &nbsp; OrderID INT PRIMARY KEY,</code><br><code>&nbsp; &nbsp; ProductName VARCHAR(50),</code><br><code>&nbsp; &nbsp; Quantity INT,</code><br><code>&nbsp; &nbsp; UnitPrice DECIMAL(10,2),</code><br><code>&nbsp; &nbsp; DiscountPercentage DECIMAL(5,2)</code><br><code>);</code></p>
+<p><code>-- Insert sample data</code><br><code>INSERT INTO Orders VALUES&nbsp;</code><br><code>(1, 'Widget A', 5, 19.99, 10),</code><br><code>(2, 'Widget B', 3, 29.99, 15),</code><br><code>(3, 'Widget C', 8, 15.99, 5);</code></p>
+<p><code>-- Use function with table data</code><br><code>SELECT&nbsp;</code><br><code>&nbsp; &nbsp; OrderID,</code><br><code>&nbsp; &nbsp; ProductName,</code><br><code>&nbsp; &nbsp; dbo.CalculateOrderTotal(</code><br><code>&nbsp; &nbsp; &nbsp; &nbsp; Quantity,&nbsp;</code><br><code>&nbsp; &nbsp; &nbsp; &nbsp; UnitPrice,&nbsp;</code><br><code>&nbsp; &nbsp; &nbsp; &nbsp; DiscountPercentage</code><br><code>&nbsp; &nbsp; ) AS TotalOrderValue</code><br><code>FROM Orders;</code></p>
+<pre dir="ltr"></pre>
+<pre dir="ltr"></pre>
+</td>
+</tr>
+</tbody>
+</table>
+<h3><strong>Estimated Completion Time</strong></h3>
+<p>Budget a few hours for this (it took me about 15 minutes to complete). You should take some time to learn what are some uses of Stored Functions and Stored Procedures.</p>
+<p><strong>External Resources</strong></p>
+<p>Differences and uses of stored procedures and stored functions –&nbsp;<a rel="noopener" href="http://stackoverflow.com/questions/1179758/function-vs-stored-procedure-in-sql-server">http://stackoverflow.com/questions/1179758/function-vs-stored-procedure-in-sql-server</a></p>
+<p>A great article on Stored Functions returning Tables –&nbsp;<a rel="noopener" href="http://www.sqlservertutorial.net/sql-server-user-defined-functions/sql-server-table-valued-functions/">http://www.sqlservertutorial.net/sql-server-user-defined-functions/sql-server-table-valued-functions/</a></p>
+<p>and Scalar functions</p>
+<p><a rel="noopener" href="https://www.sqlservertutorial.net/sql-server-user-defined-functions/sql-server-scalar-functions/">https://www.sqlservertutorial.net/sql-server-user-defined-functions/sql-server-scalar-functions/</a></p>
+<p>WiseOwl Video on Table-Valued Functions –&nbsp;<a rel="noopener" target="_blank" href="https://www.youtube.com/watch?v=nCAEgNxC7nU">https://www.youtube.com/watch?v=nCAEgNxC7nU</a></p>
+<h3><strong>Grading Criteria</strong></h3>
+<p>5 Points for creating and executing a stored function returning a scalar.<br>5 points for creating and executing a stored function returning a table.</p>
+</body>
+</html>

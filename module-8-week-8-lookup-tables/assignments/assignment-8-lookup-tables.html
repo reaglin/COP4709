@@ -1,0 +1,146 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Assignment 8 - Lookup Tables</title>
+<style>body{font-family:Segoe UI,Arial,sans-serif;max-width:900px;margin:24px auto;padding:0 16px;line-height:1.5;color:#222}h1{font-size:1.6em;margin-bottom:.3em}h2{font-size:1.25em;margin-top:1.4em;border-bottom:1px solid #ddd;padding-bottom:.2em}h3{font-size:1.05em;margin-bottom:.2em}.lead{color:#555}.summary{color:#444;margin:.2em 0 .4em}.bloom{color:#777;font-size:.9em}ul,ol{padding-left:1.4em}pre{background:#f6f6f6;padding:12px;border-radius:4px}.mo{display:grid;grid-template-columns:56px 1fr;gap:2px 10px;margin:0 0 10px;padding:8px 10px;background:#f7f9fc;border-left:3px solid #2e6cb4;border-radius:3px}.mo .code{font-weight:600;color:#2e6cb4}.mo .statement{grid-column:2}.mo .meta{grid-column:2;font-size:.85em;color:#777}.mo .meta span{margin-right:12px}</style>
+</head>
+<body>
+<div class="pm-backlink" style="font-family:'Segoe UI',Arial,sans-serif;padding:8px 16px;background:#f5f8fc;border-bottom:1px solid #dce3ec"><a href="../index.html" style="color:#1a3c6e;font-weight:600;text-decoration:none">↑ Module 8 (Week 8) - Lookup Tables</a></div>
+<div class="pm-injected-nav"><a href="index.html">← Back to Assignments</a><span class="sep">|</span><a href="../index.html">↑ Back to Module</a></div>
+<div class="pm-injected-spacer"></div>
+<h1>Assignment 8 - Lookup Tables</h1>
+<h1 align="center" style="text-align: center;"><strong>Assignment 8 – Lookup Tables</strong></h1>
+<h3><strong>Objectives</strong></h3>
+<ol>
+<li>Use coded data in databases</li>
+<li>U<span style="font-size: 0.95rem; letter-spacing: 0.02rem;">se lookup tables</span></li>
+<li><span style="font-size: 0.95rem; letter-spacing: 0.02rem;">&nbsp;Create a data structures for data lookup.</span></li>
+<li><span style="font-size: 0.95rem; letter-spacing: 0.02rem;">Do basic data analysis</span></li>
+</ol>
+<p>Understand the use of government data dictionary and data sets</p>
+<h3><strong>Assignment Preparation</strong></h3>
+<p>For this example we are going to use some data from the Census Bureau public use microdata samples (PUMS)&nbsp; -</p>
+<p>The latest version 2023 is available at&nbsp;<a rel="noopener" href="https://www.census.gov/programs-surveys/acs/microdata/access.html" target="_blank">https://www.census.gov/programs-surveys/acs/microdata/access.html</a> - from this site you can access the data and the data dictionary through clicking this link. You will not need to download data from this site, but I want you to be aware of where I got the data for this assignment.&nbsp;</p>
+<p><img src="Assignment_8_Lookup_Tables_files/image_20241209202250983.png" style="max-width: 100%; display: block; margin-left: auto; margin-right: auto;"></p>
+<p>Data Dictionary for the PUMS Data is also available at&nbsp;<a rel="noopener" href="http://census.gov/programs-surveys/acs/technical-documentation/code-lists.html" target="_blank">http://census.gov/programs-surveys/acs/technical-documentation/code-lists.html</a> .</p>
+<p>The above is for your reference. For this assignment <strong>you will use</strong> the data I prepared for you in this file - <a rel="noopener" href="Assignment_8_Lookup_Tables_files/FL_Housing_Data_2006.zip" target="_blank">Coded Lookup Data from Census Bureau for 2006</a>&nbsp; (you can use other data - but downloads from census.gov are really slow)</p>
+<p><span style="text-decoration: underline;">Steps</span></p>
+<ol>
+<li>The data you will need for this assignment are&nbsp; included in this file. The fields are coded (like ACR means Acreage) and the values are also coded (ex. 1 means 1 acre or less for ACR).</li>
+<li>You will import this data into a database in SQL Server. You can insert this data in its raw format.</li>
+<li>Next you will create a set of Look-up tables for&nbsp; each of these data types in the database. You can name the lookup tables the same as the field name. For this part you will create a separate lookup table for each column above. You will need to enter the values in the lookup table.</li>
+<li>&nbsp;Create the table structure below</li>
+</ol>
+<table style="width: 669.109px;" border="0">
+<tbody>
+<tr>
+<td>
+<pre>CREATE TABLE Categories (
+&nbsp;[Name] NVARCHAR(50) PRIMARY KEY,
+&nbsp;[Description] NVARCHAR(200)
+)
+CREATE TABLE Codes (
+&nbsp;[Name] NVARCHAR(50),
+&nbsp;[CategoryName] NVARCHAR(50) FOREIGN KEY REFERENCES Categories(Name),
+ [Description] NVARCHAR(200) )</pre>
+</td>
+</tr>
+</tbody>
+</table>
+<p>5. Create a stored procedure sp_insertCategory that takes 2 arguments Name and Description and creates a new row in category inserting the passed data.</p>
+<p>6. Create a stored procedure sp_insertCode that takes 3 arguments Name, CategoryName, and Description – this stored procedure should create a new row in the table Codes. It should also check to ensure the Category exists in Categories and if not create it.</p>
+<p>7. If you have done these 2 properly you should be able to run the following;</p>
+<table style="width: 957.156px;" border="0">
+<tbody>
+<tr>
+<td>
+<pre>-- Add Categories
+</pre>
+<pre>EXEC sp_InsertCategory 'ACR', 'Lot Size'
+
+EXEC sp_InsertCategory 'FS', 'fFood stamp/SNAP recipient'
+-- Add codes
+
+<br>-- An example for adding codes to the ACR and FS is given here<br>-- You will need to create these for all 4 data types<br>
+EXEC sp_InsertCode 'b', 'ACR', 'N/A'
+EXEC sp_InsertCode '1', 'ACR', 'House on less than one acre'
+EXEC sp_InsertCode '2', 'ACR', 'House on one to less than ten acres'
+EXEC sp_InsertCode '3', 'ACR', 'House on ten acres or more'
+
+EXEC sp_InsertCode 'b', 'FS', 'N/A'
+EXEC sp_InsertCode '1', 'FS', 'Yes'
+EXEC sp_InsertCode '2', 'FS', 'No'
+</pre>
+</td>
+</tr>
+</tbody>
+</table>
+<p>8. Now for the final step (2 queries) – using either lookup table or the category codes table you will write a query that returns the following shown below the example. This example is the count of the number of units for each of the code descriptions for ACR. This should be done with a SINGLE query. This is&nbsp;</p>
+<table style="width: 588.094px;" border="0">
+<tbody>
+<tr>
+<td>
+<pre>SELECT&nbsp;&nbsp; [Codes].[Description],&nbsp; COUNT(*) As 'Number Units' 
+FROM&nbsp;&nbsp;&nbsp;&nbsp; RawData, Codes, Categories 
+WHERE&nbsp;&nbsp;&nbsp; RawData.ACR = Codes.Name
+&nbsp; AND&nbsp;&nbsp;&nbsp; Codes.CategoryName = 'ACR'
+&nbsp; AND&nbsp;&nbsp;&nbsp; Categories.Name = Codes.CategoryName
+GROUP BY [Codes].[Description]
+
+</pre>
+<pre>Description&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Number Units
+House on less than one acre&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;170745
+House on one to less than ten acres&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  20940
+House on ten acres or more&nbsp;&nbsp; &nbsp;             2586</pre>
+</td>
+</tr>
+</tbody>
+</table>
+<p>9. Create a query that returns the same thing breakdown for <strong>homes receiving food stamps and&nbsp;homes not receiving food stamps</strong> (variable FS) grouped by Acreage (variable ACR).&nbsp; &nbsp;Here is an example output;</p>
+<pre>Description&nbsp;&nbsp; &nbsp;                            Yes                 No           N/A          Total
+House on less than one acre&nbsp;&nbsp; &nbsp;           nnnn                nnnn         nnnn          nnnn<br>House on one to less than ten acres&nbsp;&nbsp;     nnnn                nnnn         nnnn          nnnn<br>House on ten acres or more&nbsp;&nbsp; &nbsp;            nnnn                nnnn         nnnn          nnnn
+
+</pre>
+<p>10. You may freely discuss this on Assignment 8 Discussion &nbsp;and share code and approaches.&nbsp;</p>
+<p>The results of this query and the SQL will be in your report.&nbsp;</p>
+<p>This may prove useful – here is a function to return a Description given a code name and a category name</p>
+<table style="width: 524.312px;" border="0">
+<tbody>
+<tr>
+<td>
+<pre>CREATE FUNCTION func_GetDescription (
+&nbsp;&nbsp; @CodeName NVARCHAR(50),
+&nbsp;&nbsp; @CategoryName NVARCHAR(50))
+&nbsp;RETURNS NVARCHAR(200)
+&nbsp;AS
+&nbsp;BEGIN
+&nbsp;RETURN (SELECT TOP 1 [Codes].[Description]
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; FROM Codes, Categories
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; WHERE Codes.CategoryName = Categories.Name
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; AND Categories.Name = @CategoryName
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; AND Codes.Name = @CodeName)
+END</pre>
+</td>
+</tr>
+</tbody>
+</table>
+<h3>Assignment</h3>
+<p>Now that you have worked through this data you will create a query and result that uses any 2 other variables. One field will be an GROUP BY field in the first column, the other columns will be the coded values of the other field. You may want to discuss your choices in the discussions.&nbsp;</p>
+<p>Your report will include the analysis of the other 2 fields, the query, and the results.&nbsp;&nbsp;</p>
+<h3><strong>Estimated Completion Time</strong></h3>
+<p>Allot at least 10 hours to cover all materials and complete this assignment.</p>
+<h3><strong>Grading Criteria</strong></h3>
+<p>Follow reporting requirements as outlined in "Guide to Writing Good Reports "</p>
+<p>Your report should contain;</p>
+<ol>
+<li>The question you are asking in English</li>
+<li>The SQL query you used</li>
+<li>The results of the query</li>
+<li>Any conclusions drawn from the result.&nbsp;</li>
+</ol>
+
+<footer class="presemaker-credit" data-credit="2" style="margin-top:2rem;padding:14px 8px;border-top:1px solid #ddd;background:#fff;text-align:center;font:13px/1.5 -apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;color:#595959;"><svg width="20" height="20" viewBox="0 0 2048 2048" aria-hidden="true" focusable="false" style="vertical-align:-5px;margin-right:7px"><rect width="2048" height="2048" rx="384" fill="#0F6E6E"/><path fill="#0A5050" d="M1024 1000 344 832v816l680 168zm0 0 680-168v816l-680 168z"/><path fill="#fff" d="M1024 944 384 784v808l640 160zm0 0 640-160v808l-640 160z"/><rect x="1002" y="944" width="44" height="808" fill="#0F6E6E"/><rect x="936" y="246" width="176" height="448" rx="44" fill="#fff"/><rect x="800" y="382" width="448" height="176" rx="44" fill="#fff"/></svg>Created with <a href="https://softwareplus.ai/coursebuilder/" target="_blank" rel="noopener" style="color:#2f5d8f;font-weight:600;text-decoration:none;">CourseBuilder+</a><span aria-hidden="true"> · </span><a href="https://softwareplus.ai/" target="_blank" rel="noopener" style="color:#2f5d8f;text-decoration:none;">SoftwarePlus.ai</a></footer>
+</body>
+</html>
