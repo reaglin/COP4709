@@ -1,0 +1,1741 @@
+{
+  "ModuleFolderName": "Module_9_(Week_9)",
+  "CourseName": "COP4709 \u2014 Applied Database II",
+  "GeneratedDate": "2026-11-17T05:23:57.8372816-05:00",
+  "ModifiedDate": "2026-11-17T05:26:50.271853-05:00",
+  "Outcomes": [],
+  "Topics": [
+    {
+      "Id": "c1c57e7c-201e-4ca9-b310-141af7b9ea14",
+      "Title": "Aggregation Fundamentals in SQL",
+      "Summary": "Introduces aggregation as the process of collapsing many rows into a single summary value, and previews the core functions (COUNT, SUM, AVG, MIN, MAX, COUNT DISTINCT) along with the general syntax pattern and the bookstore sample dataset used throughout.",
+      "SortOrder": 0,
+      "CreatedDate": "2026-11-17T05:23:57.8372816-05:00",
+      "ModifiedDate": "2026-11-17T05:23:57.8372816-05:00",
+      "Elements": [
+        {
+          "Id": "799121bc-c8e2-4aef-b269-b95602f8d785",
+          "TopicId": "c1c57e7c-201e-4ca9-b310-141af7b9ea14",
+          "Title": "What Aggregation Means",
+          "BodyText": "Aggregation in SQL performs a calculation across a set of rows to produce a single summary value. Rather than returning every individual record, aggregate functions collapse many rows into meaningful totals, counts, and averages.",
+          "Notes": "Example: instead of listing every sale ever made, ask SQL for total revenue per month, the average order value, or the highest-selling product \u2014 all in one query.",
+          "SortOrder": 0,
+          "CreatedDate": "2026-11-17T05:24:12.7440771-05:00",
+          "ModifiedDate": "2026-11-17T05:24:12.7440771-05:00",
+          "Items": [
+            {
+              "Id": "c7fa6131-6274-4610-8d97-1a1e5af8f741",
+              "Text": "Aggregate functions read many input rows and output one summary value.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "04edaba9-de3b-4a67-a6df-d578b2b170b6",
+              "Text": "They turn raw transactional detail into reportable business metrics.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "454841a1-2178-44a6-89fa-3849abe3535d",
+              "Text": "Without GROUP BY, an aggregate collapses the entire result set into a single row.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "4e7dd470-a2b3-401a-b16b-94314e7b9c3c",
+              "Text": "Aggregation is the foundation of reporting, dashboards, and analytics queries.",
+              "SortOrder": 3
+            }
+          ]
+        },
+        {
+          "Id": "fede0531-dddd-4087-81f5-7d7cfb252f51",
+          "TopicId": "c1c57e7c-201e-4ca9-b310-141af7b9ea14",
+          "Title": "The Core Aggregate Functions",
+          "BodyText": "Six functions handle the vast majority of aggregation work in SQL. Each is supported by every major database system including Oracle, SQL Server, MySQL, PostgreSQL, and IBM Db2.",
+          "Notes": "Beyond these core six, databases also offer STDDEV, VARIANCE, MEDIAN, PERCENTILE_CONT, and text aggregators like GROUP_CONCAT or STRING_AGG.",
+          "SortOrder": 1,
+          "CreatedDate": "2026-11-17T05:24:12.7440771-05:00",
+          "ModifiedDate": "2026-11-17T05:24:12.7440771-05:00",
+          "Items": [
+            {
+              "Id": "acbd8d60-9b0b-402b-8417-44ba8208fb0a",
+              "Text": "COUNT() counts rows or non-NULL values in a column.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "fc912e4b-a597-499a-aef9-951791259d45",
+              "Text": "SUM() totals numeric values in a column.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "5473f5d9-93a1-4445-94f3-74abcd9f40f8",
+              "Text": "AVG() calculates the arithmetic mean of numeric values.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "9545d4da-53d5-4564-90bb-dece580bee00",
+              "Text": "MIN() returns the smallest value and MAX() returns the largest.",
+              "SortOrder": 3
+            },
+            {
+              "Id": "12e7eb69-b8ff-49c9-965d-8559cd5e0b20",
+              "Text": "COUNT(DISTINCT col) counts unique non-NULL values only.",
+              "SortOrder": 4
+            },
+            {
+              "Id": "39b8c991-41b5-4a1a-9147-2fe0d64e7c28",
+              "Text": "All aggregates except COUNT(*) ignore NULL values.",
+              "SortOrder": 5
+            }
+          ]
+        },
+        {
+          "Id": "51957632-171b-46c2-851d-aa5d688f8146",
+          "TopicId": "c1c57e7c-201e-4ca9-b310-141af7b9ea14",
+          "Title": "The General Syntax Pattern",
+          "BodyText": "Every aggregation query follows the same predictable clause skeleton. Mastering this template makes complex reporting queries straightforward to construct.",
+          "Notes": "Template: SELECT FUNCTION(column) AS alias_name FROM table [WHERE ...] [GROUP BY ...] [HAVING ...] [ORDER BY ...];",
+          "SortOrder": 2,
+          "CreatedDate": "2026-11-17T05:24:12.7440771-05:00",
+          "ModifiedDate": "2026-11-17T05:24:12.7440771-05:00",
+          "Items": [
+            {
+              "Id": "ef6900f2-0a8e-4644-8bd4-b1de749045f4",
+              "Text": "SELECT lists the grouping columns and the aggregate expressions.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "ae3d6d52-a7c6-4404-86ae-dcd7e229c14e",
+              "Text": "FROM identifies the source table or joined tables.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "71c0c7f4-6e19-41d6-8066-0635cebb6a79",
+              "Text": "WHERE is optional and filters individual rows before any grouping occurs.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "25b8e45f-420d-4cc0-b4fa-1bb5361d2da1",
+              "Text": "GROUP BY is optional and defines how rows are bundled into groups.",
+              "SortOrder": 3
+            },
+            {
+              "Id": "7f104383-0a97-41e1-8885-04623ee3f94d",
+              "Text": "HAVING is optional and filters the groups after aggregation.",
+              "SortOrder": 4
+            },
+            {
+              "Id": "c6574c0e-9caf-4383-8ac6-217dcd2f473f",
+              "Text": "ORDER BY sorts the final summarised result set.",
+              "SortOrder": 5
+            }
+          ]
+        },
+        {
+          "Id": "ec84e49d-5f3e-4616-adca-d6a838253f9f",
+          "TopicId": "c1c57e7c-201e-4ca9-b310-141af7b9ea14",
+          "Title": "Supporting Tools You Will Use",
+          "BodyText": "Three companion keywords make aggregation practical and readable. They are introduced here and explored in depth later in the guide.",
+          "Notes": "",
+          "SortOrder": 3,
+          "CreatedDate": "2026-11-17T05:24:12.7440771-05:00",
+          "ModifiedDate": "2026-11-17T05:24:12.7440771-05:00",
+          "Items": [
+            {
+              "Id": "4718cbf1-e4ec-4d4f-904e-5426dda31287",
+              "Text": "AS creates a column alias so output headers are readable rather than cryptic strings like COUNT(*).",
+              "SortOrder": 0
+            },
+            {
+              "Id": "af5eca8e-2b2a-4d89-941f-331742ec0c9e",
+              "Text": "GROUP BY controls which rows get aggregated together into each summary row.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "20dd292e-e642-4b17-b6e3-b343261c6a12",
+              "Text": "HAVING filters the results after aggregation has already been calculated.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "fbf038db-6012-4d71-96c2-861e3357bfa7",
+              "Text": "ROUND() is frequently paired with AVG to tidy up excessive decimal precision.",
+              "SortOrder": 3
+            }
+          ]
+        },
+        {
+          "Id": "54b08fb1-9c34-459b-93d7-28543eaba8b1",
+          "TopicId": "c1c57e7c-201e-4ca9-b310-141af7b9ea14",
+          "Title": "The Bookstore Sample Dataset",
+          "BodyText": "All examples throughout this guide use a single orders table from a fictional online bookstore. Working from one consistent dataset makes it easy to compare how each function behaves.",
+          "Notes": "The table is created with CREATE TABLE orders (...) and populated with ten INSERT rows spanning January to March 2025.",
+          "SortOrder": 4,
+          "CreatedDate": "2026-11-17T05:24:12.7440771-05:00",
+          "ModifiedDate": "2026-11-17T05:24:12.7440771-05:00",
+          "Items": [
+            {
+              "Id": "bb7a806c-be9a-4ca6-9b39-5bc8b76f5f63",
+              "Text": "The orders table has columns: order_id, customer_id, order_date, category, total, qty, and status.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "6da6ed1f-2434-4e63-b5cb-61b7f18273f6",
+              "Text": "It contains 10 orders placed by 5 distinct customers.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "213e0f1f-ef28-441e-966d-f5cd4cf1853a",
+              "Text": "Categories include Fiction, Science, History, and Biography.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "c9eed6d7-17ba-4ca0-9081-029fb05aef50",
+              "Text": "Status values are Completed, Cancelled, and Pending \u2014 useful for demonstrating WHERE filters.",
+              "SortOrder": 3
+            },
+            {
+              "Id": "c48277b3-8a58-4170-8add-23f9f8cb4c86",
+              "Text": "Totals range from 15.00 to 91.00, summing to 412.93 across all orders.",
+              "SortOrder": 4
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Id": "8c92d1c8-f86c-4694-b1b6-5976855e02a7",
+      "Title": "Core Aggregate Functions: COUNT, SUM, and AVG",
+      "Summary": "Explores counting rows versus non-NULL and distinct values, totalling numeric columns, and calculating averages with rounding. Highlights NULL-handling traps such as COUNT(*) vs COUNT(column) and SUM returning NULL on empty result sets.",
+      "SortOrder": 1,
+      "CreatedDate": "2026-11-17T05:23:57.8372816-05:00",
+      "ModifiedDate": "2026-11-17T05:23:57.8372816-05:00",
+      "Elements": [
+        {
+          "Id": "6a8ffaa0-53f8-472a-abc5-0611097d0868",
+          "TopicId": "8c92d1c8-f86c-4694-b1b6-5976855e02a7",
+          "Title": "COUNT(*) \u2014 Counting Every Row",
+          "BodyText": "COUNT(*) returns the total number of rows that match a query, regardless of whether any column contains NULL values. It is the safest choice when the question is simply \u0022how many records?\u0022",
+          "Notes": "Example: SELECT COUNT(*) AS total_orders FROM orders; returns 10 for the sample bookstore table.",
+          "SortOrder": 0,
+          "CreatedDate": "2026-11-17T05:24:34.571473-05:00",
+          "ModifiedDate": "2026-11-17T05:24:34.571473-05:00",
+          "Items": [
+            {
+              "Id": "f27010fe-828f-4fb1-9e54-ec3fb9a03e2c",
+              "Text": "COUNT(*) counts every row, including rows with NULLs in one or more columns.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "877dbc32-453b-42d0-bcd8-6c7fb462fcf2",
+              "Text": "It does not inspect any particular column, so it never skips data.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "33fa4f44-54fe-492e-a5ae-6fbaa03dffb4",
+              "Text": "Combine it with WHERE to count a filtered subset, e.g. WHERE status = \u0027Completed\u0027 returns 8.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "c71cee32-ed6f-43e3-b0c9-0cb18cebba9f",
+              "Text": "Always alias the result with AS so the output column has a readable name such as total_orders.",
+              "SortOrder": 3
+            }
+          ]
+        },
+        {
+          "Id": "6f033a7d-4eeb-42cb-a23f-e185514b7cdf",
+          "TopicId": "8c92d1c8-f86c-4694-b1b6-5976855e02a7",
+          "Title": "COUNT(column) \u2014 Counting Non-NULL Values",
+          "BodyText": "COUNT(column) counts only the rows where the named column holds a value that is not NULL. This makes it a quick way to measure data completeness.",
+          "Notes": "SELECT COUNT(status) AS orders_with_status FROM orders; returns 10 because every row has a status recorded.",
+          "SortOrder": 1,
+          "CreatedDate": "2026-11-17T05:24:34.571473-05:00",
+          "ModifiedDate": "2026-11-17T05:24:34.571473-05:00",
+          "Items": [
+            {
+              "Id": "ae790bba-708f-4915-9d2e-a6f8f98f231e",
+              "Text": "Rows where the specified column is NULL are silently excluded from the count.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "d4bba0e1-5d9d-4988-949c-b62f31cc99ec",
+              "Text": "Comparing COUNT(*) with COUNT(column) reveals how many NULLs exist in that column.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "86c5a112-d6c0-49bb-bcda-d798579f32f3",
+              "Text": "COUNT(column) works on text and date columns as well as numeric ones.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "a745d792-9680-479c-ab46-a7c3f9508113",
+              "Text": "Use it deliberately when missing values should not be counted; use COUNT(*) when they should.",
+              "SortOrder": 3
+            }
+          ]
+        },
+        {
+          "Id": "13b411fa-6f12-4f66-bd1f-5020fac5a464",
+          "TopicId": "8c92d1c8-f86c-4694-b1b6-5976855e02a7",
+          "Title": "COUNT(DISTINCT column) \u2014 Counting Unique Values",
+          "BodyText": "COUNT(DISTINCT column) returns the number of unique, non-NULL values in a column rather than the number of rows. It answers questions about variety rather than volume.",
+          "Notes": "SELECT COUNT(DISTINCT customer_id) AS unique_customers FROM orders; returns 5 even though there are 10 orders.",
+          "SortOrder": 2,
+          "CreatedDate": "2026-11-17T05:24:34.571473-05:00",
+          "ModifiedDate": "2026-11-17T05:24:34.571473-05:00",
+          "Items": [
+            {
+              "Id": "b170717e-8a26-483b-b7aa-838ddc054e4d",
+              "Text": "Duplicate values are collapsed so each distinct value is counted only once.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "fae18fc4-4365-47bc-9743-233448f13b46",
+              "Text": "NULLs are ignored, just as they are with COUNT(column).",
+              "SortOrder": 1
+            },
+            {
+              "Id": "80111f00-89aa-4717-93ce-211a1db5303c",
+              "Text": "It is ideal for metrics such as unique customers, distinct products, or active users.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "46651411-7380-47f6-b65d-f043319d3b6c",
+              "Text": "Inside a GROUP BY query it can show unique customers per category alongside total orders.",
+              "SortOrder": 3
+            }
+          ]
+        },
+        {
+          "Id": "e1a64563-7908-4523-b69e-3afc0353b997",
+          "TopicId": "8c92d1c8-f86c-4694-b1b6-5976855e02a7",
+          "Title": "The COUNT(*) vs COUNT(column) Trap",
+          "BodyText": "The most common reporting error with COUNT is assuming the two forms are interchangeable. When a column contains NULLs, they return different numbers.",
+          "Notes": "A dashboard showing \u0022500 orders\u0022 from COUNT(*) and \u0022462 orders\u0022 from COUNT(ship_date) is not a bug \u2014 it is NULL handling.",
+          "SortOrder": 3,
+          "CreatedDate": "2026-11-17T05:24:34.571473-05:00",
+          "ModifiedDate": "2026-11-17T05:24:34.571473-05:00",
+          "Items": [
+            {
+              "Id": "78695422-4b1f-45e5-8d9a-7ff3f21d287a",
+              "Text": "COUNT(*) never ignores NULLs; COUNT(column) always does.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "bfbd1092-c2b1-4070-9cbb-c006b8339937",
+              "Text": "Mismatched totals between two reports often trace back to this difference.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "c341e4ec-f499-429f-b096-a9729e8578a6",
+              "Text": "Choose COUNT(*) when the goal is a true row count regardless of data quality.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "9dcdaefa-b2ff-4786-b575-450b0bdf5627",
+              "Text": "Choose COUNT(column) deliberately when you want to measure how many rows have that value populated.",
+              "SortOrder": 3
+            }
+          ]
+        },
+        {
+          "Id": "0e42a6a8-329e-4999-9f4a-e1fadca995ff",
+          "TopicId": "8c92d1c8-f86c-4694-b1b6-5976855e02a7",
+          "Title": "SUM() \u2014 Totalling Numeric Values",
+          "BodyText": "SUM() adds up all non-NULL values in a numeric column to produce a single total. It is the workhorse function for revenue, quantity, and other additive measures.",
+          "Notes": "SELECT SUM(total) AS total_revenue FROM orders; returns 412.93; adding WHERE status = \u0027Completed\u0027 narrows it to 341.93.",
+          "SortOrder": 4,
+          "CreatedDate": "2026-11-17T05:24:34.571473-05:00",
+          "ModifiedDate": "2026-11-17T05:24:34.571473-05:00",
+          "Items": [
+            {
+              "Id": "f64715be-38ed-4e50-a072-f2b06bbe8cf9",
+              "Text": "SUM only works on numeric data \u2014 it cannot total strings or dates.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "bda0e666-f85b-43dc-86d0-d8646a6f5c1b",
+              "Text": "NULL values within the column are ignored rather than treated as zero.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "f97d57a7-7c25-4b93-a569-bba1330610c2",
+              "Text": "Several SUMs can appear in one SELECT, e.g. SUM(total) and SUM(qty) side by side.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "8582aa95-99f4-4dca-9ca0-24694e413480",
+              "Text": "You can perform arithmetic inside the function, such as SUM(qty * unit_price), to total computed line amounts.",
+              "SortOrder": 3
+            }
+          ]
+        },
+        {
+          "Id": "f516556e-50fc-47d1-b1de-e8466b06282a",
+          "TopicId": "8c92d1c8-f86c-4694-b1b6-5976855e02a7",
+          "Title": "SUM Returns NULL on Empty Result Sets",
+          "BodyText": "When no rows match the query, SUM() returns NULL rather than 0. Applications that expect a number can break or display blanks because of this.",
+          "Notes": "Use COALESCE(SUM(total), 0) AS total_revenue to guarantee a zero-safe numeric result.",
+          "SortOrder": 5,
+          "CreatedDate": "2026-11-17T05:24:34.571473-05:00",
+          "ModifiedDate": "2026-11-17T05:24:34.571473-05:00",
+          "Items": [
+            {
+              "Id": "ec3136ee-af83-45fc-80c1-367ab1007cbf",
+              "Text": "An empty result set produces NULL, not zero \u2014 a frequent source of reporting bugs.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "8712cf07-75bd-47b5-ac72-ad9da8580309",
+              "Text": "Wrap the aggregate in COALESCE() to substitute 0 when nothing is found.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "8ba27bd9-b539-4a97-9adb-f7220605bbc1",
+              "Text": "The same pattern protects downstream calculations such as percentages and ratios.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "5f781222-e320-4821-81e9-f320a5b63198",
+              "Text": "Test aggregate queries against filters that return no rows to confirm the output is safe.",
+              "SortOrder": 3
+            }
+          ]
+        },
+        {
+          "Id": "2eac62fd-0463-46b2-97ee-ff411027729e",
+          "TopicId": "8c92d1c8-f86c-4694-b1b6-5976855e02a7",
+          "Title": "AVG() \u2014 Calculating and Rounding Averages",
+          "BodyText": "AVG() returns the arithmetic mean of the non-NULL values in a numeric column, equivalent to SUM(col) / COUNT(col). Because raw averages carry many decimal places, ROUND() is usually applied for presentation.",
+          "Notes": "SELECT ROUND(AVG(total), 2) AS avg_order_value FROM orders; turns 41.293000 into a clean 41.29; filtering WHERE category = \u0027Fiction\u0027 gives 25.12.",
+          "SortOrder": 6,
+          "CreatedDate": "2026-11-17T05:24:34.571473-05:00",
+          "ModifiedDate": "2026-11-17T05:24:34.571473-05:00",
+          "Items": [
+            {
+              "Id": "8e52cd0f-7c90-40e4-8046-21c26bf82396",
+              "Text": "AVG divides by the count of non-NULL values, not by the total number of rows.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "c894aa82-acd9-4df0-bb9b-215c71bc76db",
+              "Text": "If NULLs should count as zero, use AVG(COALESCE(column, 0)) to substitute them first.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "978d974e-71b9-4a24-b694-64b650d0fbda",
+              "Text": "ROUND(AVG(column), 2) is the standard pattern for currency-style output.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "3efc8894-9c04-40aa-a9ad-8ca09868bacf",
+              "Text": "AVG pairs naturally with WHERE to compare averages across filtered subsets.",
+              "SortOrder": 3
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Id": "5e9a882e-0d27-4cc8-9756-2771bd75ff59",
+      "Title": "MIN, MAX, and Combined Summary Queries",
+      "Summary": "Covers finding extreme values across numbers, dates, and strings, including alphabetical and chronological behaviour. Demonstrates combining all five core aggregates into a single comprehensive summary query.",
+      "SortOrder": 2,
+      "CreatedDate": "2026-11-17T05:23:57.8372816-05:00",
+      "ModifiedDate": "2026-11-17T05:23:57.8372816-05:00",
+      "Elements": [
+        {
+          "Id": "5177aee2-143c-4552-8cac-9dc7d11bd890",
+          "TopicId": "5e9a882e-0d27-4cc8-9756-2771bd75ff59",
+          "Title": "What MIN() and MAX() Do",
+          "BodyText": "MIN() and MAX() return the smallest and largest values found in a column across the rows the query examines. Unlike SUM() and AVG(), they are not limited to numeric data.",
+          "Notes": "Both are supported in every major database system (Oracle, SQL Server, MySQL, PostgreSQL, Db2), making them among the most portable aggregates available.",
+          "SortOrder": 0,
+          "CreatedDate": "2026-11-17T05:24:53.9249677-05:00",
+          "ModifiedDate": "2026-11-17T05:24:53.9249677-05:00",
+          "Items": [
+            {
+              "Id": "a81df155-4d52-4310-a5a9-0af1b19e2434",
+              "Text": "MIN() returns the smallest value in the column; MAX() returns the largest.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "50077f85-f6a1-49b3-877f-c319826ffbb1",
+              "Text": "Both functions ignore NULL values entirely when determining the extreme.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "691d44e5-feee-4406-be25-e1532c1c07a5",
+              "Text": "They operate on numbers, dates, and strings \u2014 not just numeric columns.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "8476c043-2cfe-4678-89c5-87a51f81062c",
+              "Text": "The value returned is an actual value from the data, not a calculated result.",
+              "SortOrder": 3
+            },
+            {
+              "Id": "320c9515-404d-49d7-ab52-9b4e5bcead6d",
+              "Text": "Like all aggregates, they collapse many rows into a single summary value unless GROUP BY is used.",
+              "SortOrder": 4
+            }
+          ]
+        },
+        {
+          "Id": "3cebcc9f-670c-4048-8ce4-f695a49f13b3",
+          "TopicId": "5e9a882e-0d27-4cc8-9756-2771bd75ff59",
+          "Title": "MIN and MAX on Numeric Columns",
+          "BodyText": "On numeric columns, MIN() and MAX() identify the lowest and highest values, making them ideal for finding price floors, ceilings, and value ranges.",
+          "Notes": "Example: SELECT MIN(total) AS smallest_order, MAX(total) AS largest_order FROM orders; returns 15.00 and 91.00 for the bookstore dataset.",
+          "SortOrder": 1,
+          "CreatedDate": "2026-11-17T05:24:53.9249677-05:00",
+          "ModifiedDate": "2026-11-17T05:24:53.9249677-05:00",
+          "Items": [
+            {
+              "Id": "20102833-2bdc-4d59-8c33-253a43a8158d",
+              "Text": "Both functions can appear in the same SELECT list to show a value range in one row.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "18cb2fe5-b969-4e20-b386-56e87d63ee80",
+              "Text": "The cheapest order in the sample data is 15.00 and the most expensive is 91.00.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "ac92c4d4-dd9d-4f42-9500-13012540fc87",
+              "Text": "Use AS aliases such as smallest_order and largest_order so the output columns are readable.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "aa2d2a51-86e8-4d41-beac-581b09095f52",
+              "Text": "Adding a WHERE clause narrows the extremes to a filtered subset of rows.",
+              "SortOrder": 3
+            }
+          ]
+        },
+        {
+          "Id": "fc7b6361-a85d-4237-9530-64854231110e",
+          "TopicId": "5e9a882e-0d27-4cc8-9756-2771bd75ff59",
+          "Title": "MIN and MAX on Date Columns",
+          "BodyText": "When applied to a DATE column, MIN() returns the earliest date and MAX() returns the most recent \u2014 a chronological rather than numeric comparison.",
+          "Notes": "Example: SELECT MIN(order_date) AS first_order_date, MAX(order_date) AS latest_order_date FROM orders; returns 2025-01-05 and 2025-03-22.",
+          "SortOrder": 2,
+          "CreatedDate": "2026-11-17T05:24:53.9249677-05:00",
+          "ModifiedDate": "2026-11-17T05:24:53.9249677-05:00",
+          "Items": [
+            {
+              "Id": "ddfbaa3a-179a-4d56-be9c-65f1f5fd6c96",
+              "Text": "MIN on a date answers \u0022when did this first happen?\u0022",
+              "SortOrder": 0
+            },
+            {
+              "Id": "24443c98-8568-440c-ac50-034999d8dae9",
+              "Text": "MAX on a date answers \u0022when did this most recently happen?\u0022",
+              "SortOrder": 1
+            },
+            {
+              "Id": "fb152bd2-d0e7-4c09-b79f-b4d1da3e02bf",
+              "Text": "MAX(order_date) grouped by customer gives each customer\u0027s last order date \u2014 a common retention metric.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "c262d2c8-80d3-4bae-82cc-70301b920a77",
+              "Text": "Date extremes are useful for establishing the reporting window covered by a dataset.",
+              "SortOrder": 3
+            }
+          ]
+        },
+        {
+          "Id": "98cf0bb2-7587-443d-b7e2-d1b546b5c79e",
+          "TopicId": "5e9a882e-0d27-4cc8-9756-2771bd75ff59",
+          "Title": "MIN and MAX on String Columns",
+          "BodyText": "On text columns, MIN() and MAX() compare values alphabetically rather than numerically, returning the first and last entries in sort order.",
+          "Notes": "Example: SELECT MIN(category) AS first_alpha_category, MAX(category) AS last_alpha_category FROM orders; returns \u0027Biography\u0027 and \u0027Science\u0027.",
+          "SortOrder": 3,
+          "CreatedDate": "2026-11-17T05:24:53.9249677-05:00",
+          "ModifiedDate": "2026-11-17T05:24:53.9249677-05:00",
+          "Items": [
+            {
+              "Id": "569d09be-8f73-451e-80dc-076f94fe2f6b",
+              "Text": "MIN() returns the alphabetically first string value in the column.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "c0188150-9c15-41c7-897c-4dce168ca915",
+              "Text": "MAX() returns the alphabetically last string value.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "591bf6f4-7d5e-47ef-8f25-873eaceacbcb",
+              "Text": "Sorting follows the database\u0027s collation rules, which can affect case sensitivity and accented characters.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "8b7a8b15-1191-4b19-8fd9-70aaa9416a81",
+              "Text": "SUM() and AVG() do not work on strings, but MIN(), MAX(), and COUNT() do.",
+              "SortOrder": 3
+            }
+          ]
+        },
+        {
+          "Id": "8a6982fd-b348-4e6e-af24-c7952e152691",
+          "TopicId": "5e9a882e-0d27-4cc8-9756-2771bd75ff59",
+          "Title": "Using MIN and MAX to Satisfy the GROUP BY Rule",
+          "BodyText": "MIN() and MAX() are often used to legally include an otherwise ungrouped column in a grouped query.",
+          "Notes": "Instead of SELECT category, order_date ... GROUP BY category (which fails), use SELECT category, MIN(order_date) AS first_order_date ... GROUP BY category.",
+          "SortOrder": 4,
+          "CreatedDate": "2026-11-17T05:24:53.9249677-05:00",
+          "ModifiedDate": "2026-11-17T05:24:53.9249677-05:00",
+          "Items": [
+            {
+              "Id": "ce3663b5-9964-446c-a7d9-234bb0ba38a8",
+              "Text": "Every SELECT column must be in GROUP BY or inside an aggregate function.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "46935136-8821-4356-8071-4a2fb3ef3f22",
+              "Text": "Wrapping a date in MIN() or MAX() makes the choice of value explicit and deterministic.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "3f48caa7-cd50-4b35-842d-fb5ac7198896",
+              "Text": "This pattern produces results such as the first or last order date per category.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "5f5634cd-9604-4f83-aafa-b67fbd6efeae",
+              "Text": "It avoids the undefined-result error that occurs when a non-aggregated column is selected.",
+              "SortOrder": 3
+            }
+          ]
+        },
+        {
+          "Id": "269c1e53-2276-42c6-9aba-1132313d6662",
+          "TopicId": "5e9a882e-0d27-4cc8-9756-2771bd75ff59",
+          "Title": "Combining All Five Core Aggregates",
+          "BodyText": "COUNT, SUM, AVG, MIN, and MAX can all appear in a single SELECT list to produce one comprehensive summary row.",
+          "Notes": "Example: SELECT COUNT(*) AS order_count, SUM(total) AS total_revenue, ROUND(AVG(total),2) AS avg_order_value, MIN(total) AS min_order_value, MAX(total) AS max_order_value FROM orders WHERE status = \u0027Completed\u0027;",
+          "SortOrder": 5,
+          "CreatedDate": "2026-11-17T05:24:53.9249677-05:00",
+          "ModifiedDate": "2026-11-17T05:24:53.9249677-05:00",
+          "Items": [
+            {
+              "Id": "b10e4395-9739-4b13-891d-fecfbd654557",
+              "Text": "For completed orders the result is 8 orders, 341.93 revenue, 42.74 average, 15.00 minimum, and 91.00 maximum.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "35e4ad61-8832-4b64-93e6-746e7aa3ee8b",
+              "Text": "A shared WHERE clause applies the same row filter to every aggregate in the query.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "db6180d6-daee-44d5-a40e-d43b8cbda770",
+              "Text": "ROUND() keeps the average to two decimal places for clean currency display.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "2e72380c-dba2-4bf7-8c02-f729029a3d06",
+              "Text": "Each aggregate needs its own AS alias so the summary row is self-documenting.",
+              "SortOrder": 3
+            },
+            {
+              "Id": "3520ece3-4ffb-4397-8bde-0563bfc188f1",
+              "Text": "Adding GROUP BY turns this single summary row into one summary row per category or customer.",
+              "SortOrder": 4
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Id": "0fcdee4c-daed-44d9-bd48-9d889c108672",
+      "Title": "Column Aliases with AS",
+      "Summary": "Explains how AS produces readable, referenceable output column names for aggregates and calculated expressions, including quoting rules and table aliases. Clarifies why aliases cannot be referenced in a WHERE clause.",
+      "SortOrder": 3,
+      "CreatedDate": "2026-11-17T05:23:57.8372816-05:00",
+      "ModifiedDate": "2026-11-17T05:23:57.8372816-05:00",
+      "Elements": [
+        {
+          "Id": "a3bdb30d-759e-45e1-bd4d-17009fd65bb6",
+          "TopicId": "0fcdee4c-daed-44d9-bd48-9d889c108672",
+          "Title": "What a Column Alias Does",
+          "BodyText": "AS creates a column alias \u2014 a custom label applied to a column or expression in your query results. It changes only the output header, not the stored data.",
+          "Notes": "Without AS, an aggregate like ROUND(AVG(total),2) becomes the literal column header, which is cryptic in reports and awkward for downstream code.",
+          "SortOrder": 0,
+          "CreatedDate": "2026-11-17T05:25:16.4871445-05:00",
+          "ModifiedDate": "2026-11-17T05:25:16.4871445-05:00",
+          "Items": [
+            {
+              "Id": "ba233b50-6d7d-40c2-bca6-991a11fc34e4",
+              "Text": "Aggregate expressions without aliases produce auto-generated headers such as COUNT(*), SUM(total), and AVG(total).",
+              "SortOrder": 0
+            },
+            {
+              "Id": "6baae2a9-2004-4781-b3df-49a3e6008d6f",
+              "Text": "Aliased output returns readable headers like order_count, total_revenue, and avg_order_value.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "deddbb26-d7d3-46b4-a21b-1e7b7036054d",
+              "Text": "Application code that reads result sets by column name depends on stable, predictable alias names.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "355d42fa-6500-4322-9fbd-849eba6fe532",
+              "Text": "Aliases exist only for the duration of the query; they do not rename anything in the table.",
+              "SortOrder": 3
+            }
+          ]
+        },
+        {
+          "Id": "a067bd61-7ec7-4550-9573-ec41878e9f04",
+          "TopicId": "0fcdee4c-daed-44d9-bd48-9d889c108672",
+          "Title": "AS Syntax and Quoting Rules",
+          "BodyText": "The AS keyword is technically optional, but explicit use makes queries far easier to read. Quoting lets you create aliases containing spaces or special characters.",
+          "Notes": "Example: SELECT COUNT(*) AS \u0022Total Orders Placed\u0022 FROM orders;",
+          "SortOrder": 1,
+          "CreatedDate": "2026-11-17T05:25:16.4871445-05:00",
+          "ModifiedDate": "2026-11-17T05:25:16.4871445-05:00",
+          "Items": [
+            {
+              "Id": "b097f56b-29b2-4011-90fe-e8ac685a3270",
+              "Text": "SELECT COUNT(*) order_count works, but SELECT COUNT(*) AS order_count is clearer and preferred.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "b4737ac2-6ab0-4b36-9178-15a442830ead",
+              "Text": "Wrap an alias in quotes when it contains spaces, punctuation, or reserved words.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "dc0ced08-fa46-419e-bf92-01f3f5110d2d",
+              "Text": "Quoting style varies by vendor \u2014 double quotes in standard SQL and PostgreSQL, backticks in MySQL, square brackets in SQL Server.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "d0e0d255-9ab4-46ce-858e-2a67c3c2c9f1",
+              "Text": "Single-word, lowercase, underscore-separated aliases avoid quoting issues entirely.",
+              "SortOrder": 3
+            }
+          ]
+        },
+        {
+          "Id": "7145c554-0d06-4482-a208-7395a3763962",
+          "TopicId": "0fcdee4c-daed-44d9-bd48-9d889c108672",
+          "Title": "Aliasing Calculated and Derived Columns",
+          "BodyText": "Aliases are most valuable when the SELECT list contains arithmetic, nested functions, or CASE expressions. They turn an unreadable formula into a business-meaningful column name.",
+          "Notes": "Example: ROUND(SUM(total) * 0.10, 2) AS estimated_tax turns a tax formula into a self-documenting report column.",
+          "SortOrder": 2,
+          "CreatedDate": "2026-11-17T05:25:16.4871445-05:00",
+          "ModifiedDate": "2026-11-17T05:25:16.4871445-05:00",
+          "Items": [
+            {
+              "Id": "9fbd5dff-b1b5-4d08-a1b9-ae1eb78f2a4f",
+              "Text": "ROUND(AVG(total), 2) AS avg_order_value hides the formatting detail behind a clear label.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "8f320690-e761-467d-b737-1b610f777524",
+              "Text": "Percentage and ratio calculations, such as no_show_rate_pct, become self-explanatory with a good alias.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "0c440871-6a8d-4193-be41-05c00f5a7516",
+              "Text": "A revenue report can alias several computed columns at once: num_orders, gross_revenue, avg_order_value, estimated_tax.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "c568cd6a-579b-449e-a3e5-0e71adb4db47",
+              "Text": "Name aliases after what they represent \u2014 monthly_revenue rather than col1 or sum1.",
+              "SortOrder": 3
+            }
+          ]
+        },
+        {
+          "Id": "28eb79b2-e2ed-491d-9cc5-d22142d83201",
+          "TopicId": "0fcdee4c-daed-44d9-bd48-9d889c108672",
+          "Title": "Table Aliases",
+          "BodyText": "AS also works on table names, creating a short handle used to qualify columns. This is essential for readability in multi-table joins.",
+          "Notes": "Example: FROM appointments AS a JOIN doctors AS d ON a.doctor_id = d.doctor_id",
+          "SortOrder": 3,
+          "CreatedDate": "2026-11-17T05:25:16.4871445-05:00",
+          "ModifiedDate": "2026-11-17T05:25:16.4871445-05:00",
+          "Items": [
+            {
+              "Id": "6b47564e-9bde-4335-a4f4-3a70fce0bfb7",
+              "Text": "FROM orders AS o lets you write o.order_id, o.total, and o.order_date instead of repeating the full table name.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "5b488ba4-1f9b-443d-93df-e102c1c58de3",
+              "Text": "Table aliases disambiguate columns with the same name in two joined tables.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "cb719c23-354b-4b4e-b54a-f02e44d14052",
+              "Text": "Column aliases and table aliases can be combined: SELECT o.total AS order_total FROM orders AS o.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "fb10cc60-6a8e-4d8b-8a53-2aaf173064fb",
+              "Text": "Short, meaningful table aliases (o, a, d) keep long join queries compact and legible.",
+              "SortOrder": 3
+            }
+          ]
+        },
+        {
+          "Id": "b58497da-c90c-4b34-8c36-3788b67a1a30",
+          "TopicId": "0fcdee4c-daed-44d9-bd48-9d889c108672",
+          "Title": "Why Aliases Fail in WHERE",
+          "BodyText": "Because WHERE is evaluated before SELECT in SQL\u0027s logical execution order, an alias defined in SELECT does not yet exist when WHERE runs. Referencing it produces an unknown-column error.",
+          "Notes": "SELECT SUM(total) AS total_revenue FROM orders WHERE total_revenue \u003E 100; fails \u2014 this is one of the most common beginner mistakes.",
+          "SortOrder": 4,
+          "CreatedDate": "2026-11-17T05:25:16.4871445-05:00",
+          "ModifiedDate": "2026-11-17T05:25:16.4871445-05:00",
+          "Items": [
+            {
+              "Id": "71c54b39-7bd3-4753-963c-f783c24e706e",
+              "Text": "Execution order is FROM, WHERE, GROUP BY, HAVING, SELECT, ORDER BY \u2014 aliases are assigned at step 5.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "c1e22623-6d29-474c-9723-a36e765aaacd",
+              "Text": "WHERE filters individual rows before any aggregation or alias assignment occurs.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "355d219e-4b2b-4801-837c-9e254a3764fc",
+              "Text": "To filter on an aggregate, use HAVING instead: GROUP BY category HAVING SUM(total) \u003E 100.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "a6cba3ed-5c3c-4dfc-b383-47db3a8d8e8c",
+              "Text": "Alternatively, repeat the full expression in the WHERE clause rather than using the alias.",
+              "SortOrder": 3
+            }
+          ]
+        },
+        {
+          "Id": "2ac34f69-f24a-4f8f-b8a9-0ff1a35e6d6b",
+          "TopicId": "0fcdee4c-daed-44d9-bd48-9d889c108672",
+          "Title": "Where Aliases CAN Be Used",
+          "BodyText": "Not every clause rejects aliases. Clauses evaluated after SELECT can reference the names you defined there.",
+          "Notes": "Example: SELECT SUM(total) AS gross_revenue ... GROUP BY category ORDER BY gross_revenue DESC;",
+          "SortOrder": 5,
+          "CreatedDate": "2026-11-17T05:25:16.4871445-05:00",
+          "ModifiedDate": "2026-11-17T05:25:16.4871445-05:00",
+          "Items": [
+            {
+              "Id": "7df7bdde-4950-4b09-8c45-ae79ad0bbfdf",
+              "Text": "ORDER BY runs last (step 6), so it can sort by any alias defined in SELECT.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "ed2ee222-b2d0-4c00-8a94-699738d9d9e3",
+              "Text": "HAVING runs before SELECT, so most engines require the full aggregate expression rather than the alias.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "e4cb6ca9-71fc-4319-a805-ba3320e602fa",
+              "Text": "Best practice: always alias aggregate columns, then sort on those aliases for clean, maintainable reports.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "048acd02-ee2a-4b3b-a50d-f7aae376aa79",
+              "Text": "Knowing the execution order explains both why WHERE rejects aliases and why HAVING exists as a separate clause.",
+              "SortOrder": 3
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Id": "5afae44d-f26c-4c24-809e-b9d841006077",
+      "Title": "GROUP BY \u2014 Aggregating by Category",
+      "Summary": "Shows how GROUP BY splits rows into groups for per-group aggregation across single columns, multiple columns, and date expressions for time-series reporting. Establishes the golden rule that every selected column must be grouped or aggregated.",
+      "SortOrder": 4,
+      "CreatedDate": "2026-11-17T05:23:57.8372816-05:00",
+      "ModifiedDate": "2026-11-17T05:23:57.8372816-05:00",
+      "Elements": [
+        {
+          "Id": "2c0209fd-0dd5-41e9-8847-cf35624416fc",
+          "TopicId": "5afae44d-f26c-4c24-809e-b9d841006077",
+          "Title": "What GROUP BY Does",
+          "BodyText": "GROUP BY splits the rows returned by a query into groups based on one or more columns, then applies each aggregate function separately to every group. Without GROUP BY, aggregate functions collapse the entire table into a single summary row.",
+          "Notes": "Think of GROUP BY as answering the question \u0022per what?\u0022 \u2014 total revenue per category, order count per customer, appointments per doctor.",
+          "SortOrder": 0,
+          "CreatedDate": "2026-11-17T05:25:37.5410438-05:00",
+          "ModifiedDate": "2026-11-17T05:25:37.5410438-05:00",
+          "Items": [
+            {
+              "Id": "94d8a9e2-cbea-4c48-89fa-8a997fef9e24",
+              "Text": "Rows sharing the same value in the grouping column are bundled into one group.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "4053ccd7-9a0c-4427-a94f-68d3fb399916",
+              "Text": "The query returns one output row per group instead of one row for the whole table.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "0143b89b-2ae9-47a3-b2c2-5fb0bcc61969",
+              "Text": "GROUP BY runs after WHERE, so only rows surviving the row-level filter are grouped.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "57e43191-da3b-4b25-b500-ebd7ceba8025",
+              "Text": "Grouping by a high-cardinality column like order_id is pointless \u2014 each group holds a single row.",
+              "SortOrder": 3
+            }
+          ]
+        },
+        {
+          "Id": "cbc42d11-1d23-4776-8be2-48d05a7ccd90",
+          "TopicId": "5afae44d-f26c-4c24-809e-b9d841006077",
+          "Title": "GROUP BY a Single Column",
+          "BodyText": "The most common pattern groups by one descriptive column and aggregates one or more numeric columns alongside it. The grouping column appears in SELECT so each summary row is labelled.",
+          "Notes": "SELECT category, COUNT(*) AS order_count, SUM(total) AS total_revenue FROM orders GROUP BY category ORDER BY total_revenue DESC;",
+          "SortOrder": 1,
+          "CreatedDate": "2026-11-17T05:25:37.5410438-05:00",
+          "ModifiedDate": "2026-11-17T05:25:37.5410438-05:00",
+          "Items": [
+            {
+              "Id": "35db3b64-1e4b-4cd8-acec-732ad0e498ae",
+              "Text": "GROUP BY category produces one row per distinct category value.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "bb0e63cf-e24c-4107-9662-b53cfb6feea5",
+              "Text": "COUNT(*) counts the rows inside each category, not the whole table.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "4fd9a56b-e0aa-4a0d-a8f2-cbcb90358bcf",
+              "Text": "SUM(total) totals only the values belonging to that category.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "f240d224-4a0e-458f-be68-5fa0eb4faba9",
+              "Text": "Adding ORDER BY on the aggregate alias ranks groups from largest to smallest.",
+              "SortOrder": 3
+            },
+            {
+              "Id": "e1dad8d3-aac6-492f-a134-4ec369c77450",
+              "Text": "In the sample bookstore data this yields Science 183.50, History 109.95, Fiction 100.49, Biography 18.99.",
+              "SortOrder": 4
+            }
+          ]
+        },
+        {
+          "Id": "a7afc9a2-b2a4-450d-b00f-752f4cec923c",
+          "TopicId": "5afae44d-f26c-4c24-809e-b9d841006077",
+          "Title": "GROUP BY Multiple Columns",
+          "BodyText": "Listing more than one column in GROUP BY creates finer-grained groups \u2014 one output row for every unique combination of the listed values. This supports cross-tab style breakdowns.",
+          "Notes": "SELECT category, status, COUNT(*) AS order_count, SUM(total) AS total_revenue FROM orders GROUP BY category, status ORDER BY category, status;",
+          "SortOrder": 2,
+          "CreatedDate": "2026-11-17T05:25:37.5410438-05:00",
+          "ModifiedDate": "2026-11-17T05:25:37.5410438-05:00",
+          "Items": [
+            {
+              "Id": "d7ab8b53-0e74-4f92-aaa8-c20cd888785b",
+              "Text": "Grouping by category and status splits Fiction into separate Completed and Pending rows.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "8f83fd86-10ce-4b33-99d5-25f3145a1593",
+              "Text": "The number of result rows grows with the number of distinct combinations present in the data.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "9ba263d2-ffae-4cb4-a9c6-af812d3886a1",
+              "Text": "Only combinations that actually exist in the table appear \u2014 SQL does not invent empty groups.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "3f6441a9-f5a2-4212-a8b2-2bfd46c06464",
+              "Text": "Ordering by the grouping columns makes the breakdown easy to read in a report.",
+              "SortOrder": 3
+            }
+          ]
+        },
+        {
+          "Id": "0dad9b7d-4133-4984-abb9-822f6bf456fa",
+          "TopicId": "5afae44d-f26c-4c24-809e-b9d841006077",
+          "Title": "The Golden Rule of GROUP BY",
+          "BodyText": "Every column in the SELECT list must either appear in the GROUP BY clause or be wrapped in an aggregate function. Violating this rule produces undefined results or an outright error in strict mode.",
+          "Notes": "The database cannot know which of several order_date values to display for a group, so it rejects or silently guesses \u2014 neither outcome is acceptable in reporting.",
+          "SortOrder": 3,
+          "CreatedDate": "2026-11-17T05:25:37.5410438-05:00",
+          "ModifiedDate": "2026-11-17T05:25:37.5410438-05:00",
+          "Items": [
+            {
+              "Id": "108895fe-d603-4890-a541-b2f4f2c19760",
+              "Text": "Selecting order_date while grouping only by category fails because the date is neither grouped nor aggregated.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "eebecb1d-c377-4b6b-aefd-6f9feffa243c",
+              "Text": "Fix option one: wrap the column in an aggregate, e.g. MIN(order_date) AS first_order_date.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "cb5c2919-75c8-40ef-8223-6ca1665711e6",
+              "Text": "Fix option two: add the column to GROUP BY to make it part of the grouping key.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "d44e42d3-4d91-4d9e-b285-a2e8b753cd8f",
+              "Text": "Mentally check every SELECT column against this rule before running the query.",
+              "SortOrder": 3
+            }
+          ]
+        },
+        {
+          "Id": "5a2c7f0e-f3e8-4c48-a4df-1681104664a1",
+          "TopicId": "5afae44d-f26c-4c24-809e-b9d841006077",
+          "Title": "GROUP BY with Date Functions for Time-Series Reports",
+          "BodyText": "You can group by an expression, not just a raw column. Applying YEAR() and MONTH() to a date column is the standard way to build monthly or yearly trend reports.",
+          "Notes": "SELECT YEAR(order_date) AS order_year, MONTH(order_date) AS order_month, COUNT(*) AS order_count, SUM(total) AS monthly_revenue FROM orders GROUP BY YEAR(order_date), MONTH(order_date) ORDER BY order_year, order_month;",
+          "SortOrder": 4,
+          "CreatedDate": "2026-11-17T05:25:37.5410438-05:00",
+          "ModifiedDate": "2026-11-17T05:25:37.5410438-05:00",
+          "Items": [
+            {
+              "Id": "ff9ca8e4-1312-49d8-bc9a-9af8b319e454",
+              "Text": "Grouping by the raw date would create one group per day \u2014 too granular for trend analysis.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "130f2dbc-e900-4bf3-89ed-2744bb61cdf5",
+              "Text": "The same expression used in SELECT must be repeated in GROUP BY in most databases.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "aec6a719-2e5e-42e9-8b44-5e57fc395994",
+              "Text": "Including YEAR as well as MONTH prevents different years\u0027 same-numbered months from merging.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "dc47fd4c-f230-45be-a969-436f6ea1b10f",
+              "Text": "The sample data rolls up to three rows: Jan 99.49, Feb 103.25, Mar 210.19.",
+              "SortOrder": 3
+            },
+            {
+              "Id": "aa29765c-2f5d-44bf-b95f-9ac410fc7b98",
+              "Text": "ORDER BY the year and month aliases keeps the time series in chronological order.",
+              "SortOrder": 4
+            }
+          ]
+        },
+        {
+          "Id": "3287fa15-4b75-4b7c-86a3-bf02797e09dd",
+          "TopicId": "5afae44d-f26c-4c24-809e-b9d841006077",
+          "Title": "Combining GROUP BY with Other Clauses",
+          "BodyText": "GROUP BY sits in a fixed position in the query, between WHERE and HAVING, and works together with aliases and sorting to produce a finished report.",
+          "Notes": "Write order: SELECT \u2026 FROM \u2026 WHERE \u2026 GROUP BY \u2026 HAVING \u2026 ORDER BY \u2026 LIMIT \u2026",
+          "SortOrder": 5,
+          "CreatedDate": "2026-11-17T05:25:37.5410438-05:00",
+          "ModifiedDate": "2026-11-17T05:25:37.5410438-05:00",
+          "Items": [
+            {
+              "Id": "c1f7eb66-5b30-460e-aca0-1575b08d2dce",
+              "Text": "Use WHERE to filter individual rows before grouping, which reduces the data the engine must aggregate.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "9f8f8167-cc15-4e64-b78b-7cb1fe25c824",
+              "Text": "Give every aggregate column an AS alias so the report headers are readable and referenceable.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "c392d3fc-c997-46d2-b7d6-6034e369f154",
+              "Text": "ORDER BY can reference the aliases because it executes after SELECT.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "eff280cb-6711-437d-9f33-0d9712142ab7",
+              "Text": "Calculated columns such as ROUND(SUM(total) * 0.10, 2) AS estimated_tax can be added alongside the grouped totals.",
+              "SortOrder": 3
+            },
+            {
+              "Id": "66637d87-08c8-4f88-a99d-f35aeefebfee",
+              "Text": "Test your GROUP BY logic on a small dataset before running it against millions of rows.",
+              "SortOrder": 4
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Id": "2ab8ea39-f6e1-47c2-af4a-55508329032b",
+      "Title": "HAVING \u2014 Filtering Aggregated Results",
+      "Summary": "Contrasts WHERE (row-level filtering before grouping) with HAVING (group-level filtering after aggregation) and demonstrates using both together. Includes practical patterns such as HAVING COUNT(*) to isolate active groups.",
+      "SortOrder": 5,
+      "CreatedDate": "2026-11-17T05:23:57.8372816-05:00",
+      "ModifiedDate": "2026-11-17T05:23:57.8372816-05:00",
+      "Elements": [
+        {
+          "Id": "24d0f207-9a31-4e9a-a8ae-4c4229268114",
+          "TopicId": "2ab8ea39-f6e1-47c2-af4a-55508329032b",
+          "Title": "What HAVING Does",
+          "BodyText": "HAVING filters groups after aggregation has been performed, making it the GROUP BY equivalent of WHERE. It allows conditions to be written against aggregate expressions such as SUM(total) or COUNT(*).",
+          "Notes": "Syntax order in a written query is: SELECT ... FROM ... WHERE ... GROUP BY ... HAVING ... ORDER BY ...",
+          "SortOrder": 0,
+          "CreatedDate": "2026-11-17T05:25:58.2149107-05:00",
+          "ModifiedDate": "2026-11-17T05:25:58.2149107-05:00",
+          "Items": [
+            {
+              "Id": "9fff07cf-2e50-46d4-91a9-8b0c38cdb9de",
+              "Text": "HAVING is evaluated after GROUP BY has divided rows into groups.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "99481f3e-5fc7-4e4b-b20b-de28410538e8",
+              "Text": "Conditions in HAVING typically contain aggregate functions, e.g. HAVING SUM(total) \u003E 100.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "951650b6-92d8-49dc-84b0-db4eff9bb0a2",
+              "Text": "A HAVING clause normally accompanies GROUP BY, though some engines allow it on an ungrouped aggregate query.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "ee12ab21-471b-4e00-9e12-d00fc34097ba",
+              "Text": "Multiple group-level conditions can be combined with AND / OR.",
+              "SortOrder": 3
+            }
+          ]
+        },
+        {
+          "Id": "13f1315f-0cad-4d24-af27-96316694e40d",
+          "TopicId": "2ab8ea39-f6e1-47c2-af4a-55508329032b",
+          "Title": "WHERE vs HAVING \u2014 Side by Side",
+          "BodyText": "WHERE filters individual rows before grouping; HAVING filters resulting groups after grouping. Choosing the wrong clause is one of the most common aggregation errors.",
+          "Notes": "Example: WHERE status = \u0027Completed\u0027 GROUP BY category restricts which rows feed the aggregate, while GROUP BY category HAVING SUM(total) \u003E 100 discards whole categories after totals are computed.",
+          "SortOrder": 1,
+          "CreatedDate": "2026-11-17T05:25:58.2149107-05:00",
+          "ModifiedDate": "2026-11-17T05:25:58.2149107-05:00",
+          "Items": [
+            {
+              "Id": "7def89dd-9dc0-4d64-9c56-5480180dcac9",
+              "Text": "WHERE cannot reference aggregate functions because aggregates do not exist at that stage of execution.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "528dccad-9d51-4dbb-bc15-8bb8ca8d7d6f",
+              "Text": "WHERE also cannot reference SELECT aliases, since SELECT runs after WHERE.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "aafbf43e-f0c5-4334-b559-1f22a5428305",
+              "Text": "HAVING can reference aggregates and, in many engines, SELECT aliases.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "52555b5c-6f95-4624-9a50-1a2a797a44d3",
+              "Text": "Filtering rows early with WHERE reduces the volume of data the database must aggregate.",
+              "SortOrder": 3
+            }
+          ]
+        },
+        {
+          "Id": "b7f1665e-3f81-4b8c-94b3-a89fbea6a510",
+          "TopicId": "2ab8ea39-f6e1-47c2-af4a-55508329032b",
+          "Title": "A Basic HAVING Query",
+          "BodyText": "The simplest HAVING pattern groups rows by a category column and keeps only the groups whose aggregate value crosses a threshold.",
+          "Notes": "SELECT category, COUNT(*) AS order_count, SUM(total) AS total_revenue FROM orders GROUP BY category HAVING SUM(total) \u003E 100 ORDER BY total_revenue DESC;",
+          "SortOrder": 2,
+          "CreatedDate": "2026-11-17T05:25:58.2149107-05:00",
+          "ModifiedDate": "2026-11-17T05:25:58.2149107-05:00",
+          "Items": [
+            {
+              "Id": "75e00e90-043e-49f7-bb5c-4d54a522829e",
+              "Text": "Against the bookstore data this returns Science (183.50), History (109.95), and Fiction (100.49).",
+              "SortOrder": 0
+            },
+            {
+              "Id": "857f5693-80a4-4d1b-82f4-37db4832bd51",
+              "Text": "Biography is removed because its single order totals only 18.99.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "d80eff53-f1b7-4cd2-8179-338ee8999913",
+              "Text": "ORDER BY may use the alias total_revenue because sorting happens after SELECT.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "c549f9db-a28a-48ec-87f4-e3476344c8a1",
+              "Text": "Repeating the aggregate expression in HAVING is always safe across database vendors.",
+              "SortOrder": 3
+            }
+          ]
+        },
+        {
+          "Id": "88bbe382-7aba-4ea4-82db-ab242d45f708",
+          "TopicId": "2ab8ea39-f6e1-47c2-af4a-55508329032b",
+          "Title": "Using WHERE and HAVING Together",
+          "BodyText": "The two clauses are complementary and frequently appear in the same query: WHERE narrows the rows, then HAVING narrows the groups built from those rows.",
+          "Notes": "SELECT category, COUNT(*) AS order_count, ROUND(AVG(total),2) AS avg_order_value FROM orders WHERE status = \u0027Completed\u0027 GROUP BY category HAVING COUNT(*) \u003E 1 AND AVG(total) \u003E 30 ORDER BY avg_order_value DESC;",
+          "SortOrder": 3,
+          "CreatedDate": "2026-11-17T05:25:58.2149107-05:00",
+          "ModifiedDate": "2026-11-17T05:25:58.2149107-05:00",
+          "Items": [
+            {
+              "Id": "4c0c7f23-f18f-47da-bc9f-82c137eef257",
+              "Text": "WHERE status = \u0027Completed\u0027 removes cancelled and pending rows before any grouping occurs.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "a2f62a5b-5c98-4ab8-8db3-47e2264b0422",
+              "Text": "HAVING COUNT(*) \u003E 1 AND AVG(total) \u003E 30 then discards small or low-value categories.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "4c5097bf-820e-4c7e-b96c-12f1bb8d1b0e",
+              "Text": "The result returns Science (2 orders, 72.75 average) and History (2 orders, 54.98 average).",
+              "SortOrder": 2
+            },
+            {
+              "Id": "6222cf82-5f79-4bb1-9564-419d98090b37",
+              "Text": "Note how the WHERE filter changes the aggregate values themselves, not just which groups appear.",
+              "SortOrder": 3
+            }
+          ]
+        },
+        {
+          "Id": "518fc4af-1195-4ee4-a4ce-aac1ccd53f90",
+          "TopicId": "2ab8ea39-f6e1-47c2-af4a-55508329032b",
+          "Title": "HAVING COUNT(*) \u2014 Finding Active Groups",
+          "BodyText": "A classic business pattern uses HAVING COUNT(*) to isolate groups with enough activity, such as repeat customers or courses with sufficient enrollment.",
+          "Notes": "SELECT customer_id, COUNT(*) AS order_count, SUM(total) AS lifetime_value FROM orders GROUP BY customer_id HAVING COUNT(*) \u003E 1 ORDER BY order_count DESC;",
+          "SortOrder": 4,
+          "CreatedDate": "2026-11-17T05:25:58.2149107-05:00",
+          "ModifiedDate": "2026-11-17T05:25:58.2149107-05:00",
+          "Items": [
+            {
+              "Id": "e03c7e17-e2ac-4ae9-9888-9b8ca21c6e3a",
+              "Text": "This query identifies customers 101, 102, 103 and 104 as repeat buyers; customer 105 is excluded.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "b9126322-84f2-4451-87c9-0675fbf0e34f",
+              "Text": "The same pattern appears as HAVING COUNT(a.appointment_id) \u003E= 10 to show only busy doctors.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "584e8762-869d-45a6-8cf6-f379fb2f0fa9",
+              "Text": "A university report may use HAVING COUNT(e.student_id) \u003E= 5 to exclude undersized classes.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "7c3086f6-3a29-4877-bc1c-8187a5e25db1",
+              "Text": "Minimum-count thresholds also protect reports from misleading statistics drawn from one or two rows.",
+              "SortOrder": 3
+            }
+          ]
+        },
+        {
+          "Id": "53e19716-e240-4c6b-b863-7cb0349b53cd",
+          "TopicId": "2ab8ea39-f6e1-47c2-af4a-55508329032b",
+          "Title": "Execution Order Explains Why HAVING Exists",
+          "BodyText": "SQL evaluates clauses in a logical order \u2014 FROM, WHERE, GROUP BY, HAVING, SELECT, ORDER BY \u2014 and this order explains why aggregate filtering needs its own clause.",
+          "Notes": "Common mistake: SELECT SUM(total) AS total_revenue FROM orders WHERE total_revenue \u003E 100 fails with an unknown-column error; the fix is GROUP BY category HAVING SUM(total) \u003E 100.",
+          "SortOrder": 5,
+          "CreatedDate": "2026-11-17T05:25:58.2149107-05:00",
+          "ModifiedDate": "2026-11-17T05:25:58.2149107-05:00",
+          "Items": [
+            {
+              "Id": "8c820035-8ea6-4bab-862a-118eb3be8149",
+              "Text": "WHERE runs at step 2, before groups exist, so aggregates cannot be evaluated there.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "1da79608-a525-4286-80ac-37da69fb9593",
+              "Text": "HAVING runs at step 4, immediately after GROUP BY forms the groups.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "1fd81fd6-94ce-48ce-b7df-58dd5ffc66c9",
+              "Text": "SELECT runs at step 5, which is why aliases are unavailable to WHERE but usable in ORDER BY.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "72dcdecb-d420-4da3-8a55-6f4447077037",
+              "Text": "Knowing this order lets you quickly diagnose \u0027unknown column\u0027 and \u0027invalid use of group function\u0027 errors.",
+              "SortOrder": 3
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Id": "bd748206-cf16-4e75-9158-6fce0945983c",
+      "Title": "Advanced and Vendor-Specific Aggregate Functions",
+      "Summary": "Surveys COUNT(DISTINCT) within groups, text aggregation with GROUP_CONCAT and STRING_AGG, statistical functions like STDDEV and VARIANCE, and subtotal generation with WITH ROLLUP, noting differences across Oracle, SQL Server, MySQL, PostgreSQL, and Db2.",
+      "SortOrder": 6,
+      "CreatedDate": "2026-11-17T05:23:57.8372816-05:00",
+      "ModifiedDate": "2026-11-17T05:23:57.8372816-05:00",
+      "Elements": [
+        {
+          "Id": "4fe0aaa2-d1b5-45f6-9057-05678701b7cf",
+          "TopicId": "bd748206-cf16-4e75-9158-6fce0945983c",
+          "Title": "COUNT(DISTINCT) Within Groups",
+          "BodyText": "COUNT(DISTINCT column) counts only unique, non-NULL values, and becomes especially powerful when combined with GROUP BY to measure reach rather than volume.",
+          "Notes": "Example: SELECT category, COUNT(*) AS total_orders, COUNT(DISTINCT customer_id) AS unique_customers FROM orders GROUP BY category; Fiction shows 4 orders but only 3 unique customers, revealing repeat buying.",
+          "SortOrder": 0,
+          "CreatedDate": "2026-11-17T05:26:22.5079462-05:00",
+          "ModifiedDate": "2026-11-17T05:26:22.5079462-05:00",
+          "Items": [
+            {
+              "Id": "a3538aff-3d36-4995-beaa-46218254e9bc",
+              "Text": "COUNT(*) reports how many rows are in each group, while COUNT(DISTINCT col) reports how many different values appear.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "8bd44fb0-1278-4f32-970e-9cceecb2bb85",
+              "Text": "Comparing the two in one query exposes repeat activity \u2014 more orders than customers means someone ordered twice.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "3c131d73-095b-407c-ae7a-0cf996650403",
+              "Text": "NULL values are ignored entirely, so a group of all NULLs returns 0, not NULL.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "69335b0c-58f5-40f8-b69f-cf6951d38fc6",
+              "Text": "It is supported in Oracle, SQL Server, MySQL, PostgreSQL and Db2, making it one of the most portable advanced aggregates.",
+              "SortOrder": 3
+            },
+            {
+              "Id": "d7856881-01be-4a26-806b-129f9d415650",
+              "Text": "Typical uses include unique customers per region, distinct patients per doctor, or distinct products per order.",
+              "SortOrder": 4
+            }
+          ]
+        },
+        {
+          "Id": "e0a3458a-657d-49c1-a7d6-d72c9bfe08fa",
+          "TopicId": "bd748206-cf16-4e75-9158-6fce0945983c",
+          "Title": "Text Aggregation: GROUP_CONCAT and STRING_AGG",
+          "BodyText": "These vendor-specific functions concatenate string values from many rows in a group into a single delimited text column, producing readable summary lists.",
+          "Notes": "MySQL: GROUP_CONCAT(category ORDER BY order_date SEPARATOR \u0027, \u0027). PostgreSQL / SQL Server 2017\u002B: STRING_AGG(category, \u0027, \u0027). Result for customer 101: \u0027Fiction, Fiction, Biography\u0027.",
+          "SortOrder": 1,
+          "CreatedDate": "2026-11-17T05:26:22.5079462-05:00",
+          "ModifiedDate": "2026-11-17T05:26:22.5079462-05:00",
+          "Items": [
+            {
+              "Id": "4053e85f-0fe4-41d5-a98e-272a1813b59b",
+              "Text": "MySQL and MariaDB use GROUP_CONCAT(), which accepts an ORDER BY and a SEPARATOR clause inside the function.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "e6f2aba3-b4c9-446e-9fb2-7860228d818e",
+              "Text": "PostgreSQL, SQL Server 2017\u002B, Oracle and Db2 use STRING_AGG(expression, delimiter).",
+              "SortOrder": 1
+            },
+            {
+              "Id": "6d64506b-5eaa-49cf-8569-aa4b4b136a28",
+              "Text": "Oracle and Db2 also provide LISTAGG(), and PostgreSQL offers ARRAY_AGG() for collecting values into an array.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "61ae3c25-2df5-4ec4-bf8e-bf1a7dff6ca3",
+              "Text": "Because the syntax differs by vendor, text aggregation queries rarely port between platforms without edits.",
+              "SortOrder": 3
+            },
+            {
+              "Id": "27e4f849-0938-4c5e-a60a-a14c2e5046d2",
+              "Text": "Use it for summary columns such as \u0027categories purchased\u0027 or \u0027courses enrolled\u0027 instead of returning one row per item.",
+              "SortOrder": 4
+            }
+          ]
+        },
+        {
+          "Id": "d6a3353d-0557-4006-84ef-205b11f8d502",
+          "TopicId": "bd748206-cf16-4e75-9158-6fce0945983c",
+          "Title": "Statistical Aggregates: STDDEV and VARIANCE",
+          "BodyText": "STDDEV and VARIANCE measure how spread out numeric values are around their mean, letting you judge consistency rather than just magnitude.",
+          "Notes": "Example: SELECT category, ROUND(AVG(total),2) AS avg_order_value, ROUND(STDDEV(total),2) AS std_deviation, ROUND(VARIANCE(total),2) AS variance FROM orders GROUP BY category ORDER BY std_deviation DESC;",
+          "SortOrder": 2,
+          "CreatedDate": "2026-11-17T05:26:22.5079462-05:00",
+          "ModifiedDate": "2026-11-17T05:26:22.5079462-05:00",
+          "Items": [
+            {
+              "Id": "bef9f825-95a1-459f-a875-9cf6d6ab236e",
+              "Text": "A low standard deviation within a group indicates uniform values; a high one signals wide variation.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "f0d7b51d-d675-4571-bde1-d883956e6f9c",
+              "Text": "MySQL, PostgreSQL and Oracle name them STDDEV() and VARIANCE(); SQL Server uses STDEV() and VAR().",
+              "SortOrder": 1
+            },
+            {
+              "Id": "a25e8f78-f16b-43bd-9b7a-51e9a9cf4eab",
+              "Text": "Most engines also expose population versus sample variants such as STDDEV_POP() and STDDEV_SAMP().",
+              "SortOrder": 2
+            },
+            {
+              "Id": "c0448eb6-ce83-4600-9085-d7651a6f2b56",
+              "Text": "Like other numeric aggregates, they ignore NULLs and do not work on string or date columns.",
+              "SortOrder": 3
+            },
+            {
+              "Id": "0f4cb8c2-375e-42f0-904c-618a37833f1b",
+              "Text": "Pair them with AVG() and ROUND() so reports show both the centre and the spread of a distribution.",
+              "SortOrder": 4
+            }
+          ]
+        },
+        {
+          "Id": "924c6459-cc48-473b-b0c6-18a2ae810e97",
+          "TopicId": "bd748206-cf16-4e75-9158-6fce0945983c",
+          "Title": "Subtotals and Grand Totals with ROLLUP",
+          "BodyText": "ROLLUP extends GROUP BY by automatically generating subtotal and grand total rows beneath the detail rows, which is ideal for financial and management reports.",
+          "Notes": "SELECT COALESCE(category,\u0027GRAND TOTAL\u0027) AS category, COUNT(*) AS order_count, SUM(total) AS total_revenue FROM orders GROUP BY category WITH ROLLUP; adds a final row showing 10 orders and 412.93 in revenue.",
+          "SortOrder": 3,
+          "CreatedDate": "2026-11-17T05:26:22.5079462-05:00",
+          "ModifiedDate": "2026-11-17T05:26:22.5079462-05:00",
+          "Items": [
+            {
+              "Id": "389efa0d-b34c-4074-94ed-2596cc8a0b45",
+              "Text": "MySQL and SQL Server write GROUP BY column WITH ROLLUP, while PostgreSQL and Oracle use GROUP BY ROLLUP(column).",
+              "SortOrder": 0
+            },
+            {
+              "Id": "c123719f-1c18-4ca8-ab3d-2199020c1411",
+              "Text": "Subtotal rows carry NULL in the grouped column, so wrap it in COALESCE() to display a label such as \u0027GRAND TOTAL\u0027.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "fb5e4716-bb60-4a41-ab1b-cdbfc95ce37c",
+              "Text": "With multiple grouping columns, ROLLUP produces a hierarchy of subtotals from the most detailed level up to the overall total.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "3041cd56-ce5c-4b9f-a307-57b730eb60c8",
+              "Text": "It removes the need to UNION a separate totals query onto your detail query.",
+              "SortOrder": 3
+            },
+            {
+              "Id": "ad084c51-a0b7-420f-8167-9adcb0126c63",
+              "Text": "Related extensions include CUBE and GROUPING SETS for multi-dimensional summaries.",
+              "SortOrder": 4
+            }
+          ]
+        },
+        {
+          "Id": "885431a7-d0ae-4954-aa05-58756b176a72",
+          "TopicId": "bd748206-cf16-4e75-9158-6fce0945983c",
+          "Title": "Vendor Support Varies Across Database Systems",
+          "BodyText": "Beyond the five core aggregates, support for advanced functions differs sharply between Oracle, SQL Server, MySQL, PostgreSQL and IBM Db2, so always check your platform\u0027s documentation.",
+          "Notes": "COUNT, SUM, AVG, MIN, MAX, STDDEV and VARIANCE are supported by all five major systems; almost everything beyond that is partial.",
+          "SortOrder": 4,
+          "CreatedDate": "2026-11-17T05:26:22.5079462-05:00",
+          "ModifiedDate": "2026-11-17T05:26:22.5079462-05:00",
+          "Items": [
+            {
+              "Id": "30276b8d-8baf-4a1d-ae28-070f49cea954",
+              "Text": "MEDIAN exists in Oracle, PostgreSQL and Db2 but not in SQL Server or MySQL; MODE is PostgreSQL-only.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "c358dc0c-7a8d-411c-836a-fbd0272ede04",
+              "Text": "GROUP_CONCAT is MySQL-only, whereas STRING_AGG is absent from MySQL but present elsewhere.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "28e6cf04-4d70-438f-9939-6da19eebc539",
+              "Text": "PERCENTILE_CONT, PERCENTILE_DISC and the REGR_ regression functions are unavailable in MySQL.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "89f6e14a-768e-405f-bfe6-87bf6f77e424",
+              "Text": "JSON_ARRAYAGG and JSON_OBJECTAGG appear in Oracle, SQL Server and MySQL; XMLAGG is limited to Oracle and Db2.",
+              "SortOrder": 3
+            },
+            {
+              "Id": "65be1724-8ccc-4b6d-9578-bd2bf4a6850e",
+              "Text": "Writing portable code means sticking to the common core and isolating vendor-specific aggregates where they can be swapped out.",
+              "SortOrder": 4
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Id": "c8637c16-b162-4583-b666-c7aed7f2ff44",
+      "Title": "Query Execution Order, Real-World Patterns, and Best Practices",
+      "Summary": "Walks through the logical execution order of FROM, WHERE, GROUP BY, HAVING, SELECT, and ORDER BY to explain alias and filtering rules, then applies aggregation to e-commerce, healthcare, and university reporting scenarios. Concludes with best practices, common mistakes, and a quick reference table.",
+      "SortOrder": 7,
+      "CreatedDate": "2026-11-17T05:23:57.8372816-05:00",
+      "ModifiedDate": "2026-11-17T05:23:57.8372816-05:00",
+      "Elements": [
+        {
+          "Id": "d3ac5904-9ad6-49f3-a862-8d071c75e798",
+          "TopicId": "c8637c16-b162-4583-b666-c7aed7f2ff44",
+          "Title": "The Six-Step Logical Execution Order",
+          "BodyText": "SQL does not evaluate a query in the order you write it. Understanding the logical execution order explains alias rules, filtering behaviour, and why HAVING exists as a separate clause from WHERE.",
+          "Notes": "Write order is SELECT \u2192 FROM \u2192 WHERE \u2192 GROUP BY \u2192 HAVING \u2192 ORDER BY, but execution order is FROM \u2192 WHERE \u2192 GROUP BY \u2192 HAVING \u2192 SELECT \u2192 ORDER BY.",
+          "SortOrder": 0,
+          "CreatedDate": "2026-11-17T05:26:50.2716335-05:00",
+          "ModifiedDate": "2026-11-17T05:26:50.2716335-05:00",
+          "Items": [
+            {
+              "Id": "ee620f74-c040-41e8-9ba5-8cec70f4866d",
+              "Text": "Step 1 \u2014 FROM identifies the source table(s) and performs any JOINs.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "dd5103db-0306-42d8-8561-db83cc400c2d",
+              "Text": "Step 2 \u2014 WHERE filters individual rows; aliases do not exist yet at this stage.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "9f970d0e-acac-442f-aa70-dfebbc6114b2",
+              "Text": "Step 3 \u2014 GROUP BY divides the remaining rows into groups.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "ed48aff9-4c3d-4f80-ac73-9edaa2c26174",
+              "Text": "Step 4 \u2014 HAVING filters those groups using aggregate conditions.",
+              "SortOrder": 3
+            },
+            {
+              "Id": "4aba97e4-e74e-44fe-9725-82d56966fe2b",
+              "Text": "Step 5 \u2014 SELECT calculates expressions, applies aggregates, and assigns aliases.",
+              "SortOrder": 4
+            },
+            {
+              "Id": "1fff41b4-9b24-4ec3-88d5-ae09573f246b",
+              "Text": "Step 6 \u2014 ORDER BY sorts the final result and CAN reference aliases.",
+              "SortOrder": 5
+            }
+          ]
+        },
+        {
+          "Id": "9004c71b-6716-4c4b-9a41-ff58c5b7fb8d",
+          "TopicId": "c8637c16-b162-4583-b666-c7aed7f2ff44",
+          "Title": "Why Aliases Fail in WHERE but Work in ORDER BY",
+          "BodyText": "Because SELECT is evaluated fifth, any alias you define there does not exist when WHERE (step 2) runs. ORDER BY runs last, so aliases are already available to it.",
+          "Notes": "Example: WHERE total_revenue \u003E 100 raises an \u0027unknown column\u0027 error, while ORDER BY total_revenue DESC works perfectly.",
+          "SortOrder": 1,
+          "CreatedDate": "2026-11-17T05:26:50.2716335-05:00",
+          "ModifiedDate": "2026-11-17T05:26:50.2716335-05:00",
+          "Items": [
+            {
+              "Id": "9433c45d-8ddd-4935-9a51-136445536804",
+              "Text": "Referencing a SELECT alias inside WHERE produces an \u0027unknown column\u0027 error.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "769c3fa5-1bc5-4d9b-8d44-f3ce2d43ce2e",
+              "Text": "To filter on an aggregate value, use HAVING with the full expression, e.g. HAVING SUM(total) \u003E 100.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "a5a5daea-af04-4b02-9563-d5210850a674",
+              "Text": "Alternatively, repeat the underlying expression in the WHERE clause when filtering raw rows.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "e9cf0815-ab24-4c71-9911-a42318163723",
+              "Text": "ORDER BY can safely sort by alias names such as gross_revenue or avg_order_value.",
+              "SortOrder": 3
+            },
+            {
+              "Id": "61e77388-ad41-4ae1-a3bc-ae897a42b080",
+              "Text": "This execution-order rule is one of the most common beginner mistakes in aggregation queries.",
+              "SortOrder": 4
+            }
+          ]
+        },
+        {
+          "Id": "3ea99387-a24c-4ebd-b990-db92ab44673b",
+          "TopicId": "c8637c16-b162-4583-b666-c7aed7f2ff44",
+          "Title": "The Full Aggregation Query Template",
+          "BodyText": "Most reporting queries follow a single reusable skeleton that combines row filtering, grouping, group filtering, sorting, and limiting.",
+          "Notes": "SELECT col AS alias, AGGREGATE(col) AS agg_alias FROM table AS t WHERE row_condition GROUP BY col HAVING group_condition ORDER BY agg_alias DESC LIMIT 10;",
+          "SortOrder": 2,
+          "CreatedDate": "2026-11-17T05:26:50.2716335-05:00",
+          "ModifiedDate": "2026-11-17T05:26:50.2716335-05:00",
+          "Items": [
+            {
+              "Id": "be23b141-68d9-4eb5-9fd3-238323e10985",
+              "Text": "WHERE filters rows before grouping to reduce the volume of data aggregated.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "7d8e23f8-ddec-412a-b17f-b0aef0a02873",
+              "Text": "GROUP BY defines the grouping level \u2014 one output row per unique combination.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "1c139728-aeb8-43d8-a557-783bd50932e0",
+              "Text": "HAVING filters the resulting groups after aggregation is complete.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "45865122-43b5-4341-a140-a776fa2bd5ff",
+              "Text": "ORDER BY sorts the summary rows, typically by the key metric descending.",
+              "SortOrder": 3
+            },
+            {
+              "Id": "5904c8de-90f9-44bd-8ff3-0887ef175807",
+              "Text": "LIMIT optionally caps the output to a \u0027top N\u0027 result set.",
+              "SortOrder": 4
+            }
+          ]
+        },
+        {
+          "Id": "7ca2694d-b8f8-4a92-9d98-147a1fff1d09",
+          "TopicId": "c8637c16-b162-4583-b666-c7aed7f2ff44",
+          "Title": "E-Commerce Pattern: Top Customers Report",
+          "BodyText": "A classic business query ranks customers by lifetime value using several aggregates at once over a filtered set of orders.",
+          "Notes": "SELECT customer_id, COUNT(*) AS total_orders, SUM(total) AS lifetime_value, ROUND(AVG(total),2) AS avg_order_value, MAX(order_date) AS last_order_date FROM orders WHERE status = \u0027Completed\u0027 GROUP BY customer_id ORDER BY lifetime_value DESC LIMIT 5;",
+          "SortOrder": 3,
+          "CreatedDate": "2026-11-17T05:26:50.2716335-05:00",
+          "ModifiedDate": "2026-11-17T05:26:50.2716335-05:00",
+          "Items": [
+            {
+              "Id": "5d6def37-9126-4f98-b1d9-98e3124703cb",
+              "Text": "WHERE status = \u0027Completed\u0027 removes cancelled and pending orders before aggregation.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "1ee15dc1-6402-457b-a90e-44d3dea1a1db",
+              "Text": "COUNT(*), SUM(), AVG(), and MAX() are combined in a single GROUP BY customer_id query.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "2a52dccd-fdeb-4888-b8fb-ff46cf4ccc9f",
+              "Text": "MAX(order_date) surfaces recency alongside monetary value for each customer.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "69f60e72-f35f-4c40-ab16-8f55fef7ce9b",
+              "Text": "ORDER BY lifetime_value DESC with LIMIT 5 produces the top-N ranking.",
+              "SortOrder": 3
+            },
+            {
+              "Id": "162b09cd-99bd-40a4-aded-2cbaa1da1991",
+              "Text": "The same shape supports monthly revenue trends by grouping on YEAR() and MONTH() instead.",
+              "SortOrder": 4
+            }
+          ]
+        },
+        {
+          "Id": "313c0f2b-af09-4a9e-a966-7aca981b4499",
+          "TopicId": "c8637c16-b162-4583-b666-c7aed7f2ff44",
+          "Title": "Healthcare and University Patterns with SUM(CASE WHEN \u2026)",
+          "BodyText": "Conditional aggregation lets you count rows matching a specific condition inside a grouped query without writing a subquery.",
+          "Notes": "Healthcare: SUM(CASE WHEN a.status = \u0027No-Show\u0027 THEN 1 ELSE 0 END) and a no-show rate percentage per doctor. University: SUM(CASE WHEN e.final_grade \u003E= 90 THEN 1 ELSE 0 END) for A-grade counts per course.",
+          "SortOrder": 4,
+          "CreatedDate": "2026-11-17T05:26:50.2716335-05:00",
+          "ModifiedDate": "2026-11-17T05:26:50.2716335-05:00",
+          "Items": [
+            {
+              "Id": "da68058d-31b2-4846-9375-74d76b576b8d",
+              "Text": "SUM(CASE WHEN condition THEN 1 ELSE 0 END) produces a conditional count within each group.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "8c546dac-bcc8-4e8a-94cc-16d577994530",
+              "Text": "Multiply by 100.0 and divide by COUNT(*) to convert that count into a percentage rate.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "38083035-1f43-45cc-be72-c8a10a67e833",
+              "Text": "COUNT(DISTINCT patient_id) distinguishes unique people from total appointment rows.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "5f27b0af-5f6b-4fe5-8b95-848c9c2f7d6b",
+              "Text": "Both examples JOIN a fact table to a lookup table and GROUP BY descriptive columns like doctor_name or course_code.",
+              "SortOrder": 3
+            },
+            {
+              "Id": "0ae342b3-5de3-4e70-886c-97eec8080c72",
+              "Text": "HAVING COUNT(...) \u003E= 10 or \u003E= 5 suppresses statistically meaningless small groups.",
+              "SortOrder": 4
+            }
+          ]
+        },
+        {
+          "Id": "5b0e201b-fc94-42d3-b15a-a194f3532521",
+          "TopicId": "c8637c16-b162-4583-b666-c7aed7f2ff44",
+          "Title": "Best Practices for Aggregation Queries",
+          "BodyText": "A few habits make aggregation queries readable, maintainable, and efficient in production reporting.",
+          "Notes": "Well-formatted, clearly aliased queries are far easier to debug and hand off to other developers or BI tools.",
+          "SortOrder": 5,
+          "CreatedDate": "2026-11-17T05:26:50.2716335-05:00",
+          "ModifiedDate": "2026-11-17T05:26:50.2716335-05:00",
+          "Items": [
+            {
+              "Id": "54884c36-acd2-4798-a248-513d2a9ef9a1",
+              "Text": "Always use AS on aggregate columns so headers are readable and referenceable by applications.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "502594fe-638e-443d-a1f2-7d82d8f36f94",
+              "Text": "Filter early with WHERE before GROUP BY to reduce the volume of data being aggregated.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "8b07053b-8e16-4b06-9db2-b2383c58cf6b",
+              "Text": "Apply ROUND() to AVG and division results to avoid unnecessary decimal precision.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "cf43df8d-bcdc-4b04-9407-516e050eca93",
+              "Text": "Name aliases descriptively \u2014 monthly_revenue rather than col1 or sum1.",
+              "SortOrder": 3
+            },
+            {
+              "Id": "546ccc4a-5e3d-4418-b763-146aafc29fe0",
+              "Text": "Align SQL keywords consistently and test grouping logic on a small dataset before running on millions of rows.",
+              "SortOrder": 4
+            }
+          ]
+        },
+        {
+          "Id": "101d2678-1be0-4611-98ba-59700c97810b",
+          "TopicId": "c8637c16-b162-4583-b666-c7aed7f2ff44",
+          "Title": "Common Mistakes and the Quick Reference Table",
+          "BodyText": "Most aggregation errors trace back to execution order, NULL handling, or grouping granularity. A function reference table helps you pick the right tool.",
+          "Notes": "Reference: COUNT(*) counts all rows and never ignores NULLs; COUNT(col), SUM, AVG, MIN, MAX, COUNT(DISTINCT), STDDEV and GROUP_CONCAT/STRING_AGG all ignore NULLs. SUM and AVG work only on numbers, while MIN, MAX and COUNT also work on strings (alphabetical) and dates (earliest/latest).",
+          "SortOrder": 6,
+          "CreatedDate": "2026-11-17T05:26:50.2716335-05:00",
+          "ModifiedDate": "2026-11-17T05:26:50.2716335-05:00",
+          "Items": [
+            {
+              "Id": "4f1206ab-9fbd-49cc-8b63-7afce6ce6704",
+              "Text": "Using WHERE instead of HAVING to filter an aggregate fails because aggregates don\u0027t exist yet at WHERE time.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "2090c0d7-0a51-4922-be9a-aaf54da41475",
+              "Text": "Selecting non-aggregated columns absent from GROUP BY yields undefined results or an error in strict mode.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "0ff8d25c-b505-40a5-bc3f-fd35f0a7db02",
+              "Text": "Forgetting that COUNT(column) skips NULLs \u2014 use COUNT(*) to count every row.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "ee0a565b-3a1b-4647-95ba-853b6b894fdd",
+              "Text": "Assuming SUM returns 0 with no rows \u2014 it returns NULL, so wrap it in COALESCE(SUM(col), 0).",
+              "SortOrder": 3
+            },
+            {
+              "Id": "0b51742c-4ce0-44d8-b06e-c8785f429851",
+              "Text": "Grouping by a high-cardinality column such as order_id creates one-row groups and makes aggregation pointless.",
+              "SortOrder": 4
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "TotalElementCount": 48
+}

@@ -1,0 +1,98 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Module 8 (Week 8) — Module Topics</title>
+<style>
+body{font-family:'Segoe UI',Arial,sans-serif;max-width:880px;margin:0 auto;padding:32px 24px;color:#222;line-height:1.55}
+h1{font-size:1.6rem;border-bottom:2px solid #dcdcdc;padding-bottom:8px}
+h2{font-size:1.2rem;margin-top:28px;color:#1a3c6e}
+.summary{color:#555;font-style:italic;margin:4px 0 10px}
+ul{margin:6px 0 6px 4px}
+li{margin:5px 0}
+.el-body{color:#555}
+.empty{color:#595959}
+</style>
+</head>
+<body>
+<div class="pm-backlink" style="font-family:'Segoe UI',Arial,sans-serif;padding:8px 16px;background:#f5f8fc;border-bottom:1px solid #dce3ec"><a href="index.html" style="color:#1a3c6e;font-weight:600;text-decoration:none">↑ Module 8 (Week 8)</a></div>
+<h1>Module 8 (Week 8) — Module Topics</h1>
+<h2>Lookup Table Fundamentals and Structure</h2>
+<div class="summary">Defines what lookup (reference, code, or dimension) tables are and the role they play as the single source of truth for standardized values. Covers the typical structure — primary key, value/name, and optional fields — along with key characteristics such as small size, static data, and read-heavy usage.</div>
+<ul>
+<li><strong>What Is a Lookup Table?</strong> <span class="el-body">— A lookup table — also called a reference table, dimension table, or code table — stores a finite set of values that other tables in the database reference. It acts as the single source of truth for standardized data values.</span></li>
+<li><strong>Basic Structure and Components</strong> <span class="el-body">— Lookup tables follow a simple, standardized structure that is easy to recognize across any database. At minimum they contain a unique identifier and the value being stored.</span></li>
+<li><strong>Key Characteristics of Lookup Tables</strong> <span class="el-body">— Lookup tables share a recognizable profile that distinguishes them from transactional tables. Understanding these traits helps you decide when a table qualifies as reference data.</span></li>
+<li><strong>Lookup Tables as the Source of Truth</strong> <span class="el-body">— Because every dependent table references the same row, the lookup table becomes the authoritative definition for a standardized value. This centralization is what delivers consistency across the whole database.</span></li>
+<li><strong>Example Lookup Table Designs</strong> <span class="el-body">— Concrete examples show how the standard structure adapts to different domains while keeping the same shape. Each design pairs an ID with a code, a readable name, and supporting attributes.</span></li>
+<li><strong>Single-Table vs. Two-Table Lookup Designs</strong> <span class="el-body">— You can build one lookup table per field, or consolidate many small code lists into a two-table category/code design. Both approaches serve the same purpose with different trade-offs.</span></li>
+</ul>
+<h2>When and Why to Use Lookup Tables</h2>
+<div class="summary">Explains the decision criteria for using a lookup table versus storing values inline, including the rule of thumb for good and poor candidates. Covers the benefits of consistency, storage efficiency, easy updates, referential integrity, and performance, plus their role in achieving Third Normal Form.</div>
+<ul>
+<li><strong>When to Use a Lookup Table</strong> <span class="el-body">— Lookup tables are appropriate whenever a finite, predefined set of values is repeated across many records. They turn free-text repetition into controlled, referenced values.</span></li>
+<li><strong>When NOT to Use a Lookup Table</strong> <span class="el-body">— Not every column benefits from being externalized. Some data is unique, unbounded, or too simple to justify an extra table and join.</span></li>
+<li><strong>The Rule of Thumb</strong> <span class="el-body">— A simple decision test helps you judge borderline cases quickly without over-analyzing the design.</span></li>
+<li><strong>Benefits: Consistency and Storage Efficiency</strong> <span class="el-body">— Centralizing values guarantees that each concept is spelled and stored exactly one way, while references consume far less space than repeated strings.</span></li>
+<li><strong>Benefits: Easy Updates, Integrity, and Performance</strong> <span class="el-body">— Lookup tables concentrate maintenance in one row and let the database engine enforce valid values while speeding up queries.</span></li>
+<li><strong>The Normalization Perspective</strong> <span class="el-body">— Lookup tables are a practical mechanism for achieving normalized database designs, particularly Third Normal Form.</span></li>
+</ul>
+<h2>Real-World Lookup Table Examples</h2>
+<div class="summary">Walks through practical implementations across e-commerce order statuses, HR departments and employment types, healthcare reference data, geographic hierarchies, and university course systems. Shows the SQL for creating lookup tables and wiring them to transactional tables with foreign keys.</div>
+<ul>
+<li><strong>E-Commerce Order Status Lookup</strong> <span class="el-body">— An order status lookup table defines the finite set of states an order can occupy, from pending payment through delivery or cancellation. The orders table stores only a status_id that points back to this reference table.</span></li>
+<li><strong>Human Resources: Departments and Employment Types</strong> <span class="el-body">— An HR schema commonly uses two lookup tables — departments and employment_types — both referenced by the employees table. This lets one employee row carry two validated classifications without duplicating text.</span></li>
+<li><strong>Healthcare Reference Data</strong> <span class="el-body">— Healthcare systems rely heavily on standardized reference data, much of it mandated externally. These lists are ideal lookup tables because they are finite, stable, and reused across many transactional tables.</span></li>
+<li><strong>Geographic Hierarchy: Countries, States, and Cities</strong> <span class="el-body">— Location data is modeled as a chain of lookup tables in which each level references the level above it. This is one of the few cases where a lookup table legitimately holds a foreign key.</span></li>
+<li><strong>University Course System Lookups</strong> <span class="el-body">— An academic database uses several small lookup tables to standardize semesters, grading scales, and course states. Each demonstrates a different pattern of enriching a lookup with extra attributes.</span></li>
+<li><strong>The Two-Table Category/Code Pattern</strong> <span class="el-body">— Instead of one lookup table per field, a generic two-table design stores every code set in a shared structure. This is the pattern used with coded Census PUMS data, where fields like ACR (acreage) and FS (food stamps) each become a category.</span></li>
+</ul>
+<h2>Best Practices for Designing Lookup Tables</h2>
+<div class="summary">Presents design standards including naming conventions, surrogate versus natural key strategy, descriptive and UI-support columns, foreign key enforcement, soft deletes, indexing, documentation, caching, and validation constraints. Includes a consolidated best-practices checklist.</div>
+<ul>
+<li><strong>Naming Conventions and Consistency</strong> <span class="el-body">— Consistent, descriptive naming makes lookup tables self-documenting and predictable for every developer who touches the schema.</span></li>
+<li><strong>Primary Key Strategy: Surrogate vs. Natural Keys</strong> <span class="el-body">— Choosing the key type determines join performance, readability, and how resilient the table is to business changes.</span></li>
+<li><strong>Descriptive and UI-Support Columns</strong> <span class="el-body">— Beyond an ID and a name, well-designed lookup tables carry columns that support business rules, user interfaces, and auditing.</span></li>
+<li><strong>Enforcing Referential Integrity with Foreign Keys</strong> <span class="el-body">— Foreign key constraints are what turn a lookup table from a convention into an enforced rule, preventing invalid or orphaned references.</span></li>
+<li><strong>Soft Deletes and Managing Change Over Time</strong> <span class="el-body">— Lookup values that have already been referenced by historical records must never be hard deleted, because doing so breaks foreign keys and destroys historical meaning.</span></li>
+<li><strong>Indexing and Caching for Performance</strong> <span class="el-body">— Lookup tables are read-heavy and change infrequently, which makes them ideal targets for targeted indexes and application-layer caching.</span></li>
+<li><strong>Documentation and Validation Constraints</strong> <span class="el-body">— Comments and CHECK constraints capture intent in the database itself, protecting data quality and helping future maintainers.</span></li>
+<li><strong>Consolidated Best-Practices Checklist</strong> <span class="el-body">— These practices together form a repeatable standard that can be applied to every lookup table you design.</span></li>
+</ul>
+<h2>Common Pitfalls to Avoid</h2>
+<div class="summary">Identifies frequent mistakes such as over-engineering tiny lists, omitting foreign keys, hard-coding lookup IDs in application code, failing to plan for growth, breaking historical data, and proliferating single-purpose tables. Offers corrective approaches for each.</div>
+<ul>
+<li><strong>Pitfall #1: Over-Engineering Tiny, Fixed Lists</strong> <span class="el-body">— Not every set of repeated values deserves its own table. Creating a lookup table for a truly binary or permanently fixed list adds joins and maintenance overhead with little benefit.</span></li>
+<li><strong>Pitfall #2: Referencing a Lookup Without a Foreign Key</strong> <span class="el-body">— A lookup table only guarantees integrity if the referencing columns are actually constrained. Declaring status_id INT with no FOREIGN KEY clause leaves the door open to invalid data.</span></li>
+<li><strong>Pitfall #3: Hard-Coding Lookup IDs in Application Code</strong> <span class="el-body">— Scattering magic numbers such as `if (order.status_id == 3)` through application code hides meaning and breaks when IDs differ between environments.</span></li>
+<li><strong>Pitfall #4: Failing to Plan for Growth</strong> <span class="el-body">— A list designed for ten rows can quietly become ten thousand, at which point the original lookup design no longer fits.</span></li>
+<li><strong>Pitfall #5: Breaking Historical Data</strong> <span class="el-body">— Editing or deleting lookup rows that historical records point to rewrites the past. Renaming &#39;Expedited Shipping&#39; to &#39;Express Shipping&#39; makes old orders display a term that did not exist when they were placed.</span></li>
+<li><strong>Pitfall #6: Proliferating Single-Purpose Lookup Tables</strong> <span class="el-body">— Dozens of tiny two-column tables clutter a schema and make it harder to navigate, document, and maintain.</span></li>
+<li><strong>The Rule of Thumb for Deciding</strong> <span class="el-body">— Most of these pitfalls stem from applying the lookup pattern in the wrong place. A short checklist keeps the decision consistent.</span></li>
+</ul>
+<h2>Advanced Lookup Table Patterns</h2>
+<div class="summary">Explores hierarchical (parent-child) lookups, versioned or temporal lookups with effective dating, multi-language translation tables, and the generic two-table lookup architecture. Discusses the trade-offs of each pattern, including loss of type safety in generic designs.</div>
+<ul>
+<li><strong>Hierarchical (Parent-Child) Lookup Tables</strong> <span class="el-body">— Some reference data is naturally nested, such as product categories or organizational units, and can be modeled with a self-referencing lookup table. A parent_category_id column pointing back at the same table&#39;s primary key captures the hierarchy.</span></li>
+<li><strong>Versioned Lookup Tables with Effective Dating</strong> <span class="el-body">— When a reference value legitimately changes over time — such as tax rates — a single current row destroys history. Temporal lookup tables add effective_from and effective_to columns so every version of the value is retained.</span></li>
+<li><strong>Multi-Language Translation Tables</strong> <span class="el-body">— Internationalized applications must display the same reference value in several languages without duplicating its identity. The pattern splits the lookup into a stable entity table and a separate translations table.</span></li>
+<li><strong>The Generic Two-Table Lookup Architecture</strong> <span class="el-body">— Systems with dozens of tiny two-column lookup tables can consolidate them into a generic pair: one table of categories (lookup types) and one table of codes (lookup values). This is the Categories/Codes design used in the course assignment.</span></li>
+<li><strong>Querying Generic Lookups Against Coded Data</strong> <span class="el-body">— Coded source data such as Census PUMS extracts stores values like &#39;ACR = 1&#39; that mean nothing until joined to a lookup. The generic design requires filtering on the category as well as matching the code.</span></li>
+<li><strong>Trade-Offs of Generic vs. Dedicated Lookup Tables</strong> <span class="el-body">— The generic architecture reduces table proliferation but sacrifices several benefits of purpose-built lookup tables. Choose deliberately rather than by default.</span></li>
+</ul>
+<h2>Applying Lookup Tables: Two-Table Design and Coded Data Analysis</h2>
+<div class="summary">Demonstrates the Categories/Codes two-table lookup system, supporting views, stored procedures, and functions used to populate and query coded data. Applies these structures to Census PUMS data to produce grouped counts and cross-tabulated analysis with a single query.</div>
+<ul>
+<li><strong>The Two-Table Categories/Codes Design</strong> <span class="el-body">— Instead of building a separate lookup table for every coded column, a two-table design stores all categories and all codes in one generic structure. Categories holds the field names, and Codes holds the valid values belonging to each category.</span></li>
+<li><strong>The CatCodes Supporting View</strong> <span class="el-body">— A view flattens the Categories and Codes join into a single readable result set so analysts do not have to repeat the join logic in every query. The CatCodes view exposes code and category names together with both descriptions.</span></li>
+<li><strong>Stored Procedures for Populating Lookup Data</strong> <span class="el-body">— Stored procedures standardize how categories and codes are inserted, enforcing business rules in the database rather than in ad-hoc INSERT statements. Two procedures handle the entire population of the lookup system.</span></li>
+<li><strong>A Scalar Function to Decode Values</strong> <span class="el-body">— A user-defined function can translate a raw code into its description inline, which is useful for cross-tabulation and reporting columns. The function accepts both a code name and a category name because codes are only unique within a category.</span></li>
+<li><strong>Exploring and Counting Coded PUMS Data</strong> <span class="el-body">— Before joining lookup tables, inspect the raw Census PUMS data to learn which codes actually appear and how frequently. Simple exploratory queries validate that the lookup tables cover every observed value.</span></li>
+<li><strong>Grouped Counts with a Single Lookup Join</strong> <span class="el-body">— The payoff of the lookup design is a single query that returns human-readable descriptions alongside aggregate counts. Joining RawData to the lookup structure and grouping by description produces a finished report.</span></li>
+<li><strong>Cross-Tabulating Two Coded Variables</strong> <span class="el-body">— The final analytical step pivots one coded field across the columns while grouping by another, all in a single query. The ACR by FS example breaks acreage categories down by food stamp/SNAP participation.</span></li>
+</ul>
+
+<footer class="presemaker-credit" data-credit="2" style="margin-top:2rem;padding:14px 8px;border-top:1px solid #ddd;background:#fff;text-align:center;font:13px/1.5 -apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;color:#595959;"><svg width="20" height="20" viewBox="0 0 2048 2048" aria-hidden="true" focusable="false" style="vertical-align:-5px;margin-right:7px"><rect width="2048" height="2048" rx="384" fill="#0F6E6E"/><path fill="#0A5050" d="M1024 1000 344 832v816l680 168zm0 0 680-168v816l-680 168z"/><path fill="#fff" d="M1024 944 384 784v808l640 160zm0 0 640-160v808l-640 160z"/><rect x="1002" y="944" width="44" height="808" fill="#0F6E6E"/><rect x="936" y="246" width="176" height="448" rx="44" fill="#fff"/><rect x="800" y="382" width="448" height="176" rx="44" fill="#fff"/></svg>Created with <a href="https://softwareplus.ai/coursebuilder/" target="_blank" rel="noopener" style="color:#2f5d8f;font-weight:600;text-decoration:none;">CourseBuilder+</a><span aria-hidden="true"> · </span><a href="https://softwareplus.ai/" target="_blank" rel="noopener" style="color:#2f5d8f;text-decoration:none;">SoftwarePlus.ai</a></footer>
+</body>
+</html>

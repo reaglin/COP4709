@@ -1,0 +1,1824 @@
+{
+  "ModuleFolderName": "Module_12_(Week_12)",
+  "CourseName": "COP4709 \u2014 Applied Database II",
+  "GeneratedDate": "2026-11-17T05:35:01.3755736-05:00",
+  "ModifiedDate": "2026-11-17T05:38:10.9836218-05:00",
+  "Outcomes": [],
+  "Topics": [
+    {
+      "Id": "1d15c0ce-c9d6-4034-afe4-fdbd271e2e43",
+      "Title": "Database Security Threat Landscape",
+      "Summary": "Examines why databases are high-value targets and introduces the defence-in-depth model spanning network, OS, authentication, authorization, data, audit, and application layers. Covers the most common breach sources and the regulatory frameworks (PCI DSS, HIPAA, GDPR, SOX, FERPA) that mandate database controls.",
+      "SortOrder": 0,
+      "CreatedDate": "2026-11-17T05:35:01.3755736-05:00",
+      "ModifiedDate": "2026-11-17T05:35:01.3755736-05:00",
+      "Elements": [
+        {
+          "Id": "495040f6-9778-43c7-bc9a-30dd243bb5cf",
+          "TopicId": "1d15c0ce-c9d6-4034-afe4-fdbd271e2e43",
+          "Title": "Why Databases Are High-Value Targets",
+          "BodyText": "Databases concentrate an organization\u0027s most sensitive and regulated assets in one place, making them the prime objective of most serious attacks. A single successful breach can trigger consequences far beyond the IT department.",
+          "Notes": "Attackers target databases because the return on effort is highest there \u2014 one compromised database can yield millions of records.",
+          "SortOrder": 0,
+          "CreatedDate": "2026-11-17T05:35:21.1957495-05:00",
+          "ModifiedDate": "2026-11-17T05:35:21.1957495-05:00",
+          "Items": [
+            {
+              "Id": "2c13b507-8c68-4b51-90bf-03bb6f62e825",
+              "Text": "Databases store customer records, financial data, healthcare information, credentials, and intellectual property.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "94674958-d947-425a-bac6-9c7bf132e19a",
+              "Text": "These assets are simultaneously critically sensitive and legally regulated.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "b3961d82-deec-41ca-9609-176898ebfcf2",
+              "Text": "Breach consequences include regulatory fines, litigation, reputational damage, and operational shutdown.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "5c5bd307-25e1-4555-beef-1058948d783f",
+              "Text": "Database security is not a single tool but a layered discipline combining access control, encryption, auditing, network hardening, patch management, and threat detection.",
+              "SortOrder": 3
+            },
+            {
+              "Id": "72aa72f1-0450-4181-89d2-d8d714f72998",
+              "Text": "No single control is sufficient alone \u2014 each layer reduces either the likelihood or the impact of a breach.",
+              "SortOrder": 4
+            }
+          ]
+        },
+        {
+          "Id": "d59b0f2b-7914-4aee-8cb7-6a749971896c",
+          "TopicId": "1d15c0ce-c9d6-4034-afe4-fdbd271e2e43",
+          "Title": "Defence in Depth: The Seven Security Layers",
+          "BodyText": "Effective database security requires protection at every layer so that an attacker who penetrates one layer is still stopped by the next. Seven distinct layers each protect a different aspect of the environment.",
+          "Notes": "Think of each layer as an independent barrier with its own control set; a gap in one layer should not expose the data directly.",
+          "SortOrder": 1,
+          "CreatedDate": "2026-11-17T05:35:21.1957495-05:00",
+          "ModifiedDate": "2026-11-17T05:35:21.1957495-05:00",
+          "Items": [
+            {
+              "Id": "1112f5d0-ef9f-47d9-ae5e-afa2e5e7c985",
+              "Text": "Network layer protects access to the database server using firewalls, VPNs, private subnets, and port restrictions.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "e13d61fd-642a-4bc8-b316-5b49ff966630",
+              "Text": "Operating System layer protects the host through patch management, service accounts, and file permissions.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "62f8ddba-ead6-46eb-b71c-3e0652e689ef",
+              "Text": "Authentication layer controls who can connect, using strong passwords, MFA, certificate auth, or Windows authentication.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "67433b71-8376-42c4-b482-3a14e769e13f",
+              "Text": "Authorization layer controls what authenticated users can do, through roles, GRANT/REVOKE, row-level security, and schemas.",
+              "SortOrder": 3
+            },
+            {
+              "Id": "92ee37f0-75ee-402c-92d4-191994c6afc9",
+              "Text": "Data layer protects the data itself at rest and in transit using TDE, column encryption, TLS/SSL, and masking.",
+              "SortOrder": 4
+            },
+            {
+              "Id": "16f91341-ed5e-4b54-a4f4-8310f64e7718",
+              "Text": "Audit \u0026 Monitoring and Application layers detect events and secure the querying code via audit logs, SIEM, parameterized queries, and least privilege.",
+              "SortOrder": 5
+            }
+          ]
+        },
+        {
+          "Id": "562e1b2a-4572-4527-95c9-83167cf563be",
+          "TopicId": "1d15c0ce-c9d6-4034-afe4-fdbd271e2e43",
+          "Title": "Common Sources of Database Breaches",
+          "BodyText": "Most real-world database compromises trace back to a small number of recurring attack sources. Recognising these categories helps prioritise defensive effort.",
+          "Notes": "Misconfiguration is widely considered the most preventable category, yet it remains among the most exploited.",
+          "SortOrder": 2,
+          "CreatedDate": "2026-11-17T05:35:21.1957495-05:00",
+          "ModifiedDate": "2026-11-17T05:35:21.1957495-05:00",
+          "Items": [
+            {
+              "Id": "2fc6fbc4-847f-4138-8e37-53790bf8719f",
+              "Text": "Injection attacks insert malicious SQL through application inputs to manipulate or extract data \u2014 the #1 database attack vector for decades.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "830a51c7-8a36-4ed3-bdda-672b4d077182",
+              "Text": "Privilege abuse occurs when legitimate or compromised accounts access data beyond their role, including insider threats and credential theft.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "ea480cbc-1814-4f92-a89e-8a1ff6c05875",
+              "Text": "Misconfiguration covers default passwords, public-facing databases, excessive privileges, and unpatched systems.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "a4a1a413-4b4a-45dc-86fa-34a7681479bc",
+              "Text": "Unpatched vulnerabilities allow attackers to exploit known CVEs, often months after a fix was available.",
+              "SortOrder": 3
+            },
+            {
+              "Id": "cdeeae3b-027c-4d59-b6ce-88b512e6034b",
+              "Text": "Weak authentication \u2014 default credentials, shared accounts, no MFA \u2014 enables credential stuffing and brute force attacks.",
+              "SortOrder": 4
+            },
+            {
+              "Id": "06bfc749-73e6-44ee-ab74-0113d26b2157",
+              "Text": "Unencrypted channels expose plaintext data to interception and man-in-the-middle attacks.",
+              "SortOrder": 5
+            }
+          ]
+        },
+        {
+          "Id": "67630951-30e3-4811-9ea8-8ddbbaadaaa3",
+          "TopicId": "1d15c0ce-c9d6-4034-afe4-fdbd271e2e43",
+          "Title": "Regulatory Frameworks Mandating Database Controls",
+          "BodyText": "Several regulatory frameworks impose specific, auditable database security requirements. Non-compliance carries financial penalties independent of any actual breach.",
+          "Notes": "Many organizations fall under multiple frameworks simultaneously; controls should be designed to satisfy the strictest applicable requirement.",
+          "SortOrder": 3,
+          "CreatedDate": "2026-11-17T05:35:21.1957495-05:00",
+          "ModifiedDate": "2026-11-17T05:35:21.1957495-05:00",
+          "Items": [
+            {
+              "Id": "70e3b929-d02d-45e8-be9a-cdb4322700aa",
+              "Text": "PCI DSS governs payment card data: encrypt cardholder data, restrict access by need-to-know, maintain audit logs, and prohibit default passwords.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "d4cbfcf1-e294-41a2-bf3f-b21f8574241b",
+              "Text": "HIPAA governs US healthcare data (PHI): access controls, encryption, audit trails, and breach notification within 60 days.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "6bb11f97-2df7-431a-bbe9-035abc4e1552",
+              "Text": "GDPR governs EU personal data: data minimization, right to erasure, encryption, and breach notification within 72 hours.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "44686ac4-aeff-473e-9f5c-ac62b4d6fea1",
+              "Text": "SOX governs US public company financial records: data integrity, access controls, and immutable audit logs.",
+              "SortOrder": 3
+            },
+            {
+              "Id": "be569d32-e574-4adb-afb6-3f68a102f68d",
+              "Text": "FERPA governs US student education records: access controls, disclosure restrictions, and audit trails for student data access.",
+              "SortOrder": 4
+            }
+          ]
+        },
+        {
+          "Id": "8939ebe1-85f3-40ec-8985-a15f1a8db19b",
+          "TopicId": "1d15c0ce-c9d6-4034-afe4-fdbd271e2e43",
+          "Title": "Translating the Threat Landscape into Priorities",
+          "BodyText": "Understanding the layers and threat sources allows a hardening effort to be sequenced by risk reduction rather than convenience. Early actions should close the largest and most exploited gaps first.",
+          "Notes": "This sequence mirrors the prioritization guidance used when hardening a database from scratch.",
+          "SortOrder": 4,
+          "CreatedDate": "2026-11-17T05:35:21.1957495-05:00",
+          "ModifiedDate": "2026-11-17T05:35:21.1957495-05:00",
+          "Items": [
+            {
+              "Id": "3158683c-0c1e-4c7d-a5da-6ccd52fd8e67",
+              "Text": "Start with network isolation \u2014 ensure the database is never directly reachable from the public internet.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "fb9ba6a1-dc79-4700-8ea1-bb9c79293318",
+              "Text": "Disable high-risk features and accounts such as xp_cmdshell and sa for immediate critical risk reduction.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "bf243e87-9d1f-4794-81bc-1209625a3f88",
+              "Text": "Enable TDE and connection encryption to protect data at rest and in transit.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "0b2b8bd5-5090-4558-8495-26987fbf6be6",
+              "Text": "Adopt parameterized queries to eliminate SQL injection risk at the application layer.",
+              "SortOrder": 3
+            },
+            {
+              "Id": "25d20594-2ee2-4c02-96e3-97c762776e61",
+              "Text": "Enable audit logging early, because you cannot investigate what you did not record.",
+              "SortOrder": 4
+            },
+            {
+              "Id": "1618bb2d-f1c2-4734-a020-bc850c5b7b48",
+              "Text": "Apply least privilege and disciplined patch management to limit the blast radius of any compromise.",
+              "SortOrder": 5
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Id": "1d7daf2c-398b-42be-8235-817c57699d0c",
+      "Title": "Authentication, Authorization \u0026 Least Privilege",
+      "Summary": "Covers verifying identity and controlling what authenticated users can do, including strong password policies, Windows/AD authentication, and role-based GRANT/DENY design. Explores least-privilege patterns, Row-Level Security, and Dynamic Data Masking for protecting sensitive columns.",
+      "SortOrder": 1,
+      "CreatedDate": "2026-11-17T05:35:01.3755736-05:00",
+      "ModifiedDate": "2026-11-17T05:35:01.3755736-05:00",
+      "Elements": [
+        {
+          "Id": "9b09341f-4e81-46da-b2f8-b41ed9c6f3ac",
+          "TopicId": "1d7daf2c-398b-42be-8235-817c57699d0c",
+          "Title": "Authentication vs. Authorization",
+          "BodyText": "Authentication and authorization are two distinct layers of the defence-in-depth model, and failing either creates a critical security gap. Authentication answers \u0022Who are you?\u0022 while authorization answers \u0022What can you do?\u0022",
+          "Notes": "In the layered security model, authentication protects who can connect to the database, and authorization protects what an authenticated principal may do once connected.",
+          "SortOrder": 0,
+          "CreatedDate": "2026-11-17T05:35:54.2555649-05:00",
+          "ModifiedDate": "2026-11-17T05:35:54.2555649-05:00",
+          "Items": [
+            {
+              "Id": "9ef8e975-ea64-48c3-a269-b9cc2b1c8b44",
+              "Text": "Authentication verifies identity before a connection to the database is allowed.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "1e3221a7-d2ba-43af-ab25-bb9ff4b388d5",
+              "Text": "Authorization defines the permissions an authenticated user holds through roles, GRANT/REVOKE, schemas, and row-level security.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "bb60d5c9-734f-4963-9304-8acca553e099",
+              "Text": "Weak authentication (default credentials, shared accounts, no MFA) is a leading source of breaches via credential stuffing and brute force.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "5ef459bc-51b6-4607-811e-c8dc3902ec68",
+              "Text": "Privilege abuse \u2014 legitimate or compromised accounts reaching data beyond their role \u2014 is an authorization failure, not an authentication failure.",
+              "SortOrder": 3
+            },
+            {
+              "Id": "ed4a4bc6-7cc5-4c13-912e-e50fb081548d",
+              "Text": "Both must be correct: a perfectly authenticated user with excessive rights is still a breach waiting to happen.",
+              "SortOrder": 4
+            }
+          ]
+        },
+        {
+          "Id": "6da27d72-e9ba-466f-a06e-dd68b776d634",
+          "TopicId": "1d7daf2c-398b-42be-8235-817c57699d0c",
+          "Title": "Strong Login and Password Policy in SQL Server",
+          "BodyText": "SQL Server logins should never be created with weak, guessable passwords. Password policy options allow SQL Server to enforce Windows-level complexity, expiration, and forced change rules.",
+          "Notes": "Example: CREATE LOGIN AppUser WITH PASSWORD = \u0027xK9#mQr7!vLp2@Wz\u0027, MUST_CHANGE = ON, CHECK_POLICY = ON, CHECK_EXPIRATION = ON;",
+          "SortOrder": 1,
+          "CreatedDate": "2026-11-17T05:35:54.2555649-05:00",
+          "ModifiedDate": "2026-11-17T05:35:54.2555649-05:00",
+          "Items": [
+            {
+              "Id": "0d15e6f2-1cfc-49b6-9bfb-59db7a89e4d8",
+              "Text": "MUST_CHANGE = ON forces the user to change the password at first login.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "3f25e79f-2f59-447b-b216-5617567d7502",
+              "Text": "CHECK_POLICY = ON applies the Windows password complexity policy to the SQL login.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "b235ce87-0c6d-4003-824a-ace2ece68dd5",
+              "Text": "CHECK_EXPIRATION = ON enforces password expiration so stale credentials cannot live forever.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "3cba3dff-1046-416f-ad2d-507f134ee577",
+              "Text": "Enforce a minimum of 12 characters with mixed case, numbers, and symbols.",
+              "SortOrder": 3
+            },
+            {
+              "Id": "403b50e0-63a2-4f2c-99bc-df4f1c846a72",
+              "Text": "Implement account lockout after 5\u201310 failed attempts and remove all default, sample, or test accounts.",
+              "SortOrder": 4
+            },
+            {
+              "Id": "cf0823c4-3a1a-415f-ab44-917d69a28c21",
+              "Text": "Apply MFA to DBA and other privileged accounts wherever the platform supports it.",
+              "SortOrder": 5
+            }
+          ]
+        },
+        {
+          "Id": "f6cb7b3b-3afb-425a-a315-e641c66dcdb2",
+          "TopicId": "1d7daf2c-398b-42be-8235-817c57699d0c",
+          "Title": "Windows / Active Directory Authentication",
+          "BodyText": "For internal systems, Windows or Active Directory authentication is preferred over SQL authentication because no password is stored in SQL Server at all. Identity is established through Kerberos or NTLM at the domain level.",
+          "Notes": "Example: CREATE LOGIN [DOMAIN\\AppServiceAccount] FROM WINDOWS WITH DEFAULT_DATABASE = SalesDB;",
+          "SortOrder": 2,
+          "CreatedDate": "2026-11-17T05:35:54.2555649-05:00",
+          "ModifiedDate": "2026-11-17T05:35:54.2555649-05:00",
+          "Items": [
+            {
+              "Id": "8643dd4a-6f85-46c3-8e76-a43d70d9b2eb",
+              "Text": "Domain authentication centralizes password policy, rotation, and account lockout in Active Directory.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "f72eb33d-a1bf-4c31-99c7-3bf479a936d9",
+              "Text": "Because credentials are not stored in the database, a database compromise does not leak reusable passwords.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "9a704085-3616-46f2-a742-cccb9f9b4ffd",
+              "Text": "Service accounts should be dedicated per service and never shared between instances.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "f89c57f2-ee83-4380-9974-b365266775f2",
+              "Text": "Managed Service Accounts (MSA) or Group Managed Service Accounts (gMSA) automate service password rotation.",
+              "SortOrder": 3
+            },
+            {
+              "Id": "4faa8791-c430-4f72-baae-dd2cc6ac0994",
+              "Text": "The sa account should be disabled or renamed, and given a complex password even when disabled.",
+              "SortOrder": 4
+            }
+          ]
+        },
+        {
+          "Id": "57113405-011f-49ee-9137-0d6f13a01ff0",
+          "TopicId": "1d7daf2c-398b-42be-8235-817c57699d0c",
+          "Title": "The Principle of Least Privilege",
+          "BodyText": "Every login, application account, and user should have only the minimum permissions required to perform their function \u2014 nothing more. Over-privileged accounts are among the most exploited attack surfaces in database environments.",
+          "Notes": "Least privilege limits the blast radius of any compromise: an attacker who steals a read-only reporting credential cannot delete or escalate.",
+          "SortOrder": 3,
+          "CreatedDate": "2026-11-17T05:35:54.2555649-05:00",
+          "ModifiedDate": "2026-11-17T05:35:54.2555649-05:00",
+          "Items": [
+            {
+              "Id": "c6101222-30d5-4353-bd64-c4db0f793b05",
+              "Text": "Anti-pattern: the application connects as sa or a sysadmin, developers hold db_owner in production, and all services share one account.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "70de474d-906b-4845-a458-644f277fc699",
+              "Text": "Correct pattern: the app account has only EXECUTE on stored procedures and no direct table access.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "ebf2bbcf-d694-4e82-a52b-f72595a4afda",
+              "Text": "Reporting accounts should have only SELECT on approved views or schemas.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "76b20c76-869f-49b3-acf5-ab53b680922e",
+              "Text": "ETL accounts should have INSERT/UPDATE on specific tables only, with each service holding its own dedicated account.",
+              "SortOrder": 3
+            },
+            {
+              "Id": "bda03da8-9174-4dd1-aa5b-c0bbd5aba945",
+              "Text": "DBA accounts must be kept separate from application accounts, and read, read-write, and admin operations should use distinct logins.",
+              "SortOrder": 4
+            }
+          ]
+        },
+        {
+          "Id": "5c337620-6b67-46db-9b53-176f6747024a",
+          "TopicId": "1d7daf2c-398b-42be-8235-817c57699d0c",
+          "Title": "Role-Based GRANT and DENY Design",
+          "BodyText": "Permissions should be granted to roles rather than to individual users, so access is consistent, reviewable, and easy to revoke. DENY can then explicitly block dangerous operations even when a higher role would otherwise inherit them.",
+          "Notes": "Typical flow: CREATE USER ... FOR LOGIN; CREATE ROLE db_app_reader; GRANT SELECT ON SCHEMA::dbo TO db_app_reader; ALTER ROLE db_app_reader ADD MEMBER AppReadUser;",
+          "SortOrder": 4,
+          "CreatedDate": "2026-11-17T05:35:54.2555649-05:00",
+          "ModifiedDate": "2026-11-17T05:35:54.2555649-05:00",
+          "Items": [
+            {
+              "Id": "87eef3db-94db-4762-928a-34a3df49e758",
+              "Text": "Create a database user mapped to each login, then create role-based permission groups such as db_app_reader and db_app_writer.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "0ce0df03-2b5f-4f0b-a65e-cf5f234b1271",
+              "Text": "Grant object or schema permissions to the role, then add users to the role with ALTER ROLE ... ADD MEMBER.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "8800cdb2-5bd8-49ca-b99c-5ed37f4a2bae",
+              "Text": "Use DENY to block destructive rights \u2014 for example DENY DELETE ON dbo.orders and DENY DROP TABLE \u2014 since DENY overrides inherited GRANTs.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "65cb3b69-d26f-4897-afa1-a25dbc49bf3f",
+              "Text": "DENY VIEW DEFINITION on non-admin roles limits attacker reconnaissance of schema and stored procedures.",
+              "SortOrder": 3
+            },
+            {
+              "Id": "a1e37d90-0701-4950-974a-f3f5caa7127d",
+              "Text": "Review and revoke non-essential PUBLIC role permissions.",
+              "SortOrder": 4
+            },
+            {
+              "Id": "06433cde-c524-4f49-838e-8de1654c3dd9",
+              "Text": "Audit permissions at least quarterly using sys.database_permissions, including anyone with IMPERSONATE or EXECUTE AS rights.",
+              "SortOrder": 5
+            }
+          ]
+        },
+        {
+          "Id": "00a3fff9-a9a6-4296-8958-c2f249d17271",
+          "TopicId": "1d7daf2c-398b-42be-8235-817c57699d0c",
+          "Title": "Row-Level Security (RLS)",
+          "BodyText": "Row-Level Security restricts which rows a user can see within a table, automatically and transparently. The same query returns only one region\u0027s orders to a sales rep but all orders to a manager.",
+          "Notes": "Implemented with an inline table-valued predicate function plus a SECURITY POLICY: CREATE SECURITY POLICY SalesRegionPolicy ADD FILTER PREDICATE dbo.fn_SalesRegionFilter(region_id) ON dbo.orders WITH (STATE = ON);",
+          "SortOrder": 5,
+          "CreatedDate": "2026-11-17T05:35:54.2555649-05:00",
+          "ModifiedDate": "2026-11-17T05:35:54.2555649-05:00",
+          "Items": [
+            {
+              "Id": "f865fd2e-63b5-4dfd-bcaf-75577bfd3f71",
+              "Text": "Step 1: create a schema-bound inline table-valued function that returns a row only when the predicate passes.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "0cee2534-6830-484a-a71b-56320989f605",
+              "Text": "The predicate can compare the filtered column to the caller\u0027s identity using USER_NAME() against a lookup table.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "9e935a8f-6cda-4991-99bf-0ee565f97a61",
+              "Text": "IS_MEMBER(\u0027db_app_manager\u0027) = 1 can be used to let elevated roles bypass the filter and see all rows.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "8e85a277-928d-4510-80ec-f05e1c76e420",
+              "Text": "Step 2: attach the function as a FILTER PREDICATE in a SECURITY POLICY and set STATE = ON.",
+              "SortOrder": 3
+            },
+            {
+              "Id": "05f62f31-a062-4737-903b-017c01115328",
+              "Text": "RLS is enforced by the engine, so applications need no query changes and cannot bypass it.",
+              "SortOrder": 4
+            },
+            {
+              "Id": "bef08c1b-9e11-4ffc-aa8d-877a0a48c24e",
+              "Text": "It is especially valuable for multi-tenant databases and regional or departmental data separation.",
+              "SortOrder": 5
+            }
+          ]
+        },
+        {
+          "Id": "d78f253b-2d7b-4cf2-8e32-111ba9def123",
+          "TopicId": "1d7daf2c-398b-42be-8235-817c57699d0c",
+          "Title": "Dynamic Data Masking for Sensitive Columns",
+          "BodyText": "Dynamic Data Masking hides sensitive column values from unauthorized users at query time without changing the stored data. It lets support and reporting staff work with records without ever seeing raw PII.",
+          "Notes": "Example: email VARCHAR(150) MASKED WITH (FUNCTION = \u0027email()\u0027), credit_card MASKED WITH (FUNCTION = \u0027partial(0,\u0022XXXX-XXXX-XXXX-\u0022,4)\u0027), ssn MASKED WITH (FUNCTION = \u0027default()\u0027).",
+          "SortOrder": 6,
+          "CreatedDate": "2026-11-17T05:35:54.2555649-05:00",
+          "ModifiedDate": "2026-11-17T05:35:54.2555649-05:00",
+          "Items": [
+            {
+              "Id": "8aa46ec7-644b-4b93-834c-0e71732cd5cd",
+              "Text": "Masking rules are declared on the column, either at table creation or via ALTER TABLE.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "1d619487-727c-4c2c-bba3-688e819df445",
+              "Text": "Common functions include default(), email(), and partial() for revealing only the last few characters.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "3a689ae0-2f5e-40c6-82fc-40a4c4bf3fee",
+              "Text": "Support staff see values such as aXXX@XXXX.com and XXX-XXX-5678 instead of the real data.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "41158918-a40c-4c46-b7cb-f31b1ef681f0",
+              "Text": "Authorized roles are given visibility with GRANT UNMASK ON dbo.customers TO db_app_manager.",
+              "SortOrder": 3
+            },
+            {
+              "Id": "f9c32b11-93d7-4b53-a5aa-913c2f2970bd",
+              "Text": "Masking is a presentation-layer control, not encryption \u2014 the underlying data is still stored in plaintext and must still be protected by permissions and encryption.",
+              "SortOrder": 4
+            },
+            {
+              "Id": "0057c9af-a800-4f7b-905c-80902ab26fad",
+              "Text": "Apply masking to PII columns reachable by support, reporting, or lower-trust roles.",
+              "SortOrder": 5
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Id": "8197f510-1335-462c-97b4-6f0ac2ef531c",
+      "Title": "Encryption of Data at Rest and in Transit",
+      "Summary": "Explains Transparent Data Encryption, column-level and Always Encrypted protection, TLS-enforced connections, and secure password hashing. Emphasizes certificate backup, key management, and why encryption is the last line of defence when other controls fail.",
+      "SortOrder": 2,
+      "CreatedDate": "2026-11-17T05:35:01.3755736-05:00",
+      "ModifiedDate": "2026-11-17T05:35:01.3755736-05:00",
+      "Elements": [
+        {
+          "Id": "ca9c0ca5-174d-45a0-aaa4-c6dea976783c",
+          "TopicId": "8197f510-1335-462c-97b4-6f0ac2ef531c",
+          "Title": "Why Encryption Is the Last Line of Defence",
+          "BodyText": "Encryption protects data even when every other control has failed. If an attacker steals a database file, a backup, or intercepts network traffic, encryption ensures they obtain only unintelligible ciphertext instead of readable records.",
+          "Notes": "In the defence-in-depth model, encryption sits at the \u0027Data\u0027 layer \u2014 protecting the data itself both at rest and in transit, independent of network, OS, and authorization controls.",
+          "SortOrder": 0,
+          "CreatedDate": "2026-11-17T05:36:19.457502-05:00",
+          "ModifiedDate": "2026-11-17T05:36:19.457502-05:00",
+          "Items": [
+            {
+              "Id": "b2b9ea9b-ad06-4ac0-949e-992bfce8f0c5",
+              "Text": "Encryption assumes breach: it limits impact rather than preventing access.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "75369d83-11a2-404f-87d5-19cd683381ac",
+              "Text": "Data at rest includes data files, log files, and backup files on disk or in cloud storage.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "51bc5682-6e0c-4d20-9f05-18923f1fc126",
+              "Text": "Data in transit includes every connection between application servers and the database engine.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "455f5b11-420a-45fc-adcc-33f559e9cfa8",
+              "Text": "Regulatory frameworks such as PCI DSS, HIPAA, and GDPR explicitly require encryption of sensitive data.",
+              "SortOrder": 3
+            },
+            {
+              "Id": "73733484-b5e3-4ca3-955e-b765e95fa161",
+              "Text": "Encryption does not replace least privilege or auditing \u2014 an authorized attacker still sees decrypted data.",
+              "SortOrder": 4
+            }
+          ]
+        },
+        {
+          "Id": "7bd029b4-8bd3-4db2-90b8-df696d7edfcb",
+          "TopicId": "8197f510-1335-462c-97b4-6f0ac2ef531c",
+          "Title": "Transparent Data Encryption (TDE)",
+          "BodyText": "TDE encrypts the entire database at the file level \u2014 data files, log files, and backups \u2014 without requiring any application or query changes. It is the primary defence against theft of physical media or backup files.",
+          "Notes": "Implementation sequence: create a database master key in master, create a server certificate, create a database encryption key with AES_256 in the target database, then ALTER DATABASE ... SET ENCRYPTION ON.",
+          "SortOrder": 1,
+          "CreatedDate": "2026-11-17T05:36:19.457502-05:00",
+          "ModifiedDate": "2026-11-17T05:36:19.457502-05:00",
+          "Items": [
+            {
+              "Id": "8dc2cd78-5648-45a6-a147-1960421e9bfe",
+              "Text": "TDE is transparent to applications: no code or query modifications are needed.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "f8e3a3c0-6323-4338-8a76-0ad512212885",
+              "Text": "The database encryption key is protected by a server certificate, which is protected by the master key.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "23b348c7-ebb6-4e49-bbcf-513c25553a12",
+              "Text": "AES_256 is the recommended algorithm for the database encryption key.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "5bcc468f-e9da-4fa6-ab25-5651269ab69a",
+              "Text": "Encryption progress and state can be verified via sys.dm_database_encryption_keys joined to sys.databases.",
+              "SortOrder": 3
+            },
+            {
+              "Id": "d0b9dd88-7b4a-477b-b68c-1b42c4292660",
+              "Text": "Without TDE, a stolen .bak file can be restored on any SQL Server instance and read in full.",
+              "SortOrder": 4
+            },
+            {
+              "Id": "80df838a-8df1-48fe-9d7f-6ede0f6521c8",
+              "Text": "The hardening checklist marks TDE on all production databases as a critical (\u26A0\uFE0F) item.",
+              "SortOrder": 5
+            }
+          ]
+        },
+        {
+          "Id": "f25dae71-dc05-4377-af6c-bcc1cee13644",
+          "TopicId": "8197f510-1335-462c-97b4-6f0ac2ef531c",
+          "Title": "Certificate Backup and Key Management",
+          "BodyText": "The TDE certificate is the single point of failure for an encrypted database. If it is lost, the database cannot be decrypted by anyone \u2014 including its legitimate owner.",
+          "Notes": "Treat certificate and key material as separately classified assets with their own access controls, storage locations, and rotation schedule.",
+          "SortOrder": 2,
+          "CreatedDate": "2026-11-17T05:36:19.457502-05:00",
+          "ModifiedDate": "2026-11-17T05:36:19.457502-05:00",
+          "Items": [
+            {
+              "Id": "04e69ec3-5bbd-4aa7-9ebb-d070516449ba",
+              "Text": "Back up the TDE certificate immediately after creation, before enabling encryption on any database.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "65b46b13-1afd-46a8-a340-461ceb62c574",
+              "Text": "Store the certificate backup securely offline and in a location separate from the database server.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "525afaef-1341-4e2a-ae44-0209f69103f4",
+              "Text": "Never store TDE certificates alongside the database backups they protect.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "893daa8b-f975-4b02-84cd-ee9ffd830bfc",
+              "Text": "Rotate encryption keys and certificates according to a documented key management policy.",
+              "SortOrder": 3
+            },
+            {
+              "Id": "1510c343-24c4-4050-8e54-b8b0ebad3411",
+              "Text": "Restrict access to certificate backups to a small, audited group of designated custodians.",
+              "SortOrder": 4
+            },
+            {
+              "Id": "9db5d2af-891d-44a7-84f3-b43cf80a5c4d",
+              "Text": "Backups can be further protected with the BACKUP ... WITH ENCRYPTION (ALGORITHM = AES_256, SERVER CERTIFICATE = ...) clause.",
+              "SortOrder": 5
+            }
+          ]
+        },
+        {
+          "Id": "ee9d448a-265e-4760-9dac-b52a69811c7a",
+          "TopicId": "8197f510-1335-462c-97b4-6f0ac2ef531c",
+          "Title": "Column-Level Encryption and Always Encrypted",
+          "BodyText": "For highly sensitive fields such as SSNs, payment card numbers, and healthcare identifiers, column-level encryption gives finer control than TDE by encrypting only specific columns under separate keys.",
+          "Notes": "Always Encrypted performs encryption inside the client driver, so SQL Server only ever stores and returns ciphertext \u2014 even sysadmins and DBAs cannot read the plaintext values.",
+          "SortOrder": 3,
+          "CreatedDate": "2026-11-17T05:36:19.457502-05:00",
+          "ModifiedDate": "2026-11-17T05:36:19.457502-05:00",
+          "Items": [
+            {
+              "Id": "5e2fd41e-c252-45df-b6b2-063192d26f3d",
+              "Text": "Always Encrypted moves the encryption boundary to the application driver, excluding DBAs from plaintext access.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "210a4394-b9a9-41c6-972a-a5438b7fa5a7",
+              "Text": "Deterministic encryption produces the same ciphertext for the same value, enabling equality searches and joins.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "bcfcae6b-1352-42c0-a992-ddf1a3dc04e1",
+              "Text": "Randomized encryption is more secure but prevents equality searches, grouping, and indexing.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "89606337-e07a-4895-81f4-0ad879682787",
+              "Text": "AEAD_AES_256_CBC_HMAC_SHA_256 is the standard algorithm used with column encryption keys.",
+              "SortOrder": 3
+            },
+            {
+              "Id": "9fa253b9-1639-419a-8d5a-e1fc1a2939dc",
+              "Text": "Column encryption keys (CEKs) must be managed and protected separately from the database.",
+              "SortOrder": 4
+            },
+            {
+              "Id": "e22a2e27-442a-420b-875b-86ac468217f7",
+              "Text": "Use Always Encrypted for columns containing SSN, payment card data, or healthcare IDs.",
+              "SortOrder": 5
+            }
+          ]
+        },
+        {
+          "Id": "8b7c6b00-f924-4a6e-b4ec-e12dbcb4b4cd",
+          "TopicId": "8197f510-1335-462c-97b4-6f0ac2ef531c",
+          "Title": "Encrypting Connections with TLS",
+          "BodyText": "Unencrypted database connections transmit credentials and query results in plaintext, exposing them to interception and man-in-the-middle attacks. Forcing TLS ensures all client sessions are encrypted in transit.",
+          "Notes": "Enable Force Encryption in SQL Server Configuration Manager (or sp_configure \u0027force encryption\u0027, 1) and specify Encrypt=True;TrustServerCertificate=False in connection strings.",
+          "SortOrder": 4,
+          "CreatedDate": "2026-11-17T05:36:19.457502-05:00",
+          "ModifiedDate": "2026-11-17T05:36:19.457502-05:00",
+          "Items": [
+            {
+              "Id": "95fd881f-a245-4a22-9a99-43386480281a",
+              "Text": "Force encryption at the server so clients cannot negotiate an unencrypted session.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "91754a6e-90d1-45e9-b6ac-bd550fe63ff8",
+              "Text": "Use TLS 1.2 or higher and disable SSL, TLS 1.0, and TLS 1.1.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "0a652320-9579-4e28-a912-f7bc885069ac",
+              "Text": "Set TrustServerCertificate=False so the client validates the server certificate rather than blindly trusting it.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "3a28558c-74b3-4dbd-8b17-798ff0a2502b",
+              "Text": "Verify active sessions using the encrypt_option and auth_scheme columns in sys.dm_exec_connections.",
+              "SortOrder": 3
+            },
+            {
+              "Id": "400ee66e-3773-40c4-ade7-87d9480d8209",
+              "Text": "Unencrypted channels are listed among the common sources of database breaches.",
+              "SortOrder": 4
+            }
+          ]
+        },
+        {
+          "Id": "1cbb12e2-10f5-466e-99a6-5316f2e27436",
+          "TopicId": "8197f510-1335-462c-97b4-6f0ac2ef531c",
+          "Title": "Secure Password Hashing \u2014 Never Store Plaintext",
+          "BodyText": "Application passwords must never be stored in plaintext or with reversible encryption, as a single database breach would expose every user credential instantly.",
+          "Notes": "Use bcrypt, Argon2, or PBKDF2 in the application layer; these algorithms are deliberately slow and salted, which defeats brute-force and rainbow-table attacks.",
+          "SortOrder": 5,
+          "CreatedDate": "2026-11-17T05:36:19.457502-05:00",
+          "ModifiedDate": "2026-11-17T05:36:19.457502-05:00",
+          "Items": [
+            {
+              "Id": "462e6189-8e05-4ee1-af0f-2b3957e9269b",
+              "Text": "Hashing is one-way: unlike encryption, stored hashes cannot be reversed back to passwords.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "71c01a52-155b-4a23-a668-e5984920d5b5",
+              "Text": "Always combine the password with a unique random salt before hashing to defeat precomputed tables.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "6d4647e2-7c02-4000-8eb6-0fbc3669ba7b",
+              "Text": "Raw HASHBYTES(\u0027SHA2_256\u0027, ...) in SQL Server is too fast for credentials \u2014 use it only for non-credential internal cases.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "93282735-d7ee-44dd-8ca1-627e78e93f7e",
+              "Text": "bcrypt, Argon2, and PBKDF2 include configurable work factors that increase attacker cost.",
+              "SortOrder": 3
+            },
+            {
+              "Id": "b988eb4f-79ce-4cc5-9529-9c95a9aa092c",
+              "Text": "Reversible encryption of credentials is as catastrophic as plaintext if the key is also compromised.",
+              "SortOrder": 4
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Id": "5e66a2cc-233d-43ab-8c04-f5b02afe0aa4",
+      "Title": "Auditing \u0026 Activity Monitoring",
+      "Summary": "Shows how to configure SQL Server Audit, database audit specifications, and login auditing to create an immutable record of access and changes. Covers monitoring for suspicious sessions, failed logins, and anomalous hosts for both detection and compliance.",
+      "SortOrder": 3,
+      "CreatedDate": "2026-11-17T05:35:01.3755736-05:00",
+      "ModifiedDate": "2026-11-17T05:35:01.3755736-05:00",
+      "Elements": [
+        {
+          "Id": "2b5b931e-6fbe-49b5-b020-076b2131dbc3",
+          "TopicId": "5e66a2cc-233d-43ab-8c04-f5b02afe0aa4",
+          "Title": "Why Auditing Matters: Detection and Forensics",
+          "BodyText": "Auditing creates an immutable record of who accessed what data, when, and from where. It serves both real-time detection of suspicious activity and after-the-fact reconstruction of an incident.",
+          "Notes": "Many regulatory frameworks \u2014 PCI DSS, HIPAA, SOX, GDPR, FERPA \u2014 explicitly mandate audit trails for sensitive data access.",
+          "SortOrder": 0,
+          "CreatedDate": "2026-11-17T05:36:50.9351679-05:00",
+          "ModifiedDate": "2026-11-17T05:36:50.9351679-05:00",
+          "Items": [
+            {
+              "Id": "a70f7dc1-762f-4391-97dd-ceb8018e537d",
+              "Text": "Detection means spotting anomalous behaviour while an attack is still in progress.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "30b5fc2a-c121-4f32-b45c-e07b928d4e39",
+              "Text": "Forensics means rebuilding a defensible timeline of events after a breach is discovered.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "42ee6fd8-b694-4d4a-ab30-044aa4910911",
+              "Text": "SOX requires immutable audit logs for financial records; HIPAA and FERPA require audit trails for record access.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "294532a8-d385-479b-96d2-7de12fccf500",
+              "Text": "You cannot investigate what you never recorded, so audit logging should be enabled before an incident, not after.",
+              "SortOrder": 3
+            },
+            {
+              "Id": "f2823aa1-797b-4d15-9a00-6696a2fabcbd",
+              "Text": "Audit \u0026 Monitoring is a distinct layer in the defence-in-depth model, alongside network, authentication, authorization, and data controls.",
+              "SortOrder": 4
+            }
+          ]
+        },
+        {
+          "Id": "907a07e0-32e5-4834-be29-5d6728f80e80",
+          "TopicId": "5e66a2cc-233d-43ab-8c04-f5b02afe0aa4",
+          "Title": "Creating a SQL Server Audit (Where Logs Go)",
+          "BodyText": "The server audit object defines the destination and behaviour of audit output. It is created at the server level and must be explicitly turned on.",
+          "Notes": "Example: CREATE SERVER AUDIT DatabaseSecurityAudit TO FILE (FILEPATH=\u0027C:\\SQLAuditLogs\\\u0027, MAXSIZE=100MB, MAX_ROLLOVER_FILES=30) WITH (ON_FAILURE = FAIL_OPERATION); then ALTER SERVER AUDIT ... WITH (STATE = ON);",
+          "SortOrder": 1,
+          "CreatedDate": "2026-11-17T05:36:50.9351679-05:00",
+          "ModifiedDate": "2026-11-17T05:36:50.9351679-05:00",
+          "Items": [
+            {
+              "Id": "17506b9b-edab-4d19-b423-d9f319b3bbdb",
+              "Text": "Write audit files to a secure, restricted filesystem path that ordinary users cannot read or delete.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "42833e8c-c866-4dc9-927d-23d9d29276e0",
+              "Text": "MAXSIZE and MAX_ROLLOVER_FILES control file size and retention of the rolling audit set.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "ee8eebdd-8ac1-4da9-a88e-3f625d69a605",
+              "Text": "ON_FAILURE = FAIL_OPERATION causes the database operation to fail if the audit cannot be written, preventing unlogged activity.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "4c075922-e860-46f2-8060-aff2d418212a",
+              "Text": "The audit is inactive until you set STATE = ON with ALTER SERVER AUDIT.",
+              "SortOrder": 3
+            },
+            {
+              "Id": "72c46b78-8f6d-47b3-8582-85ce5674a3ae",
+              "Text": "Audit targets can also be the Windows Security log or Application log rather than a file.",
+              "SortOrder": 4
+            }
+          ]
+        },
+        {
+          "Id": "9e2e7a27-afac-4716-b812-ec72131b2b9d",
+          "TopicId": "5e66a2cc-233d-43ab-8c04-f5b02afe0aa4",
+          "Title": "Database Audit Specifications (What to Capture)",
+          "BodyText": "A database audit specification attaches to a server audit and defines exactly which actions and objects are recorded. This is where you scope auditing to sensitive tables and security-relevant events.",
+          "Notes": "Example: CREATE DATABASE AUDIT SPECIFICATION SalesDB_DataAccess FOR SERVER AUDIT DatabaseSecurityAudit ADD (SELECT ON dbo.customers BY PUBLIC), ADD (DATABASE_PRINCIPAL_CHANGE_GROUP) WITH (STATE = ON);",
+          "SortOrder": 2,
+          "CreatedDate": "2026-11-17T05:36:50.9351679-05:00",
+          "ModifiedDate": "2026-11-17T05:36:50.9351679-05:00",
+          "Items": [
+            {
+              "Id": "e8d09faf-bac4-4ce7-b1a4-8e71db704daa",
+              "Text": "Audit SELECT, INSERT, UPDATE and DELETE on sensitive tables such as dbo.customers BY PUBLIC.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "fc819e1e-9808-47e1-8bbf-f84b9c71a730",
+              "Text": "Add EXECUTE ON SCHEMA::dbo to capture stored procedure usage across the schema.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "d4e735fa-4f56-4f22-ad1a-7ce0abeccbea",
+              "Text": "DATABASE_OBJECT_PERMISSION_CHANGE_GROUP records GRANT, REVOKE and DENY activity.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "11154f76-9150-443b-afd5-5a0be6737d41",
+              "Text": "DATABASE_PRINCIPAL_CHANGE_GROUP records user and role creation or modification \u2014 a common attacker backdoor.",
+              "SortOrder": 3
+            },
+            {
+              "Id": "60ff5d3f-48c4-450f-93e9-c48590804ba4",
+              "Text": "Scope audits deliberately: auditing everything creates noise and performance overhead, while auditing too little leaves blind spots.",
+              "SortOrder": 4
+            }
+          ]
+        },
+        {
+          "Id": "3510f8fb-51d7-4241-bede-7b5bc413d7db",
+          "TopicId": "5e66a2cc-233d-43ab-8c04-f5b02afe0aa4",
+          "Title": "Querying and Protecting the Audit Log",
+          "BodyText": "Audit files are read with sys.fn_get_audit_file, which returns a structured event stream you can filter and sort. Protecting those files is as important as generating them.",
+          "Notes": "Example: SELECT event_time, server_principal_name, database_name, object_name, action_id, succeeded, client_ip, application_name, statement FROM sys.fn_get_audit_file(\u0027C:\\SQLAuditLogs\\*.sqlaudit\u0027, DEFAULT, DEFAULT) ORDER BY event_time DESC;",
+          "SortOrder": 3,
+          "CreatedDate": "2026-11-17T05:36:50.9351679-05:00",
+          "ModifiedDate": "2026-11-17T05:36:50.9351679-05:00",
+          "Items": [
+            {
+              "Id": "35757442-ca8c-411c-8cf2-06e2befddbaa",
+              "Text": "Key columns include event_time, server_principal_name (the actor), client_ip, application_name, object_name, succeeded and the full statement text.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "7fea84ab-7e68-4666-b3e2-487112099acc",
+              "Text": "Filter by action_id (for example \u0027SL\u0027 for SELECT events) to isolate specific operation types.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "48e5312b-c090-44eb-8e32-e51d1c9136d2",
+              "Text": "Centralize audit logs to a SIEM or protected log server rather than leaving them only on the database host.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "79d19848-a397-4735-96d4-8b7fee6542be",
+              "Text": "Apply restricted filesystem permissions so that even a compromised DBA account cannot silently erase evidence.",
+              "SortOrder": 3
+            },
+            {
+              "Id": "eaf9fd34-d24c-49cf-bd04-8c326b285835",
+              "Text": "Retain logs at least 90 days online and one year in archive \u2014 PCI DSS mandates a one-year minimum.",
+              "SortOrder": 4
+            }
+          ]
+        },
+        {
+          "Id": "4815405f-9255-4268-97ac-65de635a4cda",
+          "TopicId": "5e66a2cc-233d-43ab-8c04-f5b02afe0aa4",
+          "Title": "Monitoring for Suspicious Sessions and Anomalous Hosts",
+          "BodyText": "Dynamic management views let you inspect live activity for signs of abuse, blocking, or connections from unexpected sources. These checks complement persistent audit logs with real-time visibility.",
+          "Notes": "Example: query sys.dm_exec_requests joined to sys.dm_exec_sessions with CROSS APPLY sys.dm_exec_sql_text to see blocked sessions and the queries causing them.",
+          "SortOrder": 4,
+          "CreatedDate": "2026-11-17T05:36:50.9351679-05:00",
+          "ModifiedDate": "2026-11-17T05:36:50.9351679-05:00",
+          "Items": [
+            {
+              "Id": "1dbcf51c-0452-4a4a-a0dd-505deb1d4b99",
+              "Text": "Query sys.dm_exec_requests where blocking_session_id \u003E 0 to find blocked sessions that may indicate attack or abuse.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "b12dd0e4-95f3-45b2-bfe7-d5efb41308e7",
+              "Text": "Join to sys.dm_exec_sessions for login_name, host_name and program_name, and use sys.dm_exec_sql_text to retrieve the running query.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "273428c7-8ca4-4573-ba07-854d778b7283",
+              "Text": "Group sys.dm_exec_sessions by login_name, host_name and program_name to spot connections from unfamiliar hosts or tools.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "f7c1d80c-e17c-4510-9cc9-cf12a43be2d1",
+              "Text": "A production login suddenly appearing from a developer workstation or a tool like sqlmap is a strong red flag.",
+              "SortOrder": 3
+            },
+            {
+              "Id": "d9bc9d96-f0e3-40ee-a517-e17d8f963843",
+              "Text": "DMV data is highly volatile and is lost on disconnect or restart, so capture it immediately when something looks wrong.",
+              "SortOrder": 4
+            }
+          ]
+        },
+        {
+          "Id": "bb4289ef-5857-4d0e-9917-b3598466ed21",
+          "TopicId": "5e66a2cc-233d-43ab-8c04-f5b02afe0aa4",
+          "Title": "Login Auditing and Failed-Login Alerting",
+          "BodyText": "Login auditing records authentication attempts, which is the primary signal for brute force and credential stuffing attacks. SQL Server can capture successful logins, failed logins, or both.",
+          "Notes": "Configure in SSMS under Server Properties \u003E Security \u003E Login Auditing, or via xp_instance_regwrite setting AuditLevel (0=None, 1=Success, 2=Failure, 3=Both).",
+          "SortOrder": 5,
+          "CreatedDate": "2026-11-17T05:36:50.9351679-05:00",
+          "ModifiedDate": "2026-11-17T05:36:50.9351679-05:00",
+          "Items": [
+            {
+              "Id": "e37056bb-3193-4884-aae8-54ee5e8bf62c",
+              "Text": "Set login auditing to \u0027Both failed and successful logins\u0027 \u2014 value 3 \u2014 so you capture the attack attempt and the eventual success.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "236bc66c-3e75-4733-b862-e1f2a5db2bc2",
+              "Text": "Failed login events are written to the SQL Server Error Log and the Windows Event Log.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "d01c7fb6-2b26-471e-ba82-5bfb46c1590a",
+              "Text": "Use EXEC sp_readerrorlog 0, 1, \u0027Login\u0027 to filter the error log for login events during an investigation.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "77305819-b20a-463d-8d97-68e3d078829e",
+              "Text": "Alert on multiple failed logins from the same host within a short window, which indicates brute force or dictionary attack.",
+              "SortOrder": 3
+            },
+            {
+              "Id": "c6226134-542d-4833-ae3e-c7995cee796a",
+              "Text": "Pair login auditing with an account lockout policy (typically 5\u201310 attempts) to slow automated credential attacks.",
+              "SortOrder": 4
+            }
+          ]
+        },
+        {
+          "Id": "bada5835-552f-4d9c-96bd-199faa4fca0b",
+          "TopicId": "5e66a2cc-233d-43ab-8c04-f5b02afe0aa4",
+          "Title": "Building an Alerting and Review Routine",
+          "BodyText": "Audit data only delivers value when someone or something acts on it. Define the specific conditions that trigger an alert and the cadence for human review.",
+          "Notes": "At scale, automated anomaly detection tools or SIEM correlation rules are preferable to manual log reading.",
+          "SortOrder": 6,
+          "CreatedDate": "2026-11-17T05:36:50.9351679-05:00",
+          "ModifiedDate": "2026-11-17T05:36:50.9351679-05:00",
+          "Items": [
+            {
+              "Id": "09325eac-6821-4219-968d-ac575f6db968",
+              "Text": "Alert on repeated failed logins, logins from unexpected IP addresses, and connections outside normal business hours.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "315fdb63-53e3-4c76-bfa6-43988bbe581d",
+              "Text": "Alert on DDL changes and on any change to sysadmin, securityadmin, or serveradmin role membership.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "29df0d46-0429-45df-b07b-bc783930bc99",
+              "Text": "Alert on permission changes captured by the object permission and principal change audit groups.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "7654bb86-d69c-49d1-9eec-064470d8bec1",
+              "Text": "Review audit output on a regular schedule, not just after an incident is suspected.",
+              "SortOrder": 3
+            },
+            {
+              "Id": "d203ad70-1ee9-44f7-a620-e22ae5ffcd37",
+              "Text": "Enable Query Store on production databases to retain historical query execution data that survives restarts.",
+              "SortOrder": 4
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Id": "007a8bea-c63c-46be-a2d5-37d9f803f492",
+      "Title": "Attack Methods \u2014 How Databases Are Compromised",
+      "Summary": "Dissects SQL injection (authentication bypass, UNION-based extraction, blind boolean techniques), privilege escalation, credential attacks, reconnaissance, backup theft, and xp_cmdshell OS command execution. Each attack is paired with concrete defences such as parameterized queries and surface area reduction.",
+      "SortOrder": 4,
+      "CreatedDate": "2026-11-17T05:35:01.3755736-05:00",
+      "ModifiedDate": "2026-11-17T05:35:01.3755736-05:00",
+      "Elements": []
+    },
+    {
+      "Id": "87fe8b7e-eb1b-4037-94d5-1560553fe84b",
+      "Title": "Database Forensics After an Incident",
+      "Summary": "Walks through the forensic principles of preservation, chain of custody, and evidence-based reconstruction. Covers capturing volatile session state, mining the transaction log and audit files, identifying exfiltrated data, and hunting for attacker persistence mechanisms.",
+      "SortOrder": 5,
+      "CreatedDate": "2026-11-17T05:35:01.3755736-05:00",
+      "ModifiedDate": "2026-11-17T05:35:01.3755736-05:00",
+      "Elements": [
+        {
+          "Id": "7588967b-a1f4-4935-a656-722a95d009ef",
+          "TopicId": "87fe8b7e-eb1b-4037-94d5-1560553fe84b",
+          "Title": "The Three Forensic Principles",
+          "BodyText": "Database forensics is the process of collecting, preserving, and analyzing database evidence after a suspected security incident. The investigation must answer what happened, who did it, when it happened, and what data was affected.",
+          "Notes": "Chain of custody documentation may be legally required if the incident leads to prosecution or regulatory action.",
+          "SortOrder": 0,
+          "CreatedDate": "2026-11-17T05:37:19.8472244-05:00",
+          "ModifiedDate": "2026-11-17T05:37:19.8472244-05:00",
+          "Items": [
+            {
+              "Id": "38394972-66a6-43e9-85c8-889121b2ffb4",
+              "Text": "Preserve first: capture a forensic snapshot before investigating, because queries on a live system can overwrite evidence.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "3133553f-273e-4ac4-9053-03c98b5d4b0c",
+              "Text": "Copy log files, take memory dumps, and snapshot the database before any remediation begins.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "78de1355-b052-42db-84c4-f4f5065a4339",
+              "Text": "Chain of custody: document every investigative action with timestamps, the person performing it, and the system involved.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "7baed96a-ba20-4079-9206-3663a715cb48",
+              "Text": "Reconstruct, don\u0027t assume: build the timeline from evidence only and follow the data rather than suspicion.",
+              "SortOrder": 3
+            },
+            {
+              "Id": "13ad5b02-2343-43ac-96a9-0c7513dc2b06",
+              "Text": "Cross-validate findings across multiple sources such as audit logs, execution plans, and backups.",
+              "SortOrder": 4
+            }
+          ]
+        },
+        {
+          "Id": "15a921cc-d210-440f-a456-22c8dc802db6",
+          "TopicId": "87fe8b7e-eb1b-4037-94d5-1560553fe84b",
+          "Title": "Step 1 \u2014 Capture Volatile Session State",
+          "BodyText": "Active session data is the most perishable evidence in a database incident and is lost the moment a connection drops or the service restarts. Capturing it should be the very first action taken on discovery.",
+          "Notes": "Query sys.dm_exec_sessions joined with sys.dm_exec_requests and sys.dm_exec_connections, using OUTER APPLY sys.dm_exec_sql_text to retrieve the running statement.",
+          "SortOrder": 1,
+          "CreatedDate": "2026-11-17T05:37:19.8472244-05:00",
+          "ModifiedDate": "2026-11-17T05:37:19.8472244-05:00",
+          "Items": [
+            {
+              "Id": "dd795ffc-d091-4dfe-a332-1c53086b9223",
+              "Text": "Record session_id, login_name, host_name, program_name, and client_interface_name for every user process.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "a1498419-f482-46fb-a95a-e85ab7c66cd2",
+              "Text": "Capture login_time and last_request_start_time to anchor sessions on the incident timeline.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "aa9bb36b-7eb5-46af-8f9f-0a48d5269882",
+              "Text": "Pull client_net_address, local_net_address, and local_tcp_port to identify the attacker\u0027s network origin.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "c3392d2d-002e-4935-8de4-c74feebea37c",
+              "Text": "Capture the currently executing query text before the session terminates and the plan is lost.",
+              "SortOrder": 3
+            },
+            {
+              "Id": "d4fe43e3-855a-4784-9f8d-7f4043c7413b",
+              "Text": "Filter to is_user_process = 1 to exclude internal system activity from the evidence set.",
+              "SortOrder": 4
+            }
+          ]
+        },
+        {
+          "Id": "4829665e-5b97-4c21-b88f-fa4e89454256",
+          "TopicId": "87fe8b7e-eb1b-4037-94d5-1560553fe84b",
+          "Title": "Step 2 \u2014 Mining the Transaction Log",
+          "BodyText": "The SQL Server transaction log records every modification made to the database, making it a powerful source for reconstructing exactly what data changed. The undocumented fn_dblog function, or third-party tools such as ApexSQL Log, can read it.",
+          "Notes": "The transaction log is overwritten as log space is reused, so it must be preserved early in the investigation.",
+          "SortOrder": 2,
+          "CreatedDate": "2026-11-17T05:37:19.8472244-05:00",
+          "ModifiedDate": "2026-11-17T05:37:19.8472244-05:00",
+          "Items": [
+            {
+              "Id": "0bb983e4-9c71-462d-822c-d3fba534a625",
+              "Text": "Query fn_dblog(NULL, NULL) filtering Operation for LOP_INSERT_ROWS, LOP_DELETE_ROWS, and LOP_MODIFY_ROW.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "721ccac5-a68b-42a1-848d-0bec972c2be7",
+              "Text": "Return Current LSN, Transaction ID, Operation, Context, Begin Time, and End Time to order events precisely.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "caf91aa7-2271-446b-8733-71fe0b1eb122",
+              "Text": "Filter on AllocUnitName (for example, LIKE \u0027dbo.customers%\u0027) to isolate activity on a specific sensitive table.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "ed190a58-b802-4acb-b175-ee119bce4a0f",
+              "Text": "Constrain results to the suspected compromise window using the Begin Time column.",
+              "SortOrder": 3
+            },
+            {
+              "Id": "4778387d-86c5-4939-8331-4c8c69adcb2b",
+              "Text": "Lock Information can reveal which rows and objects a transaction touched.",
+              "SortOrder": 4
+            }
+          ]
+        },
+        {
+          "Id": "b346f48a-3509-4f59-b6f1-ea41ddd1185a",
+          "TopicId": "87fe8b7e-eb1b-4037-94d5-1560553fe84b",
+          "Title": "Step 3 \u2014 Reconstructing the Timeline from Audit Logs",
+          "BodyText": "SQL Server Audit files provide a persistent, file-based record that combines login events, DDL, and DML into a chronological narrative of the incident.",
+          "Notes": "Audit logs centralized to a SIEM or protected log server are far more trustworthy than logs stored on the compromised database server itself.",
+          "SortOrder": 3,
+          "CreatedDate": "2026-11-17T05:37:19.8472244-05:00",
+          "ModifiedDate": "2026-11-17T05:37:19.8472244-05:00",
+          "Items": [
+            {
+              "Id": "789ba147-0fb0-4a58-bd98-e75a96394cc5",
+              "Text": "Read audit files with sys.fn_get_audit_file(\u0027C:\\SQLAuditLogs\\*.sqlaudit\u0027, DEFAULT, DEFAULT).",
+              "SortOrder": 0
+            },
+            {
+              "Id": "b2959183-0b4f-49d3-8f2b-2c2f659dc4a5",
+              "Text": "Select event_time, server_principal_name as the actor, client_ip, application_name, action_id, object_name, statement, and succeeded.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "57c2c9ed-d27e-4424-91a5-de18a672783c",
+              "Text": "Bound the query to the incident window (for example, 2025-02-10 20:00 to 2025-02-11 04:00) and order by event_time.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "d8488634-0085-4985-b983-9e6b74d41530",
+              "Text": "Correlate failed then successful logins from the same client_ip to spot brute-force followed by compromise.",
+              "SortOrder": 3
+            },
+            {
+              "Id": "f19a7be8-af73-4e06-80e8-3acf0d554851",
+              "Text": "Include permission-change and principal-change events to detect authorization tampering during the attack.",
+              "SortOrder": 4
+            }
+          ]
+        },
+        {
+          "Id": "22b7ae88-428b-42d7-bf14-89d8a2b11c61",
+          "TopicId": "87fe8b7e-eb1b-4037-94d5-1560553fe84b",
+          "Title": "Step 4 \u2014 Identifying Accessed and Exfiltrated Data",
+          "BodyText": "Determining scope requires identifying which sensitive tables were read and how much data left the environment \u2014 a critical input to breach notification obligations.",
+          "Notes": "GDPR requires breach notification within 72 hours and HIPAA within 60 days, so accurate scoping is time-critical.",
+          "SortOrder": 4,
+          "CreatedDate": "2026-11-17T05:37:19.8472244-05:00",
+          "ModifiedDate": "2026-11-17T05:37:19.8472244-05:00",
+          "Items": [
+            {
+              "Id": "5b159a96-45eb-41d4-abaf-d1326a3c69eb",
+              "Text": "Filter audit records where action_id = \u0027SL\u0027 to isolate SELECT events on sensitive objects.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "25ae5866-744e-49af-9475-037e107d6eaa",
+              "Text": "Target tables such as customers, payment_cards, and patient_records to assess regulated-data exposure.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "eb6bdc64-9bd5-48a5-aa81-32b42ff63a0b",
+              "Text": "Large result sets returned to unfamiliar client IPs are strong exfiltration signals.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "055548be-84a8-47c3-b5b2-b59f14bdbe32",
+              "Text": "Run EXEC sp_readerrorlog 0, 1, \u0027Login\u0027 to review the error log for unusual login patterns.",
+              "SortOrder": 3
+            },
+            {
+              "Id": "6196ca9a-fcda-4090-859d-d5e5c7e29df1",
+              "Text": "Correlate database findings with network and firewall logs for external connection history and transferred data volume.",
+              "SortOrder": 4
+            }
+          ]
+        },
+        {
+          "Id": "19e481a1-d07c-4291-bfac-e9c66ec9466d",
+          "TopicId": "87fe8b7e-eb1b-4037-94d5-1560553fe84b",
+          "Title": "Step 5 \u2014 Hunting for Attacker Persistence",
+          "BodyText": "Attackers routinely leave backdoors so they can return after the initial intrusion is remediated. Eradication is incomplete until these persistence mechanisms are found and removed.",
+          "Notes": "Compare findings against a known-good baseline or a pre-incident backup to confirm which objects were genuinely altered.",
+          "SortOrder": 5,
+          "CreatedDate": "2026-11-17T05:37:19.8472244-05:00",
+          "ModifiedDate": "2026-11-17T05:37:19.8472244-05:00",
+          "Items": [
+            {
+              "Id": "8f8bef98-9fd2-4e41-aee2-d17f42cfb7a2",
+              "Text": "Query sys.server_principals for logins created or modified after the suspected compromise date.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "566239de-fbad-4f9e-9a6f-b4baee0d338f",
+              "Text": "Inspect sys.objects for procedures, triggers, and functions with a modify_date after the incident, and review OBJECT_DEFINITION for injected code.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "761b10fe-d9fb-45b1-abf4-cea391048d3c",
+              "Text": "Enumerate sys.server_role_members to find new members of sysadmin, securityadmin, or serveradmin.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "acf32720-f58e-485e-b61f-88e33d951a55",
+              "Text": "Verify that xp_cmdshell, Ole Automation Procedures, and Ad Hoc Distributed Queries have not been re-enabled.",
+              "SortOrder": 3
+            },
+            {
+              "Id": "efed3528-da93-4228-8cd8-2b80780740cb",
+              "Text": "Check for unexpected linked servers, scheduled jobs, and accounts added at the operating-system level.",
+              "SortOrder": 4
+            }
+          ]
+        },
+        {
+          "Id": "aed0ec6c-a71c-45c7-879a-96c83c8371ee",
+          "TopicId": "87fe8b7e-eb1b-4037-94d5-1560553fe84b",
+          "Title": "Evidence Sources and Their Volatility",
+          "BodyText": "Each forensic source offers different visibility and survives for a different length of time, so collection must be prioritized by volatility \u2014 most perishable first.",
+          "Notes": "\u0022You can\u0027t investigate what you didn\u0027t record\u0022 \u2014 enabling audit logging and Query Store before an incident determines what evidence will exist afterwards.",
+          "SortOrder": 6,
+          "CreatedDate": "2026-11-17T05:37:19.8472244-05:00",
+          "ModifiedDate": "2026-11-17T05:37:19.8472244-05:00",
+          "Items": [
+            {
+              "Id": "5aba746e-d390-488f-8ce6-157f9b60a738",
+              "Text": "Highly volatile: sys.dm_exec_sessions (lost on disconnect) and sys.dm_exec_query_stats plan cache (cleared on restart).",
+              "SortOrder": 0
+            },
+            {
+              "Id": "07cd122b-fbf5-4caf-b1dd-f4028d60af82",
+              "Text": "Semi-volatile: the transaction log, which is overwritten as log space is reused.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "e57fa881-007a-460c-9321-57d53fb9861f",
+              "Text": "Persistent: SQL Server Audit files, the SQL Server Error Log, Query Store, and the Windows Event Log.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "1e2cec90-54a3-4e5f-8535-130c2deb6375",
+              "Text": "External: network and firewall logs show external connection history and data volume transferred.",
+              "SortOrder": 3
+            },
+            {
+              "Id": "6ebbadc6-1d49-4bd5-ac81-2c59637202a8",
+              "Text": "Audit logs show logins, DML, DDL, and permission changes with timestamps and source IP; the transaction log reconstructs row-level changes.",
+              "SortOrder": 4
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Id": "8930b288-2e9d-41f8-b10b-2111f79ba320",
+      "Title": "Network \u0026 Infrastructure Hardening",
+      "Summary": "Addresses network isolation, firewall restriction of SQL Server ports, disabling the Browser service, and surface area reduction of dangerous features. Includes service account hardening with dedicated least-privilege or managed service accounts.",
+      "SortOrder": 6,
+      "CreatedDate": "2026-11-17T05:35:01.3755736-05:00",
+      "ModifiedDate": "2026-11-17T05:35:01.3755736-05:00",
+      "Elements": [
+        {
+          "Id": "f8918f33-f748-484d-adea-2dc2901bb11b",
+          "TopicId": "8930b288-2e9d-41f8-b10b-2111f79ba320",
+          "Title": "Network Isolation \u2014 Databases Must Never Be Public-Facing",
+          "BodyText": "A database server should never be reachable directly from the public internet. It belongs in a private network segment that only application servers can reach.",
+          "Notes": "Any open database port exposed to the internet is an immediate critical vulnerability and is the first item to fix when hardening a system from scratch.",
+          "SortOrder": 0,
+          "CreatedDate": "2026-11-17T05:37:40.4011654-05:00",
+          "ModifiedDate": "2026-11-17T05:37:40.4011654-05:00",
+          "Items": [
+            {
+              "Id": "eed060a6-b52a-4623-bfcb-94b727f241ed",
+              "Text": "Place the database in a DMZ or internal zone, segmented from web-facing servers.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "be500cf2-1164-4b3b-9958-7fa84df8ac62",
+              "Text": "Allow inbound connections only from known application server addresses.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "06aa25b8-71d1-4e8a-b33e-b65f76fab0eb",
+              "Text": "Use VPNs or private subnets for administrative access rather than public endpoints.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "0ce8e568-4893-4def-85c9-5ffaa3bc495c",
+              "Text": "Automated scanners continuously probe the internet for exposed database ports, so exposure is detected within minutes.",
+              "SortOrder": 3
+            },
+            {
+              "Id": "07ec3448-97bb-4ff3-b390-c355fe822106",
+              "Text": "Network isolation is the first priority in the hardening prioritisation list.",
+              "SortOrder": 4
+            }
+          ]
+        },
+        {
+          "Id": "612d6df0-f58d-4625-bf97-6c51fedabeee",
+          "TopicId": "8930b288-2e9d-41f8-b10b-2111f79ba320",
+          "Title": "Firewall Rules and SQL Server Port Restriction",
+          "BodyText": "Operating-system firewall rules restrict which hosts may reach SQL Server\u0027s listening ports. This is configured outside T-SQL but is essential security configuration.",
+          "Notes": "Example: netsh advfirewall firewall add rule name=\u0022SQL Server - AppServers Only\u0022 dir=in action=allow protocol=TCP localport=1433 remoteip=10.10.1.50,10.10.1.51",
+          "SortOrder": 1,
+          "CreatedDate": "2026-11-17T05:37:40.4011654-05:00",
+          "ModifiedDate": "2026-11-17T05:37:40.4011654-05:00",
+          "Items": [
+            {
+              "Id": "e99d9bf9-2fdf-4000-9da5-3d7333376035",
+              "Text": "TCP 1433 is the default SQL Server instance port and must be restricted to known application server IPs.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "39abce9f-0f3d-4bf0-9692-11a0dc037506",
+              "Text": "TCP 1434 and UDP 1434 serve the SQL Server Browser service used for instance enumeration and discovery.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "b0c5201a-20ca-4e30-9530-773684589e95",
+              "Text": "Firewall rules should allow-list specific remote IPs rather than opening the port broadly.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "1bc3ad9d-582d-45a1-b8ee-cbce425752cf",
+              "Text": "Network and firewall logs also provide forensic evidence of external connection history and data volumes transferred.",
+              "SortOrder": 3
+            }
+          ]
+        },
+        {
+          "Id": "4e0fc291-8bee-49db-8883-597fe79802b5",
+          "TopicId": "8930b288-2e9d-41f8-b10b-2111f79ba320",
+          "Title": "Disabling the Browser Service and Changing Default Ports",
+          "BodyText": "The SQL Server Browser service advertises instances to the network and is unnecessary on single-instance servers. Changing the default port reduces hits from automated scanners.",
+          "Notes": "Port changes are made in SQL Server Configuration Manager under Network Configuration.",
+          "SortOrder": 2,
+          "CreatedDate": "2026-11-17T05:37:40.4011654-05:00",
+          "ModifiedDate": "2026-11-17T05:37:40.4011654-05:00",
+          "Items": [
+            {
+              "Id": "0165526f-66d5-405a-b361-5dfa14ee41d4",
+              "Text": "Disable the SQL Server Browser service (UDP 1434) if only one instance is in use.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "1a56e843-bb6e-4c71-b61a-068f7e809aa2",
+              "Text": "Move SQL Server off the default port 1433 to a non-standard port.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "cac15436-ffaa-4001-85b0-8c93fbe512bf",
+              "Text": "Treat port obfuscation as security by obscurity \u2014 a supplement, never a substitute for real controls.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "cab9def2-1466-4866-a042-a3ddbe8693da",
+              "Text": "Combine port changes with firewall allow-listing and authentication hardening for genuine protection.",
+              "SortOrder": 3
+            }
+          ]
+        },
+        {
+          "Id": "f61958c3-96f4-4b46-9fcf-c3eea0c0d414",
+          "TopicId": "8930b288-2e9d-41f8-b10b-2111f79ba320",
+          "Title": "Surface Area Reduction \u2014 Disabling Dangerous Features",
+          "BodyText": "Every enabled feature expands the attack surface. Features that the application does not use should be turned off and verified.",
+          "Notes": "Query sys.configurations for name, value, value_in_use and description to audit current settings; use sp_configure with \u0027show advanced options\u0027 to change them, followed by RECONFIGURE.",
+          "SortOrder": 3,
+          "CreatedDate": "2026-11-17T05:37:40.4011654-05:00",
+          "ModifiedDate": "2026-11-17T05:37:40.4011654-05:00",
+          "Items": [
+            {
+              "Id": "72cc1d93-600b-439e-a7c0-5cf964ed892a",
+              "Text": "Disable xp_cmdshell so attackers with sysadmin rights cannot execute OS commands on the host.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "c5de5242-fc53-45a1-9dc4-46fc3d359607",
+              "Text": "Disable Ole Automation Procedures and Ad Hoc Distributed Queries (OPENROWSET/OPENDATASOURCE) when unused.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "fdd4d8c5-f3b2-40ba-afcf-61c6639e8455",
+              "Text": "Disable CLR integration unless the application specifically requires it.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "aa3bf42e-7f18-4fc2-8d9d-8cee7a50e73b",
+              "Text": "Restrict remote admin connections (DAC) to the local server and disable remote access for linked server RPC if unused.",
+              "SortOrder": 3
+            },
+            {
+              "Id": "cdbfcf70-692a-4bfa-9da9-2fa1f6902d2b",
+              "Text": "Remove unused linked server definitions and restrict access to dangerous extended stored procedures.",
+              "SortOrder": 4
+            },
+            {
+              "Id": "616ef63a-99e4-481e-a9bc-63598f8f2f01",
+              "Text": "Always verify the change with value_in_use, not just the configured value.",
+              "SortOrder": 5
+            }
+          ]
+        },
+        {
+          "Id": "67e9a21d-ad34-4b76-82e6-a4ef8bd5d7af",
+          "TopicId": "8930b288-2e9d-41f8-b10b-2111f79ba320",
+          "Title": "Service Account Hardening",
+          "BodyText": "The account that SQL Server runs under determines what an attacker inherits if the engine is compromised. It must be dedicated and least-privilege.",
+          "Notes": "If xp_cmdshell is ever abused, commands execute in the context of the service account \u2014 a LocalSystem or Administrator account turns a database breach into full host compromise.",
+          "SortOrder": 4,
+          "CreatedDate": "2026-11-17T05:37:40.4011654-05:00",
+          "ModifiedDate": "2026-11-17T05:37:40.4011654-05:00",
+          "Items": [
+            {
+              "Id": "0e626b7b-5a40-4d8c-91e8-309bfaf84f13",
+              "Text": "Run SQL Server under a dedicated domain service account, never LocalSystem or Administrator.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "663c4bdb-5a5b-43e7-8e19-4edd8e689eef",
+              "Text": "Remove interactive login rights from the service account.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "c09e10a5-f65a-4bf7-8e7f-3a090a00a916",
+              "Text": "Grant only the filesystem and network permissions SQL Server actually requires.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "80163277-ff7d-4513-8318-693c1ff19e59",
+              "Text": "Use Managed Service Accounts (MSA) or Group Managed Service Accounts (gMSA) for automatic password rotation.",
+              "SortOrder": 3
+            },
+            {
+              "Id": "c67860b7-ca1c-47ac-b97f-a4d842be2dc6",
+              "Text": "Never reuse the same service account across multiple SQL Server instances.",
+              "SortOrder": 4
+            },
+            {
+              "Id": "cb3863e1-c9cf-4bca-bb89-146a1f161ef5",
+              "Text": "Audit and rotate service account passwords at least annually.",
+              "SortOrder": 5
+            }
+          ]
+        },
+        {
+          "Id": "89d68b43-ed3a-4010-9ec3-d4e50b8024ec",
+          "TopicId": "8930b288-2e9d-41f8-b10b-2111f79ba320",
+          "Title": "Patch Management and Host Hardening",
+          "BodyText": "Known CVEs in the database engine and host operating system are exploited because patches were not applied. Patch currency is part of infrastructure hardening.",
+          "Notes": "Many breaches exploit vulnerabilities that have had patches available for months.",
+          "SortOrder": 5,
+          "CreatedDate": "2026-11-17T05:37:40.4011654-05:00",
+          "ModifiedDate": "2026-11-17T05:37:40.4011654-05:00",
+          "Items": [
+            {
+              "Id": "2c14472a-1af8-4fd3-af7f-73b2ff7b038f",
+              "Text": "Apply SQL Server Cumulative Updates (CUs) within 90 days of release.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "7a310caf-99a5-47f0-9d00-39e4f16427a9",
+              "Text": "Keep the host operating system fully patched and current.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "c5ea851e-33a9-4074-851c-1fb5e44b93ac",
+              "Text": "Maintain file permissions and OS-level service account controls on the database host.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "c5d97b7f-0d96-4ad3-afea-bbe80a43971f",
+              "Text": "Run SQL Server in a network segment separate from web-facing servers to limit lateral movement.",
+              "SortOrder": 3
+            },
+            {
+              "Id": "8ac276de-bdab-4c73-84dc-54d7f8e942cf",
+              "Text": "Patch management is the final step in the recommended hardening priority order, after isolation, encryption and auditing.",
+              "SortOrder": 4
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Id": "00cebf42-8fa2-4fae-86d6-c6bfa9d2d81f",
+      "Title": "Security Hardening Checklist \u0026 Applied Practice",
+      "Summary": "Consolidates authentication, authorization, encryption, network, auditing, application, and backup controls into a systematic audit checklist with prioritized remediation order. Connects the checklist to the hands-on hacker/defender SQL injection report and discussion on the greatest database security risk.",
+      "SortOrder": 7,
+      "CreatedDate": "2026-11-17T05:35:01.3755736-05:00",
+      "ModifiedDate": "2026-11-17T05:35:01.3755736-05:00",
+      "Elements": [
+        {
+          "Id": "379e60ae-a4aa-4ec0-92d6-a26817adb1d8",
+          "TopicId": "00cebf42-8fa2-4fae-86d6-c6bfa9d2d81f",
+          "Title": "Using the Hardening Checklist as a Systematic Audit Tool",
+          "BodyText": "The complete hardening checklist consolidates every security layer into a single, repeatable audit instrument. Each unchecked item represents a live attack surface rather than a theoretical gap.",
+          "Notes": "The checklist is organised into seven domains: Authentication \u0026 Account Management, Authorization \u0026 Least Privilege, Encryption, Network \u0026 Infrastructure, Surface Area Reduction, Auditing \u0026 Monitoring, Application-Level Security, and Backup \u0026 Recovery Security.",
+          "SortOrder": 0,
+          "CreatedDate": "2026-11-17T05:38:10.9835016-05:00",
+          "ModifiedDate": "2026-11-17T05:38:10.9835016-05:00",
+          "Items": [
+            {
+              "Id": "8218507f-b801-4e07-9f0b-3fa73968d36e",
+              "Text": "Items flagged with \u26A0\uFE0F mark the most commonly exploited weaknesses and should be verified first.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "377cfb5e-349e-4f5b-a1da-e2606eb70d23",
+              "Text": "Walk the checklist domain by domain so no layer of defence in depth is skipped.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "8b06c97f-4ee8-46f6-a2c6-5018b85ca291",
+              "Text": "Treat the checklist as a recurring audit, not a one-time project \u2014 configurations drift over time.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "aa95f8a5-2b85-41fe-9fc0-200e7f2d1c79",
+              "Text": "Record evidence for each item (query output, screenshot, config export) so the audit is defensible.",
+              "SortOrder": 3
+            },
+            {
+              "Id": "200bf022-72f6-403d-a101-b3e7e1d677a0",
+              "Text": "Unchecked items should be logged as findings with an owner and remediation date.",
+              "SortOrder": 4
+            }
+          ]
+        },
+        {
+          "Id": "42b6763d-757f-476c-a751-f9ac40210229",
+          "TopicId": "00cebf42-8fa2-4fae-86d6-c6bfa9d2d81f",
+          "Title": "Authentication, Authorization and Encryption Checks",
+          "BodyText": "The first three checklist domains govern who connects, what they can do, and whether data is readable if stolen. These controls address the identity and data-protection layers.",
+          "Notes": "Example verification: query sys.sql_logins to confirm the sa account state; query sys.database_permissions quarterly for a permission audit.",
+          "SortOrder": 1,
+          "CreatedDate": "2026-11-17T05:38:10.9835016-05:00",
+          "ModifiedDate": "2026-11-17T05:38:10.9835016-05:00",
+          "Items": [
+            {
+              "Id": "2d73b188-5ac7-4a14-9c7c-79c22ac40101",
+              "Text": "Disable or rename sa, enforce CHECK_POLICY and CHECK_EXPIRATION, and minimise sysadmin/securityadmin membership.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "bdd9000e-f7da-4df2-8e32-3420fcf329f0",
+              "Text": "Never let an application connect as sa or dbo; grant permissions to roles rather than individual users.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "964e8ab9-bfb4-4413-9864-d1750f881421",
+              "Text": "Apply Row-Level Security and Dynamic Data Masking where multi-tenant or PII exposure exists.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "420e8956-eabd-4162-876a-31d2d34bd342",
+              "Text": "Enable TDE on all production databases and immediately back up the TDE certificate to secure offline storage.",
+              "SortOrder": 3
+            },
+            {
+              "Id": "2e22a3c8-8d52-4e59-8bec-c35ee4e6f3fe",
+              "Text": "Force encrypted connections using TLS 1.2 or higher and encrypt backup files with the ENCRYPTION clause.",
+              "SortOrder": 4
+            },
+            {
+              "Id": "03fbd520-4fb8-436f-b8f9-80563efee59e",
+              "Text": "Use Always Encrypted for SSN, payment card, and healthcare identifier columns.",
+              "SortOrder": 5
+            }
+          ]
+        },
+        {
+          "Id": "d92c7753-91c4-414d-8236-c7fa61c347e5",
+          "TopicId": "00cebf42-8fa2-4fae-86d6-c6bfa9d2d81f",
+          "Title": "Network, Surface Area and Auditing Checks",
+          "BodyText": "These domains reduce the reachable attack surface and ensure that any activity is recorded. A database that cannot be reached and whose dangerous features are disabled is dramatically harder to exploit.",
+          "Notes": "Verify surface area settings by querying sys.configurations for xp_cmdshell, Ole Automation Procedures, Ad Hoc Distributed Queries, CLR, and remote admin connections.",
+          "SortOrder": 2,
+          "CreatedDate": "2026-11-17T05:38:10.9835016-05:00",
+          "ModifiedDate": "2026-11-17T05:38:10.9835016-05:00",
+          "Items": [
+            {
+              "Id": "410eea42-a203-419c-a4a2-dbc09522e75a",
+              "Text": "Confirm the database server is not reachable from the public internet and restrict TCP 1433 to known application server IPs.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "42a4d004-1e82-4121-91b2-c31540e72645",
+              "Text": "Disable the SQL Server Browser service, run under a dedicated least-privilege service account, and patch within 90 days of CU release.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "4b529204-5b9b-4ec2-a978-0b6290a5140d",
+              "Text": "Disable xp_cmdshell, Ole Automation Procedures, Ad Hoc Distributed Queries, and unused CLR or linked servers.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "a961dd32-8da8-4161-b410-3882610cdc0c",
+              "Text": "Enable SQL Server Audit for logins, failed logins, DDL, and sensitive DML, with login auditing set to both successful and failed.",
+              "SortOrder": 3
+            },
+            {
+              "Id": "4d9d5838-463f-42b5-a06d-0a4e2c6839b1",
+              "Text": "Centralise audit logs to a SIEM or protected log server away from the database host.",
+              "SortOrder": 4
+            },
+            {
+              "Id": "936c3f9f-2376-4d07-9eba-640a61c29be3",
+              "Text": "Retain logs at least 90 days online and one year in archive, with restricted filesystem permissions.",
+              "SortOrder": 5
+            }
+          ]
+        },
+        {
+          "Id": "1179e223-bd2c-46ce-9a5a-fa68306bad0b",
+          "TopicId": "00cebf42-8fa2-4fae-86d6-c6bfa9d2d81f",
+          "Title": "Application-Level and Backup Security Checks",
+          "BodyText": "Application code and backup files are the two places where strong database configuration is most often undone. Both domains carry \u26A0\uFE0F critical items.",
+          "Notes": "A backup file without TDE is a complete copy of the database that opens on any SQL Server instance.",
+          "SortOrder": 3,
+          "CreatedDate": "2026-11-17T05:38:10.9835016-05:00",
+          "ModifiedDate": "2026-11-17T05:38:10.9835016-05:00",
+          "Items": [
+            {
+              "Id": "ad62b7ab-698d-4d85-b8db-b337b1ccc296",
+              "Text": "Require parameterized queries or prepared statements everywhere \u2014 no string concatenation in any data access path.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "33b387ea-f606-4d82-970d-e51ab3f01e64",
+              "Text": "Route application access through stored procedures executed by least-privilege accounts.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "13dadca8-9145-4544-9718-99d4d0599f26",
+              "Text": "Store connection strings in a secure vault or environment variables, never in source code.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "c25c27ac-8629-454a-bedb-8a82c2a6cbdb",
+              "Text": "Implement error handling that never leaks schema details, database errors, or stack traces to users.",
+              "SortOrder": 3
+            },
+            {
+              "Id": "d2761658-9804-4a18-a06f-4e9f56409362",
+              "Text": "Encrypt all backups, store them physically separate from the primary database, and restrict and audit access to backup paths.",
+              "SortOrder": 4
+            },
+            {
+              "Id": "8c12be87-875b-4369-9122-19e0d085182b",
+              "Text": "Test restores regularly and keep an offline or air-gapped copy for ransomware resilience.",
+              "SortOrder": 5
+            }
+          ]
+        },
+        {
+          "Id": "04f12cb5-649e-4b40-b935-c288fef691c3",
+          "TopicId": "00cebf42-8fa2-4fae-86d6-c6bfa9d2d81f",
+          "Title": "Prioritised Remediation Order",
+          "BodyText": "When hardening a database from scratch, order matters \u2014 some controls remove entire classes of risk immediately while others take longer to implement. The source gives a seven-step prioritisation sequence.",
+          "Notes": "Rationale: steps 1\u20133 shrink exposure and protect data even if other controls fail; steps 4\u20137 reduce exploitability and blast radius over time.",
+          "SortOrder": 4,
+          "CreatedDate": "2026-11-17T05:38:10.9835016-05:00",
+          "ModifiedDate": "2026-11-17T05:38:10.9835016-05:00",
+          "Items": [
+            {
+              "Id": "1ca1312c-19b5-4ee1-93c0-b96b1401db18",
+              "Text": "Start with network isolation so the database is not public-facing.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "8e376fc9-6f0b-488a-8ae6-e89101e6421b",
+              "Text": "Disable xp_cmdshell and the sa account for immediate critical risk reduction.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "e898a6a3-8530-4cb5-a974-df1a517936af",
+              "Text": "Enable TDE and connection encryption to protect data at rest and in transit.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "4330c85d-fd98-402d-9703-08004974aa93",
+              "Text": "Convert all application queries to parameterized form to eliminate SQL injection.",
+              "SortOrder": 3
+            },
+            {
+              "Id": "72e0c5e6-7f82-43e6-b90f-03bd4292abf0",
+              "Text": "Turn on audit logging \u2014 you cannot investigate what you never recorded.",
+              "SortOrder": 4
+            },
+            {
+              "Id": "b44ae54b-ab23-4c2b-9607-ba47c76d120f",
+              "Text": "Implement least privilege to limit the blast radius of any compromise, then establish disciplined patch management.",
+              "SortOrder": 5
+            }
+          ]
+        },
+        {
+          "Id": "dbcc8942-0a25-4ac4-84d7-315e734bbb5b",
+          "TopicId": "00cebf42-8fa2-4fae-86d6-c6bfa9d2d81f",
+          "Title": "Applied Practice: The Hacker/Defender SQL Injection Report",
+          "BodyText": "The assignment applies the checklist by requiring a two-part report: planning a SQL injection attack, then defending against it. The attacker half is worth 40% and the defence half 60%, reflecting the emphasis on hardening.",
+          "Notes": "Screen captures demonstrating both the executed attack and the successful defence are required; follow the Guide to Writing Good Reports formatting standards. Estimated completion time is 5\u201310 hours.",
+          "SortOrder": 5,
+          "CreatedDate": "2026-11-17T05:38:10.9835016-05:00",
+          "ModifiedDate": "2026-11-17T05:38:10.9835016-05:00",
+          "Items": [
+            {
+              "Id": "09a19564-cbce-40ed-932b-8fe413dc910a",
+              "Text": "Part 1 (Hacker): describe the method and technique used to penetrate the database and retrieve a list of all users and passwords.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "4d57a7ac-79e5-4702-9984-73c35c81fe32",
+              "Text": "Draw on the attack patterns covered \u2014 authentication bypass with \u0027 OR \u00271\u0027=\u00271\u0027 --, UNION-based extraction, and boolean blind injection.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "ceb621b9-29a5-477f-81b3-c6186fdc473f",
+              "Text": "Part 2 (Defender): outline parameterized queries, stored procedures, input validation, and WAF signatures as primary mitigations.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "3b07f41f-9562-488c-9eb4-36b9a7364487",
+              "Text": "Explicitly harden backdoor channels attackers may pivot to: xp_cmdshell, Ole Automation, Ad Hoc Distributed Queries, default credentials, and exposed system catalog views.",
+              "SortOrder": 3
+            },
+            {
+              "Id": "41af534d-f5f2-4b26-9049-8bef7279ddda",
+              "Text": "Map each defensive step back to a specific checklist item to show systematic rather than ad-hoc coverage.",
+              "SortOrder": 4
+            }
+          ]
+        },
+        {
+          "Id": "7acddbaf-cf9d-4a6e-a108-95043d12e80f",
+          "TopicId": "00cebf42-8fa2-4fae-86d6-c6bfa9d2d81f",
+          "Title": "Discussion: Identifying the Greatest Database Security Risk",
+          "BodyText": "The graded discussion asks you to name the single biggest risk to database security and the best practices that alleviate it. This forces you to prioritise rather than list every control.",
+          "Notes": "Defensible positions include SQL injection (the #1 vector for decades), misconfiguration (the most preventable category), privilege abuse and insider threat, or weak/default credentials.",
+          "SortOrder": 6,
+          "CreatedDate": "2026-11-17T05:38:10.9835016-05:00",
+          "ModifiedDate": "2026-11-17T05:38:10.9835016-05:00",
+          "Items": [
+            {
+              "Id": "adff953c-2101-4cdc-83b8-3d08d36eb319",
+              "Text": "Support your chosen risk with evidence from the threat landscape rather than asserting it.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "fb876ec4-021b-4bf5-9b2c-7e92ab8f62b5",
+              "Text": "Pair the risk with concrete mitigations drawn from the checklist and the prioritisation order.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "f53f4ca3-ffd6-4c3a-bbcf-d2381eeb844a",
+              "Text": "Acknowledge that no single layer is sufficient \u2014 explain how defence in depth backs up your primary control.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "88539523-4dad-4ae2-b18d-7fae957a1fc1",
+              "Text": "Consider regulatory consequences (PCI DSS, HIPAA, GDPR, SOX, FERPA) when arguing severity.",
+              "SortOrder": 3
+            },
+            {
+              "Id": "b746ef0d-0ba5-4e14-a28c-76b7f6255668",
+              "Text": "Engage with classmates who nominated a different top risk and compare mitigation cost versus impact.",
+              "SortOrder": 4
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "TotalElementCount": 45
+}

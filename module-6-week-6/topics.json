@@ -1,0 +1,2066 @@
+{
+  "ModuleFolderName": "Module_6_(Week_6)",
+  "CourseName": "COP4709 \u2014 Applied Database II",
+  "GeneratedDate": "2026-11-17T05:12:31.1433795-05:00",
+  "ModifiedDate": "2026-11-17T05:16:23.8451793-05:00",
+  "Outcomes": [],
+  "Topics": [
+    {
+      "Id": "3023e4e9-a841-4c6e-a3c5-9ebec4281f8a",
+      "Title": "Cursor Fundamentals: Set-Based vs. Row-by-Row Processing",
+      "Summary": "Introduces what a cursor is and how row-by-row traversal differs from the set-based paradigm that SQL engines optimize for. Establishes the golden rule that cursors should be a last resort and identifies valid versus inappropriate use cases.",
+      "SortOrder": 0,
+      "CreatedDate": "2026-11-17T05:12:31.1433795-05:00",
+      "ModifiedDate": "2026-11-17T05:12:31.1433795-05:00",
+      "Elements": [
+        {
+          "Id": "d9a93d5d-0529-4cf4-9a51-982be44f0b11",
+          "TopicId": "3023e4e9-a841-4c6e-a3c5-9ebec4281f8a",
+          "Title": "What Is a Cursor?",
+          "BodyText": "A cursor is a database object that enables traversal over the rows of a result set, one row at a time. It acts like a pointer that moves through query results so you can operate on each row individually.",
+          "Notes": "Think of the cursor as a bookmark that advances through the result set, exposing one row\u0027s values into local variables at a time.",
+          "SortOrder": 0,
+          "CreatedDate": "2026-11-17T05:12:55.0145627-05:00",
+          "ModifiedDate": "2026-11-17T05:12:55.0145627-05:00",
+          "Items": [
+            {
+              "Id": "99df2745-904f-494e-b7cd-f7c713f790d2",
+              "Text": "Cursors turn a query result into a sequence of individually accessible rows.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "b1460123-aa81-460d-9405-4d24b47ae5a4",
+              "Text": "Each row\u0027s column values are loaded into variables for procedural processing.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "23c1056f-60b1-4903-8016-3cb3bc1d9350",
+              "Text": "Cursors give you fine-grained control that set-based statements do not provide.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "d7c0650b-5378-4d67-8ad2-c899635916e2",
+              "Text": "This control comes at a significant and measurable performance cost.",
+              "SortOrder": 3
+            },
+            {
+              "Id": "b55a654b-38de-4276-9219-e742dfef590a",
+              "Text": "Cursors are used inside stored procedures, triggers, and batches rather than ad-hoc queries.",
+              "SortOrder": 4
+            }
+          ]
+        },
+        {
+          "Id": "147cc5c2-64d9-4186-9d49-a60564c0e2ac",
+          "TopicId": "3023e4e9-a841-4c6e-a3c5-9ebec4281f8a",
+          "Title": "How Set-Based SQL Works",
+          "BodyText": "Standard SQL operations act on entire sets of data in a single statement. The database engine decides how to execute the work, which allows it to apply optimizations across the whole set.",
+          "Notes": "Example: UPDATE Employees SET Salary = Salary * 1.10 WHERE Department = \u0027Sales\u0027; updates every matching row in one operation.",
+          "SortOrder": 1,
+          "CreatedDate": "2026-11-17T05:12:55.0145627-05:00",
+          "ModifiedDate": "2026-11-17T05:12:55.0145627-05:00",
+          "Items": [
+            {
+              "Id": "b8c908e3-a667-422c-a313-cc74361386f7",
+              "Text": "A single UPDATE or DELETE can affect thousands of rows at once.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "f3d31283-f1a4-42d6-ba21-498982b3076f",
+              "Text": "Set-based SQL is declarative: you state what you want, not how to get it.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "b7d0903c-bc90-4500-9ca4-a87d658a4e6d",
+              "Text": "The query optimizer can choose indexes, parallelism, and efficient access paths.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "34409396-ec6e-46d4-b7ef-a3b44d48ad7c",
+              "Text": "Operations are fast, efficient, and minimize round trips and overhead.",
+              "SortOrder": 3
+            },
+            {
+              "Id": "408b2bde-d483-40ef-b139-8977e2cec0f5",
+              "Text": "The database engine is purpose-built and tuned for this paradigm.",
+              "SortOrder": 4
+            }
+          ]
+        },
+        {
+          "Id": "63535579-4526-4c21-b51f-856c6b70e8b9",
+          "TopicId": "3023e4e9-a841-4c6e-a3c5-9ebec4281f8a",
+          "Title": "How Cursors Work (Row-by-Row)",
+          "BodyText": "Cursors replace the single set-based statement with an explicit loop that fetches and processes one row at a time. This procedural approach is slower but allows per-row decision making.",
+          "Notes": "A typical loop: DECLARE the cursor, OPEN it, FETCH the first row, loop WHILE @@FETCH_STATUS = 0 processing and re-fetching, then CLOSE and DEALLOCATE.",
+          "SortOrder": 2,
+          "CreatedDate": "2026-11-17T05:12:55.0145627-05:00",
+          "ModifiedDate": "2026-11-17T05:12:55.0145627-05:00",
+          "Items": [
+            {
+              "Id": "8707363e-b175-4dc7-bce0-94d2a8f16b03",
+              "Text": "Each iteration fetches one row into variables and performs an operation on it.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "996c1e92-fea6-4c53-a056-c76c2e53fd76",
+              "Text": "The loop continues until no more rows remain in the result set.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "d1be5d68-5e27-4e6d-921d-e489e7285a9d",
+              "Text": "Processing is procedural: you specify exactly how each row is handled.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "ccbb13ae-47a1-40f9-95ff-e68f387dfd83",
+              "Text": "Per-row overhead accumulates, so cost grows linearly with row count.",
+              "SortOrder": 3
+            },
+            {
+              "Id": "8e26e183-74ae-43d1-b7f8-cfd7472a9f2a",
+              "Text": "This pattern is often referred to as RBAR \u2014 Row By Agonizing Row.",
+              "SortOrder": 4
+            }
+          ]
+        },
+        {
+          "Id": "518c3b47-e19b-4eae-9d07-3cc4e679f6ad",
+          "TopicId": "3023e4e9-a841-4c6e-a3c5-9ebec4281f8a",
+          "Title": "Comparing the Two Paradigms",
+          "BodyText": "The core difference between set-based and row-based processing is where the work is controlled: inside the optimized engine or inside your procedural loop. Understanding this contrast guides every cursor decision.",
+          "Notes": "A cursor-based update of 10,000 rows can run 20\u2013100x slower than the equivalent single UPDATE statement.",
+          "SortOrder": 3,
+          "CreatedDate": "2026-11-17T05:12:55.0145627-05:00",
+          "ModifiedDate": "2026-11-17T05:12:55.0145627-05:00",
+          "Items": [
+            {
+              "Id": "b3621d18-6e83-4b10-93c5-d16be41610da",
+              "Text": "Set-based: processes all rows at once; cursors: one row at a time.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "39c6341f-7866-4fdc-bc4a-3d5783fc6e1e",
+              "Text": "Set-based benefits from query optimization; cursors receive limited optimization.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "82afafb1-ef6b-4dd1-b0af-6862263e375d",
+              "Text": "Set-based uses indexes effectively; cursors add overhead on every row.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "cc3c4796-5343-4b3f-b43e-f9cfb1229370",
+              "Text": "Set-based is declarative; cursors are procedural and verbose.",
+              "SortOrder": 3
+            },
+            {
+              "Id": "b217d251-b648-45ab-ba78-1b157d91e157",
+              "Text": "Memory, tempdb, and locking overhead are all higher with cursors.",
+              "SortOrder": 4
+            }
+          ]
+        },
+        {
+          "Id": "bd77466f-31df-4ba3-a293-4dbfa219cf43",
+          "TopicId": "3023e4e9-a841-4c6e-a3c5-9ebec4281f8a",
+          "Title": "Valid Use Cases for Cursors",
+          "BodyText": "Cursors exist because some problems genuinely require per-row treatment that set-based SQL cannot express. These scenarios justify the performance tradeoff.",
+          "Notes": "Administrative scripts such as rebuilding indexes across all user tables are a classic, legitimate cursor pattern.",
+          "SortOrder": 4,
+          "CreatedDate": "2026-11-17T05:12:55.0145627-05:00",
+          "ModifiedDate": "2026-11-17T05:12:55.0145627-05:00",
+          "Items": [
+            {
+              "Id": "77776aa5-1de0-47fa-a7a4-d8e05529d12f",
+              "Text": "Complex row-by-row logic where each row follows different business rules.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "08dcc178-483a-48db-ae3e-5d90203864d3",
+              "Text": "Calling external systems or APIs once per record.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "f84d1c65-2a0a-4983-99f8-08abecd9d894",
+              "Text": "Administrative or maintenance tasks such as rebuilding indexes or updating statistics.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "01ba3c16-ee81-4fa0-bfe4-1b8fca9ffe92",
+              "Text": "Reporting that requires row-level calculations or per-row procedure calls.",
+              "SortOrder": 3
+            },
+            {
+              "Id": "a74cdf5a-5d85-4991-b035-145a1033db12",
+              "Text": "Data migration and complex ETL transformations.",
+              "SortOrder": 4
+            },
+            {
+              "Id": "82e50a4b-ed83-47bd-9988-1d54f175d01b",
+              "Text": "Sending individualized emails or notifications per customer.",
+              "SortOrder": 5
+            }
+          ]
+        },
+        {
+          "Id": "8753ac13-ccf1-43e5-b587-06a6c60daad2",
+          "TopicId": "3023e4e9-a841-4c6e-a3c5-9ebec4281f8a",
+          "Title": "When NOT to Use Cursors",
+          "BodyText": "Many cursors in production code solve problems that a single set-based statement handles far better. Recognizing these anti-patterns is the fastest performance win available.",
+          "Notes": "Replacing a manual accumulator loop with SELECT @Total = SUM(Amount) FROM table is both faster and clearer.",
+          "SortOrder": 5,
+          "CreatedDate": "2026-11-17T05:12:55.0145627-05:00",
+          "ModifiedDate": "2026-11-17T05:12:55.0145627-05:00",
+          "Items": [
+            {
+              "Id": "2658c343-128d-4da4-abfa-d5d7b025543c",
+              "Text": "Simple updates achievable with one UPDATE statement.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "6bdb161c-d40d-4362-980f-77f2f720ee8c",
+              "Text": "Calculations that aggregate functions like SUM, AVG, or COUNT already provide.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "ab868efb-0954-4d22-8451-43125a36b003",
+              "Text": "Data transformations that a JOIN can accomplish.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "07015d34-8775-4199-8732-03266a5c623f",
+              "Text": "Any operation expressible in set-based SQL.",
+              "SortOrder": 3
+            },
+            {
+              "Id": "2035a026-bb85-4adf-ade4-799ea83c09d8",
+              "Text": "High-volume transactional (OLTP) processing where latency matters.",
+              "SortOrder": 4
+            }
+          ]
+        },
+        {
+          "Id": "67b78964-ec6d-4e7a-99b4-6e2e671cc603",
+          "TopicId": "3023e4e9-a841-4c6e-a3c5-9ebec4281f8a",
+          "Title": "The Golden Rule",
+          "BodyText": "The guiding performance principle is simple: cursors should be your last resort, not your first choice. Always attempt a set-based solution before reaching for iteration.",
+          "Notes": "Decision path: if rows can be handled as a set, use set-based SQL; if not, try window functions, CTEs, or JOINs; only then consider a cursor.",
+          "SortOrder": 6,
+          "CreatedDate": "2026-11-17T05:12:55.0145627-05:00",
+          "ModifiedDate": "2026-11-17T05:12:55.0145627-05:00",
+          "Items": [
+            {
+              "Id": "36afaea0-3389-492a-8c97-91fcd33d8a15",
+              "Text": "Try set-based SQL first and measure its performance before considering a cursor.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "5d3a7885-91dd-4d2e-a6c0-379380a2f8b9",
+              "Text": "Check whether window functions (ROW_NUMBER, LAG, LEAD) solve the problem.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "a360ce3d-134e-48a2-8b6b-07bd3de85e29",
+              "Text": "Consider CTEs, derived tables, or batch processing as intermediate alternatives.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "4164a99c-a82a-499b-9296-cc23d40d5d62",
+              "Text": "Use a cursor only when set-based operations are truly impossible or impractical.",
+              "SortOrder": 3
+            },
+            {
+              "Id": "81cbe37c-0737-419c-9041-10c935bfad39",
+              "Text": "Document the justification whenever a cursor ships to production.",
+              "SortOrder": 4
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Id": "b77ea3e1-20d3-450e-872e-e5e4232320d9",
+      "Title": "Cursor Syntax and Lifecycle in T-SQL",
+      "Summary": "Walks through the five stages of cursor usage \u2014 DECLARE, OPEN, FETCH, CLOSE, and DEALLOCATE \u2014 along with fetch directions and the @@FETCH_STATUS codes that control loop execution. Culminates in a complete working cursor example.",
+      "SortOrder": 1,
+      "CreatedDate": "2026-11-17T05:12:31.1433795-05:00",
+      "ModifiedDate": "2026-11-17T05:12:31.1433795-05:00",
+      "Elements": [
+        {
+          "Id": "58aca076-f94d-4b53-bd5e-6b93f013003c",
+          "TopicId": "b77ea3e1-20d3-450e-872e-e5e4232320d9",
+          "Title": "Overview: The Five Steps of Cursor Usage",
+          "BodyText": "Every T-SQL cursor follows the same five-stage lifecycle: DECLARE, OPEN, FETCH, CLOSE, and DEALLOCATE. Learning this sequence makes any cursor you encounter predictable and easy to write.",
+          "Notes": "In practice you also declare local variables first to receive the fetched column values, and you wrap the FETCH calls in a WHILE loop driven by @@FETCH_STATUS.",
+          "SortOrder": 0,
+          "CreatedDate": "2026-11-17T05:13:24.391539-05:00",
+          "ModifiedDate": "2026-11-17T05:13:24.391539-05:00",
+          "Items": [
+            {
+              "Id": "1f512e0e-8de7-4b02-8e82-951a849cc1a1",
+              "Text": "DECLARE defines the cursor and binds it to a SELECT statement.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "12339001-0f2c-4561-8233-657d5a0ced7d",
+              "Text": "OPEN executes that SELECT and builds the result set the cursor will walk.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "a029a017-1eb3-4652-8a09-c8a8af9bc3ad",
+              "Text": "FETCH moves the cursor pointer and copies column values into variables.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "125bff5d-dcdb-49b4-b955-a2a0c8059374",
+              "Text": "CLOSE releases the result set while keeping the cursor definition available.",
+              "SortOrder": 3
+            },
+            {
+              "Id": "60aca63b-b6b3-4aba-822a-e98ec3eeede3",
+              "Text": "DEALLOCATE removes the definition and frees all remaining resources.",
+              "SortOrder": 4
+            },
+            {
+              "Id": "cc89f854-501d-40fa-a951-9804cd87aebd",
+              "Text": "Skipping the final two steps leaves memory held and can cause leaks.",
+              "SortOrder": 5
+            }
+          ]
+        },
+        {
+          "Id": "1d301b6a-b39d-47fc-a733-a48923fea715",
+          "TopicId": "b77ea3e1-20d3-450e-872e-e5e4232320d9",
+          "Title": "Step 1 \u2014 DECLARE: Defining the Cursor",
+          "BodyText": "DECLARE creates the cursor object and associates it with the query whose rows you want to traverse. The basic form is DECLARE cursor_name CURSOR [options] FOR select_statement.",
+          "Notes": "Example: DECLARE employee_cursor CURSOR FOR SELECT EmployeeID, FirstName \u002B \u0027 \u0027 \u002B LastName FROM Employees WHERE Department = \u0027IT\u0027 ORDER BY LastName;",
+          "SortOrder": 1,
+          "CreatedDate": "2026-11-17T05:13:24.391539-05:00",
+          "ModifiedDate": "2026-11-17T05:13:24.391539-05:00",
+          "Items": [
+            {
+              "Id": "c8a9ad2e-f04b-4b72-b8ad-68b9cb72c7f4",
+              "Text": "Declare host variables (e.g., @EmployeeID INT, @EmployeeName NVARCHAR(100)) before the cursor so FETCH has somewhere to put data.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "f83b14b9-668c-4762-9070-11c860d5637f",
+              "Text": "The SELECT statement should return exactly the columns, filters, and ORDER BY you need.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "35018bf0-0564-4130-ac06-5b8cff670c58",
+              "Text": "Filtering inside the cursor\u0027s SELECT is far better than filtering row-by-row in the loop.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "d8311b73-b8a6-4ef3-8293-9998b74ea6a3",
+              "Text": "No data is retrieved at DECLARE time \u2014 the query is only defined, not executed.",
+              "SortOrder": 3
+            },
+            {
+              "Id": "be9f1f03-5aa3-4a73-9018-11205d4d8741",
+              "Text": "Optional clauses such as LOCAL and FAST_FORWARD can be added here to control scope and behavior.",
+              "SortOrder": 4
+            }
+          ]
+        },
+        {
+          "Id": "eaab1248-2202-4bae-a310-e79b0f8f2c36",
+          "TopicId": "b77ea3e1-20d3-450e-872e-e5e4232320d9",
+          "Title": "Step 2 \u2014 OPEN: Populating the Result Set",
+          "BodyText": "OPEN cursor_name executes the associated SELECT statement and makes its rows available to the cursor. This is the moment the query actually runs.",
+          "Notes": "Depending on the cursor type, the rows may be copied into tempdb or managed dynamically against the base tables.",
+          "SortOrder": 2,
+          "CreatedDate": "2026-11-17T05:13:24.391539-05:00",
+          "ModifiedDate": "2026-11-17T05:13:24.391539-05:00",
+          "Items": [
+            {
+              "Id": "7f1d51d1-1437-438e-b322-0a4ea372bb3f",
+              "Text": "Syntax is simply: OPEN employee_cursor;",
+              "SortOrder": 0
+            },
+            {
+              "Id": "7cae88ed-8dfc-4a59-b68c-25af07904e2c",
+              "Text": "The result set is loaded into memory or managed according to the declared cursor type.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "fc1d040e-ced3-4b6c-bcc7-3b85edfc0f94",
+              "Text": "The cursor pointer is positioned before the first row, so no data is readable until you FETCH.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "700b04ec-d6c4-4e04-9724-0bc6effe53de",
+              "Text": "A cursor must be opened before any FETCH statement will succeed.",
+              "SortOrder": 3
+            },
+            {
+              "Id": "9b2340f2-dd22-4920-99cd-9a5dc83dc32c",
+              "Text": "After a CLOSE, the same cursor can be re-opened to re-run the query.",
+              "SortOrder": 4
+            }
+          ]
+        },
+        {
+          "Id": "4ff2607b-c9a5-4544-81ab-c4dc22fb1322",
+          "TopicId": "b77ea3e1-20d3-450e-872e-e5e4232320d9",
+          "Title": "Step 3 \u2014 FETCH: Retrieving Rows and Fetch Directions",
+          "BodyText": "FETCH moves the cursor to a row and copies its column values into variables using FETCH [direction] FROM cursor_name INTO @var1, @var2.",
+          "Notes": "Example: FETCH NEXT FROM employee_cursor INTO @EmployeeID, @EmployeeName; Directions other than NEXT require a scrollable cursor.",
+          "SortOrder": 3,
+          "CreatedDate": "2026-11-17T05:13:24.391539-05:00",
+          "ModifiedDate": "2026-11-17T05:13:24.391539-05:00",
+          "Items": [
+            {
+              "Id": "59c2311a-cf9e-4ee3-8882-4c07e80a7555",
+              "Text": "NEXT is the default direction and moves one row forward.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "46e2c9fc-7cad-433f-8ae0-ebd8a708375a",
+              "Text": "PRIOR moves backward one row; FIRST and LAST jump to the ends of the result set.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "f81481b7-c8a1-47d9-8ff1-473029c8d6e0",
+              "Text": "ABSOLUTE n jumps to the nth row, while RELATIVE n moves n rows from the current position.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "d86a8e5c-79d8-4bf1-b7eb-b08314984972",
+              "Text": "The variable list in the INTO clause must match the number, order, and data types of the SELECT columns.",
+              "SortOrder": 3
+            },
+            {
+              "Id": "3aace060-3005-474c-b99a-e06ef1a71799",
+              "Text": "Forward-only cursors support only FETCH NEXT; anything else raises an error.",
+              "SortOrder": 4
+            }
+          ]
+        },
+        {
+          "Id": "a23ef2e7-afaf-4030-93a0-ac22337e1b66",
+          "TopicId": "b77ea3e1-20d3-450e-872e-e5e4232320d9",
+          "Title": "@@FETCH_STATUS: Controlling the Loop",
+          "BodyText": "The @@FETCH_STATUS function reports the outcome of the most recent FETCH and is what drives the WHILE loop that walks the cursor.",
+          "Notes": "Typical pattern: FETCH the first row, then WHILE @@FETCH_STATUS = 0 BEGIN ... process ... FETCH NEXT ... END;",
+          "SortOrder": 4,
+          "CreatedDate": "2026-11-17T05:13:24.391539-05:00",
+          "ModifiedDate": "2026-11-17T05:13:24.391539-05:00",
+          "Items": [
+            {
+              "Id": "1bc59659-ae79-4584-ac7c-cc3c4d2fada7",
+              "Text": "A value of 0 means the FETCH succeeded and the variables hold valid row data.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "3445b846-dc3f-4539-bda4-6162459ea3a4",
+              "Text": "A value of -1 means the FETCH failed or the cursor moved beyond the result set \u2014 the loop should end.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "c2ae690f-bc0f-4767-8010-d720469a84f8",
+              "Text": "A value of -2 means the fetched row is missing, which occurs with KEYSET cursors when a row has been deleted.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "cea7cdbe-df97-452e-bb86-270402fedba4",
+              "Text": "Always perform one FETCH before the loop and another as the last statement inside the loop body.",
+              "SortOrder": 3
+            },
+            {
+              "Id": "fea1d370-1935-43ab-b672-3185a912760a",
+              "Text": "Omitting the FETCH inside the loop creates an infinite loop, since @@FETCH_STATUS never changes.",
+              "SortOrder": 4
+            }
+          ]
+        },
+        {
+          "Id": "9769626e-fd89-42e7-a01b-e6576f9e2db8",
+          "TopicId": "b77ea3e1-20d3-450e-872e-e5e4232320d9",
+          "Title": "Steps 4 and 5 \u2014 CLOSE and DEALLOCATE: Cleaning Up",
+          "BodyText": "CLOSE releases the cursor\u0027s result set, and DEALLOCATE removes the cursor definition and frees its resources. Both should run every time a cursor is used.",
+          "Notes": "In production code, place CLOSE and DEALLOCATE in a CATCH block guarded by CURSOR_STATUS so cleanup still happens when an error occurs mid-loop.",
+          "SortOrder": 5,
+          "CreatedDate": "2026-11-17T05:13:24.391539-05:00",
+          "ModifiedDate": "2026-11-17T05:13:24.391539-05:00",
+          "Items": [
+            {
+              "Id": "4a84be93-93be-432f-8bc3-9efe98f65ccf",
+              "Text": "CLOSE employee_cursor; releases the rows but keeps the definition so the cursor can be re-opened.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "6b0681b5-30db-4108-9feb-44b42dbfc90b",
+              "Text": "DEALLOCATE employee_cursor; destroys the definition and frees all memory.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "7c837d57-0076-4afe-bff5-20b97298b95c",
+              "Text": "Cursors that are never deallocated cause memory leaks and can exhaust server resources.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "3ee5f1d2-6d53-4d94-be8c-30fe8f245c73",
+              "Text": "LOCAL cursors are deallocated automatically when their batch, procedure, or trigger ends.",
+              "SortOrder": 3
+            },
+            {
+              "Id": "8cc13aaa-68cc-4996-8fcc-fc6f99dba201",
+              "Text": "Errors inside the loop can skip cleanup entirely, so TRY-CATCH protection is strongly recommended.",
+              "SortOrder": 4
+            }
+          ]
+        },
+        {
+          "Id": "a98a425f-ea4f-4410-960c-8b8313ed6866",
+          "TopicId": "b77ea3e1-20d3-450e-872e-e5e4232320d9",
+          "Title": "Putting It Together: A Complete Working Cursor",
+          "BodyText": "A full example ties all five stages together to print every employee\u0027s ID and name in last-name order.",
+          "Notes": "Full pattern: DECLARE @EmployeeID INT, @EmployeeName NVARCHAR(100); DECLARE employee_cursor CURSOR FOR SELECT EmployeeID, FirstName \u002B \u0027 \u0027 \u002B LastName FROM Employees ORDER BY LastName; OPEN employee_cursor; FETCH NEXT FROM employee_cursor INTO @EmployeeID, @EmployeeName; WHILE @@FETCH_STATUS = 0 BEGIN PRINT CAST(@EmployeeID AS VARCHAR) \u002B \u0027: \u0027 \u002B @EmployeeName; FETCH NEXT FROM employee_cursor INTO @EmployeeID, @EmployeeName; END; CLOSE employee_cursor; DEALLOCATE employee_cursor;",
+          "SortOrder": 6,
+          "CreatedDate": "2026-11-17T05:13:24.391539-05:00",
+          "ModifiedDate": "2026-11-17T05:13:24.391539-05:00",
+          "Items": [
+            {
+              "Id": "6f1b39d6-07b0-4a3f-a74e-122d435d4c5d",
+              "Text": "Variables are declared first so the FETCH INTO clause has matching targets.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "45edfecc-71cb-4365-92f8-37fc168a59d0",
+              "Text": "The cursor is declared over an ordered SELECT, then opened to run the query.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "038567eb-054e-4d8a-8d53-d2eafd1d8712",
+              "Text": "A priming FETCH retrieves the first row before the loop begins.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "e187195b-b668-4da7-98fa-f4e7be9878b0",
+              "Text": "The WHILE @@FETCH_STATUS = 0 loop processes the current row and then fetches the next one.",
+              "SortOrder": 3
+            },
+            {
+              "Id": "e33d1008-0c4c-44fd-bbe7-07397ad29a6a",
+              "Text": "CLOSE and DEALLOCATE finish the script and release all resources.",
+              "SortOrder": 4
+            },
+            {
+              "Id": "6412a31b-1ed8-4534-85f1-49d6002b76b4",
+              "Text": "This same skeleton scales to real work such as updating rows, logging, or calling other stored procedures inside the loop.",
+              "SortOrder": 5
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Id": "4b1f6f74-afe6-4091-93b3-ef8d3537976e",
+      "Title": "Cursor Types, Scope, and Concurrency Options",
+      "Summary": "Explains the declaration options that shape cursor behavior: LOCAL vs. GLOBAL scope, FORWARD_ONLY vs. SCROLL, and the STATIC, KEYSET, DYNAMIC, and FAST_FORWARD types. Compares concurrency settings and provides a selection matrix for choosing the right cursor.",
+      "SortOrder": 2,
+      "CreatedDate": "2026-11-17T05:12:31.1433795-05:00",
+      "ModifiedDate": "2026-11-17T05:12:31.1433795-05:00",
+      "Elements": [
+        {
+          "Id": "a9afbddc-32f3-4e00-b4a1-cb59890dfd38",
+          "TopicId": "4b1f6f74-afe6-4091-93b3-ef8d3537976e",
+          "Title": "The Cursor Declaration Syntax",
+          "BodyText": "Every T-SQL cursor is defined with a DECLARE statement whose optional clauses determine scope, scrollability, type, and concurrency behavior. Understanding these option groups lets you tune a cursor before it is ever opened.",
+          "Notes": "Full form: DECLARE cursor_name CURSOR [LOCAL | GLOBAL] [FORWARD_ONLY | SCROLL] [STATIC | KEYSET | DYNAMIC | FAST_FORWARD] [READ_ONLY | SCROLL_LOCKS | OPTIMISTIC] [TYPE_WARNING] FOR select_statement;",
+          "SortOrder": 0,
+          "CreatedDate": "2026-11-17T05:13:53.1355947-05:00",
+          "ModifiedDate": "2026-11-17T05:13:53.1355947-05:00",
+          "Items": [
+            {
+              "Id": "4dd5009e-2f1d-4891-a762-6d8c748cf230",
+              "Text": "The options fall into four groups: scope, scrollability, cursor type, and concurrency.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "3cd3b0c6-264b-40d5-9feb-1c1bdf42548c",
+              "Text": "Options are chosen at declaration time and cannot be changed after the cursor is opened.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "2676eb28-87de-4b51-93f1-5a01ac5764f0",
+              "Text": "Omitting options accepts the defaults, which are LOCAL scope and FORWARD_ONLY scrollability.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "fcf19369-fa84-434a-8ee8-a1d29017aa1e",
+              "Text": "TYPE_WARNING tells SQL Server to warn you if it implicitly converts the cursor to a different type than requested.",
+              "SortOrder": 3
+            },
+            {
+              "Id": "c3780395-91f0-40e3-bac1-b193222175b8",
+              "Text": "Combining options such as LOCAL FAST_FORWARD is a common, performance-friendly declaration.",
+              "SortOrder": 4
+            }
+          ]
+        },
+        {
+          "Id": "473d07b9-9327-4717-9d8f-f3261ca3e055",
+          "TopicId": "4b1f6f74-afe6-4091-93b3-ef8d3537976e",
+          "Title": "Scope Options: LOCAL vs. GLOBAL",
+          "BodyText": "The scope option controls where the cursor name is visible and when its resources are released. LOCAL is the default and the recommended choice for most work.",
+          "Notes": "Example: DECLARE emp_cursor CURSOR LOCAL FOR SELECT EmployeeID FROM Employees;",
+          "SortOrder": 1,
+          "CreatedDate": "2026-11-17T05:13:53.1355947-05:00",
+          "ModifiedDate": "2026-11-17T05:13:53.1355947-05:00",
+          "Items": [
+            {
+              "Id": "369e0b7e-be16-47b9-a1d1-d52000f14b07",
+              "Text": "LOCAL cursors are visible only inside the batch, stored procedure, or trigger that declared them.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "cd7927b5-1762-41d0-9580-8cf2effeb664",
+              "Text": "LOCAL cursors are automatically deallocated when their scope ends, reducing the risk of memory leaks.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "76901e8d-a862-4bd7-b72f-662121710dc9",
+              "Text": "GLOBAL cursors are available to any stored procedure or batch within the same connection.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "a4e10ab9-ee1f-4376-bb7f-18c6ff0fce6d",
+              "Text": "GLOBAL cursors must be explicitly deallocated or they continue to consume resources.",
+              "SortOrder": 3
+            },
+            {
+              "Id": "c54cc524-063b-4fbc-8679-d4faf67b1ce4",
+              "Text": "Use GLOBAL only when a cursor genuinely needs to be shared across procedures.",
+              "SortOrder": 4
+            }
+          ]
+        },
+        {
+          "Id": "7478cc07-cf1a-409f-8de9-0ffe15b45d5f",
+          "TopicId": "4b1f6f74-afe6-4091-93b3-ef8d3537976e",
+          "Title": "Scrollability: FORWARD_ONLY vs. SCROLL",
+          "BodyText": "Scrollability determines which FETCH directions are legal and how much memory the cursor consumes. Forward-only movement is cheaper; scrolling buys flexibility at a cost.",
+          "Notes": "A FORWARD_ONLY cursor raises an error if you attempt FETCH PRIOR, while a SCROLL cursor accepts it.",
+          "SortOrder": 2,
+          "CreatedDate": "2026-11-17T05:13:53.1355947-05:00",
+          "ModifiedDate": "2026-11-17T05:13:53.1355947-05:00",
+          "Items": [
+            {
+              "Id": "dc8f8de4-b254-4e27-ac2a-cfcd56056125",
+              "Text": "FORWARD_ONLY (the default) supports only FETCH NEXT and is ideal for sequential processing.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "da3a3fba-0020-43fa-977d-f0cf0bfe054b",
+              "Text": "FORWARD_ONLY is faster and uses less memory than a scrollable cursor.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "8f8fb467-ac9d-4efb-860f-c6218ab4debe",
+              "Text": "SCROLL enables NEXT, PRIOR, FIRST, LAST, ABSOLUTE n, and RELATIVE n fetches.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "c0d56764-82ca-4176-a01e-76bae982f95a",
+              "Text": "SCROLL cursors use more memory because the result set must remain navigable.",
+              "SortOrder": 3
+            },
+            {
+              "Id": "9b98c19a-9cf1-4106-917d-b00453ea2362",
+              "Text": "Choose SCROLL only when you truly need random or backward access to rows, such as comparing a row to the previous one.",
+              "SortOrder": 4
+            }
+          ]
+        },
+        {
+          "Id": "8b46b201-dfb9-4a39-bd41-083b50651247",
+          "TopicId": "4b1f6f74-afe6-4091-93b3-ef8d3537976e",
+          "Title": "Snapshot and Key-Based Types: STATIC and KEYSET",
+          "BodyText": "STATIC and KEYSET cursors differ in how much of the underlying data they freeze when the cursor is opened. Both are always scrollable.",
+          "Notes": "KEYSET cursors return @@FETCH_STATUS = -2 when a row in the keyset has been deleted since the cursor opened.",
+          "SortOrder": 3,
+          "CreatedDate": "2026-11-17T05:13:53.1355947-05:00",
+          "ModifiedDate": "2026-11-17T05:13:53.1355947-05:00",
+          "Items": [
+            {
+              "Id": "1c264491-7dfa-4576-8a65-46721a21179d",
+              "Text": "STATIC copies a snapshot of the result set into tempdb when the cursor opens.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "77dcf5da-fe99-4044-8e4b-d5d3d2449a4f",
+              "Text": "A STATIC cursor never sees inserts, updates, or deletes made after it opens, which makes it ideal for consistent reporting.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "5865a443-eeba-40c2-bbed-303e679d0b21",
+              "Text": "STATIC carries higher memory and tempdb overhead because of the copy.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "fc88883c-d6fc-4deb-92ba-7c9a9ace638c",
+              "Text": "KEYSET fixes the set of key values at open time but fetches current column values row by row.",
+              "SortOrder": 3
+            },
+            {
+              "Id": "46c038ae-fecd-4fad-91df-5a9183b0ce93",
+              "Text": "A KEYSET cursor sees updates to existing rows but does not see newly inserted rows.",
+              "SortOrder": 4
+            }
+          ]
+        },
+        {
+          "Id": "91838999-4606-4acc-aca0-28b54de2c4f2",
+          "TopicId": "4b1f6f74-afe6-4091-93b3-ef8d3537976e",
+          "Title": "Live and Optimized Types: DYNAMIC and FAST_FORWARD",
+          "BodyText": "DYNAMIC and FAST_FORWARD sit at opposite ends of the performance spectrum: one maximizes data currency, the other maximizes speed.",
+          "Notes": "Best practice: use FAST_FORWARD unless you specifically need scrollability or visibility into concurrent data changes.",
+          "SortOrder": 4,
+          "CreatedDate": "2026-11-17T05:13:53.1355947-05:00",
+          "ModifiedDate": "2026-11-17T05:13:53.1355947-05:00",
+          "Items": [
+            {
+              "Id": "9f61aae1-d305-4c0f-8a15-afda5761dbd1",
+              "Text": "DYNAMIC cursors reflect all inserts, updates, and deletes in real time and are always scrollable.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "bce703f7-da26-420e-87b4-3be701266321",
+              "Text": "DYNAMIC carries the most overhead, is the slowest option, and row order can shift during iteration.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "d48cedd6-ab4f-410a-9a96-a23bbd80b7f0",
+              "Text": "FAST_FORWARD is a forward-only, read-only cursor with additional engine optimizations enabled.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "74788695-fe0f-4b5c-993c-4754e50236d6",
+              "Text": "FAST_FORWARD is effectively FORWARD_ONLY plus READ_ONLY and is the fastest cursor type available.",
+              "SortOrder": 3
+            },
+            {
+              "Id": "f3be552a-5dc2-411e-b951-f300658523a4",
+              "Text": "Most production cursors should be declared LOCAL FAST_FORWARD.",
+              "SortOrder": 4
+            }
+          ]
+        },
+        {
+          "Id": "2650a156-d422-4aae-a15f-3a90d2dc655d",
+          "TopicId": "4b1f6f74-afe6-4091-93b3-ef8d3537976e",
+          "Title": "Concurrency Options: READ_ONLY, SCROLL_LOCKS, OPTIMISTIC",
+          "BodyText": "Concurrency options control whether you can update data through the cursor and how the engine protects rows during the loop. The choice directly affects locking and blocking.",
+          "Notes": "",
+          "SortOrder": 5,
+          "CreatedDate": "2026-11-17T05:13:53.1355947-05:00",
+          "ModifiedDate": "2026-11-17T05:13:53.1355947-05:00",
+          "Items": [
+            {
+              "Id": "4410af71-1753-47ae-806a-21b10889055f",
+              "Text": "READ_ONLY prevents updates through the cursor, eliminates locking overhead, and is the fastest option.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "05ce868f-ce67-4862-bf6e-2f350574b202",
+              "Text": "SCROLL_LOCKS locks each row as it is fetched, guaranteeing that a positioned update will succeed.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "08a6fe25-9b8c-406c-96fb-d20dcf68e903",
+              "Text": "SCROLL_LOCKS can cause significant blocking for other sessions, especially in long loops.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "c5300eee-8c74-4ec5-8050-1fec8d79c2d8",
+              "Text": "OPTIMISTIC takes no locks on fetch and detects changes using timestamps or column values.",
+              "SortOrder": 3
+            },
+            {
+              "Id": "ee6d9f3a-9a9f-4362-bfef-76644b4d90de",
+              "Text": "With OPTIMISTIC, an update fails if another session modified the row after it was fetched.",
+              "SortOrder": 4
+            },
+            {
+              "Id": "302a6300-a1ac-4bac-b47d-0005c205c536",
+              "Text": "Default to READ_ONLY unless the cursor must perform positioned updates.",
+              "SortOrder": 5
+            }
+          ]
+        },
+        {
+          "Id": "6029816c-d60a-4b6f-98fb-512869e977c8",
+          "TopicId": "4b1f6f74-afe6-4091-93b3-ef8d3537976e",
+          "Title": "Choosing the Right Cursor: Selection Matrix",
+          "BodyText": "Comparing the types side by side makes the tradeoff between performance and data visibility explicit. Use this matrix to justify your declaration choice.",
+          "Notes": "Rule of thumb: start with FAST_FORWARD, add scrollability only if the algorithm requires backward movement, and accept DYNAMIC\u0027s cost only when real-time visibility is mandatory.",
+          "SortOrder": 6,
+          "CreatedDate": "2026-11-17T05:13:53.1355947-05:00",
+          "ModifiedDate": "2026-11-17T05:13:53.1355947-05:00",
+          "Items": [
+            {
+              "Id": "221d26a9-0f08-44e4-8c07-f911f277a23d",
+              "Text": "FAST_FORWARD: not scrollable, best performance \u2014 use for ordinary sequential processing.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "424dca84-1e10-4061-a86d-692c47cd25e2",
+              "Text": "FORWARD_ONLY: not scrollable, may see changes, strong performance \u2014 use for sequential work that must reflect updates.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "46f4aaa0-bf6e-42a4-9ae9-ac3da2c81217",
+              "Text": "STATIC: scrollable, sees no updates or inserts, weaker performance \u2014 use when data consistency for reporting is critical.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "fea831f1-8211-4cd8-8461-c93e00e911de",
+              "Text": "KEYSET: scrollable, sees updates but not inserts, moderate performance \u2014 use when you need scrolling plus current values.",
+              "SortOrder": 3
+            },
+            {
+              "Id": "2d5c77cb-a2b9-4b3f-9766-8f8c2ffdb444",
+              "Text": "DYNAMIC: scrollable, sees updates and inserts, worst performance \u2014 rarely needed, reserve for true real-time requirements.",
+              "SortOrder": 4
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Id": "8ac16a03-d15d-4600-be4d-eb142b51dd81",
+      "Title": "Implementing Cursors in Stored Procedures",
+      "Summary": "Demonstrates production-quality cursor code inside stored procedures, including variable declaration, parameterization, TRY-CATCH error handling, and CURSOR_STATUS cleanup. Covers transaction control per row and the pitfalls of nested cursors.",
+      "SortOrder": 3,
+      "CreatedDate": "2026-11-17T05:12:31.1433795-05:00",
+      "ModifiedDate": "2026-11-17T05:12:31.1433795-05:00",
+      "Elements": [
+        {
+          "Id": "dc1f0506-6703-4c39-abc9-82ca6c85b0fd",
+          "TopicId": "8ac16a03-d15d-4600-be4d-eb142b51dd81",
+          "Title": "Anatomy of a Cursor-Based Stored Procedure",
+          "BodyText": "Production cursor code lives inside a stored procedure that accepts parameters, declares working variables, and defines the cursor before any rows are touched. A disciplined structure makes the procedure predictable, reusable, and safe to rerun.",
+          "Notes": "Example: CREATE PROCEDURE CalculateEmployeeBonuses @DepartmentID INT, @BonusMultiplier DECIMAL(5,2) = 1.0 \u2014 parameters drive the cursor\u0027s SELECT filter.",
+          "SortOrder": 0,
+          "CreatedDate": "2026-11-17T05:14:25.7857762-05:00",
+          "ModifiedDate": "2026-11-17T05:14:25.7857762-05:00",
+          "Items": [
+            {
+              "Id": "e1ffa4f4-0de9-4f18-ac4e-fe9739b06ee5",
+              "Text": "Begin with SET NOCOUNT ON to suppress row-count messages and reduce network traffic.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "94903582-4e7d-4a20-a74f-259fffeda520",
+              "Text": "Declare one local variable for every column the FETCH statement will populate, matching data types exactly.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "65c23311-62a5-4ef3-9b7d-b12f6199639c",
+              "Text": "Declare accumulator variables (e.g., @ProcessedCount, @TotalBonuses) initialized to zero to track progress and totals.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "3d6bffb2-62d1-4a4f-84fc-e9d7cfd85842",
+              "Text": "Define the cursor as LOCAL FAST_FORWARD so it is automatically deallocated at scope end and runs with forward-only, read-only optimizations.",
+              "SortOrder": 3
+            },
+            {
+              "Id": "83069195-80d1-4c22-bb6a-8aba005678f0",
+              "Text": "Return a summary result set (counts, totals) at the end so callers can verify what the procedure did.",
+              "SortOrder": 4
+            }
+          ]
+        },
+        {
+          "Id": "892f851a-0205-4b1b-aa67-df2a0415517d",
+          "TopicId": "8ac16a03-d15d-4600-be4d-eb142b51dd81",
+          "Title": "Parameterizing the Cursor\u0027s SELECT Statement",
+          "BodyText": "T-SQL does not support cursor parameters the way Oracle PL/SQL does, so procedure parameters and variables are embedded directly in the cursor\u0027s SELECT statement. Filtering at declaration time is far cheaper than filtering inside the loop.",
+          "Notes": "Assignment tie-in: sp_DisplayCollege takes a college name and the cursor SELECT uses a LIKE predicate to drive the matching rows the report iterates over.",
+          "SortOrder": 1,
+          "CreatedDate": "2026-11-17T05:14:25.7857762-05:00",
+          "ModifiedDate": "2026-11-17T05:14:25.7857762-05:00",
+          "Items": [
+            {
+              "Id": "427eab25-91ac-4b63-b7b3-d05484bf313a",
+              "Text": "Reference procedure parameters in the WHERE clause, e.g., WHERE e.DepartmentID = @DepartmentID AND e.IsActive = 1.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "550fab89-090a-4859-9263-49dfc254b923",
+              "Text": "Use TOP (@BatchSize) in the cursor SELECT to cap how many rows a single execution processes.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "1c27ca7a-a90a-4008-940d-ce9703885bfb",
+              "Text": "Include JOINs and ISNULL defaults in the cursor query so each fetched row already carries all needed context.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "44e2b3ae-0f04-45d1-8ade-48e48976d9ae",
+              "Text": "Add ORDER BY to the cursor SELECT when processing sequence matters for business logic or reporting.",
+              "SortOrder": 3
+            },
+            {
+              "Id": "cc4f44b5-d1db-4eca-86f4-54805bbbe15b",
+              "Text": "Never fetch everything and then skip rows with an IF inside the loop \u2014 push the filter into the SELECT.",
+              "SortOrder": 4
+            }
+          ]
+        },
+        {
+          "Id": "b4914c9b-d011-420a-ad2c-41f201b0b366",
+          "TopicId": "8ac16a03-d15d-4600-be4d-eb142b51dd81",
+          "Title": "The Fetch Loop and Per-Row Business Logic",
+          "BodyText": "The loop body is where cursors earn their keep: complex conditional logic that cannot be expressed as a single set-based statement. The pattern is fetch once before the loop, then fetch again as the last statement inside the loop.",
+          "Notes": "Typical loop body work: calculate a value, apply tiered business rules, UPDATE the source row, INSERT an audit log entry, and increment counters.",
+          "SortOrder": 2,
+          "CreatedDate": "2026-11-17T05:14:25.7857762-05:00",
+          "ModifiedDate": "2026-11-17T05:14:25.7857762-05:00",
+          "Items": [
+            {
+              "Id": "132152b3-2861-448f-9ac7-7dd84e3b35d1",
+              "Text": "Issue the first FETCH NEXT ... INTO before WHILE @@FETCH_STATUS = 0 to prime the loop.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "426c97a3-9aa7-4e1c-8721-4aa74b7c609a",
+              "Text": "Place the second FETCH NEXT as the final statement in the BEGIN...END block, or the loop will run forever.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "9f8dcf8a-6e3a-4cfb-8098-7c36cf0f97ba",
+              "Text": "Apply branching rules per row (e.g., top performers get an extra 20%, bonuses capped at 25% of salary).",
+              "SortOrder": 2
+            },
+            {
+              "Id": "9f891f91-d928-4adc-bd42-e5b1e7af5585",
+              "Text": "Call other stored procedures from inside the loop to divide complex work into manageable pieces.",
+              "SortOrder": 3
+            },
+            {
+              "Id": "26ef6ee8-405b-425b-b30b-469213f35d62",
+              "Text": "Use PRINT statements for progress output during development and administrative scripts.",
+              "SortOrder": 4
+            }
+          ]
+        },
+        {
+          "Id": "e63a4a73-88f3-4474-99d7-bd230fe67a65",
+          "TopicId": "8ac16a03-d15d-4600-be4d-eb142b51dd81",
+          "Title": "TRY-CATCH Error Handling with CURSOR_STATUS Cleanup",
+          "BodyText": "If an error is raised mid-loop, execution jumps out of the WHILE block and the cursor is left open, leaking memory and holding resources. Wrapping the cursor lifecycle in TRY-CATCH guarantees cleanup on every exit path.",
+          "Notes": "Cleanup pattern: IF CURSOR_STATUS(\u0027local\u0027,\u0027employee_cursor\u0027) \u003E= 0 BEGIN CLOSE employee_cursor; DEALLOCATE employee_cursor; END; THROW;",
+          "SortOrder": 3,
+          "CreatedDate": "2026-11-17T05:14:25.7857762-05:00",
+          "ModifiedDate": "2026-11-17T05:14:25.7857762-05:00",
+          "Items": [
+            {
+              "Id": "ffd895cf-87f2-4765-b5f2-45408ebe68b6",
+              "Text": "Place OPEN, the fetch loop, and the normal CLOSE/DEALLOCATE inside BEGIN TRY.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "01ee7bc0-7b09-41ed-8411-51879101edeb",
+              "Text": "In BEGIN CATCH, test CURSOR_STATUS before closing \u2014 calling CLOSE on an already-closed cursor raises another error.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "c84ba7fc-351c-48dd-9c5f-37d7518694ee",
+              "Text": "A CURSOR_STATUS return value of 0 or greater means the cursor exists and must be cleaned up.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "69e6a115-0b9c-428e-b3a9-5ca3d0a7faac",
+              "Text": "Also check IF @@TRANCOUNT \u003E 0 ROLLBACK TRANSACTION before cursor cleanup when transactions are in play.",
+              "SortOrder": 3
+            },
+            {
+              "Id": "92e016c3-2adf-4ac1-af6d-8c2ade46a848",
+              "Text": "End the CATCH block with THROW so the caller still sees the original error after resources are released.",
+              "SortOrder": 4
+            }
+          ]
+        },
+        {
+          "Id": "8c468006-0278-42bb-a633-55930d50f2a0",
+          "TopicId": "8ac16a03-d15d-4600-be4d-eb142b51dd81",
+          "Title": "Transaction Control Per Row",
+          "BodyText": "Wrapping the entire cursor loop in one transaction holds locks for the whole run and forces an all-or-nothing outcome. Opening and committing a transaction around each row keeps locks short and lets good rows succeed while bad rows are logged and skipped.",
+          "Notes": "Seen in ProcessOrderBatch: BEGIN TRANSACTION inside the loop, COMMIT in TRY, ROLLBACK plus an error-log INSERT in CATCH, then FETCH NEXT to continue.",
+          "SortOrder": 4,
+          "CreatedDate": "2026-11-17T05:14:25.7857762-05:00",
+          "ModifiedDate": "2026-11-17T05:14:25.7857762-05:00",
+          "Items": [
+            {
+              "Id": "40940e13-365f-4962-ae64-d43978501734",
+              "Text": "Issue BEGIN TRANSACTION immediately after entering the loop body, before any data modification.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "3924b039-fc38-4d3d-99ed-4de803ac2eb2",
+              "Text": "COMMIT TRANSACTION at the end of the TRY block and increment the processed counter.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "6249ebd0-ea04-4b1f-b291-9909f6b0cdc1",
+              "Text": "ROLLBACK TRANSACTION in the inner CATCH so only the failing row is undone.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "37459125-4289-4046-915e-925781793a6e",
+              "Text": "Insert the OrderID and ERROR_MESSAGE() into an error table so failures are auditable rather than silent.",
+              "SortOrder": 3
+            },
+            {
+              "Id": "73178051-d8a7-4bdb-b071-6f33ff25d4de",
+              "Text": "Keep the FETCH NEXT outside the inner TRY-CATCH so the loop always advances to the next row.",
+              "SortOrder": 4
+            }
+          ]
+        },
+        {
+          "Id": "c9c96f75-789e-4699-8ebe-ffa307c4a903",
+          "TopicId": "8ac16a03-d15d-4600-be4d-eb142b51dd81",
+          "Title": "Nested Cursors and Their Pitfalls",
+          "BodyText": "A nested cursor opens an inner cursor for every row of an outer cursor, producing roughly O(n\u00B2) work. They are legal and occasionally necessary, but almost always indicate a missed JOIN or window function.",
+          "Notes": "The GenerateCustomerInvoices example (outer cursor over customers, inner cursor over their orders) can be replaced by a single JOIN with SUM(o.OrderTotal) OVER (PARTITION BY c.CustomerID).",
+          "SortOrder": 5,
+          "CreatedDate": "2026-11-17T05:14:25.7857762-05:00",
+          "ModifiedDate": "2026-11-17T05:14:25.7857762-05:00",
+          "Items": [
+            {
+              "Id": "c2efbc56-0992-4a96-b843-522731b59bb0",
+              "Text": "Declare, open, close, and DEALLOCATE the inner cursor inside the outer loop or the second iteration will fail with a duplicate-name error.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "0578adcc-cfd4-42e2-8642-69f5a7a71aa9",
+              "Text": "Reset accumulator variables (e.g., SET @CustomerTotal = 0) at the top of each outer iteration.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "4615aa65-d96f-45ee-9ed9-3e4d312a43ff",
+              "Text": "Remember that @@FETCH_STATUS is global to the connection \u2014 the inner loop overwrites it, so re-check carefully after returning to the outer loop.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "61dcaab1-d694-474b-bd27-ff9671d07faf",
+              "Text": "Prefer an INNER JOIN with window functions such as SUM() OVER (PARTITION BY ...) to produce the same parent/child report in one pass.",
+              "SortOrder": 3
+            },
+            {
+              "Id": "aba4973a-83f6-4d23-94e8-3a7edf1e0780",
+              "Text": "Document and benchmark any nested cursor that survives review, and note why the set-based alternative was rejected.",
+              "SortOrder": 4
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Id": "935d8ad6-5a97-4d19-b860-226f4b4c3a78",
+      "Title": "Performance Impact and Set-Based Alternatives",
+      "Summary": "Explains why cursors are slow \u2014 row-by-row round trips, lost optimization, lock duration, memory, and tempdb usage \u2014 and quantifies the cost versus set-based SQL. Presents set-based replacements using window functions, JOINs, and batch processing, plus cases where a cursor genuinely wins.",
+      "SortOrder": 4,
+      "CreatedDate": "2026-11-17T05:12:31.1433795-05:00",
+      "ModifiedDate": "2026-11-17T05:12:31.1433795-05:00",
+      "Elements": [
+        {
+          "Id": "d61df78c-99c8-43c3-a647-dc4e26f0679e",
+          "TopicId": "935d8ad6-5a97-4d19-b860-226f4b4c3a78",
+          "Title": "Why Cursors Are Slow",
+          "BodyText": "Cursors abandon the set-based model the database engine is built to optimize, and the overhead compounds with every row. Understanding the specific sources of that overhead explains why RBAR (Row-By-Agonizing-Row) processing is discouraged.",
+          "Notes": "Each of these costs is small per row but multiplies by the number of rows in the result set, so a cursor that is tolerable on 100 rows can be unusable on 1,000,000.",
+          "SortOrder": 0,
+          "CreatedDate": "2026-11-17T05:14:59.0298221-05:00",
+          "ModifiedDate": "2026-11-17T05:14:59.0298221-05:00",
+          "Items": [
+            {
+              "Id": "daf35369-b33e-467f-9c8c-9e42261d1ab0",
+              "Text": "Row-by-row processing means each FETCH is a separate round trip with no bulk operation benefit.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "d041f4fe-a0e2-420b-b0f8-2b7d907a42fc",
+              "Text": "The query optimizer cannot optimize procedural loop logic the way it optimizes a single declarative statement.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "2d10d972-edfe-4a33-aaf0-b31fa40d6d00",
+              "Text": "If the loop runs inside a transaction, locks are held for the entire duration of the loop rather than briefly.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "ce9b7506-a13f-46bf-bed2-85b92d74edfa",
+              "Text": "Cursor structures consume memory, and STATIC and KEYSET cursors use tempdb extensively.",
+              "SortOrder": 3
+            },
+            {
+              "Id": "4491e699-ea60-4ce4-91b3-c302b2f95a9c",
+              "Text": "More round trips between SQL Server and the client increase network traffic.",
+              "SortOrder": 4
+            }
+          ]
+        },
+        {
+          "Id": "57694d61-e210-4594-987c-ce378239f4e6",
+          "TopicId": "935d8ad6-5a97-4d19-b860-226f4b4c3a78",
+          "Title": "Quantifying the Cost: Cursor vs. Set-Based",
+          "BodyText": "A direct comparison on the same workload shows the magnitude of the difference. Updating 10,000 employee salaries illustrates the gap clearly.",
+          "Notes": "Cursor version: DECLARE emp_cursor ... WHILE @@FETCH_STATUS = 0 BEGIN UPDATE Employees SET Salary = @CurrentSalary * 1.05 WHERE EmployeeID = @EmpID; ... END. Set-based version: UPDATE Employees SET Salary = Salary * 1.05;",
+          "SortOrder": 1,
+          "CreatedDate": "2026-11-17T05:14:59.0298221-05:00",
+          "ModifiedDate": "2026-11-17T05:14:59.0298221-05:00",
+          "Items": [
+            {
+              "Id": "2b15203e-28bf-41fa-afc7-37034a87498b",
+              "Text": "The cursor loop issuing 10,000 individual UPDATE statements typically takes 2\u20135 seconds.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "7b240734-40a9-417c-ab55-b2d17bc2489f",
+              "Text": "The single set-based UPDATE completes the same work in under 100 milliseconds.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "431ee23e-29e9-4401-91f2-12515ee32ffa",
+              "Text": "That is a 20x to 100x performance difference on an identical result.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "05025049-3c66-460b-89db-69520bf93fad",
+              "Text": "The gap widens as row counts grow, so always test against expected production data volume.",
+              "SortOrder": 3
+            },
+            {
+              "Id": "d5d35a5c-e92f-4abc-85c2-25d2bff8f943",
+              "Text": "Nested cursors are worse still, approaching O(n\u00B2) behavior.",
+              "SortOrder": 4
+            }
+          ]
+        },
+        {
+          "Id": "4a6cbdd6-e169-401f-b26e-1f655025e0d0",
+          "TopicId": "935d8ad6-5a97-4d19-b860-226f4b4c3a78",
+          "Title": "Set-Based Alternative: Window Functions for Running Totals",
+          "BodyText": "A classic cursor pattern accumulates a running total in a variable while looping through ordered rows. Window functions compute the same result in one pass.",
+          "Notes": "WITH OrdersWithRunningTotal AS (SELECT OrderID, SUM(Amount) OVER (ORDER BY OrderDate ROWS BETWEEN UNBOUNDED PRECEDING AND CURRENT ROW) AS RunningTotal FROM Orders) UPDATE o SET o.RunningTotal = ort.RunningTotal FROM Orders o INNER JOIN OrdersWithRunningTotal ort ON o.OrderID = ort.OrderID;",
+          "SortOrder": 2,
+          "CreatedDate": "2026-11-17T05:14:59.0298221-05:00",
+          "ModifiedDate": "2026-11-17T05:14:59.0298221-05:00",
+          "Items": [
+            {
+              "Id": "09d13f6f-4de4-4088-9429-530e28672155",
+              "Text": "SUM(...) OVER (ORDER BY ... ROWS BETWEEN UNBOUNDED PRECEDING AND CURRENT ROW) replaces the accumulator variable.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "36981397-bd8d-4552-b7ca-3a83c5f38ae0",
+              "Text": "Wrap the window function in a CTE, then join back to the base table for a single bulk UPDATE.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "6ea68007-f185-4cc2-95b9-8d3a3bee146d",
+              "Text": "LAG() and LEAD() replace scrollable cursors that FETCH PRIOR to compare a row to the previous one.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "182b0db0-701c-4ca1-b38c-52a144ad31db",
+              "Text": "A month-over-month percent-change report built with LAG() returns the same output as a SCROLL cursor far faster.",
+              "SortOrder": 3
+            },
+            {
+              "Id": "838e6e15-4bd8-40d6-ac77-88fd84264e17",
+              "Text": "PARTITION BY can produce per-group totals that would otherwise require nested cursors.",
+              "SortOrder": 4
+            }
+          ]
+        },
+        {
+          "Id": "c94b1b10-6a9e-4b26-8a75-e9b9e8e40230",
+          "TopicId": "935d8ad6-5a97-4d19-b860-226f4b4c3a78",
+          "Title": "Set-Based Alternative: JOINs for Cross-Table Updates",
+          "BodyText": "Looping over a parent table to look up an aggregate from a child table for each row is one of the most common and most wasteful cursor patterns. A single UPDATE with a JOIN handles the whole set.",
+          "Notes": "UPDATE p SET p.AverageRating = ratings.AvgRating FROM Products p INNER JOIN (SELECT ProductID, AVG(Rating) AS AvgRating FROM ProductReviews GROUP BY ProductID) ratings ON p.ProductID = ratings.ProductID;",
+          "SortOrder": 3,
+          "CreatedDate": "2026-11-17T05:14:59.0298221-05:00",
+          "ModifiedDate": "2026-11-17T05:14:59.0298221-05:00",
+          "Items": [
+            {
+              "Id": "3d78980b-568e-4ff1-a70f-784d9bca497b",
+              "Text": "Replace the per-row SELECT AVG(...) lookup with a single GROUP BY derived table.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "21bdab67-8bac-40c7-901e-4f7a1ed54e88",
+              "Text": "Join the aggregated result back to the target table in one UPDATE ... FROM statement.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "b3cba954-75ef-4705-83c9-31766ed468c3",
+              "Text": "The same approach collapses nested customer/order cursors into one INNER JOIN query.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "e8b5fdf5-bca1-4dd7-bff3-bf930ae8089a",
+              "Text": "Aggregate functions such as SUM, AVG, and COUNT should always replace accumulator loops.",
+              "SortOrder": 3
+            },
+            {
+              "Id": "ec8a6194-1551-443b-8b08-47602fcdd42e",
+              "Text": "CTEs and derived tables give the optimizer a full view of the work so it can use indexes effectively.",
+              "SortOrder": 4
+            }
+          ]
+        },
+        {
+          "Id": "608de2fb-3b72-40b4-acc4-5807841b3647",
+          "TopicId": "935d8ad6-5a97-4d19-b860-226f4b4c3a78",
+          "Title": "Batch Processing for Very Large Datasets",
+          "BodyText": "When a single huge set-based statement would lock too much or bloat the transaction log, batching is the middle ground \u2014 not a cursor. It keeps set-based efficiency while limiting the blast radius of each operation.",
+          "Notes": "DECLARE @BatchSize INT = 10000; DECLARE @RowsAffected INT = @BatchSize; WHILE @RowsAffected = @BatchSize BEGIN UPDATE TOP (@BatchSize) AccessLogs SET Archived = 1 WHERE Archived = 0 AND LogDate \u003C DATEADD(YEAR,-1,GETDATE()); SET @RowsAffected = @@ROWCOUNT; WAITFOR DELAY \u002700:00:01\u0027; END;",
+          "SortOrder": 4,
+          "CreatedDate": "2026-11-17T05:14:59.0298221-05:00",
+          "ModifiedDate": "2026-11-17T05:14:59.0298221-05:00",
+          "Items": [
+            {
+              "Id": "0d730b96-2feb-48ce-9962-0d1927936148",
+              "Text": "Use UPDATE TOP (@BatchSize) inside a WHILE loop instead of iterating one row at a time.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "bfdc8767-aca1-4e98-a3d8-00d08bd74716",
+              "Text": "Check @@ROWCOUNT after each batch and exit when fewer rows than the batch size are affected.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "c39c7d22-32ac-46a8-a496-e7b7d5f58524",
+              "Text": "Insert a brief WAITFOR DELAY between batches to reduce blocking of other sessions.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "3d2de78b-c177-478e-a6cf-599ca475a492",
+              "Text": "Each batch commits separately, keeping transactions and lock durations short.",
+              "SortOrder": 3
+            },
+            {
+              "Id": "f256bc89-d740-4e5e-879f-195224b554b2",
+              "Text": "Batching processes millions of rows far faster than a cursor over the same set.",
+              "SortOrder": 4
+            }
+          ]
+        },
+        {
+          "Id": "4fb0a1fe-d766-4851-9358-b0d44cf8ce8c",
+          "TopicId": "935d8ad6-5a97-4d19-b860-226f4b4c3a78",
+          "Title": "When a Cursor Genuinely Wins",
+          "BodyText": "Cursors remain the right tool when the work itself is inherently per-row and cannot be expressed as a single set operation. These cases justify the overhead.",
+          "Notes": "Cursors should be the last resort, not the first choice \u2014 document why a cursor was necessary before shipping it to production.",
+          "SortOrder": 5,
+          "CreatedDate": "2026-11-17T05:14:59.0298221-05:00",
+          "ModifiedDate": "2026-11-17T05:14:59.0298221-05:00",
+          "Items": [
+            {
+              "Id": "a9871dc9-26cb-4ad9-95d7-9a6f36b65e93",
+              "Text": "Calling an external API or system once per record, such as sending an individual email to each subscriber.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "3c87746d-1a7b-4df3-8548-dd91b5d9cce1",
+              "Text": "Branching business logic where each row invokes a different stored procedure based on its type (Electronics, Clothing, Food).",
+              "SortOrder": 1
+            },
+            {
+              "Id": "555847d9-9756-40cc-b621-3d0d0c54a258",
+              "Text": "Administrative and maintenance tasks such as rebuilding indexes or running UPDATE STATISTICS on every table.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "be42e364-acf1-4cfd-ae44-e0ec95ce6e6e",
+              "Text": "Complex ETL transformations and data migration where per-row handling and logging are required.",
+              "SortOrder": 3
+            },
+            {
+              "Id": "03eb0c0c-c105-4651-9fff-a19e4752b504",
+              "Text": "One-time operations where developer clarity outweighs a few seconds of runtime.",
+              "SortOrder": 4
+            }
+          ]
+        },
+        {
+          "Id": "63b3944d-9e61-452f-9770-dafd89d0befd",
+          "TopicId": "935d8ad6-5a97-4d19-b860-226f4b4c3a78",
+          "Title": "Decision Process and Pre-Production Checklist",
+          "BodyText": "Before writing a cursor, work through a structured decision path and verify the implementation against a performance checklist. This keeps cursors rare and deliberate rather than habitual.",
+          "Notes": "Decision tree: Do I need rows individually? No \u2192 set-based. Yes \u2192 can window functions, CTEs, or a simple UPDATE/DELETE do it? If yes, use those. Only if none work and the task calls external code, applies complex per-row logic, or is administrative is a cursor acceptable.",
+          "SortOrder": 6,
+          "CreatedDate": "2026-11-17T05:14:59.0298221-05:00",
+          "ModifiedDate": "2026-11-17T05:14:59.0298221-05:00",
+          "Items": [
+            {
+              "Id": "99f9fa78-6fd3-4f16-9fa0-b64033541496",
+              "Text": "Always attempt a set-based solution first and measure it before resorting to iteration.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "ec89ed07-1bd6-4d7c-93ad-ba8be9d01d32",
+              "Text": "Check whether window functions like ROW_NUMBER, LAG, or LEAD can supply the row context you need.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "4555a238-e944-487e-9dbc-dad4acbc2d61",
+              "Text": "Test the chosen approach at expected production data volume, not on a small sample.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "23b05f33-da7e-43e5-9f7f-b6b54d88c845",
+              "Text": "If a cursor is required, declare it LOCAL FAST_FORWARD and filter the result set in the cursor SELECT.",
+              "SortOrder": 3
+            },
+            {
+              "Id": "dcad8120-7369-45a2-b545-65bb17832c6e",
+              "Text": "Confirm error handling closes and deallocates the cursor, and consider batch processing as a substitute.",
+              "SortOrder": 4
+            },
+            {
+              "Id": "ddaf8294-f9b2-474f-aaef-7d205704d1e9",
+              "Text": "Document the justification for the cursor and record the measured comparison against alternatives.",
+              "SortOrder": 5
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Id": "6af49c20-564a-402f-b231-221db69bcef2",
+      "Title": "Practical Cursor Applications",
+      "Summary": "Works through realistic scenarios such as data cleanup with merge logging, dynamic SQL generation for administrative maintenance, and scrollable cursors for comparative reporting. Each example is paired with its faster set-based alternative where one exists.",
+      "SortOrder": 5,
+      "CreatedDate": "2026-11-17T05:12:31.1433795-05:00",
+      "ModifiedDate": "2026-11-17T05:12:31.1433795-05:00",
+      "Elements": [
+        {
+          "Id": "8e9a730a-9849-4b47-a5ba-62abb63efffe",
+          "TopicId": "6af49c20-564a-402f-b231-221db69bcef2",
+          "Title": "Example 1: Data Cleanup with Merge Logging",
+          "BodyText": "A classic legitimate cursor scenario is merging duplicate customer records, where each merge involves several dependent steps that must be audited and committed individually.",
+          "Notes": "The cursor SELECT uses MIN(CustomerID) as the record to keep and MAX(CustomerID) as the duplicate, grouped by Email with HAVING COUNT(*) \u003E 1, so the cursor only ever returns genuine duplicates.",
+          "SortOrder": 0,
+          "CreatedDate": "2026-11-17T05:15:26.1250544-05:00",
+          "ModifiedDate": "2026-11-17T05:15:26.1250544-05:00",
+          "Items": [
+            {
+              "Id": "cf72495c-fc73-430f-b83a-61aeb6166379",
+              "Text": "The cursor is declared LOCAL FAST_FORWARD because the cleanup only moves forward through the duplicate list.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "1c3528da-497e-41c5-857f-ff56993cc2bf",
+              "Text": "For each duplicate pair, orders are reassigned to the kept CustomerID, the merge is recorded in CustomerMergeLog, and the duplicate row is deleted.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "584bad43-bfc1-4ba2-a495-d2bf18614869",
+              "Text": "Each merge runs inside its own BEGIN TRANSACTION/COMMIT so a single failure does not undo earlier successful merges.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "e0ce4a75-6020-4ea3-86fc-e802d7be6f99",
+              "Text": "A counter variable (@MergeCount) tracks how many merges occurred and is printed as a summary at the end.",
+              "SortOrder": 3
+            },
+            {
+              "Id": "156c603a-d799-4c01-84cc-244b773bc9e2",
+              "Text": "A TRY-CATCH block rolls back any open transaction and uses CURSOR_STATUS to close and deallocate the cursor before re-throwing the error.",
+              "SortOrder": 4
+            }
+          ]
+        },
+        {
+          "Id": "990a4285-5fef-4704-b9d2-7506ddf4ef4a",
+          "TopicId": "6af49c20-564a-402f-b231-221db69bcef2",
+          "Title": "Example 2: Dynamic SQL Generation for Maintenance",
+          "BodyText": "Administrative maintenance tasks often require generating a different SQL statement for every object in the database, which is a genuine cursor use case.",
+          "Notes": "Example: UpdateAllTableStatistics loops over sys.tables joined to sys.schemas to run UPDATE STATISTICS ... WITH FULLSCAN on each user table.",
+          "SortOrder": 1,
+          "CreatedDate": "2026-11-17T05:15:26.1250544-05:00",
+          "ModifiedDate": "2026-11-17T05:15:26.1250544-05:00",
+          "Items": [
+            {
+              "Id": "d4782f2e-875c-433d-8524-a1772a7e03fa",
+              "Text": "The cursor reads schema and table names from sys.tables joined to sys.schemas, filtered to user tables (type = \u0027U\u0027).",
+              "SortOrder": 0
+            },
+            {
+              "Id": "1427292c-22d9-4e47-bb88-60af02227c08",
+              "Text": "Inside the loop, the statement is assembled into an NVARCHAR variable and executed with sp_executesql.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "63e4edd6-70d5-4e22-87a0-a007a2febd59",
+              "Text": "QUOTENAME() is used around the schema and table names to safely handle special characters and guard against injection.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "25dcb6b5-088d-4daf-a17f-454d46da658a",
+              "Text": "Each table is wrapped in its own TRY-CATCH so one failing table prints an error but does not stop the whole maintenance run.",
+              "SortOrder": 3
+            },
+            {
+              "Id": "3debf7ea-6768-4699-ba7c-e22cecbdc2ec",
+              "Text": "Timing variables and PRINT statements produce a per-table progress log plus a final count of tables processed.",
+              "SortOrder": 4
+            }
+          ]
+        },
+        {
+          "Id": "adf90c3a-8819-4b30-a9b6-c37380b0bbcd",
+          "TopicId": "6af49c20-564a-402f-b231-221db69bcef2",
+          "Title": "Example 3: Scrollable Cursor for Comparative Reporting",
+          "BodyText": "When a report needs values from a prior row, a SCROLL cursor can move backward and forward through the result set to build period-over-period comparisons.",
+          "Notes": "The sales example fetches the first month as a baseline, then repeatedly uses FETCH PRIOR and FETCH NEXT to compare each month to the one before it.",
+          "SortOrder": 2,
+          "CreatedDate": "2026-11-17T05:15:26.1250544-05:00",
+          "ModifiedDate": "2026-11-17T05:15:26.1250544-05:00",
+          "Items": [
+            {
+              "Id": "0798b9d9-278d-4424-bc13-264bc4838fbc",
+              "Text": "The cursor is declared with the SCROLL option so directions beyond NEXT are available.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "dbbc8eab-9b86-4276-aff2-01c24ca4fe90",
+              "Text": "FETCH FIRST establishes the baseline month before the comparison loop begins.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "ad4067a9-9326-4e16-92e9-638096be5641",
+              "Text": "Inside the loop, FETCH PRIOR retrieves the previous month\u0027s total and FETCH NEXT returns the cursor to the current row.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "611c3394-524d-4832-8737-fc5af1c7ff37",
+              "Text": "The percent change is computed as ((current - previous) / previous) * 100 and printed for each month.",
+              "SortOrder": 3
+            },
+            {
+              "Id": "ea5b4087-b120-4322-8b2f-0aa25efa1c74",
+              "Text": "This pattern is fragile and slow because the cursor position must be carefully managed on every iteration.",
+              "SortOrder": 4
+            }
+          ]
+        },
+        {
+          "Id": "aea7d428-89cf-4cb2-8f71-cbad46bab662",
+          "TopicId": "6af49c20-564a-402f-b231-221db69bcef2",
+          "Title": "The Set-Based Alternative: Window Functions",
+          "BodyText": "Most reporting-style cursor examples have a far faster set-based equivalent built on window functions such as LAG(), LEAD(), and SUM() OVER().",
+          "Notes": "Remember the decision tree: if window functions, CTEs, or a simple UPDATE with a WHERE clause can do the job, use those instead of a cursor.",
+          "SortOrder": 3,
+          "CreatedDate": "2026-11-17T05:15:26.1250544-05:00",
+          "ModifiedDate": "2026-11-17T05:15:26.1250544-05:00",
+          "Items": [
+            {
+              "Id": "606f9433-34f3-4fda-9cb4-2d6a2a096f0f",
+              "Text": "LAG(SUM(SalesAmount)) OVER (ORDER BY SalesMonth) returns the prior period\u0027s value without any scrolling.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "da72a1ac-5651-42d1-b00b-a329f2a3d314",
+              "Text": "The entire month-over-month percent change report collapses into one SELECT statement with no OPEN, FETCH, CLOSE, or DEALLOCATE.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "0b2781c4-6ba8-4ce4-9baf-aec358dd5071",
+              "Text": "Nested customer/order cursors can be replaced by a JOIN with SUM(...) OVER (PARTITION BY CustomerID) for per-customer totals.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "8eff1f05-3186-4d4b-b308-521db0612af3",
+              "Text": "Running totals can be produced with SUM(Amount) OVER (ORDER BY OrderDate ROWS BETWEEN UNBOUNDED PRECEDING AND CURRENT ROW).",
+              "SortOrder": 3
+            },
+            {
+              "Id": "053f97df-3f45-4c95-8153-fe9af8843090",
+              "Text": "Set-based rewrites are commonly 20-100x faster than the equivalent cursor loop.",
+              "SortOrder": 4
+            }
+          ]
+        },
+        {
+          "Id": "7dce19ea-d2e8-4a01-a01f-3b45426035e4",
+          "TopicId": "6af49c20-564a-402f-b231-221db69bcef2",
+          "Title": "Applying Cursors in an Assignment Scenario",
+          "BodyText": "The course assignment asks you to build sp_DisplayCollege, a stored procedure that uses a cursor to produce a comparative statistics report for every college matching a name pattern.",
+          "Notes": "Accept a college name argument, match partially (LIKE), and loop over the matching colleges to generate one report block per institution.",
+          "SortOrder": 4,
+          "CreatedDate": "2026-11-17T05:15:26.1250544-05:00",
+          "ModifiedDate": "2026-11-17T05:15:26.1250544-05:00",
+          "Items": [
+            {
+              "Id": "838bdec0-5ccf-4b10-881d-d91a8ec904e0",
+              "Text": "Declare the cursor over the set of colleges whose names match the supplied search string, including partial matches.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "4731eb35-93b1-4a18-b35a-034d388c7be1",
+              "Text": "For each college, report its institution value alongside a simple average such as AVG(CUML_DEBT_P90).",
+              "SortOrder": 1
+            },
+            {
+              "Id": "97fab0ce-86d6-431c-a849-190704ef632d",
+              "Text": "Also compute a weighted average using SUM(CUML_DEBT_P90 * CUML_DEBT_N) / SUM(CUML_DEBT_N) to account for school size.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "3edcfd47-5e7b-4012-95fb-161243d0520e",
+              "Text": "Split the work across multiple stored procedures or functions called from inside the loop to divide and conquer the report sections.",
+              "SortOrder": 3
+            },
+            {
+              "Id": "0be9e76b-a32d-4e84-b182-7288fbf15602",
+              "Text": "Submit both the stored procedure text and a screenshot of the execution results.",
+              "SortOrder": 4
+            }
+          ]
+        },
+        {
+          "Id": "c56962fc-3475-4e8b-a3fb-17a9ca7c788c",
+          "TopicId": "6af49c20-564a-402f-b231-221db69bcef2",
+          "Title": "Choosing Between the Cursor and the Alternative",
+          "BodyText": "Each practical example should be evaluated against the golden rule: cursors are a last resort, and only survive when no set-based equivalent exists.",
+          "Notes": "",
+          "SortOrder": 5,
+          "CreatedDate": "2026-11-17T05:15:26.1250544-05:00",
+          "ModifiedDate": "2026-11-17T05:15:26.1250544-05:00",
+          "Items": [
+            {
+              "Id": "9b90c5e7-9ebf-4029-9496-f2c036aab673",
+              "Text": "The duplicate-merge cleanup justifies a cursor because of multi-step, transactional, logged operations per row.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "7b72c414-f8de-4a52-89c4-d6fd11860185",
+              "Text": "The maintenance example justifies a cursor because dynamic SQL must be built and executed separately for each object.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "60f87f26-5a13-4bcd-866c-d11cc959a336",
+              "Text": "The scrollable sales report does not justify a cursor, since LAG() delivers the same output far faster.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "7aa4dd13-21bf-4661-b635-5e2149d4182c",
+              "Text": "Before shipping a cursor, confirm you used FAST_FORWARD, filtered the result set in the cursor SELECT, handled errors, and documented why the cursor is necessary.",
+              "SortOrder": 3
+            },
+            {
+              "Id": "3a147412-49b5-42d8-8b11-3c4dffc2b68d",
+              "Text": "Always measure the cursor version against a set-based attempt at realistic data volumes.",
+              "SortOrder": 4
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Id": "46132edf-1733-426e-b04d-fa3d577965b2",
+      "Title": "Cursors Across Database Platforms",
+      "Summary": "Compares cursor implementation in SQL Server, Oracle PL/SQL, MySQL, and PostgreSQL across declaration, fetching, loop termination, and cleanup. Highlights platform-specific features such as Oracle REF CURSORs, MySQL CONTINUE HANDLERs, and implicit FOR loops.",
+      "SortOrder": 6,
+      "CreatedDate": "2026-11-17T05:12:31.1433795-05:00",
+      "ModifiedDate": "2026-11-17T05:12:31.1433795-05:00",
+      "Elements": [
+        {
+          "Id": "a634d46c-00f6-446b-9e34-5f2ab29ed869",
+          "TopicId": "46132edf-1733-426e-b04d-fa3d577965b2",
+          "Title": "The Common Cursor Lifecycle Across Platforms",
+          "BodyText": "Although syntax differs, every major platform follows the same conceptual cursor lifecycle: declare, open, fetch, loop, and close. Understanding this shared skeleton makes it easy to port cursor logic between systems.",
+          "Notes": "SQL Server, Oracle, MySQL, and PostgreSQL all use OPEN cursor_name and CLOSE cursor_name identically; the differences appear in declaration, fetch syntax, loop termination, and cleanup.",
+          "SortOrder": 0,
+          "CreatedDate": "2026-11-17T05:15:55.3457591-05:00",
+          "ModifiedDate": "2026-11-17T05:15:55.3457591-05:00",
+          "Items": [
+            {
+              "Id": "d1035eb3-3b56-4e6f-a8db-3c84b1142e3c",
+              "Text": "SQL Server, MySQL, and PostgreSQL all declare with DECLARE cursor_name CURSOR FOR select_statement.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "04f5f127-28c3-44c6-a20c-bd039cb1afd6",
+              "Text": "Oracle uses the distinct form CURSOR cursor_name IS select_statement inside the declaration block.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "3eb8522a-278a-4d86-8886-15f2a4366a13",
+              "Text": "OPEN and CLOSE statements are syntactically identical on all four platforms.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "3996b035-a686-4dcf-81d4-ef3922d1dd79",
+              "Text": "Only SQL Server requires an explicit DEALLOCATE step; Oracle, MySQL, and PostgreSQL release cursor resources automatically.",
+              "SortOrder": 3
+            },
+            {
+              "Id": "4626e079-d606-4214-a282-ea80f996f085",
+              "Text": "Fetching into variables is universal, but SQL Server uses FETCH NEXT FROM cursor INTO @var while the others use FETCH cursor INTO var.",
+              "SortOrder": 4
+            }
+          ]
+        },
+        {
+          "Id": "4142d63c-6b36-40dd-8f1a-080debb438c8",
+          "TopicId": "46132edf-1733-426e-b04d-fa3d577965b2",
+          "Title": "Loop Termination Mechanisms",
+          "BodyText": "The biggest practical difference between platforms is how a program detects that the cursor has run out of rows. Each system exposes a different status mechanism that drives the loop\u0027s exit condition.",
+          "Notes": "Getting the termination condition wrong is the most common cause of infinite loops or a final row being processed twice.",
+          "SortOrder": 1,
+          "CreatedDate": "2026-11-17T05:15:55.3457591-05:00",
+          "ModifiedDate": "2026-11-17T05:15:55.3457591-05:00",
+          "Items": [
+            {
+              "Id": "aee8c5fe-14f4-48fa-90ca-e5467f045794",
+              "Text": "SQL Server tests the global function @@FETCH_STATUS = 0 after each FETCH to continue the WHILE loop.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "26803316-f987-4474-b931-e28c37db39be",
+              "Text": "Oracle uses cursor attributes such as cursor%FOUND or EXIT WHEN cursor%NOTFOUND inside a LOOP.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "7ef76ac5-3467-4228-a6be-8b1352c5f7d9",
+              "Text": "MySQL requires a DECLARE CONTINUE HANDLER FOR NOT FOUND that sets a flag variable, then tests IF done THEN LEAVE read_loop.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "70b63865-c757-4535-9f5a-ef7b73484cbf",
+              "Text": "PostgreSQL uses LOOP with EXIT WHEN NOT FOUND, checking the implicit FOUND variable.",
+              "SortOrder": 3
+            },
+            {
+              "Id": "5d67dfa9-bfd3-4aa5-8319-4a09ac2ead10",
+              "Text": "In all cases the FETCH must be repeated inside the loop body when using manual (non-FOR-loop) iteration.",
+              "SortOrder": 4
+            }
+          ]
+        },
+        {
+          "Id": "4c3c4d86-a0f6-421c-a1e4-eb087d04e714",
+          "TopicId": "46132edf-1733-426e-b04d-fa3d577965b2",
+          "Title": "SQL Server (T-SQL) Specifics",
+          "BodyText": "T-SQL offers the richest set of cursor type options but places the burden of resource cleanup on the developer. It has no cursor FOR loops or parameterized cursors.",
+          "Notes": "Example pattern: DECLARE emp_cursor CURSOR FAST_FORWARD FOR SELECT ...; OPEN; FETCH NEXT ... INTO @var; WHILE @@FETCH_STATUS = 0 BEGIN ... END; CLOSE; DEALLOCATE;",
+          "SortOrder": 2,
+          "CreatedDate": "2026-11-17T05:15:55.3457591-05:00",
+          "ModifiedDate": "2026-11-17T05:15:55.3457591-05:00",
+          "Items": [
+            {
+              "Id": "755d8b89-509f-42e2-b218-884e73e99bac",
+              "Text": "Supports STATIC, KEYSET, DYNAMIC, and FAST_FORWARD cursor types plus LOCAL/GLOBAL scope.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "7b174976-9a30-4e75-9b3e-932ad10db6d7",
+              "Text": "FAST_FORWARD delivers the best performance for sequential, read-only processing.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "90e1e019-27f6-47ea-9cf2-60c9accd1833",
+              "Text": "DEALLOCATE is mandatory; omitting it can cause memory leaks in long-running connections.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "1baf5fcb-247b-4642-90a5-b30d2ceb25e4",
+              "Text": "There are no cursor parameters or cursor variables \u2014 values must be passed through regular variables in the SELECT.",
+              "SortOrder": 3
+            },
+            {
+              "Id": "0d175a29-e5a2-4c1a-92ca-ca297826deae",
+              "Text": "Loops must be written manually with WHILE and a repeated FETCH NEXT statement.",
+              "SortOrder": 4
+            }
+          ]
+        },
+        {
+          "Id": "73bd0dc2-3fe7-4a2b-9e36-4141ba4c6796",
+          "TopicId": "46132edf-1733-426e-b04d-fa3d577965b2",
+          "Title": "Oracle PL/SQL: Explicit Cursors, FOR Loops, and REF CURSORs",
+          "BodyText": "Oracle provides the most flexible cursor model, including implicit cursors, parameterized explicit cursors, and REF CURSORs that can be passed as variables. Its cursor FOR loop removes most boilerplate code.",
+          "Notes": "A cursor FOR loop such as FOR emp_rec IN (SELECT employee_name FROM employees) LOOP ... END LOOP; automatically handles OPEN, FETCH, exit testing, and CLOSE.",
+          "SortOrder": 3,
+          "CreatedDate": "2026-11-17T05:15:55.3457591-05:00",
+          "ModifiedDate": "2026-11-17T05:15:55.3457591-05:00",
+          "Items": [
+            {
+              "Id": "b1d1a6ef-4b17-4bc9-9190-41e9a2cbd3d7",
+              "Text": "Explicit cursors are declared with CURSOR emp_cursor IS SELECT ... and iterated with LOOP / FETCH / EXIT WHEN emp_cursor%NOTFOUND.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "9ef8c95d-f00c-40d2-93fe-9b06bb2eb322",
+              "Text": "Cursor FOR loops open, fetch, test, and close the cursor automatically, reducing errors.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "1490e146-1526-4a24-b611-9c5090f48574",
+              "Text": "Oracle supports parameterized cursors, so the same cursor can be opened with different argument values.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "d66b717c-e41f-4e92-8a66-c55c89b37cf0",
+              "Text": "REF CURSORs act as cursor variables that can be passed between procedures or returned to client applications.",
+              "SortOrder": 3
+            },
+            {
+              "Id": "802d3105-b044-450d-a2ce-c78ad7673596",
+              "Text": "Cursors are closed and cleaned up automatically when the block ends \u2014 no DEALLOCATE equivalent exists.",
+              "SortOrder": 4
+            }
+          ]
+        },
+        {
+          "Id": "dfc72b7f-476c-4973-ab0d-3233b356f675",
+          "TopicId": "46132edf-1733-426e-b04d-fa3d577965b2",
+          "Title": "MySQL and PostgreSQL Approaches",
+          "BodyText": "MySQL offers the most limited cursor support, while PostgreSQL sits between SQL Server and Oracle in capability. Both automatically release cursor resources.",
+          "Notes": "MySQL cursors live inside stored procedures defined with a DELIMITER block; PostgreSQL cursors appear inside DO blocks or PL/pgSQL functions.",
+          "SortOrder": 4,
+          "CreatedDate": "2026-11-17T05:15:55.3457591-05:00",
+          "ModifiedDate": "2026-11-17T05:15:55.3457591-05:00",
+          "Items": [
+            {
+              "Id": "86f49a54-5b1e-412b-b0f0-f65dc515813f",
+              "Text": "MySQL cursors are read-only and forward-only, with no scrollability or cursor variables.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "936cbbb7-47c9-40d3-a94d-c90f839f51af",
+              "Text": "MySQL requires DECLARE CONTINUE HANDLER FOR NOT FOUND SET done = 1 to signal the end of the result set.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "cb876f26-bc3a-415e-ad21-b7de892cae0b",
+              "Text": "PostgreSQL supports both scrollable and no-scroll cursors as well as cursor variables.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "b7e1463f-eac5-43a7-9f6c-08d7b548a77f",
+              "Text": "PostgreSQL\u0027s implicit FOR loop \u2014 FOR rec IN SELECT ... LOOP \u2014 is the recommended, simplest iteration form.",
+              "SortOrder": 3
+            },
+            {
+              "Id": "aebb63fe-4dc0-4b86-b3e5-d0d38c695320",
+              "Text": "Neither platform uses DEALLOCATE; cursors close automatically when the enclosing block or procedure ends.",
+              "SortOrder": 4
+            }
+          ]
+        },
+        {
+          "Id": "810de387-6123-4d1a-bf4a-ec69250d95e5",
+          "TopicId": "46132edf-1733-426e-b04d-fa3d577965b2",
+          "Title": "Choosing and Porting Cursor Code Between Platforms",
+          "BodyText": "Knowing the platform differences helps you translate procedures during migrations and pick the least error-prone construct on each system. The guiding performance principle remains the same everywhere.",
+          "Notes": "Regardless of platform, prefer set-based SQL first; cursors should remain the last resort for genuinely row-by-row logic.",
+          "SortOrder": 5,
+          "CreatedDate": "2026-11-17T05:15:55.3457591-05:00",
+          "ModifiedDate": "2026-11-17T05:15:55.3457591-05:00",
+          "Items": [
+            {
+              "Id": "103de601-6754-4d92-8fa5-2295f46a05ce",
+              "Text": "Prefer built-in FOR loops (Oracle, PostgreSQL) over manual loops because they eliminate missed FETCH and CLOSE bugs.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "cc4beda1-e5a9-44c3-9507-0f3c4968930c",
+              "Text": "When porting T-SQL to Oracle or PostgreSQL, drop DEALLOCATE and replace @@FETCH_STATUS with %NOTFOUND or NOT FOUND.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "56e40b10-4483-4fc3-890d-5b90281c484d",
+              "Text": "When porting to MySQL, add a CONTINUE HANDLER and a done flag to replicate the loop exit condition.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "652f4185-3a48-4e89-9830-f751d9e62430",
+              "Text": "Oracle REF CURSORs have no direct T-SQL equivalent and usually require redesign, such as returning a result set directly.",
+              "SortOrder": 3
+            },
+            {
+              "Id": "b97da954-b50a-4970-a049-a73866315657",
+              "Text": "Performance tuning differs: FAST_FORWARD matters in SQL Server, while Oracle and PostgreSQL favor bulk operations and FOR loops.",
+              "SortOrder": 4
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Id": "0005ff45-76b4-4de5-a3e4-74f39d895452",
+      "Title": "Best Practices, Common Mistakes, and Decision Making",
+      "Summary": "Consolidates guidance on FAST_FORWARD, LOCAL scope, error cleanup, SET NOCOUNT ON, and filtering in the cursor SELECT, while flagging frequent errors like missing DEALLOCATE and unjustified nested cursors. Provides a decision tree and pre-production checklist for evaluating whether a cursor is warranted.",
+      "SortOrder": 7,
+      "CreatedDate": "2026-11-17T05:12:31.1433795-05:00",
+      "ModifiedDate": "2026-11-17T05:12:31.1433795-05:00",
+      "Elements": [
+        {
+          "Id": "634694e1-c7c5-4b28-8c2c-f3cab0b95cce",
+          "TopicId": "0005ff45-76b4-4de5-a3e4-74f39d895452",
+          "Title": "Core Best Practices for Cursor Declaration",
+          "BodyText": "How you declare a cursor largely determines how expensive it will be. A few declaration choices deliver most of the available performance and safety benefits.",
+          "Notes": "Example: DECLARE cursor_name CURSOR LOCAL FAST_FORWARD FOR SELECT columns FROM table WHERE conditions;",
+          "SortOrder": 0,
+          "CreatedDate": "2026-11-17T05:16:23.8450737-05:00",
+          "ModifiedDate": "2026-11-17T05:16:23.8450737-05:00",
+          "Items": [
+            {
+              "Id": "7d980403-990e-4e17-840e-1bb5b7315d3b",
+              "Text": "Use FAST_FORWARD whenever you only need forward-only, read-only traversal \u2014 it is the fastest cursor type.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "84b1ead9-428e-4e2b-bc93-128a01ea5658",
+              "Text": "Declare cursors as LOCAL so they are automatically deallocated when the batch, procedure, or trigger scope ends.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "3e532126-07e8-4941-9138-8a631950b806",
+              "Text": "Reserve SCROLL, KEYSET, STATIC, and DYNAMIC for the rare cases that truly require scrollability or visibility of concurrent changes.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "e453ea44-935e-411d-a0b9-19aee62ddec2",
+              "Text": "Combine options (LOCAL FAST_FORWARD) as the default starting point for production cursor code.",
+              "SortOrder": 3
+            }
+          ]
+        },
+        {
+          "Id": "34f58e98-a94f-4476-8295-2ee3ce6f8f6e",
+          "TopicId": "0005ff45-76b4-4de5-a3e4-74f39d895452",
+          "Title": "Limit the Result Set in the Cursor SELECT",
+          "BodyText": "Filtering belongs in the cursor\u0027s SELECT statement, not inside the WHILE loop. Every row fetched and then skipped is wasted work.",
+          "Notes": "Anti-pattern: fetching all rows and wrapping the loop body in IF @condition.",
+          "SortOrder": 1,
+          "CreatedDate": "2026-11-17T05:16:23.8450737-05:00",
+          "ModifiedDate": "2026-11-17T05:16:23.8450737-05:00",
+          "Items": [
+            {
+              "Id": "6817d2e4-355a-4c1c-b61d-cce55dcff629",
+              "Text": "Place WHERE conditions directly in the cursor declaration so the engine can use indexes.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "95cdff1f-4c5e-4b0e-838a-dc01cbb43413",
+              "Text": "Select only the columns you actually need into variables \u2014 extra columns inflate memory and fetch cost.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "3b461d35-d5e1-4690-881a-a139cd3a68d0",
+              "Text": "Avoid IF-based filtering inside the loop, which still pays the per-row fetch overhead.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "974fe342-3ae9-479d-a0d5-73891d876027",
+              "Text": "Consider TOP (@BatchSize) or date predicates to cap the number of rows a single run processes.",
+              "SortOrder": 3
+            }
+          ]
+        },
+        {
+          "Id": "e066d969-6e51-4a60-a05e-50b368f3d812",
+          "TopicId": "0005ff45-76b4-4de5-a3e4-74f39d895452",
+          "Title": "Error Handling and Guaranteed Cleanup",
+          "BodyText": "A cursor that is abandoned mid-loop because of an error leaves its resources allocated. Wrapping cursor logic in TRY-CATCH with explicit cleanup prevents this.",
+          "Notes": "Pattern: BEGIN CATCH IF CURSOR_STATUS(\u0027local\u0027,\u0027cursor_name\u0027) \u003E= 0 BEGIN CLOSE cursor_name; DEALLOCATE cursor_name; END; THROW; END CATCH;",
+          "SortOrder": 2,
+          "CreatedDate": "2026-11-17T05:16:23.8450737-05:00",
+          "ModifiedDate": "2026-11-17T05:16:23.8450737-05:00",
+          "Items": [
+            {
+              "Id": "436e2186-ba9a-4ae6-9ea1-9887aba6e3b2",
+              "Text": "Put OPEN, the fetch loop, CLOSE, and DEALLOCATE inside BEGIN TRY.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "b5cad97d-8132-4d1f-91c7-acac4a3a0e69",
+              "Text": "In the CATCH block, test CURSOR_STATUS before closing so you don\u0027t error on an already-closed cursor.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "f0d64732-713e-44e7-b773-44771d57fc37",
+              "Text": "Roll back open transactions (IF @@TRANCOUNT \u003E 0 ROLLBACK) before re-throwing.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "bf33662a-aee8-4020-a690-1bc9bde8ee1f",
+              "Text": "Use THROW to re-raise the original error after cleanup so callers still see the failure.",
+              "SortOrder": 3
+            },
+            {
+              "Id": "06145351-714b-45c9-a331-1ede7fc69e4d",
+              "Text": "For long runs, commit per row or per small batch so one bad row doesn\u0027t discard all prior work.",
+              "SortOrder": 4
+            }
+          ]
+        },
+        {
+          "Id": "f385d121-bcf4-49bc-bac8-c67d73aac226",
+          "TopicId": "0005ff45-76b4-4de5-a3e4-74f39d895452",
+          "Title": "Stored Procedure Hygiene: SET NOCOUNT ON and Transactions",
+          "BodyText": "Small procedural settings have outsized effects when a loop runs thousands of iterations. SET NOCOUNT ON and careful transaction scoping are the two biggest.",
+          "Notes": "Without NOCOUNT ON, a 10,000-row cursor sends 10,000 unnecessary \u0027rows affected\u0027 messages to the client.",
+          "SortOrder": 3,
+          "CreatedDate": "2026-11-17T05:16:23.8450737-05:00",
+          "ModifiedDate": "2026-11-17T05:16:23.8450737-05:00",
+          "Items": [
+            {
+              "Id": "2d9fb98d-81e5-4598-81a3-247624175aba",
+              "Text": "Add SET NOCOUNT ON at the top of any procedure containing a cursor to suppress per-statement row-count messages and reduce network traffic.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "ac740b6d-5006-41fd-b0ff-358b2c3576d5",
+              "Text": "Use small, per-row or per-batch transactions rather than one transaction wrapping the entire loop, which holds locks for the whole run.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "2a96deec-a41b-454f-8c4c-e8b55e4782d2",
+              "Text": "Log per-row failures to an error table inside CATCH so processing can continue with remaining rows.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "bd587eee-0407-4f98-b4b6-318e1af33093",
+              "Text": "Track counters (rows processed, totals) and return a summary result set so callers can verify the run.",
+              "SortOrder": 3
+            }
+          ]
+        },
+        {
+          "Id": "5676070d-d607-434f-a091-ddf89d560e1f",
+          "TopicId": "0005ff45-76b4-4de5-a3e4-74f39d895452",
+          "Title": "Common Mistakes to Avoid",
+          "BodyText": "Most cursor problems in production trace back to a short list of recurring errors. Recognizing them makes code review much faster.",
+          "Notes": "",
+          "SortOrder": 4,
+          "CreatedDate": "2026-11-17T05:16:23.8450737-05:00",
+          "ModifiedDate": "2026-11-17T05:16:23.8450737-05:00",
+          "Items": [
+            {
+              "Id": "79b11fd7-79a3-4431-88e1-c1ecf6ed7ee6",
+              "Text": "Forgetting DEALLOCATE after CLOSE \u2014 the definition and its resources remain, causing memory leaks.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "6e5e473b-bcc0-4925-bcd3-f8476bde62cf",
+              "Text": "Omitting error handling, so a failed UPDATE inside the loop leaves the cursor open forever.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "4489bcb0-0d8e-4307-9ee1-c9806c92e33f",
+              "Text": "Using a cursor to compute something an aggregate can do, such as summing amounts instead of SELECT @Total = SUM(Amount).",
+              "SortOrder": 2
+            },
+            {
+              "Id": "4542f9c0-0070-4f58-b304-96992c15f472",
+              "Text": "Updating the same table the cursor is reading, which can cause blocking and unexpected results.",
+              "SortOrder": 3
+            },
+            {
+              "Id": "bef89c6d-df51-4138-a4a5-3812c524c814",
+              "Text": "Nesting cursors without justification, producing O(n\u00B2) behavior where a JOIN or window function would work.",
+              "SortOrder": 4
+            }
+          ]
+        },
+        {
+          "Id": "de820db2-b145-4c69-9f2f-2735bd4430ce",
+          "TopicId": "0005ff45-76b4-4de5-a3e4-74f39d895452",
+          "Title": "Decision Tree: Should I Use a Cursor?",
+          "BodyText": "Before writing a cursor, walk through a short series of questions to confirm no set-based construct can do the job. The answer is usually that one can.",
+          "Notes": "Rule of thumb: cursors are a last resort, not a first choice.",
+          "SortOrder": 5,
+          "CreatedDate": "2026-11-17T05:16:23.8450737-05:00",
+          "ModifiedDate": "2026-11-17T05:16:23.8450737-05:00",
+          "Items": [
+            {
+              "Id": "887de162-0b57-4255-ab31-151bb36956d4",
+              "Text": "If you don\u0027t truly need row-by-row processing, stop and write set-based SQL.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "6852076f-bc99-4242-8c79-e831eddad0e7",
+              "Text": "Check whether window functions (ROW_NUMBER, LAG, LEAD, SUM OVER) solve it \u2014 running totals and prior-row comparisons almost always do.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "5cbc5258-eb3a-418d-8a55-e11e93524c30",
+              "Text": "Check whether a CTE, derived table, or a single UPDATE/DELETE with a WHERE clause is sufficient.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "fd60fa6f-f1f4-4914-afff-ae2488959f63",
+              "Text": "A cursor is justified for external API or stored-procedure calls per row, genuinely complex per-row business logic, and one-time administrative tasks.",
+              "SortOrder": 3
+            },
+            {
+              "Id": "e984d1a7-a16c-47fd-8b1c-b29ac5a51a77",
+              "Text": "When unsure, implement the set-based version first and measure before falling back to a cursor.",
+              "SortOrder": 4
+            }
+          ]
+        },
+        {
+          "Id": "1daf0b72-173c-4303-9a4b-885bf3f9da49",
+          "TopicId": "0005ff45-76b4-4de5-a3e4-74f39d895452",
+          "Title": "Pre-Production Performance Checklist",
+          "BodyText": "Use this checklist as a gate before any cursor-based code ships. Each item corresponds to a failure mode seen in real systems.",
+          "Notes": "Documenting the justification is as important as the technical items \u2014 it tells the next developer why the cursor exists.",
+          "SortOrder": 6,
+          "CreatedDate": "2026-11-17T05:16:23.8450737-05:00",
+          "ModifiedDate": "2026-11-17T05:16:23.8450737-05:00",
+          "Items": [
+            {
+              "Id": "f71054ee-e7f5-41d4-a629-dd090e8fa674",
+              "Text": "Confirm a set-based solution was attempted and compared on performance.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "a34456ab-6010-4a9d-ade8-6d677de92bdd",
+              "Text": "Test at expected production data volume, not just a handful of sample rows.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "3805acfa-c51c-4d93-8ab1-540c8311ff22",
+              "Text": "Verify FAST_FORWARD (or a justified alternative) and LOCAL scope are specified.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "7ad53376-ac79-4261-a50b-fc7064cb4b27",
+              "Text": "Confirm the cursor SELECT is filtered and that error handling guarantees deallocation.",
+              "SortOrder": 3
+            },
+            {
+              "Id": "d298333f-6639-4ab9-ac82-c0197a901be5",
+              "Text": "Evaluate whether batch processing with TOP (@BatchSize) and @@ROWCOUNT would be a better fit.",
+              "SortOrder": 4
+            },
+            {
+              "Id": "21b51bca-3904-4a5a-8a83-d9819c140a9c",
+              "Text": "Document in comments why the cursor is necessary and what alternatives were rejected.",
+              "SortOrder": 5
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "TotalElementCount": 53
+}

@@ -1,0 +1,1940 @@
+{
+  "ModuleFolderName": "Module_10_(Week_10)",
+  "CourseName": "COP4709 \u2014 Applied Database II",
+  "GeneratedDate": "2026-11-17T05:27:09.7211051-05:00",
+  "ModifiedDate": "2026-11-17T05:30:44.8124015-05:00",
+  "Outcomes": [],
+  "Topics": [
+    {
+      "Id": "abf361f2-11e8-4ed6-8868-a1928c2b1dfe",
+      "Title": "Full-Text Indexing Fundamentals",
+      "Summary": "Explains what a full-text index is, how the full-text engine transforms text through word breaking, stopword filtering, stemming, thesaurus expansion, and inverted index construction. Contrasts full-text indexes with standard B-Tree indexes and with LIKE \u0027%term%\u0027 scans.",
+      "SortOrder": 0,
+      "CreatedDate": "2026-11-17T05:27:09.7211051-05:00",
+      "ModifiedDate": "2026-11-17T05:27:09.7211051-05:00",
+      "Elements": [
+        {
+          "Id": "8608b6f2-f931-4fff-bb21-24fb0d69d7a4",
+          "TopicId": "abf361f2-11e8-4ed6-8868-a1928c2b1dfe",
+          "Title": "What a Full-Text Index Is",
+          "BodyText": "A full-text index is a specialised database index built to support fast, linguistic searches across large bodies of text rather than exact value comparisons. It turns long text columns into a searchable word map.",
+          "Notes": "Standard indexes answer \u0022find rows where status = \u0027Open\u0027\u0022; full-text indexes answer \u0022find all articles that discuss machine learning near neural networks\u0022.",
+          "SortOrder": 0,
+          "CreatedDate": "2026-11-17T05:27:36.1352377-05:00",
+          "ModifiedDate": "2026-11-17T05:27:36.1352377-05:00",
+          "Items": [
+            {
+              "Id": "70bf2e46-071f-4c43-8242-76e0b89b8ba1",
+              "Text": "It supports lookups by word, phrase, prefix, proximity, or linguistic root.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "837184fe-1fdd-449c-91a9-1c0468472b9a",
+              "Text": "It is designed for columns containing hundreds or thousands of words per row, including NVARCHAR(MAX).",
+              "SortOrder": 1
+            },
+            {
+              "Id": "17f215b0-30f2-44b7-b5cc-883d237ff44b",
+              "Text": "SQL Server implements it through the built-in Full-Text Search engine, with catalogs holding the indexes.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "80f0daaa-7ba0-4d01-99d1-b21c5a7fd1e7",
+              "Text": "Every major platform offers an equivalent: Oracle Text CONTAINS, MySQL MATCH...AGAINST, PostgreSQL to_tsvector/to_tsquery, Db2 Text Search.",
+              "SortOrder": 3
+            }
+          ]
+        },
+        {
+          "Id": "93a30e85-1ccd-4e6d-8934-d8d239555797",
+          "TopicId": "abf361f2-11e8-4ed6-8868-a1928c2b1dfe",
+          "Title": "The Problem With LIKE \u0027%term%\u0027",
+          "BodyText": "A LIKE search with a leading wildcard cannot use any B-Tree index, so the database must scan every row and every character. This is one of the most common text-search performance anti-patterns.",
+          "Notes": "Example: SELECT title, body FROM articles WHERE body LIKE \u0027%learning%\u0027 performs a full table scan each time it runs.",
+          "SortOrder": 1,
+          "CreatedDate": "2026-11-17T05:27:36.1352377-05:00",
+          "ModifiedDate": "2026-11-17T05:27:36.1352377-05:00",
+          "Items": [
+            {
+              "Id": "6b1af80b-5563-4bf5-bab5-95f3b0f1b7cf",
+              "Text": "The leading wildcard defeats B-Tree seeking because the index is ordered from the first character.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "298bc585-50a4-4a82-829f-a8c4b8a1f021",
+              "Text": "Scan cost grows linearly with row count, so performance degrades as the table grows.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "182b22d6-850d-42d6-9906-53be66d687e8",
+              "Text": "LIKE has no linguistic awareness: \u0027%learning%\u0027 misses \u0022learn\u0022, \u0022learns\u0022, and \u0022learned\u0022.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "f32c9806-e3c7-456f-9c4d-2b7c0e062190",
+              "Text": "LIKE returns unordered binary matches with no relevance score and no proximity capability.",
+              "SortOrder": 3
+            },
+            {
+              "Id": "c9a83bbd-1cf0-4ea3-994f-62f9e9c01c5a",
+              "Text": "The full-text equivalent, CONTAINS(body, \u0027\u0022learn*\u0022\u0027), is an index lookup that stays fast on millions of rows.",
+              "SortOrder": 4
+            }
+          ]
+        },
+        {
+          "Id": "6d5af69a-7cab-4c40-8db9-cee64304d7a1",
+          "TopicId": "abf361f2-11e8-4ed6-8868-a1928c2b1dfe",
+          "Title": "The Full-Text Processing Pipeline",
+          "BodyText": "When a full-text index is created, a background process transforms the raw text through a series of linguistic stages before storing it. Understanding these stages explains why a document does or does not match.",
+          "Notes": "The pipeline is language-aware; the LANGUAGE setting on each indexed column chooses which word breaker and stemmer are applied.",
+          "SortOrder": 2,
+          "CreatedDate": "2026-11-17T05:27:36.1352377-05:00",
+          "ModifiedDate": "2026-11-17T05:27:36.1352377-05:00",
+          "Items": [
+            {
+              "Id": "dd9b55ec-208d-4db3-add9-a631fbf803df",
+              "Text": "Word Breaker: tokenises text into individual words using language rules \u2014 \u0022Machine learning is powerful\u0022 becomes Machine, learning, is, powerful.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "0e48167c-7f31-41fb-9f95-fe5aa3c323b9",
+              "Text": "Stopword Filter: discards common noise words such as is, the, a, and, of that carry no search value.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "506c4e24-d37c-46b6-a795-fef834e6389f",
+              "Text": "Stemmer: reduces words to a linguistic root so \u0022learning\u0022 matches learned, learns, and learner.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "61aa4bc7-7a2f-4f0e-baab-b8550673e49d",
+              "Text": "Thesaurus (optional): expands terms to configured synonyms, so \u0022car\u0022 can also match automobile and vehicle.",
+              "SortOrder": 3
+            },
+            {
+              "Id": "27a1e064-be76-4625-ae35-05c43f6a8c82",
+              "Text": "Each stage trims index size and increases recall, but can also cause unexpected misses on exact terms.",
+              "SortOrder": 4
+            }
+          ]
+        },
+        {
+          "Id": "8de850d7-64ce-483a-86c6-f75bd73a322b",
+          "TopicId": "abf361f2-11e8-4ed6-8868-a1928c2b1dfe",
+          "Title": "The Inverted Index",
+          "BodyText": "The output of the pipeline is an inverted index \u2014 the core data structure of all full-text search. It maps each unique word to the list of documents and positions where that word appears.",
+          "Notes": "Example entry: machine \u2192 [doc3:pos1, doc7:pos4, doc22:pos12]. This is the same principle search engines such as Google use.",
+          "SortOrder": 3,
+          "CreatedDate": "2026-11-17T05:27:36.1352377-05:00",
+          "ModifiedDate": "2026-11-17T05:27:36.1352377-05:00",
+          "Items": [
+            {
+              "Id": "192adeff-3e55-4fa9-97df-00e61c7bd555",
+              "Text": "A forward index maps documents to their words; an inverted index reverses that relationship.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "f0c3279b-a9e6-40a3-a121-ca4478511616",
+              "Text": "Searching for \u0022neural network\u0022 looks up both words and intersects their document lists.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "b1b4075c-c3fc-4ada-9b97-5961fea837de",
+              "Text": "Storing word positions is what makes phrase matching and NEAR proximity search possible.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "f8505d89-11bc-4778-8f5e-2b4696efdf8e",
+              "Text": "Position and frequency data also feed the relevance rank score returned by CONTAINSTABLE and FREETEXTTABLE.",
+              "SortOrder": 3
+            },
+            {
+              "Id": "935d6244-453c-4826-9e66-4613f90e2bf5",
+              "Text": "PostgreSQL names this structure explicitly with its GIN (Generalized Inverted Index) type.",
+              "SortOrder": 4
+            }
+          ]
+        },
+        {
+          "Id": "4a0d6f80-268f-43cc-8efd-406caa0ce3cc",
+          "TopicId": "abf361f2-11e8-4ed6-8868-a1928c2b1dfe",
+          "Title": "Full-Text Index vs Standard B-Tree Index",
+          "BodyText": "Full-text and B-Tree indexes solve different problems and behave differently in structure, maintenance, and capability. Choosing between them starts with the kind of question being asked.",
+          "Notes": "Both can coexist on the same table \u2014 a B-Tree on category or published_at plus a full-text index on title and body.",
+          "SortOrder": 4,
+          "CreatedDate": "2026-11-17T05:27:36.1352377-05:00",
+          "ModifiedDate": "2026-11-17T05:27:36.1352377-05:00",
+          "Items": [
+            {
+              "Id": "f9fb8d6d-7757-426e-b8a8-26560ed83fd4",
+              "Text": "Purpose: B-Tree handles exact and range comparisons on values; full-text handles word, phrase, and linguistic searches within text.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "2a7c7dac-6fba-4596-851f-60cbc7fd8635",
+              "Text": "Structure: B-Tree is a balanced tree of values pointing to rows; full-text is an inverted word index of document IDs and positions.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "a0847eed-3e39-4aef-b5a5-503c81a8f6e5",
+              "Text": "Language awareness: B-Tree compares character-by-character; full-text applies word breaking, stopwords, stemming, and thesaurus.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "71e77c28-a9d8-4c3a-984e-d6f1dbc98a0c",
+              "Text": "Relevance: only full-text returns a rank score (0\u20131000) for ordering results by relevance.",
+              "SortOrder": 3
+            },
+            {
+              "Id": "840d3e45-6be0-4572-b1a2-70c359c259b2",
+              "Text": "Coverage: a B-Tree cannot serve LIKE \u0027%word%\u0027 or index MAX columns effectively, while full-text was designed for exactly that.",
+              "SortOrder": 4
+            }
+          ]
+        },
+        {
+          "Id": "367d9153-1629-48fc-af69-b6d7c1c36779",
+          "TopicId": "abf361f2-11e8-4ed6-8868-a1928c2b1dfe",
+          "Title": "Asynchronous Index Maintenance",
+          "BodyText": "Unlike a B-Tree index, a full-text index is not updated synchronously with the write that changed the data. It is populated by a background crawl process, which introduces a propagation delay.",
+          "Notes": "CHANGE_TRACKING = AUTO is the usual production setting; MANUAL requires an explicit ALTER FULLTEXT INDEX ... START POPULATION command.",
+          "SortOrder": 5,
+          "CreatedDate": "2026-11-17T05:27:36.1352377-05:00",
+          "ModifiedDate": "2026-11-17T05:27:36.1352377-05:00",
+          "Items": [
+            {
+              "Id": "a7c08485-01f6-46e8-b879-978adc039cb8",
+              "Text": "With CHANGE_TRACKING = AUTO, changes typically become searchable within seconds to minutes.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "c00f86aa-3c57-46e1-8fba-ab68a9332e03",
+              "Text": "There is a window during which newly inserted rows exist in the table but are not yet searchable.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "ee866cac-f014-4fc1-a0d6-caae698f46da",
+              "Text": "Full, incremental, and update populations let you control how much text is re-crawled.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "4b2f4704-2afc-48f2-972a-4c48bff39d67",
+              "Text": "Bulk loads and catalog rebuilds are CPU- and I/O-intensive and should be scheduled off-peak.",
+              "SortOrder": 3
+            },
+            {
+              "Id": "99c4ac5c-17ee-4869-9e03-edef96a24fa3",
+              "Text": "Applications needing millisecond search visibility need a dedicated search service instead.",
+              "SortOrder": 4
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Id": "707f9a53-e091-4cd1-b139-0c68328d6ea8",
+      "Title": "Setting Up Full-Text Search in SQL Server",
+      "Summary": "Walks through verifying the Full-Text Search feature, creating a sample table with a unique key, creating a full-text catalog, and building a full-text index with language and change-tracking options. Covers full, incremental, and update population methods and the implications of asynchronous index maintenance.",
+      "SortOrder": 1,
+      "CreatedDate": "2026-11-17T05:27:09.7211051-05:00",
+      "ModifiedDate": "2026-11-17T05:27:09.7211051-05:00",
+      "Elements": [
+        {
+          "Id": "97057ec1-fac7-48f1-abb7-47470d86eff1",
+          "TopicId": "707f9a53-e091-4cd1-b139-0c68328d6ea8",
+          "Title": "Prerequisites for Full-Text Search",
+          "BodyText": "Before any full-text index can be created, three conditions must be satisfied at the server, database, and table level. Missing any one of them will cause the CREATE FULLTEXT INDEX statement to fail.",
+          "Notes": "Think of these as the checklist to run through before writing any setup code: feature \u2192 catalog \u2192 unique key \u2192 index.",
+          "SortOrder": 0,
+          "CreatedDate": "2026-11-17T05:28:05.0417931-05:00",
+          "ModifiedDate": "2026-11-17T05:28:05.0417931-05:00",
+          "Items": [
+            {
+              "Id": "ca6ce223-437d-4b75-bfd6-24b8c39a3094",
+              "Text": "The Full-Text Search feature must be installed as part of the SQL Server instance.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "8be880d4-fe3b-452b-9e46-71efe7035062",
+              "Text": "A Full-Text Catalog must exist as the logical container that holds the full-text indexes.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "53cfca8a-0194-46b0-b5b0-f95aab5b8039",
+              "Text": "A Full-Text Index must then be created on the target table and its text columns.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "f520f760-721d-4a67-ae30-e93a38b74e22",
+              "Text": "The table must have a single-column unique index \u2014 usually the primary key \u2014 so the engine can identify each row.",
+              "SortOrder": 3
+            },
+            {
+              "Id": "be309df4-6c7c-4747-96e6-bd96e57ba5fd",
+              "Text": "Only one full-text index is permitted per table, though it may cover multiple columns.",
+              "SortOrder": 4
+            }
+          ]
+        },
+        {
+          "Id": "fedebdf5-9c37-4b5e-9ffc-160ef93df7fd",
+          "TopicId": "707f9a53-e091-4cd1-b139-0c68328d6ea8",
+          "Title": "Step 1 \u2014 Verify the Feature Is Installed and Enabled",
+          "BodyText": "The first step is confirming that the Full-Text Search engine is actually present on the instance and enabled for the current database. Two built-in property functions answer both questions.",
+          "Notes": "If the feature is missing, add it via SQL Server Setup \u003E Feature Selection \u003E Full-Text and Semantic Extractions for Search.",
+          "SortOrder": 1,
+          "CreatedDate": "2026-11-17T05:28:05.0417931-05:00",
+          "ModifiedDate": "2026-11-17T05:28:05.0417931-05:00",
+          "Items": [
+            {
+              "Id": "77c5f90b-b123-4e9b-b5b8-21b1613cc552",
+              "Text": "SELECT FULLTEXTSERVICEPROPERTY(\u0027IsFullTextInstalled\u0027) returns 1 if the feature is installed and 0 if it is not.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "af846d22-1bee-4511-a058-a4b72d44f4bc",
+              "Text": "SELECT DATABASEPROPERTY(DB_NAME(), \u0027IsFullTextEnabled\u0027) confirms full-text is enabled on the current database.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "37e51330-2b10-4b6a-a73f-44d0ad8d5db0",
+              "Text": "Installing the feature requires re-running SQL Server Setup, so verify before planning a deployment.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "0ef8705c-9e77-4256-85b1-fb4c6a77827e",
+              "Text": "Checking first avoids confusing errors later when creating the catalog or index.",
+              "SortOrder": 3
+            }
+          ]
+        },
+        {
+          "Id": "13661d4a-b519-4529-b2ac-d8aadfd62397",
+          "TopicId": "707f9a53-e091-4cd1-b139-0c68328d6ea8",
+          "Title": "Step 2 \u2014 Create the Sample Table with a Unique Key",
+          "BodyText": "Full-text indexing targets tables with long text columns. The example kb_articles table models a knowledge base \u2014 a classic full-text candidate \u2014 and includes the mandatory unique key.",
+          "Notes": "Sample rows cover AI, database tuning, security, and NLP topics so that later CONTAINS and FREETEXT queries return meaningful results.",
+          "SortOrder": 2,
+          "CreatedDate": "2026-11-17T05:28:05.0417931-05:00",
+          "ModifiedDate": "2026-11-17T05:28:05.0417931-05:00",
+          "Items": [
+            {
+              "Id": "12d28678-a875-4676-8498-983cd04e0013",
+              "Text": "article_id INT IDENTITY PRIMARY KEY supplies the single-column unique index the full-text engine requires.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "98703cc0-7d63-4e0a-8c84-a7c33c048075",
+              "Text": "title NVARCHAR(300) and body NVARCHAR(MAX) hold the long text that will be indexed.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "50db1233-5a54-4c83-ab4a-c80c18bf60e9",
+              "Text": "NVARCHAR(MAX) columns are ideal for full-text because standard B-Tree indexes cannot index them effectively.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "0c92b7e7-5a69-4670-b643-3426706c5535",
+              "Text": "A language_id column (1033 = US English) can store per-row language information for multilingual content.",
+              "SortOrder": 3
+            },
+            {
+              "Id": "d339c3d6-5f0c-420e-b4fd-db8bc27435b7",
+              "Text": "Supporting columns such as author, category, and published_at allow full-text predicates to be combined with ordinary WHERE filters.",
+              "SortOrder": 4
+            }
+          ]
+        },
+        {
+          "Id": "2a4be8ce-4029-4061-82f7-25616736b928",
+          "TopicId": "707f9a53-e091-4cd1-b139-0c68328d6ea8",
+          "Title": "Step 3 \u2014 Create a Full-Text Catalog",
+          "BodyText": "A full-text catalog is a logical container that groups one or more full-text indexes. It is created once per database (or per application area) before any index is defined.",
+          "Notes": "Example: CREATE FULLTEXT CATALOG KnowledgeBaseCatalog WITH ACCENT_SENSITIVITY = OFF AS DEFAULT;",
+          "SortOrder": 3,
+          "CreatedDate": "2026-11-17T05:28:05.0417931-05:00",
+          "ModifiedDate": "2026-11-17T05:28:05.0417931-05:00",
+          "Items": [
+            {
+              "Id": "02fdfc8a-b365-466c-9b67-332d12298399",
+              "Text": "One catalog can hold full-text indexes from multiple tables.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "b634263c-6a2d-4241-b469-719814c26dd1",
+              "Text": "ACCENT_SENSITIVITY = OFF makes \u0027resume\u0027 and \u0027r\u00E9sum\u00E9\u0027 match as the same term.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "0a32266a-85ec-4705-a41b-6da31bcf9204",
+              "Text": "AS DEFAULT makes this catalog the one used when an index does not name a catalog explicitly.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "ebc44eaf-78be-464c-b023-3b48a4ecbb4e",
+              "Text": "Verify creation by querying sys.fulltext_catalogs for name, path, is_default, and is_accent_sensitivity_on.",
+              "SortOrder": 3
+            },
+            {
+              "Id": "ece82647-3e0e-4d40-923d-7fe67b4f8368",
+              "Text": "A catalog cannot be dropped until every index stored in it has been dropped first.",
+              "SortOrder": 4
+            }
+          ]
+        },
+        {
+          "Id": "dec2bf14-6819-4efc-95ff-5f183ce22637",
+          "TopicId": "707f9a53-e091-4cd1-b139-0c68328d6ea8",
+          "Title": "Step 4 \u2014 Create the Full-Text Index",
+          "BodyText": "The CREATE FULLTEXT INDEX statement names the columns to index, the key index used to identify rows, the catalog that stores it, and the change-tracking behaviour.",
+          "Notes": "Example: CREATE FULLTEXT INDEX ON kb_articles (title LANGUAGE 1033, body LANGUAGE 1033, author LANGUAGE 1033) KEY INDEX pk_kb_articles ON KnowledgeBaseCatalog WITH (CHANGE_TRACKING = AUTO);",
+          "SortOrder": 4,
+          "CreatedDate": "2026-11-17T05:28:05.0417931-05:00",
+          "ModifiedDate": "2026-11-17T05:28:05.0417931-05:00",
+          "Items": [
+            {
+              "Id": "f95d6c4c-ca7e-4f98-bf8c-3a7d70a56cad",
+              "Text": "Each column can specify LANGUAGE, which selects the word breaker and stemmer used for that column.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "5ea7430c-a233-4854-bc79-587cdae7bc7a",
+              "Text": "KEY INDEX must reference the table\u0027s single-column unique index, not an arbitrary column.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "fa1357a3-2708-44f4-889a-a4b8d659c5c3",
+              "Text": "ON \u003Ccatalog\u003E determines which full-text catalog stores the resulting index files.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "877503e2-3483-447e-93d9-b6c1234fd95a",
+              "Text": "CHANGE_TRACKING = AUTO tells the engine to crawl and index changes automatically.",
+              "SortOrder": 3
+            },
+            {
+              "Id": "23b8dffb-10e4-4369-b30d-d2541275f90b",
+              "Text": "Check status by joining sys.fulltext_indexes to sys.fulltext_catalogs to read change_tracking_state_desc and item_count.",
+              "SortOrder": 4
+            }
+          ]
+        },
+        {
+          "Id": "2b4c71e7-d648-4db1-89e6-f851ec985e00",
+          "TopicId": "707f9a53-e091-4cd1-b139-0c68328d6ea8",
+          "Title": "Population Methods \u2014 Full, Incremental, and Update",
+          "BodyText": "Populating (or crawling) is how text gets into the index. ALTER FULLTEXT INDEX offers three population modes, each suited to a different situation.",
+          "Notes": "Schedule full populations during off-peak hours because re-reading all indexed text is CPU and I/O intensive.",
+          "SortOrder": 5,
+          "CreatedDate": "2026-11-17T05:28:05.0417931-05:00",
+          "ModifiedDate": "2026-11-17T05:28:05.0417931-05:00",
+          "Items": [
+            {
+              "Id": "948484c8-4709-4944-8b61-b307466dc016",
+              "Text": "START FULL POPULATION re-crawls and re-indexes every row \u2014 use after bulk loads or when change tracking is off.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "ca7f9f8d-73e4-4f46-943a-84025311a23b",
+              "Text": "START INCREMENTAL POPULATION processes only rows changed since the last crawl and requires a timestamp column on the table.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "82d3d1d0-3038-4d78-8529-5675a387bb03",
+              "Text": "START UPDATE POPULATION processes only the rows flagged by change tracking, making it fast with minimal overhead.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "5ab640c2-6b18-433f-91d7-62604ceda9dc",
+              "Text": "An initial population should be triggered immediately after the index is created.",
+              "SortOrder": 3
+            },
+            {
+              "Id": "3e411c37-056b-4bdf-9086-54bdcbb34bc9",
+              "Text": "ALTER FULLTEXT INDEX ... DISABLE / ENABLE lets you pause and resume indexing without dropping the index.",
+              "SortOrder": 4
+            }
+          ]
+        },
+        {
+          "Id": "1b4f2bb6-fe3e-4bc2-b362-29ddfdd4ade4",
+          "TopicId": "707f9a53-e091-4cd1-b139-0c68328d6ea8",
+          "Title": "Asynchronous Maintenance and Its Implications",
+          "BodyText": "Unlike B-Tree indexes, full-text indexes are not updated synchronously with INSERT, UPDATE, or DELETE. A background crawl process does the work, which introduces a searchability delay.",
+          "Notes": "This asynchronous model is also why full-text is a poor fit for applications that demand a record be searchable within milliseconds of insertion.",
+          "SortOrder": 6,
+          "CreatedDate": "2026-11-17T05:28:05.0417931-05:00",
+          "ModifiedDate": "2026-11-17T05:28:05.0417931-05:00",
+          "Items": [
+            {
+              "Id": "b1ce59af-3128-4b1a-b718-4e197dd94ac6",
+              "Text": "With CHANGE_TRACKING = AUTO, changes typically propagate within seconds to minutes.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "d3f15b11-8484-4e28-9afd-13c5fbd9c468",
+              "Text": "With CHANGE_TRACKING = MANUAL, you must explicitly trigger a population for new data to become searchable.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "3736fd44-3b39-4d1d-bf7f-f074e0f2c9c2",
+              "Text": "There is always a window where newly inserted rows exist in the table but are not yet returned by CONTAINS or FREETEXT.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "833e13c0-fe56-4b71-b37e-61c9f9571bcf",
+              "Text": "Writes themselves stay fast because the change is merely logged for the crawler rather than indexed inline.",
+              "SortOrder": 3
+            },
+            {
+              "Id": "fae517da-aceb-47ec-a33d-b21f2236bbce",
+              "Text": "Bulk loads and catalog rebuilds carry significant post-load overhead and should be scheduled off-peak.",
+              "SortOrder": 4
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Id": "dd9ad304-21e6-47b8-ad08-0bed4a081e72",
+      "Title": "Precise Searching with CONTAINS",
+      "Summary": "Covers the CONTAINS predicate for single words, exact phrases, Boolean AND/OR/NOT logic, prefix wildcards, FORMSOF inflectional and thesaurus expansion, and NEAR proximity searching. Also shows searching across multiple or all indexed columns.",
+      "SortOrder": 2,
+      "CreatedDate": "2026-11-17T05:27:09.7211051-05:00",
+      "ModifiedDate": "2026-11-17T05:27:09.7211051-05:00",
+      "Elements": [
+        {
+          "Id": "7188bd96-2dac-451a-befe-fadde00d9e7d",
+          "TopicId": "dd9ad304-21e6-47b8-ad08-0bed4a081e72",
+          "Title": "CONTAINS: The Precision Search Predicate",
+          "BodyText": "CONTAINS is the primary full-text predicate used in the WHERE clause to perform precise, structured searches inside indexed text columns. It evaluates to TRUE or FALSE for each row, just like any other WHERE condition.",
+          "Notes": "Syntax sketch: WHERE CONTAINS(column, \u0027search condition\u0027). It can be combined freely with ordinary WHERE conditions such as category = \u0027AI\u0027 or published_at \u003E= \u00272025-01-01\u0027.",
+          "SortOrder": 0,
+          "CreatedDate": "2026-11-17T05:28:35.279559-05:00",
+          "ModifiedDate": "2026-11-17T05:28:35.279559-05:00",
+          "Items": [
+            {
+              "Id": "572e7135-507e-4f06-81ef-278735b70fd1",
+              "Text": "Unlike FREETEXT, CONTAINS gives you explicit control over how terms are matched.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "75e4386f-013c-4c77-b1e5-803d8da768d8",
+              "Text": "It supports single words, exact phrases, Boolean logic, prefixes, inflections, thesaurus lookups, and proximity.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "8ed99e2e-50fd-4fa8-9ccd-1ee425b68c32",
+              "Text": "It returns a boolean match/no-match, with no relevance rank \u2014 use CONTAINSTABLE when ranking is required.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "813f71b4-a912-4e83-91ad-c14e8c6c5762",
+              "Text": "Because it uses the inverted index, it avoids the full table scan forced by LIKE \u0027%term%\u0027.",
+              "SortOrder": 3
+            },
+            {
+              "Id": "72f25f7e-4af1-4b59-9f5b-81a9dfbef546",
+              "Text": "Choose CONTAINS when the search terms are known and precision matters more than recall.",
+              "SortOrder": 4
+            }
+          ]
+        },
+        {
+          "Id": "083f181a-3819-423b-9793-f27b578c6c19",
+          "TopicId": "dd9ad304-21e6-47b8-ad08-0bed4a081e72",
+          "Title": "Single Words and Exact Phrases",
+          "BodyText": "The simplest CONTAINS searches look for a single word or an exact multi-word phrase inside an indexed column. Double quotes inside the single-quoted search string mark a phrase.",
+          "Notes": "Example: WHERE CONTAINS(body, \u0027machine\u0027) finds any article mentioning the word machine; WHERE CONTAINS(body, \u0027\u0022machine learning\u0022\u0027) requires the two words adjacent and in that order.",
+          "SortOrder": 1,
+          "CreatedDate": "2026-11-17T05:28:35.279559-05:00",
+          "ModifiedDate": "2026-11-17T05:28:35.279559-05:00",
+          "Items": [
+            {
+              "Id": "b76e788b-6867-40da-9761-93eaad6b4b8d",
+              "Text": "A bare word, such as \u0027machine\u0027, matches any row where that word appears anywhere in the indexed column.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "07d6cb3f-4ada-4bd3-bbdd-0f55480befb9",
+              "Text": "Wrapping the term in double quotes \u2014 \u0027\u0022machine learning\u0022\u0027 \u2014 requires the words to appear adjacent and in the given order.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "199c8363-585c-4e00-9ceb-0f63c6c62591",
+              "Text": "Phrase search is far more precise than a Boolean AND, which only requires both words somewhere in the text.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "8c2518d7-e728-4104-aeb0-e0f274f998e8",
+              "Text": "Stopwords inside a phrase can be dropped by the engine, which occasionally causes unexpected phrase behaviour.",
+              "SortOrder": 3
+            },
+            {
+              "Id": "852f0236-2888-4af9-886a-6812cb7812af",
+              "Text": "Matching is case-insensitive, and accent sensitivity depends on the catalog\u0027s ACCENT_SENSITIVITY setting.",
+              "SortOrder": 4
+            }
+          ]
+        },
+        {
+          "Id": "965e01fa-bf3f-412d-9502-48fa416dbb71",
+          "TopicId": "dd9ad304-21e6-47b8-ad08-0bed4a081e72",
+          "Title": "Boolean Logic: AND, OR, AND NOT",
+          "BodyText": "CONTAINS supports Boolean operators so you can require, alternate, or exclude terms within a single search condition. This is how you build precise, multi-term queries.",
+          "Notes": "Examples: \u0027machine AND learning\u0027, \u0027machine OR neural\u0027, \u0027machine AND NOT \u0022deep learning\u0022\u0027. A classic assignment use case is finding menu items described as both \u0022Delicious\u0022 AND \u0022Spicy\u0022.",
+          "SortOrder": 2,
+          "CreatedDate": "2026-11-17T05:28:35.279559-05:00",
+          "ModifiedDate": "2026-11-17T05:28:35.279559-05:00",
+          "Items": [
+            {
+              "Id": "26b02051-2eb2-450e-98cc-3ca73f0e78a8",
+              "Text": "AND requires both terms to appear somewhere in the indexed column, in any order or position.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "747687e7-b61a-4cc3-8516-1ab26445a839",
+              "Text": "OR matches rows containing either term, widening the result set.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "d68b281e-92c4-4de1-9b98-154f85522043",
+              "Text": "AND NOT excludes rows containing the second term while still requiring the first.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "63001699-11a9-4349-ad81-88ead8a374e2",
+              "Text": "NOT cannot stand alone \u2014 it must follow AND, as in \u0027word1 AND NOT word2\u0027.",
+              "SortOrder": 3
+            },
+            {
+              "Id": "bedecbcb-17ff-457f-a0d3-4c30c52e6236",
+              "Text": "Boolean operators can be combined with phrases and prefixes for compound conditions.",
+              "SortOrder": 4
+            }
+          ]
+        },
+        {
+          "Id": "c3695725-d456-46f9-9638-7a0812323b4a",
+          "TopicId": "dd9ad304-21e6-47b8-ad08-0bed4a081e72",
+          "Title": "Prefix Searching with the Asterisk Wildcard",
+          "BodyText": "A prefix term lets you match every word beginning with a given stem using the asterisk wildcard inside double quotes. This is the full-text equivalent of a trailing-wildcard LIKE, but index-backed and fast.",
+          "Notes": "Example: CONTAINS(body, \u0027\u0022learn*\u0022\u0027) matches learn, learning, learned, learner and learnable. CONTAINS(body, \u0027\u0022optim*\u0022 OR \u0022perform*\u0022\u0027) matches optimize, optimization, performance and performing.",
+          "SortOrder": 3,
+          "CreatedDate": "2026-11-17T05:28:35.279559-05:00",
+          "ModifiedDate": "2026-11-17T05:28:35.279559-05:00",
+          "Items": [
+            {
+              "Id": "cde9914a-9b5a-46bb-92a4-5e55de2f6338",
+              "Text": "The asterisk must appear inside the double quotes and only at the end of the term \u2014 it is a prefix, not a suffix or infix, wildcard.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "7e838e98-6a5e-452e-af65-5af6ffe6f0f1",
+              "Text": "Prefix terms can be combined with AND/OR to match several word families at once.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "6c7ddbfb-2e02-4995-a6c0-5d55f8f90b7a",
+              "Text": "Prefix search is purely character-based; it does not understand grammar the way FORMSOF does.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "3b4ba756-ad9f-42d5-9300-ccb3e4a08974",
+              "Text": "It will over-match if the stem is too short, so choose prefixes carefully.",
+              "SortOrder": 3
+            },
+            {
+              "Id": "74be8570-f5fd-467f-860a-1cc0b3f4912e",
+              "Text": "Use it when you want all words sharing a literal beginning, regardless of linguistic relationship.",
+              "SortOrder": 4
+            }
+          ]
+        },
+        {
+          "Id": "2cd3e31a-428e-454f-9a87-8989c7d5cfef",
+          "TopicId": "dd9ad304-21e6-47b8-ad08-0bed4a081e72",
+          "Title": "Linguistic Expansion with FORMSOF",
+          "BodyText": "FORMSOF instructs the engine to expand a search term into related forms before matching \u2014 either grammatical inflections or thesaurus synonyms. This gives CONTAINS linguistic awareness on demand.",
+          "Notes": "Examples: \u0027FORMSOF(INFLECTIONAL, index)\u0027 matches index, indexes, indexed and indexing; \u0027FORMSOF(THESAURUS, optimize)\u0027 matches configured synonyms.",
+          "SortOrder": 4,
+          "CreatedDate": "2026-11-17T05:28:35.279559-05:00",
+          "ModifiedDate": "2026-11-17T05:28:35.279559-05:00",
+          "Items": [
+            {
+              "Id": "402fddee-61ef-46fb-93ba-42fae0f8ee8a",
+              "Text": "FORMSOF(INFLECTIONAL, word) matches singular/plural forms and verb tenses without listing each variant.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "5864d4e5-1502-4aa7-81e7-08ebc111d279",
+              "Text": "FORMSOF(THESAURUS, word) expands the term using the language\u0027s XML thesaurus file (for example tsenu.xml for US English).",
+              "SortOrder": 1
+            },
+            {
+              "Id": "02e60cfd-48de-430e-a750-a08e7c100ba3",
+              "Text": "Thesaurus expansion lets you encode domain vocabulary such as \u0027heart attack\u0027 = \u0027myocardial infarction\u0027.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "c86fc103-7e02-47b6-bdd1-5b4d5b7542ad",
+              "Text": "In CONTAINS these expansions are opt-in, whereas FREETEXT applies them automatically.",
+              "SortOrder": 3
+            },
+            {
+              "Id": "181769ad-7e8d-4055-887d-6b675c8ae582",
+              "Text": "After editing a thesaurus file you must reload it with sys.sp_fulltext_load_thesaurus_file before the synonyms take effect.",
+              "SortOrder": 4
+            }
+          ]
+        },
+        {
+          "Id": "a1cb9569-de71-40ad-9039-4e5bda934ecb",
+          "TopicId": "dd9ad304-21e6-47b8-ad08-0bed4a081e72",
+          "Title": "Proximity Searching with NEAR",
+          "BodyText": "NEAR finds documents where two or more terms appear close to one another, rather than merely co-occurring somewhere in a long document. Closer matches also rank higher when used with CONTAINSTABLE.",
+          "Notes": "Examples: CONTAINS(body, \u0027machine NEAR learning\u0027) for simple proximity; CONTAINS(body, \u0027NEAR((machine, learning), 5, TRUE)\u0027) for terms within five words of each other in the given order.",
+          "SortOrder": 5,
+          "CreatedDate": "2026-11-17T05:28:35.279559-05:00",
+          "ModifiedDate": "2026-11-17T05:28:35.279559-05:00",
+          "Items": [
+            {
+              "Id": "e9c05750-88e1-4886-979a-88f7ab2c0312",
+              "Text": "The simple form \u0027term1 NEAR term2\u0027 requires the words to appear near each other in the text.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "6fea74e7-0023-4b4e-ab34-66c3fabcbf0d",
+              "Text": "The generic form NEAR((t1, t2), N, ordered) sets a maximum distance N and whether term order matters.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "d91bb867-d107-4605-a056-0f5473bca153",
+              "Text": "Setting the third argument to TRUE enforces that the terms appear in the order listed.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "e475e419-bfa6-4090-a0a9-2aa2afcba185",
+              "Text": "Proximity search is impossible with LIKE and is a key reason to adopt full-text indexing.",
+              "SortOrder": 3
+            },
+            {
+              "Id": "58eca4b8-d547-49dd-965b-301fa36efe48",
+              "Text": "It is ideal for context-sensitive searches such as matching CV skills in context or clinical phrases in notes.",
+              "SortOrder": 4
+            }
+          ]
+        },
+        {
+          "Id": "36d9176b-252a-4d66-8459-57ea641c0f61",
+          "TopicId": "dd9ad304-21e6-47b8-ad08-0bed4a081e72",
+          "Title": "Searching Multiple or All Indexed Columns",
+          "BodyText": "CONTAINS is not limited to one column \u2014 you can supply a column list or the asterisk to search every full-text indexed column of the table at once.",
+          "Notes": "Examples: CONTAINS((title, body), \u0027\u0022artificial intelligence\u0022\u0027) searches two columns; CONTAINS(*, \u0027Lovelace\u0027) searches title, body and author together.",
+          "SortOrder": 6,
+          "CreatedDate": "2026-11-17T05:28:35.279559-05:00",
+          "ModifiedDate": "2026-11-17T05:28:35.279559-05:00",
+          "Items": [
+            {
+              "Id": "8a4357fb-8807-4e9a-9748-3c9c75ee7544",
+              "Text": "Supply a parenthesised column list, such as (title, body), to search several specific columns.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "7b168983-2be4-4ef3-9027-6aa253fb8af9",
+              "Text": "Use CONTAINS(*, \u0027term\u0027) to search every column included in the table\u0027s full-text index.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "29074000-7d1b-4dbb-8c87-948ddff4ca8e",
+              "Text": "All listed columns must be part of the same full-text index on that table.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "de3200b7-296f-40be-8d61-74d3d1272b02",
+              "Text": "Multi-column search increases recall \u2014 a term matching a title or author is returned as well as body matches.",
+              "SortOrder": 3
+            },
+            {
+              "Id": "593e753e-5a02-4174-9b27-32861e2377a2",
+              "Text": "Combine the result with ordinary WHERE filters such as category or date range to narrow results further.",
+              "SortOrder": 4
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Id": "09c3c6d0-242a-497a-871f-a60d9a0508bb",
+      "Title": "Natural Language Searching with FREETEXT",
+      "Summary": "Introduces FREETEXT as a higher-level predicate that interprets user input as natural language with automatic inflections and synonym expansion. Compares precision, recall, and ideal use cases of FREETEXT versus CONTAINS.",
+      "SortOrder": 3,
+      "CreatedDate": "2026-11-17T05:27:09.7211051-05:00",
+      "ModifiedDate": "2026-11-17T05:27:09.7211051-05:00",
+      "Elements": [
+        {
+          "Id": "25b2c774-cfd0-48d2-9c66-e2b5d632c401",
+          "TopicId": "09c3c6d0-242a-497a-871f-a60d9a0508bb",
+          "Title": "What FREETEXT Does",
+          "BodyText": "FREETEXT is a higher-level full-text predicate that treats the search string as natural language rather than a structured query expression. It requires no special operators or syntax from the end user.",
+          "Notes": "Example: WHERE FREETEXT(body, \u0027systems that learn from data automatically\u0027) \u2014 the engine extracts the meaningful terms and finds articles about machine learning.",
+          "SortOrder": 0,
+          "CreatedDate": "2026-11-17T05:28:58.7408554-05:00",
+          "ModifiedDate": "2026-11-17T05:28:58.7408554-05:00",
+          "Items": [
+            {
+              "Id": "ad1473e5-d31a-425e-b640-b08c11b61099",
+              "Text": "It is used in the WHERE clause and returns a boolean match / no match, just like CONTAINS.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "8a9c318e-10f4-4b36-8479-499e43f4918b",
+              "Text": "SQL Server breaks the search string into individual words using the language\u0027s word breaker.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "74c44948-473d-4783-90da-d68e8077dc58",
+              "Text": "Stopwords such as \u0027that\u0027 and \u0027from\u0027 are discarded before matching.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "cecdcef9-6006-4139-9ed2-36e648afdc29",
+              "Text": "Inflectional forms are generated automatically, so \u0027learn\u0027 also matches learning, learned and learner.",
+              "SortOrder": 3
+            },
+            {
+              "Id": "fec6b318-82fa-4de1-851e-e5df24d67b74",
+              "Text": "Thesaurus synonyms are expanded automatically without any FORMSOF clause.",
+              "SortOrder": 4
+            },
+            {
+              "Id": "1bf10bb2-1b7d-484d-bdf4-a6347e538ab4",
+              "Text": "Rows match if any meaningful combination of the generated terms is found.",
+              "SortOrder": 5
+            }
+          ]
+        },
+        {
+          "Id": "7c63e870-31f6-48ba-ac9d-6c71d38e5085",
+          "TopicId": "09c3c6d0-242a-497a-871f-a60d9a0508bb",
+          "Title": "FREETEXT Syntax and Usage Patterns",
+          "BodyText": "FREETEXT follows the same column-targeting patterns as CONTAINS \u2014 a single column, a column list, or all indexed columns. It can be freely combined with ordinary SQL predicates.",
+          "Notes": "SELECT article_id, title FROM kb_articles WHERE FREETEXT((title, body), \u0027artificial intelligence and neural networks\u0027);",
+          "SortOrder": 1,
+          "CreatedDate": "2026-11-17T05:28:58.7408554-05:00",
+          "ModifiedDate": "2026-11-17T05:28:58.7408554-05:00",
+          "Items": [
+            {
+              "Id": "45dc8182-b142-4275-bce7-92052f5ec047",
+              "Text": "Single column: WHERE FREETEXT(body, \u0027user typed text\u0027).",
+              "SortOrder": 0
+            },
+            {
+              "Id": "9b99afb0-36e3-49ac-b588-4d3b13ebed5a",
+              "Text": "Multiple columns: WHERE FREETEXT((title, body), \u0027artificial intelligence and neural networks\u0027).",
+              "SortOrder": 1
+            },
+            {
+              "Id": "1963633e-af27-4578-8405-95da7ffcb085",
+              "Text": "All indexed columns can be targeted with the asterisk form, FREETEXT(*, \u0027text\u0027).",
+              "SortOrder": 2
+            },
+            {
+              "Id": "3d6801ae-e604-45ca-9205-cc5c95f5bcec",
+              "Text": "It can be combined with normal filters, e.g. AND category = \u0027Databases\u0027 AND published_at \u003E= \u00272025-01-01\u0027.",
+              "SortOrder": 3
+            },
+            {
+              "Id": "5a2188ea-3bef-4c41-ac93-bbaafc870a09",
+              "Text": "Because it returns TRUE/FALSE, results come back unordered \u2014 use FREETEXTTABLE when ranking is required.",
+              "SortOrder": 4
+            }
+          ]
+        },
+        {
+          "Id": "9469546f-8ff9-4da9-b0b2-6e76f8a4bffc",
+          "TopicId": "09c3c6d0-242a-497a-871f-a60d9a0508bb",
+          "Title": "How FREETEXT Differs from CONTAINS",
+          "BodyText": "CONTAINS and FREETEXT both query the same full-text index, but they differ in how the search string is interpreted and how much control the developer has.",
+          "Notes": "Think of CONTAINS as a query language for developers and FREETEXT as a search box for end users.",
+          "SortOrder": 2,
+          "CreatedDate": "2026-11-17T05:28:58.7408554-05:00",
+          "ModifiedDate": "2026-11-17T05:28:58.7408554-05:00",
+          "Items": [
+            {
+              "Id": "047f023c-337b-4ad9-b725-b5ca8b2599f9",
+              "Text": "CONTAINS uses explicit AND / OR / NOT / NEAR operators; FREETEXT accepts plain natural language.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "69b5fe59-cd94-4e36-b05c-4978b9204292",
+              "Text": "Phrase matching in CONTAINS requires double quotes for an exact match; FREETEXT matches phrases automatically and fuzzily.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "9ad21ee9-1d6d-4065-abc6-a6375f7a601c",
+              "Text": "Inflectional forms are opt-in in CONTAINS via FORMSOF(INFLECTIONAL, word) but always on in FREETEXT.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "b84c7812-5f5b-45a8-aaed-2ec835196d04",
+              "Text": "Thesaurus expansion is opt-in with FORMSOF(THESAURUS, word) in CONTAINS and automatic in FREETEXT.",
+              "SortOrder": 3
+            },
+            {
+              "Id": "dccbbfab-0358-48b5-b2d0-61b8762954c4",
+              "Text": "Prefix wildcards, proximity (NEAR) and boolean logic are available only through CONTAINS.",
+              "SortOrder": 4
+            }
+          ]
+        },
+        {
+          "Id": "8df660b4-1b37-4db9-a665-44c68bfe59ce",
+          "TopicId": "09c3c6d0-242a-497a-871f-a60d9a0508bb",
+          "Title": "Precision Versus Recall",
+          "BodyText": "The choice between the two predicates is fundamentally a trade-off between precision (returning only exactly what was asked for) and recall (returning everything potentially relevant).",
+          "Notes": "If users complain they get too many irrelevant hits, move toward CONTAINS; if they complain they get nothing, move toward FREETEXT.",
+          "SortOrder": 3,
+          "CreatedDate": "2026-11-17T05:28:58.7408554-05:00",
+          "ModifiedDate": "2026-11-17T05:28:58.7408554-05:00",
+          "Items": [
+            {
+              "Id": "653b28c0-0745-4fdb-9a05-492cf43172e1",
+              "Text": "CONTAINS offers high precision because the developer controls exactly which terms and operators apply.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "4894a5ab-2904-459a-8ea4-822511f9ec64",
+              "Text": "CONTAINS has lower recall \u2014 it can miss valid variants unless FORMSOF or prefix terms are added explicitly.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "8c49921b-4684-45f7-bf69-556b55953c2a",
+              "Text": "FREETEXT has lower precision because automatic inflection and synonym expansion broaden the match set.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "3d4cf052-de0a-401c-8312-72dc11618c1d",
+              "Text": "FREETEXT has higher recall, catching documents that use different wording for the same concept.",
+              "SortOrder": 3
+            },
+            {
+              "Id": "e0132a08-ed9e-4a7c-82c2-47b12724dc8a",
+              "Text": "Neither predicate performs fuzzy or typo-tolerant matching \u2014 a misspelled term still returns no results.",
+              "SortOrder": 4
+            }
+          ]
+        },
+        {
+          "Id": "6e82426c-d2b3-4071-86e7-83ccae61f7ee",
+          "TopicId": "09c3c6d0-242a-497a-871f-a60d9a0508bb",
+          "Title": "Ideal Use Cases for FREETEXT",
+          "BodyText": "FREETEXT is best suited anywhere a human types words into a box and expects relevant results without learning a query syntax.",
+          "Notes": "Typical pairings: knowledge bases and support portals use a FREETEXT search box; e-commerce catalogues use FREETEXTTABLE for ranked results.",
+          "SortOrder": 4,
+          "CreatedDate": "2026-11-17T05:28:58.7408554-05:00",
+          "ModifiedDate": "2026-11-17T05:28:58.7408554-05:00",
+          "Items": [
+            {
+              "Id": "aeacdd4b-6d62-4f6c-b425-1ccbdea17563",
+              "Text": "Application search boxes where end-user input cannot be trusted to use valid full-text operators.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "ad252b8f-5de7-4cf4-a0e3-05c4f059c9bd",
+              "Text": "Exploratory search where the user is unsure of the exact terminology used in the documents.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "728ba595-4188-4832-8052-3310fa903774",
+              "Text": "Medical and legal free-text records, where concepts matter more than exact phrasing.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "369185bf-1330-4fc5-bcc0-a87bda373a2f",
+              "Text": "Email and message archives searched from approximate recollection of past wording.",
+              "SortOrder": 3
+            },
+            {
+              "Id": "fef7aac1-af4f-481d-a973-ec386a458aff",
+              "Text": "Use CONTAINS instead when search terms are known, generated by code, or require proximity and boolean control.",
+              "SortOrder": 4
+            }
+          ]
+        },
+        {
+          "Id": "8cb5b684-e9ca-42aa-afae-6d0373ad65ba",
+          "TopicId": "09c3c6d0-242a-497a-871f-a60d9a0508bb",
+          "Title": "Equivalents in Other Database Systems",
+          "BodyText": "Natural-language searching is not unique to SQL Server; every major RDBMS offers a comparable concept-based search mode.",
+          "Notes": "Knowing the equivalents makes full-text skills portable across platforms.",
+          "SortOrder": 5,
+          "CreatedDate": "2026-11-17T05:28:58.7408554-05:00",
+          "ModifiedDate": "2026-11-17T05:28:58.7408554-05:00",
+          "Items": [
+            {
+              "Id": "a8425d63-fc75-4550-b371-9fd6931ac8ba",
+              "Text": "MySQL uses MATCH ... AGAINST with IN NATURAL LANGUAGE MODE, optionally WITH QUERY EXPANSION.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "d2043d7a-9b51-4b50-ac68-a778f7f129e6",
+              "Text": "PostgreSQL offers plainto_tsquery and websearch_to_tsquery to convert plain user text into a tsquery.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "0d73d36c-d30c-462c-9615-f442bff99084",
+              "Text": "Oracle Text provides the ABOUT operator inside CONTAINS for concept-based searching.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "37687179-3d0c-496a-9678-5f9734b3329f",
+              "Text": "IBM Db2 Text Search uses CONTAINS with linguistic indexes and synonym dictionaries.",
+              "SortOrder": 3
+            },
+            {
+              "Id": "cfb8ce9b-e639-40ad-b8ba-07c05854e126",
+              "Text": "All of these rely on the same underlying ideas: tokenisation, stopword removal, stemming and synonym expansion.",
+              "SortOrder": 4
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Id": "bdf5fa32-1d11-4175-8916-3b6c1ea58c2d",
+      "Title": "Relevance Ranking with CONTAINSTABLE and FREETEXTTABLE",
+      "Summary": "Explains the table-valued functions that return KEY and RANK pairs so results can be joined back and ordered by relevance score. Demonstrates limiting candidates, filtering by rank threshold, and building search-engine-style result pages.",
+      "SortOrder": 4,
+      "CreatedDate": "2026-11-17T05:27:09.7211051-05:00",
+      "ModifiedDate": "2026-11-17T05:27:09.7211051-05:00",
+      "Elements": [
+        {
+          "Id": "ab8bdfb1-06a2-44a8-bb0e-ae95212a24f9",
+          "TopicId": "bdf5fa32-1d11-4175-8916-3b6c1ea58c2d",
+          "Title": "What CONTAINSTABLE and FREETEXTTABLE Return",
+          "BodyText": "CONTAINSTABLE and FREETEXTTABLE are table-valued functions that mirror the CONTAINS and FREETEXT predicates, but instead of returning TRUE/FALSE they return a result set of matching rows with a relevance score.",
+          "Notes": "Because they return a table rather than a boolean, they appear in the FROM clause (usually in a JOIN) rather than the WHERE clause.",
+          "SortOrder": 0,
+          "CreatedDate": "2026-11-17T05:29:23.3252766-05:00",
+          "ModifiedDate": "2026-11-17T05:29:23.3252766-05:00",
+          "Items": [
+            {
+              "Id": "f3f0f22d-7422-4ed5-abd7-fd315e20d8de",
+              "Text": "Each returns two columns: [KEY] (the value from the table\u0027s unique key index) and RANK (the relevance score).",
+              "SortOrder": 0
+            },
+            {
+              "Id": "2f35e8c7-283f-40b5-8097-b1643d879d16",
+              "Text": "RANK is an integer between 0 and 1000 \u2014 higher values indicate a stronger match.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "780b8826-ae00-407c-8651-9735fa76cbd2",
+              "Text": "CONTAINSTABLE accepts the same precise syntax as CONTAINS: phrases, prefix terms, AND/OR/NOT, NEAR, and FORMSOF.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "f6630c24-85a3-4330-8541-0b352ced045c",
+              "Text": "FREETEXTTABLE accepts plain natural-language text and automatically applies stemming and thesaurus expansion.",
+              "SortOrder": 3
+            },
+            {
+              "Id": "31183805-8ca6-423f-ad9d-0ff53cc1e929",
+              "Text": "Standard B-Tree indexes offer no equivalent \u2014 relevance ranking is unique to full-text search.",
+              "SortOrder": 4
+            }
+          ]
+        },
+        {
+          "Id": "2de5e0e5-5cad-45b5-bd22-32566cb8f4f9",
+          "TopicId": "bdf5fa32-1d11-4175-8916-3b6c1ea58c2d",
+          "Title": "Joining the Rank Table Back to the Base Table",
+          "BodyText": "The table-valued functions return only a key and a rank, so you must join their output back to the source table to retrieve the actual column values.",
+          "Notes": "Note that KEY is a reserved word in T-SQL, so it must be bracketed as ft.[KEY] when referenced.",
+          "SortOrder": 1,
+          "CreatedDate": "2026-11-17T05:29:23.3252766-05:00",
+          "ModifiedDate": "2026-11-17T05:29:23.3252766-05:00",
+          "Items": [
+            {
+              "Id": "28f6ae6c-e20f-49c5-bfd0-69baa0f75cda",
+              "Text": "Join on the table\u0027s primary key: ON a.article_id = ft.[KEY].",
+              "SortOrder": 0
+            },
+            {
+              "Id": "2950d11c-75dd-41a9-ba30-4dd3f89a8c56",
+              "Text": "Alias the function output (e.g. AS ft) so RANK can be selected and sorted on.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "cfe45f21-21d1-4950-b36f-6bd145857010",
+              "Text": "Expose the score in the SELECT list, e.g. ft.RANK AS relevance_score.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "92f0cee6-3b49-42dc-8909-0739fba76a31",
+              "Text": "The join type is normally an INNER JOIN, because only matching rows should appear in results.",
+              "SortOrder": 3
+            },
+            {
+              "Id": "429fa0a5-4e6f-4975-af8e-722feb0c35bd",
+              "Text": "The full-text index\u0027s KEY INDEX determines what value appears in the [KEY] column.",
+              "SortOrder": 4
+            }
+          ]
+        },
+        {
+          "Id": "b22c2150-e295-4ab7-ba33-96a132085640",
+          "TopicId": "bdf5fa32-1d11-4175-8916-3b6c1ea58c2d",
+          "Title": "Ordering Results by Relevance",
+          "BodyText": "The main purpose of the rank column is to allow search results to be presented most-relevant-first, exactly as a web search engine does, instead of by insertion order or ID.",
+          "Notes": "Example result for a FREETEXTTABLE search on \u0027artificial intelligence machine learning\u0027: Introduction to Machine Learning (974), Neural Networks and Deep Learning (851), Natural Language Processing Overview (712).",
+          "SortOrder": 2,
+          "CreatedDate": "2026-11-17T05:29:23.3252766-05:00",
+          "ModifiedDate": "2026-11-17T05:29:23.3252766-05:00",
+          "Items": [
+            {
+              "Id": "8c29b3bb-ef58-4856-8d7f-8296eef8a8d3",
+              "Text": "Add ORDER BY ft.RANK DESC to put the strongest matches at the top of the list.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "8a814be7-f7c3-429c-8266-d408aee525f4",
+              "Text": "A score near 1000 indicates a very strong match; mid-range scores indicate partial relevance.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "1d851ee9-a108-46e6-85c5-db02b8c9532a",
+              "Text": "Rank is relative within a single query result set, not an absolute measure comparable across queries.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "0fbcf1b6-e446-4c0d-9ab8-d3a26a6e3d04",
+              "Text": "Without the table-valued functions, CONTAINS and FREETEXT give you only unordered binary matches.",
+              "SortOrder": 3
+            }
+          ]
+        },
+        {
+          "Id": "97683691-5f1d-4d1e-abb1-5189e7668a4b",
+          "TopicId": "bdf5fa32-1d11-4175-8916-3b6c1ea58c2d",
+          "Title": "Limiting Candidate Rows with top_n_by_rank",
+          "BodyText": "Both functions accept an optional numeric argument that caps how many of the highest-ranked candidate rows the full-text engine returns, which keeps large searches efficient.",
+          "Notes": "Syntax sketch: FREETEXTTABLE(kb_articles, (title, body), \u0027artificial intelligence machine learning\u0027, 10).",
+          "SortOrder": 3,
+          "CreatedDate": "2026-11-17T05:29:23.3252766-05:00",
+          "ModifiedDate": "2026-11-17T05:29:23.3252766-05:00",
+          "Items": [
+            {
+              "Id": "d71141dd-8be1-40bd-8d24-029f96b26347",
+              "Text": "The number appears after the search string (and after the optional LANGUAGE argument).",
+              "SortOrder": 0
+            },
+            {
+              "Id": "7155872e-f527-4121-86cd-e787d96c53fc",
+              "Text": "It limits the candidates produced by the full-text engine before the join is executed.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "7c61846a-7a53-4393-b5a4-59908f24f688",
+              "Text": "Combine it with TOP N in the outer SELECT to control the final page size shown to users.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "0c50f0f6-0cdd-4c6f-b070-9150124d75e3",
+              "Text": "Limiting candidates reduces the number of rows the join and sort must process on large tables.",
+              "SortOrder": 3
+            }
+          ]
+        },
+        {
+          "Id": "69e02f7c-f80f-4ecc-b6dd-2a606916eb64",
+          "TopicId": "bdf5fa32-1d11-4175-8916-3b6c1ea58c2d",
+          "Title": "Filtering by Rank Threshold and Combining with SQL Predicates",
+          "BodyText": "Because RANK is an ordinary column in the joined result, it can be filtered in the WHERE clause alongside normal relational conditions.",
+          "Notes": "This is how you build faceted search: full-text relevance for the text portion, plain SQL for category, date, price, or status filters.",
+          "SortOrder": 4,
+          "CreatedDate": "2026-11-17T05:29:23.3252766-05:00",
+          "ModifiedDate": "2026-11-17T05:29:23.3252766-05:00",
+          "Items": [
+            {
+              "Id": "ceb7b85c-acde-4df9-ac62-0cc85491175a",
+              "Text": "Use WHERE ft.RANK \u003E 500 to return only high-confidence matches and suppress weak hits.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "f4a8e74a-98d3-4e04-a775-04a883155df2",
+              "Text": "Add conventional filters such as category = \u0027AI\u0027 or published_at \u003E= \u00272025-01-01\u0027 in the same query.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "573d7975-a468-454f-ad8c-563f1e2a2292",
+              "Text": "Searching multiple columns is supported by passing a column list, e.g. (title, body), or * for all indexed columns.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "1fa86908-aa73-428c-bbb0-b498b973ee97",
+              "Text": "Tune the threshold empirically \u2014 it depends on the corpus and the search terms used.",
+              "SortOrder": 3
+            }
+          ]
+        },
+        {
+          "Id": "8e4a6cee-145f-4b0f-af71-333ced4c46ce",
+          "TopicId": "bdf5fa32-1d11-4175-8916-3b6c1ea58c2d",
+          "Title": "Building Search-Engine-Style Result Pages",
+          "BodyText": "Combining ranked table-valued functions, candidate limits, and ordinary SQL filtering yields the pattern used for production search results pages.",
+          "Notes": "Typical use cases include knowledge bases with CONTAINSTABLE ranked results, and e-commerce product search with FREETEXTTABLE ranked results.",
+          "SortOrder": 5,
+          "CreatedDate": "2026-11-17T05:29:23.3252766-05:00",
+          "ModifiedDate": "2026-11-17T05:29:23.3252766-05:00",
+          "Items": [
+            {
+              "Id": "2ab23895-53fe-4f55-a8fb-cb8eb0eeffe0",
+              "Text": "Use FREETEXTTABLE for free-form user search boxes where recall matters more than precision.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "bb7decc3-a0c6-4ece-bb42-2bbcd08d526a",
+              "Text": "Use CONTAINSTABLE when the application builds a structured query with phrases, prefixes, or NEAR operators.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "ee93f535-a9e3-4abf-ba48-ee73fe8c20c7",
+              "Text": "Return the title, a snippet of the body, and the relevance score so users can judge result quality.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "de8dfa93-9508-47b0-890f-7f20af36465f",
+              "Text": "Page results with TOP N plus OFFSET/FETCH while preserving the ORDER BY ft.RANK DESC ordering.",
+              "SortOrder": 3
+            },
+            {
+              "Id": "682402c0-3566-4e8b-9ac1-43956ab12322",
+              "Text": "Other platforms offer equivalents \u2014 Oracle Text SCORE, Db2 SCORE, and PostgreSQL ts_rank serve the same purpose.",
+              "SortOrder": 4
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Id": "473f2076-9519-463a-8bba-f72966ede39a",
+      "Title": "Stoplists, Thesaurus, and Index Management",
+      "Summary": "Covers viewing system stopwords, creating and attaching custom stoplists, and configuring the XML thesaurus file for domain-specific synonyms. Includes administrative tasks such as inspecting indexed columns, disabling, enabling, and dropping full-text indexes and catalogs.",
+      "SortOrder": 5,
+      "CreatedDate": "2026-11-17T05:27:09.7211051-05:00",
+      "ModifiedDate": "2026-11-17T05:27:09.7211051-05:00",
+      "Elements": [
+        {
+          "Id": "0eeafe51-cf59-4d6d-95c2-690d5e596c5e",
+          "TopicId": "473f2076-9519-463a-8bba-f72966ede39a",
+          "Title": "Stopwords and Why They Are Excluded",
+          "BodyText": "Stopwords are high-frequency words such as \u0027a\u0027, \u0027and\u0027, \u0027the\u0027, and \u0027of\u0027 that carry no search value and are discarded by the full-text engine during the word-breaking pipeline. Excluding them keeps the inverted index smaller and queries faster.",
+          "Notes": "SQL Server ships with built-in system stoplists for each supported language; every word in the active stoplist is filtered out before tokens are written to the index.",
+          "SortOrder": 0,
+          "CreatedDate": "2026-11-17T05:29:47.4059435-05:00",
+          "ModifiedDate": "2026-11-17T05:29:47.4059435-05:00",
+          "Items": [
+            {
+              "Id": "8ce6b916-8b7c-41ea-a204-e42e48905893",
+              "Text": "Stopword filtering is step 2 of the full-text pipeline, running after the word breaker and before stemming.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "fbac4fea-2e14-44bd-b4a2-4b8abf8b7ee6",
+              "Text": "Removing noise words reduces catalog size and avoids matching on words present in nearly every document.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "7af6a22c-baea-4305-9c59-dc8b306ea2d9",
+              "Text": "Because stopwords are dropped, an exact phrase containing one can produce unexpected misses \u2014 a known trade-off of full-text search.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "38588059-e4de-4fe7-9c63-06d606200b9e",
+              "Text": "Each language has its own stoplist, so multilingual tables filter different noise words per column language setting.",
+              "SortOrder": 3
+            }
+          ]
+        },
+        {
+          "Id": "3612351a-4889-4f0d-b88b-15c20b40b1fc",
+          "TopicId": "473f2076-9519-463a-8bba-f72966ede39a",
+          "Title": "Viewing the System Stoplist",
+          "BodyText": "Before customising anything, inspect the words SQL Server already treats as noise using the sys.fulltext_system_stopwords catalog view. Filtering by language_id shows the list that applies to your indexed columns.",
+          "Notes": "Language ID 1033 corresponds to US English.",
+          "SortOrder": 1,
+          "CreatedDate": "2026-11-17T05:29:47.4059435-05:00",
+          "ModifiedDate": "2026-11-17T05:29:47.4059435-05:00",
+          "Items": [
+            {
+              "Id": "eab5b1d3-a8bf-499b-a625-4c50817420f2",
+              "Text": "Run: SELECT stopword, language FROM sys.fulltext_system_stopwords WHERE language_id = 1033 ORDER BY stopword;",
+              "SortOrder": 0
+            },
+            {
+              "Id": "ce13ab5c-bab1-4afc-b7af-297fe58ea487",
+              "Text": "Typical returned entries include a, about, after, all, also, an, and, any, are, as, at, and be.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "7217d7bf-39ff-46a0-b290-d8959088d8ed",
+              "Text": "Reviewing this list explains why certain search terms appear to be silently ignored at query time.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "bb24e8f2-44e7-4507-94ea-25cb13fe50d7",
+              "Text": "Use the results to decide whether the built-in list is sufficient or needs domain-specific additions.",
+              "SortOrder": 3
+            }
+          ]
+        },
+        {
+          "Id": "aff59da4-d8b5-47ef-9afd-1dd941b94ca1",
+          "TopicId": "473f2076-9519-463a-8bba-f72966ede39a",
+          "Title": "Creating and Attaching a Custom Stoplist",
+          "BodyText": "A custom stoplist lets you add domain-specific noise words that appear in almost every document and therefore add no discriminating value. The usual approach is to copy the system list and extend it.",
+          "Notes": "Example: in a knowledge-base corpus, words like \u0027example\u0027, \u0027note\u0027, or \u0027article\u0027 may appear in every row and are better excluded.",
+          "SortOrder": 2,
+          "CreatedDate": "2026-11-17T05:29:47.4059435-05:00",
+          "ModifiedDate": "2026-11-17T05:29:47.4059435-05:00",
+          "Items": [
+            {
+              "Id": "0958635b-c364-4e90-9ab1-2d385c9d14ab",
+              "Text": "Create the list from the built-in baseline: CREATE FULLTEXT STOPLIST CustomStopList FROM SYSTEM STOPLIST;",
+              "SortOrder": 0
+            },
+            {
+              "Id": "e62d3e92-da76-41bd-af14-1395db7c041a",
+              "Text": "Add terms individually: ALTER FULLTEXT STOPLIST CustomStopList ADD \u0027example\u0027 LANGUAGE \u0027English\u0027;",
+              "SortOrder": 1
+            },
+            {
+              "Id": "1a67cb20-3535-4557-856d-5e2bb2ef0ff2",
+              "Text": "Attach it to the index with ALTER FULLTEXT INDEX ON kb_articles SET STOPLIST = CustomStopList;",
+              "SortOrder": 2
+            },
+            {
+              "Id": "702db68b-4a56-4a96-b58e-ee725f879db1",
+              "Text": "Changing the stoplist affects how new content is tokenised, so re-populate the index to apply it consistently.",
+              "SortOrder": 3
+            }
+          ]
+        },
+        {
+          "Id": "9a5c32c0-a501-4293-ab18-71524ce8f783",
+          "TopicId": "473f2076-9519-463a-8bba-f72966ede39a",
+          "Title": "Configuring the XML Thesaurus File",
+          "BodyText": "The thesaurus is a per-language XML file that maps terms to their synonyms, enabling domain-specific expansion such as \u0027heart attack\u0027 matching \u0027myocardial infarction\u0027. It is consulted by FORMSOF(THESAURUS, term) and automatically by FREETEXT.",
+          "Notes": "Files live under the instance FTData folder, e.g. C:\\Program Files\\Microsoft SQL Server\\MSSQL16.MSSQLSERVER\\MSSQL\\FTData\\; the English file is tsenu.xml (ts \u002B enu).",
+          "SortOrder": 3,
+          "CreatedDate": "2026-11-17T05:29:47.4059435-05:00",
+          "ModifiedDate": "2026-11-17T05:29:47.4059435-05:00",
+          "Items": [
+            {
+              "Id": "8feb7322-a413-41a7-8dd9-0a415eaeb9e9",
+              "Text": "Synonym groups are defined inside an \u003Cexpansion\u003E element with one \u003Csub\u003E entry per equivalent term.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "465bcb87-8afe-4ffc-91d2-eb3cd88789b7",
+              "Text": "A sample expansion could list database, datastore, data store, and RDBMS as interchangeable terms.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "3f5acdc4-0479-46fe-8dbb-3ba05a1a1aab",
+              "Text": "After editing the XML, reload it with EXEC sys.sp_fulltext_load_thesaurus_file 1033; so the engine picks up the changes.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "0fc83813-7913-4f86-8e95-c3f76cd1e683",
+              "Text": "Thesaurus tuning is one of the highest-value customisations for specialised vocabularies in medical, legal, or technical corpora.",
+              "SortOrder": 3
+            }
+          ]
+        },
+        {
+          "Id": "da008058-ab9b-4ce9-be31-74582076203b",
+          "TopicId": "473f2076-9519-463a-8bba-f72966ede39a",
+          "Title": "Inspecting Indexed Columns and Index Metadata",
+          "BodyText": "Catalog views let administrators confirm exactly which columns are full-text indexed, in which language, and in which catalog they are stored. This is essential when troubleshooting unexpected search results.",
+          "Notes": "",
+          "SortOrder": 4,
+          "CreatedDate": "2026-11-17T05:29:47.4059435-05:00",
+          "ModifiedDate": "2026-11-17T05:29:47.4059435-05:00",
+          "Items": [
+            {
+              "Id": "a34608ac-4221-4562-877f-3262e184fdb7",
+              "Text": "Join sys.fulltext_index_columns to sys.columns on object_id and column_id to list table and column names.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "8664e71a-6db4-4a7a-ba79-3735c64caa65",
+              "Text": "Include ftc.language_id in the output to verify the correct word breaker and stemmer are applied per column.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "3c47c2dd-ae91-4bac-a4da-7ab694eef7aa",
+              "Text": "sys.fulltext_indexes and sys.fulltext_catalogs reveal change-tracking state and indexed item counts.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "ceb4aeed-6c42-4440-abde-009b8902b167",
+              "Text": "sys.fulltext_catalogs also exposes accent sensitivity and whether a catalog is the database default.",
+              "SortOrder": 3
+            }
+          ]
+        },
+        {
+          "Id": "ae12ed9c-926f-4002-b332-e90bba1c6617",
+          "TopicId": "473f2076-9519-463a-8bba-f72966ede39a",
+          "Title": "Disabling, Enabling, and Dropping Indexes and Catalogs",
+          "BodyText": "Full-text indexes can be temporarily disabled for maintenance or bulk loading, re-enabled afterwards, or dropped entirely when no longer needed. Catalogs follow a strict removal order.",
+          "Notes": "Disabling before a large bulk load avoids crawler overhead during the load; re-enabling then triggers repopulation.",
+          "SortOrder": 5,
+          "CreatedDate": "2026-11-17T05:29:47.4059435-05:00",
+          "ModifiedDate": "2026-11-17T05:29:47.4059435-05:00",
+          "Items": [
+            {
+              "Id": "aa390cb1-f621-4c18-8637-512765ac631e",
+              "Text": "ALTER FULLTEXT INDEX ON kb_articles DISABLE; stops crawling without destroying the index definition.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "5cbbc3ee-0d3b-4bde-8dfe-03244019f2a1",
+              "Text": "ALTER FULLTEXT INDEX ON kb_articles ENABLE; reactivates the index and triggers a full population.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "3e225bf8-53e4-47e2-9060-3df22d05fdf6",
+              "Text": "DROP FULLTEXT INDEX ON kb_articles; removes the index and its tokens permanently.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "752dd6fb-8273-4a4c-bec3-4c3c3adb5e92",
+              "Text": "DROP FULLTEXT CATALOG KnowledgeBaseCatalog; only succeeds after every index it contains has been dropped.",
+              "SortOrder": 3
+            },
+            {
+              "Id": "c4f8f76a-4a3f-4cb8-9b3b-68e8f8dfea10",
+              "Text": "Schedule repopulation after enabling during off-peak hours, since rebuilds are CPU and I/O intensive.",
+              "SortOrder": 4
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Id": "9f04afa3-3c9b-48c0-88b2-64d487d46ad5",
+      "Title": "When to Use \u2014 and When to Avoid \u2014 Full-Text Indexing",
+      "Summary": "Reviews strong use cases such as knowledge bases, product catalogues, content management, medical and legal records, message archives, and resume matching, alongside technical triggers that signal the need for full-text search. Also identifies poor fits such as short codes, exact lookups, numeric ranges, small tables, near-real-time needs, and pattern matching, and compares SQL Server full-text with Elasticsearch and Azure AI Search.",
+      "SortOrder": 6,
+      "CreatedDate": "2026-11-17T05:27:09.7211051-05:00",
+      "ModifiedDate": "2026-11-17T05:27:09.7211051-05:00",
+      "Elements": [
+        {
+          "Id": "177d2822-bf6d-4487-967d-b6af4789685f",
+          "TopicId": "9f04afa3-3c9b-48c0-88b2-64d487d46ad5",
+          "Title": "The Core Decision Criterion",
+          "BodyText": "Full-text indexing is the right choice when queries must search inside the content of long text fields where exact-value B-Tree indexes cannot help. The deciding question is whether the search is linguistic or literal.",
+          "Notes": "Framing the choice this way prevents teams from bolting full-text onto problems that a simple non-clustered index already solves.",
+          "SortOrder": 0,
+          "CreatedDate": "2026-11-17T05:30:15.4459973-05:00",
+          "ModifiedDate": "2026-11-17T05:30:15.4459973-05:00",
+          "Items": [
+            {
+              "Id": "2851659b-444c-461e-8338-0fb428da24cf",
+              "Text": "Use full-text when users search for words, phrases, and concepts within hundreds or thousands of words of text.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "d5c8349e-5a94-4f59-8db1-5ae0e39fd8c7",
+              "Text": "Use standard indexes when the query compares a whole column value exactly or by range.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "8a2662e8-0211-4f16-b7a4-b6b1008591c9",
+              "Text": "Full-text adds a catalog, a crawler, and index files \u2014 overhead that must be justified by real search needs.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "f68fddf2-266b-41b2-a0aa-95efde5240dc",
+              "Text": "Applying it to the wrong problem adds complexity and maintenance cost without any performance benefit.",
+              "SortOrder": 3
+            }
+          ]
+        },
+        {
+          "Id": "72ffcacc-d355-4663-accc-74786653250f",
+          "TopicId": "9f04afa3-3c9b-48c0-88b2-64d487d46ad5",
+          "Title": "Strong Use Cases for Full-Text Search",
+          "BodyText": "Several application categories map almost perfectly onto full-text capabilities because their primary content is free-form prose that users query approximately.",
+          "Notes": "Each use case tends to favour a particular predicate: FREETEXT for search boxes, CONTAINS for precise phrases, and CONTAINSTABLE/FREETEXTTABLE when ranked results are required.",
+          "SortOrder": 1,
+          "CreatedDate": "2026-11-17T05:30:15.4459973-05:00",
+          "ModifiedDate": "2026-11-17T05:30:15.4459973-05:00",
+          "Items": [
+            {
+              "Id": "c0bc049f-2da3-4d6c-b778-348465a371e6",
+              "Text": "Knowledge bases, wikis, and technical documentation \u2014 FREETEXT search boxes with CONTAINSTABLE ranked output.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "81aee215-3c4c-46ed-ba48-04b2fdff24be",
+              "Text": "E-commerce product catalogues, where shoppers type natural language and expect relevant hits regardless of exact wording (FREETEXTTABLE).",
+              "SortOrder": 1
+            },
+            {
+              "Id": "0e1725fd-bbb8-4f69-aad7-75c7e62aca66",
+              "Text": "Content management systems for news, blogs, and publishing \u2014 CONTAINS phrase search across bodies, headlines, and metadata.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "c27af2b8-53c9-41a4-8a05-dcf55c38908f",
+              "Text": "Medical and legal records, where concept-based searching of clinical notes and case files benefits from FREETEXT combined with NEAR.",
+              "SortOrder": 3
+            },
+            {
+              "Id": "83eaca8e-c46a-40fe-9617-2ebe29128136",
+              "Text": "Email and message archives, where users recall conversations approximately \u2014 FORMSOF(INFLECTIONAL) catches variant word forms.",
+              "SortOrder": 4
+            },
+            {
+              "Id": "6a7548f0-2780-4525-a8b0-36a2445248f6",
+              "Text": "Resume and job matching, where the NEAR operator finds candidates who mention skills in meaningful context rather than incidentally.",
+              "SortOrder": 5
+            }
+          ]
+        },
+        {
+          "Id": "1c5a5c5f-f655-409b-b83b-35a6383551fd",
+          "TopicId": "9f04afa3-3c9b-48c0-88b2-64d487d46ad5",
+          "Title": "Technical Triggers That Signal the Need",
+          "BodyText": "Beyond business use cases, specific technical symptoms in an existing schema or workload indicate that full-text indexing is warranted.",
+          "Notes": "These triggers usually appear together: MAX columns queried with leading-wildcard LIKE on a growing table is the classic signature.",
+          "SortOrder": 2,
+          "CreatedDate": "2026-11-17T05:30:15.4459973-05:00",
+          "ModifiedDate": "2026-11-17T05:30:15.4459973-05:00",
+          "Items": [
+            {
+              "Id": "bb56688e-c09c-483c-9c9f-cd22c4de0405",
+              "Text": "You are running LIKE \u0027%term%\u0027 on large text columns \u2014 a leading wildcard defeats every B-Tree index and forces a full scan.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "6cb4f884-bfa6-4652-9441-8ba5b899cfea",
+              "Text": "Your text columns are VARCHAR(MAX) or NVARCHAR(MAX), which standard indexes cannot index effectively.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "69fb5062-2660-4865-af08-ec8e1e32c972",
+              "Text": "Users need linguistic matching for plurals, verb tenses, or synonyms that character-exact comparison cannot provide.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "444e2d88-b869-4f59-aa8b-a6c0236c7ff2",
+              "Text": "You need relevance-ranked results \u2014 only full-text returns a rank score, while LIKE gives unordered binary matches.",
+              "SortOrder": 3
+            },
+            {
+              "Id": "8d35efaf-ff0b-40ac-a328-a921fb4ed670",
+              "Text": "You need proximity search such as \u0022X near Y\u0022, which is impossible with LIKE but native to the NEAR operator.",
+              "SortOrder": 4
+            },
+            {
+              "Id": "2dc544a3-0627-4cdd-9318-b561ec024d47",
+              "Text": "Search response times are degrading as the table grows, because LIKE scan cost rises linearly with row count.",
+              "SortOrder": 5
+            }
+          ]
+        },
+        {
+          "Id": "69005673-2d3b-45a1-a3a6-b15c994d456a",
+          "TopicId": "9f04afa3-3c9b-48c0-88b2-64d487d46ad5",
+          "Title": "Where Full-Text Is the Wrong Tool",
+          "BodyText": "Full-text indexing carries real storage, maintenance, and CPU overhead, and several common search patterns are better served by simpler mechanisms.",
+          "Notes": "Word breaking, stopword removal, and stemming can actively interfere with exact matching \u2014 a stopword inside a phrase may simply be dropped.",
+          "SortOrder": 3,
+          "CreatedDate": "2026-11-17T05:30:15.4459973-05:00",
+          "ModifiedDate": "2026-11-17T05:30:15.4459973-05:00",
+          "Items": [
+            {
+              "Id": "6873628b-f958-4b7d-92ef-b7fc990371ae",
+              "Text": "Short code or ID fields such as SKU-1042, customer IDs, or phone numbers \u2014 a unique or non-clustered B-Tree index is faster and simpler.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "0442ec76-9eb2-41ae-8af5-d73f9862b28b",
+              "Text": "Exact string lookups on usernames, emails, or account numbers, where character-for-character equality is required.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "ccf16789-b900-4c0b-90b0-ad1e940a9a61",
+              "Text": "Numeric and date range queries, which B-Tree range scans handle perfectly; full-text cannot index numeric, date, or binary columns at all.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "1a3f9cbd-205f-450c-b32b-5747389ad46b",
+              "Text": "Small tables of a few hundred rows, where a LIKE scan is effectively instantaneous and the catalog overhead is unjustified.",
+              "SortOrder": 3
+            },
+            {
+              "Id": "a3274b2a-e251-4f1b-9406-f09e3df854d2",
+              "Text": "Near-real-time requirements, because asynchronous population means even CHANGE_TRACKING = AUTO is not instantaneous.",
+              "SortOrder": 4
+            },
+            {
+              "Id": "9d0fc91f-7392-41fc-9b32-39aef1eaaff5",
+              "Text": "Pattern-based or regex-style searches such as LIKE \u0027AB[0-9][0-9][0-9]\u0027 \u2014 full-text indexes words, not character patterns.",
+              "SortOrder": 5
+            }
+          ]
+        },
+        {
+          "Id": "b1a9bdab-93ae-4735-b397-f1606d0e845a",
+          "TopicId": "9f04afa3-3c9b-48c0-88b2-64d487d46ad5",
+          "Title": "SQL Server Full-Text vs Dedicated Search Platforms",
+          "BodyText": "SQL Server\u0027s built-in engine covers many scenarios, but at very large scale or with advanced search requirements a dedicated platform such as Elasticsearch or Azure AI Search is a better fit.",
+          "Notes": "Other relational engines offer comparable built-in alternatives \u2014 Oracle Text (CONTAINS/SCORE), MySQL MATCH...AGAINST, PostgreSQL to_tsvector/to_tsquery with GIN indexes, and Db2 Text Search.",
+          "SortOrder": 4,
+          "CreatedDate": "2026-11-17T05:30:15.4459973-05:00",
+          "ModifiedDate": "2026-11-17T05:30:15.4459973-05:00",
+          "Items": [
+            {
+              "Id": "b51d4474-0784-43d8-9a08-9e1405ea16dc",
+              "Text": "Setup simplicity favours SQL Server \u2014 it is in-database with no extra infrastructure to operate.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "0ba23fe0-0036-499a-86a0-3fd1bb601f05",
+              "Text": "Billions of documents and petabyte-scale distributed search favour Elasticsearch or Azure AI Search.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "49ff0424-42b2-4a32-8d7c-327a51337b2c",
+              "Text": "Fuzzy, typo-tolerant search is not supported natively in SQL Server but is built in to dedicated engines.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "d35f2f1f-5364-4369-bccb-210543f8a008",
+              "Text": "Faceted filtering is workable by combining full-text with SQL WHERE clauses, but dedicated engines provide native aggregation buckets.",
+              "SortOrder": 3
+            },
+            {
+              "Id": "19a9de1a-56b1-48e1-89b9-13a44c7d8224",
+              "Text": "Sub-100 ms latency at scale is hard in SQL Server because full-text competes with the OLTP workload for CPU and memory.",
+              "SortOrder": 4
+            },
+            {
+              "Id": "987a280c-28c7-4e73-a5de-9aa2866c24d4",
+              "Text": "Multi-language depth, geospatial search, and ML-based ranking are only basic or absent in SQL Server full-text.",
+              "SortOrder": 5
+            }
+          ]
+        },
+        {
+          "Id": "d940f6a3-4784-463a-b9ae-af85b6545c3a",
+          "TopicId": "9f04afa3-3c9b-48c0-88b2-64d487d46ad5",
+          "Title": "A Decision Flow for Adoption",
+          "BodyText": "A short sequence of questions resolves most adoption decisions, ending either in SQL Server full-text, a standard index, or a dedicated search service.",
+          "Notes": "Work through the questions in order; a \u0027no\u0027 at any step redirects you to the simpler or the more specialised alternative.",
+          "SortOrder": 5,
+          "CreatedDate": "2026-11-17T05:30:15.4459973-05:00",
+          "ModifiedDate": "2026-11-17T05:30:15.4459973-05:00",
+          "Items": [
+            {
+              "Id": "245512ab-8161-436a-986f-5f90feb32d70",
+              "Text": "Are you searching inside long text fields of hundreds of words? If not, use a B-Tree index with an exact WHERE clause.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "ccfef1b8-9966-452c-b2e1-fa63df0d2cd9",
+              "Text": "Do users search with natural language or approximate terms? If not, LIKE with a trailing wildcard may be sufficient.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "b5ca59bb-3470-430f-bdf0-3bcdc78d6ec9",
+              "Text": "Is performance suffering from LIKE \u0027%term%\u0027 scans? If not, evaluate query frequency \u2014 the change may not be urgent.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "81905c2a-9658-4400-b108-5975c5de529f",
+              "Text": "Can you tolerate an indexing delay of seconds to minutes? If not, consider Elasticsearch for sub-second indexing.",
+              "SortOrder": 3
+            },
+            {
+              "Id": "9bb1bf58-ffc2-4ee3-a9fb-878398374e67",
+              "Text": "Is the data already in SQL Server and below billions-of-rows scale? If yes, adopt full-text indexing; if no, choose a dedicated search service.",
+              "SortOrder": 4
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Id": "32bdbab6-5dee-48d0-ad0c-5ef10a097d4e",
+      "Title": "Trade-offs, Performance, and Cross-Platform Reference",
+      "Summary": "Summarises the advantages and disadvantages of full-text indexing along with its impact on reads, writes, bulk loads, rebuilds, and disk space. Provides a predicate and search-syntax quick reference, an implementation checklist, a decision flowchart, and a comparison of full-text features across Oracle, MySQL, PostgreSQL, and Db2.",
+      "SortOrder": 7,
+      "CreatedDate": "2026-11-17T05:27:09.7211051-05:00",
+      "ModifiedDate": "2026-11-17T05:27:09.7211051-05:00",
+      "Elements": [
+        {
+          "Id": "da77b308-8efc-44eb-a7c5-64fb4defc608",
+          "TopicId": "32bdbab6-5dee-48d0-ad0c-5ef10a097d4e",
+          "Title": "Advantages of Full-Text Indexing",
+          "BodyText": "Full-text indexing delivers performance and linguistic capabilities that standard indexes and LIKE searches simply cannot provide. These benefits are most pronounced on large volumes of free-form text.",
+          "Notes": "Typical gains of 10\u00D7\u20131000\u00D7 over full table scans are reported on large text columns because an inverted index lookup replaces a character-by-character scan.",
+          "SortOrder": 0,
+          "CreatedDate": "2026-11-17T05:30:44.8122817-05:00",
+          "ModifiedDate": "2026-11-17T05:30:44.8122817-05:00",
+          "Items": [
+            {
+              "Id": "93b031ee-e5f7-489f-9215-4a922996d852",
+              "Text": "Text searches become dramatically faster because an inverted index lookup replaces a full table scan.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "f2313ce5-a46f-435a-96a4-b332e668a010",
+              "Text": "Stemming, inflectional forms, and stopword handling return relevant results without exact keyword matches.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "87c2d24a-12a9-4863-89cf-889da271e799",
+              "Text": "Phrase and proximity matching (NEAR) find terms appearing close together \u2014 impossible with LIKE.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "8915ae70-fa9a-4be5-b1cd-2495db0e7080",
+              "Text": "CONTAINSTABLE and FREETEXTTABLE supply relevance rank scores for ordering results.",
+              "SortOrder": 3
+            },
+            {
+              "Id": "d9e0041c-6c03-4e07-9c04-87780a8f326c",
+              "Text": "It is built into SQL Server, so queries stay in T-SQL with no separate search service or security model.",
+              "SortOrder": 4
+            },
+            {
+              "Id": "9b9c4f11-e58e-48e7-84db-39cfdd538c48",
+              "Text": "It supports NVARCHAR(MAX) columns, multi-language word breakers, and a customisable thesaurus for domain synonyms.",
+              "SortOrder": 5
+            }
+          ]
+        },
+        {
+          "Id": "872bc657-9ec4-4966-b785-edb656a88141",
+          "TopicId": "32bdbab6-5dee-48d0-ad0c-5ef10a097d4e",
+          "Title": "Disadvantages and Limitations",
+          "BodyText": "Full-text indexing carries real overhead in storage, maintenance, and predictability. Understanding these limits prevents misapplying the feature.",
+          "Notes": "Example: a stopword embedded in a searched phrase may be silently dropped, causing an apparently exact phrase to miss.",
+          "SortOrder": 1,
+          "CreatedDate": "2026-11-17T05:30:44.8122817-05:00",
+          "ModifiedDate": "2026-11-17T05:30:44.8122817-05:00",
+          "Items": [
+            {
+              "Id": "95396367-de28-486c-b739-70a58888b3e5",
+              "Text": "Population is asynchronous, so newly inserted or updated rows are not immediately searchable.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "25b930dd-9d48-45e6-8a82-770f5cf58229",
+              "Text": "Catalog and index files consume significant disk space, potentially approaching the size of the indexed text.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "36bd92af-74bd-41f1-9dbc-71d9530b73b6",
+              "Text": "Catalogs require population, fragment over time, and rebuilds are resource-intensive.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "b569b37b-69f7-44ff-a78b-57eeb8fcd58c",
+              "Text": "Stopwords, stemming, and word breaking can cause unexpected misses on terms you expected to match exactly.",
+              "SortOrder": 3
+            },
+            {
+              "Id": "064f8a95-3626-413e-8dc7-b152cdd5ccfc",
+              "Text": "Numeric, date, and binary columns cannot be full-text indexed, and the table must have a single-column unique index.",
+              "SortOrder": 4
+            },
+            {
+              "Id": "8f073b39-8fac-4d4b-ad97-090c1dd0e130",
+              "Text": "Queries run in-process and compete with OLTP workloads for CPU and memory; there is no native fuzzy or typo matching.",
+              "SortOrder": 5
+            }
+          ]
+        },
+        {
+          "Id": "5a93ded8-0604-4ac8-b820-391bcb7e6c98",
+          "TopicId": "32bdbab6-5dee-48d0-ad0c-5ef10a097d4e",
+          "Title": "Performance Impact by Operation",
+          "BodyText": "The cost of a full-text index varies sharply depending on the operation. Read performance improves greatly, while certain maintenance operations are expensive.",
+          "Notes": "Schedule full populations and catalog rebuilds during off-peak hours and monitor catalog growth as a routine operational task.",
+          "SortOrder": 2,
+          "CreatedDate": "2026-11-17T05:30:44.8122817-05:00",
+          "ModifiedDate": "2026-11-17T05:30:44.8122817-05:00",
+          "Items": [
+            {
+              "Id": "5ad140cb-a028-453d-9e32-caa45b890f99",
+              "Text": "Text search queries are significantly faster and scale well as row counts grow.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "11b9d91d-9f8d-4109-918d-b5fbe151e6d7",
+              "Text": "INSERT incurs only minor overhead because the change is logged for the crawler rather than indexed synchronously.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "60e59dd6-a2af-4cef-a8d3-2728a60b7d24",
+              "Text": "UPDATE to an indexed column has moderate overhead \u2014 old tokens are removed and new tokens queued for the next crawl.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "de93d19c-98b2-4b99-9f7f-6aa211498db3",
+              "Text": "DELETE is low cost; the row is simply flagged as deleted during the next crawl.",
+              "SortOrder": 3
+            },
+            {
+              "Id": "eee10d92-ad13-4bc4-8ee9-0360d3281100",
+              "Text": "Bulk loads create significant post-load overhead because the subsequent full population is CPU and I/O intensive.",
+              "SortOrder": 4
+            },
+            {
+              "Id": "55287d13-f3a2-4ab6-827e-ecebd8e61f46",
+              "Text": "Index and catalog rebuilds re-read all indexed text and should be avoided during peak hours; disk usage should be monitored continuously.",
+              "SortOrder": 5
+            }
+          ]
+        },
+        {
+          "Id": "2911aae2-76b8-4b6a-b6f4-1fe983c377d4",
+          "TopicId": "32bdbab6-5dee-48d0-ad0c-5ef10a097d4e",
+          "Title": "Predicate and Search Syntax Quick Reference",
+          "BodyText": "Four full-text constructs cover the common search patterns, and CONTAINS supports a compact term syntax for words, phrases, and proximity. Knowing which to reach for speeds up implementation.",
+          "Notes": "CONTAINS and FREETEXT return TRUE/FALSE for use in WHERE; the *TABLE functions return (KEY, RANK) pairs that you JOIN back to the base table.",
+          "SortOrder": 3,
+          "CreatedDate": "2026-11-17T05:30:44.8122817-05:00",
+          "ModifiedDate": "2026-11-17T05:30:44.8122817-05:00",
+          "Items": [
+            {
+              "Id": "e73c6781-7f79-4b02-a74d-316ea99f5752",
+              "Text": "CONTAINS(col, query) is for exact words, phrases, prefixes, and proximity inside a WHERE clause.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "9f4a81a5-2dcb-4240-b8ce-d17a6e2da5be",
+              "Text": "FREETEXT(col, text) accepts natural language user input directly in a WHERE clause.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "009a0cf0-5235-4aa1-8fb4-47cfd07866cc",
+              "Text": "CONTAINSTABLE and FREETEXTTABLE return a table of KEY and RANK for sorted, relevance-ordered output.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "2fb55fea-c589-4e42-bfbd-d0ff94564a3d",
+              "Text": "Term syntax includes \u0027\u0022phrase here\u0022\u0027 for exact phrases, \u0027word1 AND NOT word2\u0027 for exclusion, and \u0027\u0022optim*\u0022\u0027 for prefix matching.",
+              "SortOrder": 3
+            },
+            {
+              "Id": "5a3e2b41-4273-4a94-8a92-d9ad5497c39e",
+              "Text": "FORMSOF(INFLECTIONAL, word) matches all grammatical forms, while FORMSOF(THESAURUS, word) expands synonyms.",
+              "SortOrder": 4
+            },
+            {
+              "Id": "d677875e-9ced-4b76-b00a-8eb3bbd1fdc7",
+              "Text": "\u0027word1 NEAR word2\u0027 or \u0027NEAR((w1,w2), N, ordered)\u0027 finds terms within a specified distance.",
+              "SortOrder": 5
+            }
+          ]
+        },
+        {
+          "Id": "5c6eab61-eaf6-46b3-8079-00f7a057c9c1",
+          "TopicId": "32bdbab6-5dee-48d0-ad0c-5ef10a097d4e",
+          "Title": "Decision Flowchart and Implementation Checklist",
+          "BodyText": "A short series of questions determines whether full-text indexing is the right tool, and a checklist ensures a complete, production-ready implementation.",
+          "Notes": "If the answer to any decision question is \u0027no\u0027, the flowchart redirects to a standard B-Tree index, a trailing-wildcard LIKE, or a dedicated search service such as Elasticsearch or Azure AI Search.",
+          "SortOrder": 4,
+          "CreatedDate": "2026-11-17T05:30:44.8122817-05:00",
+          "ModifiedDate": "2026-11-17T05:30:44.8122817-05:00",
+          "Items": [
+            {
+              "Id": "0b7accc9-5231-43ad-9a92-e6f66549f950",
+              "Text": "Ask whether you are searching inside long text fields, whether users search with approximate language, and whether LIKE \u0027%term%\u0027 scans are hurting performance.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "91da72fb-72e9-4c50-acef-2baabf42261b",
+              "Text": "Confirm you can tolerate a short indexing delay and that billions-of-rows scale is not required before committing to SQL Server full-text.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "eea95216-ec70-4409-85ad-1f970542a890",
+              "Text": "Checklist step one: verify the feature is installed with FULLTEXTSERVICEPROPERTY and create a full-text catalog.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "70378562-d3b4-48cb-9dc8-8fe3216e06f4",
+              "Text": "Ensure the target table has a single-column unique index, then create the index with CHANGE_TRACKING = AUTO and run START FULL POPULATION.",
+              "SortOrder": 3
+            },
+            {
+              "Id": "47c9634f-58b2-48a4-a07f-baa08d72eb55",
+              "Text": "Use CONTAINS for precise queries, FREETEXT for user search boxes, and the *TABLE functions when ranking is needed.",
+              "SortOrder": 4
+            },
+            {
+              "Id": "f908fe82-361c-4545-be96-bb1987874e28",
+              "Text": "Monitor catalog size, schedule population jobs off-peak, and customise the stoplist and thesaurus for domain vocabulary.",
+              "SortOrder": 5
+            }
+          ]
+        },
+        {
+          "Id": "57b38fab-9e45-4212-9d9b-1c63e818271b",
+          "TopicId": "32bdbab6-5dee-48d0-ad0c-5ef10a097d4e",
+          "Title": "Cross-Platform Full-Text Comparison",
+          "BodyText": "Every major RDBMS supports full-text indexing, but each uses distinct syntax and feature sets. Translating a SQL Server search to another platform means mapping predicates and ranking functions.",
+          "Notes": "For example, SQL Server\u0027s CONTAINS(body, \u0027delicious AND spicy\u0027) becomes MySQL\u0027s MATCH(body) AGAINST(\u0027\u002Bdelicious \u002Bspicy\u0027 IN BOOLEAN MODE) or PostgreSQL\u0027s to_tsvector(body) @@ to_tsquery(\u0027delicious \u0026 spicy\u0027).",
+          "SortOrder": 5,
+          "CreatedDate": "2026-11-17T05:30:44.8122817-05:00",
+          "ModifiedDate": "2026-11-17T05:30:44.8122817-05:00",
+          "Items": [
+            {
+              "Id": "69a11143-2a0d-404e-81ea-051e29115786",
+              "Text": "Oracle Text uses CONTAINS with SCORE for ranking, plus ABOUT for concept search, WITHIN for sections, and NEAR, FUZZY, and SOUNDEX operators.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "10597b39-6dcd-4da1-ae1c-96b9e27492e1",
+              "Text": "MySQL uses MATCH ... AGAINST with IN NATURAL LANGUAGE MODE, IN BOOLEAN MODE, or WITH QUERY EXPANSION over a FULLTEXT INDEX.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "a565c1f9-c6b4-4f04-b7ea-1d1e05946112",
+              "Text": "PostgreSQL converts text with to_tsvector and queries with to_tsquery or plainto_tsquery, matching via the @@ operator and ranking with ts_rank.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "8a9bfa42-1c52-4315-8510-25cbc9251ed1",
+              "Text": "PostgreSQL stores its indexes as GIN or GiST structures and offers ts_headline for highlighted excerpts and ts_debug for troubleshooting.",
+              "SortOrder": 3
+            },
+            {
+              "Id": "1c23c3a8-5929-4a69-a6e1-c0261a241d27",
+              "Text": "IBM Db2 Text Search provides CONTAINS and SCORE along with DB2TEXT.CATSEARCH, DB2TEXT.REFINE, linguistic indexes, and custom synonym and stop-word dictionaries.",
+              "SortOrder": 4
+            },
+            {
+              "Id": "f68af0c1-da17-4be6-bf2d-5aff1c4a0a75",
+              "Text": "Across all platforms the common building blocks are an inverted index, a stopword list, stemming, synonym expansion, and a relevance score.",
+              "SortOrder": 5
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "TotalElementCount": 50
+}

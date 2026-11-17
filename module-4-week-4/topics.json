@@ -1,0 +1,1910 @@
+{
+  "ModuleFolderName": "Module_4_(Week_4)",
+  "CourseName": "COP4709 \u2014 Applied Database II",
+  "GeneratedDate": "2026-11-17T05:05:06.105194-05:00",
+  "ModifiedDate": "2026-11-17T05:08:18.2203971-05:00",
+  "Outcomes": [],
+  "Topics": [
+    {
+      "Id": "46288203-e52b-48b3-828a-68f64b9124a0",
+      "Title": "Introduction to Stored Functions in T-SQL",
+      "Summary": "Explains what user-defined functions are, their defining characteristics such as parameters, return values, and read-only behavior, and when to use them for calculations, transformations, and encapsulated business rules. Establishes the core distinction that functions return data for queries while procedures perform actions.",
+      "SortOrder": 0,
+      "CreatedDate": "2026-11-17T05:05:06.105194-05:00",
+      "ModifiedDate": "2026-11-17T05:05:06.105194-05:00",
+      "Elements": [
+        {
+          "Id": "7227a953-b5e0-4dd3-a87b-8ecd745fd623",
+          "TopicId": "46288203-e52b-48b3-828a-68f64b9124a0",
+          "Title": "What Is a User-Defined Function (UDF)?",
+          "BodyText": "User-defined functions in T-SQL are reusable code modules that accept parameters, perform calculations or operations, and return a value or a table. They let you encapsulate business logic in a named database object that can be called from ordinary SQL.",
+          "Notes": "Example: dbo.fn_CalculateAge(BirthDate) hides the date arithmetic behind a descriptive name that any query can call.",
+          "SortOrder": 0,
+          "CreatedDate": "2026-11-17T05:05:26.5308105-05:00",
+          "ModifiedDate": "2026-11-17T05:05:26.5308105-05:00",
+          "Items": [
+            {
+              "Id": "be35ab9b-752c-4926-9fa7-9de8f8e9cc01",
+              "Text": "A UDF is a schema-scoped database object created with CREATE FUNCTION.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "5610d2bc-b2d1-48b9-9ec5-7a53359892ee",
+              "Text": "Unlike stored procedures, functions can be used directly inside SQL queries.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "ecbd057c-c5d4-4cf3-a796-6f33c6dc203a",
+              "Text": "They are a primary tool for encapsulating commonly used SQL expressions and business rules.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "153b8d24-95f1-44be-a070-792edac2c19e",
+              "Text": "They also shield the inner details of the database from external application code in large systems.",
+              "SortOrder": 3
+            }
+          ]
+        },
+        {
+          "Id": "52e105c7-b97e-4153-a8c7-d6953863f1bf",
+          "TopicId": "46288203-e52b-48b3-828a-68f64b9124a0",
+          "Title": "Defining Characteristics of Stored Functions",
+          "BodyText": "Every T-SQL function shares a set of defining traits that govern how it is written and where it can be used. Understanding these traits up front explains most of the rules you will meet later.",
+          "Notes": "",
+          "SortOrder": 1,
+          "CreatedDate": "2026-11-17T05:05:26.5308105-05:00",
+          "ModifiedDate": "2026-11-17T05:05:26.5308105-05:00",
+          "Items": [
+            {
+              "Id": "fab791bc-9b69-4d50-8c2c-599991380130",
+              "Text": "Accept input parameters: zero or more typed parameters may be declared.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "04beb7e6-3a86-442f-9894-c28e0e7818b7",
+              "Text": "Return values: a function must return either a single scalar value or a table.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "5fbcda2f-0bf4-4692-ba61-64eec9ddc1e7",
+              "Text": "Deterministic or non-deterministic: results may be consistent for the same inputs, or vary (e.g., when GETDATE() is used).",
+              "SortOrder": 2
+            },
+            {
+              "Id": "65d9e369-f707-4ca5-9989-05ee575a7175",
+              "Text": "Usable in queries: functions can be called from SELECT, WHERE, and JOIN clauses.",
+              "SortOrder": 3
+            },
+            {
+              "Id": "8b7d7d18-c675-43d2-b160-e6bf40862c97",
+              "Text": "Read-only: functions cannot modify database state, with only rare exceptions.",
+              "SortOrder": 4
+            }
+          ]
+        },
+        {
+          "Id": "5877642d-4e01-41b2-b0b0-65f3aead9be5",
+          "TopicId": "46288203-e52b-48b3-828a-68f64b9124a0",
+          "Title": "The Read-Only Rule and Why It Matters",
+          "BodyText": "The most important constraint on a function is that it must be side-effect free. This single rule drives nearly every other limitation and also enables functions to be embedded safely in queries.",
+          "Notes": "Because the optimizer may call a function once per row, in any order, or not at all, side effects would make query results unpredictable.",
+          "SortOrder": 2,
+          "CreatedDate": "2026-11-17T05:05:26.5308105-05:00",
+          "ModifiedDate": "2026-11-17T05:05:26.5308105-05:00",
+          "Items": [
+            {
+              "Id": "1a04f780-e009-4f18-b103-864a452f7f44",
+              "Text": "Functions cannot run INSERT, UPDATE, or DELETE against permanent tables.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "e5710a35-6993-46ab-881d-ca698b1b25c3",
+              "Text": "Functions cannot begin transactions or call stored procedures.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "b255509d-a1c5-424d-bf4e-90d413d8fa8e",
+              "Text": "Functions should be treated as pure calculations over data they read.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "da972164-2d20-48ca-be07-bb7ecd694f72",
+              "Text": "Read-only behavior is what makes it safe for SQL Server to embed a function call inside a larger query.",
+              "SortOrder": 3
+            }
+          ]
+        },
+        {
+          "Id": "eb501519-e268-49db-8550-d5c50863e7ab",
+          "TopicId": "46288203-e52b-48b3-828a-68f64b9124a0",
+          "Title": "When to Use a Function",
+          "BodyText": "Functions are the right tool whenever you need reusable, read-only logic whose result participates in a query. They shine where the same calculation or filter would otherwise be copied across many statements.",
+          "Notes": "Example: a discount calculation used in dozens of reports can be centralized in one function so every report computes it identically.",
+          "SortOrder": 3,
+          "CreatedDate": "2026-11-17T05:05:26.5308105-05:00",
+          "ModifiedDate": "2026-11-17T05:05:26.5308105-05:00",
+          "Items": [
+            {
+              "Id": "e1e05b86-4097-40b7-97bc-56bf38656854",
+              "Text": "Calculations that need to be reused across multiple queries.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "19315cd4-31e1-4af9-8062-56a6dddc6a02",
+              "Text": "Data transformations applied within SELECT statements, such as formatting a phone number.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "c6ef2d93-a513-48f8-acf4-b9e679158df0",
+              "Text": "Complex filtering logic that must be evaluated in a WHERE clause.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "4a773364-9458-4037-afc8-59c2b9cbb57b",
+              "Text": "Encapsulating business rules for data retrieval, such as customer tier discounts.",
+              "SortOrder": 3
+            },
+            {
+              "Id": "9fb9bbd8-510d-4710-b697-9ab5a8192910",
+              "Text": "Creating computed columns or supporting indexed views.",
+              "SortOrder": 4
+            }
+          ]
+        },
+        {
+          "Id": "973ae5b7-83db-4701-9cce-b4fca4749f41",
+          "TopicId": "46288203-e52b-48b3-828a-68f64b9124a0",
+          "Title": "Functions vs. Procedures: The Core Distinction",
+          "BodyText": "Functions are designed for queries and calculations, while stored procedures are designed for actions and transactions. Put simply, functions return data and procedures perform operations.",
+          "Notes": "Same task, two tools: dbo.fn_GetOrderTotal(@OrderID) reads and returns a total, while usp_RecalculateOrderTotal updates the Orders table inside a transaction with TRY...CATCH.",
+          "SortOrder": 4,
+          "CreatedDate": "2026-11-17T05:05:26.5308105-05:00",
+          "ModifiedDate": "2026-11-17T05:05:26.5308105-05:00",
+          "Items": [
+            {
+              "Id": "a11942f8-5918-422e-a238-ce980784f974",
+              "Text": "A function must return a value; a procedure returns only an optional integer status plus optional result sets.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "15433dbc-65f2-4442-87f2-17d77e4ebb40",
+              "Text": "Functions can be used in SELECT, WHERE, and JOIN; procedures cannot be used inside queries.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "e3ef0901-1a30-4b52-a3e3-c21de00712c7",
+              "Text": "Procedures support DML, transactions, TRY...CATCH, OUTPUT parameters, and temp tables; functions do not.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "719d2eff-6ba7-4b19-8d3b-fba77c439249",
+              "Text": "Choose a procedure whenever the logic modifies database state or needs error and transaction handling.",
+              "SortOrder": 3
+            }
+          ]
+        },
+        {
+          "Id": "72935ffe-159f-4f26-b3f0-d7b6db6635b6",
+          "TopicId": "46288203-e52b-48b3-828a-68f64b9124a0",
+          "Title": "Calling Functions and Naming Them Clearly",
+          "BodyText": "Functions are invoked with a schema-qualified name wherever an expression or table source is valid. Consistent naming makes the function\u0027s purpose and return type obvious to other developers.",
+          "Notes": "Example: SELECT FirstName, dbo.fn_CalculateAge(BirthDate) AS Age FROM Customers;",
+          "SortOrder": 5,
+          "CreatedDate": "2026-11-17T05:05:26.5308105-05:00",
+          "ModifiedDate": "2026-11-17T05:05:26.5308105-05:00",
+          "Items": [
+            {
+              "Id": "0d50df3b-8cfc-47dd-a53d-4c030ff97f41",
+              "Text": "Always use two-part names such as dbo.fn_CalculateAge when calling a function.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "b3e3b5a0-2568-4614-8bba-088e336684db",
+              "Text": "Use an fn_ prefix to distinguish functions from procedures, which typically use usp_ or sp_.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "97c54dd7-721b-4e50-8e38-e08abda2e805",
+              "Text": "Name scalar functions as fn_VerbNoun, such as fn_FormatPhoneNumber.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "14858801-5034-419d-944e-9b43207258de",
+              "Text": "Name table-valued functions as fn_GetNounByCondition, such as fn_GetOrdersByDate.",
+              "SortOrder": 3
+            },
+            {
+              "Id": "930265d1-4468-41d4-af55-7f5dcd4b7aad",
+              "Text": "A good name describes what the function returns, not merely what it does internally.",
+              "SortOrder": 4
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Id": "3423050b-a80a-48ef-9d82-75da21e75924",
+      "Title": "Types of User-Defined Functions",
+      "Summary": "Introduces the three T-SQL function types \u2014 scalar, inline table-valued, and multi-statement table-valued \u2014 with their return types, typical use cases, and a side-by-side comparison of performance, complexity, and optimization characteristics.",
+      "SortOrder": 1,
+      "CreatedDate": "2026-11-17T05:05:06.105194-05:00",
+      "ModifiedDate": "2026-11-17T05:05:06.105194-05:00",
+      "Elements": [
+        {
+          "Id": "86a4aa2e-d901-4253-b1cb-b5919c631870",
+          "TopicId": "3423050b-a80a-48ef-9d82-75da21e75924",
+          "Title": "Overview: Three Kinds of User-Defined Functions",
+          "BodyText": "T-SQL provides three types of user-defined functions, each with distinct return types, syntax patterns, and performance characteristics. Choosing the right type is the first design decision when encapsulating logic in a function.",
+          "Notes": "All three accept zero or more input parameters, are read-only, and can be called from queries \u2014 but how they return data and how the optimizer handles them differs dramatically.",
+          "SortOrder": 0,
+          "CreatedDate": "2026-11-17T05:05:52.973668-05:00",
+          "ModifiedDate": "2026-11-17T05:05:52.973668-05:00",
+          "Items": [
+            {
+              "Id": "2f19f26a-23d9-49af-b6c5-d65818ad4cc8",
+              "Text": "Scalar functions return a single value such as INT, VARCHAR, or DECIMAL.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "2528d40a-3d4c-44a4-b4ec-763cf9eec10d",
+              "Text": "Inline table-valued functions (iTVFs) return the result of a single SELECT statement as a table.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "af8cef7d-bb12-4143-9a3f-241ce184a347",
+              "Text": "Multi-statement table-valued functions (MSTVFs) return a table whose structure you declare and populate with multiple statements.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "5d7fb86d-c5a9-4416-8c58-5318b25e1f66",
+              "Text": "The choice affects where the function can be used (column list, WHERE clause, FROM/JOIN/APPLY) and how well it performs.",
+              "SortOrder": 3
+            }
+          ]
+        },
+        {
+          "Id": "156e18ef-5d08-49d7-9076-a874e602bfd1",
+          "TopicId": "3423050b-a80a-48ef-9d82-75da21e75924",
+          "Title": "Scalar Functions",
+          "BodyText": "A scalar function returns one value and can be used anywhere a scalar expression is valid \u2014 in SELECT lists, WHERE clauses, ORDER BY, GROUP BY, and computed columns. They are the simplest type to write and the easiest to misuse.",
+          "Notes": "Example: fn_CalculateAge(BirthDate) returns an INT; fn_GetCategoryName(CategoryID) returns an NVARCHAR(100) lookup value; fn_FormatPhoneNumber reformats a string.",
+          "SortOrder": 1,
+          "CreatedDate": "2026-11-17T05:05:52.973668-05:00",
+          "ModifiedDate": "2026-11-17T05:05:52.973668-05:00",
+          "Items": [
+            {
+              "Id": "5e9d20c2-eb19-4b6f-89c5-2bdba729906a",
+              "Text": "Typical uses are calculations, data conversions, string formatting, and single-value lookups.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "e4e61816-22ef-4773-aadd-199eeea21fd8",
+              "Text": "The body is wrapped in BEGIN...END, declares a variable, and finishes with RETURN @Result.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "975ab319-8326-4676-bc60-27964477e181",
+              "Text": "They are the only function type that can be placed directly in a WHERE clause predicate.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "1bf59005-0d2b-4899-9ab1-aec904df2fe6",
+              "Text": "Performance is only moderate because the function executes once per row and blocks parallelism and index seeks on large tables.",
+              "SortOrder": 3
+            }
+          ]
+        },
+        {
+          "Id": "d7a4ac1c-4345-4bc0-ae4a-6069e5584c20",
+          "TopicId": "3423050b-a80a-48ef-9d82-75da21e75924",
+          "Title": "Inline Table-Valued Functions",
+          "BodyText": "An inline TVF is essentially a parameterized view: it declares RETURNS TABLE and consists of a single RETURN (SELECT ...) statement with no BEGIN/END block. SQL Server expands it into the calling query, so it optimizes like a view.",
+          "Notes": "Example: fn_GetCustomerOrdersByDate(@CustomerID, @StartDate, @EndDate) can be selected from directly or used with CROSS APPLY against the Customers table.",
+          "SortOrder": 2,
+          "CreatedDate": "2026-11-17T05:05:52.973668-05:00",
+          "ModifiedDate": "2026-11-17T05:05:52.973668-05:00",
+          "Items": [
+            {
+              "Id": "790fe733-eb1e-4810-99b6-7e974a958e17",
+              "Text": "Best uses include parameterized views, filtered result sets, and reusable join logic.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "e0ccd72c-a0bb-4ee2-a299-cea81fa20d09",
+              "Text": "They deliver the best performance of the three types because the optimizer merges them with the outer query.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "e7b1752c-49fc-45f0-8683-169dfa1a52b8",
+              "Text": "They can take advantage of indexes on the underlying base tables.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "99145a94-6547-41bd-9337-a29a37a1b78f",
+              "Text": "They cannot be used in a WHERE clause directly \u2014 join to them or use CROSS APPLY / OUTER APPLY.",
+              "SortOrder": 3
+            },
+            {
+              "Id": "7490b4ec-d864-488a-9018-164ed859d94d",
+              "Text": "Optional parameters with default values let one function serve several filtering scenarios.",
+              "SortOrder": 4
+            }
+          ]
+        },
+        {
+          "Id": "7a8f83a2-c425-4dd3-85bf-b14562ceedb4",
+          "TopicId": "3423050b-a80a-48ef-9d82-75da21e75924",
+          "Title": "Multi-Statement Table-Valued Functions",
+          "BodyText": "An MSTVF declares a return table variable with an explicit column list and then fills it using multiple statements inside a BEGIN...END block. This flexibility comes at a significant optimization cost.",
+          "Notes": "Examples include building an employee hierarchy level by level, generating a customer statistics summary with a second UPDATE pass to assign tiers, or producing running totals in a sales report.",
+          "SortOrder": 3,
+          "CreatedDate": "2026-11-17T05:05:52.973668-05:00",
+          "ModifiedDate": "2026-11-17T05:05:52.973668-05:00",
+          "Items": [
+            {
+              "Id": "da146885-1023-4b17-b956-fef5030aec31",
+              "Text": "Use them only when logic genuinely requires several steps, loops, or intermediate updates.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "fb13ce0d-33a9-414c-be35-9b1cbee3aeb0",
+              "Text": "Typical scenarios are hierarchical data traversal, summary table generation, and complex multi-pass transformations.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "6601d6cd-b3dd-44d3-871a-b3ab1d81201b",
+              "Text": "The internal table variable has no statistics, so the optimizer cannot estimate cardinality accurately.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "5a8e66af-33bb-4bc3-adaf-e651205c6ce4",
+              "Text": "They cannot use base table indexes and cannot be optimized together with the outer query.",
+              "SortOrder": 3
+            },
+            {
+              "Id": "d633e4dc-e5ee-484f-8316-010c8abaeacd",
+              "Text": "Rewrite as an inline TVF or a stored procedure whenever possible.",
+              "SortOrder": 4
+            }
+          ]
+        },
+        {
+          "Id": "f80c6626-72ca-4f3f-9c82-da20da68556a",
+          "TopicId": "3423050b-a80a-48ef-9d82-75da21e75924",
+          "Title": "Side-by-Side Comparison",
+          "BodyText": "Comparing the three types across return type, performance, complexity, and optimization makes the trade-offs explicit and guides selection.",
+          "Notes": "Performance ratings: inline TVF \u2014 excellent; simple scalar UDF \u2014 moderate; complex scalar UDF and MSTVF \u2014 poor.",
+          "SortOrder": 4,
+          "CreatedDate": "2026-11-17T05:05:52.973668-05:00",
+          "ModifiedDate": "2026-11-17T05:05:52.973668-05:00",
+          "Items": [
+            {
+              "Id": "dabe07c9-9512-43f7-800a-35d7db7e5309",
+              "Text": "Return type: scalar returns a single value; both TVF types return a table.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "c1b51c26-27bc-4672-a6aa-1aec818cfbe6",
+              "Text": "Performance: inline TVF is excellent, scalar is good for small sets, MSTVF can be slow.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "2de45790-5f25-4a2d-8478-9e541256b04b",
+              "Text": "Complexity: scalar suits simple logic, inline TVF is limited to one query, MSTVF supports multiple steps.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "45129807-f084-401c-8880-a0a58e6edf4f",
+              "Text": "Use in WHERE: only scalar functions work directly; TVFs require a JOIN or APPLY.",
+              "SortOrder": 3
+            },
+            {
+              "Id": "1f33cd06-c583-446a-a0e6-fa446f83c830",
+              "Text": "Query optimization: excellent for inline TVFs, moderate for scalar, limited for MSTVFs.",
+              "SortOrder": 4
+            },
+            {
+              "Id": "874fff21-3467-49ec-ab45-2f10789679f9",
+              "Text": "Indexing: inline TVFs can use base table indexes, MSTVFs cannot, and indexing is not applicable to scalar returns.",
+              "SortOrder": 5
+            }
+          ]
+        },
+        {
+          "Id": "72b7b7ee-f1c7-468b-a68e-d2c3db485662",
+          "TopicId": "3423050b-a80a-48ef-9d82-75da21e75924",
+          "Title": "Choosing the Right Function Type",
+          "BodyText": "Match the function type to the shape of the result and the complexity of the logic, defaulting to the most optimizable option that satisfies the requirement.",
+          "Notes": "A practical rule: start with an inline TVF, fall back to scalar for single values, and treat MSTVF as a last resort.",
+          "SortOrder": 5,
+          "CreatedDate": "2026-11-17T05:05:52.973668-05:00",
+          "ModifiedDate": "2026-11-17T05:05:52.973668-05:00",
+          "Items": [
+            {
+              "Id": "22371f13-b113-44f0-b56d-41ad9e9e7ad7",
+              "Text": "Need one value per row for display or filtering? Use a scalar function, but keep it simple and schema-bound.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "97ad0d12-7c7f-4682-bdf0-3d561ae91263",
+              "Text": "Need a parameterized result set? Use an inline TVF and consume it with CROSS APPLY or OUTER APPLY.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "56bb3d8d-0707-4001-9ac4-8cfa8bae6956",
+              "Text": "Need multiple processing passes over intermediate results? Use an MSTVF, accepting the performance cost.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "dc400e05-3b50-495b-92c3-daa30e3d1da8",
+              "Text": "If the logic must modify data, manage transactions, or handle errors, use a stored procedure instead of any function type.",
+              "SortOrder": 3
+            },
+            {
+              "Id": "ebb86648-6544-4256-ab3e-fa44a0e00ca4",
+              "Text": "In SQL Server 2019 and later, simple schema-bound scalar functions may be automatically inlined, narrowing the performance gap.",
+              "SortOrder": 4
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Id": "9fac7880-5489-4502-8857-e120e29e2d29",
+      "Title": "Creating Scalar Functions",
+      "Summary": "Covers the syntax and construction of scalar functions that return a single value, illustrated through examples such as age calculation, tiered customer discounts, lookup functions, and string formatting. Also highlights the performance risks of scalar functions on large datasets.",
+      "SortOrder": 2,
+      "CreatedDate": "2026-11-17T05:05:06.105194-05:00",
+      "ModifiedDate": "2026-11-17T05:05:06.105194-05:00",
+      "Elements": [
+        {
+          "Id": "fe2e6b1d-134b-4a4a-885a-7c4c58b1beec",
+          "TopicId": "9fac7880-5489-4502-8857-e120e29e2d29",
+          "Title": "Scalar Function Syntax and Structure",
+          "BodyText": "A scalar function is created with CREATE FUNCTION, a parameter list, a RETURNS clause naming a single data type, and a body enclosed in BEGIN...END that ends with RETURN.",
+          "Notes": "Template:\nCREATE FUNCTION dbo.FunctionName (@Param1 DataType)\nRETURNS ReturnDataType\nAS\nBEGIN\n  DECLARE @Result ReturnDataType;\n  SET @Result = /* calculation */;\n  RETURN @Result;\nEND;\nGO",
+          "SortOrder": 0,
+          "CreatedDate": "2026-11-17T05:06:16.2503773-05:00",
+          "ModifiedDate": "2026-11-17T05:06:16.2503773-05:00",
+          "Items": [
+            {
+              "Id": "92b9aef5-b10f-4bbe-a45b-93249a7c3fd1",
+              "Text": "Always schema-qualify the function name (dbo.fn_Name) when creating and calling it.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "e327a8f3-7ef3-4d6d-ad26-b8928a3de9fd",
+              "Text": "Parameters are declared with @ names and explicit data types; zero or more may be used.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "bf9ffb63-b4fc-435e-b6f3-e5237af2ee14",
+              "Text": "RETURNS specifies exactly one scalar type such as INT, DECIMAL(10,2), or NVARCHAR(100).",
+              "SortOrder": 2
+            },
+            {
+              "Id": "df5c4b7e-7890-47b6-9e75-70159444269e",
+              "Text": "Declare a local variable to hold the result, assign it with SET or SELECT, then RETURN it.",
+              "SortOrder": 3
+            },
+            {
+              "Id": "200e49ee-e4bc-4f55-831a-8a738b1575e7",
+              "Text": "Terminate the batch with GO so the CREATE FUNCTION statement compiles on its own.",
+              "SortOrder": 4
+            }
+          ]
+        },
+        {
+          "Id": "73844ced-bb91-4974-aff3-0edd995ce764",
+          "TopicId": "9fac7880-5489-4502-8857-e120e29e2d29",
+          "Title": "Example: Calculating Age from a Birthdate",
+          "BodyText": "A classic scalar function use case is converting a stored birthdate into a calculated age that can be selected like any other column.",
+          "Notes": "Usage: SELECT FirstName, LastName, dbo.fn_CalculateAge(BirthDate) AS Age FROM Customers;",
+          "SortOrder": 1,
+          "CreatedDate": "2026-11-17T05:06:16.2503773-05:00",
+          "ModifiedDate": "2026-11-17T05:06:16.2503773-05:00",
+          "Items": [
+            {
+              "Id": "2445e7c2-3e5b-49d0-8eaf-ce6693a872b0",
+              "Text": "fn_CalculateAge accepts a DATE parameter and RETURNS INT.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "d34069f4-c8fe-458a-bead-d0928bf92c15",
+              "Text": "DATEDIFF(YEAR, @BirthDate, GETDATE()) gives a rough year difference that must be adjusted.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "7ff87c65-b5a7-4f59-9399-7fd99451eca9",
+              "Text": "A CASE expression subtracts 1 when the birthday has not yet occurred this calendar year.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "f84252de-f621-4a85-9a57-318f876197c1",
+              "Text": "Because GETDATE() is used, the function is non-deterministic and cannot support indexing.",
+              "SortOrder": 3
+            },
+            {
+              "Id": "523e4bb7-3e1e-4682-a469-79ce4e9cdff2",
+              "Text": "The function can also be used in ORDER BY, GROUP BY, and computed columns.",
+              "SortOrder": 4
+            }
+          ]
+        },
+        {
+          "Id": "bc580fc4-f17f-4000-b194-8faf07b7ba09",
+          "TopicId": "9fac7880-5489-4502-8857-e120e29e2d29",
+          "Title": "Example: Tiered Customer Discount Logic",
+          "BodyText": "Scalar functions are an effective way to encapsulate business rules such as discount tiers so the same logic is applied consistently across every query.",
+          "Notes": "Usage: SELECT OrderID, TotalAmount, dbo.fn_GetCustomerDiscount(CustomerID, TotalAmount) AS Discount FROM Orders;",
+          "SortOrder": 2,
+          "CreatedDate": "2026-11-17T05:06:16.2503773-05:00",
+          "ModifiedDate": "2026-11-17T05:06:16.2503773-05:00",
+          "Items": [
+            {
+              "Id": "e4fd6ab2-69fe-42b1-9c26-6e4fdfc11799",
+              "Text": "fn_GetCustomerDiscount takes @CustomerID and @OrderAmount and returns DECIMAL(10,2).",
+              "SortOrder": 0
+            },
+            {
+              "Id": "4491222c-9f2d-4c13-b4f9-fd2812d5149f",
+              "Text": "An internal SELECT COUNT(*) against Orders determines the customer\u0027s lifetime order count.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "a4548975-1297-4925-bf62-1a51ec82c1a0",
+              "Text": "A CASE expression maps order counts to tiers: 50\u002B = VIP 15%, 20\u002B = Gold 10%, 10\u002B = Silver 5%, else 0%.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "959736d1-4fde-43b9-9d58-3347ab7d8916",
+              "Text": "The discount amount is computed as @OrderAmount * (@DiscountPercent / 100).",
+              "SortOrder": 3
+            },
+            {
+              "Id": "1ec62921-8d58-46fd-aa7c-d0f31c873612",
+              "Text": "Calling the function twice in one SELECT doubles the row-by-row cost, so compute it once in a CTE instead.",
+              "SortOrder": 4
+            }
+          ]
+        },
+        {
+          "Id": "c81c8c70-797e-43ae-aac7-12d4edd4b399",
+          "TopicId": "9fac7880-5489-4502-8857-e120e29e2d29",
+          "Title": "Example: Lookup Functions with NULL Handling",
+          "BodyText": "Scalar functions can perform simple single-value lookups against another table, replacing repetitive joins with a readable call.",
+          "Notes": "Related examples include func_GetAlbumName, which returns SELECT TOP 1 name FROM Albums WHERE id = @AlbumID, and func_GetAlbumID, which returns 0 when no matching album exists.",
+          "SortOrder": 3,
+          "CreatedDate": "2026-11-17T05:06:16.2503773-05:00",
+          "ModifiedDate": "2026-11-17T05:06:16.2503773-05:00",
+          "Items": [
+            {
+              "Id": "70d66835-6bc3-48c2-9e5b-2e22f0752af9",
+              "Text": "fn_GetCategoryName accepts @CategoryID and returns NVARCHAR(100).",
+              "SortOrder": 0
+            },
+            {
+              "Id": "f8ad4ab2-a071-4cfd-b4ce-2bbe8778aaae",
+              "Text": "The body assigns the result with SELECT @CategoryName = CategoryName FROM Categories WHERE CategoryID = @CategoryID.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "090e6e45-28a1-4870-ba90-e71ab4220b63",
+              "Text": "ISNULL(@CategoryName, \u0027Unknown\u0027) guarantees a usable value when no row matches.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "b8fa9211-243d-4623-9600-0162b512ee6c",
+              "Text": "Since functions cannot raise errors, returning a default or NULL is the standard way to signal a miss.",
+              "SortOrder": 3
+            },
+            {
+              "Id": "4e461631-d187-46d7-a046-d6535427322f",
+              "Text": "Use TOP 1 when the lookup could return more than one row, because a scalar function must return exactly one value.",
+              "SortOrder": 4
+            }
+          ]
+        },
+        {
+          "Id": "2bc8e80a-013f-4a18-8fc5-395944e1c020",
+          "TopicId": "9fac7880-5489-4502-8857-e120e29e2d29",
+          "Title": "Example: String Formatting Functions",
+          "BodyText": "Formatting and transformation logic such as phone-number cleanup is a natural fit for a scalar function because it applies consistently to every row.",
+          "Notes": "Usage: SELECT CustomerID, dbo.fn_FormatPhoneNumber(PhoneNumber) AS FormattedPhone FROM Customers;",
+          "SortOrder": 4,
+          "CreatedDate": "2026-11-17T05:06:16.2503773-05:00",
+          "ModifiedDate": "2026-11-17T05:06:16.2503773-05:00",
+          "Items": [
+            {
+              "Id": "951867d4-49e0-47c5-af26-5416f52027c5",
+              "Text": "fn_FormatPhoneNumber accepts VARCHAR(20) and returns VARCHAR(20).",
+              "SortOrder": 0
+            },
+            {
+              "Id": "4527a36d-4bad-424f-a439-ec96c44e0f3a",
+              "Text": "Nested REPLACE calls strip parentheses, dashes, spaces, and periods from the input.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "e2fe5048-6fb9-4c1c-bb9a-77e3919d6d73",
+              "Text": "An IF test on LEN checks for exactly 10 digits before rebuilding the string.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "1d8e7228-5bde-4157-961c-c882bc804750",
+              "Text": "SUBSTRING assembles the result in (XXX) XXX-XXXX format.",
+              "SortOrder": 3
+            },
+            {
+              "Id": "a9fd9994-372d-4f73-b685-558868a25079",
+              "Text": "If the cleaned value is not 10 digits, the original input is returned unchanged as a safe fallback.",
+              "SortOrder": 4
+            }
+          ]
+        },
+        {
+          "Id": "887a3df9-e676-48fd-91c2-2579611ce050",
+          "TopicId": "9fac7880-5489-4502-8857-e120e29e2d29",
+          "Title": "Performance Risks of Scalar Functions",
+          "BodyText": "Scalar functions are convenient but execute once per row, which can severely degrade performance on large tables and in WHERE clauses.",
+          "Notes": "Example: a query on a 1-million-row Orders table that calls the same scalar function in both SELECT and WHERE results in 2 million function executions.",
+          "SortOrder": 5,
+          "CreatedDate": "2026-11-17T05:06:16.2503773-05:00",
+          "ModifiedDate": "2026-11-17T05:06:16.2503773-05:00",
+          "Items": [
+            {
+              "Id": "93e06146-7996-4730-a4f6-8ba3c111e10d",
+              "Text": "Row-by-row execution creates context-switching overhead that grows linearly with table size.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "0f00ceab-0780-4c24-b442-e61bdaa1c6fe",
+              "Text": "A scalar function in a WHERE clause prevents index seeks and forces scans.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "a077b907-ff22-4290-ae90-e202766fefaf",
+              "Text": "Queries containing scalar UDFs cannot use parallel execution plans.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "70d01e68-7cba-41b5-97cf-12cfa3cc3278",
+              "Text": "The optimizer cannot estimate cardinality accurately because the function body is opaque.",
+              "SortOrder": 3
+            },
+            {
+              "Id": "8a256611-00f9-4933-a3d2-2f4a71ddf7ac",
+              "Text": "Mitigations include converting to an inline TVF, using a persisted computed column, or wrapping the calculation in a CTE.",
+              "SortOrder": 4
+            },
+            {
+              "Id": "e615f324-cdc7-41f2-8db9-618653bcdbd2",
+              "Text": "SQL Server 2019\u002B can inline simple schema-bound scalar functions; check sys.sql_modules.is_inlineable.",
+              "SortOrder": 5
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Id": "d9ba1de3-64b6-49d5-b711-1b6c3cf1b72a",
+      "Title": "Creating Inline Table-Valued Functions",
+      "Summary": "Presents inline TVFs as parameterized views that return a table from a single SELECT statement, with examples covering date-range filtering, multi-parameter product filtering, and joined order details. Explains why they offer the best query optimization of all function types.",
+      "SortOrder": 3,
+      "CreatedDate": "2026-11-17T05:05:06.105194-05:00",
+      "ModifiedDate": "2026-11-17T05:05:06.105194-05:00",
+      "Elements": [
+        {
+          "Id": "c773b16d-667f-4da3-ab76-a0c43ca94b0f",
+          "TopicId": "d9ba1de3-64b6-49d5-b711-1b6c3cf1b72a",
+          "Title": "What Makes an Inline TVF Different",
+          "BodyText": "An inline table-valued function (iTVF) returns a table produced by a single SELECT statement, effectively acting as a parameterized view. It is the most efficient of the three user-defined function types.",
+          "Notes": "Think of an iTVF as a view that accepts arguments: the body is one query, nothing more.",
+          "SortOrder": 0,
+          "CreatedDate": "2026-11-17T05:06:37.0470438-05:00",
+          "ModifiedDate": "2026-11-17T05:06:37.0470438-05:00",
+          "Items": [
+            {
+              "Id": "99bd4485-da93-4cec-aeaf-e22f8678fe19",
+              "Text": "There is no BEGIN/END block and no explicitly declared return table structure.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "aae4e6d0-a6dc-42ce-8d37-a5c3da16ea68",
+              "Text": "The column list and data types are inferred from the SELECT statement itself.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "7d19ac63-4c7f-4040-b770-958f06e44007",
+              "Text": "Parameters let callers vary the filter without creating many near-identical views.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "70fd8b79-9c3b-48e2-98bb-1617cf754dcf",
+              "Text": "Unlike scalar functions, iTVFs cannot be used directly in a WHERE clause \u2014 join or APPLY to them instead.",
+              "SortOrder": 3
+            }
+          ]
+        },
+        {
+          "Id": "20f5e1f7-4bfc-4af4-a9ff-294699236f7c",
+          "TopicId": "d9ba1de3-64b6-49d5-b711-1b6c3cf1b72a",
+          "Title": "Inline TVF Syntax Pattern",
+          "BodyText": "The syntax is deliberately minimal: declare parameters, specify RETURNS TABLE, and supply a single parenthesized SELECT after RETURN.",
+          "Notes": "CREATE FUNCTION dbo.FunctionName (@Param1 DataType) RETURNS TABLE AS RETURN ( SELECT ... FROM ... WHERE ... );",
+          "SortOrder": 1,
+          "CreatedDate": "2026-11-17T05:06:37.0470438-05:00",
+          "ModifiedDate": "2026-11-17T05:06:37.0470438-05:00",
+          "Items": [
+            {
+              "Id": "7ae294b6-8eee-46a5-a828-02d83215188c",
+              "Text": "RETURNS TABLE is used without naming columns or a table variable.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "ab3ced98-440c-424f-9d71-c05145095ddc",
+              "Text": "The keyword RETURN is followed immediately by the query enclosed in parentheses.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "728ad809-ab39-4b72-9c78-d08aa69c805a",
+              "Text": "No DECLARE, SET, INSERT, or UPDATE statements are permitted inside the body.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "2811199f-add9-4a17-b3a4-c752806de7ae",
+              "Text": "Parameters may be given default values, which callers can supply explicitly.",
+              "SortOrder": 3
+            },
+            {
+              "Id": "a62e959e-a50b-4904-b76a-a1246ac6d60f",
+              "Text": "End the definition with a semicolon and GO to separate the batch.",
+              "SortOrder": 4
+            }
+          ]
+        },
+        {
+          "Id": "c632a66a-63b2-4584-b205-0841ce00de20",
+          "TopicId": "d9ba1de3-64b6-49d5-b711-1b6c3cf1b72a",
+          "Title": "Example: Parameterized View for a Date Range",
+          "BodyText": "fn_GetCustomerOrdersByDate accepts a customer ID, a start date, and an end date, returning that customer\u0027s orders with an item count.",
+          "Notes": "The body joins Orders to OrderItems, filters on CustomerID and the date window, and groups by order columns to produce ItemCount.",
+          "SortOrder": 2,
+          "CreatedDate": "2026-11-17T05:06:37.0470438-05:00",
+          "ModifiedDate": "2026-11-17T05:06:37.0470438-05:00",
+          "Items": [
+            {
+              "Id": "9d38f0e5-ccc8-4177-b6da-32a799e8d6f2",
+              "Text": "Three parameters (@CustomerID, @StartDate, @EndDate) drive all filtering in the WHERE clause.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "6e8a66b5-5b2c-4c98-8a40-691b930a1b35",
+              "Text": "Using OrderDate \u003C DATEADD(DAY, 1, @EndDate) safely includes the entire final day.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "680e8f6a-6256-498c-808e-0c5c170f1ff5",
+              "Text": "Call it directly: SELECT * FROM dbo.fn_GetCustomerOrdersByDate(1, \u00272024-01-01\u0027, \u00272024-12-31\u0027).",
+              "SortOrder": 2
+            },
+            {
+              "Id": "853f98c9-c604-4c20-bee9-46f929271947",
+              "Text": "Use CROSS APPLY to invoke it once per customer row and join the results back to Customers.",
+              "SortOrder": 3
+            }
+          ]
+        },
+        {
+          "Id": "b40215a8-b4ec-4de1-9273-35a24e7e0e65",
+          "TopicId": "d9ba1de3-64b6-49d5-b711-1b6c3cf1b72a",
+          "Title": "Example: Multi-Parameter Filtering with Defaults",
+          "BodyText": "fn_GetProductsByCategory shows how several parameters, including ones with default values, can express flexible filtering logic in a single query.",
+          "Notes": "Signature: (@CategoryID INT, @MinStock INT = 0, @InStockOnly BIT = 0).",
+          "SortOrder": 3,
+          "CreatedDate": "2026-11-17T05:06:37.0470438-05:00",
+          "ModifiedDate": "2026-11-17T05:06:37.0470438-05:00",
+          "Items": [
+            {
+              "Id": "6ba0cc2c-e917-4b45-b125-fe159485aa9e",
+              "Text": "A CASE expression derives a StockStatus column of \u0027In Stock\u0027 or \u0027Out of Stock\u0027.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "9579cd18-1f66-435a-9217-51ce4a582d69",
+              "Text": "The predicate (@InStockOnly = 0 OR p.StockQuantity \u003E 0) makes a filter optional at call time.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "91d99287-072a-4b71-b80a-8f542472c523",
+              "Text": "Different argument combinations produce different result sets without writing new functions.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "ac6fc916-61e4-4b57-8c5a-2eeabaf73ea6",
+              "Text": "Examples include all products in a category, in-stock only, or products with at least 10 units.",
+              "SortOrder": 3
+            }
+          ]
+        },
+        {
+          "Id": "ff590186-bce9-4f67-80a0-a71d06bb0aca",
+          "TopicId": "d9ba1de3-64b6-49d5-b711-1b6c3cf1b72a",
+          "Title": "Example: Joining Related Tables Through Foreign Keys",
+          "BodyText": "fn_GetOrderDetails takes a single @OrderID and returns a fully joined row set spanning Orders, Customers, OrderItems, and Products.",
+          "Notes": "This encapsulates a four-table join so callers never need to remember the relationship paths.",
+          "SortOrder": 4,
+          "CreatedDate": "2026-11-17T05:06:37.0470438-05:00",
+          "ModifiedDate": "2026-11-17T05:06:37.0470438-05:00",
+          "Items": [
+            {
+              "Id": "70b77265-a3e2-4278-9c22-2a9efa825cd2",
+              "Text": "Inner joins follow the foreign key relationships from order to customer, line item, and product.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "f599b1c4-74cd-4e63-8fbc-179cfc33bfe0",
+              "Text": "Computed output such as CustomerName concatenates first and last name for convenience.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "892238fa-2b89-4725-9c41-916baa5875e5",
+              "Text": "Results can be filtered further by the caller, e.g., WHERE Quantity \u003E 1.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "cb775802-3e9f-4714-b933-5e6b667f6dff",
+              "Text": "Encapsulating the join improves readability and hides schema details from application code.",
+              "SortOrder": 3
+            }
+          ]
+        },
+        {
+          "Id": "cc6e0860-ce19-4194-80ea-7ebb4be5a5ef",
+          "TopicId": "d9ba1de3-64b6-49d5-b711-1b6c3cf1b72a",
+          "Title": "Why Inline TVFs Optimize Best",
+          "BodyText": "SQL Server expands an inline TVF into the calling query much like a view, so the optimizer produces one combined execution plan.",
+          "Notes": "This is why the comparison table rates inline TVF query optimization as Excellent while multi-statement TVFs are rated Limited.",
+          "SortOrder": 5,
+          "CreatedDate": "2026-11-17T05:06:37.0470438-05:00",
+          "ModifiedDate": "2026-11-17T05:06:37.0470438-05:00",
+          "Items": [
+            {
+              "Id": "c1655271-869a-463b-adea-f846bf9350ba",
+              "Text": "The function body can take advantage of indexes and statistics on the base tables.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "1414d156-b3d9-4086-9da0-7a9b957a83c3",
+              "Text": "Predicates from the outer query can be pushed down into the function\u0027s SELECT.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "1d220be0-89d1-4c18-9950-5dd2934a0618",
+              "Text": "No intermediate table variable is materialized, avoiding cardinality estimation errors.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "fcf0c29d-8805-426d-a77d-007b704c6788",
+              "Text": "Best practice: prefer an inline TVF over a multi-statement TVF, and convert slow scalar functions to inline TVFs used with CROSS APPLY.",
+              "SortOrder": 3
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Id": "aafc0f73-8f87-4121-9c06-3dc0dc2c51a2",
+      "Title": "Creating Multi-Statement Table-Valued Functions",
+      "Summary": "Demonstrates MSTVF syntax with explicitly defined return table structures and multi-step logic, using examples such as employee hierarchies, customer statistics, and sales reports with running totals. Discusses the optimization limitations that make them a last resort.",
+      "SortOrder": 4,
+      "CreatedDate": "2026-11-17T05:05:06.105194-05:00",
+      "ModifiedDate": "2026-11-17T05:05:06.105194-05:00",
+      "Elements": [
+        {
+          "Id": "3990791a-abc4-4935-b712-cd529cad4a8e",
+          "TopicId": "aafc0f73-8f87-4121-9c06-3dc0dc2c51a2",
+          "Title": "MSTVF Syntax and Structure",
+          "BodyText": "Multi-statement table-valued functions declare a named return table variable with an explicit column structure, then populate it using multiple statements inside a BEGIN...END block.",
+          "Notes": "Syntax pattern: CREATE FUNCTION dbo.FunctionName (@Param DataType) RETURNS @ResultTable TABLE (Column1 DataType, Column2 DataType) AS BEGIN ... RETURN; END;",
+          "SortOrder": 0,
+          "CreatedDate": "2026-11-17T05:07:01.4205614-05:00",
+          "ModifiedDate": "2026-11-17T05:07:01.4205614-05:00",
+          "Items": [
+            {
+              "Id": "5891da10-4fce-4adf-b1b2-19dcd31c5d92",
+              "Text": "The RETURNS clause names a table variable (e.g., @ResultTable) and fully defines its columns and data types.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "f55a4095-c7e8-45ce-b42e-23ad36c5373c",
+              "Text": "The function body is wrapped in BEGIN...END, unlike an inline TVF which uses a single RETURN (SELECT ...).",
+              "SortOrder": 1
+            },
+            {
+              "Id": "e2f294bd-e860-4fd8-8092-91a5d1272b4c",
+              "Text": "Rows are added with INSERT INTO @ResultTable and can be refined afterward with UPDATE statements.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "3c90ef57-6e6a-4ba2-bd1f-c4060a6b63d8",
+              "Text": "A bare RETURN; statement ends the function and sends the populated table variable back to the caller.",
+              "SortOrder": 3
+            },
+            {
+              "Id": "be4d53c7-84b3-4919-a097-07ceef588f6c",
+              "Text": "Because the shape of the result is declared up front, the function contract is explicit and self-documenting.",
+              "SortOrder": 4
+            }
+          ]
+        },
+        {
+          "Id": "727773bc-2091-42e0-a44a-f1167f79005b",
+          "TopicId": "aafc0f73-8f87-4121-9c06-3dc0dc2c51a2",
+          "Title": "Example: Employee Hierarchy Traversal",
+          "BodyText": "MSTVFs shine when logic requires iteration, such as walking a self-referencing manager/employee table level by level.",
+          "Notes": "fn_GetEmployeeHierarchy(@ManagerID) returns EmployeeID, FullName, JobTitle, Level, and Path columns.",
+          "SortOrder": 1,
+          "CreatedDate": "2026-11-17T05:07:01.4205614-05:00",
+          "ModifiedDate": "2026-11-17T05:07:01.4205614-05:00",
+          "Items": [
+            {
+              "Id": "b84b0635-5941-4ebe-b997-3fb441547b84",
+              "Text": "The first INSERT seeds the table with the starting manager at Level 0 and a Path containing the manager\u0027s EmployeeID.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "c5a4fd02-4428-4a45-adcb-19f559c48369",
+              "Text": "A WHILE EXISTS loop repeatedly joins Employees to the already-inserted rows to add the next level of subordinates.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "261f209b-4bb5-41ea-bb8c-075b1f14ab68",
+              "Text": "Each iteration increments @CurrentLevel and appends the child EmployeeID to the parent\u0027s Path string.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "0fc458ea-ca22-437f-9983-aad3501d0894",
+              "Text": "Callers can use REPLICATE with Level to indent names and ORDER BY Path to display the tree in order.",
+              "SortOrder": 3
+            },
+            {
+              "Id": "27bc6f93-55b0-4921-8e52-71d65c170621",
+              "Text": "This multi-step accumulation is impossible in a single SELECT, which is why an inline TVF will not work here.",
+              "SortOrder": 4
+            }
+          ]
+        },
+        {
+          "Id": "f7185fb1-5ab0-4914-980d-bc5f8fae4bfa",
+          "TopicId": "aafc0f73-8f87-4121-9c06-3dc0dc2c51a2",
+          "Title": "Example: Customer Statistics Summary Table",
+          "BodyText": "MSTVFs are useful for building summary tables where later statements refine values computed by earlier statements.",
+          "Notes": "fn_GetCustomerStatistics(@Year) returns CustomerID, CustomerName, TotalOrders, TotalSpent, AverageOrderValue, LastOrderDate, and CustomerTier.",
+          "SortOrder": 2,
+          "CreatedDate": "2026-11-17T05:07:01.4205614-05:00",
+          "ModifiedDate": "2026-11-17T05:07:01.4205614-05:00",
+          "Items": [
+            {
+              "Id": "e76d0007-7b41-4c35-b161-f2cc01d22b95",
+              "Text": "Step one inserts aggregated values using COUNT, SUM, AVG, and MAX over a LEFT JOIN to Orders filtered by year.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "c733d571-81ee-45b1-9714-9e49ee317544",
+              "Text": "CustomerTier is inserted as NULL initially because it depends on the aggregated TotalSpent value.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "cc60a894-db04-4f78-abe0-4053f04ac01f",
+              "Text": "Step two issues an UPDATE against the table variable to assign VIP, Gold, Silver, Bronze, or \u0027No Orders\u0027 tiers.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "f6796b59-669a-409d-9950-9a1d1dfa4bec",
+              "Text": "The LEFT JOIN ensures customers with no orders in the target year still appear in the result set.",
+              "SortOrder": 3
+            },
+            {
+              "Id": "9dd0a449-fd4e-494f-9eec-6544d800dc1c",
+              "Text": "Callers query the function like a table: SELECT * FROM dbo.fn_GetCustomerStatistics(2024) WHERE CustomerTier IN (\u0027VIP\u0027,\u0027Gold\u0027).",
+              "SortOrder": 4
+            }
+          ]
+        },
+        {
+          "Id": "9df2166c-8192-49ce-956f-167913ec8ac8",
+          "TopicId": "aafc0f73-8f87-4121-9c06-3dc0dc2c51a2",
+          "Title": "Example: Sales Report with Running Totals",
+          "BodyText": "A more complex MSTVF can combine aggregation, cursor-driven iteration, and correlated subqueries to produce analytical columns.",
+          "Notes": "fn_GetSalesReport(@StartDate, @EndDate) returns OrderDate, DailyOrders, DailySales, RunningTotal, and MovingAverage.",
+          "SortOrder": 3,
+          "CreatedDate": "2026-11-17T05:07:01.4205614-05:00",
+          "ModifiedDate": "2026-11-17T05:07:01.4205614-05:00",
+          "Items": [
+            {
+              "Id": "6a28234b-3380-4b8a-93d5-e74ee6717d17",
+              "Text": "The first INSERT groups Orders by day to populate DailyOrders and DailySales within the date range.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "3e12b95a-a8db-46b4-9ed8-baae0eb89640",
+              "Text": "A read-only cursor walks the dates in order and uses the UPDATE ... SET @Var = Column = expression trick to accumulate RunningTotal.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "df3299d7-c5e5-49d8-bd42-3ddbd0bb80ae",
+              "Text": "A final UPDATE with a correlated subquery computes a 7-day moving average over the prior six days plus the current day.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "83ccfb9e-8fbd-47a7-9406-dbf0f3a251c0",
+              "Text": "Read-only cursors are permitted inside functions, but cursors that UPDATE or DELETE base tables are not.",
+              "SortOrder": 3
+            },
+            {
+              "Id": "98647c09-4766-4222-a7a7-b8801c9af134",
+              "Text": "The cursor must be explicitly CLOSEd and DEALLOCATEd before the RETURN statement.",
+              "SortOrder": 4
+            }
+          ]
+        },
+        {
+          "Id": "7f1452b2-0534-4d5e-8ac9-88380f337f56",
+          "TopicId": "aafc0f73-8f87-4121-9c06-3dc0dc2c51a2",
+          "Title": "Optimization Limitations of MSTVFs",
+          "BodyText": "The flexibility of MSTVFs comes at a real cost: SQL Server cannot optimize them together with the outer query.",
+          "Notes": "Performance rating: Inline TVF \u2B50\u2B50\u2B50\u2B50\u2B50 vs. Multi-Statement TVF \u2B50\u2B50 \u2014 use only when necessary.",
+          "SortOrder": 4,
+          "CreatedDate": "2026-11-17T05:07:01.4205614-05:00",
+          "ModifiedDate": "2026-11-17T05:07:01.4205614-05:00",
+          "Items": [
+            {
+              "Id": "2926b6f7-64c1-43cb-a467-513dd70030a5",
+              "Text": "The internal table variable has no statistics, so the optimizer makes poor cardinality estimates for the result.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "4ed366af-fa2c-4ee4-acea-bbe9f368bc32",
+              "Text": "Unlike inline TVFs, the function body is not expanded and merged into the calling query plan.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "c176538b-37f1-4d13-91c5-ae5300d979e6",
+              "Text": "MSTVFs cannot take advantage of indexes on the underlying base tables.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "b480e625-b1db-4759-853c-e18a64396449",
+              "Text": "They cannot be used directly in a WHERE clause; you must JOIN, CROSS APPLY, or OUTER APPLY to the result.",
+              "SortOrder": 3
+            },
+            {
+              "Id": "9c62987e-d1e2-4aff-a461-ab5ad7dabfd9",
+              "Text": "Row-by-row loops and cursors inside the function add further execution overhead.",
+              "SortOrder": 4
+            }
+          ]
+        },
+        {
+          "Id": "6cc1acce-dde9-4010-b60f-a864b41b7487",
+          "TopicId": "aafc0f73-8f87-4121-9c06-3dc0dc2c51a2",
+          "Title": "When to Choose an MSTVF \u2014 and What to Use Instead",
+          "BodyText": "Treat the multi-statement TVF as a last resort, reserved for logic that genuinely cannot be expressed as a single SELECT.",
+          "Notes": "Best practice: prefer inline table-valued functions; they perform like views because the optimizer can fold them into the outer query.",
+          "SortOrder": 5,
+          "CreatedDate": "2026-11-17T05:07:01.4205614-05:00",
+          "ModifiedDate": "2026-11-17T05:07:01.4205614-05:00",
+          "Items": [
+            {
+              "Id": "ed7a6ece-43ea-4ad6-b5bb-a450ef680dcb",
+              "Text": "Choose an MSTVF only for genuinely multi-step work such as hierarchies or staged transformations with dependent updates.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "4495d0c8-f8eb-4a43-aced-6272c5aef747",
+              "Text": "If the logic can be written as one SELECT, rewrite it as an inline TVF for dramatically better performance.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "b6c325ad-64e0-4f12-9d35-d34d70f67e21",
+              "Text": "Consider a stored procedure instead when you need temp tables, TRY...CATCH, or transaction control \u2014 none of which functions allow.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "d7ed6cd7-1585-4991-9da0-4f722e50d83b",
+              "Text": "Recursive CTEs and window functions can often replace loops and cursors used for hierarchies and running totals.",
+              "SortOrder": 3
+            },
+            {
+              "Id": "c94043e8-c8ab-48f8-a949-928655cca791",
+              "Text": "Always test MSTVFs against realistic data volumes and inspect the actual execution plan before deploying.",
+              "SortOrder": 4
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Id": "ea42a218-ff1c-4f0a-8c35-4923ebb3bfb9",
+      "Title": "Functions vs. Stored Procedures and Function Limitations",
+      "Summary": "Compares functions and stored procedures across return types, query usage, DML, transactions, error handling, and side effects, with guidance on selecting the right tool. Details what functions cannot do, including data modification, TRY...CATCH, and temp tables, plus determinism and SCHEMABINDING.",
+      "SortOrder": 5,
+      "CreatedDate": "2026-11-17T05:05:06.105194-05:00",
+      "ModifiedDate": "2026-11-17T05:05:06.105194-05:00",
+      "Elements": [
+        {
+          "Id": "04cae9bf-f81a-4ef1-a014-7c41cf773f01",
+          "TopicId": "ea42a218-ff1c-4f0a-8c35-4923ebb3bfb9",
+          "Title": "Core Distinction: Return Data vs. Perform Actions",
+          "BodyText": "Functions and stored procedures are both reusable code modules, but they serve fundamentally different purposes. Functions are built for calculations and data retrieval; procedures are built for actions and data modification.",
+          "Notes": "A useful rule of thumb: if the result belongs inside a query, write a function; if the code changes the database, write a procedure.",
+          "SortOrder": 0,
+          "CreatedDate": "2026-11-17T05:07:25.030399-05:00",
+          "ModifiedDate": "2026-11-17T05:07:25.030399-05:00",
+          "Items": [
+            {
+              "Id": "c6f0d0d6-83c1-4758-9100-215a216e4fde",
+              "Text": "A function must return a value \u2014 either a scalar value or a table.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "f49dd29a-d319-4fc2-a0d8-44ef05b1b6d6",
+              "Text": "A stored procedure returns an optional integer status code and can emit result sets.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "2bc88402-8f09-4c70-9933-ef8722e91138",
+              "Text": "Functions are read-only by design and should be side-effect free.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "9c58a262-e7de-47c1-af01-5abd807584c4",
+              "Text": "Stored procedures may have side effects and can change database state.",
+              "SortOrder": 3
+            }
+          ]
+        },
+        {
+          "Id": "670930b6-21f6-4e9f-823f-089e1e77cc0e",
+          "TopicId": "ea42a218-ff1c-4f0a-8c35-4923ebb3bfb9",
+          "Title": "Usage in Queries and Parameter Handling",
+          "BodyText": "The most visible difference is where each object can be invoked. Functions integrate directly into SQL statements, while procedures must be executed separately.",
+          "Notes": "Example: dbo.fn_GetOrderTotal(OrderID) can appear in a SELECT list and a WHERE clause, but usp_RecalculateOrderTotal must be called with EXEC.",
+          "SortOrder": 1,
+          "CreatedDate": "2026-11-17T05:07:25.030399-05:00",
+          "ModifiedDate": "2026-11-17T05:07:25.030399-05:00",
+          "Items": [
+            {
+              "Id": "23c90cc1-ead6-435f-9599-6eccd594ba24",
+              "Text": "Functions can be used in SELECT, WHERE, JOIN, ORDER BY, and GROUP BY clauses.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "726561a6-8d76-4fb2-97a6-d31ff3498e3f",
+              "Text": "Stored procedures cannot be referenced inside a query expression.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "795cd7e3-c85e-4f2c-87ee-6b981d5733c1",
+              "Text": "Functions do not support OUTPUT parameters; they return a single result.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "9593946e-087b-47b8-8f63-307c7cae00e4",
+              "Text": "Procedures support multiple OUTPUT parameters for returning several values.",
+              "SortOrder": 3
+            },
+            {
+              "Id": "ba363a51-9112-4cb9-b70e-4eb0d6e3142f",
+              "Text": "Procedures can be called with EXEC and can call other procedures; functions can only call other functions.",
+              "SortOrder": 4
+            }
+          ]
+        },
+        {
+          "Id": "3d3a9452-3c93-40c5-8a07-b0bffd68ce91",
+          "TopicId": "ea42a218-ff1c-4f0a-8c35-4923ebb3bfb9",
+          "Title": "DML, Transactions, and Error Handling Differences",
+          "BodyText": "Procedures offer the full transactional and error-handling toolkit that functions lack. This capability gap drives most tool-selection decisions.",
+          "Notes": "The usp_RecalculateOrderTotal example wraps an UPDATE in BEGIN TRANSACTION with TRY...CATCH, ROLLBACK, and THROW \u2014 none of which a function could do.",
+          "SortOrder": 2,
+          "CreatedDate": "2026-11-17T05:07:25.030399-05:00",
+          "ModifiedDate": "2026-11-17T05:07:25.030399-05:00",
+          "Items": [
+            {
+              "Id": "2b41e879-cc86-4cbc-a05b-90b9e3a56c93",
+              "Text": "Procedures can run INSERT, UPDATE, and DELETE against permanent tables; functions cannot.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "96ed274f-014d-45d6-b1d3-34dcaea6b374",
+              "Text": "Procedures support BEGIN TRANSACTION, COMMIT, and ROLLBACK; functions cannot start transactions.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "77d387ce-3732-42d7-9da2-ea6a766d17d3",
+              "Text": "Procedures support TRY...CATCH blocks; functions have no structured error handling.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "41db94f1-a362-4eca-8f16-28228347368c",
+              "Text": "Procedures can create and use #temp tables; functions are limited to table variables.",
+              "SortOrder": 3
+            }
+          ]
+        },
+        {
+          "Id": "75dddf40-c417-47ea-942a-1d44c13aeb10",
+          "TopicId": "ea42a218-ff1c-4f0a-8c35-4923ebb3bfb9",
+          "Title": "Choosing the Right Tool",
+          "BodyText": "Selecting between a function and a procedure depends on whether the logic reads data or changes it, and on where the result must be consumed.",
+          "Notes": "When neither fits well, consider alternatives such as views, computed columns, or CTEs.",
+          "SortOrder": 3,
+          "CreatedDate": "2026-11-17T05:07:25.030399-05:00",
+          "ModifiedDate": "2026-11-17T05:07:25.030399-05:00",
+          "Items": [
+            {
+              "Id": "418d050f-a977-46cb-8bd9-953d1c8ccce8",
+              "Text": "Choose a function for reusable calculations, transformations, filtering logic, computed columns, and indexed views.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "2a35f566-7f2d-4893-b55c-a8c6f9bbe642",
+              "Text": "Choose a function when the result must be joined or filtered as part of a larger query.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "df74591b-a921-4557-8f93-28de1133824d",
+              "Text": "Choose a procedure for data modification, transaction management, complex error handling, and administrative tasks.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "65433495-9372-4efc-aa9b-f9de3bdd59b0",
+              "Text": "Choose a procedure when you need temp tables, multiple OUTPUT parameters, dynamic SQL, or calls to other procedures.",
+              "SortOrder": 3
+            },
+            {
+              "Id": "593653a0-393e-456d-8c8d-1c2fda4df06b",
+              "Text": "Avoid functions when performance is critical on very large datasets or when debugging complex logic matters.",
+              "SortOrder": 4
+            }
+          ]
+        },
+        {
+          "Id": "8dae2051-c782-42dd-b128-fc798003bacf",
+          "TopicId": "ea42a218-ff1c-4f0a-8c35-4923ebb3bfb9",
+          "Title": "What Functions Cannot Do",
+          "BodyText": "T-SQL enforces strict restrictions on functions to guarantee they remain side-effect free and safe to call inside queries.",
+          "Notes": "A common anti-pattern is writing fn_UpdateInventory to perform an UPDATE \u2014 this fails at creation or execution and must be rewritten as a stored procedure.",
+          "SortOrder": 4,
+          "CreatedDate": "2026-11-17T05:07:25.030399-05:00",
+          "ModifiedDate": "2026-11-17T05:07:25.030399-05:00",
+          "Items": [
+            {
+              "Id": "5d82c4b7-ea75-46b3-8bdc-81f26bb1d4f8",
+              "Text": "Prohibited: INSERT, UPDATE, or DELETE on permanent tables.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "b539f7e5-caeb-4193-8da3-c23d70031051",
+              "Text": "Prohibited: creating or altering database objects, and creating #temp tables.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "209e8ce1-0640-490e-968f-f1dff21460cf",
+              "Text": "Prohibited: calling stored procedures, using RAISERROR or THROW, or executing dynamic SQL via EXEC.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "43c5ce00-8bae-42c0-81c3-3dbe94bd3554",
+              "Text": "Prohibited: BEGIN TRANSACTION and cursors that update or delete rows.",
+              "SortOrder": 3
+            },
+            {
+              "Id": "c306c1f2-5069-429c-bbf9-cf5da0966d53",
+              "Text": "Allowed: SELECT statements, table variables (@table), read-only cursors, calls to other functions, and all built-in functions.",
+              "SortOrder": 4
+            }
+          ]
+        },
+        {
+          "Id": "ee116349-d4bc-4da7-af34-c53099bb9e56",
+          "TopicId": "ea42a218-ff1c-4f0a-8c35-4923ebb3bfb9",
+          "Title": "Working Around the Lack of TRY...CATCH",
+          "BodyText": "Because functions cannot raise or catch errors, defensive conditional logic must replace structured error handling.",
+          "Notes": "Example: fn_SafeDivide checks IF @Denominator = 0 and sets the result to NULL instead of allowing a divide-by-zero error.",
+          "SortOrder": 5,
+          "CreatedDate": "2026-11-17T05:07:25.030399-05:00",
+          "ModifiedDate": "2026-11-17T05:07:25.030399-05:00",
+          "Items": [
+            {
+              "Id": "61a182ce-09b3-49c9-affa-55949a0f0f71",
+              "Text": "Validate inputs with IF logic before performing risky operations.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "073bc15c-d5c0-4e9f-a312-52529bbb6886",
+              "Text": "Return NULL or a sensible default to signal an error condition.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "f2ad667c-3e83-4de0-90bb-02d7ee12b9bf",
+              "Text": "Use ISNULL() to guard against missing lookups, as in fn_GetCategoryName returning \u0027Unknown\u0027.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "1198b934-cec1-4f43-ab78-dd71bedd933d",
+              "Text": "Test functions with NULL inputs, zeros, negatives, and invalid keys since errors cannot be trapped at runtime.",
+              "SortOrder": 3
+            }
+          ]
+        },
+        {
+          "Id": "477227a1-0a92-445f-8403-6fda0bf6c7fe",
+          "TopicId": "ea42a218-ff1c-4f0a-8c35-4923ebb3bfb9",
+          "Title": "Determinism and SCHEMABINDING",
+          "BodyText": "A function is deterministic when it always returns the same result for the same inputs; determinism controls where the function may be used. SCHEMABINDING ties the function to the schema of the objects it references.",
+          "Notes": "SCHEMABINDING requires two-part names such as dbo.Products, and it prevents the referenced table from being dropped or altered while the function exists.",
+          "SortOrder": 6,
+          "CreatedDate": "2026-11-17T05:07:25.030399-05:00",
+          "ModifiedDate": "2026-11-17T05:07:25.030399-05:00",
+          "Items": [
+            {
+              "Id": "ad211e04-7a73-4d0c-b88a-e79c169fae05",
+              "Text": "Deterministic functions (math and string operations) can participate in indexes, indexed views, and persisted computed columns.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "637610c3-5174-4656-80eb-dd1192b43c90",
+              "Text": "Non-deterministic functions using GETDATE(), NEWID(), or RAND() cannot be indexed.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "623c82c1-8d73-483f-bf7b-aeb56e8988c2",
+              "Text": "WITH SCHEMABINDING can make an otherwise qualifying function deterministic.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "5fdd1bae-7195-4c6e-9ad3-f5c59e97d4dc",
+              "Text": "SCHEMABINDING prevents accidental schema changes and can improve performance.",
+              "SortOrder": 3
+            },
+            {
+              "Id": "568c2cb5-d5b0-49be-9ccc-99fe5b7f5c3c",
+              "Text": "Schema-bound simple scalar functions are eligible for scalar UDF inlining in SQL Server 2019 and later.",
+              "SortOrder": 4
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Id": "4158e9e2-91ac-42b8-ad98-a3f94896dbeb",
+      "Title": "Using Functions in Queries",
+      "Summary": "Shows how to integrate functions into SQL statements, including scalar functions in SELECT, WHERE, ORDER BY, and GROUP BY, and table-valued functions with CROSS APPLY, OUTER APPLY, JOIN, and computed columns.",
+      "SortOrder": 6,
+      "CreatedDate": "2026-11-17T05:05:06.105194-05:00",
+      "ModifiedDate": "2026-11-17T05:05:06.105194-05:00",
+      "Elements": [
+        {
+          "Id": "9cb4cd3c-c634-42fb-93d2-b633bd61fe39",
+          "TopicId": "4158e9e2-91ac-42b8-ad98-a3f94896dbeb",
+          "Title": "Scalar Functions in the SELECT List",
+          "BodyText": "Scalar user-defined functions return a single value, so they can appear anywhere a scalar expression is valid \u2014 most commonly in the column list of a SELECT statement.",
+          "Notes": "Example: SELECT CustomerID, FirstName, dbo.fn_CalculateAge(BirthDate) AS Age FROM Customers; The function is evaluated once per returned row.",
+          "SortOrder": 0,
+          "CreatedDate": "2026-11-17T05:07:46.818052-05:00",
+          "ModifiedDate": "2026-11-17T05:07:46.818052-05:00",
+          "Items": [
+            {
+              "Id": "fce3e53f-8da3-44c2-8a2d-8f1d5219e2e3",
+              "Text": "Call the function with a schema-qualified name such as dbo.fn_CalculateAge(BirthDate).",
+              "SortOrder": 0
+            },
+            {
+              "Id": "08a9744c-d55d-44dc-b939-030648cf65a3",
+              "Text": "Always assign a column alias so the result set has a readable header.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "276584cb-63bf-49fc-a364-226489b534ed",
+              "Text": "Function results can participate in further arithmetic, e.g. TotalAmount - dbo.fn_GetCustomerDiscount(CustomerID, TotalAmount) AS FinalAmount.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "68ece819-147f-4b28-9168-09b866b344ed",
+              "Text": "Columns from the queried table can be passed as parameters, making the call row-specific.",
+              "SortOrder": 3
+            },
+            {
+              "Id": "939fd471-6b98-4f23-8b10-e697933bb37e",
+              "Text": "Repeating the same call twice in one SELECT doubles the number of executions.",
+              "SortOrder": 4
+            }
+          ]
+        },
+        {
+          "Id": "22fc9424-502f-432b-b371-ccefa7ccfec3",
+          "TopicId": "4158e9e2-91ac-42b8-ad98-a3f94896dbeb",
+          "Title": "Scalar Functions in WHERE Clauses",
+          "BodyText": "Scalar functions can be used as filter predicates in a WHERE clause, encapsulating complex business filtering logic behind a readable name.",
+          "Notes": "Example: WHERE dbo.fn_CalculateAge(BirthDate) \u003E= 18 AND dbo.fn_CalculateAge(BirthDate) \u003C 65.",
+          "SortOrder": 1,
+          "CreatedDate": "2026-11-17T05:07:46.818052-05:00",
+          "ModifiedDate": "2026-11-17T05:07:46.818052-05:00",
+          "Items": [
+            {
+              "Id": "aa809d61-b978-4aa9-9b7e-256f0c3d096a",
+              "Text": "Only scalar functions may be used directly in WHERE; table-valued functions require APPLY or JOIN.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "085994f1-5817-40be-9349-c2a7f35762c2",
+              "Text": "The function executes once per row evaluated, which can be expensive on large tables.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "3818680b-20e7-4112-ae4b-709e28922e25",
+              "Text": "Wrapping a column in a function prevents index seeks and forces scans.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "29809170-3fa4-4268-9b21-9bdd43954770",
+              "Text": "A CTE or derived table can compute the value once and then filter on the alias, halving function calls.",
+              "SortOrder": 3
+            },
+            {
+              "Id": "cd2505fe-8c62-4177-900d-2d0b0c9fa010",
+              "Text": "For frequently filtered calculations, a persisted computed column with an index is a better option.",
+              "SortOrder": 4
+            }
+          ]
+        },
+        {
+          "Id": "e78043b7-d069-444f-87c3-40728c65045d",
+          "TopicId": "4158e9e2-91ac-42b8-ad98-a3f94896dbeb",
+          "Title": "Functions in ORDER BY and GROUP BY",
+          "BodyText": "Because scalar functions produce a value per row, they can also drive sorting and grouping in a query.",
+          "Notes": "Example: GROUP BY dbo.fn_CalculateAge(BirthDate) with COUNT(*) produces a customer-count-by-age summary.",
+          "SortOrder": 2,
+          "CreatedDate": "2026-11-17T05:07:46.818052-05:00",
+          "ModifiedDate": "2026-11-17T05:07:46.818052-05:00",
+          "Items": [
+            {
+              "Id": "10992d6c-c4c1-4e27-9eb0-408cada05243",
+              "Text": "ORDER BY dbo.fn_CalculateAge(BirthDate) DESC sorts rows by the computed result.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "4a5033e6-fc10-4b48-8404-5cb1a9a52845",
+              "Text": "In GROUP BY the full function expression must be repeated, not just the SELECT alias.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "d7e801cc-2b38-425e-beba-d70815042534",
+              "Text": "You may order by the SELECT alias even when grouping by the function expression.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "fadc5719-beae-4851-bc08-a16c29ee65bb",
+              "Text": "Grouping on a function result prevents the optimizer from using an index on the base column.",
+              "SortOrder": 3
+            },
+            {
+              "Id": "ef16b81d-84df-4564-a5f1-c5e86945da89",
+              "Text": "Keep grouping functions deterministic so results are stable between executions.",
+              "SortOrder": 4
+            }
+          ]
+        },
+        {
+          "Id": "6c566b79-bcc4-47cb-b11e-3c1d0e92076a",
+          "TopicId": "4158e9e2-91ac-42b8-ad98-a3f94896dbeb",
+          "Title": "Table-Valued Functions with CROSS APPLY",
+          "BodyText": "CROSS APPLY invokes a table-valued function once for each row of the left-hand table, passing column values as arguments.",
+          "Notes": "Example: FROM Customers c CROSS APPLY dbo.fn_GetCustomerOrdersByDate(c.CustomerID, \u00272024-01-01\u0027, \u00272024-12-31\u0027) o.",
+          "SortOrder": 3,
+          "CreatedDate": "2026-11-17T05:07:46.818052-05:00",
+          "ModifiedDate": "2026-11-17T05:07:46.818052-05:00",
+          "Items": [
+            {
+              "Id": "1d2d35b1-f774-4c08-9ffb-7a4e0f6e9c14",
+              "Text": "CROSS APPLY behaves like an INNER JOIN: left rows with no returned rows are dropped.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "7e0558d3-c9dc-40cd-a9fd-a4e1e885672d",
+              "Text": "It is the standard way to correlate a parameterized TVF with an outer table\u0027s columns.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "ba6786bf-a2c9-4aa0-81f3-67cf2e37bbbb",
+              "Text": "The TVF must be given an alias so its columns can be referenced in the SELECT list.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "988fa5e2-f1f1-4436-adb3-56a65d280c1b",
+              "Text": "Inline TVFs used with CROSS APPLY are expanded and optimized with the outer query.",
+              "SortOrder": 3
+            },
+            {
+              "Id": "bb42a7f9-1ea2-464b-86c7-55496495f28f",
+              "Text": "CROSS APPLY also works with inline derived subqueries for aggregate calculations per row.",
+              "SortOrder": 4
+            }
+          ]
+        },
+        {
+          "Id": "19333f25-5b2b-4151-b60f-bf9aa4421741",
+          "TopicId": "4158e9e2-91ac-42b8-ad98-a3f94896dbeb",
+          "Title": "Table-Valued Functions with OUTER APPLY",
+          "BodyText": "OUTER APPLY works like CROSS APPLY but preserves every row of the left-hand table even when the function returns no rows.",
+          "Notes": "Useful for reports that must list all customers, including those with zero orders in the period.",
+          "SortOrder": 4,
+          "CreatedDate": "2026-11-17T05:07:46.818052-05:00",
+          "ModifiedDate": "2026-11-17T05:07:46.818052-05:00",
+          "Items": [
+            {
+              "Id": "5dbf080a-23fd-4738-ab2f-976ad77a36d9",
+              "Text": "OUTER APPLY behaves like a LEFT OUTER JOIN against the function\u0027s result set.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "9bccc6f7-0c0d-4535-a97f-982c8b9fcbc4",
+              "Text": "Columns from the function appear as NULL when no matching rows are produced.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "7e6e86c5-0568-421c-9393-da894db377fa",
+              "Text": "Choose OUTER APPLY when absence of data is itself meaningful information.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "c0a14de3-b333-4c41-9646-5595ce7a01a4",
+              "Text": "Use IS NULL tests on function columns to isolate the non-matching left rows.",
+              "SortOrder": 3
+            },
+            {
+              "Id": "6abc0bf3-06dd-45f3-958e-e499d6f45118",
+              "Text": "Switching between CROSS and OUTER APPLY changes row counts, so verify expected results.",
+              "SortOrder": 4
+            }
+          ]
+        },
+        {
+          "Id": "daa89e47-4856-479c-9b01-b3e91e1e409f",
+          "TopicId": "4158e9e2-91ac-42b8-ad98-a3f94896dbeb",
+          "Title": "Joining Table-Valued Functions and Using Them in Computed Columns",
+          "BodyText": "Table-valued functions can be treated like a table in a JOIN, and scalar functions can define computed columns on a table.",
+          "Notes": "Example JOIN: INNER JOIN dbo.fn_GetProductsByCategory(1, 0, 1) prod ON p.ProductID = prod.ProductID. Example computed column: ALTER TABLE Customers ADD Age AS dbo.fn_CalculateAge(BirthDate);",
+          "SortOrder": 5,
+          "CreatedDate": "2026-11-17T05:07:46.818052-05:00",
+          "ModifiedDate": "2026-11-17T05:07:46.818052-05:00",
+          "Items": [
+            {
+              "Id": "547365aa-d6d6-4934-acdf-79254ed5e042",
+              "Text": "A TVF with constant arguments can be joined directly like a view or derived table.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "fe8dd918-19fd-41e2-8a6c-4338bca86189",
+              "Text": "You can further filter or project the TVF result with an outer WHERE clause.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "5ffeed91-c6f8-4d01-a6d4-7fa62df2348f",
+              "Text": "Computed columns let a function value appear automatically on every row without repeating the call.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "b248b862-40cb-4776-a1a9-15691cd74235",
+              "Text": "PERSISTED computed columns physically store the result and can be indexed for fast filtering.",
+              "SortOrder": 3
+            },
+            {
+              "Id": "a66c804a-dbaf-42e3-9c4c-5814cf97fe02",
+              "Text": "Persisting a computed column requires the referenced function to be deterministic and schema-bound.",
+              "SortOrder": 4
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Id": "17ae65bc-72a2-424f-b661-ef0e53a3ed55",
+      "Title": "Performance, Best Practices, and Alternatives",
+      "Summary": "Examines performance characteristics by function type, common scalar UDF pitfalls, and optimization techniques such as converting to inline TVFs, CROSS APPLY, and SQL Server 2019\u002B UDF inlining. Covers naming, design, testing, security, and maintenance best practices along with alternatives like views, computed columns, CTEs, and stored procedures.",
+      "SortOrder": 7,
+      "CreatedDate": "2026-11-17T05:05:06.105194-05:00",
+      "ModifiedDate": "2026-11-17T05:05:06.105194-05:00",
+      "Elements": [
+        {
+          "Id": "2cf6010d-4755-4287-ac34-6c31b5373da1",
+          "TopicId": "17ae65bc-72a2-424f-b661-ef0e53a3ed55",
+          "Title": "Performance Characteristics by Function Type",
+          "BodyText": "Not all user-defined functions perform equally; the function type you choose largely determines how the query optimizer can handle your code. Understanding these differences helps you pick the right tool before performance problems appear.",
+          "Notes": "Rating guide from the module: Inline TVF \u2B50\u2B50\u2B50\u2B50\u2B50, simple scalar UDF \u2B50\u2B50\u2B50, complex scalar UDF \u2B50\u2B50, multi-statement TVF \u2B50\u2B50.",
+          "SortOrder": 0,
+          "CreatedDate": "2026-11-17T05:08:18.220246-05:00",
+          "ModifiedDate": "2026-11-17T05:08:18.220246-05:00",
+          "Items": [
+            {
+              "Id": "1da612d9-d4c3-453e-83b7-b8c5f8f1fe91",
+              "Text": "Inline TVFs perform excellently because the optimizer treats them like a view and merges them with the outer query.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "68d8b04e-85ba-4ba7-8a88-8def9592b000",
+              "Text": "Simple scalar UDFs offer moderate performance but still execute once per row, so they are acceptable only on small datasets.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "ecfc3c35-d610-44ee-8009-1e490248f61d",
+              "Text": "Complex scalar UDFs perform poorly because they prevent parallelism and receive no optimization.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "fda36925-c6c3-4a1a-ae3d-822d477ccb55",
+              "Text": "Multi-statement TVFs perform poorly because the internal table variable has no statistics for cardinality estimation.",
+              "SortOrder": 3
+            },
+            {
+              "Id": "7bedbaed-d042-44a1-97b1-4f24d13c59a1",
+              "Text": "Inline TVFs can leverage base table indexes, while multi-statement TVFs cannot.",
+              "SortOrder": 4
+            }
+          ]
+        },
+        {
+          "Id": "b5d5dfb8-610a-4deb-9926-3b5b60c58133",
+          "TopicId": "17ae65bc-72a2-424f-b661-ef0e53a3ed55",
+          "Title": "Common Scalar UDF Pitfalls",
+          "BodyText": "Scalar functions are the most common source of hidden performance degradation in T-SQL because of how the engine executes them. Recognizing these pitfalls prevents queries that look elegant but run for minutes.",
+          "Notes": "Example: a query that calls dbo.fn_GetCustomerDiscount in both the SELECT list and the WHERE clause against a 1-million-row Orders table generates 2 million function calls.",
+          "SortOrder": 1,
+          "CreatedDate": "2026-11-17T05:08:18.220246-05:00",
+          "ModifiedDate": "2026-11-17T05:08:18.220246-05:00",
+          "Items": [
+            {
+              "Id": "c245e2ff-7b18-406c-8818-b95508b26782",
+              "Text": "Row-by-row execution means the function body runs once for every row returned or filtered.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "860f092a-c373-43dc-a610-f471243e68f8",
+              "Text": "Queries containing scalar UDFs cannot use parallel execution plans.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "c49e30ac-b0f5-47ed-a123-29a822c2d8f0",
+              "Text": "A scalar function in the WHERE clause prevents index seeks and forces scans.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "9b59fdea-15f3-4185-a21e-eda3fa2d9379",
+              "Text": "The optimizer ignores statistics inside the function, producing poor cardinality estimates.",
+              "SortOrder": 3
+            },
+            {
+              "Id": "9453b226-e05b-46c9-a365-6409adad141b",
+              "Text": "Before SQL Server 2019 there is no inlining, so the function body is never merged with the outer query.",
+              "SortOrder": 4
+            },
+            {
+              "Id": "96fceae1-10b0-4f76-baa5-133f0d055783",
+              "Text": "Calling the same function in both SELECT and WHERE doubles the number of invocations.",
+              "SortOrder": 5
+            }
+          ]
+        },
+        {
+          "Id": "cb388c22-6650-4c80-86d6-784124b1b818",
+          "TopicId": "17ae65bc-72a2-424f-b661-ef0e53a3ed55",
+          "Title": "Optimization Techniques",
+          "BodyText": "Several proven rewrites can dramatically reduce the cost of function-heavy queries without losing the reusability benefits of encapsulated logic. The goal is to let the optimizer see and reshape the logic rather than treat it as a black box.",
+          "Notes": "Check inlineability with: SELECT name, is_inlineable FROM sys.sql_modules WHERE object_id = OBJECT_ID(\u0027dbo.fn_CalculateTax\u0027);",
+          "SortOrder": 2,
+          "CreatedDate": "2026-11-17T05:08:18.220246-05:00",
+          "ModifiedDate": "2026-11-17T05:08:18.220246-05:00",
+          "Items": [
+            {
+              "Id": "dfda4975-46f6-444a-a86d-57920e18a168",
+              "Text": "Convert a scalar function into an inline TVF and consume it with CROSS APPLY for substantially better plans.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "6f38531c-3be0-43da-8891-b13c58d628ff",
+              "Text": "Use CROSS APPLY with an inline derived table or TVF so aggregates are computed once within the optimized plan.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "bc842d91-2318-4b85-8e57-3525c73bd0a3",
+              "Text": "Wrap the calculation in a CTE so the function is evaluated once instead of separately in SELECT and WHERE.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "82b76c29-8c6d-48b5-a50e-bf581e91a01a",
+              "Text": "SQL Server 2019\u002B can automatically inline simple scalar UDFs, removing the per-row context switch.",
+              "SortOrder": 3
+            },
+            {
+              "Id": "dd0b0ea4-be97-488c-9fed-37b0e262028a",
+              "Text": "Inlining requires a schema-bound function with no recursion, no table variables, and simple assignment/RETURN logic.",
+              "SortOrder": 4
+            },
+            {
+              "Id": "17e859ae-6610-4617-a53a-90b86b79bd60",
+              "Text": "Apply WITH SCHEMABINDING, INLINE = ON and verify the is_inlineable flag in sys.sql_modules.",
+              "SortOrder": 5
+            }
+          ]
+        },
+        {
+          "Id": "cea20f88-1581-4149-af80-177145b90973",
+          "TopicId": "17ae65bc-72a2-424f-b661-ef0e53a3ed55",
+          "Title": "Naming, Design, and Documentation Standards",
+          "BodyText": "Consistent naming and disciplined design make functions discoverable, predictable, and safe to reuse across a large codebase. Documentation headers preserve intent for the next developer.",
+          "Notes": "A documentation header should record function name, type, description, parameters, return value, an example call, notes, and a change history.",
+          "SortOrder": 3,
+          "CreatedDate": "2026-11-17T05:08:18.220246-05:00",
+          "ModifiedDate": "2026-11-17T05:08:18.220246-05:00",
+          "Items": [
+            {
+              "Id": "3c49ee60-e7a3-463c-9a76-5233e54db371",
+              "Text": "Name scalar functions as fn_VerbNoun (fn_CalculateAge) and table-valued functions as fn_GetNounByCondition (fn_GetOrdersByDate).",
+              "SortOrder": 0
+            },
+            {
+              "Id": "a82f6260-33ab-4e0a-b6a6-c4f6f78b5d05",
+              "Text": "Use the fn_ prefix to distinguish functions from stored procedures, which use usp_.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "c81df53d-9d4a-4c6e-9be0-bef515d30146",
+              "Text": "Keep each function simple and focused on a single purpose, and prefer inline TVFs over multi-statement TVFs.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "4c6f0231-c24b-437e-ab4c-9504b2fc709a",
+              "Text": "Handle NULL inputs explicitly and consider default parameter values for flexibility.",
+              "SortOrder": 3
+            },
+            {
+              "Id": "73a5c544-02c1-4d0f-afac-5fc8559787c5",
+              "Text": "Return NULL for error conditions because functions cannot raise errors.",
+              "SortOrder": 4
+            },
+            {
+              "Id": "328ed3ce-98ec-4571-ad1a-34034cfb6197",
+              "Text": "Use SCHEMABINDING for deterministic functions to enable optimizations and protect referenced objects.",
+              "SortOrder": 5
+            }
+          ]
+        },
+        {
+          "Id": "5fdec559-e608-420d-be78-3a61342e4c80",
+          "TopicId": "17ae65bc-72a2-424f-b661-ef0e53a3ed55",
+          "Title": "Testing, Security, and Maintenance Practices",
+          "BodyText": "Because functions are embedded directly in queries, a defect or schema change can ripple across many consumers. Structured testing, permission control, and dependency tracking keep that risk manageable.",
+          "Notes": "Industry practice in large teams often requires DBA review of all database code before deployment to enforce naming, security, and performance standards.",
+          "SortOrder": 4,
+          "CreatedDate": "2026-11-17T05:08:18.220246-05:00",
+          "ModifiedDate": "2026-11-17T05:08:18.220246-05:00",
+          "Items": [
+            {
+              "Id": "efa362fc-c342-4b40-bc86-ac8d25493c55",
+              "Text": "Test with NULL inputs, edge cases such as zero, negative values, and empty strings, and invalid foreign key values.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "2317cec7-b648-4a56-8f36-2d206092aca3",
+              "Text": "Validate performance with realistic data volumes and inspect actual execution plans.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "827c7458-d7b4-4d07-9f43-33f9b828c194",
+              "Text": "Verify deterministic behavior and test the function inside SELECT, WHERE, and JOIN contexts.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "72dddb11-b657-4683-9770-469f9718d03d",
+              "Text": "Grant EXECUTE permission rather than direct table access, and always use schema-qualified names like dbo.Function.",
+              "SortOrder": 3
+            },
+            {
+              "Id": "16349485-e97c-4010-8ddc-fdab585e9765",
+              "Text": "Validate input parameters and avoid exposing sensitive data in names or return values.",
+              "SortOrder": 4
+            },
+            {
+              "Id": "15e597b1-0bfd-4456-8371-3ca273fa851b",
+              "Text": "Track dependent objects, use version control, document changes in the header, and prepare rollback scripts before deployment.",
+              "SortOrder": 5
+            }
+          ]
+        },
+        {
+          "Id": "8955f21e-3160-44db-887b-bc46a9043e3e",
+          "TopicId": "17ae65bc-72a2-424f-b661-ef0e53a3ed55",
+          "Title": "Anti-Patterns to Avoid",
+          "BodyText": "A few recurring misuses of functions account for most production problems. Recognizing them makes code review faster and more effective.",
+          "Notes": "Avoid functions entirely when you need transactions, TRY...CATCH error handling, temp tables, dynamic SQL, or multiple output values.",
+          "SortOrder": 5,
+          "CreatedDate": "2026-11-17T05:08:18.220246-05:00",
+          "ModifiedDate": "2026-11-17T05:08:18.220246-05:00",
+          "Items": [
+            {
+              "Id": "660cd921-7c60-467f-b439-413ccf6e8d8f",
+              "Text": "Calling a complex scalar function in the WHERE clause of a multi-million-row table forces a full scan with per-row evaluation.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "3dce4475-2c8f-43f0-b33b-38ce18cb8648",
+              "Text": "Replace that pattern with a persisted computed column that can be indexed and filtered directly.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "ce29a715-ac10-4798-9961-a95320a97eaa",
+              "Text": "Attempting INSERT, UPDATE, or DELETE inside a function fails because functions cannot modify database state.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "2e0385b4-24bc-43ca-a034-732f1d85eab8",
+              "Text": "Data modification logic belongs in a stored procedure that supports transactions and error handling.",
+              "SortOrder": 3
+            },
+            {
+              "Id": "81493428-d2fe-481a-847f-63107e40ea1d",
+              "Text": "Using multi-statement TVFs for logic that could be expressed as a single SELECT needlessly sacrifices optimization.",
+              "SortOrder": 4
+            }
+          ]
+        },
+        {
+          "Id": "dfad6cec-4f3d-4464-9772-ef3b813968e2",
+          "TopicId": "17ae65bc-72a2-424f-b661-ef0e53a3ed55",
+          "Title": "Alternatives to User-Defined Functions",
+          "BodyText": "Functions are not always the best encapsulation mechanism; views, computed columns, CTEs, and stored procedures each solve overlapping problems with different trade-offs. Choosing correctly often removes the performance issue entirely.",
+          "Notes": "Comparison summary: Inline TVF (parameters, usable in queries, \u2B50\u2B50\u2B50\u2B50\u2B50), View (no parameters, \u2B50\u2B50\u2B50\u2B50\u2B50), Computed Column (no parameters, \u2B50\u2B50\u2B50\u2B50\u2B50), CTE (variables, \u2B50\u2B50\u2B50\u2B50), Stored Procedure (parameters, not usable in queries, \u2B50\u2B50\u2B50\u2B50).",
+          "SortOrder": 6,
+          "CreatedDate": "2026-11-17T05:08:18.220246-05:00",
+          "ModifiedDate": "2026-11-17T05:08:18.220246-05:00",
+          "Items": [
+            {
+              "Id": "deb33490-039b-4fa4-bdf9-1d33ae65cc6c",
+              "Text": "Use a view instead of a parameterless inline TVF for fixed filtering or aggregation logic.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "f30148cf-63fe-4152-9017-e694b0d519e8",
+              "Text": "Use a PERSISTED computed column for row-level calculations, then index it so filters use index seeks.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "6e72e8a3-d03e-4f47-8d9a-ecf75f032713",
+              "Text": "Use a CTE when the complex logic is needed only once within a single statement.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "92b88385-a6e8-43f9-b20a-aeebda26b020",
+              "Text": "Use a stored procedure returning a result set when you need data modification, transactions, or error handling.",
+              "SortOrder": 3
+            },
+            {
+              "Id": "8c1f4af1-56d2-4eaf-b874-b68f31125b00",
+              "Text": "Remember that stored procedure result sets cannot be joined to other tables, unlike table-valued functions.",
+              "SortOrder": 4
+            },
+            {
+              "Id": "31ebd98f-fea5-4cff-b691-00ad1130177f",
+              "Text": "Inline TVFs remain the best choice when you need both parameters and full query composability.",
+              "SortOrder": 5
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "TotalElementCount": 50
+}

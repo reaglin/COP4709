@@ -1,0 +1,208 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Module 9 (Week 9) — Topics &amp; Learning Outcomes</title>
+<style>
+body{font-family:'Segoe UI',Arial,sans-serif;max-width:880px;margin:0 auto;padding:32px 24px;color:#222;line-height:1.55}
+h1{font-size:1.6rem;border-bottom:2px solid #dcdcdc;padding-bottom:8px}
+h2{font-size:1.25rem;margin-top:30px;color:#1a3c6e;border-bottom:1px solid #ececec;padding-bottom:4px}
+h3{font-size:1.05rem;margin-top:22px;color:#1a3c6e}
+.toc{border:1px solid #c9d4e3;background:#f5f8fc;border-radius:8px;padding:10px 16px;margin:14px 0 6px;display:flex;gap:18px;flex-wrap:wrap}
+.toc a{color:#1a3c6e;font-weight:600;text-decoration:none}
+.toc a:hover{text-decoration:underline}
+.summary{color:#555;font-style:italic;margin:4px 0 10px}
+ul{margin:6px 0 6px 4px}
+li{margin:5px 0}
+.el-body{color:#555}
+.prefix{color:#555;font-style:italic;margin:6px 0 14px}
+.mo{border:1px solid #e2e2e2;border-radius:6px;padding:12px 16px;margin:12px 0}
+.mo .code{font-size:.8rem;color:#595959;text-transform:uppercase;letter-spacing:.04em}
+.mo .statement{font-weight:600;margin:4px 0 8px}
+.meta span{display:inline-block;background:#eef2f8;color:#1a3c6e;border-radius:3px;padding:1px 8px;margin:0 6px 0 0;font-size:.85rem}
+.meta .map{background:#eaf6ec;color:#137333}
+.co{margin:7px 0}
+.co .code{font-weight:600;color:#1a3c6e;margin-right:6px}
+.empty{color:#595959}
+.topic{border:1px solid #e2e2e2;border-radius:8px;padding:4px 18px 10px;margin:16px 0}
+.topic h2{margin-top:12px}
+.topic h3{font-size:1rem;margin:14px 0 4px;color:#333}
+.topic .desc{margin:4px 0 6px}
+ul.tm li{margin:7px 0}
+ul.tm a{color:#1a3c6e;font-weight:600}
+.tm-kind{display:inline-block;background:#eef2f8;color:#1a3c6e;border-radius:3px;padding:1px 8px;margin-left:6px;font-size:.82rem}
+.tm-also{color:#555;font-size:.88rem}
+.tm-desc{color:#555;font-size:.92rem;margin-top:2px}
+.tm-back a,.empty a{color:#1a3c6e;font-weight:600}
+</style>
+</head>
+<body>
+<div class="pm-backlink" style="font-family:'Segoe UI',Arial,sans-serif;padding:8px 16px;background:#f5f8fc;border-bottom:1px solid #dce3ec"><a href="index.html" style="color:#1a3c6e;font-weight:600;text-decoration:none">↑ Module 9 (Week 9)</a></div>
+<h1>Module 9 (Week 9) — Topics &amp; Learning Outcomes</h1>
+<div class="toc"><a href="#topics">📋 Module Topics</a><a href="#outcomes">🎯 Student Learning Outcomes</a></div>
+
+<div id="topics">
+<section class="topic" aria-labelledby="topic-1">
+<h2 id="topic-1">1. Aggregation Fundamentals in SQL</h2>
+<h3>Description</h3>
+<p class="desc">Introduces aggregation as the process of collapsing many rows into a single summary value, and previews the core functions (COUNT, SUM, AVG, MIN, MAX, COUNT DISTINCT) along with the general syntax pattern and the bookstore sample dataset used throughout.</p>
+<h3>Subtopics</h3>
+<ul>
+<li><strong>What Aggregation Means</strong> <span class="el-body">— Aggregation in SQL performs a calculation across a set of rows to produce a single summary value. Rather than returning every individual record, aggregate functions collapse many rows into meaningful totals, counts, and averages.</span></li>
+<li><strong>The Core Aggregate Functions</strong> <span class="el-body">— Six functions handle the vast majority of aggregation work in SQL. Each is supported by every major database system including Oracle, SQL Server, MySQL, PostgreSQL, and IBM Db2.</span></li>
+<li><strong>The General Syntax Pattern</strong> <span class="el-body">— Every aggregation query follows the same predictable clause skeleton. Mastering this template makes complex reporting queries straightforward to construct.</span></li>
+<li><strong>Supporting Tools You Will Use</strong> <span class="el-body">— Three companion keywords make aggregation practical and readable. They are introduced here and explored in depth later in the guide.</span></li>
+<li><strong>The Bookstore Sample Dataset</strong> <span class="el-body">— All examples throughout this guide use a single orders table from a fictional online bookstore. Working from one consistent dataset makes it easy to compare how each function behaves.</span></li>
+</ul>
+<h3>Supporting Materials</h3>
+<p class="empty">Nothing has been made just for this topic yet. The materials for the whole module are on the <a href="index.html#content-h">module page</a>.</p>
+</section>
+<section class="topic" aria-labelledby="topic-2">
+<h2 id="topic-2">2. Core Aggregate Functions: COUNT, SUM, and AVG</h2>
+<h3>Description</h3>
+<p class="desc">Explores counting rows versus non-NULL and distinct values, totalling numeric columns, and calculating averages with rounding. Highlights NULL-handling traps such as COUNT(*) vs COUNT(column) and SUM returning NULL on empty result sets.</p>
+<h3>Subtopics</h3>
+<ul>
+<li><strong>COUNT(*) — Counting Every Row</strong> <span class="el-body">— COUNT(*) returns the total number of rows that match a query, regardless of whether any column contains NULL values. It is the safest choice when the question is simply &quot;how many records?&quot;</span></li>
+<li><strong>COUNT(column) — Counting Non-NULL Values</strong> <span class="el-body">— COUNT(column) counts only the rows where the named column holds a value that is not NULL. This makes it a quick way to measure data completeness.</span></li>
+<li><strong>COUNT(DISTINCT column) — Counting Unique Values</strong> <span class="el-body">— COUNT(DISTINCT column) returns the number of unique, non-NULL values in a column rather than the number of rows. It answers questions about variety rather than volume.</span></li>
+<li><strong>The COUNT(*) vs COUNT(column) Trap</strong> <span class="el-body">— The most common reporting error with COUNT is assuming the two forms are interchangeable. When a column contains NULLs, they return different numbers.</span></li>
+<li><strong>SUM() — Totalling Numeric Values</strong> <span class="el-body">— SUM() adds up all non-NULL values in a numeric column to produce a single total. It is the workhorse function for revenue, quantity, and other additive measures.</span></li>
+<li><strong>SUM Returns NULL on Empty Result Sets</strong> <span class="el-body">— When no rows match the query, SUM() returns NULL rather than 0. Applications that expect a number can break or display blanks because of this.</span></li>
+<li><strong>AVG() — Calculating and Rounding Averages</strong> <span class="el-body">— AVG() returns the arithmetic mean of the non-NULL values in a numeric column, equivalent to SUM(col) / COUNT(col). Because raw averages carry many decimal places, ROUND() is usually applied for presentation.</span></li>
+</ul>
+<h3>Supporting Materials</h3>
+<p class="empty">Nothing has been made just for this topic yet. The materials for the whole module are on the <a href="index.html#content-h">module page</a>.</p>
+</section>
+<section class="topic" aria-labelledby="topic-3">
+<h2 id="topic-3">3. MIN, MAX, and Combined Summary Queries</h2>
+<h3>Description</h3>
+<p class="desc">Covers finding extreme values across numbers, dates, and strings, including alphabetical and chronological behaviour. Demonstrates combining all five core aggregates into a single comprehensive summary query.</p>
+<h3>Subtopics</h3>
+<ul>
+<li><strong>What MIN() and MAX() Do</strong> <span class="el-body">— MIN() and MAX() return the smallest and largest values found in a column across the rows the query examines. Unlike SUM() and AVG(), they are not limited to numeric data.</span></li>
+<li><strong>MIN and MAX on Numeric Columns</strong> <span class="el-body">— On numeric columns, MIN() and MAX() identify the lowest and highest values, making them ideal for finding price floors, ceilings, and value ranges.</span></li>
+<li><strong>MIN and MAX on Date Columns</strong> <span class="el-body">— When applied to a DATE column, MIN() returns the earliest date and MAX() returns the most recent — a chronological rather than numeric comparison.</span></li>
+<li><strong>MIN and MAX on String Columns</strong> <span class="el-body">— On text columns, MIN() and MAX() compare values alphabetically rather than numerically, returning the first and last entries in sort order.</span></li>
+<li><strong>Using MIN and MAX to Satisfy the GROUP BY Rule</strong> <span class="el-body">— MIN() and MAX() are often used to legally include an otherwise ungrouped column in a grouped query.</span></li>
+<li><strong>Combining All Five Core Aggregates</strong> <span class="el-body">— COUNT, SUM, AVG, MIN, and MAX can all appear in a single SELECT list to produce one comprehensive summary row.</span></li>
+</ul>
+<h3>Supporting Materials</h3>
+<p class="empty">Nothing has been made just for this topic yet. The materials for the whole module are on the <a href="index.html#content-h">module page</a>.</p>
+</section>
+<section class="topic" aria-labelledby="topic-4">
+<h2 id="topic-4">4. Column Aliases with AS</h2>
+<h3>Description</h3>
+<p class="desc">Explains how AS produces readable, referenceable output column names for aggregates and calculated expressions, including quoting rules and table aliases. Clarifies why aliases cannot be referenced in a WHERE clause.</p>
+<h3>Subtopics</h3>
+<ul>
+<li><strong>What a Column Alias Does</strong> <span class="el-body">— AS creates a column alias — a custom label applied to a column or expression in your query results. It changes only the output header, not the stored data.</span></li>
+<li><strong>AS Syntax and Quoting Rules</strong> <span class="el-body">— The AS keyword is technically optional, but explicit use makes queries far easier to read. Quoting lets you create aliases containing spaces or special characters.</span></li>
+<li><strong>Aliasing Calculated and Derived Columns</strong> <span class="el-body">— Aliases are most valuable when the SELECT list contains arithmetic, nested functions, or CASE expressions. They turn an unreadable formula into a business-meaningful column name.</span></li>
+<li><strong>Table Aliases</strong> <span class="el-body">— AS also works on table names, creating a short handle used to qualify columns. This is essential for readability in multi-table joins.</span></li>
+<li><strong>Why Aliases Fail in WHERE</strong> <span class="el-body">— Because WHERE is evaluated before SELECT in SQL&#39;s logical execution order, an alias defined in SELECT does not yet exist when WHERE runs. Referencing it produces an unknown-column error.</span></li>
+<li><strong>Where Aliases CAN Be Used</strong> <span class="el-body">— Not every clause rejects aliases. Clauses evaluated after SELECT can reference the names you defined there.</span></li>
+</ul>
+<h3>Supporting Materials</h3>
+<p class="empty">Nothing has been made just for this topic yet. The materials for the whole module are on the <a href="index.html#content-h">module page</a>.</p>
+</section>
+<section class="topic" aria-labelledby="topic-5">
+<h2 id="topic-5">5. GROUP BY — Aggregating by Category</h2>
+<h3>Description</h3>
+<p class="desc">Shows how GROUP BY splits rows into groups for per-group aggregation across single columns, multiple columns, and date expressions for time-series reporting. Establishes the golden rule that every selected column must be grouped or aggregated.</p>
+<h3>Subtopics</h3>
+<ul>
+<li><strong>What GROUP BY Does</strong> <span class="el-body">— GROUP BY splits the rows returned by a query into groups based on one or more columns, then applies each aggregate function separately to every group. Without GROUP BY, aggregate functions collapse the entire table into a single summary row.</span></li>
+<li><strong>GROUP BY a Single Column</strong> <span class="el-body">— The most common pattern groups by one descriptive column and aggregates one or more numeric columns alongside it. The grouping column appears in SELECT so each summary row is labelled.</span></li>
+<li><strong>GROUP BY Multiple Columns</strong> <span class="el-body">— Listing more than one column in GROUP BY creates finer-grained groups — one output row for every unique combination of the listed values. This supports cross-tab style breakdowns.</span></li>
+<li><strong>The Golden Rule of GROUP BY</strong> <span class="el-body">— Every column in the SELECT list must either appear in the GROUP BY clause or be wrapped in an aggregate function. Violating this rule produces undefined results or an outright error in strict mode.</span></li>
+<li><strong>GROUP BY with Date Functions for Time-Series Reports</strong> <span class="el-body">— You can group by an expression, not just a raw column. Applying YEAR() and MONTH() to a date column is the standard way to build monthly or yearly trend reports.</span></li>
+<li><strong>Combining GROUP BY with Other Clauses</strong> <span class="el-body">— GROUP BY sits in a fixed position in the query, between WHERE and HAVING, and works together with aliases and sorting to produce a finished report.</span></li>
+</ul>
+<h3>Supporting Materials</h3>
+<p class="empty">Nothing has been made just for this topic yet. The materials for the whole module are on the <a href="index.html#content-h">module page</a>.</p>
+</section>
+<section class="topic" aria-labelledby="topic-6">
+<h2 id="topic-6">6. HAVING — Filtering Aggregated Results</h2>
+<h3>Description</h3>
+<p class="desc">Contrasts WHERE (row-level filtering before grouping) with HAVING (group-level filtering after aggregation) and demonstrates using both together. Includes practical patterns such as HAVING COUNT(*) to isolate active groups.</p>
+<h3>Subtopics</h3>
+<ul>
+<li><strong>What HAVING Does</strong> <span class="el-body">— HAVING filters groups after aggregation has been performed, making it the GROUP BY equivalent of WHERE. It allows conditions to be written against aggregate expressions such as SUM(total) or COUNT(*).</span></li>
+<li><strong>WHERE vs HAVING — Side by Side</strong> <span class="el-body">— WHERE filters individual rows before grouping; HAVING filters resulting groups after grouping. Choosing the wrong clause is one of the most common aggregation errors.</span></li>
+<li><strong>A Basic HAVING Query</strong> <span class="el-body">— The simplest HAVING pattern groups rows by a category column and keeps only the groups whose aggregate value crosses a threshold.</span></li>
+<li><strong>Using WHERE and HAVING Together</strong> <span class="el-body">— The two clauses are complementary and frequently appear in the same query: WHERE narrows the rows, then HAVING narrows the groups built from those rows.</span></li>
+<li><strong>HAVING COUNT(*) — Finding Active Groups</strong> <span class="el-body">— A classic business pattern uses HAVING COUNT(*) to isolate groups with enough activity, such as repeat customers or courses with sufficient enrollment.</span></li>
+<li><strong>Execution Order Explains Why HAVING Exists</strong> <span class="el-body">— SQL evaluates clauses in a logical order — FROM, WHERE, GROUP BY, HAVING, SELECT, ORDER BY — and this order explains why aggregate filtering needs its own clause.</span></li>
+</ul>
+<h3>Supporting Materials</h3>
+<p class="empty">Nothing has been made just for this topic yet. The materials for the whole module are on the <a href="index.html#content-h">module page</a>.</p>
+</section>
+<section class="topic" aria-labelledby="topic-7">
+<h2 id="topic-7">7. Advanced and Vendor-Specific Aggregate Functions</h2>
+<h3>Description</h3>
+<p class="desc">Surveys COUNT(DISTINCT) within groups, text aggregation with GROUP_CONCAT and STRING_AGG, statistical functions like STDDEV and VARIANCE, and subtotal generation with WITH ROLLUP, noting differences across Oracle, SQL Server, MySQL, PostgreSQL, and Db2.</p>
+<h3>Subtopics</h3>
+<ul>
+<li><strong>COUNT(DISTINCT) Within Groups</strong> <span class="el-body">— COUNT(DISTINCT column) counts only unique, non-NULL values, and becomes especially powerful when combined with GROUP BY to measure reach rather than volume.</span></li>
+<li><strong>Text Aggregation: GROUP_CONCAT and STRING_AGG</strong> <span class="el-body">— These vendor-specific functions concatenate string values from many rows in a group into a single delimited text column, producing readable summary lists.</span></li>
+<li><strong>Statistical Aggregates: STDDEV and VARIANCE</strong> <span class="el-body">— STDDEV and VARIANCE measure how spread out numeric values are around their mean, letting you judge consistency rather than just magnitude.</span></li>
+<li><strong>Subtotals and Grand Totals with ROLLUP</strong> <span class="el-body">— ROLLUP extends GROUP BY by automatically generating subtotal and grand total rows beneath the detail rows, which is ideal for financial and management reports.</span></li>
+<li><strong>Vendor Support Varies Across Database Systems</strong> <span class="el-body">— Beyond the five core aggregates, support for advanced functions differs sharply between Oracle, SQL Server, MySQL, PostgreSQL and IBM Db2, so always check your platform&#39;s documentation.</span></li>
+</ul>
+<h3>Supporting Materials</h3>
+<p class="empty">Nothing has been made just for this topic yet. The materials for the whole module are on the <a href="index.html#content-h">module page</a>.</p>
+</section>
+<section class="topic" aria-labelledby="topic-8">
+<h2 id="topic-8">8. Query Execution Order, Real-World Patterns, and Best Practices</h2>
+<h3>Description</h3>
+<p class="desc">Walks through the logical execution order of FROM, WHERE, GROUP BY, HAVING, SELECT, and ORDER BY to explain alias and filtering rules, then applies aggregation to e-commerce, healthcare, and university reporting scenarios. Concludes with best practices, common mistakes, and a quick reference table.</p>
+<h3>Subtopics</h3>
+<ul>
+<li><strong>The Six-Step Logical Execution Order</strong> <span class="el-body">— SQL does not evaluate a query in the order you write it. Understanding the logical execution order explains alias rules, filtering behaviour, and why HAVING exists as a separate clause from WHERE.</span></li>
+<li><strong>Why Aliases Fail in WHERE but Work in ORDER BY</strong> <span class="el-body">— Because SELECT is evaluated fifth, any alias you define there does not exist when WHERE (step 2) runs. ORDER BY runs last, so aliases are already available to it.</span></li>
+<li><strong>The Full Aggregation Query Template</strong> <span class="el-body">— Most reporting queries follow a single reusable skeleton that combines row filtering, grouping, group filtering, sorting, and limiting.</span></li>
+<li><strong>E-Commerce Pattern: Top Customers Report</strong> <span class="el-body">— A classic business query ranks customers by lifetime value using several aggregates at once over a filtered set of orders.</span></li>
+<li><strong>Healthcare and University Patterns with SUM(CASE WHEN …)</strong> <span class="el-body">— Conditional aggregation lets you count rows matching a specific condition inside a grouped query without writing a subquery.</span></li>
+<li><strong>Best Practices for Aggregation Queries</strong> <span class="el-body">— A few habits make aggregation queries readable, maintainable, and efficient in production reporting.</span></li>
+<li><strong>Common Mistakes and the Quick Reference Table</strong> <span class="el-body">— Most aggregation errors trace back to execution order, NULL handling, or grouping granularity. A function reference table helps you pick the right tool.</span></li>
+</ul>
+<h3>Supporting Materials</h3>
+<p class="empty">Nothing has been made just for this topic yet. The materials for the whole module are on the <a href="index.html#content-h">module page</a>.</p>
+</section>
+</div>
+<p class="tm-back"><a href="index.html">← Back to the module page</a></p>
+<h2 id="outcomes">Student Learning Outcomes</h2>
+<p class="prefix">By the end of this module, students will be able to:</p>
+<div class="mo">
+<div class="code">MO1</div>
+<div class="statement">Construct SQL queries that apply the core aggregate functions COUNT, SUM, AVG, MIN, and MAX to summarize rows from a sample orders table</div>
+<div class="meta"><span>Level: Apply</span><span>Type: Cognitive</span><span class="map">Course mapping: —</span></div>
+</div>
+<div class="mo">
+<div class="code">MO2</div>
+<div class="statement">Differentiate the results produced by COUNT(*), COUNT(column), and COUNT(DISTINCT column) when NULL and duplicate values are present</div>
+<div class="meta"><span>Level: Analyze</span><span>Type: Cognitive</span><span class="map">Course mapping: —</span></div>
+</div>
+<div class="mo">
+<div class="code">MO3</div>
+<div class="statement">Write grouped reporting queries that use GROUP BY with single columns, multiple columns, and date expressions while satisfying the rule that every selected column is grouped or aggregated</div>
+<div class="meta"><span>Level: Apply</span><span>Type: Cognitive</span><span class="map">Course mapping: —</span></div>
+</div>
+<div class="mo">
+<div class="code">MO4</div>
+<div class="statement">Justify the selection of WHERE versus HAVING for a given filtering requirement based on SQL&#39;s logical execution order</div>
+<div class="meta"><span>Level: Evaluate</span><span>Type: Cognitive</span><span class="map">Course mapping: —</span></div>
+</div>
+<div class="mo">
+<div class="code">MO5</div>
+<div class="statement">Compare vendor-specific aggregate features such as GROUP_CONCAT, STRING_AGG, STDDEV, and WITH ROLLUP across Oracle, SQL Server, MySQL, PostgreSQL, and IBM Db2</div>
+<div class="meta"><span>Level: Analyze</span><span>Type: Cognitive</span><span class="map">Course mapping: —</span></div>
+</div>
+<h3>Course Outcomes (reference)</h3>
+<p class="empty">No course outcomes have been defined.</p>
+
+<footer class="presemaker-credit" data-credit="2" style="margin-top:2rem;padding:14px 8px;border-top:1px solid #ddd;background:#fff;text-align:center;font:13px/1.5 -apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;color:#595959;"><svg width="20" height="20" viewBox="0 0 2048 2048" aria-hidden="true" focusable="false" style="vertical-align:-5px;margin-right:7px"><rect width="2048" height="2048" rx="384" fill="#0F6E6E"/><path fill="#0A5050" d="M1024 1000 344 832v816l680 168zm0 0 680-168v816l-680 168z"/><path fill="#fff" d="M1024 944 384 784v808l640 160zm0 0 640-160v808l-640 160z"/><rect x="1002" y="944" width="44" height="808" fill="#0F6E6E"/><rect x="936" y="246" width="176" height="448" rx="44" fill="#fff"/><rect x="800" y="382" width="448" height="176" rx="44" fill="#fff"/></svg>Created with <a href="https://softwareplus.ai/coursebuilder/" target="_blank" rel="noopener" style="color:#2f5d8f;font-weight:600;text-decoration:none;">CourseBuilder+</a><span aria-hidden="true"> · </span><a href="https://softwareplus.ai/" target="_blank" rel="noopener" style="color:#2f5d8f;text-decoration:none;">SoftwarePlus.ai</a></footer>
+</body>
+</html>

@@ -1,0 +1,1396 @@
+{
+  "ModuleFolderName": "Module_15_(Week_15)",
+  "CourseName": "COP4709 \u2014 Applied Database II",
+  "GeneratedDate": "2026-11-17T05:45:46.319353-05:00",
+  "ModifiedDate": "2026-11-17T05:48:10.4844999-05:00",
+  "Outcomes": [],
+  "Topics": [
+    {
+      "Id": "26f7b330-ff61-491e-b5ad-8a250f420b20",
+      "Title": "Module Overview and Learning Objectives",
+      "Summary": "Introduces the focus of Module 15 as the capstone week of the course, outlining what learners are expected to know and demonstrate by its conclusion. Establishes how this final module connects to and builds upon the preceding weeks of instruction.",
+      "SortOrder": 0,
+      "CreatedDate": "2026-11-17T05:45:46.319353-05:00",
+      "ModifiedDate": "2026-11-17T05:45:46.319353-05:00",
+      "Elements": [
+        {
+          "Id": "c1e015f7-c019-4210-a025-37a4ba13e647",
+          "TopicId": "26f7b330-ff61-491e-b5ad-8a250f420b20",
+          "Title": "Purpose of Module 15",
+          "BodyText": "Module 15 is the capstone week of the course, designed to bring together the concepts, skills, and practices developed across the previous fourteen weeks. Its purpose is consolidation and demonstration rather than the introduction of entirely new material.",
+          "Notes": "Think of this week as the point where individual threads of learning are woven into a single, coherent whole.",
+          "SortOrder": 0,
+          "CreatedDate": "2026-11-17T05:46:09.2182869-05:00",
+          "ModifiedDate": "2026-11-17T05:46:09.2182869-05:00",
+          "Items": [
+            {
+              "Id": "8caedd27-9c16-4056-ade8-0b2126b4d049",
+              "Text": "The module serves as the culminating experience of the course.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "12749fb3-aa46-4354-a29c-f4667d7207e1",
+              "Text": "Emphasis shifts from acquiring new content to integrating and applying what has already been learned.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "24e7bb12-f764-448e-9415-d8a412980db9",
+              "Text": "Learners are asked to think across topics rather than within a single week\u0027s material.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "46e1700e-c038-46e0-bbdd-764b26c47cee",
+              "Text": "The week provides a structured opportunity to close gaps before the course concludes.",
+              "SortOrder": 3
+            }
+          ]
+        },
+        {
+          "Id": "1cf2104c-25d7-4884-9b04-b7b81e8b2416",
+          "TopicId": "26f7b330-ff61-491e-b5ad-8a250f420b20",
+          "Title": "Learning Objectives for the Week",
+          "BodyText": "By the conclusion of Module 15, learners should be able to articulate, apply, and evaluate the core ideas of the course. The objectives below define what successful completion of this final week looks like.",
+          "Notes": "Review these objectives at the start of the week and again before submitting final work.",
+          "SortOrder": 1,
+          "CreatedDate": "2026-11-17T05:46:09.2182869-05:00",
+          "ModifiedDate": "2026-11-17T05:46:09.2182869-05:00",
+          "Items": [
+            {
+              "Id": "75965669-4074-4e01-ab1e-b15fc3a3580d",
+              "Text": "Summarize the central concepts introduced throughout the course in your own words.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "3dee4517-7187-4db4-99eb-10b4ebdbdb1e",
+              "Text": "Apply course frameworks and methods to an unfamiliar scenario or problem.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "f3b71182-15bd-460f-9295-1f37c83cd1f8",
+              "Text": "Evaluate the quality of your own work against the standards established earlier in the course.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "d87c4714-9ab2-48b2-9663-658eae07a30c",
+              "Text": "Communicate conclusions clearly to both specialist and non-specialist audiences.",
+              "SortOrder": 3
+            },
+            {
+              "Id": "858263e3-ce6a-4c27-a240-8500d24dafdb",
+              "Text": "Identify areas for continued learning beyond the course.",
+              "SortOrder": 4
+            }
+          ]
+        },
+        {
+          "Id": "2015565a-4a19-47b9-865b-dee1c9555aa1",
+          "TopicId": "26f7b330-ff61-491e-b5ad-8a250f420b20",
+          "Title": "How This Module Builds on Prior Weeks",
+          "BodyText": "Module 15 does not stand alone; it depends directly on the foundations laid in Weeks 1 through 14. Each earlier phase of the course contributes a necessary component to the work undertaken this week.",
+          "Notes": "If a prior concept feels unclear, revisit that week\u0027s materials before attempting the capstone activities.",
+          "SortOrder": 2,
+          "CreatedDate": "2026-11-17T05:46:09.2182869-05:00",
+          "ModifiedDate": "2026-11-17T05:46:09.2182869-05:00",
+          "Items": [
+            {
+              "Id": "6af7b8ef-d6fa-419a-9887-2329ea2c21ee",
+              "Text": "Early weeks supplied the vocabulary and foundational definitions now used fluently.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "d1421d02-32d6-4812-824b-f6f7ca1a5db4",
+              "Text": "Middle weeks introduced the methods and frameworks that are applied in the capstone work.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "81ee9a2a-0f65-4005-84db-c30fa0d78e52",
+              "Text": "Later weeks developed the analytical and evaluative skills required for final deliverables.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "f7d94098-3820-497e-9b60-30efab7cf77a",
+              "Text": "Feedback received on earlier assignments informs the standard expected in this module.",
+              "SortOrder": 3
+            }
+          ]
+        },
+        {
+          "Id": "e74ad0cc-262f-48a9-8fad-f9dde86e08ad",
+          "TopicId": "26f7b330-ff61-491e-b5ad-8a250f420b20",
+          "Title": "Key Activities and Deliverables",
+          "BodyText": "This week centers on a small number of high-value activities rather than a broad set of new readings. Each activity is intended to produce evidence that the learning objectives have been met.",
+          "Notes": "",
+          "SortOrder": 3,
+          "CreatedDate": "2026-11-17T05:46:09.2182869-05:00",
+          "ModifiedDate": "2026-11-17T05:46:09.2182869-05:00",
+          "Items": [
+            {
+              "Id": "71670f0f-e256-4b39-a3a8-7c6f2f60b748",
+              "Text": "Complete the culminating assignment or project that synthesizes course content.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "3122d487-be52-49b4-892b-9e44893c2f43",
+              "Text": "Participate in a final discussion or peer review to test your reasoning against others\u0027.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "ef939f6a-c295-4bd7-8a3a-07a143855c52",
+              "Text": "Conduct a structured self-assessment against the course learning objectives.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "28abcfbb-e97c-4403-aec5-aacf78005509",
+              "Text": "Submit all outstanding work by the posted end-of-course deadlines.",
+              "SortOrder": 3
+            }
+          ]
+        },
+        {
+          "Id": "3aeac464-e806-4769-8e49-fce9482c0d22",
+          "TopicId": "26f7b330-ff61-491e-b5ad-8a250f420b20",
+          "Title": "Expectations and Assessment Criteria",
+          "BodyText": "Work in the capstone week is assessed on integration and depth, not simply on recall. Understanding the criteria in advance helps you direct your effort where it matters most.",
+          "Notes": "Consult the posted rubric for exact point allocations and submission requirements.",
+          "SortOrder": 4,
+          "CreatedDate": "2026-11-17T05:46:09.2182869-05:00",
+          "ModifiedDate": "2026-11-17T05:46:09.2182869-05:00",
+          "Items": [
+            {
+              "Id": "68e8d49e-63b3-4082-a2f0-04c4ed32cebe",
+              "Text": "Demonstrated connections across multiple course topics carry significant weight.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "704c7da4-3926-4cca-b70d-7814cb120af1",
+              "Text": "Accurate and appropriate use of course terminology and frameworks is expected.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "44611316-50a6-4c32-9d2a-5551a7d1b081",
+              "Text": "Clarity, organization, and professionalism of presentation are evaluated.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "87dbd952-100c-4d0c-95f8-fac19206f72d",
+              "Text": "Evidence of reflection on your own growth and remaining questions is valued.",
+              "SortOrder": 3
+            },
+            {
+              "Id": "1b2a0934-c822-4b00-a139-87b76713497b",
+              "Text": "Late or incomplete submissions limit opportunities for revision at this stage of the course.",
+              "SortOrder": 4
+            }
+          ]
+        },
+        {
+          "Id": "afd593d7-83b6-40d0-b979-bf515cdcb1e3",
+          "TopicId": "26f7b330-ff61-491e-b5ad-8a250f420b20",
+          "Title": "How to Approach the Final Week",
+          "BodyText": "A deliberate plan makes the capstone week manageable and productive. The following strategies help learners finish strongly.",
+          "Notes": "Many learners underestimate the time required to synthesize material; begin early.",
+          "SortOrder": 5,
+          "CreatedDate": "2026-11-17T05:46:09.2182869-05:00",
+          "ModifiedDate": "2026-11-17T05:46:09.2182869-05:00",
+          "Items": [
+            {
+              "Id": "1895a110-3eda-4c05-acf7-b30962097b0d",
+              "Text": "Begin by rereading the course objectives and mapping each to specific work you have completed.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "fc0406ec-c2bd-4d3f-8321-00fdadb85532",
+              "Text": "Schedule dedicated blocks of time rather than attempting the capstone in a single sitting.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "f47aadcb-4bae-4430-88ba-2667bec6472c",
+              "Text": "Use instructor and peer feedback from earlier weeks as a revision checklist.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "e536b757-73aa-4663-9b52-26555b78fd77",
+              "Text": "Reach out with questions early, while there is still time to act on the answers.",
+              "SortOrder": 3
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Id": "716d271a-9962-4f23-a75d-25936a6f68e7",
+      "Title": "Review of Core Concepts from the Course",
+      "Summary": "Consolidates the key terms, principles, and frameworks introduced across earlier modules into a coherent summary. Learners revisit foundational ideas to reinforce retention and identify any remaining gaps in understanding.",
+      "SortOrder": 1,
+      "CreatedDate": "2026-11-17T05:45:46.319353-05:00",
+      "ModifiedDate": "2026-11-17T05:45:46.319353-05:00",
+      "Elements": [
+        {
+          "Id": "80ec025e-00c9-462b-8920-0cda4a99b05e",
+          "TopicId": "716d271a-9962-4f23-a75d-25936a6f68e7",
+          "Title": "Purpose of the Course Review",
+          "BodyText": "The final module begins by revisiting the big picture of everything covered so far. This consolidation step helps learners move individual lessons into a single, connected mental model.",
+          "Notes": "Frame the review as an active process rather than passive re-reading. Learners should be encouraged to recall before they re-read.",
+          "SortOrder": 0,
+          "CreatedDate": "2026-11-17T05:46:29.1300925-05:00",
+          "ModifiedDate": "2026-11-17T05:46:29.1300925-05:00",
+          "Items": [
+            {
+              "Id": "ea476d7e-bc3f-4730-b2a4-fda1a091f578",
+              "Text": "Reviewing at the end of a course strengthens long-term retention more than studying each module in isolation.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "0c2c0cac-844b-4516-bb78-7e71e70f9aa4",
+              "Text": "The goal is to connect ideas across modules rather than memorise them separately.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "02d72630-843b-40f0-8d20-3727f9c3b362",
+              "Text": "Learners identify which concepts feel automatic and which still require effort.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "b06fa0b3-686c-4598-9fb7-dba82acf072a",
+              "Text": "Any remaining gaps flagged here can be addressed before the course concludes.",
+              "SortOrder": 3
+            }
+          ]
+        },
+        {
+          "Id": "abc55946-06a3-4b15-9e5c-704e0aa211ec",
+          "TopicId": "716d271a-9962-4f23-a75d-25936a6f68e7",
+          "Title": "Key Terminology and Definitions",
+          "BodyText": "Shared vocabulary is the foundation for everything else in the course. Revisiting core terms ensures learners can discuss the subject precisely and consistently.",
+          "Notes": "A simple glossary pass or flashcard exercise works well here.",
+          "SortOrder": 1,
+          "CreatedDate": "2026-11-17T05:46:29.1300925-05:00",
+          "ModifiedDate": "2026-11-17T05:46:29.1300925-05:00",
+          "Items": [
+            {
+              "Id": "15d0140f-115c-4402-a04e-777f88ba88df",
+              "Text": "Restate each foundational term in your own words rather than quoting the original definition.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "99f99e40-3d63-45e3-8fee-3baf937dc2b6",
+              "Text": "Distinguish between terms that are frequently confused with one another.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "a3653a19-ec82-4865-a2c1-5296614ffc58",
+              "Text": "Note how certain terms took on more specific meaning as the course progressed.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "98b9d592-5682-4f8c-ab13-fa562e875372",
+              "Text": "Flag any definition you cannot explain clearly to someone outside the course.",
+              "SortOrder": 3
+            }
+          ]
+        },
+        {
+          "Id": "f92aa4a8-3e0c-4c68-9e0c-d714cb275d55",
+          "TopicId": "716d271a-9962-4f23-a75d-25936a6f68e7",
+          "Title": "Foundational Principles Introduced Early in the Course",
+          "BodyText": "The opening modules established the guiding principles that later content built upon. Recalling these principles clarifies why later material was structured the way it was.",
+          "Notes": "",
+          "SortOrder": 2,
+          "CreatedDate": "2026-11-17T05:46:29.1300925-05:00",
+          "ModifiedDate": "2026-11-17T05:46:29.1300925-05:00",
+          "Items": [
+            {
+              "Id": "e31ae38b-0779-4791-bdc9-3418535e7931",
+              "Text": "Early principles act as the rules of thumb that govern decisions in later modules.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "f2f2b1b1-5d68-4198-a09a-0b236eda608f",
+              "Text": "Each principle should be paired with at least one concrete example from the course.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "bde6fd6d-7426-4630-bdd6-ff1e1be197cb",
+              "Text": "Understanding the rationale behind a principle matters more than recalling its label.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "99e73136-09f2-43da-86be-70a0d6fa04aa",
+              "Text": "Principles often explain exceptions and edge cases encountered later in the material.",
+              "SortOrder": 3
+            }
+          ]
+        },
+        {
+          "Id": "102d75e8-4b7c-47ff-b00c-b2957714e0cf",
+          "TopicId": "716d271a-9962-4f23-a75d-25936a6f68e7",
+          "Title": "Core Frameworks and Models",
+          "BodyText": "Several structured frameworks were introduced to organise analysis and decision-making. Reviewing them together highlights their individual strengths and appropriate use cases.",
+          "Notes": "Comparing frameworks side by side often reveals that they answer different questions rather than competing.",
+          "SortOrder": 3,
+          "CreatedDate": "2026-11-17T05:46:29.1300925-05:00",
+          "ModifiedDate": "2026-11-17T05:46:29.1300925-05:00",
+          "Items": [
+            {
+              "Id": "c4277da5-ab4a-424b-bdf7-5762efbe9920",
+              "Text": "Recall the components or stages that make up each framework.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "fa3cdaed-8a3d-4195-b678-bf6f0155f4bc",
+              "Text": "Identify the type of problem each framework is best suited to address.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "2c631148-6c9a-4c64-b36c-b78ad17f43b8",
+              "Text": "Note where frameworks overlap and where they offer different perspectives.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "922fc331-f304-4dc9-9597-00800b47d194",
+              "Text": "Practise selecting the right framework for a given scenario, not just describing it.",
+              "SortOrder": 3
+            }
+          ]
+        },
+        {
+          "Id": "e9ee7b0f-5716-4b60-82c9-8ed7d6c9d286",
+          "TopicId": "716d271a-9962-4f23-a75d-25936a6f68e7",
+          "Title": "Connecting Concepts Across Modules",
+          "BodyText": "Individual modules are most useful when learners see how they fit together. Mapping the relationships between topics turns a list of lessons into an integrated understanding.",
+          "Notes": "Concept maps, timelines, or one-page summaries are effective tools for this step.",
+          "SortOrder": 4,
+          "CreatedDate": "2026-11-17T05:46:29.1300925-05:00",
+          "ModifiedDate": "2026-11-17T05:46:29.1300925-05:00",
+          "Items": [
+            {
+              "Id": "b8db5dc0-bdd7-4373-9e47-1c9207144816",
+              "Text": "Trace how an early concept reappears and develops in later modules.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "9be45b73-3286-4ef1-8778-a13b9c78f30e",
+              "Text": "Identify cause-and-effect or sequential relationships between topics.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "1ac1e023-0016-4c57-90a1-bb472e218023",
+              "Text": "Group related concepts into themes that span multiple modules.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "3957044a-040a-4a1e-911d-cb3959cead9e",
+              "Text": "Explain the course narrative in a few sentences from start to finish.",
+              "SortOrder": 3
+            }
+          ]
+        },
+        {
+          "Id": "0d7712d6-cb58-4da5-b587-3e417158a75c",
+          "TopicId": "716d271a-9962-4f23-a75d-25936a6f68e7",
+          "Title": "Self-Assessment and Identifying Gaps",
+          "BodyText": "An honest self-check reveals which areas need more attention before moving on. Structured self-assessment turns vague uncertainty into a specific action list.",
+          "Notes": "Low-stakes retrieval practice is more diagnostic than simply rereading notes.",
+          "SortOrder": 5,
+          "CreatedDate": "2026-11-17T05:46:29.1300925-05:00",
+          "ModifiedDate": "2026-11-17T05:46:29.1300925-05:00",
+          "Items": [
+            {
+              "Id": "a03bd7a8-5b03-4958-8aef-b131bc185343",
+              "Text": "Attempt to explain each major topic aloud without referring to the materials.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "f9117714-f010-4a57-987e-b23100e4e6bf",
+              "Text": "Rate your confidence for each module and prioritise the lowest scores.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "4e6d0738-008f-41c8-9267-547224c407a5",
+              "Text": "Return to the original module content for any topic you cannot summarise.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "e2373f1d-2567-484c-bc32-750f38806a5c",
+              "Text": "Use practice questions or scenarios to confirm understanding rather than recognition.",
+              "SortOrder": 3
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Id": "628b75d1-0dbe-4aa1-89b6-7fa894ca4bae",
+      "Title": "Synthesis and Integration of Key Themes",
+      "Summary": "Examines how the major themes of the course interrelate and reinforce one another rather than standing alone. Learners practice connecting ideas across modules to build an integrated mental model of the subject matter.",
+      "SortOrder": 2,
+      "CreatedDate": "2026-11-17T05:45:46.319353-05:00",
+      "ModifiedDate": "2026-11-17T05:45:46.319353-05:00",
+      "Elements": [
+        {
+          "Id": "39fa70fd-a4c5-45b3-b6c7-a4e4bfd04ad9",
+          "TopicId": "628b75d1-0dbe-4aa1-89b6-7fa894ca4bae",
+          "Title": "Why Synthesis Matters at Course Close",
+          "BodyText": "Synthesis is the deliberate act of connecting what was learned in separate modules into a single, coherent understanding. It transforms a list of remembered facts into usable knowledge.",
+          "Notes": "Learners who only review module-by-module often recall content but struggle to apply it when a problem does not announce which module it belongs to.",
+          "SortOrder": 0,
+          "CreatedDate": "2026-11-17T05:46:54.5692789-05:00",
+          "ModifiedDate": "2026-11-17T05:46:54.5692789-05:00",
+          "Items": [
+            {
+              "Id": "4623af69-e8be-46d6-b72d-38501c2c487d",
+              "Text": "Isolated topics are easily forgotten because they lack anchoring connections to other ideas.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "89c5a3b1-bb7b-455d-98de-84702bb2402b",
+              "Text": "Integrated knowledge is retrieved faster because any one concept can cue several related ones.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "6c951742-e0cf-4847-836f-b4782a0adf8f",
+              "Text": "Real-world problems rarely map onto a single module, so cross-topic fluency is essential.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "44b0d6c1-0d62-4eb9-a098-931add194e65",
+              "Text": "Synthesis also reveals gaps: a theme you cannot connect to anything else is a theme you may not fully understand.",
+              "SortOrder": 3
+            }
+          ]
+        },
+        {
+          "Id": "fad1db5a-7403-47a4-8c1f-b51057a75474",
+          "TopicId": "628b75d1-0dbe-4aa1-89b6-7fa894ca4bae",
+          "Title": "Identifying the Course\u0027s Major Themes",
+          "BodyText": "Before themes can be connected, they must be named clearly and at the right level of abstraction. A theme is broader than a single lesson but narrower than the course as a whole.",
+          "Notes": "A useful test: if a theme appeared in only one module, it is probably a topic rather than a theme.",
+          "SortOrder": 1,
+          "CreatedDate": "2026-11-17T05:46:54.5692789-05:00",
+          "ModifiedDate": "2026-11-17T05:46:54.5692789-05:00",
+          "Items": [
+            {
+              "Id": "53b8a6d7-5347-40bc-8934-0f1bc99c5c8f",
+              "Text": "Review module titles and learning objectives to surface recurring ideas.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "2d6fdb8b-0d2f-4044-b822-e33336770fbf",
+              "Text": "Look for concepts that reappeared in multiple modules under different labels or examples.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "f0c77e4a-c66b-453a-b2e3-07dd9752fa01",
+              "Text": "Distinguish core themes, which organize the course, from supporting details that illustrate them.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "566aec2b-719d-4306-85a1-1080386aed0b",
+              "Text": "Write each theme as a short statement rather than a single word to capture its meaning.",
+              "SortOrder": 3
+            },
+            {
+              "Id": "c4a88f7c-32de-4654-bb18-e266d65ccc65",
+              "Text": "Aim for a manageable set \u2014 typically three to six themes carry most of the course.",
+              "SortOrder": 4
+            }
+          ]
+        },
+        {
+          "Id": "28383af9-c1cf-4594-9a5b-8a18918112c6",
+          "TopicId": "628b75d1-0dbe-4aa1-89b6-7fa894ca4bae",
+          "Title": "Mapping Relationships Between Themes",
+          "BodyText": "Themes relate to one another in patterned ways, and naming the pattern makes the relationship memorable. The goal is a network of ideas rather than a list.",
+          "Notes": "Concept maps, matrices, and simple two-column comparisons all work; the format matters less than making the link explicit.",
+          "SortOrder": 2,
+          "CreatedDate": "2026-11-17T05:46:54.5692789-05:00",
+          "ModifiedDate": "2026-11-17T05:46:54.5692789-05:00",
+          "Items": [
+            {
+              "Id": "0867ade5-31a3-4a3d-b0bc-a17b918d3136",
+              "Text": "Causal links describe how one theme produces or enables another.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "644246c1-132b-4cb8-b7ad-bfda318d0127",
+              "Text": "Hierarchical links show when one theme is a specific case of a broader principle.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "d7d00f0f-2fb9-4e43-9e0b-115910a4aeea",
+              "Text": "Complementary links occur when two themes address different aspects of the same problem.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "96704725-bdef-4037-b590-a4a6ef810ed8",
+              "Text": "Tension links capture trade-offs where strengthening one theme constrains another.",
+              "SortOrder": 3
+            },
+            {
+              "Id": "a854ab4d-14a7-4451-9ef4-eff216d3e957",
+              "Text": "Draw the connections visually and label each line with the relationship it represents.",
+              "SortOrder": 4
+            }
+          ]
+        },
+        {
+          "Id": "e6469ae7-5642-4bb9-85ba-79eb15c269dd",
+          "TopicId": "628b75d1-0dbe-4aa1-89b6-7fa894ca4bae",
+          "Title": "Building an Integrated Mental Model",
+          "BodyText": "A mental model is a compact internal representation that explains how the parts of the subject work together. It is what remains useful long after specific details fade.",
+          "Notes": "Strong mental models are both simple enough to hold in mind and detailed enough to generate predictions.",
+          "SortOrder": 3,
+          "CreatedDate": "2026-11-17T05:46:54.5692789-05:00",
+          "ModifiedDate": "2026-11-17T05:46:54.5692789-05:00",
+          "Items": [
+            {
+              "Id": "ffd5ddfb-21b4-4c73-96d2-4dac102fc703",
+              "Text": "Start with a single organizing question the whole course helps answer.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "2ebd4dda-0fc7-4d23-a060-da13bfb50610",
+              "Text": "Arrange themes around that question according to the role each one plays.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "691d6b92-c4dd-4cde-9e9f-b864f276b84c",
+              "Text": "Test the model by using it to explain a familiar example from earlier in the course.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "b1d2dc10-032c-470d-801c-db6826f30165",
+              "Text": "Refine the model whenever it fails to account for something you know to be true.",
+              "SortOrder": 3
+            },
+            {
+              "Id": "e5f3dafc-86b5-4ea3-9652-336ef4765da6",
+              "Text": "Express the model in your own words \u2014 borrowed phrasing usually signals incomplete integration.",
+              "SortOrder": 4
+            }
+          ]
+        },
+        {
+          "Id": "b275a1ba-d70a-4383-912e-7dd461f0cbc9",
+          "TopicId": "628b75d1-0dbe-4aa1-89b6-7fa894ca4bae",
+          "Title": "Practising Cross-Module Connections",
+          "BodyText": "Integration is a skill built through repetition, not a one-time summary exercise. Structured practice forces retrieval across module boundaries.",
+          "Notes": "",
+          "SortOrder": 4,
+          "CreatedDate": "2026-11-17T05:46:54.5692789-05:00",
+          "ModifiedDate": "2026-11-17T05:46:54.5692789-05:00",
+          "Items": [
+            {
+              "Id": "7f43537e-3152-4adc-86e4-43ce0a00fcee",
+              "Text": "Pick two themes at random and explain in two minutes how they relate.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "8f0c6ab7-d11d-4bea-83c5-5a1e45ffdb62",
+              "Text": "Take a scenario and identify every theme that bears on it, then rank them by relevance.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "bad61d4e-821c-408a-bc81-f937fa4e7b20",
+              "Text": "Explain a late-module concept using only vocabulary introduced in early modules.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "2ac33bc1-e8cd-430f-b695-7228c8f2232a",
+              "Text": "Teach a theme to someone else and note which connections you reach for naturally.",
+              "SortOrder": 3
+            },
+            {
+              "Id": "133d8952-35a4-421d-b929-bc2d576c1150",
+              "Text": "Keep a running list of connections discovered, revisiting it as understanding deepens.",
+              "SortOrder": 4
+            }
+          ]
+        },
+        {
+          "Id": "b3694156-2e96-474b-b360-a34da258552a",
+          "TopicId": "628b75d1-0dbe-4aa1-89b6-7fa894ca4bae",
+          "Title": "Common Pitfalls in Synthesis",
+          "BodyText": "Attempts at integration can go wrong in predictable ways that create a false sense of mastery. Recognizing these patterns keeps the synthesis honest.",
+          "Notes": "A good check is whether your integrated account could be wrong \u2014 if it explains every possible outcome, it may be too vague to be useful.",
+          "SortOrder": 5,
+          "CreatedDate": "2026-11-17T05:46:54.5692789-05:00",
+          "ModifiedDate": "2026-11-17T05:46:54.5692789-05:00",
+          "Items": [
+            {
+              "Id": "466cf813-3084-4066-8ed6-57e760a4753d",
+              "Text": "Summarizing module by module is review, not synthesis, because no new links are formed.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "16c9f40d-5ac6-4721-bd00-896047fe6fff",
+              "Text": "Forcing connections where none exist produces a tidy but misleading picture.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "4b71f571-935f-492b-9a31-1a9aece21f30",
+              "Text": "Over-simplifying to a single slogan discards the distinctions that make themes useful.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "23a8b344-d6d9-4e0c-b121-c15d2dfb3d97",
+              "Text": "Relying on the instructor\u0027s framing without reconstructing it yourself leaves the model fragile.",
+              "SortOrder": 3
+            },
+            {
+              "Id": "d5f54916-2dbf-4427-8adf-1cc8184c1887",
+              "Text": "Ignoring tensions and trade-offs hides the most instructive parts of the subject.",
+              "SortOrder": 4
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Id": "f246bc65-74fa-4ffc-b089-9dbd1ab3899e",
+      "Title": "Applied Practice and Case Analysis",
+      "Summary": "Provides opportunities to apply accumulated knowledge to realistic scenarios, problems, or case studies. Emphasis is placed on decision-making, justification of approach, and transfer of learning to authentic contexts.",
+      "SortOrder": 3,
+      "CreatedDate": "2026-11-17T05:45:46.319353-05:00",
+      "ModifiedDate": "2026-11-17T05:45:46.319353-05:00",
+      "Elements": [
+        {
+          "Id": "776d579b-883d-4a59-85b5-ec4b4d2beb07",
+          "TopicId": "f246bc65-74fa-4ffc-b089-9dbd1ab3899e",
+          "Title": "Purpose of Applied Practice in Week 15",
+          "BodyText": "Applied practice closes the gap between knowing about a concept and being able to use it under realistic conditions. In this final module, the emphasis shifts from acquiring new material to deploying what has already been learned.",
+          "Notes": "Think of this stage as a rehearsal for professional practice rather than another round of content delivery.",
+          "SortOrder": 0,
+          "CreatedDate": "2026-11-17T05:47:21.8796172-05:00",
+          "ModifiedDate": "2026-11-17T05:47:21.8796172-05:00",
+          "Items": [
+            {
+              "Id": "27874777-1434-44f9-9918-32136a7f08f3",
+              "Text": "Applied work surfaces gaps that recall-based study often hides.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "5738c00d-6bd2-49e2-88de-486d757af40c",
+              "Text": "Scenarios require you to select relevant knowledge rather than be told which concept applies.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "760b2623-e50d-423c-a048-bca60226987c",
+              "Text": "The focus is on quality of reasoning, not only on reaching a correct endpoint.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "8b8b1eb5-c201-4e82-87a7-fd3012e2cf48",
+              "Text": "Performance here signals readiness to transfer learning beyond the course.",
+              "SortOrder": 3
+            }
+          ]
+        },
+        {
+          "Id": "8eeca675-e627-42ec-87db-aae27b9f192d",
+          "TopicId": "f246bc65-74fa-4ffc-b089-9dbd1ab3899e",
+          "Title": "Reading and Framing a Case or Scenario",
+          "BodyText": "Effective case analysis begins with disciplined reading before any solution is attempted. Framing establishes what the real problem is, who is affected, and what a successful outcome would look like.",
+          "Notes": "A common failure is diagnosing the symptom presented rather than the underlying issue.",
+          "SortOrder": 1,
+          "CreatedDate": "2026-11-17T05:47:21.8796172-05:00",
+          "ModifiedDate": "2026-11-17T05:47:21.8796172-05:00",
+          "Items": [
+            {
+              "Id": "54a84f1b-50eb-4539-ae04-6c63d5bd066c",
+              "Text": "Read once for the narrative, then again to extract facts, constraints, and stakeholders.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "d2576b44-df87-4edc-bdd0-4ce44c35e743",
+              "Text": "Separate established facts from assumptions and from opinions expressed within the case.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "5c742e14-6001-4b03-b884-c53c90fd2bb7",
+              "Text": "State the core problem in a single sentence before proposing any action.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "a443d8b6-b7a9-4451-8933-6a835b9edcad",
+              "Text": "Identify what information is missing and how that absence limits your conclusions.",
+              "SortOrder": 3
+            },
+            {
+              "Id": "12e0f5e3-6ca4-4a73-ad02-7ff87f074adc",
+              "Text": "Note the constraints \u2014 time, resources, policy, ethics \u2014 that bound acceptable solutions.",
+              "SortOrder": 4
+            }
+          ]
+        },
+        {
+          "Id": "30805eda-328e-4453-af79-0ab5b12c5921",
+          "TopicId": "f246bc65-74fa-4ffc-b089-9dbd1ab3899e",
+          "Title": "Selecting and Applying the Right Frameworks",
+          "BodyText": "Each scenario should be matched to the concepts, models, or procedures from the course that best explain it. Choosing a framework is itself an analytical decision that must be defended.",
+          "Notes": "Applying three frameworks superficially is weaker than applying one thoroughly and appropriately.",
+          "SortOrder": 2,
+          "CreatedDate": "2026-11-17T05:47:21.8796172-05:00",
+          "ModifiedDate": "2026-11-17T05:47:21.8796172-05:00",
+          "Items": [
+            {
+              "Id": "0c28d8cb-62f1-4766-920f-45ea8ab09b83",
+              "Text": "Scan the course material for models whose assumptions match the case conditions.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "bf9e400f-c29c-4135-be1e-5aa8d6c32cf4",
+              "Text": "Explain why the chosen approach fits before working through its application.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "e4920aa0-6b6e-475e-90c9-455f0971c7c1",
+              "Text": "Note where a framework\u0027s assumptions are only partially satisfied and adjust accordingly.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "5fc8fcb2-d05f-412f-bc8d-cece9a3eb65c",
+              "Text": "Work systematically through each step rather than jumping to a familiar conclusion.",
+              "SortOrder": 3
+            },
+            {
+              "Id": "ba42fb45-3fcb-4325-843b-2f3ea489d850",
+              "Text": "Reject alternative frameworks explicitly so your selection is visibly reasoned.",
+              "SortOrder": 4
+            }
+          ]
+        },
+        {
+          "Id": "665ab0b8-a8e9-46ab-8fba-cdd4b50f965e",
+          "TopicId": "f246bc65-74fa-4ffc-b089-9dbd1ab3899e",
+          "Title": "Decision-Making Under Uncertainty",
+          "BodyText": "Realistic cases rarely contain complete information or a single defensible answer. Decision-making requires weighing options, accepting trade-offs, and committing to a recommendation.",
+          "Notes": "Indecision disguised as balanced analysis is one of the most common weaknesses in case responses.",
+          "SortOrder": 3,
+          "CreatedDate": "2026-11-17T05:47:21.8796172-05:00",
+          "ModifiedDate": "2026-11-17T05:47:21.8796172-05:00",
+          "Items": [
+            {
+              "Id": "31b0c12b-dee0-41fa-9fea-043cf27e3727",
+              "Text": "Generate at least two viable options before evaluating any of them.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "6f512b65-d3a9-4f25-a79b-4e661359634c",
+              "Text": "Compare options against explicit criteria such as feasibility, risk, cost, and impact.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "a9e041b0-f63a-407a-95ba-185c592fb6e8",
+              "Text": "Make reasonable assumptions where data is absent and label them clearly.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "18e4ece0-b1df-4663-97da-e605eff4f307",
+              "Text": "Commit to a recommendation and state the conditions under which you would revise it.",
+              "SortOrder": 3
+            },
+            {
+              "Id": "1a7167f0-ec2b-4065-9652-9c79b30e1196",
+              "Text": "Consider second-order consequences and unintended effects of the preferred option.",
+              "SortOrder": 4
+            }
+          ]
+        },
+        {
+          "Id": "722ac04d-0996-4651-baf1-f7d76970f8e3",
+          "TopicId": "f246bc65-74fa-4ffc-b089-9dbd1ab3899e",
+          "Title": "Justifying Your Approach",
+          "BodyText": "A recommendation carries weight only when the reasoning behind it is visible and traceable. Justification links evidence from the case to course concepts and then to the proposed action.",
+          "Notes": "Assessors generally award more credit for a well-argued defensible answer than for an unexplained correct one.",
+          "SortOrder": 4,
+          "CreatedDate": "2026-11-17T05:47:21.8796172-05:00",
+          "ModifiedDate": "2026-11-17T05:47:21.8796172-05:00",
+          "Items": [
+            {
+              "Id": "19544e65-0baf-4aa3-b464-61f25b1b5be9",
+              "Text": "Trace an explicit chain from case evidence to concept to conclusion.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "40da1085-3197-4c16-ab6b-2acfe60f0c05",
+              "Text": "Cite specific details from the scenario rather than generalising about it.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "64529844-d912-49fb-8bd7-1626e22e2478",
+              "Text": "Acknowledge the strongest counter-argument and respond to it directly.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "6b078003-0e13-4518-8205-ea779d625f9b",
+              "Text": "State the limitations of your analysis honestly.",
+              "SortOrder": 3
+            },
+            {
+              "Id": "71e54687-e12a-4e7e-8386-893d27717155",
+              "Text": "Use precise disciplinary terminology consistently throughout the justification.",
+              "SortOrder": 4
+            }
+          ]
+        },
+        {
+          "Id": "5ba8db9a-0088-47b4-a1e2-123726e03e6e",
+          "TopicId": "f246bc65-74fa-4ffc-b089-9dbd1ab3899e",
+          "Title": "Transferring Learning to Authentic Contexts",
+          "BodyText": "The ultimate test of applied practice is whether the reasoning transfers to situations not encountered during the course. Transfer depends on recognising deep structure rather than surface features.",
+          "Notes": "Ask what category of problem this is, not merely what this particular problem is about.",
+          "SortOrder": 5,
+          "CreatedDate": "2026-11-17T05:47:21.8796172-05:00",
+          "ModifiedDate": "2026-11-17T05:47:21.8796172-05:00",
+          "Items": [
+            {
+              "Id": "5d1b1560-9545-4eea-a9d2-9f4b000cff0c",
+              "Text": "Abstract the underlying pattern from the specific details of each case.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "3003ca4e-0e70-4b19-ad8b-dd39b7475957",
+              "Text": "Compare new scenarios to previous ones and articulate the key differences.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "f9f24813-8cb0-4159-b4e8-3a1e2c31e013",
+              "Text": "Practise with varied contexts so recognition is not tied to one setting.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "1492044b-a3ae-4e7c-beef-cfcfc6cba398",
+              "Text": "Rehearse explaining your reasoning aloud as you would to a colleague or client.",
+              "SortOrder": 3
+            },
+            {
+              "Id": "ab0a7324-0a67-4290-bcba-4f4fa7f1fc06",
+              "Text": "Build a personal set of decision heuristics drawn from recurring case patterns.",
+              "SortOrder": 4
+            }
+          ]
+        },
+        {
+          "Id": "3313f919-52cc-4079-a5ac-fabca5e1d369",
+          "TopicId": "f246bc65-74fa-4ffc-b089-9dbd1ab3899e",
+          "Title": "Reviewing and Learning From Your Analysis",
+          "BodyText": "Case work generates the most value when it is reviewed deliberately after completion. Structured reflection converts a single exercise into transferable capability.",
+          "Notes": "",
+          "SortOrder": 6,
+          "CreatedDate": "2026-11-17T05:47:21.8796172-05:00",
+          "ModifiedDate": "2026-11-17T05:47:21.8796172-05:00",
+          "Items": [
+            {
+              "Id": "eea4e8a1-f1d6-4147-9892-324346286e62",
+              "Text": "Compare your reasoning with model answers or peer responses, focusing on process rather than outcome.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "3f705a6b-157d-46aa-ab1d-be115c3dbae4",
+              "Text": "Identify whether errors came from framing, analysis, or communication.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "fdd2cc17-3608-4d12-aed4-78bf7fd37b3f",
+              "Text": "Record recurring mistakes so they can be monitored in future attempts.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "363cc868-1efd-4403-a049-173f75dbffc4",
+              "Text": "Seek and act on feedback about the clarity of your justification.",
+              "SortOrder": 3
+            },
+            {
+              "Id": "6655d8d9-ced7-4a17-bf90-742d58bc62a3",
+              "Text": "Revisit earlier modules where the analysis exposed conceptual gaps.",
+              "SortOrder": 4
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Id": "a4dd6cb6-1c58-4b4f-aea6-0125c541a13f",
+      "Title": "Assessment Preparation and Demonstration of Mastery",
+      "Summary": "Outlines the final assessment or culminating deliverable, including expectations, evaluation criteria, and submission requirements. Learners review strategies for demonstrating mastery and self-assess their readiness.",
+      "SortOrder": 4,
+      "CreatedDate": "2026-11-17T05:45:46.319353-05:00",
+      "ModifiedDate": "2026-11-17T05:45:46.319353-05:00",
+      "Elements": [
+        {
+          "Id": "43b59ac4-a08e-405a-9a4d-e9883cd43201",
+          "TopicId": "a4dd6cb6-1c58-4b4f-aea6-0125c541a13f",
+          "Title": "Overview of the Final Assessment",
+          "BodyText": "The culminating deliverable for this module brings together the knowledge and skills developed across the course. Understanding its purpose and format is the first step toward a strong submission.",
+          "Notes": "Treat the final assessment as an opportunity to synthesize learning rather than simply recall facts.",
+          "SortOrder": 0,
+          "CreatedDate": "2026-11-17T05:47:41.2042412-05:00",
+          "ModifiedDate": "2026-11-17T05:47:41.2042412-05:00",
+          "Items": [
+            {
+              "Id": "32a5730f-4d5d-42bc-a8ae-83ebccac2106",
+              "Text": "The assessment asks you to apply core concepts to an authentic scenario or problem.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "48e59504-a066-4306-bb2d-8d530c8d9a8e",
+              "Text": "It is designed to measure mastery of the module\u0027s stated learning outcomes.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "858e228e-363d-4da8-89f1-ade9a62735f0",
+              "Text": "Review the assessment prompt in full before beginning any work.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "7615dbf0-cd69-4521-a088-44ea3745ef2b",
+              "Text": "Note the required format, length, and any supporting materials you must include.",
+              "SortOrder": 3
+            }
+          ]
+        },
+        {
+          "Id": "86cc74c0-837f-4af4-81ec-8f2bb99a2750",
+          "TopicId": "a4dd6cb6-1c58-4b4f-aea6-0125c541a13f",
+          "Title": "Expectations and Performance Standards",
+          "BodyText": "Clear expectations help you target your effort where it matters most. Each deliverable must meet defined standards of accuracy, depth, and professionalism.",
+          "Notes": "",
+          "SortOrder": 1,
+          "CreatedDate": "2026-11-17T05:47:41.2042412-05:00",
+          "ModifiedDate": "2026-11-17T05:47:41.2042412-05:00",
+          "Items": [
+            {
+              "Id": "bb765ed0-3ed4-416b-868a-731f80ccd72b",
+              "Text": "Demonstrate accurate use of key terminology and concepts from the course.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "c1000f8e-87d8-4e58-8cfe-05401a042a08",
+              "Text": "Support claims with evidence, examples, or data rather than opinion alone.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "0c2f5984-dc7e-4046-a101-682ab12ddc7b",
+              "Text": "Organize your work logically with clear transitions between sections.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "33b0f2e4-db4d-4dd6-b8fa-e427d30c18d8",
+              "Text": "Follow conventions for citation, formatting, and professional presentation.",
+              "SortOrder": 3
+            }
+          ]
+        },
+        {
+          "Id": "ec4708ae-588e-46e2-b3e8-651dd24aeeb0",
+          "TopicId": "a4dd6cb6-1c58-4b4f-aea6-0125c541a13f",
+          "Title": "Understanding the Evaluation Criteria",
+          "BodyText": "Evaluation is based on a rubric that defines levels of performance for each criterion. Reading the rubric closely allows you to self-check your work before submitting.",
+          "Notes": "Example: a criterion such as \u0027Application of Concepts\u0027 may distinguish between describing a concept and skillfully applying it to a new context.",
+          "SortOrder": 2,
+          "CreatedDate": "2026-11-17T05:47:41.2042412-05:00",
+          "ModifiedDate": "2026-11-17T05:47:41.2042412-05:00",
+          "Items": [
+            {
+              "Id": "f9d92a4a-6bca-445e-bd2a-90c0c947f573",
+              "Text": "Identify each rubric criterion and the weight assigned to it.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "59ecbe6a-0757-4790-98d8-caf2d8269ece",
+              "Text": "Compare your draft against the highest performance level descriptors.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "72d1df5c-e95b-45b3-b193-d781fcfa3464",
+              "Text": "Prioritize revision in areas carrying the greatest point value.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "f7528a74-8854-4b89-a2f8-82907420ffcd",
+              "Text": "Use the rubric language as a checklist during final proofreading.",
+              "SortOrder": 3
+            }
+          ]
+        },
+        {
+          "Id": "ab01723d-c13d-4bc3-a65d-607d34e1c802",
+          "TopicId": "a4dd6cb6-1c58-4b4f-aea6-0125c541a13f",
+          "Title": "Strategies for Demonstrating Mastery",
+          "BodyText": "Mastery is shown through depth of reasoning, not length of response. Deliberate strategies help make your thinking visible to the evaluator.",
+          "Notes": "",
+          "SortOrder": 3,
+          "CreatedDate": "2026-11-17T05:47:41.2042412-05:00",
+          "ModifiedDate": "2026-11-17T05:47:41.2042412-05:00",
+          "Items": [
+            {
+              "Id": "ce144693-9c2a-496d-be07-340610d603ac",
+              "Text": "Explain your reasoning explicitly rather than leaving conclusions implied.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "f5d5fa2b-dd5c-47b3-b235-0251b53d7ddb",
+              "Text": "Connect ideas across topics to show integrated understanding.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "569d2219-802b-48fc-83e0-d414c1c160c9",
+              "Text": "Include a concrete example or application for each major concept you discuss.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "e2d479ad-acc7-4efd-b4e9-5af166e2c1bb",
+              "Text": "Acknowledge limitations, alternatives, or trade-offs where relevant.",
+              "SortOrder": 3
+            },
+            {
+              "Id": "77d40014-764b-4820-9a53-4870760bd3ff",
+              "Text": "Revise for clarity so that a reader unfamiliar with your draft can follow it.",
+              "SortOrder": 4
+            }
+          ]
+        },
+        {
+          "Id": "4dcb4bff-28f8-4c45-b9cb-8285e37c00a3",
+          "TopicId": "a4dd6cb6-1c58-4b4f-aea6-0125c541a13f",
+          "Title": "Submission Requirements and Logistics",
+          "BodyText": "Meeting technical submission requirements ensures your work is received and graded without delay. Confirm these details well before the deadline.",
+          "Notes": "Build in a buffer of at least a day before the deadline to avoid last-minute technical issues.",
+          "SortOrder": 4,
+          "CreatedDate": "2026-11-17T05:47:41.2042412-05:00",
+          "ModifiedDate": "2026-11-17T05:47:41.2042412-05:00",
+          "Items": [
+            {
+              "Id": "f9c32a1a-ca13-4b59-af00-85284cc08f59",
+              "Text": "Submit through the designated course platform in the accepted file format.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "92185d51-4f58-4cbe-9798-4954e1984cc4",
+              "Text": "Use the required file naming convention if one is specified.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "8c7b405f-17e8-4578-b870-666836e41f24",
+              "Text": "Verify that all required components and attachments are included.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "0e7868d6-14f8-4692-8388-86dbeb25d8a8",
+              "Text": "Confirm the submission receipt or confirmation message after uploading.",
+              "SortOrder": 3
+            },
+            {
+              "Id": "b94da5d7-c233-428d-a1b4-f8c66908a741",
+              "Text": "Review the policy on late submissions and resubmission attempts.",
+              "SortOrder": 4
+            }
+          ]
+        },
+        {
+          "Id": "3be4fd08-5282-4adc-83b0-d05f6580c4a3",
+          "TopicId": "a4dd6cb6-1c58-4b4f-aea6-0125c541a13f",
+          "Title": "Self-Assessment of Readiness",
+          "BodyText": "Before submitting, pause to evaluate your own preparedness against the module outcomes. Honest self-assessment reveals gaps while there is still time to address them.",
+          "Notes": "Consider rating your confidence on each learning outcome from low to high and revisiting resources for any low-confidence area.",
+          "SortOrder": 5,
+          "CreatedDate": "2026-11-17T05:47:41.2042412-05:00",
+          "ModifiedDate": "2026-11-17T05:47:41.2042412-05:00",
+          "Items": [
+            {
+              "Id": "cd2e09da-66a0-4097-bcc0-ab36514fd82c",
+              "Text": "Restate each learning outcome and ask whether you can demonstrate it independently.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "9ec06491-08ab-4675-b4d5-29d5260d71e3",
+              "Text": "Identify any concept you could not explain clearly to a peer.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "b0ea983d-d774-425f-8342-d4d9b57a6064",
+              "Text": "Revisit module readings, activities, or practice items for weak areas.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "a14cfb6d-6405-4367-a22a-fb16656a94c5",
+              "Text": "Seek clarification from the instructor or peers before the deadline rather than after.",
+              "SortOrder": 3
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Id": "e4ccb4cf-3ef5-45a5-959b-bafd31ce5b9d",
+      "Title": "Reflection, Next Steps, and Continued Learning",
+      "Summary": "Guides learners through structured reflection on their progress and growth throughout the course. Identifies pathways for continued development, additional resources, and application of skills beyond the module.",
+      "SortOrder": 5,
+      "CreatedDate": "2026-11-17T05:45:46.319353-05:00",
+      "ModifiedDate": "2026-11-17T05:45:46.319353-05:00",
+      "Elements": [
+        {
+          "Id": "48019fb6-e1aa-4940-9e2e-749db2a6f3d9",
+          "TopicId": "e4ccb4cf-3ef5-45a5-959b-bafd31ce5b9d",
+          "Title": "Looking Back: Structured Reflection on Your Learning Journey",
+          "BodyText": "Reflection turns experience into insight by helping you consciously examine what you learned, how you learned it, and what changed as a result. A structured approach prevents reflection from becoming a vague impression of the course.",
+          "Notes": "A simple framework is \u0027What? So What? Now What?\u0027 \u2014 describe what happened, interpret why it matters, and decide what you will do next.",
+          "SortOrder": 0,
+          "CreatedDate": "2026-11-17T05:48:10.4844654-05:00",
+          "ModifiedDate": "2026-11-17T05:48:10.4844654-05:00",
+          "Items": [
+            {
+              "Id": "0ea9678b-0be4-40eb-8632-7fc58c9ddb5c",
+              "Text": "Revisit your original goals or expectations from the beginning of the course and compare them with where you are now.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "91d13f8c-86ee-4d29-b7ce-059129343d9f",
+              "Text": "Identify two or three moments that most shifted your thinking or skill level.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "52a4145c-33cd-47b8-96f0-a9ad459b6861",
+              "Text": "Note which concepts felt difficult at first and how your understanding of them evolved.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "43e32cc6-3a20-448b-bc77-68f2b60ea394",
+              "Text": "Write reflections down rather than only thinking them through, so you can revisit them later.",
+              "SortOrder": 3
+            },
+            {
+              "Id": "c1912b3a-28db-46b8-8981-bc183072518a",
+              "Text": "Distinguish between what you now know, what you can now do, and how you now approach problems.",
+              "SortOrder": 4
+            }
+          ]
+        },
+        {
+          "Id": "3d313041-c992-4f1e-8be3-7b15ee5442a4",
+          "TopicId": "e4ccb4cf-3ef5-45a5-959b-bafd31ce5b9d",
+          "Title": "Assessing Growth Against Course Outcomes",
+          "BodyText": "Measuring your progress against the stated learning outcomes gives reflection an objective anchor. This helps you see genuine development rather than relying on confidence alone.",
+          "Notes": "Self-assessment is most accurate when paired with evidence such as completed assignments, feedback, or assessment results.",
+          "SortOrder": 1,
+          "CreatedDate": "2026-11-17T05:48:10.4844654-05:00",
+          "ModifiedDate": "2026-11-17T05:48:10.4844654-05:00",
+          "Items": [
+            {
+              "Id": "c3d9e8f4-58f8-4257-bfb7-aa74883b440f",
+              "Text": "Review each module outcome and rate your current confidence on a simple scale.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "41c99878-063f-43ac-ab89-fa7325b4f0ff",
+              "Text": "Gather evidence for each rating, such as a project, quiz result, or instructor feedback.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "2e470bfc-5433-47f6-bb95-26e3837f8c17",
+              "Text": "Flag any outcome where your confidence is low as a priority for review.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "606a9ec3-ec32-4458-aacd-4822719c1149",
+              "Text": "Ask whether you can explain each key concept in your own words to someone else.",
+              "SortOrder": 3
+            },
+            {
+              "Id": "c094ddba-3790-47ae-99fa-a993e80893a6",
+              "Text": "Record both strengths to build on and gaps to close.",
+              "SortOrder": 4
+            }
+          ]
+        },
+        {
+          "Id": "23f493d3-9274-4a16-bb4e-eb2313e20eb3",
+          "TopicId": "e4ccb4cf-3ef5-45a5-959b-bafd31ce5b9d",
+          "Title": "Identifying Remaining Gaps and Growth Areas",
+          "BodyText": "Finishing a course rarely means mastering everything within it. Naming your remaining gaps honestly is what makes continued learning purposeful instead of random.",
+          "Notes": "Gaps often fall into three types: missing knowledge, unpracticed skills, and limited real-world application experience.",
+          "SortOrder": 2,
+          "CreatedDate": "2026-11-17T05:48:10.4844654-05:00",
+          "ModifiedDate": "2026-11-17T05:48:10.4844654-05:00",
+          "Items": [
+            {
+              "Id": "3b5250fc-e7ce-41b8-9a00-25ccb229775d",
+              "Text": "List topics you understood conceptually but have not yet applied in practice.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "30128183-30fb-4221-b626-76d12ce2de2a",
+              "Text": "Separate gaps that need more study from those that simply need more repetition.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "7b5a82bd-71c1-461a-a0c6-f8b3e2b591c0",
+              "Text": "Prioritise gaps based on relevance to your goals, not just on difficulty.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "a3c0a260-2e09-4f12-8e25-46dde131cf53",
+              "Text": "Treat unfamiliar vocabulary or tools as concrete, solvable learning targets.",
+              "SortOrder": 3
+            },
+            {
+              "Id": "54e8be7f-af5f-4b20-bef6-810a33650375",
+              "Text": "Revisit earlier module materials selectively rather than restarting from the beginning.",
+              "SortOrder": 4
+            }
+          ]
+        },
+        {
+          "Id": "ecf5cbf2-af3e-43fe-b8f3-d2155ce967d3",
+          "TopicId": "e4ccb4cf-3ef5-45a5-959b-bafd31ce5b9d",
+          "Title": "Setting Next Steps and a Personal Action Plan",
+          "BodyText": "A clear action plan converts reflection into forward momentum. Specific, time-bound commitments are far more likely to be followed than general intentions.",
+          "Notes": "Use SMART criteria \u2014 Specific, Measurable, Achievable, Relevant, Time-bound \u2014 to shape each goal.",
+          "SortOrder": 3,
+          "CreatedDate": "2026-11-17T05:48:10.4844654-05:00",
+          "ModifiedDate": "2026-11-17T05:48:10.4844654-05:00",
+          "Items": [
+            {
+              "Id": "8683ce07-4878-4617-8d34-a10af1a4b09c",
+              "Text": "Choose one to three priority goals rather than attempting everything at once.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "77d1b10a-bf5f-4097-a962-afb14ec6c34f",
+              "Text": "Define what success looks like for each goal and by when you will achieve it.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "0e100a58-27f9-4d52-9124-14a39e3504f2",
+              "Text": "Break larger goals into weekly or fortnightly actions you can realistically complete.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "75315e05-9845-427b-82a4-a696270e6143",
+              "Text": "Schedule review points to check progress and adjust the plan as circumstances change.",
+              "SortOrder": 3
+            },
+            {
+              "Id": "5c896401-4e39-4b2b-a5ff-26361a3ffcd7",
+              "Text": "Anticipate likely obstacles and decide in advance how you will respond to them.",
+              "SortOrder": 4
+            }
+          ]
+        },
+        {
+          "Id": "c2f37d70-bf74-4491-a175-4dcec8cfd42c",
+          "TopicId": "e4ccb4cf-3ef5-45a5-959b-bafd31ce5b9d",
+          "Title": "Resources and Pathways for Continued Development",
+          "BodyText": "Learning continues well beyond the final week through further study, professional communities, and self-directed practice. Knowing where to look saves time and keeps momentum going.",
+          "Notes": "Mix formal and informal resources so you get both structure and current, practical perspectives.",
+          "SortOrder": 4,
+          "CreatedDate": "2026-11-17T05:48:10.4844654-05:00",
+          "ModifiedDate": "2026-11-17T05:48:10.4844654-05:00",
+          "Items": [
+            {
+              "Id": "169ff986-b13e-4868-9a95-21310e67cab5",
+              "Text": "Explore advanced or adjacent courses that build directly on this module\u0027s content.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "96a44833-ebf3-4659-b4c2-54857b635fca",
+              "Text": "Follow reputable publications, journals, blogs, or podcasts in the subject area.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "35d64920-cd17-48b7-8232-9da286fe9279",
+              "Text": "Join professional bodies, forums, or peer groups where practitioners share experience.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "0c47559a-f8e5-4d74-9fd0-f28f9de34848",
+              "Text": "Seek a mentor or study partner who can offer feedback and accountability.",
+              "SortOrder": 3
+            },
+            {
+              "Id": "f5d080f2-d940-498a-9364-50ed02583f18",
+              "Text": "Bookmark and organise the course materials you are most likely to reference again.",
+              "SortOrder": 4
+            }
+          ]
+        },
+        {
+          "Id": "d7e00aaa-e9f3-49d1-949e-34fde35b3f4a",
+          "TopicId": "e4ccb4cf-3ef5-45a5-959b-bafd31ce5b9d",
+          "Title": "Applying Your Skills Beyond the Module",
+          "BodyText": "Skills consolidate when they are used in real contexts rather than stored for later. Deliberate application is the most reliable way to retain what you have learned.",
+          "Notes": "Even small, low-stakes applications \u2014 a workplace task, a volunteer project, or a personal experiment \u2014 reinforce learning effectively.",
+          "SortOrder": 5,
+          "CreatedDate": "2026-11-17T05:48:10.4844654-05:00",
+          "ModifiedDate": "2026-11-17T05:48:10.4844654-05:00",
+          "Items": [
+            {
+              "Id": "b6cea24d-e1a0-4abc-85b8-322379c6e131",
+              "Text": "Identify an immediate opportunity in your work, study, or personal life to use a new skill.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "320ff950-bafe-4b7a-9525-8aeca8f62125",
+              "Text": "Start with a manageable task where mistakes carry low consequences.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "0cc28c7c-3a25-4f94-9ad9-355a151bc77a",
+              "Text": "Share what you have learned with colleagues or peers, since teaching deepens understanding.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "ffa88a19-9727-4b23-b62a-7c17cf917e51",
+              "Text": "Document your applications so you can build a portfolio of demonstrated capability.",
+              "SortOrder": 3
+            },
+            {
+              "Id": "cb4604c2-636a-4c57-82d0-4bad40cf7fea",
+              "Text": "Collect feedback on your performance and feed it back into your action plan.",
+              "SortOrder": 4
+            }
+          ]
+        },
+        {
+          "Id": "5cf4fc03-0a51-4fb1-8650-bfdd0102478d",
+          "TopicId": "e4ccb4cf-3ef5-45a5-959b-bafd31ce5b9d",
+          "Title": "Sustaining a Habit of Reflective Practice",
+          "BodyText": "Reflection is most valuable as an ongoing habit rather than a one-off end-of-course exercise. Building it into your routine supports lifelong learning and continuous improvement.",
+          "Notes": "Reflective practitioners regularly ask what worked, what did not, and what they would do differently next time.",
+          "SortOrder": 6,
+          "CreatedDate": "2026-11-17T05:48:10.4844654-05:00",
+          "ModifiedDate": "2026-11-17T05:48:10.4844654-05:00",
+          "Items": [
+            {
+              "Id": "bd55c6a1-f6c8-4a5c-808a-99085b6cdba5",
+              "Text": "Set a recurring time \u2014 weekly or monthly \u2014 for a short, structured review.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "273cdc3c-c72f-4736-966d-56a296a6d7eb",
+              "Text": "Keep a learning journal or log to track insights, questions, and progress.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "5ed7dd2f-58af-4766-9ba2-f6e7d544fa5d",
+              "Text": "Use feedback from others as a mirror for blind spots you cannot see yourself.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "3475301a-88b3-44d8-ab51-990459903ebb",
+              "Text": "Celebrate progress to maintain motivation, not only focus on shortfalls.",
+              "SortOrder": 3
+            },
+            {
+              "Id": "1fda9752-0721-4bf5-8ab5-3fb2574fcad3",
+              "Text": "Revisit your action plan periodically and refresh it as your goals evolve.",
+              "SortOrder": 4
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "TotalElementCount": 38
+}

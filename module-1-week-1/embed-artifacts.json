@@ -1,0 +1,127 @@
+﻿[
+  {
+    "title": "Module 1 (Week 1) (module page)",
+    "href": "index.html",
+    "type": "Module page"
+  },
+  {
+    "title": "Module 1 (Week 1) \u2014 Topics \u0026 Learning Outcomes",
+    "href": "topics-outcomes.html",
+    "type": "Page"
+  },
+  {
+    "title": "Module 1 (Week 1) \u2014 Module Topics",
+    "href": "topics.html",
+    "type": "Page"
+  },
+  {
+    "title": "Assignment 1 - Creating Databases",
+    "href": "assignments/assignment-1-creating-databases.html",
+    "type": "Assignments"
+  },
+  {
+    "title": "Assignments \u2014 Module 1 (Week 1)",
+    "href": "assignments/index.html",
+    "type": "Assignments"
+  },
+  {
+    "title": "Data Dictionary - Class Advising Systems",
+    "href": "content/Data_Dictionary_Class_Advising_Systems.html",
+    "type": "Content"
+  },
+  {
+    "title": "Data Dictionary - Music Database",
+    "href": "content/Data_Dictionary_Music_Database.html",
+    "type": "Content"
+  },
+  {
+    "title": "Data Dictionary - Sports Player Statistics",
+    "href": "content/Data_Dictionary_Sports_Player_Statistics.html",
+    "type": "Content"
+  },
+  {
+    "title": "Assignments Q \u0026 A",
+    "href": "content/disc_Assignments_Q_A.html",
+    "type": "Content"
+  },
+  {
+    "title": "Graded Discussion 1",
+    "href": "content/disc_Graded_Discussion_1.html",
+    "type": "Content"
+  },
+  {
+    "title": "Guide - What You Need To Know in Databases",
+    "href": "content/Guide_What_You_Need_To_Know_in_Databases.html",
+    "type": "Content"
+  },
+  {
+    "title": "Lecture 1-1 Getting Started in SQL Server Management Studio",
+    "href": "content/Lecture_1_1_Getting_Started_in_SQL_Server_Manage.html",
+    "type": "Content"
+  },
+  {
+    "title": "Lecture 1-2 Creating Foreign Keys for 1:n Relationships",
+    "href": "content/Lecture_1_2_Creating_Foreign_Keys_for_1_n_Relati.html",
+    "type": "Content"
+  },
+  {
+    "title": "Lecture 1-3 Modeling Object Relationship in a Database",
+    "href": "content/Lecture_1_3_Modeling_Object_Relationship_in_a_Da.html",
+    "type": "Content"
+  },
+  {
+    "title": "Quiz \u2014 Module 1 (Week 1)",
+    "href": "quiz/index.html",
+    "type": "Quiz"
+  },
+  {
+    "title": "Assignment 1 - Creating Databases",
+    "href": "source-materials/A001_Case_Study_Analy_Assignment_1_Creating_Database.html",
+    "type": "Source-materials"
+  },
+  {
+    "title": "Data Dictionary - Class Advising Systems",
+    "href": "source-materials/Data_Dictionary_Class_Advising_Systems.html",
+    "type": "Source-materials"
+  },
+  {
+    "title": "Data Dictionary - Music Database",
+    "href": "source-materials/Data_Dictionary_Music_Database.html",
+    "type": "Source-materials"
+  },
+  {
+    "title": "Data Dictionary - Sports Player Statistics",
+    "href": "source-materials/Data_Dictionary_Sports_Player_Statistics.html",
+    "type": "Source-materials"
+  },
+  {
+    "title": "Assignments Q \u0026 A",
+    "href": "source-materials/disc_Assignments_Q_A.html",
+    "type": "Source-materials"
+  },
+  {
+    "title": "Graded Discussion 1",
+    "href": "source-materials/disc_Graded_Discussion_1.html",
+    "type": "Source-materials"
+  },
+  {
+    "title": "Guide - What You Need To Know in Databases",
+    "href": "source-materials/Guide_What_You_Need_To_Know_in_Databases.html",
+    "type": "Source-materials"
+  },
+  {
+    "title": "Lecture 1-1 Getting Started in SQL Server Management Studio",
+    "href": "source-materials/Lecture_1_1_Getting_Started_in_SQL_Server_Manage.html",
+    "type": "Source-materials"
+  },
+  {
+    "title": "Lecture 1-2 Creating Foreign Keys for 1:n Relationships",
+    "href": "source-materials/Lecture_1_2_Creating_Foreign_Keys_for_1_n_Relati.html",
+    "type": "Source-materials"
+  },
+  {
+    "title": "Lecture 1-3 Modeling Object Relationship in a Database",
+    "href": "source-materials/Lecture_1_3_Modeling_Object_Relationship_in_a_Da.html",
+    "type": "Source-materials"
+  }
+]

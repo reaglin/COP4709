@@ -1,0 +1,2063 @@
+{
+  "ModuleFolderName": "Module_11_(Week_11)",
+  "CourseName": "COP4709 \u2014 Applied Database II",
+  "GeneratedDate": "2026-11-17T05:31:03.2531441-05:00",
+  "ModifiedDate": "2026-11-17T05:34:43.6261326-05:00",
+  "Outcomes": [],
+  "Topics": [
+    {
+      "Id": "8fb45c8c-cd64-42a5-905b-5ba0985fe0a0",
+      "Title": "Database Performance Fundamentals and Measurement",
+      "Summary": "Introduces what database performance means across query time, resource utilization, throughput, concurrency and waits, and establishes the golden rule of reducing I/O first. Covers SET STATISTICS IO/TIME and how to interpret logical reads, physical reads and scan counts.",
+      "SortOrder": 0,
+      "CreatedDate": "2026-11-17T05:31:03.2531441-05:00",
+      "ModifiedDate": "2026-11-17T05:31:03.2531441-05:00",
+      "Elements": [
+        {
+          "Id": "8ccb48f2-500f-4e86-8881-82c25f40c55f",
+          "TopicId": "8fb45c8c-cd64-42a5-905b-5ba0985fe0a0",
+          "Title": "What Database Performance Really Means",
+          "BodyText": "Database performance measures how quickly and efficiently a database responds to queries, processes transactions, and manages data under real workload conditions. It is never a single number \u2014 it is a set of interacting dimensions.",
+          "Notes": "Microsoft SQL Server (T-SQL) is used as the reference platform here, but the concepts apply broadly to other relational systems such as Oracle, PostgreSQL and MySQL.",
+          "SortOrder": 0,
+          "CreatedDate": "2026-11-17T05:31:27.0966713-05:00",
+          "ModifiedDate": "2026-11-17T05:31:27.0966713-05:00",
+          "Items": [
+            {
+              "Id": "2f546e8e-88e7-4156-a403-3db58be55962",
+              "Text": "Query execution time measures how long an individual statement takes to return results.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "5107857c-c4b5-4019-a179-6461272533b6",
+              "Text": "Resource utilization covers CPU, memory and disk I/O consumed while the query runs.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "a5e33cf0-ba7b-4783-b167-6f7c5b1c79dd",
+              "Text": "Throughput describes how many queries or transactions the system completes per second.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "bd30efbe-cafb-4f5d-a2b3-992990632e9b",
+              "Text": "Concurrency reflects how well the system supports many simultaneous users without degradation.",
+              "SortOrder": 3
+            },
+            {
+              "Id": "5c15a2fe-3695-4f6e-99a7-cd84f7b6cae4",
+              "Text": "Wait time captures periods when a query is blocked on locks, disk or network rather than doing work.",
+              "SortOrder": 4
+            },
+            {
+              "Id": "6ebd3a81-a43b-49cf-ab0d-063874f76dd5",
+              "Text": "Tuning one dimension can improve or worsen another, so changes must be evaluated holistically.",
+              "SortOrder": 5
+            }
+          ]
+        },
+        {
+          "Id": "20f5083b-b28c-4e6d-9da4-ecfdd7dc6e9a",
+          "TopicId": "8fb45c8c-cd64-42a5-905b-5ba0985fe0a0",
+          "Title": "The Three Core Performance Metrics",
+          "BodyText": "Most performance analysis reduces to three measurable categories: I/O, CPU and waits. Knowing which one dominates tells you where to focus tuning effort.",
+          "Notes": "Poor performance is one of the most common and most costly problems in production systems, so a disciplined metric-first approach avoids guesswork.",
+          "SortOrder": 1,
+          "CreatedDate": "2026-11-17T05:31:27.0966713-05:00",
+          "ModifiedDate": "2026-11-17T05:31:27.0966713-05:00",
+          "Items": [
+            {
+              "Id": "a9f9448e-9a7d-422c-8d6b-eedb247313b0",
+              "Text": "I/O is measured as logical and physical reads and is normally the most expensive resource.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "9851a908-77e8-4560-9edf-8d55f263bc6b",
+              "Text": "CPU time is spent executing logic such as sorting, hashing and computing expressions.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "ca77f321-1532-44bb-96fb-7eb6b51871d4",
+              "Text": "Wait time is time the query spends idle waiting on locks, disk or network resources.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "00c1dbac-ba68-4f1f-b714-f0cf48e2a4a1",
+              "Text": "A query can be slow for entirely different reasons depending on which metric dominates.",
+              "SortOrder": 3
+            },
+            {
+              "Id": "e7aebd74-9767-4607-973d-5850c0368b7c",
+              "Text": "Always identify the dominant metric before proposing a fix.",
+              "SortOrder": 4
+            }
+          ]
+        },
+        {
+          "Id": "24cb97b4-3e04-4a47-a855-933759b023b1",
+          "TopicId": "8fb45c8c-cd64-42a5-905b-5ba0985fe0a0",
+          "Title": "The Golden Rule: Reduce I/O First",
+          "BodyText": "The golden rule of SQL Server tuning is to reduce I/O before anything else. Logical and physical reads are the single biggest drivers of slow query performance.",
+          "Notes": "Elapsed time fluctuates with server load and caching; read counts are a far more stable and comparable measure of a query\u0027s true cost.",
+          "SortOrder": 2,
+          "CreatedDate": "2026-11-17T05:31:27.0966713-05:00",
+          "ModifiedDate": "2026-11-17T05:31:27.0966713-05:00",
+          "Items": [
+            {
+              "Id": "de677582-50aa-47a4-8a7f-53e72b5d1049",
+              "Text": "Logical reads are pages pulled from the buffer cache in memory and are the primary tuning target.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "adc9c2db-52b5-4c7b-ac0e-7f655d7e2cc5",
+              "Text": "Physical reads are pages fetched from disk because they were not already cached in memory.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "7a9590e3-9daa-4261-a93d-71d2555ed1bc",
+              "Text": "Evaluate every index or query change by its impact on read counts, not just on elapsed time.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "587c4023-2b83-4387-9d48-7f4dc9f4ac8a",
+              "Text": "A rewrite that cuts logical reads from thousands to dozens is a genuine win even if the clock time looks similar on a quiet server.",
+              "SortOrder": 3
+            },
+            {
+              "Id": "ab67a081-2c21-42cd-9575-4cc5caee1232",
+              "Text": "Reducing reads usually reduces CPU and wait time as a side effect.",
+              "SortOrder": 4
+            }
+          ]
+        },
+        {
+          "Id": "17214286-8c84-4673-a50c-97ddcecd3f4c",
+          "TopicId": "8fb45c8c-cd64-42a5-905b-5ba0985fe0a0",
+          "Title": "Measuring Cost with SET STATISTICS IO and TIME",
+          "BodyText": "The quickest way to measure an individual query\u0027s resource consumption is to enable statistics output before running it. These two settings give you a reliable baseline for any tuning exercise.",
+          "Notes": "Example: SET STATISTICS IO ON; SET STATISTICS TIME ON; run the query; then SET STATISTICS IO OFF; SET STATISTICS TIME OFF;",
+          "SortOrder": 3,
+          "CreatedDate": "2026-11-17T05:31:27.0966713-05:00",
+          "ModifiedDate": "2026-11-17T05:31:27.0966713-05:00",
+          "Items": [
+            {
+              "Id": "aaeee650-f10f-4c10-ad85-f60685fdc427",
+              "Text": "SET STATISTICS IO ON reports logical, physical and read-ahead reads per table.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "44cd1f4d-fe67-426b-abe3-8828ca64bce9",
+              "Text": "SET STATISTICS TIME ON reports CPU time and elapsed time in milliseconds.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "ad4273ab-d239-4e81-b893-179a3de022cd",
+              "Text": "Results appear on the Messages tab in SSMS rather than in the results grid.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "82148a00-1db0-4717-b063-1ca6460f2c9e",
+              "Text": "Turn both settings OFF after the test so they do not clutter later output.",
+              "SortOrder": 3
+            },
+            {
+              "Id": "23f47ca2-7785-4920-b236-cb4ad5afb311",
+              "Text": "Capture the output before changing anything \u2014 this is your pre-optimization baseline.",
+              "SortOrder": 4
+            },
+            {
+              "Id": "dedf5240-cd5d-4e18-a41d-1155978cb984",
+              "Text": "Re-run the same statements after a change and compare directly against that baseline.",
+              "SortOrder": 5
+            }
+          ]
+        },
+        {
+          "Id": "082413d7-052d-4fa2-860f-432228af0589",
+          "TopicId": "8fb45c8c-cd64-42a5-905b-5ba0985fe0a0",
+          "Title": "Interpreting the STATISTICS IO Output",
+          "BodyText": "The STATISTICS IO output lists one row per table touched by the query, with scan count and read counts. Learning to read these numbers is the foundation of all query tuning.",
+          "Notes": "For example, a query showing customers with 42 logical reads and orders with 1,847 logical reads tells you immediately that the orders table is where the tuning effort belongs.",
+          "SortOrder": 4,
+          "CreatedDate": "2026-11-17T05:31:27.0966713-05:00",
+          "ModifiedDate": "2026-11-17T05:31:27.0966713-05:00",
+          "Items": [
+            {
+              "Id": "20d97390-9df2-4b02-8001-5f1619ded9d1",
+              "Text": "Logical Reads are pages read from the buffer cache and are the number you most want to drive down.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "888f259d-7ecd-4c2b-88d8-befcdde20365",
+              "Text": "Physical Reads indicate pages fetched from disk; non-zero values on repeated runs suggest memory pressure or an oversized working set.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "479980ce-65b6-474f-aa20-0e85680f4734",
+              "Text": "Read-Ahead Reads show pages pre-fetched by SQL Server in anticipation of a scan.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "24cf5b3f-3f62-4075-a049-f46640f43629",
+              "Text": "Scan Count shows how many times a table or index was accessed; high counts often signal a missing index or an inefficient join.",
+              "SortOrder": 3
+            },
+            {
+              "Id": "173f0afa-f234-4dab-b020-28a68e004985",
+              "Text": "Compare per-table figures to pinpoint which table in a join is actually driving the cost.",
+              "SortOrder": 4
+            }
+          ]
+        },
+        {
+          "Id": "1fd9230d-87f6-449c-87d6-8af8cebd8fb0",
+          "TopicId": "8fb45c8c-cd64-42a5-905b-5ba0985fe0a0",
+          "Title": "Establishing a Baseline Before Tuning",
+          "BodyText": "Performance work is only credible when it is measured. A baseline captured before any change is what proves an optimization actually worked.",
+          "Notes": "This mirrors the formal tuning workflow: identify the slow query, baseline its cost, analyse why it is slow, hypothesise a fix, implement, verify and then monitor.",
+          "SortOrder": 5,
+          "CreatedDate": "2026-11-17T05:31:27.0966713-05:00",
+          "ModifiedDate": "2026-11-17T05:31:27.0966713-05:00",
+          "Items": [
+            {
+              "Id": "ee5af1bb-cf9f-4105-b01c-32aa4902ea9f",
+              "Text": "Record reads, CPU time and elapsed time for the unmodified query first.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "00a02d5f-6229-4b2a-92f6-b690e2b4c8d7",
+              "Text": "Run the query more than once so that caching effects are consistent between measurements.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "d14f8a06-0d01-416a-84c8-546d2af773bc",
+              "Text": "Document the exact query text and conditions under which the measurement was taken.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "e44b2aec-240d-4c3e-90f6-5ab17989507b",
+              "Text": "Apply one change at a time so the effect of each change can be attributed correctly.",
+              "SortOrder": 3
+            },
+            {
+              "Id": "892a8e79-18a3-474d-b7fd-2eba7eb68eb6",
+              "Text": "Re-measure with the same SET STATISTICS settings and report pre- and post-optimization figures side by side.",
+              "SortOrder": 4
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Id": "4c0470d2-1079-4478-8065-936c12063ddb",
+      "Title": "Diagnostic Tools: DMVs, Wait Statistics and Query Store",
+      "Summary": "Explores SQL Server\u0027s Dynamic Management Views for finding expensive queries, identifying system bottlenecks through wait types, and monitoring index usage and I/O latency. Includes Query Store for tracking execution plan changes and regressions over time.",
+      "SortOrder": 1,
+      "CreatedDate": "2026-11-17T05:31:03.2531441-05:00",
+      "ModifiedDate": "2026-11-17T05:31:03.2531441-05:00",
+      "Elements": [
+        {
+          "Id": "0b0dfe84-9163-4bf3-95b7-b4b03e9ace93",
+          "TopicId": "4c0470d2-1079-4478-8065-936c12063ddb",
+          "Title": "What Dynamic Management Views Are",
+          "BodyText": "Dynamic Management Views (DMVs) are system views that expose SQL Server\u0027s real-time internal state, including query execution statistics, index usage, wait types and file I/O. They are the primary diagnostic tool for production performance work because they require no tracing overhead and are always available.",
+          "Notes": "DMVs are queried with ordinary T-SQL, so results can be filtered, sorted and saved into baseline tables for trend analysis.",
+          "SortOrder": 0,
+          "CreatedDate": "2026-11-17T05:31:58.0301222-05:00",
+          "ModifiedDate": "2026-11-17T05:31:58.0301222-05:00",
+          "Items": [
+            {
+              "Id": "18a8c511-5495-484b-afab-e9c973d816ac",
+              "Text": "DMV data is cumulative and is generally reset when the SQL Server service restarts, so interpret values relative to uptime.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "ba3b8d9d-dc81-4ca6-8671-16d19755ffdb",
+              "Text": "Key DMVs include sys.dm_exec_query_stats, sys.dm_os_wait_stats, sys.dm_db_index_usage_stats, sys.dm_db_missing_index_details, sys.dm_exec_requests and sys.dm_io_virtual_file_stats.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "d5352bfd-72e1-4d4f-8eaf-b4391ac1332e",
+              "Text": "sys.dm_exec_requests shows currently executing queries and is ideal for diagnosing live blocking or a slow session right now.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "276978a5-1235-4de1-aa8c-61e3716b2ea9",
+              "Text": "DMVs complement SET STATISTICS IO/TIME: statistics measure one query, DMVs reveal workload-wide patterns.",
+              "SortOrder": 3
+            }
+          ]
+        },
+        {
+          "Id": "0d44e6f4-25a8-454c-9f28-1f0992a3f477",
+          "TopicId": "4c0470d2-1079-4478-8065-936c12063ddb",
+          "Title": "Finding the Most Expensive Queries",
+          "BodyText": "sys.dm_exec_query_stats holds execution statistics for every plan currently in the plan cache, making it the fastest way to find the worst-performing queries on a server. Cross-applying sys.dm_exec_sql_text retrieves the actual query text for each entry.",
+          "Notes": "Example: SELECT TOP 10 qs.total_logical_reads, qs.execution_count, qs.total_logical_reads/qs.execution_count AS avg_logical_reads FROM sys.dm_exec_query_stats AS qs CROSS APPLY sys.dm_exec_sql_text(qs.sql_handle) AS qt ORDER BY total_logical_reads DESC;",
+          "SortOrder": 1,
+          "CreatedDate": "2026-11-17T05:31:58.0301222-05:00",
+          "ModifiedDate": "2026-11-17T05:31:58.0301222-05:00",
+          "Items": [
+            {
+              "Id": "da99387b-12ed-4fa7-a71b-aa6fcc2dec87",
+              "Text": "Rank by total_logical_reads to find the queries consuming the most overall I/O across the workload.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "d22d442e-223b-4fc2-9b02-49a99e83b48a",
+              "Text": "Divide totals by execution_count to separate one genuinely slow query from a cheap query executed thousands of times.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "6518bdf5-aecf-410d-9675-4cf28d3d9b5c",
+              "Text": "total_worker_time/execution_count gives average CPU time in microseconds, useful for spotting CPU-bound sorting or hashing.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "ae3c4b2e-2870-49ea-935b-185d276ff19d",
+              "Text": "Use statement_start_offset and statement_end_offset with SUBSTRING to extract the individual statement from a larger batch or procedure.",
+              "SortOrder": 3
+            },
+            {
+              "Id": "46842882-14f6-4de2-a486-a0c51b73a0ce",
+              "Text": "Remember the plan cache is volatile \u2014 recompiles, memory pressure or a restart will clear the history.",
+              "SortOrder": 4
+            }
+          ]
+        },
+        {
+          "Id": "5c9d24c3-1f94-4c11-ba06-92e5b0d70fc4",
+          "TopicId": "4c0470d2-1079-4478-8065-936c12063ddb",
+          "Title": "Wait Statistics: Finding the System Bottleneck",
+          "BodyText": "sys.dm_os_wait_stats records what SQL Server has been waiting on, revealing the system-level bottleneck rather than symptoms in individual queries. Running it when the system feels slow quickly points tuning effort in the right direction.",
+          "Notes": "Benign background waits such as SLEEP_TASK, BROKER_TO_FLUSH, SQLTRACE_BUFFER_FLUSH and CLR_AUTO_EVENT should be filtered out or they will dominate the list.",
+          "SortOrder": 2,
+          "CreatedDate": "2026-11-17T05:31:58.0301222-05:00",
+          "ModifiedDate": "2026-11-17T05:31:58.0301222-05:00",
+          "Items": [
+            {
+              "Id": "4e93d145-6872-484c-8334-978d9f5dea1b",
+              "Text": "Calculate each wait as a percentage of total wait time using SUM(wait_time_ms) OVER () to see what really matters.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "7291fb22-2e16-4384-8b6f-a6b02e53c67f",
+              "Text": "PAGEIOLATCH_SH means queries are waiting for data pages to be read from disk \u2014 a sign of I/O pressure or missing indexes causing large scans.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "3af733b6-faf2-492d-9b1e-2ca732fee353",
+              "Text": "LCK_M_S indicates blocking: one transaction holds a lock another query needs, pointing to long transactions or isolation level problems.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "734fede2-96b1-4c89-accb-76efd942e610",
+              "Text": "CXPACKET reflects parallel query coordination overhead and may mean queries are using more parallel threads than is beneficial.",
+              "SortOrder": 3
+            },
+            {
+              "Id": "41c5e0b5-b9ff-46bd-a652-359aad038529",
+              "Text": "Compare wait_time_ms against waiting_tasks_count to distinguish many short waits from a few very long ones.",
+              "SortOrder": 4
+            }
+          ]
+        },
+        {
+          "Id": "8c93d2c8-5f13-4058-b8e7-e22505837390",
+          "TopicId": "4c0470d2-1079-4478-8065-936c12063ddb",
+          "Title": "Monitoring Index Usage and Missing Indexes",
+          "BodyText": "Index-related DMVs show both the indexes SQL Server wishes existed and the ones that are costing writes without being read. Together they keep an indexing scheme lean and targeted.",
+          "Notes": "Missing index recommendations are generated greedily, query by query, so they often overlap heavily with each other and with existing indexes.",
+          "SortOrder": 3,
+          "CreatedDate": "2026-11-17T05:31:58.0301222-05:00",
+          "ModifiedDate": "2026-11-17T05:31:58.0301222-05:00",
+          "Items": [
+            {
+              "Id": "a2943636-6ee2-48f4-8f14-efc7957a2538",
+              "Text": "sys.dm_db_missing_index_details, joined to the group and group_stats DMVs, exposes equality, inequality and included columns plus an avg_user_impact estimate.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "6b10acf4-97bc-47eb-b13c-fa5d2465f36c",
+              "Text": "Never blindly create every recommendation \u2014 dozens of overlapping indexes will slow INSERT, UPDATE and DELETE significantly.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "e0652a1e-4112-4493-bc16-f9097247d32c",
+              "Text": "sys.dm_db_index_usage_stats reports user_seeks, user_scans and user_updates per index.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "bb200393-9c39-4935-b15f-2a1afc683097",
+              "Text": "Non-clustered indexes with zero seeks and scans but non-zero updates are pure write overhead and are candidates for removal.",
+              "SortOrder": 3
+            },
+            {
+              "Id": "d7956ad2-31d8-49da-a616-24858d7a271b",
+              "Text": "Usage counters reset on service restart, so judge them only after a full business cycle of normal workload.",
+              "SortOrder": 4
+            }
+          ]
+        },
+        {
+          "Id": "2fd8971e-f52b-486f-b685-17447ab80c27",
+          "TopicId": "4c0470d2-1079-4478-8065-936c12063ddb",
+          "Title": "Diagnosing Disk I/O Latency",
+          "BodyText": "sys.dm_io_virtual_file_stats reports read and write latency for every individual database file, isolating storage problems from query problems. It is the natural follow-up when PAGEIOLATCH waits dominate the wait statistics.",
+          "Notes": "Pair file-level latency with sys.dm_db_index_physical_stats fragmentation data to decide whether the fix is hardware, indexing or maintenance.",
+          "SortOrder": 4,
+          "CreatedDate": "2026-11-17T05:31:58.0301222-05:00",
+          "ModifiedDate": "2026-11-17T05:31:58.0301222-05:00",
+          "Items": [
+            {
+              "Id": "25f0e9e7-bd14-45a2-a35a-14dd134835e8",
+              "Text": "Compare data file and log file latency separately \u2014 they have very different I/O patterns and tolerances.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "1be12877-0d03-44fb-8ce5-728b53fe2b68",
+              "Text": "High latency on one file may indicate a hot filegroup, an undersized disk, or tempdb contention.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "07799c45-63fa-434a-9d2f-e8be3e992706",
+              "Text": "Non-zero physical reads on repeated query runs signal memory pressure or a dataset too large for the buffer pool.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "4921cde6-7a48-4b54-8a83-5b5dd95dc7f5",
+              "Text": "Use the results to justify partitioning, additional filegroups, or faster storage rather than more indexes.",
+              "SortOrder": 3
+            }
+          ]
+        },
+        {
+          "Id": "7a7db366-0ad0-4ce7-b24b-61e747020e7f",
+          "TopicId": "4c0470d2-1079-4478-8065-936c12063ddb",
+          "Title": "Query Store: Tracking Plan Changes and Regressions",
+          "BodyText": "Query Store (SQL Server 2016 and later) persists execution plans and runtime statistics in the database itself, so plan history survives restarts and cache flushes. It makes it possible to prove exactly when a plan changed and caused a regression.",
+          "Notes": "Enable with ALTER DATABASE SalesDB SET QUERY_STORE = ON WITH (OPERATION_MODE = READ_WRITE, CLEANUP_POLICY = (STALE_QUERY_THRESHOLD_DAYS = 30), DATA_FLUSH_INTERVAL_SECONDS = 900);",
+          "SortOrder": 5,
+          "CreatedDate": "2026-11-17T05:31:58.0301222-05:00",
+          "ModifiedDate": "2026-11-17T05:31:58.0301222-05:00",
+          "Items": [
+            {
+              "Id": "6abda624-3ce2-4188-b889-1366449be235",
+              "Text": "Configuration options control operation mode, how long stale queries are retained, and how often data is flushed to disk.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "6659f5b0-24f8-4d66-818e-1f170dec040a",
+              "Text": "Query the sys.query_store_query, query_store_query_text, query_store_plan and query_store_runtime_stats views to rank queries by avg_logical_io_reads or avg_duration.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "d356afe3-5e00-44f3-9dca-fff0ffe4b3e7",
+              "Text": "Because multiple plans are stored per query, you can compare the performance of an old plan against a new, worse one.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "c6290aa5-4b69-49b0-84fd-a117211aad6c",
+              "Text": "A regressed plan can be forced back, giving a safe short-term fix while the underlying cause is investigated.",
+              "SortOrder": 3
+            },
+            {
+              "Id": "843f62b3-800e-4513-9e35-fc558043693c",
+              "Text": "Query Store supports the final \u0027monitor\u0027 step of the tuning workflow by confirming a fix holds under real production workload.",
+              "SortOrder": 4
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Id": "f736ba0b-d0ee-482f-9cd9-d798ae636e14",
+      "Title": "Reading and Interpreting Execution Plans",
+      "Summary": "Explains how the query optimizer builds execution plans and how to view estimated versus actual plans. Covers key plan operators such as index seeks, scans, key lookups and join types, plus the warning signs that reveal tuning opportunities.",
+      "SortOrder": 2,
+      "CreatedDate": "2026-11-17T05:31:03.2531441-05:00",
+      "ModifiedDate": "2026-11-17T05:31:03.2531441-05:00",
+      "Elements": [
+        {
+          "Id": "c450e145-07dd-4dca-98a2-a78f5b5339d2",
+          "TopicId": "f736ba0b-d0ee-482f-9cd9-d798ae636e14",
+          "Title": "What an Execution Plan Is",
+          "BodyText": "An execution plan is SQL Server\u0027s step-by-step blueprint for how it will retrieve and process the data a query asks for. It is the foundation of all query tuning work.",
+          "Notes": "The optimizer is cost-based: it estimates CPU and I/O cost for candidate strategies using statistics, then picks the cheapest it finds within its time budget.",
+          "SortOrder": 0,
+          "CreatedDate": "2026-11-17T05:32:21.634505-05:00",
+          "ModifiedDate": "2026-11-17T05:32:21.634505-05:00",
+          "Items": [
+            {
+              "Id": "14734600-2b1d-4e75-af5d-e587a0702d73",
+              "Text": "The query optimizer evaluates hundreds of possible execution strategies before choosing one.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "caaa97c2-0058-4f78-a1eb-ef11b0608f67",
+              "Text": "It selects the plan it estimates to be cheapest, not necessarily the one that is truly fastest.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "cba5fea5-a267-41b5-bcaf-1e8c65d0e3dc",
+              "Text": "Plan quality depends heavily on the accuracy of column statistics and available indexes.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "3ff7a3ff-24b4-49e2-b73b-9b2a2877abc0",
+              "Text": "Reading plans tells you why a query is slow, not just that it is slow.",
+              "SortOrder": 3
+            },
+            {
+              "Id": "c9361fc7-9137-4cc6-941d-41769ea337f8",
+              "Text": "Plans sit alongside STATISTICS IO/TIME output in step 3 (Analyse) of the tuning workflow.",
+              "SortOrder": 4
+            }
+          ]
+        },
+        {
+          "Id": "ed7f24e9-7688-42cb-8e8e-ebf626771259",
+          "TopicId": "f736ba0b-d0ee-482f-9cd9-d798ae636e14",
+          "Title": "Estimated vs Actual Execution Plans",
+          "BodyText": "SQL Server can show the plan it intends to use without running the query, or the plan it actually used along with real row counts. Comparing the two is a core diagnostic technique.",
+          "Notes": "In SSMS: Ctrl\u002BL displays the estimated plan; Ctrl\u002BM includes the actual plan with the results.",
+          "SortOrder": 1,
+          "CreatedDate": "2026-11-17T05:32:21.634505-05:00",
+          "ModifiedDate": "2026-11-17T05:32:21.634505-05:00",
+          "Items": [
+            {
+              "Id": "4cdd5003-0c9a-4b25-85cd-1f52fc4704f9",
+              "Text": "SET SHOWPLAN_ALL ON returns the estimated plan and does not execute the query.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "68d2aa23-a0fc-4511-bd29-30c80db53ff0",
+              "Text": "SET STATISTICS PROFILE ON executes the query and reports actual rows alongside estimates.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "dd31f9e2-e987-4cfd-bc5a-f015f61f83e9",
+              "Text": "Use the estimated plan when a query is too slow or destructive to run.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "8eb926f1-45d8-4bd5-9680-de5bd561afe3",
+              "Text": "Use the actual plan to validate the optimizer\u0027s cardinality estimates against reality.",
+              "SortOrder": 3
+            },
+            {
+              "Id": "b66ece58-1d8f-49b7-8158-b64660afd9da",
+              "Text": "Always turn the SET options OFF again after capturing the plan.",
+              "SortOrder": 4
+            }
+          ]
+        },
+        {
+          "Id": "7fd63430-59a1-47eb-8feb-2f4bac434030",
+          "TopicId": "f736ba0b-d0ee-482f-9cd9-d798ae636e14",
+          "Title": "Data Access Operators \u2014 Seeks, Scans and Lookups",
+          "BodyText": "The operators that touch base data are usually where the I/O cost lives, so they are the first things to identify in any plan.",
+          "Notes": "Example: SELECT order_date, total, status FROM orders WHERE customer_id = 1042 produces an Index Seek plus a Key Lookup unless the index INCLUDEs those columns.",
+          "SortOrder": 2,
+          "CreatedDate": "2026-11-17T05:32:21.634505-05:00",
+          "ModifiedDate": "2026-11-17T05:32:21.634505-05:00",
+          "Items": [
+            {
+              "Id": "f435d782-24ff-43fb-bbc4-3d19c61c214d",
+              "Text": "Index Seek navigates the B-tree directly to matching rows \u2014 low I/O and the ideal outcome.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "445a3afc-072e-43b5-8a6c-d4be8f21e3a6",
+              "Text": "Index Scan reads every row of an index; acceptable on small tables but costly at scale.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "07276a8f-e665-42ae-b476-a085e4772e48",
+              "Text": "Table Scan or Clustered Index Scan reads the whole table, signalling no useful index was found.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "eac82afd-7373-4edc-99d2-1a991d57b3ff",
+              "Text": "Key Lookup (or RID Lookup on a heap) returns to the base table for columns missing from the index.",
+              "SortOrder": 3
+            },
+            {
+              "Id": "96502952-9f81-49bc-992e-173ee8c34632",
+              "Text": "Repeated Key Lookups add per-row overhead and are usually fixed with a covering index.",
+              "SortOrder": 4
+            }
+          ]
+        },
+        {
+          "Id": "c919dec1-e6d1-4f64-ac4b-ddc63b1dfaf9",
+          "TopicId": "f736ba0b-d0ee-482f-9cd9-d798ae636e14",
+          "Title": "Join and Supporting Operators",
+          "BodyText": "The plan also shows how SQL Server combines row sets and what extra work it performs, such as sorting or spooling intermediate results.",
+          "Notes": "Join choice is largely driven by input size, sort order and index availability \u2014 forcing a join type is rarely the right fix.",
+          "SortOrder": 3,
+          "CreatedDate": "2026-11-17T05:32:21.634505-05:00",
+          "ModifiedDate": "2026-11-17T05:32:21.634505-05:00",
+          "Items": [
+            {
+              "Id": "7c6a218c-4646-42dd-a733-194aea9180cf",
+              "Text": "Nested Loops probes the inner set once per outer row \u2014 best for small sets with indexed lookups.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "fb34c1d5-832f-43ac-aed7-6fd8fb6c78a8",
+              "Text": "Hash Match builds an in-memory hash table to join large unordered inputs and needs a memory grant.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "6bee447e-db6f-44e7-bdc1-414c4a9b00b9",
+              "Text": "Merge Join consumes two pre-sorted inputs simultaneously and is very efficient when indexes supply the order.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "84cb86f2-9598-4342-866a-7fb041c1d11e",
+              "Text": "Sort operators come from ORDER BY, GROUP BY or feeding a Merge Join, and can often be removed with an index.",
+              "SortOrder": 3
+            },
+            {
+              "Id": "d0ebe033-723f-4910-80b5-c99bac0813b8",
+              "Text": "Spool operators stash intermediate results (usually in tempdb) and signal the optimizer needed a workaround.",
+              "SortOrder": 4
+            }
+          ]
+        },
+        {
+          "Id": "53d669e0-3f30-42d5-909f-45134ac74259",
+          "TopicId": "f736ba0b-d0ee-482f-9cd9-d798ae636e14",
+          "Title": "Warning Signs That Reveal Tuning Opportunities",
+          "BodyText": "Certain visual and numeric cues in a plan point straight at the fix. Scanning for these red flags is faster than reading every operator in detail.",
+          "Notes": "A 10x or greater gap between estimated and actual rows almost always means stale statistics \u2014 run UPDATE STATISTICS, optionally WITH FULLSCAN.",
+          "SortOrder": 4,
+          "CreatedDate": "2026-11-17T05:32:21.634505-05:00",
+          "ModifiedDate": "2026-11-17T05:32:21.634505-05:00",
+          "Items": [
+            {
+              "Id": "e9c77bde-3efd-4717-9ad5-a93647127b07",
+              "Text": "Fat arrows represent large row counts; sudden width changes indicate cardinality estimation errors.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "846411b8-1be2-4568-9561-1baa4bc29663",
+              "Text": "Yellow warning triangles flag missing statistics, implicit conversions or memory grant issues.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "5f9e86a5-c178-4bf8-8c28-c5cbcc73f3b3",
+              "Text": "Estimated versus actual rows differing by 10x or more means the optimizer is working with bad statistics.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "ca1bf206-8038-43e0-aa1f-d9366d75536b",
+              "Text": "Table scans on large tables point to a missing, unused or non-SARGable-defeated index.",
+              "SortOrder": 3
+            },
+            {
+              "Id": "5332f74d-ae7e-4fac-875c-ce2ec53c43e7",
+              "Text": "CONVERT_IMPLICIT in the plan XML reveals a data type mismatch forcing a scan.",
+              "SortOrder": 4
+            },
+            {
+              "Id": "8cfb8059-e827-48e0-9c78-3c48493828c7",
+              "Text": "Key Lookup or RID Lookup operators suggest adding INCLUDE columns to the existing index.",
+              "SortOrder": 5
+            }
+          ]
+        },
+        {
+          "Id": "99a14897-3890-4d35-a62a-2a356e09051b",
+          "TopicId": "f736ba0b-d0ee-482f-9cd9-d798ae636e14",
+          "Title": "Query Store \u2014 Tracking Plan Changes Over Time",
+          "BodyText": "A single plan capture is a snapshot; Query Store (SQL Server 2016\u002B) persists plans and runtime statistics so you can see when a plan changed and performance regressed.",
+          "Notes": "Enable with ALTER DATABASE ... SET QUERY_STORE = ON, setting OPERATION_MODE, a stale query cleanup threshold and a data flush interval.",
+          "SortOrder": 5,
+          "CreatedDate": "2026-11-17T05:32:21.634505-05:00",
+          "ModifiedDate": "2026-11-17T05:32:21.634505-05:00",
+          "Items": [
+            {
+              "Id": "b29a210e-f761-408b-92e2-3158075d9570",
+              "Text": "Query Store retains execution plans and performance history beyond the volatile plan cache.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "ccb841ec-2137-42ee-9093-246701208f74",
+              "Text": "It makes plan regressions visible by showing multiple plans for the same query_id.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "6a29e352-58cd-462b-af21-c0ddd2395a59",
+              "Text": "Query sys.query_store_query, query_store_query_text, query_store_plan and query_store_runtime_stats together.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "73e74c66-3c27-4d98-bd65-905c3b25e3de",
+              "Text": "Rank by avg_logical_io_reads or avg_duration to surface the worst regressed queries.",
+              "SortOrder": 3
+            },
+            {
+              "Id": "7f6a8472-183e-414c-a15c-6edcae38cc78",
+              "Text": "It supports step 7 of the tuning workflow \u2014 confirming a fix holds under real workload.",
+              "SortOrder": 4
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Id": "b6768521-24a2-4cd7-9c78-8ee936f0b1ce",
+      "Title": "Index Types and Structures",
+      "Summary": "Details clustered, non-clustered, covering, filtered, columnstore and unique indexes, including their structure, limits and ideal use cases. Provides T-SQL syntax for creating each type and guidance on composite key ordering and INCLUDE columns.",
+      "SortOrder": 3,
+      "CreatedDate": "2026-11-17T05:31:03.2531441-05:00",
+      "ModifiedDate": "2026-11-17T05:31:03.2531441-05:00",
+      "Elements": [
+        {
+          "Id": "b8fafba4-efd4-45fd-81a7-5d965d7f84b1",
+          "TopicId": "b6768521-24a2-4cd7-9c78-8ee936f0b1ce",
+          "Title": "What an Index Is and Why Structure Matters",
+          "BodyText": "An index is a separate data structure SQL Server maintains alongside a table so rows can be located without scanning every page. The textbook analogy applies: you look up the term in the index to find the page rather than reading every page.",
+          "Notes": "Choosing the right index type is the difference between an Index Seek (targeted, low I/O) and a Table Scan (reads every row).",
+          "SortOrder": 0,
+          "CreatedDate": "2026-11-17T05:32:46.7601697-05:00",
+          "ModifiedDate": "2026-11-17T05:32:46.7601697-05:00",
+          "Items": [
+            {
+              "Id": "eb2655aa-952f-4739-a69b-63d0c05e1d94",
+              "Text": "Indexes exist to reduce logical and physical reads, the biggest driver of slow queries.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "2f4999e8-b8f8-41fb-a06b-edd1060ce28e",
+              "Text": "Most SQL Server indexes are B-tree structures that are navigated from root to leaf level.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "c8b0663e-0b04-45b5-b3a4-b00687ce672a",
+              "Text": "Different index types store data differently \u2014 row-based B-trees versus compressed columnar segments.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "4c3fb21c-c8ae-4aa3-aecf-b1b53aa33029",
+              "Text": "The index type chosen determines whether the optimizer can seek, must scan, or must perform a lookup back to the table.",
+              "SortOrder": 3
+            }
+          ]
+        },
+        {
+          "Id": "8f223be1-3046-405e-a734-ec8d4021d5b5",
+          "TopicId": "b6768521-24a2-4cd7-9c78-8ee936f0b1ce",
+          "Title": "Clustered Index \u2014 The Table Itself",
+          "BodyText": "A clustered index defines the physical storage order of the rows, which means the table *is* the clustered index. Only one clustered index is permitted per table.",
+          "Notes": "A table with no clustered index is called a heap; row order is unpredictable and range queries perform poorly.",
+          "SortOrder": 1,
+          "CreatedDate": "2026-11-17T05:32:46.7601697-05:00",
+          "ModifiedDate": "2026-11-17T05:32:46.7601697-05:00",
+          "Items": [
+            {
+              "Id": "e6776826-ea12-42df-a26f-e0279fa99008",
+              "Text": "A PRIMARY KEY constraint creates a clustered index by default unless specified otherwise.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "919015c4-d741-487c-ab66-3d54d8f19da0",
+              "Text": "Example: CONSTRAINT pk_orders PRIMARY KEY CLUSTERED (order_id).",
+              "SortOrder": 1
+            },
+            {
+              "Id": "9feb617e-ae1f-4199-a7f2-04b9eebe27af",
+              "Text": "You can create one explicitly with CREATE CLUSTERED INDEX cx_orders_date ON orders (order_date).",
+              "SortOrder": 2
+            },
+            {
+              "Id": "7378d2ec-de99-4706-9675-8237601293f2",
+              "Text": "Ideal for primary keys, range scans and queries that need rows returned in key order.",
+              "SortOrder": 3
+            },
+            {
+              "Id": "1b6b89c1-228f-4350-bb21-7792348705a4",
+              "Text": "Best practice: every table should have a clustered index, usually on the primary key.",
+              "SortOrder": 4
+            }
+          ]
+        },
+        {
+          "Id": "eb115344-3e11-42c0-b769-1283ac6e64ec",
+          "TopicId": "b6768521-24a2-4cd7-9c78-8ee936f0b1ce",
+          "Title": "Non-Clustered Indexes and Composite Key Order",
+          "BodyText": "A non-clustered index is a separate B-tree containing the key columns plus a row locator pointing back to the base table. SQL Server allows up to 999 non-clustered indexes per table.",
+          "Notes": "Syntax: CREATE NONCLUSTERED INDEX ix_orders_customer_date ON orders (customer_id, order_date);",
+          "SortOrder": 2,
+          "CreatedDate": "2026-11-17T05:32:46.7601697-05:00",
+          "ModifiedDate": "2026-11-17T05:32:46.7601697-05:00",
+          "Items": [
+            {
+              "Id": "63bd225f-490e-4cbf-aad5-becceb80196f",
+              "Text": "Lookups search the index B-tree first, then follow the pointer to retrieve columns not held in the index.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "dafb7b5d-e4e4-4e41-aa8b-02a1ea2dc8b7",
+              "Text": "Column order in a composite index matters \u2014 the leading column drives which queries can seek.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "3800f9b9-9ce7-48c5-9460-635d5a5dcf37",
+              "Text": "Place the column used in equality filters first, followed by range or sort columns.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "c45ee75e-277d-4e06-be23-e54456e8c740",
+              "Text": "Best suited to column filters, join keys and secondary lookup paths.",
+              "SortOrder": 3
+            },
+            {
+              "Id": "73f85856-672b-4d22-a72b-3fa3332243fb",
+              "Text": "Index the columns used in WHERE, JOIN ON and ORDER BY clauses.",
+              "SortOrder": 4
+            }
+          ]
+        },
+        {
+          "Id": "17f21af7-0f36-41eb-a656-8df0b9caef10",
+          "TopicId": "b6768521-24a2-4cd7-9c78-8ee936f0b1ce",
+          "Title": "Covering Indexes with INCLUDE",
+          "BodyText": "A covering index contains every column a query needs, so SQL Server never returns to the base table. INCLUDE adds non-key columns to the leaf level of a non-clustered index.",
+          "Notes": "Without a covering index, SELECT order_date, total, status FROM orders WHERE customer_id = 1042 produces an Index Seek plus a Key Lookup; with one, it produces an Index Seek only.",
+          "SortOrder": 3,
+          "CreatedDate": "2026-11-17T05:32:46.7601697-05:00",
+          "ModifiedDate": "2026-11-17T05:32:46.7601697-05:00",
+          "Items": [
+            {
+              "Id": "3beadd31-3f2e-4c43-bc1f-80aeba80a7f4",
+              "Text": "Syntax: CREATE NONCLUSTERED INDEX ix_orders_covering ON orders (customer_id) INCLUDE (order_date, total, status).",
+              "SortOrder": 0
+            },
+            {
+              "Id": "32a1ac7d-5835-4e9c-80d9-d1665732a976",
+              "Text": "INCLUDE columns are not part of the key, so they do not affect seek order or key size limits.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "b72da5f0-5ba3-498f-b45a-54fb1042ad90",
+              "Text": "Covering indexes eliminate Key Lookup and RID Lookup operators seen in execution plans.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "081cae47-ec82-4db3-a46a-cf7e3fd42b58",
+              "Text": "They dramatically reduce I/O but make the index leaf level larger on disk.",
+              "SortOrder": 3
+            },
+            {
+              "Id": "6e0f638a-e573-4f31-80a7-193025a21033",
+              "Text": "SELECT * defeats covering indexes, so request only the columns you need.",
+              "SortOrder": 4
+            }
+          ]
+        },
+        {
+          "Id": "81c54374-dadc-42de-a419-95b723ee7a9f",
+          "TopicId": "b6768521-24a2-4cd7-9c78-8ee936f0b1ce",
+          "Title": "Filtered Indexes for Partial-Table Queries",
+          "BodyText": "A filtered index indexes only the rows that match a WHERE predicate, producing a smaller and more targeted structure. It is ideal where queries repeatedly target a subset such as active or open records.",
+          "Notes": "Example: CREATE NONCLUSTERED INDEX ix_orders_open ON orders (customer_id, order_date) INCLUDE (total) WHERE status = \u0027Open\u0027;",
+          "SortOrder": 4,
+          "CreatedDate": "2026-11-17T05:32:46.7601697-05:00",
+          "ModifiedDate": "2026-11-17T05:32:46.7601697-05:00",
+          "Items": [
+            {
+              "Id": "767ba957-3713-40f3-b37a-bcdc53873644",
+              "Text": "Rows outside the filter are excluded from the index entirely.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "fa0a645f-514e-4b11-a819-8381515b5dcd",
+              "Text": "Smaller size means fewer pages to read and lower maintenance cost on writes.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "ecb50596-00a4-4366-99b2-a13e103a039d",
+              "Text": "Well suited to sparse columns and hot subsets of a large table.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "48063c5d-d989-4c2b-88f7-ccfa6437a379",
+              "Text": "The query predicate must align with the filter for the optimizer to use the index.",
+              "SortOrder": 3
+            }
+          ]
+        },
+        {
+          "Id": "221fa5bb-8cd4-4ed6-93e4-328b5faa3436",
+          "TopicId": "b6768521-24a2-4cd7-9c78-8ee936f0b1ce",
+          "Title": "Columnstore Indexes for Analytics",
+          "BodyText": "A columnstore index stores data column-by-column instead of row-by-row, giving 10\u2013100\u00D7 compression and enabling batch mode execution. It is designed for analytical queries aggregating a few columns across millions of rows.",
+          "Notes": "Non-clustered columnstore: CREATE NONCLUSTERED COLUMNSTORE INDEX nccs_orders_analytics ON orders (order_date, category, total, qty, status). Clustered: CREATE CLUSTERED COLUMNSTORE INDEX ccs_fact_sales ON fact_sales.",
+          "SortOrder": 5,
+          "CreatedDate": "2026-11-17T05:32:46.7601697-05:00",
+          "ModifiedDate": "2026-11-17T05:32:46.7601697-05:00",
+          "Items": [
+            {
+              "Id": "25a237d4-95c0-4c7c-9dd5-d294bf4d3f05",
+              "Text": "A non-clustered columnstore adds analytics capability to an existing OLTP table.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "e7d3e7a2-c6e8-494c-a983-dc84c5a4532b",
+              "Text": "A clustered columnstore converts the whole table to columnar storage \u2014 best for reporting and data warehouse tables.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "4c9e645b-98e0-432a-b46e-849155ac0656",
+              "Text": "Only one clustered columnstore is allowed, but multiple non-clustered columnstore indexes are permitted.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "87d8c7e3-8701-493b-a749-49a96d807f88",
+              "Text": "Large range reads automatically switch to batch mode execution.",
+              "SortOrder": 3
+            },
+            {
+              "Id": "22ea0c12-b2f1-4966-ba34-810185787572",
+              "Text": "Works most effectively against denormalized star-schema fact tables.",
+              "SortOrder": 4
+            }
+          ]
+        },
+        {
+          "Id": "0e259835-2d40-4bf7-a25e-e4e4e9803b49",
+          "TopicId": "b6768521-24a2-4cd7-9c78-8ee936f0b1ce",
+          "Title": "Unique Indexes and Index Type Selection",
+          "BodyText": "A unique index enforces uniqueness as a database-level constraint while also providing a fast lookup path. Selecting among the index types is a trade-off between read benefit, storage and write overhead.",
+          "Notes": "CREATE UNIQUE NONCLUSTERED INDEX uix_customers_email ON customers (email); a UNIQUE CONSTRAINT creates such an index automatically.",
+          "SortOrder": 6,
+          "CreatedDate": "2026-11-17T05:32:46.7601697-05:00",
+          "ModifiedDate": "2026-11-17T05:32:46.7601697-05:00",
+          "Items": [
+            {
+              "Id": "a5604659-81f0-4e77-8f39-7d4b115efc1f",
+              "Text": "Uniqueness can be applied to either a clustered or a non-clustered index.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "41400e0c-c2e7-400f-9e63-55b206062031",
+              "Text": "Clustered: 1 per table, IS the table, best for range and ordered retrieval.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "6e8c5751-fa89-4174-92c9-d75037d83116",
+              "Text": "Non-clustered: up to 999, separate B-tree, best for filters and join keys.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "f1764203-e1f5-443b-98e4-02bbd0b425ad",
+              "Text": "Covering and filtered indexes are variations of non-clustered indexes, differing in leaf contents and row coverage.",
+              "SortOrder": 3
+            },
+            {
+              "Id": "5332953c-2d56-414d-ac99-1b0ce521a70f",
+              "Text": "Columnstore is highly compressed columnar storage for aggregation workloads rather than point lookups.",
+              "SortOrder": 4
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Id": "37885927-f342-45d7-8d13-f4cb51817650",
+      "Title": "Index Management, Trade-offs and Maintenance",
+      "Summary": "Weighs the read benefits of indexes against write overhead, storage cost and fragmentation. Covers finding missing and unused indexes through DMVs, evaluating optimizer recommendations critically, and applying REORGANIZE versus REBUILD maintenance strategies.",
+      "SortOrder": 4,
+      "CreatedDate": "2026-11-17T05:31:03.2531441-05:00",
+      "ModifiedDate": "2026-11-17T05:31:03.2531441-05:00",
+      "Elements": [
+        {
+          "Id": "7dcd0df3-c96f-404a-ac50-ff72e370fd63",
+          "TopicId": "37885927-f342-45d7-8d13-f4cb51817650",
+          "Title": "The Read/Write Trade-off of Indexes",
+          "BodyText": "Indexes accelerate reads but every index must be maintained on every data modification. Index design is therefore a balancing act between query speed and write throughput.",
+          "Notes": "Example: a table with eight non-clustered indexes requires eight additional structure updates for every single INSERT.",
+          "SortOrder": 0,
+          "CreatedDate": "2026-11-17T05:33:15.5879514-05:00",
+          "ModifiedDate": "2026-11-17T05:33:15.5879514-05:00",
+          "Items": [
+            {
+              "Id": "8f9f436a-c84d-4bfd-83d3-ebdfc0867251",
+              "Text": "Reads benefit: Index Seeks replace Table Scans, joins use Nested Loops or Merge instead of Hash Match, and pre-sorted indexes eliminate Sort operators.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "603965e4-786a-4db1-ae30-21d24d0a3167",
+              "Text": "Writes suffer: every INSERT adds a row to all indexes, every UPDATE of an indexed column maintains that index, and every DELETE removes entries from all indexes.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "01fed48e-d00f-474d-9c87-ae96db4afac1",
+              "Text": "Bulk loads of millions of rows become significantly slower as index count grows \u2014 some teams drop and recreate indexes around large loads.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "4b5567bd-f3e8-4f14-a095-696f3efc3514",
+              "Text": "Each non-clustered index is a separate physical structure, adding disk storage and backup size.",
+              "SortOrder": 3
+            },
+            {
+              "Id": "f163e738-43fe-40af-90e3-48ec13410cca",
+              "Text": "Too many overlapping indexes can confuse the optimizer into poor plan choices.",
+              "SortOrder": 4
+            }
+          ]
+        },
+        {
+          "Id": "5b8fc97d-f3e6-4963-bda0-f45968cc7f6e",
+          "TopicId": "37885927-f342-45d7-8d13-f4cb51817650",
+          "Title": "Finding Missing Indexes with DMVs",
+          "BodyText": "SQL Server records every occasion where the optimizer wished an index existed, exposing these through the missing index DMVs. They provide fast wins but must be read critically.",
+          "Notes": "Join sys.dm_db_missing_index_groups, sys.dm_db_missing_index_group_stats and sys.dm_db_missing_index_details, ordering by avg_user_impact.",
+          "SortOrder": 1,
+          "CreatedDate": "2026-11-17T05:33:15.5879514-05:00",
+          "ModifiedDate": "2026-11-17T05:33:15.5879514-05:00",
+          "Items": [
+            {
+              "Id": "05a7fd9a-7866-4157-8761-fd54ea5df90f",
+              "Text": "avg_user_impact estimates the percentage improvement if the suggested index existed.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "89a55141-0214-46a7-a95c-dd7ac6659f1c",
+              "Text": "The DMVs report the suggested equality columns, inequality columns and included columns for the index definition.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "956a1b10-19cb-4684-9b17-60c0c6658121",
+              "Text": "Combine impact with user_seeks \u002B user_scans to judge how frequently the index would actually be used.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "3f0006b9-bedc-4b64-8f8a-f51a22492a1b",
+              "Text": "Recommendations are reset when the SQL Server service restarts, so collect them over a representative workload period.",
+              "SortOrder": 3
+            }
+          ]
+        },
+        {
+          "Id": "7f33cf4c-ebdc-48cd-8eaa-83f9eed58a6d",
+          "TopicId": "37885927-f342-45d7-8d13-f4cb51817650",
+          "Title": "Evaluating Optimizer Recommendations Critically",
+          "BodyText": "Missing index recommendations are generated greedily \u2014 the optimizer evaluates each query in isolation without knowing about existing or other suggested indexes. Blindly creating them all is a common anti-pattern.",
+          "Notes": "A good practice is to consolidate several overlapping suggestions into one composite or covering index rather than creating each separately.",
+          "SortOrder": 2,
+          "CreatedDate": "2026-11-17T05:33:15.5879514-05:00",
+          "ModifiedDate": "2026-11-17T05:33:15.5879514-05:00",
+          "Items": [
+            {
+              "Id": "f69d018b-ea00-46f8-858d-953b30ca30b2",
+              "Text": "Creating every recommendation can produce dozens of near-duplicate indexes that cripple write performance.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "027eb168-bfeb-4c6d-9ca8-6ddc1b06c7fa",
+              "Text": "Weigh each suggestion against how often the query runs and how expensive it is in logical reads.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "676ef7ee-d6c2-4d49-a806-c18036d1ba25",
+              "Text": "Check whether an existing index can be widened with extra key or INCLUDE columns instead of adding a new one.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "fe19826f-bee3-4b45-a9fb-79cd8d7d55b8",
+              "Text": "Always re-measure with SET STATISTICS IO/TIME after creating an index to confirm the predicted benefit materialised.",
+              "SortOrder": 3
+            }
+          ]
+        },
+        {
+          "Id": "3831676e-c363-41f2-bcd3-d3a61165894c",
+          "TopicId": "37885927-f342-45d7-8d13-f4cb51817650",
+          "Title": "Identifying and Removing Unused Indexes",
+          "BodyText": "An index that is never seeked or scanned still costs storage and write overhead on every modification. sys.dm_db_index_usage_stats reveals these pure-cost indexes.",
+          "Notes": "Filter for non-clustered indexes where user_seeks \u002B user_scans = 0 but user_updates \u003E 0, ordered by user_updates descending.",
+          "SortOrder": 3,
+          "CreatedDate": "2026-11-17T05:33:15.5879514-05:00",
+          "ModifiedDate": "2026-11-17T05:33:15.5879514-05:00",
+          "Items": [
+            {
+              "Id": "b95d5aa7-bec0-4a08-b4e1-bff9c416bc81",
+              "Text": "user_seeks and user_scans measure read benefit; user_updates measures maintenance cost.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "ef3af4e3-a1c3-4cbc-b9ce-af0b106b1e6f",
+              "Text": "Usage statistics are cumulative and reset when the SQL Server service restarts, so judge over a full business cycle.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "c2adff3b-af51-44f9-b4ee-e491f87479c5",
+              "Text": "Beware of indexes used only by month-end or quarterly reporting jobs that may show zero usage in a short window.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "1c58e746-144f-4a51-b3de-d172be1cb761",
+              "Text": "Disable an index first rather than dropping it, so it can be quickly re-enabled if a regression appears.",
+              "SortOrder": 3
+            },
+            {
+              "Id": "72becb84-18ad-458c-85a5-5c66b3fe06f4",
+              "Text": "Removing dead indexes reclaims storage and speeds up INSERT, UPDATE, DELETE and bulk loads.",
+              "SortOrder": 4
+            }
+          ]
+        },
+        {
+          "Id": "36a08510-99b9-42d0-a362-6891a198fe65",
+          "TopicId": "37885927-f342-45d7-8d13-f4cb51817650",
+          "Title": "Index Fragmentation and Its Impact",
+          "BodyText": "Over time INSERTs and UPDATEs cause page splits, leaving pages partially full and out of logical order. Fragmented indexes force SQL Server to read more pages to return the same data.",
+          "Notes": "Query sys.dm_db_index_physical_stats(DB_ID(), NULL, NULL, NULL, \u0027LIMITED\u0027) joined to sys.indexes to report avg_fragmentation_in_percent.",
+          "SortOrder": 4,
+          "CreatedDate": "2026-11-17T05:33:15.5879514-05:00",
+          "ModifiedDate": "2026-11-17T05:33:15.5879514-05:00",
+          "Items": [
+            {
+              "Id": "e105d222-b7c2-430c-9b1f-72a32a270ac9",
+              "Text": "Fragmentation directly increases logical and physical reads, undermining the index\u0027s purpose.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "513339a4-e091-4c37-a9a3-11636afa7f95",
+              "Text": "Filter the fragmentation report to indexes with page_count \u003E 100 \u2014 tiny indexes are not worth maintaining.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "d4d360ae-0eaf-444e-89f1-ddd3ddacb705",
+              "Text": "Ignoring fragmentation is a recognised performance anti-pattern alongside stale statistics and over-indexing.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "6abdb78e-03ef-44e3-9842-5c48a8d409e8",
+              "Text": "Fragmentation is a symptom of normal write activity, so it must be managed on a schedule rather than fixed once.",
+              "SortOrder": 3
+            }
+          ]
+        },
+        {
+          "Id": "f02e45ac-297e-46b1-b717-6c81b26454a2",
+          "TopicId": "37885927-f342-45d7-8d13-f4cb51817650",
+          "Title": "REORGANIZE versus REBUILD Maintenance Strategy",
+          "BodyText": "SQL Server offers two defragmentation operations with different cost and thoroughness profiles, chosen according to measured fragmentation level.",
+          "Notes": "ALTER INDEX ix_name ON table REORGANIZE; ALTER INDEX ix_name ON table REBUILD; ALTER INDEX ALL ON table REBUILD;",
+          "SortOrder": 5,
+          "CreatedDate": "2026-11-17T05:33:15.5879514-05:00",
+          "ModifiedDate": "2026-11-17T05:33:15.5879514-05:00",
+          "Items": [
+            {
+              "Id": "d75adc57-34e0-4c20-8534-71d497b8013f",
+              "Text": "Under 5% fragmentation: take no action \u2014 the maintenance cost outweighs the benefit.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "b4899906-b959-489e-855f-5c98eac9ae93",
+              "Text": "Between 5% and 30%: use REORGANIZE, an online, lighter-I/O defragmentation of the leaf level.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "9a2ad344-cfa3-4507-b6b6-6958c202968f",
+              "Text": "Above 30%: use REBUILD, which recreates the index completely and may require an offline window in non-Enterprise editions.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "0feb3497-fa88-41d3-b4e9-787a4c35efaf",
+              "Text": "ALTER INDEX ALL ON table REBUILD rebuilds every index on a table in one statement.",
+              "SortOrder": 3
+            },
+            {
+              "Id": "57d177bc-2e00-492c-9bc6-048afcf8046d",
+              "Text": "Schedule maintenance during low-activity windows and pair it with statistics updates after bulk loads.",
+              "SortOrder": 4
+            }
+          ]
+        },
+        {
+          "Id": "2db00d95-c39b-408e-8619-667ad314a844",
+          "TopicId": "37885927-f342-45d7-8d13-f4cb51817650",
+          "Title": "Keeping Statistics Current",
+          "BodyText": "Index maintenance is incomplete without accurate statistics, because the optimizer relies on column histograms to estimate row counts and choose plans.",
+          "Notes": "Use sys.dm_db_stats_properties to check last_updated, rows and rows_sampled for each statistic.",
+          "SortOrder": 6,
+          "CreatedDate": "2026-11-17T05:33:15.5879514-05:00",
+          "ModifiedDate": "2026-11-17T05:33:15.5879514-05:00",
+          "Items": [
+            {
+              "Id": "d72a80b8-cbda-4bab-a2c7-9cd8e8d13d32",
+              "Text": "Stale statistics cause estimated versus actual row count differences of 10x or more and lead to poor plan choices.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "033a250b-f388-46f0-80f2-cec42688cf42",
+              "Text": "UPDATE STATISTICS table refreshes all statistics; adding WITH FULLSCAN builds the most accurate histogram.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "adc259ec-aae1-420b-a1af-42d98e551653",
+              "Text": "Individual index statistics can be refreshed with UPDATE STATISTICS table index_name.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "d9de1882-d5ed-41c7-98d3-f072c96a12c5",
+              "Text": "Schedule statistics updates weekly and immediately after large bulk loads or data migrations.",
+              "SortOrder": 3
+            },
+            {
+              "Id": "52a55afd-ce59-4553-bc69-11dcff1bbf6e",
+              "Text": "A full index REBUILD updates that index\u0027s statistics as a side effect; REORGANIZE does not.",
+              "SortOrder": 4
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Id": "d39a4994-8c11-4d31-b646-adba47908c37",
+      "Title": "Query Optimization Techniques",
+      "Summary": "Focuses on writing efficient SQL through SARGable predicates, avoiding SELECT *, choosing EXISTS over IN, and preventing implicit type conversions. Also explains how the optimizer uses statistics and when to update them.",
+      "SortOrder": 5,
+      "CreatedDate": "2026-11-17T05:31:03.2531441-05:00",
+      "ModifiedDate": "2026-11-17T05:31:03.2531441-05:00",
+      "Elements": [
+        {
+          "Id": "80c87c64-e0c3-4d9a-8b5a-6d5c7a2b48ea",
+          "TopicId": "d39a4994-8c11-4d31-b646-adba47908c37",
+          "Title": "Query Structure Drives Cost",
+          "BodyText": "Many performance problems stem from how a query is written rather than from a missing index. The same logical result can be expressed in several ways, each with very different execution costs.",
+          "Notes": "Before adding indexes, review the SQL text itself \u2014 a rewrite is often cheaper to deploy and carries no write overhead.",
+          "SortOrder": 0,
+          "CreatedDate": "2026-11-17T05:33:42.389465-05:00",
+          "ModifiedDate": "2026-11-17T05:33:42.389465-05:00",
+          "Items": [
+            {
+              "Id": "14058846-9ea6-470e-a924-ce252980ebb3",
+              "Text": "The optimizer can only choose from plans the written query makes possible.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "28311de4-4086-49b9-a537-6eff50aea028",
+              "Text": "A poorly written predicate can defeat an index that already exists.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "bfa81452-d74a-4cb0-a3cd-5b447dd966a2",
+              "Text": "Query rewrites add no storage or INSERT/UPDATE/DELETE penalty, unlike new indexes.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "5c92d1b8-0281-4f2b-88a0-1cfea520e161",
+              "Text": "Always baseline with SET STATISTICS IO/TIME ON before and after a rewrite to prove the gain.",
+              "SortOrder": 3
+            }
+          ]
+        },
+        {
+          "Id": "395d76ab-5471-4d2c-a00a-9f497fc3f92e",
+          "TopicId": "d39a4994-8c11-4d31-b646-adba47908c37",
+          "Title": "SARGability \u2014 Writing Index-Friendly Predicates",
+          "BodyText": "A condition is SARGable (Search ARGument able) when SQL Server can evaluate it with an index seek. Non-SARGable conditions force index scans or full table scans.",
+          "Notes": "Rule of thumb: keep the column bare on the left-hand side of the comparison and move all expressions to the right.",
+          "SortOrder": 1,
+          "CreatedDate": "2026-11-17T05:33:42.389465-05:00",
+          "ModifiedDate": "2026-11-17T05:33:42.389465-05:00",
+          "Items": [
+            {
+              "Id": "aee87501-cf6f-4a06-9d08-bfaa1c8b2415",
+              "Text": "Wrapping a column in a function, such as WHERE YEAR(order_date) = 2025, prevents a seek.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "e475b693-18f9-4894-bfb2-db8c9d177950",
+              "Text": "Replace it with a range: WHERE order_date \u003E= \u00272025-01-01\u0027 AND order_date \u003C \u00272026-01-01\u0027.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "8c3f67c3-555a-475a-9cb7-7422b3c14080",
+              "Text": "Arithmetic on the column (total * 1.1 \u003E 100) blocks seeks; rewrite as total \u003E 100 / 1.1.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "fc534241-cc92-462b-9807-36d7d42e016d",
+              "Text": "A leading wildcard, LIKE \u0027%Smith\u0027, kills index usage, while a trailing wildcard, LIKE \u0027Smith%\u0027, still seeks.",
+              "SortOrder": 3
+            },
+            {
+              "Id": "496f33a8-3054-445b-87b9-3386e24b9d5a",
+              "Text": "Check the execution plan for a scan where you expected a seek to detect non-SARGable predicates.",
+              "SortOrder": 4
+            }
+          ]
+        },
+        {
+          "Id": "639b7260-52da-4ec4-967d-dd84711da08d",
+          "TopicId": "d39a4994-8c11-4d31-b646-adba47908c37",
+          "Title": "Avoiding SELECT *",
+          "BodyText": "SELECT * retrieves every column in the table, including ones the application never uses. This wastes I/O, memory, and network bandwidth, and it undermines covering indexes.",
+          "Notes": "Example: SELECT order_id, order_date, total FROM orders WHERE customer_id = 1042; lets a covering index satisfy the query entirely.",
+          "SortOrder": 2,
+          "CreatedDate": "2026-11-17T05:33:42.389465-05:00",
+          "ModifiedDate": "2026-11-17T05:33:42.389465-05:00",
+          "Items": [
+            {
+              "Id": "7eb8ec3c-cfe1-4284-b2bc-5cea9b9f9c7e",
+              "Text": "Requesting all columns forces Key Lookups back to the base table because no narrow index can cover the query.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "8c20db16-b74c-40e0-9c41-7b029b948d61",
+              "Text": "Wider result rows consume more buffer pool and more network traffic per execution.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "0bf528c5-f9bc-4e2c-a7fd-ab6e9a109e3c",
+              "Text": "Schema changes silently alter the result shape, which can break downstream code.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "e853e5e4-103e-4527-88c0-25606c3a1b7a",
+              "Text": "Always use explicit, column-specific SELECT lists in production queries.",
+              "SortOrder": 3
+            }
+          ]
+        },
+        {
+          "Id": "a20f9a15-c1b6-4a47-a84c-655a3a32a195",
+          "TopicId": "d39a4994-8c11-4d31-b646-adba47908c37",
+          "Title": "EXISTS vs IN vs JOIN for Existence Checks",
+          "BodyText": "When a query only needs to know whether a related row exists, the choice of construct affects how much work the engine performs. EXISTS is usually the most efficient option for existence tests.",
+          "Notes": "Example: WHERE EXISTS (SELECT 1 FROM orders AS o WHERE o.customer_id = c.customer_id AND o.status = \u0027Open\u0027).",
+          "SortOrder": 3,
+          "CreatedDate": "2026-11-17T05:33:42.389465-05:00",
+          "ModifiedDate": "2026-11-17T05:33:42.389465-05:00",
+          "Items": [
+            {
+              "Id": "fe04657f-4b56-4207-8618-0766b569508e",
+              "Text": "A correlated subquery with IN may be evaluated repeatedly for each outer row.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "225417a3-0ef8-4680-9812-947703cb5eaa",
+              "Text": "EXISTS short-circuits \u2014 it stops searching as soon as the first matching row is found.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "3f509eb5-26e7-44ba-acfe-d0e33d42ecaf",
+              "Text": "SELECT 1 inside EXISTS is sufficient; the column list is never materialised.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "4fc49ae4-3a80-4e64-a2b0-17a812e2214a",
+              "Text": "Use a JOIN instead when you actually need columns from the related table, not just a yes/no answer.",
+              "SortOrder": 3
+            },
+            {
+              "Id": "944f2c75-17f1-453a-93fb-208b33c1b089",
+              "Text": "Beware that IN with NULLs in the subquery result can produce unexpected logical results.",
+              "SortOrder": 4
+            }
+          ]
+        },
+        {
+          "Id": "d96012fa-c006-4f29-bf8c-b21f9d35b35c",
+          "TopicId": "d39a4994-8c11-4d31-b646-adba47908c37",
+          "Title": "Preventing Implicit Type Conversions",
+          "BodyText": "When a WHERE clause compares columns of different data types, SQL Server converts one side to match the other. That conversion is applied to every row and prevents index seeks.",
+          "Notes": "Example problem: WHERE customer_id = \u00271042\u0027 on an INT column. Fix: WHERE customer_id = 1042.",
+          "SortOrder": 4,
+          "CreatedDate": "2026-11-17T05:33:42.389465-05:00",
+          "ModifiedDate": "2026-11-17T05:33:42.389465-05:00",
+          "Items": [
+            {
+              "Id": "7331d5f7-df68-4761-b083-a77a9c430b1e",
+              "Text": "Comparing an INT column to a VARCHAR literal forces SQL Server to convert every row before comparing.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "32146ee8-67d0-45dd-a5d1-2308a1695d51",
+              "Text": "The conversion is applied to the column side, which makes the predicate non-SARGable.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "048f180d-9020-4953-8fba-40fe3aec9bdf",
+              "Text": "Look for CONVERT_IMPLICIT in the execution plan XML or yellow warning triangles in the graphical plan.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "14a8ff7b-e045-4415-a820-6351797c8d38",
+              "Text": "Fix by matching the literal or parameter data type exactly to the column definition.",
+              "SortOrder": 3
+            },
+            {
+              "Id": "0f75685b-884c-4fd6-92e0-58dd5633e753",
+              "Text": "Ensure application and stored procedure parameters are declared with the same type and length as the columns they filter.",
+              "SortOrder": 4
+            }
+          ]
+        },
+        {
+          "Id": "9e5cbd6d-efe3-40b9-a645-4629bcbe3cf6",
+          "TopicId": "d39a4994-8c11-4d31-b646-adba47908c37",
+          "Title": "Statistics \u2014 What the Optimizer Uses to Estimate Cost",
+          "BodyText": "SQL Server statistics are histograms describing the distribution of values in a column. The optimizer uses them to estimate how many rows a predicate will return, and stale statistics lead to poor plan choices.",
+          "Notes": "Query sys.stats with sys.dm_db_stats_properties to see last_updated, rows, and rows_sampled for a table.",
+          "SortOrder": 5,
+          "CreatedDate": "2026-11-17T05:33:42.389465-05:00",
+          "ModifiedDate": "2026-11-17T05:33:42.389465-05:00",
+          "Items": [
+            {
+              "Id": "2dced68f-c677-4a18-b33f-3ff6e25187f6",
+              "Text": "Estimated versus actual row counts differing by 10\u00D7 or more is a classic symptom of stale statistics.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "5391d080-25cd-4f7f-85ab-3255a20c27c7",
+              "Text": "UPDATE STATISTICS orders; refreshes all statistics on a table.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "039be779-1dc5-4e02-96f0-9272cb8e4e55",
+              "Text": "UPDATE STATISTICS orders ix_orders_customer; targets a single index\u0027s statistics.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "e7932a65-6754-4867-addc-53d9c4f0ae3d",
+              "Text": "UPDATE STATISTICS orders WITH FULLSCAN; builds the most accurate histogram at higher cost.",
+              "SortOrder": 3
+            },
+            {
+              "Id": "5f640a9f-abad-4af6-8f6a-8eb4fb4b984e",
+              "Text": "Schedule statistics maintenance weekly and run it after any bulk load or large data change.",
+              "SortOrder": 4
+            }
+          ]
+        },
+        {
+          "Id": "35fb1adc-e487-4fc3-b405-8d33cc545b5b",
+          "TopicId": "d39a4994-8c11-4d31-b646-adba47908c37",
+          "Title": "Query-Writing Best Practices and Anti-Patterns",
+          "BodyText": "A short checklist captures the habits that keep queries efficient and highlights the patterns that repeatedly cause slow performance.",
+          "Notes": "Apply the tuning workflow \u2014 baseline, analyse the plan, hypothesise, implement, verify \u2014 to confirm each rewrite actually helps.",
+          "SortOrder": 6,
+          "CreatedDate": "2026-11-17T05:33:42.389465-05:00",
+          "ModifiedDate": "2026-11-17T05:33:42.389465-05:00",
+          "Items": [
+            {
+              "Id": "bf30f378-153d-44ab-a155-1ade6eb3379e",
+              "Text": "Pre-filter with WHERE before GROUP BY so fewer rows are aggregated.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "e1e545bc-ecc9-4f69-b3ab-cedf9223e359",
+              "Text": "Add SET NOCOUNT ON to stored procedures to remove small but real messaging overhead.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "8d9774b4-7252-462f-899f-70279d250e11",
+              "Text": "Replace cursor-based row-by-row processing with set-based queries.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "3c552f2a-77a8-4c2b-adeb-dd1365c86161",
+              "Text": "Avoid functions on the left side of WHERE, SELECT *, and mismatched data types.",
+              "SortOrder": 3
+            },
+            {
+              "Id": "3c76a4fe-fb7d-4a69-8c37-41a38b3b0e49",
+              "Text": "Use stored procedures so execution plans are compiled once and reused on later calls.",
+              "SortOrder": 4
+            },
+            {
+              "Id": "9715bbec-18f5-4824-af17-2ba6dbac9680",
+              "Text": "Verify every change by comparing logical reads and elapsed time against the original baseline.",
+              "SortOrder": 5
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Id": "17bdfb60-6a6a-4dcc-95aa-ad9d90ca0ed0",
+      "Title": "Normalization, Denormalization and Schema Design for Performance",
+      "Summary": "Compares normalized 3NF designs for OLTP write-heavy workloads against denormalization techniques such as redundant columns, summary tables and star schemas for read-heavy analytics. Introduces indexed views as a way to gain denormalized speed while retaining normalized base tables.",
+      "SortOrder": 6,
+      "CreatedDate": "2026-11-17T05:31:03.2531441-05:00",
+      "ModifiedDate": "2026-11-17T05:31:03.2531441-05:00",
+      "Elements": [
+        {
+          "Id": "e7978526-56de-45ae-8078-9b337b81c540",
+          "TopicId": "17bdfb60-6a6a-4dcc-95aa-ad9d90ca0ed0",
+          "Title": "Normalization (3NF) and Write Performance",
+          "BodyText": "Normalization organizes tables so each piece of information is stored exactly once, which is ideal for OLTP systems with heavy INSERT, UPDATE and DELETE activity. A 3NF design such as separate customers, products, orders and order_items tables keeps each concept in a single place.",
+          "Notes": "Typical 3NF OLTP example: customers(customer_id, customer_name, email), orders(order_id, customer_id, order_date), order_items(item_id, order_id, product_id, quantity, unit_price).",
+          "SortOrder": 0,
+          "CreatedDate": "2026-11-17T05:34:11.937439-05:00",
+          "ModifiedDate": "2026-11-17T05:34:11.937439-05:00",
+          "Items": [
+            {
+              "Id": "a8d7d416-06a3-43a4-8a63-999fb9bab4a8",
+              "Text": "Writes are fast because minimal data must be touched on each INSERT, UPDATE or DELETE.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "855a7a33-c4b8-4ec7-ba6b-d7f6a27ded3f",
+              "Text": "Update anomalies are eliminated \u2014 a customer name change affects exactly one row.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "e9120425-8259-49c9-9fec-bb30c351d227",
+              "Text": "Smaller tables mean better buffer pool efficiency and more rows per data page.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "b547c75a-0d65-42f8-9ad0-0b76a44c57eb",
+              "Text": "Constraints and referential integrity are far easier to enforce and maintain.",
+              "SortOrder": 3
+            },
+            {
+              "Id": "8f2e1e42-8074-4530-88c5-7e297d446081",
+              "Text": "Less locking contention occurs on writes, which helps high-concurrency transactional workloads.",
+              "SortOrder": 4
+            }
+          ]
+        },
+        {
+          "Id": "a0427543-a9c0-4d06-a2b7-a8b0731090a2",
+          "TopicId": "17bdfb60-6a6a-4dcc-95aa-ad9d90ca0ed0",
+          "Title": "The Read Cost of Highly Normalized Schemas",
+          "BodyText": "The trade-off for normalization is that reporting and analytical queries must reassemble data across many tables. Every JOIN adds CPU, memory and I/O cost through hash builds, loop iterations or merge operations.",
+          "Notes": "A single reporting query over a 3NF sales schema can easily require four JOINs: order_items \u2192 orders \u2192 customers, plus products \u2192 categories.",
+          "SortOrder": 1,
+          "CreatedDate": "2026-11-17T05:34:11.937439-05:00",
+          "ModifiedDate": "2026-11-17T05:34:11.937439-05:00",
+          "Items": [
+            {
+              "Id": "be758e9c-d0d9-416b-b3df-da9f96353ffd",
+              "Text": "Complex queries need multiple JOINs, making SQL harder to read and write.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "59646be6-c907-4dc9-951c-e0a6b2e676ef",
+              "Text": "Each additional JOIN adds measurable overhead to the execution plan.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "303471a4-df0c-45f6-a2a4-668b156f5d52",
+              "Text": "More indexes are required because filter and join columns are spread across more tables.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "cc85a7f4-4c6a-487d-9fdc-fb6021da8d08",
+              "Text": "Reporting queries over deeply normalized data are noticeably slower at scale.",
+              "SortOrder": 3
+            },
+            {
+              "Id": "5587ccdc-ed39-4a62-84a1-96d322168c12",
+              "Text": "Measure the JOIN cost with SET STATISTICS IO/TIME ON before concluding the schema is the problem.",
+              "SortOrder": 4
+            }
+          ]
+        },
+        {
+          "Id": "0042a587-d39c-45f2-94da-4082953af857",
+          "TopicId": "17bdfb60-6a6a-4dcc-95aa-ad9d90ca0ed0",
+          "Title": "Denormalization as a Deliberate Design Decision",
+          "BodyText": "Denormalization intentionally introduces redundancy to reduce the number of JOINs required by frequently executed queries. It trades write complexity and the risk of anomalies for faster reads, and should only follow a measured performance problem.",
+          "Notes": "Anti-pattern reminder: denormalizing prematurely adds complexity without proven benefit.",
+          "SortOrder": 2,
+          "CreatedDate": "2026-11-17T05:34:11.937439-05:00",
+          "ModifiedDate": "2026-11-17T05:34:11.937439-05:00",
+          "Items": [
+            {
+              "Id": "f8859d83-fb2d-4954-9a5b-152cfe1e3ac0",
+              "Text": "Denormalization is a measured engineering choice, not an excuse for poor design.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "b5d5b067-577a-4936-ba8a-8fb4353c82aa",
+              "Text": "Advantages include faster reads, simpler SELECT statements and analyst-friendly schemas.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "d04691a4-b243-405b-9e72-398426e29815",
+              "Text": "Pre-aggregation shifts cost to write time (done once) instead of read time (done many times).",
+              "SortOrder": 2
+            },
+            {
+              "Id": "aaf08a02-27dc-402e-8721-1e580750ee30",
+              "Text": "Disadvantages include redundant storage, update anomalies and risk of inconsistency.",
+              "SortOrder": 3
+            },
+            {
+              "Id": "33e78f5b-abdc-445c-98ca-06e0e033c639",
+              "Text": "Write logic becomes more complex, usually requiring triggers or ETL processes.",
+              "SortOrder": 4
+            },
+            {
+              "Id": "502a2fe5-b65f-4671-bc87-bb7154e10340",
+              "Text": "Referential integrity is harder to enforce once values are duplicated across tables.",
+              "SortOrder": 5
+            }
+          ]
+        },
+        {
+          "Id": "7a826b5d-fc56-4352-aed3-ca5e8c11a6c2",
+          "TopicId": "17bdfb60-6a6a-4dcc-95aa-ad9d90ca0ed0",
+          "Title": "Technique 1 \u2014 Redundant and Derived Columns",
+          "BodyText": "The simplest denormalization adds a column that could otherwise be obtained through a JOIN, so hot queries avoid the JOIN entirely. For example, storing customer_name directly on the orders table.",
+          "Notes": "ALTER TABLE orders ADD customer_name VARCHAR(100); \u2014 a redundant copy of customers.customer_name.",
+          "SortOrder": 3,
+          "CreatedDate": "2026-11-17T05:34:11.937439-05:00",
+          "ModifiedDate": "2026-11-17T05:34:11.937439-05:00",
+          "Items": [
+            {
+              "Id": "cf76b720-7fb3-4316-99ee-f892c4dae3bc",
+              "Text": "Best applied to the single hottest query path rather than across the whole schema.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "4c60560a-8443-42bb-8341-30fa9fab5cb6",
+              "Text": "The trade-off: a customer name change must now update both customers and orders.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "137b8fed-68e0-4363-ad77-109766f74922",
+              "Text": "Pre-computed derived values (such as revenue = quantity * unit_price) follow the same pattern.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "3c593877-b9eb-4b7a-b03c-b009233f1c11",
+              "Text": "Any missed update produces silent data inconsistency between the copies.",
+              "SortOrder": 3
+            }
+          ]
+        },
+        {
+          "Id": "368ae840-9f52-4e88-acda-d5f9a92490b0",
+          "TopicId": "17bdfb60-6a6a-4dcc-95aa-ad9d90ca0ed0",
+          "Title": "Technique 2 \u2014 Pre-Aggregated Summary Tables",
+          "BodyText": "A summary table stores pre-computed aggregates that are refreshed by triggers or scheduled jobs, so dashboards read a small table instead of aggregating millions of rows on demand.",
+          "Notes": "Example: daily_sales_summary(summary_date, category_id, order_count, total_revenue, total_qty_sold) keyed on (summary_date, category_id).",
+          "SortOrder": 4,
+          "CreatedDate": "2026-11-17T05:34:11.937439-05:00",
+          "ModifiedDate": "2026-11-17T05:34:11.937439-05:00",
+          "Items": [
+            {
+              "Id": "58e4fed2-91e6-4998-b3c1-6f0657ea619b",
+              "Text": "Reporting queries read one small summary row set instead of scanning fact-level detail.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "6c1d7aa1-36e0-49b2-8c83-b094666d1933",
+              "Text": "Aggregation cost moves from every page load to a single scheduled refresh.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "13c3b8d2-7c12-45fd-964b-f2eb6a0bbc66",
+              "Text": "Refresh strategy must be defined \u2014 triggers for near-real-time, batch jobs for periodic loads.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "7e0bd658-796a-40ff-b47e-d1e5b062bf12",
+              "Text": "Summary data may be slightly stale between refreshes; confirm this is acceptable to users.",
+              "SortOrder": 3
+            }
+          ]
+        },
+        {
+          "Id": "08f66795-5cb0-4ad7-8d75-2f8b3dedf0fd",
+          "TopicId": "17bdfb60-6a6a-4dcc-95aa-ad9d90ca0ed0",
+          "Title": "Technique 3 \u2014 Flattened Reporting Tables and Star Schemas",
+          "BodyText": "Data warehouses store dimension attributes directly in a wide fact table or a single wide dimension, eliminating multi-hop JOINs for standard reports. This structure also suits columnstore indexes and batch-mode execution.",
+          "Notes": "Example fact_sales stores customer_name, product_name and category_name alongside quantity, unit_price and a pre-computed revenue column.",
+          "SortOrder": 5,
+          "CreatedDate": "2026-11-17T05:34:11.937439-05:00",
+          "ModifiedDate": "2026-11-17T05:34:11.937439-05:00",
+          "Items": [
+            {
+              "Id": "e5bc32d5-164d-492c-aab2-39c81e99ae24",
+              "Text": "Dimension attributes are copied into the fact table so no lookup JOINs are needed.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "7deecd84-975e-418f-b11e-5ebc6b066f6d",
+              "Text": "Star and snowflake schemas are the recommended design for bulk analytical reads.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "0cb88ba1-8199-489e-9d7c-fef2a13dd0ae",
+              "Text": "Columnstore indexes compress wide fact tables 10\u2013100\u00D7 and enable batch mode processing.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "f6ecefab-ec2c-4752-9d5d-332f8adf5d65",
+              "Text": "Loads are handled by ETL, which also owns the responsibility for keeping copies consistent.",
+              "SortOrder": 3
+            }
+          ]
+        },
+        {
+          "Id": "fb4e6e46-355c-44d1-903a-2a3cb8ba54c1",
+          "TopicId": "17bdfb60-6a6a-4dcc-95aa-ad9d90ca0ed0",
+          "Title": "Indexed Views \u2014 Normalized Base, Denormalized Speed",
+          "BodyText": "An indexed view (a materialized view in other platforms) physically stores a view\u0027s result set and lets SQL Server maintain it automatically. You keep normalized base tables while gaining denormalized read performance.",
+          "Notes": "Create the view WITH SCHEMABINDING using COUNT_BIG(*), then add a UNIQUE CLUSTERED INDEX to materialize it; queries against the base tables can be automatically rewritten to use it.",
+          "SortOrder": 6,
+          "CreatedDate": "2026-11-17T05:34:11.937439-05:00",
+          "ModifiedDate": "2026-11-17T05:34:11.937439-05:00",
+          "Items": [
+            {
+              "Id": "575ea30c-e0bc-4c9a-aa07-65d05f3b7c6b",
+              "Text": "Step 1: define the aggregating view WITH SCHEMABINDING over the normalized tables.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "d3ce1462-e39a-45c5-a3e2-3905cf49b2f4",
+              "Text": "Step 2: create a unique clustered index on the view \u2014 this materializes the result set.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "5fa74d26-e5d2-4cc5-9ef2-8074126efb37",
+              "Text": "Step 3: existing queries can use the view automatically with zero application changes.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "e3874a1f-91ea-4bec-9b05-51c2f7b705de",
+              "Text": "SQL Server keeps the aggregation current, removing the need for custom triggers or ETL.",
+              "SortOrder": 3
+            },
+            {
+              "Id": "b429322e-e535-49a9-9cea-17279b54f8c6",
+              "Text": "Ideal for mixed OLTP plus reporting workloads where integrity and speed are both required.",
+              "SortOrder": 4
+            }
+          ]
+        },
+        {
+          "Id": "32cd571f-5288-4e24-b919-059708eacd73",
+          "TopicId": "17bdfb60-6a6a-4dcc-95aa-ad9d90ca0ed0",
+          "Title": "Choosing the Right Approach for the Workload",
+          "BodyText": "Schema design for performance is about matching the structure to the dominant workload. Use this decision guide when selecting between normalization, denormalization and hybrid approaches.",
+          "Notes": "Where possible, separate OLTP and reporting workloads entirely using read replicas or a dedicated data warehouse.",
+          "SortOrder": 7,
+          "CreatedDate": "2026-11-17T05:34:11.937439-05:00",
+          "ModifiedDate": "2026-11-17T05:34:11.937439-05:00",
+          "Items": [
+            {
+              "Id": "d9760e0c-343c-46e8-a6d6-a5e8bffb4785",
+              "Text": "E-commerce orders and banking transactions: normalize to 3NF \u2014 write-heavy with critical integrity.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "35e0f3a4-0227-488e-9dff-3120720fc98b",
+              "Text": "Executive dashboards and monthly reports: denormalize with summary tables for instant response.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "b031804a-4f14-44d1-b165-e38c36905284",
+              "Text": "Data warehouse and historical analytics: use a star or snowflake schema optimized for columnstore.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "b2570730-b457-4696-b333-f5c251fee4db",
+              "Text": "Mixed OLTP plus some reporting: normalize and add indexed views so SQL Server maintains aggregates.",
+              "SortOrder": 3
+            },
+            {
+              "Id": "6124bd99-81d2-4755-80d7-a68261eef704",
+              "Text": "High-concurrency read APIs: apply selective denormalization only to the hottest query path.",
+              "SortOrder": 4
+            },
+            {
+              "Id": "54a4a087-6966-4d74-a63e-d8cfc8a8d398",
+              "Text": "Choose appropriate data types throughout \u2014 smaller types fit more rows per page and reduce I/O.",
+              "SortOrder": 5
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Id": "4936db56-3377-4bbd-affe-369f8644f5a4",
+      "Title": "Advanced Techniques and the Tuning Workflow",
+      "Summary": "Covers partitioning for large time-series tables, temp tables versus CTEs and table variables, and stored procedure plan reuse. Concludes with the seven-step tuning workflow, best practice checklists and common anti-patterns to avoid.",
+      "SortOrder": 7,
+      "CreatedDate": "2026-11-17T05:31:03.2531441-05:00",
+      "ModifiedDate": "2026-11-17T05:31:03.2531441-05:00",
+      "Elements": [
+        {
+          "Id": "befe2707-5326-4ac7-aca6-b09dbef4f1e4",
+          "TopicId": "4936db56-3377-4bbd-affe-369f8644f5a4",
+          "Title": "Table Partitioning for Large Time-Series Tables",
+          "BodyText": "Table partitioning physically divides a very large table into smaller segments based on a column value, most commonly a date. Queries that target a date range then read only the relevant segments instead of the whole table.",
+          "Notes": "Implementation is a three-step process: CREATE PARTITION FUNCTION defines the boundary values, CREATE PARTITION SCHEME maps partitions to filegroups, and the table is created ON the scheme using the partition column.",
+          "SortOrder": 0,
+          "CreatedDate": "2026-11-17T05:34:43.6260243-05:00",
+          "ModifiedDate": "2026-11-17T05:34:43.6260243-05:00",
+          "Items": [
+            {
+              "Id": "e7300e08-aac4-4160-a5be-9c254f6e9dd0",
+              "Text": "A RANGE RIGHT partition function such as pf_orders_by_year with values \u00272023-01-01\u0027, \u00272024-01-01\u0027 and \u00272025-01-01\u0027 creates four yearly partitions.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "f494c365-1856-46d8-8dcf-b01648f35b7c",
+              "Text": "The partition scheme determines which filegroup each partition lives on; ALL TO ([PRIMARY]) places them all on one filegroup.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "52a27fdf-fe78-4036-aa0b-3198037c5fab",
+              "Text": "Partition elimination occurs when the WHERE clause includes the partition column, so SQL Server skips non-matching partitions entirely.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "0f44c095-61fc-4f5f-a0f6-cd8aeae9a40d",
+              "Text": "A query for order_date \u003E= \u00272025-01-01\u0027 reads only the most recent partition even if earlier partitions hold billions of rows.",
+              "SortOrder": 3
+            },
+            {
+              "Id": "3f01ec38-11ce-49d5-a5ed-b8c63725f333",
+              "Text": "Partitioning is listed in the schema-design checklist as the recommended approach for large time-series tables.",
+              "SortOrder": 4
+            }
+          ]
+        },
+        {
+          "Id": "7a1225b4-47f7-4f90-8dbc-bfeebbc6bde5",
+          "TopicId": "4936db56-3377-4bbd-affe-369f8644f5a4",
+          "Title": "Temp Tables for Staging Complex Multi-Step Logic",
+          "BodyText": "A temp table (#temp) is stored in tempdb, automatically gets statistics, and can be indexed. This makes it ideal for intermediate results that are queried or joined more than once.",
+          "Notes": "Example: SELECT customer_id, SUM(total) INTO #customer_totals FROM orders WHERE status=\u0027Completed\u0027 GROUP BY customer_id; then CREATE NONCLUSTERED INDEX ix_ct_customer ON #customer_totals (customer_id).",
+          "SortOrder": 1,
+          "CreatedDate": "2026-11-17T05:34:43.6260243-05:00",
+          "ModifiedDate": "2026-11-17T05:34:43.6260243-05:00",
+          "Items": [
+            {
+              "Id": "d98f9095-4013-4aaa-8109-2be51de6892d",
+              "Text": "Materializing an aggregate once avoids recomputing it on every reference in a complex query.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "ba203e7e-d813-4153-8e87-b48ddf803a0a",
+              "Text": "Adding a non-clustered index to the temp table before joining gives the optimizer a seek path.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "4d1fa54f-7860-45ad-817d-17af5159861e",
+              "Text": "Because temp tables carry real statistics, the optimizer produces far better cardinality estimates than with inline constructs.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "50d4bf10-3ea3-4f7c-8b52-89ffa410cc9c",
+              "Text": "Always DROP the temp table when finished to release tempdb resources.",
+              "SortOrder": 3
+            },
+            {
+              "Id": "681a6c9b-9246-4182-b798-d0db59334d4c",
+              "Text": "Temp tables are best suited to multi-step logic and large intermediate result sets.",
+              "SortOrder": 4
+            }
+          ]
+        },
+        {
+          "Id": "1c9f9991-9b67-4f64-9a7f-155c7b041130",
+          "TopicId": "4936db56-3377-4bbd-affe-369f8644f5a4",
+          "Title": "CTEs, Subqueries and Table Variables Compared",
+          "BodyText": "Not every intermediate result needs materialising. Subqueries, CTEs, temp tables and table variables differ in whether they are materialized and whether the optimizer has statistics for them.",
+          "Notes": "Choosing the wrong construct for a large intermediate set is a common cause of bad cardinality estimates and poor plans.",
+          "SortOrder": 2,
+          "CreatedDate": "2026-11-17T05:34:43.6260243-05:00",
+          "ModifiedDate": "2026-11-17T05:34:43.6260243-05:00",
+          "Items": [
+            {
+              "Id": "0c0c8976-b62d-4b7f-aafa-537e52304511",
+              "Text": "A subquery is inlined each time it is referenced and relies on the outer table\u0027s statistics; use it for simple one-level nesting.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "2e49337e-7445-4dd2-ad72-8020c89224b6",
+              "Text": "A CTE is also expanded inline with no materialization \u2014 its value is readability and support for recursive queries.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "db4b2784-512f-4025-8c76-5b7023103735",
+              "Text": "A temp table (#temp) is materialized in tempdb with auto-created statistics, making it best for multi-step logic and large results.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "57ecf3f3-3255-4642-a2fb-1d4cc83dccc2",
+              "Text": "A table variable (@tbl) is materialized in tempdb but carries minimal statistics (often a one-row estimate), so restrict it to small, short-lived sets.",
+              "SortOrder": 3
+            },
+            {
+              "Id": "041efffb-ba35-499d-b908-f4bb4eb689c6",
+              "Text": "A CTE is not a performance optimization in itself \u2014 it does not cache or materialize the result.",
+              "SortOrder": 4
+            }
+          ]
+        },
+        {
+          "Id": "146ddb7f-f56c-43f7-b67e-2aae3cce31c8",
+          "TopicId": "4936db56-3377-4bbd-affe-369f8644f5a4",
+          "Title": "Stored Procedures, Plan Caching and SET NOCOUNT ON",
+          "BodyText": "Stored procedures compile their execution plan once and cache it, so subsequent calls reuse the plan without recompilation overhead. This makes them an efficient way to run repeated parameterised workloads.",
+          "Notes": "Example: CREATE PROCEDURE usp_CustomerOrders @customer_id INT, @start_date DATE, @end_date DATE AS BEGIN SET NOCOUNT ON; SELECT ... WHERE o.customer_id = @customer_id AND o.order_date BETWEEN @start_date AND @end_date; END;",
+          "SortOrder": 3,
+          "CreatedDate": "2026-11-17T05:34:43.6260243-05:00",
+          "ModifiedDate": "2026-11-17T05:34:43.6260243-05:00",
+          "Items": [
+            {
+              "Id": "eda381d1-ffa2-4b6c-ade6-feaf1d3e32ed",
+              "Text": "Parameterised procedures encourage plan reuse rather than generating a new ad-hoc plan for every literal value.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "7cfe3bb2-dc55-4bd1-a111-6c49a1e894b3",
+              "Text": "SET NOCOUNT ON suppresses row-count messages, removing a small but real network and processing overhead on every statement.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "3a129b54-ab3b-4a44-9047-52aace03aad7",
+              "Text": "The best-practices checklist recommends adding SET NOCOUNT ON to all stored procedures.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "39d566f6-1671-4e7e-a9ce-136aa7b587c9",
+              "Text": "Cached plans can still be tracked over time with Query Store to detect regressions after a plan change.",
+              "SortOrder": 3
+            }
+          ]
+        },
+        {
+          "Id": "8a6cdb89-6dda-4c49-b1f1-7bc26c9289c5",
+          "TopicId": "4936db56-3377-4bbd-affe-369f8644f5a4",
+          "Title": "The Seven-Step Performance Tuning Workflow",
+          "BodyText": "Effective tuning is a repeatable, evidence-driven cycle rather than guesswork. The workflow moves from identifying a problem query through to monitoring the fix under real workload.",
+          "Notes": "The same structure underpins a tuning report: document pre-optimization performance, the optimization chosen and why, then post-optimization performance.",
+          "SortOrder": 4,
+          "CreatedDate": "2026-11-17T05:34:43.6260243-05:00",
+          "ModifiedDate": "2026-11-17T05:34:43.6260243-05:00",
+          "Items": [
+            {
+              "Id": "0a791917-47ec-41d3-bbb7-4a8fd24f93b3",
+              "Text": "1. Identify \u2014 find the slow query or bottleneck using sys.dm_exec_query_stats, Query Store or Activity Monitor.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "b2e6b54c-5fbe-4eaf-9b48-817647ad2154",
+              "Text": "2. Baseline \u2014 measure current reads, CPU and elapsed time with SET STATISTICS IO / TIME ON.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "2cf41596-9b5c-42f2-affb-18a98a23537d",
+              "Text": "3. Analyse \u2014 understand why it is slow using the execution plan, DMVs and wait stats.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "0bc89ba1-870d-4c09-9ce3-ab3a73e8b0b5",
+              "Text": "4. Hypothesise and 5. Implement \u2014 pick the most likely fix (missing index, SARGability rewrite, schema change) and apply it.",
+              "SortOrder": 3
+            },
+            {
+              "Id": "5c3300a2-dd86-410e-aee8-8acab018fb57",
+              "Text": "6. Verify \u2014 re-measure with SET STATISTICS IO / TIME ON and compare directly against the baseline.",
+              "SortOrder": 4
+            },
+            {
+              "Id": "349ce428-3dc0-4e3f-be33-41f45a27e6df",
+              "Text": "7. Monitor \u2014 confirm the fix holds under real workload via Query Store regressions and scheduled DMV alerts.",
+              "SortOrder": 5
+            }
+          ]
+        },
+        {
+          "Id": "ba71d431-3e2e-44f6-b994-3045bff9f27a",
+          "TopicId": "4936db56-3377-4bbd-affe-369f8644f5a4",
+          "Title": "Best Practice Checklists \u2014 Indexing, Queries and Schema",
+          "BodyText": "Consolidated checklists give a practical set of defaults to apply across indexing, query writing and schema design. They capture the habits that prevent most performance problems before they appear.",
+          "Notes": "Use these as a review list during code review or before releasing a new query to production.",
+          "SortOrder": 5,
+          "CreatedDate": "2026-11-17T05:34:43.6260243-05:00",
+          "ModifiedDate": "2026-11-17T05:34:43.6260243-05:00",
+          "Items": [
+            {
+              "Id": "150742cf-db5c-4b06-b0c0-823686ffa0b6",
+              "Text": "Indexing: give every table a clustered index, index WHERE/JOIN/ORDER BY columns, use INCLUDE for covering indexes, and remove unused indexes.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "18cdd9cb-a11b-4ecb-8217-a0d2b8648872",
+              "Text": "Maintenance: rebuild indexes above 30% fragmentation, reorganize between 5\u201330%, and refresh statistics weekly or after bulk loads.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "761c8df4-6cd3-4f41-a091-cd48a555d751",
+              "Text": "Query writing: use explicit column lists, write SARGable predicates, match data types, pre-filter before GROUP BY, and prefer EXISTS over IN.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "6421ee52-b502-4708-b97f-60a9ff8572f8",
+              "Text": "Schema design: use 3NF for OLTP, denormalize selectively for read-heavy paths, consider indexed views for frequent aggregations, and partition large tables on date.",
+              "SortOrder": 3
+            },
+            {
+              "Id": "2b0924cd-a2e2-4d5c-a381-1da633fefef4",
+              "Text": "Separate OLTP and reporting workloads where possible, and choose the smallest appropriate data types so more rows fit per page.",
+              "SortOrder": 4
+            }
+          ]
+        },
+        {
+          "Id": "19203bda-0d12-4b2b-a5e9-f5266172a27f",
+          "TopicId": "4936db56-3377-4bbd-affe-369f8644f5a4",
+          "Title": "Common Anti-Patterns to Avoid",
+          "BodyText": "A handful of recurring mistakes account for a large share of production performance problems. Recognising them quickly shortens the diagnosis phase of the tuning workflow.",
+          "Notes": "Each anti-pattern maps to a specific diagnostic signal \u2014 a scan operator, a CONVERT_IMPLICIT warning, high write counts on unused indexes, or stale last_updated values on statistics.",
+          "SortOrder": 6,
+          "CreatedDate": "2026-11-17T05:34:43.6260243-05:00",
+          "ModifiedDate": "2026-11-17T05:34:43.6260243-05:00",
+          "Items": [
+            {
+              "Id": "51a9b617-71dd-4d8d-8ae5-f9828069c2b8",
+              "Text": "Functions in WHERE clauses, such as WHERE YEAR(date) = 2025, always force a scan instead of a seek.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "56a8f27a-370f-47ac-ab33-6e32aa3a730b",
+              "Text": "SELECT * retrieves unnecessary columns, wastes I/O and network bandwidth, and defeats covering indexes.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "11cb85dc-e801-4c2a-86ce-aa9d34849d7a",
+              "Text": "Cursor-based row-by-row processing should be replaced by a single set-based query.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "b8bcc785-6368-4151-ab8d-6935624b14a6",
+              "Text": "Implicit type conversions, such as comparing an INT column to a VARCHAR literal, force a full scan.",
+              "SortOrder": 3
+            },
+            {
+              "Id": "8a35c724-861f-46d6-8b6e-9d6e45b0eb4e",
+              "Text": "Over-indexing slows every INSERT, UPDATE and DELETE, while stale statistics and ignored fragmentation quietly degrade read plans.",
+              "SortOrder": 4
+            },
+            {
+              "Id": "284c7f3a-e1bc-46bf-9d63-c6d68980268a",
+              "Text": "Denormalizing prematurely adds complexity and anomaly risk before a measured problem justifies it.",
+              "SortOrder": 5
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "TotalElementCount": 54
+}

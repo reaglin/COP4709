@@ -1,0 +1,1388 @@
+{
+  "ModuleFolderName": "Module_2_(Week_2)",
+  "CourseName": "COP4709 \u2014 Applied Database II",
+  "GeneratedDate": "2026-11-17T04:58:35.8214542-05:00",
+  "ModifiedDate": "2026-11-17T05:01:02.4611311-05:00",
+  "Outcomes": [],
+  "Topics": [
+    {
+      "Id": "b0ebf1bd-c26c-4f19-8de6-cdc31c27e255",
+      "Title": "Importing XML Data from Data.gov into SQL Server",
+      "Summary": "Walks through locating and downloading an XML dataset from Data.gov and moving it into SQL Server, using Excel and XML as intermediate steps in the import workflow. Assumes working familiarity with both SQL Server and Excel.",
+      "SortOrder": 0,
+      "CreatedDate": "2026-11-17T04:58:35.8214542-05:00",
+      "ModifiedDate": "2026-11-17T04:58:35.8214542-05:00",
+      "Elements": [
+        {
+          "Id": "8f8ed4a6-383f-4ad3-b1ce-bda0835884a9",
+          "TopicId": "b0ebf1bd-c26c-4f19-8de6-cdc31c27e255",
+          "Title": "Why Import Data from Data.gov",
+          "BodyText": "Data.gov is a large public repository of government datasets that are commonly used as practice and production data sources for database work. Importing from it mirrors the real ETL (Extract, Transform, Load) work you will do throughout this course.",
+          "Notes": "ETL/ELT simply describes getting data into your database from an external source \u2014 something you will do nearly every week.",
+          "SortOrder": 0,
+          "CreatedDate": "2026-11-17T04:58:57.8712427-05:00",
+          "ModifiedDate": "2026-11-17T04:58:57.8712427-05:00",
+          "Items": [
+            {
+              "Id": "e291f26d-ce99-4b5f-9ff0-dce5c51d2839",
+              "Text": "Public data portals publish datasets in multiple formats including XML, CSV, and JSON.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "d1147afa-f670-4c9c-9a05-c44619504f52",
+              "Text": "XML is a structured, tag-based format that carries both data and its hierarchy.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "b40d99d0-a1d4-4d9d-b3c6-4944257a3c2b",
+              "Text": "Working with real public data exposes you to the inconsistencies found in production datasets.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "4db0e87f-7bc0-46bc-9102-27b0a2fa7790",
+              "Text": "The same workflow applies to other open-data sources such as the College Scorecard data used in Assignment 2.",
+              "SortOrder": 3
+            }
+          ]
+        },
+        {
+          "Id": "3c0d69c4-42fe-4904-801c-c0f288a34230",
+          "TopicId": "b0ebf1bd-c26c-4f19-8de6-cdc31c27e255",
+          "Title": "Prerequisites and Tools for the Workflow",
+          "BodyText": "This import demonstration assumes a working familiarity with both SQL Server and Microsoft Excel. Each tool plays a specific role in moving XML data into a relational table.",
+          "Notes": "",
+          "SortOrder": 1,
+          "CreatedDate": "2026-11-17T04:58:57.8712427-05:00",
+          "ModifiedDate": "2026-11-17T04:58:57.8712427-05:00",
+          "Items": [
+            {
+              "Id": "d38c5dce-1656-41af-a466-d4c6fccb5e23",
+              "Text": "SQL Server provides the destination database, the Import/Export Wizard, and the query engine.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "9ed6cd66-2df1-4632-bf0f-3311a9b842a0",
+              "Text": "Excel acts as an intermediate staging tool that can open and flatten XML into rows and columns.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "ca1cf6fc-0f71-4da3-ae54-959a8f101dca",
+              "Text": "You should be comfortable creating a database and running basic SELECT statements before starting.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "6fd71ed0-73e2-42ff-b332-e2609991e1bd",
+              "Text": "Free integration and import tools bundled with SQL Server handle most routine import tasks.",
+              "SortOrder": 3
+            }
+          ]
+        },
+        {
+          "Id": "cd0d287d-6966-4c00-8a78-8f4fb3b7154b",
+          "TopicId": "b0ebf1bd-c26c-4f19-8de6-cdc31c27e255",
+          "Title": "Locating and Downloading the XML Dataset",
+          "BodyText": "The first step is to find a suitable dataset on Data.gov and download the XML version of the file to your local machine. Reviewing the dataset description before downloading saves rework later.",
+          "Notes": "You rarely need every field in a published dataset \u2014 identify only the columns required for your analysis.",
+          "SortOrder": 2,
+          "CreatedDate": "2026-11-17T04:58:57.8712427-05:00",
+          "ModifiedDate": "2026-11-17T04:58:57.8712427-05:00",
+          "Items": [
+            {
+              "Id": "b4699405-3784-481f-b894-9a97bb960887",
+              "Text": "Search or browse Data.gov by topic and filter results by the XML file format.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "510cb3b6-3072-4ce5-af8c-ce5ea9d0cb1b",
+              "Text": "Review the dataset\u0027s documentation or data dictionary to understand field names and meanings.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "c10d0d83-0a48-4780-9e0f-0dec7f76ff40",
+              "Text": "Download the XML file and note its location on disk before moving to the next step.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "c34d2d8c-8c59-4bcf-b0da-6a410d4cdde9",
+              "Text": "Check the file size, since very large XML files may need to be trimmed or split before import.",
+              "SortOrder": 3
+            }
+          ]
+        },
+        {
+          "Id": "2cddf5f4-e43c-4194-bfb3-8d1a28463731",
+          "TopicId": "b0ebf1bd-c26c-4f19-8de6-cdc31c27e255",
+          "Title": "Using Excel as an Intermediate Step",
+          "BodyText": "Excel can open an XML file and map its elements into a tabular worksheet, which makes the data far easier to move into SQL Server. This intermediate step also gives you a chance to inspect and clean the data.",
+          "Notes": "The cleanest import happens when every cell contains a valid value rather than a formula, blank, or malformed entry.",
+          "SortOrder": 3,
+          "CreatedDate": "2026-11-17T04:58:57.8712427-05:00",
+          "ModifiedDate": "2026-11-17T04:58:57.8712427-05:00",
+          "Items": [
+            {
+              "Id": "37dad686-1515-47aa-a891-89b0511185d1",
+              "Text": "Open the XML file in Excel and allow Excel to infer or apply an XML schema.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "f5677416-a048-4fc8-a62c-0a92c4cc576a",
+              "Text": "Excel converts the nested XML structure into flat rows and columns.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "0591092b-dc38-4d71-a2b1-7363d78d8aa6",
+              "Text": "Review column headers and data types so they align with your intended table design.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "5082320a-1048-4856-b226-a64ee4bba0b5",
+              "Text": "Remove unnecessary columns and rows to reduce the size of the import.",
+              "SortOrder": 3
+            },
+            {
+              "Id": "05a8940c-6342-400c-a16f-7f1115f94442",
+              "Text": "Save the cleaned worksheet as an Excel workbook or CSV for the SQL Server import.",
+              "SortOrder": 4
+            }
+          ]
+        },
+        {
+          "Id": "1a005836-90fa-4f77-9678-0e5b8f24211e",
+          "TopicId": "b0ebf1bd-c26c-4f19-8de6-cdc31c27e255",
+          "Title": "Importing into SQL Server",
+          "BodyText": "With the data flattened and cleaned, you use SQL Server\u0027s import tooling to create and populate a destination table. Choosing appropriate data types at this stage prevents errors and simplifies later queries.",
+          "Notes": "Example: create a database such as CollegeDatabase first, then import into a new table within it.",
+          "SortOrder": 4,
+          "CreatedDate": "2026-11-17T04:58:57.8712427-05:00",
+          "ModifiedDate": "2026-11-17T04:58:57.8712427-05:00",
+          "Items": [
+            {
+              "Id": "8682b811-b6a6-44bd-907e-15866fed2470",
+              "Text": "Create the destination database in SQL Server before running the import.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "5bb8f053-96fd-49b7-91f9-7d9307309a0a",
+              "Text": "Launch the SQL Server Import and Export Wizard and select your Excel or flat-file source.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "75c1635d-ee39-4608-beb6-1438a88ab0cb",
+              "Text": "Map source columns to destination columns and set data types (numeric fields should not import as text).",
+              "SortOrder": 2
+            },
+            {
+              "Id": "c9c6d587-ec8b-4e8f-a687-f61ba5cd0088",
+              "Text": "Preview the mapping, then execute the import and review the success or error messages.",
+              "SortOrder": 3
+            },
+            {
+              "Id": "e1774f21-9ea8-455a-8ecf-39d8e0c1a367",
+              "Text": "Run a simple SELECT query to confirm the row count and verify the data landed correctly.",
+              "SortOrder": 4
+            }
+          ]
+        },
+        {
+          "Id": "7f7e8684-4c23-4b02-83cb-87595dee8023",
+          "TopicId": "b0ebf1bd-c26c-4f19-8de6-cdc31c27e255",
+          "Title": "Troubleshooting Common Import Errors",
+          "BodyText": "Import failures are normal and usually trace back to formatting problems in the source data rather than SQL Server itself. Knowing where to look makes resolution quick.",
+          "Notes": "There are many valid ways to clean data; the goal is simply that all cells are valid values.",
+          "SortOrder": 5,
+          "CreatedDate": "2026-11-17T04:58:57.8712427-05:00",
+          "ModifiedDate": "2026-11-17T04:58:57.8712427-05:00",
+          "Items": [
+            {
+              "Id": "5c100a01-68e7-4e76-8d9a-ea34442fa7db",
+              "Text": "Truncation errors usually mean a destination column is too narrow for the incoming text.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "26f07b53-6650-42f2-83f0-f3e0e8bfd923",
+              "Text": "Type conversion errors occur when text or blanks appear in a column mapped as numeric.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "8093a48e-ca73-4420-84dd-8dd8bf9c1187",
+              "Text": "Malformed or inconsistent XML tags may prevent Excel from building a usable schema.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "0ea011fb-afb1-47dc-9a61-ae08636be496",
+              "Text": "Return to Excel to correct the offending values, then re-run the import.",
+              "SortOrder": 3
+            },
+            {
+              "Id": "1db83c38-b766-4ca4-8a0d-b14033f8dfd9",
+              "Text": "If an error cannot be resolved, post it to the Assignments Q\u0026A or contact the instructor.",
+              "SortOrder": 4
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Id": "e1bab177-008c-4683-a951-4e564ce7bf2e",
+      "Title": "Preparing CSV Flat Files for Import",
+      "Summary": "Covers using Excel to open, inspect, and clean a CSV file so that every cell contains a valid value suitable for a flat-file database import. Demonstrates several common data-cleaning techniques while emphasizing that many valid approaches exist.",
+      "SortOrder": 1,
+      "CreatedDate": "2026-11-17T04:58:35.8214542-05:00",
+      "ModifiedDate": "2026-11-17T04:58:35.8214542-05:00",
+      "Elements": [
+        {
+          "Id": "cfa394ed-f100-46e4-8e11-763c2ed790f8",
+          "TopicId": "e1bab177-008c-4683-a951-4e564ce7bf2e",
+          "Title": "Why Flat Files Need Preparation Before Import",
+          "BodyText": "A CSV flat file is a simple text format where each row is a record and commas separate the fields, but the raw file is rarely ready for a database. The cleanest, easiest import happens when every cell holds a valid value and nothing else.",
+          "Notes": "Downloaded datasets such as the College Scorecard files often contain suppressed values, privacy placeholders, and mixed data types that will break or distort an import.",
+          "SortOrder": 0,
+          "CreatedDate": "2026-11-17T04:59:21.6796515-05:00",
+          "ModifiedDate": "2026-11-17T04:59:21.6796515-05:00",
+          "Items": [
+            {
+              "Id": "51a978f1-b7f3-4910-8c44-cf3e27cf00c8",
+              "Text": "The goal of preparation is simple: all cells are values, and all values are valid entries for their column.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "715ddcfc-1e08-4944-81c9-d3e67969ca11",
+              "Text": "Unprepared files cause import failures, truncated columns, or columns typed incorrectly as text.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "6a3d157c-a48a-4dfa-92b0-22bea5e61232",
+              "Text": "Formulas, merged cells, and stray characters are common sources of import errors.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "5ebd4e9b-9118-4a15-95a5-fc6bb524aeff",
+              "Text": "This step is usually easier to do before the import than to fix afterward in SQL.",
+              "SortOrder": 3
+            }
+          ]
+        },
+        {
+          "Id": "8ffeb70a-6e0b-4cc1-a20d-dc9556d7843d",
+          "TopicId": "e1bab177-008c-4683-a951-4e564ce7bf2e",
+          "Title": "Opening and Inspecting a CSV in Excel",
+          "BodyText": "Excel is a convenient tool for reading a CSV file and seeing the shape of the data before it ever touches SQL Server. The first pass is purely diagnostic: understand the columns, the row count, and where the problems live.",
+          "Notes": "For large files, consider working only with the columns you actually need rather than all of them.",
+          "SortOrder": 1,
+          "CreatedDate": "2026-11-17T04:59:21.6796515-05:00",
+          "ModifiedDate": "2026-11-17T04:59:21.6796515-05:00",
+          "Items": [
+            {
+              "Id": "3503abb3-0db3-4cd3-90ef-5a5e8454a475",
+              "Text": "Open the CSV in Excel and review the header row to confirm column names are usable as field names.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "7f407b84-7725-4d62-8ff0-6fff9d90c184",
+              "Text": "Scan each column to identify its intended data type: text, integer, decimal, or date.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "1b6d3d15-b5fb-4bb0-8cae-44595e7269f9",
+              "Text": "Use filters, sorting, or conditional formatting to surface blanks, outliers, and unexpected text.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "da25667a-62c1-4942-bb84-d1639738a0ad",
+              "Text": "Note the total number of rows and columns so you can verify the import brought everything in.",
+              "SortOrder": 3
+            }
+          ]
+        },
+        {
+          "Id": "ee2bd65b-38f2-4cc3-9830-d2793a194e08",
+          "TopicId": "e1bab177-008c-4683-a951-4e564ce7bf2e",
+          "Title": "Handling Blanks, Nulls, and Placeholder Values",
+          "BodyText": "Datasets frequently use special markers such as NULL, PrivacySuppressed, N/A, or blanks instead of real numbers. These placeholders must be resolved so the column can be typed consistently.",
+          "Notes": "In the College Scorecard data, suppressed values and zero-debt entries both need handling \u2014 the assignment explicitly asks for non-zero debt values and adequate sample sizes.",
+          "SortOrder": 2,
+          "CreatedDate": "2026-11-17T04:59:21.6796515-05:00",
+          "ModifiedDate": "2026-11-17T04:59:21.6796515-05:00",
+          "Items": [
+            {
+              "Id": "68dea351-6c91-48c4-9f69-328fd74f2182",
+              "Text": "Decide for each column whether a placeholder should become an empty cell, a zero, or a true NULL.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "2d33e18c-0474-47bc-b2c9-e8326bd28eee",
+              "Text": "Use Find and Replace to standardize placeholder text across an entire column in one pass.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "e2b36ed2-4c5f-46e8-aff7-5d49998340d8",
+              "Text": "Be deliberate about zeros: a zero can be a real value or a disguised missing value, and the difference matters in analysis.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "e5e6a102-ce11-4335-bc65-3043a7f1ecfd",
+              "Text": "Document your choices so your later query results can be explained accurately.",
+              "SortOrder": 3
+            }
+          ]
+        },
+        {
+          "Id": "3d1fdd51-6d0d-4a22-b2bf-18f383805a2e",
+          "TopicId": "e1bab177-008c-4683-a951-4e564ce7bf2e",
+          "Title": "Converting Formulas and Formats to Clean Values",
+          "BodyText": "Anything in a cell that is not a plain value \u2014 a formula, a currency symbol, a stray space \u2014 can confuse the import process. Converting everything to static, correctly typed values makes the flat file predictable.",
+          "Notes": "",
+          "SortOrder": 3,
+          "CreatedDate": "2026-11-17T04:59:21.6796515-05:00",
+          "ModifiedDate": "2026-11-17T04:59:21.6796515-05:00",
+          "Items": [
+            {
+              "Id": "6d5414d2-cf56-4673-a0ec-165043727b8b",
+              "Text": "Use Copy followed by Paste Special \u003E Values to replace formulas with their computed results.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "ff8f4ad3-096a-40f7-ac16-25a1575f15ed",
+              "Text": "Apply TRIM and CLEAN to strip leading, trailing, and nonprinting characters from text fields.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "828b885d-d336-43c7-8fad-37c85aa7d08c",
+              "Text": "Remove currency symbols, thousands separators, and percent signs so numeric columns import as numbers.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "56801cf2-1f52-401e-a9b4-3bbd2c022247",
+              "Text": "Confirm that numbers stored as text are converted, since text-typed numbers sort and compare incorrectly.",
+              "SortOrder": 3
+            }
+          ]
+        },
+        {
+          "Id": "949acbfe-c643-4dba-980f-3b8a670ea098",
+          "TopicId": "e1bab177-008c-4683-a951-4e564ce7bf2e",
+          "Title": "Trimming the File to the Columns You Actually Need",
+          "BodyText": "You do not have to import every field in a large public dataset. Reducing the file to the relevant columns shortens the import, simplifies the schema, and lowers the chance of a single bad column failing the whole load.",
+          "Notes": "For Assignment 2, only the institution name and the cumulative debt fields (CUML_DEBT_P10, P25, P75, P90) plus a sample-size field are strictly required.",
+          "SortOrder": 4,
+          "CreatedDate": "2026-11-17T04:59:21.6796515-05:00",
+          "ModifiedDate": "2026-11-17T04:59:21.6796515-05:00",
+          "Items": [
+            {
+              "Id": "8a72347d-4d91-48ba-a0b8-8c9d80d7ab43",
+              "Text": "Identify the fields required by your analysis before deleting anything.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "2cc30eb3-ad4c-4ed3-8f48-0beedb30d945",
+              "Text": "Delete or hide unneeded columns, then save a working copy separate from the original download.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "af0bfa48-8814-4029-a097-22b9f1738403",
+              "Text": "Keep a key or identifier column so records remain traceable back to the source.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "9b88089a-4462-449a-a6a5-3a40dba9a952",
+              "Text": "Save the cleaned sheet back out as CSV, verifying the delimiter and encoding are preserved.",
+              "SortOrder": 3
+            }
+          ]
+        },
+        {
+          "Id": "380eef24-d3ad-494c-822a-9ebcd2b5e936",
+          "TopicId": "e1bab177-008c-4683-a951-4e564ce7bf2e",
+          "Title": "There Are Many Valid Ways to Clean Data",
+          "BodyText": "The techniques shown are examples, not a fixed procedure. Different analysts will reach a clean, importable file by different routes, and the test is whether the result loads correctly and preserves meaning.",
+          "Notes": "Experiment with several import methods \u2014 the practice itself is part of the learning objective for this module.",
+          "SortOrder": 5,
+          "CreatedDate": "2026-11-17T04:59:21.6796515-05:00",
+          "ModifiedDate": "2026-11-17T04:59:21.6796515-05:00",
+          "Items": [
+            {
+              "Id": "b454c576-a522-4917-a92c-e05ea254d5ce",
+              "Text": "Cleaning can be done in Excel, in a text editor, during the import wizard, or in SQL after staging the raw data.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "a7b1541b-fdd6-45a6-9580-c495455a4881",
+              "Text": "Choose the approach that is repeatable and that you can explain in a report.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "61a63e30-6cf8-4af7-8c94-772f3382b1a8",
+              "Text": "Always validate after import by checking row counts and spot-checking a few known records.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "823c3e24-6c00-499c-a292-fabc3c66a81c",
+              "Text": "Keep the untouched original file so you can restart if a cleaning decision proves wrong.",
+              "SortOrder": 3
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Id": "4c201327-6a83-4792-ab2f-21eed12785a3",
+      "Title": "ETL/ELT Concepts and SQL Server Import Tools",
+      "Summary": "Introduces ETL (or ELT) as the practice of moving data from external sources into your database, a task repeated throughout the course. Explores the most effective import methods and the free integration and import tools available for SQL Server.",
+      "SortOrder": 2,
+      "CreatedDate": "2026-11-17T04:58:35.8214542-05:00",
+      "ModifiedDate": "2026-11-17T04:58:35.8214542-05:00",
+      "Elements": [
+        {
+          "Id": "62c210a8-3aac-46ae-ac55-a61068552437",
+          "TopicId": "4c201327-6a83-4792-ab2f-21eed12785a3",
+          "Title": "What ETL (and ELT) Means in Practice",
+          "BodyText": "ETL stands for Extract, Transform, Load \u2014 the practice of pulling data from an external source, shaping it, and placing it into your database. In this course you will perform some form of ETL (or ELT) nearly every week.",
+          "Notes": "ELT simply reorders the steps: you load the raw data into the database first and perform transformations with SQL afterward. Which order you choose often depends on how messy the source file is and how powerful your database engine is.",
+          "SortOrder": 0,
+          "CreatedDate": "2026-11-17T04:59:53.8169997-05:00",
+          "ModifiedDate": "2026-11-17T04:59:53.8169997-05:00",
+          "Items": [
+            {
+              "Id": "559619dd-f6f9-4127-b84d-b83884494e77",
+              "Text": "Extract means obtaining the raw data from an outside source such as Data.gov or the College Scorecard site.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "0b3a8719-96a9-4520-b4f0-e2bd63993732",
+              "Text": "Transform means cleaning, reformatting, and validating the data so it matches your target table structure.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "f92f534f-0798-4f12-88fc-b51fc53f3ba4",
+              "Text": "Load means inserting the prepared data into SQL Server tables.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "3450fd72-fe0b-4966-a305-4049cfa594d8",
+              "Text": "ELT loads first and transforms inside the database, which is useful for very large or unfamiliar datasets.",
+              "SortOrder": 3
+            },
+            {
+              "Id": "3783b0b2-0192-471e-a77b-7cfb462c6d8f",
+              "Text": "Treat ETL as a repeatable workflow, not a one-time task, because you will repeat it with new data each module.",
+              "SortOrder": 4
+            }
+          ]
+        },
+        {
+          "Id": "68410207-36c2-4612-bbce-77c39830a4b3",
+          "TopicId": "4c201327-6a83-4792-ab2f-21eed12785a3",
+          "Title": "Common External Data Sources and File Formats",
+          "BodyText": "Public data portals publish datasets in a handful of standard formats, and the format you download determines the import path you take. The course demonstrations use XML and CSV files pulled from government data sites.",
+          "Notes": "Example sources include Data.gov and the U.S. Department of Education College Scorecard data at https://collegescorecard.ed.gov/data/.",
+          "SortOrder": 1,
+          "CreatedDate": "2026-11-17T04:59:53.8169997-05:00",
+          "ModifiedDate": "2026-11-17T04:59:53.8169997-05:00",
+          "Items": [
+            {
+              "Id": "d3ac4d96-9445-40e6-bbaf-c2ad6b8ff972",
+              "Text": "XML files carry structure and tags, and can be opened in Excel or parsed directly by SQL Server.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "9952c842-ead5-4e3c-a280-0072005af5f5",
+              "Text": "CSV and other flat files are the most common and simplest format for bulk import.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "caca6496-4aea-46a3-8c12-f4831a1bc615",
+              "Text": "Excel workbooks are a convenient intermediate staging area between the raw download and the database.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "6b392e8e-785f-4bc6-9809-eaf0da6bf0b9",
+              "Text": "Always inspect the data dictionary or field list before importing so you know what each column means.",
+              "SortOrder": 3
+            },
+            {
+              "Id": "71e83fb9-6bb9-4149-acfb-4f96b45f4305",
+              "Text": "You rarely need every column \u2014 import only the fields required to answer your questions.",
+              "SortOrder": 4
+            }
+          ]
+        },
+        {
+          "Id": "6f6703b8-73ec-4ca6-a3e0-6feac07c8808",
+          "TopicId": "4c201327-6a83-4792-ab2f-21eed12785a3",
+          "Title": "Importing an XML File into SQL Server",
+          "BodyText": "The Lecture 2-1 demonstration walks through pulling an XML file from Data.gov and bringing it into SQL Server. It shows how Excel and XML each serve as a step along the import path.",
+          "Notes": "Familiarity with both SQL Server and Excel is assumed before attempting this demonstration.",
+          "SortOrder": 2,
+          "CreatedDate": "2026-11-17T04:59:53.8169997-05:00",
+          "ModifiedDate": "2026-11-17T04:59:53.8169997-05:00",
+          "Items": [
+            {
+              "Id": "a6bbf266-24ad-4aab-afc8-d90f2d82f1b5",
+              "Text": "Download the XML dataset from the public portal and save it locally.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "0aada053-61f5-44bc-b1d1-ead56c50d4a0",
+              "Text": "Open the XML in Excel to review its structure and confirm the fields you need.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "056906c4-18ee-4043-b7c6-bbe6954b1715",
+              "Text": "Use Excel to convert or stage the data into a tabular layout suitable for import.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "5a056b02-aa92-4459-8cc3-7a1309ee3cdf",
+              "Text": "Run the SQL Server import process to load the staged data into a destination table.",
+              "SortOrder": 3
+            },
+            {
+              "Id": "01591e25-fbda-4c32-9dbd-0dc81826168b",
+              "Text": "Verify the row count and spot-check values after the load completes.",
+              "SortOrder": 4
+            }
+          ]
+        },
+        {
+          "Id": "058ffb87-8855-427d-b680-5d78fee48e5a",
+          "TopicId": "4c201327-6a83-4792-ab2f-21eed12785a3",
+          "Title": "Preparing a CSV Flat File for Import",
+          "BodyText": "Flat files rarely arrive clean, so Excel is used to inspect and correct the data before loading. The cleanest import happens when every cell holds a valid value of the expected type.",
+          "Notes": "This technique is best attempted after you already have some experience importing files; there are many valid ways to clean data, and the lecture demonstrates only a few.",
+          "SortOrder": 3,
+          "CreatedDate": "2026-11-17T04:59:53.8169997-05:00",
+          "ModifiedDate": "2026-11-17T04:59:53.8169997-05:00",
+          "Items": [
+            {
+              "Id": "19994cb4-fe3d-4502-a4d1-36c4b6f161ec",
+              "Text": "Open the CSV in Excel and scan for blanks, text in numeric columns, and stray delimiters.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "01a1db31-7665-497f-ac96-3064a73cbf2c",
+              "Text": "Convert formulas to static values so only data \u2014 not calculations \u2014 is imported.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "2cd7b0fe-ba63-48ea-bff7-6297e39b68a9",
+              "Text": "Standardize column headers to names that are legal and meaningful as SQL column names.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "b5a51fdf-e69c-42f7-8886-cd3524fd42f6",
+              "Text": "Remove or replace nulls, placeholder codes, and zero values that would distort analysis.",
+              "SortOrder": 3
+            },
+            {
+              "Id": "b65ce754-12bd-4f99-ba3d-8d91ba4c5e30",
+              "Text": "Save the cleaned sheet back to CSV before running the import wizard.",
+              "SortOrder": 4
+            }
+          ]
+        },
+        {
+          "Id": "09b0f69e-ba6d-47d4-a769-7a8e9a337e9a",
+          "TopicId": "4c201327-6a83-4792-ab2f-21eed12785a3",
+          "Title": "Free Integration and Import Tools for SQL Server",
+          "BodyText": "SQL Server ships with and is supported by several no-cost tools for moving data in, and you will use them repeatedly throughout the course. Knowing which tool fits which situation saves considerable time.",
+          "Notes": "Part of the graded discussion asks you to query an AI tool about these free integration and import tools and report what you learn.",
+          "SortOrder": 4,
+          "CreatedDate": "2026-11-17T04:59:53.8169997-05:00",
+          "ModifiedDate": "2026-11-17T04:59:53.8169997-05:00",
+          "Items": [
+            {
+              "Id": "db2b41e4-413e-48f3-81e8-6b59e5b2234c",
+              "Text": "The SQL Server Import and Export Wizard in SSMS handles ad hoc loads from Excel, CSV, and other sources.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "00b9a104-21ef-4572-ab3f-a89292cea83c",
+              "Text": "The Import Flat File Wizard infers column types automatically for delimited text files.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "57759c07-5d02-4a6a-b1c1-42c4c4e31d04",
+              "Text": "BULK INSERT and bcp provide fast, scriptable loading of large flat files.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "9cd8e8d9-488f-49c3-9258-d94823a8dc96",
+              "Text": "SQL Server Integration Services (SSIS) supports repeatable, scheduled ETL packages with transformations.",
+              "SortOrder": 3
+            },
+            {
+              "Id": "b4cff7b1-d0cb-4752-a0a0-38b9ddff45e0",
+              "Text": "Azure Data Factory and similar services extend the same concepts to cloud-based pipelines.",
+              "SortOrder": 4
+            }
+          ]
+        },
+        {
+          "Id": "a5019e38-fec2-487c-8969-ab7829a2b358",
+          "TopicId": "4c201327-6a83-4792-ab2f-21eed12785a3",
+          "Title": "Choosing the Most Effective Import Method",
+          "BodyText": "There is no single best way to import data; the effective choice depends on file size, format, frequency, and how much cleanup is required. The graded discussion asks you to research and defend an answer to exactly this question.",
+          "Notes": "Report your AI tool used, the prompt, the response, and your own comments \u2014 follow-up prompts about the free tools are encouraged.",
+          "SortOrder": 5,
+          "CreatedDate": "2026-11-17T04:59:53.8169997-05:00",
+          "ModifiedDate": "2026-11-17T04:59:53.8169997-05:00",
+          "Items": [
+            {
+              "Id": "3c5d0ed0-ccfb-4e0f-a2cd-640c3b3d7674",
+              "Text": "Use the wizard for one-time, small-to-medium imports where speed of setup matters most.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "fcf46620-f461-441a-9842-a6415c0de078",
+              "Text": "Use BULK INSERT or bcp when performance on large files is the priority.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "f443b007-a12b-4260-8aaa-bd09ac6394ec",
+              "Text": "Use SSIS when the same import must run repeatedly or involves multiple transformation steps.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "9a9eeed8-ffd3-42e0-8353-2cbc85f89add",
+              "Text": "Factor in data quality: very dirty files may be easier to stage in Excel first.",
+              "SortOrder": 3
+            },
+            {
+              "Id": "03e22dbe-6a13-41b3-a4ae-d1eb8d2fa355",
+              "Text": "Document the method you chose so your import process can be reproduced and explained in your report.",
+              "SortOrder": 4
+            }
+          ]
+        },
+        {
+          "Id": "425ef35f-0bba-488a-ad48-d5684ce21a3a",
+          "TopicId": "4c201327-6a83-4792-ab2f-21eed12785a3",
+          "Title": "Applying ETL in Assignment 2",
+          "BodyText": "Assignment 2 puts these concepts to work by having you create a CollegeDatabase and import College Scorecard statistics into SQL Server. You then query the loaded data and present results in a formatted report.",
+          "Notes": "Grading allocates 5 points for successfully downloading and importing the data and 5 points for structuring the correct query and reporting results. Expect about 30 minutes for the query work and a few hours to experiment with import methods.",
+          "SortOrder": 6,
+          "CreatedDate": "2026-11-17T04:59:53.8169997-05:00",
+          "ModifiedDate": "2026-11-17T04:59:53.8169997-05:00",
+          "Items": [
+            {
+              "Id": "12f9061f-cb15-47d4-af42-91b198565a15",
+              "Text": "Download the two provided 2015 data files, or more recent data from the College Scorecard site.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "d5d5dbfb-b950-48ab-947c-b910e2758bfe",
+              "Text": "Import only the fields you need, such as the cumulative loan debt columns, rather than every column.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "b3e5b4e1-a7f5-4ecd-9a35-0531522f977c",
+              "Text": "Filter out zero debt values and records with fewer than 100 students to ensure a valid sample.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "21f3e7be-74d1-4c32-a3d3-b7403f633937",
+              "Text": "Report results as real tables in Word or PDF, not as screen captures.",
+              "SortOrder": 3
+            },
+            {
+              "Id": "d44313fc-7ace-4b26-bacb-aa1e34620e20",
+              "Text": "Include the SQL used, a summary of the process, and a plain-language description of what the numbers mean.",
+              "SortOrder": 4
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Id": "eab7b6de-7b65-49d2-8e40-5819384d7e68",
+      "Title": "Querying and Analyzing Imported Data",
+      "Summary": "Applies basic SQL to the imported dataset to identify highest and lowest values, filter non-zero results, and enforce sample-size thresholds. Points to foundational SQL practice resources needed before tackling deeper course material.",
+      "SortOrder": 3,
+      "CreatedDate": "2026-11-17T04:58:35.8214542-05:00",
+      "ModifiedDate": "2026-11-17T04:58:35.8214542-05:00",
+      "Elements": [
+        {
+          "Id": "7c5d18b5-27fe-48ca-bf23-4f860ca355fd",
+          "TopicId": "eab7b6de-7b65-49d2-8e40-5819384d7e68",
+          "Title": "Purpose of Querying the Imported Data",
+          "BodyText": "Once the College Scorecard data is loaded into the CollegeDatabase, the next step is to interrogate it with basic SQL to answer specific questions about student loan debt. The goal is to turn raw imported rows into meaningful comparisons.",
+          "Notes": "The assignment objective is to demonstrate both the ability to import data into SQL Server and to analyze that data with basic queries.",
+          "SortOrder": 0,
+          "CreatedDate": "2026-11-17T05:00:17.5873396-05:00",
+          "ModifiedDate": "2026-11-17T05:00:17.5873396-05:00",
+          "Items": [
+            {
+              "Id": "b6133d16-9d7d-46eb-85a4-d12702efe73e",
+              "Text": "The database to be created and queried is named CollegeDatabase.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "f2fd0184-45d9-4652-b841-ebf19efe6d84",
+              "Text": "Four fields deal with cumulative loan debt: CUML_DEBT_P10, CUML_DEBT_P25, CUML_DEBT_P75, and CUML_DEBT_P90.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "87295525-62cc-409b-9dc0-52eb2465dcaa",
+              "Text": "Analysis focuses on the 75th and 90th percentile cumulative loan debt fields.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "301b8f89-fb40-4b96-afce-c7631b95c41c",
+              "Text": "You do not need to import every column \u2014 only the fields required to answer the question.",
+              "SortOrder": 3
+            }
+          ]
+        },
+        {
+          "Id": "45205053-c91d-47b0-bb0f-5c11ada3b4ef",
+          "TopicId": "eab7b6de-7b65-49d2-8e40-5819384d7e68",
+          "Title": "Identifying Highest and Lowest Values",
+          "BodyText": "The core analytical task is ranking institutions by cumulative loan debt and extracting the extremes at each end of the range. This is accomplished with ordering and row-limiting in SQL.",
+          "Notes": "Example result rows include AOMA Graduate School of Integrative Medicine at $131,335.00 and several institutions clustered at $57,500.00 for 90th percentile cumulative loan debt.",
+          "SortOrder": 1,
+          "CreatedDate": "2026-11-17T05:00:17.5873396-05:00",
+          "ModifiedDate": "2026-11-17T05:00:17.5873396-05:00",
+          "Items": [
+            {
+              "Id": "e2aa9536-2964-4dfe-98e0-506f1bc912b7",
+              "Text": "Report the 10 highest and 10 lowest schools for loan debt at 75% degree completion.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "26492818-1162-443b-8eee-ef53a49df3d0",
+              "Text": "Report the 10 highest and 10 lowest schools for loan debt at 90% degree completion.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "6a7d95c5-e1ef-4330-ada9-a696ebc0191f",
+              "Text": "Sorting ascending versus descending produces the lowest and highest lists respectively.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "39d579fb-1b53-4a53-bc29-9ff7464b8ec1",
+              "Text": "Results can be produced with multiple queries compiled by hand, though a single query is achievable.",
+              "SortOrder": 3
+            }
+          ]
+        },
+        {
+          "Id": "6142f5d1-212e-4bf0-97f2-559272f13ce3",
+          "TopicId": "eab7b6de-7b65-49d2-8e40-5819384d7e68",
+          "Title": "Filtering Out Zero and Invalid Results",
+          "BodyText": "Raw scorecard data contains zero or missing debt values that would distort a \u0027lowest\u0027 ranking. A WHERE clause is used to exclude these records before ranking.",
+          "Notes": "Without filtering, the ten \u0027lowest\u0027 institutions would simply be ten schools reporting no debt data at all.",
+          "SortOrder": 2,
+          "CreatedDate": "2026-11-17T05:00:17.5873396-05:00",
+          "ModifiedDate": "2026-11-17T05:00:17.5873396-05:00",
+          "Items": [
+            {
+              "Id": "7ff225dd-22bb-4837-ace4-f43be9ecb12a",
+              "Text": "Only non-zero debt values should appear in the lowest-value lists.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "1a8e2fa7-7dbe-4329-92dd-0e55da32a8f4",
+              "Text": "Filtering is applied in the WHERE clause before ORDER BY ranks the rows.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "66554a32-a3dc-4a19-ba40-6766921f31a4",
+              "Text": "Zero values typically indicate missing or unreported data rather than genuinely debt-free graduates.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "3dbed08e-3db7-42b9-8a8c-f28e6524e4b3",
+              "Text": "Each of the four debt fields requires its own non-zero filter when reported separately.",
+              "SortOrder": 3
+            }
+          ]
+        },
+        {
+          "Id": "84a1459c-0307-45b5-b6d9-4c2a470ac33e",
+          "TopicId": "eab7b6de-7b65-49d2-8e40-5819384d7e68",
+          "Title": "Enforcing a Sample-Size Threshold",
+          "BodyText": "Averages computed from very small student populations are statistically unreliable. The analysis therefore restricts results to institutions with a sufficient number of students.",
+          "Notes": "This is a condition added alongside the non-zero filter in the same WHERE clause.",
+          "SortOrder": 3,
+          "CreatedDate": "2026-11-17T05:00:17.5873396-05:00",
+          "ModifiedDate": "2026-11-17T05:00:17.5873396-05:00",
+          "Items": [
+            {
+              "Id": "b9c6bf13-daf7-4c88-8525-1b48f545205b",
+              "Text": "Only institutions with more than 100 students should be included in the debt tables.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "ad106a1d-7cca-4f13-8525-fff36eeb4ca7",
+              "Text": "The threshold ensures an average debt load is meaningful rather than driven by outliers.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "5ca4c798-2948-4eda-bdfe-d877bed7fa90",
+              "Text": "Combining the non-zero and sample-size conditions requires a compound WHERE clause using AND.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "290c9a3d-6135-4062-a7bd-2fbc41b227e4",
+              "Text": "Applying the threshold changes which schools appear at the top and bottom of the rankings.",
+              "SortOrder": 3
+            }
+          ]
+        },
+        {
+          "Id": "32fbf6be-d572-4b28-bc47-a4b31996e91b",
+          "TopicId": "eab7b6de-7b65-49d2-8e40-5819384d7e68",
+          "Title": "Including a Comparison Institution",
+          "BodyText": "To give the rankings context, a specific benchmark institution is appended to the result set regardless of where it ranks. This demonstrates how to combine filtered results with targeted lookups.",
+          "Notes": "Daytona State College serves as the baseline for interpreting whether the extreme values are unusual.",
+          "SortOrder": 4,
+          "CreatedDate": "2026-11-17T05:00:17.5873396-05:00",
+          "ModifiedDate": "2026-11-17T05:00:17.5873396-05:00",
+          "Items": [
+            {
+              "Id": "c555f095-1e2c-4566-9a8c-3b4741950eff",
+              "Text": "Daytona State College data must appear in the report for comparison purposes.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "15bb1795-bc98-440a-a32f-e3ffd06637ee",
+              "Text": "DSC can be appended to the query results, for example with a UNION or an additional OR condition.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "9d3b7d13-cef3-4cb3-b504-b517d5d78774",
+              "Text": "The comparison figure does not have to sit inside the main table, but it must appear in the report.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "ed37be38-a1b8-486c-a17c-ed891b9b6fbe",
+              "Text": "Including a familiar reference point helps readers interpret the magnitude of the extreme values.",
+              "SortOrder": 3
+            }
+          ]
+        },
+        {
+          "Id": "3282a5ac-8abb-4790-adf6-1afba462079e",
+          "TopicId": "eab7b6de-7b65-49d2-8e40-5819384d7e68",
+          "Title": "Reporting Query Results Professionally",
+          "BodyText": "Analysis is only valuable when communicated clearly, so results must be presented in a readable report rather than raw output. The report shows both the SQL used and the formatted results.",
+          "Notes": "Example description of results: \u0022These numbers represent the average debt owed by students after 90% completion of their program of study in dollars.\u0022",
+          "SortOrder": 5,
+          "CreatedDate": "2026-11-17T05:00:17.5873396-05:00",
+          "ModifiedDate": "2026-11-17T05:00:17.5873396-05:00",
+          "Items": [
+            {
+              "Id": "671f21e6-9543-44fe-bc87-1cf8f9dc7da8",
+              "Text": "Results must be presented as a formatted table, not a screen capture.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "c34f2f3c-f015-48e6-b6fa-a90912f8a643",
+              "Text": "Screen captures are generally not acceptable in professional database reports.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "2eac249e-abdd-4ef6-b035-f9804c1c9669",
+              "Text": "Every report should include an explanation of the data, a summary of the process, and a description of the results.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "acdc387d-6fa6-4107-8990-c07d4259f27c",
+              "Text": "The description of results explains what the numbers mean rather than simply restating them.",
+              "SortOrder": 3
+            },
+            {
+              "Id": "a0b7816e-9211-41d5-a4e4-b4ee7a7707ec",
+              "Text": "The finished report is submitted as a Word or PDF file and includes the queries used.",
+              "SortOrder": 4
+            }
+          ]
+        },
+        {
+          "Id": "b3a67f1b-6658-43a8-9a85-362ceecf486f",
+          "TopicId": "eab7b6de-7b65-49d2-8e40-5819384d7e68",
+          "Title": "Foundational SQL Practice Resources",
+          "BodyText": "Students who are not yet comfortable writing SELECT, WHERE, and ORDER BY statements should build those skills before attempting the deeper material later in the course. Several free practice sites are recommended.",
+          "Notes": "The SQL needed for this assignment is very basic; the course goes into significantly more depth afterward.",
+          "SortOrder": 6,
+          "CreatedDate": "2026-11-17T05:00:17.5873396-05:00",
+          "ModifiedDate": "2026-11-17T05:00:17.5873396-05:00",
+          "Items": [
+            {
+              "Id": "e1664403-7751-4018-93d3-809f64b16ec4",
+              "Text": "W3Schools offers an interactive SQL editor at http://www.w3schools.com/sql/sql_tryit.asp for basic practice.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "d7b95a14-af07-4694-a9e9-8287a34de731",
+              "Text": "SQL Fiddle hosts a sample schema from this dataset at http://sqlfiddle.com/#!2/231fb for experimentation.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "921eada4-1c97-4dcb-a9e1-24a402e0bb86",
+              "Text": "Students should be familiar with all SQL commands covered at http://www.sqlcourse2.com/intro2.html as a starting point.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "47c326c7-6c01-497c-9fb2-fc4656809ab9",
+              "Text": "Expect roughly 30 minutes for the query work itself, plus a few hours to work through the lectures and import methods.",
+              "SortOrder": 3
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Id": "d90d6a14-dec2-47bc-a679-940de6a051ab",
+      "Title": "Professional Reporting of Database Results",
+      "Summary": "Explains report format expectations: an explanation of the data, a summary of the process, and a description of what the results actually mean. Stresses presenting query output as formatted tables rather than screen captures.",
+      "SortOrder": 4,
+      "CreatedDate": "2026-11-17T04:58:35.8214542-05:00",
+      "ModifiedDate": "2026-11-17T04:58:35.8214542-05:00",
+      "Elements": [
+        {
+          "Id": "41c5c04c-32d8-4f85-b7ae-3e807cf41334",
+          "TopicId": "d90d6a14-dec2-47bc-a679-940de6a051ab",
+          "Title": "Why Report Format Matters",
+          "BodyText": "When you work with databases, running the query is only half the job; communicating the results is the other half. A database results report presents your findings in a friendly, easy-to-read format for a reader who did not run the query.",
+          "Notes": "In Assignment 2, the deliverable is not the query output itself but a report submitted as a Word or PDF file.",
+          "SortOrder": 0,
+          "CreatedDate": "2026-11-17T05:00:37.3319478-05:00",
+          "ModifiedDate": "2026-11-17T05:00:37.3319478-05:00",
+          "Items": [
+            {
+              "Id": "16ad1c30-f24f-4ef0-9924-5c7e383fe9ed",
+              "Text": "Reports translate raw query output into information a decision-maker can act on.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "9262c354-a15b-423d-b4ab-dc78d789fcdc",
+              "Text": "The audience may not know SQL, so the presentation must stand on its own.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "22c47a4e-4a9f-4253-9d14-e34990b37333",
+              "Text": "Submissions should be a single professional document (Word or PDF), not loose screenshots.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "c33d4cd5-eda0-4107-95f3-f847cd212222",
+              "Text": "Reporting results is a skill you will repeat every time you query a database.",
+              "SortOrder": 3
+            }
+          ]
+        },
+        {
+          "Id": "44260ec9-e869-41b7-953b-f5a687e0c08b",
+          "TopicId": "d90d6a14-dec2-47bc-a679-940de6a051ab",
+          "Title": "The Three Required Report Sections",
+          "BodyText": "Every report should contain an explanation of the data, a summary of the process, and a description of the results. These three parts frame the numbers so they can be understood correctly.",
+          "Notes": "Missing any one of these sections leaves the reader guessing about source, method, or meaning.",
+          "SortOrder": 1,
+          "CreatedDate": "2026-11-17T05:00:37.3319478-05:00",
+          "ModifiedDate": "2026-11-17T05:00:37.3319478-05:00",
+          "Items": [
+            {
+              "Id": "84714fd7-39b8-48df-9de8-145bda3926c2",
+              "Text": "Explanation of the data: identify the source, time period, and fields used.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "41d28e8e-a68d-45e8-8d50-dfbf1ed2b2d2",
+              "Text": "Summary of the process: describe how the data was obtained, imported, filtered, and queried.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "25cc2097-3667-4eb1-bbb3-3fb377311907",
+              "Text": "Description of the results: explain in plain language what the numbers mean.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "bd92bc2a-3718-47c4-883c-58a10e98b383",
+              "Text": "The three sections should appear in a logical order that leads the reader to the findings.",
+              "SortOrder": 3
+            }
+          ]
+        },
+        {
+          "Id": "300fff20-89c6-428a-91d7-0210a7f9792d",
+          "TopicId": "d90d6a14-dec2-47bc-a679-940de6a051ab",
+          "Title": "Explaining the Data and the Process",
+          "BodyText": "Before showing numbers, state where the data came from and how it was prepared. This establishes credibility and makes your work reproducible.",
+          "Notes": "Example: the College Scorecard data from collegescorecard.ed.gov, 2015 release, imported into a SQL Server database named CollegeDatabase.",
+          "SortOrder": 2,
+          "CreatedDate": "2026-11-17T05:00:37.3319478-05:00",
+          "ModifiedDate": "2026-11-17T05:00:37.3319478-05:00",
+          "Items": [
+            {
+              "Id": "cce0ffcb-e900-43a7-9096-d5928d68d8db",
+              "Text": "Name the dataset, the source URL, and the year or version used.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "4e8ad958-f36e-4a98-8da8-367390de3934",
+              "Text": "Identify the specific fields analyzed, such as CUML_DEBT_P75 and CUML_DEBT_P90.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "d3a0efeb-5055-442e-929d-5d67f31fa662",
+              "Text": "Describe the import method and any cleanup performed in Excel before loading.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "9bc4a8dd-7169-4e38-bc3b-b23b402952cb",
+              "Text": "State the filters applied, such as excluding zero debt values and requiring a sample size greater than 100 students.",
+              "SortOrder": 3
+            }
+          ]
+        },
+        {
+          "Id": "16bcb26d-f45a-4631-9ad7-2cc3727c1fa6",
+          "TopicId": "d90d6a14-dec2-47bc-a679-940de6a051ab",
+          "Title": "Describing Results Versus Showing Results",
+          "BodyText": "The description of the results is not the results themselves; it is an explanation of what the numbers mean. This distinction is the most commonly missed part of a report.",
+          "Notes": "Example wording: \u0022These numbers represent the average debt owed by students after 90% completion of their program of study in dollars.\u0022",
+          "SortOrder": 3,
+          "CreatedDate": "2026-11-17T05:00:37.3319478-05:00",
+          "ModifiedDate": "2026-11-17T05:00:37.3319478-05:00",
+          "Items": [
+            {
+              "Id": "2d831fcc-700f-44d0-ad11-9cdd58ce430f",
+              "Text": "State the unit of measure and what each value actually counts or averages.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "0d56b006-3026-4cee-893a-e4c83b9c339b",
+              "Text": "Interpret patterns, such as which institutions carry the highest or lowest debt loads.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "729cac8e-1d58-47ea-9f5d-2a0d106921dc",
+              "Text": "Add comparison context, such as where Daytona State College falls relative to the top and bottom ten.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "2c5577eb-5878-419b-8dab-869d1c04453a",
+              "Text": "Avoid simply restating the table rows as sentences.",
+              "SortOrder": 3
+            }
+          ]
+        },
+        {
+          "Id": "7384daa4-3e99-4ca0-b5d6-35800ecf8055",
+          "TopicId": "d90d6a14-dec2-47bc-a679-940de6a051ab",
+          "Title": "Presenting Query Output as Formatted Tables",
+          "BodyText": "Results must be reported as a formatted table, not as a screen capture. Screen captures are not typically acceptable in professional reports.",
+          "Notes": "A properly formatted table lists institution names in one column and the cumulative loan debt figures, such as $131,335.00, in another.",
+          "SortOrder": 4,
+          "CreatedDate": "2026-11-17T05:00:37.3319478-05:00",
+          "ModifiedDate": "2026-11-17T05:00:37.3319478-05:00",
+          "Items": [
+            {
+              "Id": "527c8cb0-b5a0-4ef1-aabb-4c7177206b70",
+              "Text": "Copy the result set into a real table with labeled column headers.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "32bcc097-3020-489a-aa8d-7cf23987b40f",
+              "Text": "Format currency, decimals, and alignment consistently across rows.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "75733b30-2bf5-4a58-b4fc-7a8c00ef220a",
+              "Text": "Tables remain readable when the document is resized, printed, or converted to PDF.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "da0c3563-9971-4bc6-8a78-1cbe3c16d94c",
+              "Text": "Screenshots are low resolution, non-searchable, and look unprofessional.",
+              "SortOrder": 3
+            }
+          ]
+        },
+        {
+          "Id": "66958c94-f418-46a2-8dd3-7bb245dabdee",
+          "TopicId": "d90d6a14-dec2-47bc-a679-940de6a051ab",
+          "Title": "Including the Queries That Produced the Results",
+          "BodyText": "A database results report shows the SQL used alongside the output it produced. This lets a reader verify and reproduce your work.",
+          "Notes": "Assignment 2 awards points both for importing the data and for structuring the correct query and reporting the results.",
+          "SortOrder": 5,
+          "CreatedDate": "2026-11-17T05:00:37.3319478-05:00",
+          "ModifiedDate": "2026-11-17T05:00:37.3319478-05:00",
+          "Items": [
+            {
+              "Id": "38487074-5f0f-491e-b447-314a70066ffa",
+              "Text": "Include each query in a readable, consistently formatted block near its result table.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "b9aa113b-8898-4417-9eb8-605f69a7c39e",
+              "Text": "If results came from several queries, compile them into one report and label each section clearly.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "5af77e25-f0c4-4499-ab11-ff2ac7452c51",
+              "Text": "A single well-constructed query may produce the entire result set, but multiple queries compiled by hand are acceptable.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "146d6296-bc79-4db3-a05b-970e3484b2ce",
+              "Text": "Pair every table with the query that generated it so the connection is obvious.",
+              "SortOrder": 3
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Id": "242555f2-715e-42af-8176-b3d70d3d67b7",
+      "Title": "Assignment 2: Import and Analyze College Scorecard Data",
+      "Summary": "Students build a CollegeDatabase in SQL Server, import College Scorecard files, and query cumulative loan debt fields at the 75th and 90th percentiles. The deliverable is a Word or PDF report showing queries, top/bottom ten institutions, and Daytona State College for comparison.",
+      "SortOrder": 5,
+      "CreatedDate": "2026-11-17T04:58:35.8214542-05:00",
+      "ModifiedDate": "2026-11-17T04:58:35.8214542-05:00",
+      "Elements": [
+        {
+          "Id": "261d66c0-67ac-4fb6-9f22-c54fe1a70a80",
+          "TopicId": "242555f2-715e-42af-8176-b3d70d3d67b7",
+          "Title": "Assignment Objective and Deliverable",
+          "BodyText": "Assignment 2 asks you to demonstrate that you can import external data into SQL Server and analyze it with basic queries. The deliverable is a written database results report, not a collection of screen captures.",
+          "Notes": "Grading is split evenly: 5 points for successfully downloading and importing the data, and 5 points for structuring the correct query and reporting the results.",
+          "SortOrder": 0,
+          "CreatedDate": "2026-11-17T05:01:02.4610265-05:00",
+          "ModifiedDate": "2026-11-17T05:01:02.4610265-05:00",
+          "Items": [
+            {
+              "Id": "0727f217-171d-454a-bb7f-eb9c955ec268",
+              "Text": "Create a new SQL Server database named CollegeDatabase to hold the imported college statistics.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "ab5eff19-561f-4df0-9ae2-f147b615abdd",
+              "Text": "Submit the report as a Word or PDF file.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "2dca6c6b-c3b1-417e-9f81-f2cabf6b37d4",
+              "Text": "Show the SQL queries you used alongside the results they produced.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "b180cdde-86df-4c7a-ae82-d6e97abc4b19",
+              "Text": "Present all results as formatted tables rather than screenshots of the query window.",
+              "SortOrder": 3
+            },
+            {
+              "Id": "c00d1d28-1de4-4acc-894b-b9622de512a2",
+              "Text": "Expect roughly 30 minutes of query work, plus a few hours to work through the lectures and try different import methods.",
+              "SortOrder": 4
+            }
+          ]
+        },
+        {
+          "Id": "d877ca63-2507-42ed-95b9-2c66c7fdaea6",
+          "TopicId": "242555f2-715e-42af-8176-b3d70d3d67b7",
+          "Title": "Obtaining the College Scorecard Data",
+          "BodyText": "The assignment uses U.S. Department of Education College Scorecard data, which is published as downloadable files with an accompanying data dictionary. Two files are provided in the module for the 2015 data set.",
+          "Notes": "Current data is available at https://collegescorecard.ed.gov/data/ \u2014 using a more recent release is acceptable.",
+          "SortOrder": 1,
+          "CreatedDate": "2026-11-17T05:01:02.4610265-05:00",
+          "ModifiedDate": "2026-11-17T05:01:02.4610265-05:00",
+          "Items": [
+            {
+              "Id": "03a92583-a220-4d48-8e09-e7cc1a5ed5af",
+              "Text": "Download the two provided files for the 2015 data, or substitute a more recent Scorecard release.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "4c0be296-96fb-4fac-b0b0-c6acd7a3155a",
+              "Text": "Review the data dictionary file to identify which columns you actually need.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "bd0eb40a-7021-4cb4-b30d-ce8475516655",
+              "Text": "You are not required to import every field in the source data \u2014 import only what the analysis requires.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "30fb9161-49ba-4881-b87b-ee67c74c5629",
+              "Text": "Keeping the imported column set small reduces data-type errors and speeds up the import.",
+              "SortOrder": 3
+            }
+          ]
+        },
+        {
+          "Id": "776e4174-4053-4fa4-b81b-4c80cecbb61a",
+          "TopicId": "242555f2-715e-42af-8176-b3d70d3d67b7",
+          "Title": "Importing the Data into SQL Server",
+          "BodyText": "Before querying, the raw Scorecard file must be loaded into your CollegeDatabase as a usable table. Use the import techniques demonstrated in the Module 2 lectures.",
+          "Notes": "Lecture 2-1 demonstrates pulling a file from a government data site and importing it through Excel and XML into SQL Server; Lecture 2-2 covers preparing a CSV flat file for import.",
+          "SortOrder": 2,
+          "CreatedDate": "2026-11-17T05:01:02.4610265-05:00",
+          "ModifiedDate": "2026-11-17T05:01:02.4610265-05:00",
+          "Items": [
+            {
+              "Id": "e8103a39-b874-4858-8e62-5cfedb981e7b",
+              "Text": "Open the CSV in Excel first to inspect and clean the data before import.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "3bf88acf-312d-4703-af56-c27f64d87aba",
+              "Text": "Aim for a file where every cell contains a valid value so the flat-file import runs cleanly.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "07fd633d-ffeb-40a7-a385-21157ca96a39",
+              "Text": "Convert formulas and mixed-type columns to plain values before importing.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "240903e0-098a-4e72-906f-26122de74b19",
+              "Text": "Verify row counts and spot-check records after the import completes.",
+              "SortOrder": 3
+            },
+            {
+              "Id": "e6bab62c-95fb-46af-b280-c52c13cd2fc7",
+              "Text": "If import errors cannot be resolved, post in the Assignments Q\u0026A forum or email the instructor.",
+              "SortOrder": 4
+            }
+          ]
+        },
+        {
+          "Id": "06a4f449-8593-4fe4-a9d9-5e292138c69f",
+          "TopicId": "242555f2-715e-42af-8176-b3d70d3d67b7",
+          "Title": "Querying Cumulative Loan Debt Fields",
+          "BodyText": "The Scorecard data contains four cumulative loan debt fields: CUML_DEBT_P10, CUML_DEBT_P25, CUML_DEBT_P75, and CUML_DEBT_P90. The report focuses on the 75th and 90th percentile measures.",
+          "Notes": "The task can be completed with multiple queries compiled by hand, but it is achievable with a single well-structured SQL query.",
+          "SortOrder": 3,
+          "CreatedDate": "2026-11-17T05:01:02.4610265-05:00",
+          "ModifiedDate": "2026-11-17T05:01:02.4610265-05:00",
+          "Items": [
+            {
+              "Id": "6b73ef0c-2eb2-4fb8-a85e-fb45981243d2",
+              "Text": "Return the 10 highest and 10 lowest institutions for loan debt at 75% degree completion.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "60e8cd3c-b822-456a-a561-0c82f06ef2ec",
+              "Text": "Return the 10 highest and 10 lowest institutions for loan debt at 90% degree completion.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "d0fbd9ee-f678-489c-8267-212bc4200759",
+              "Text": "Exclude zero values so that the \u0027lowest\u0027 lists contain meaningful non-zero debt figures.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "fa132a02-6945-4946-a512-204a39f11484",
+              "Text": "Filter to institutions with a sufficient sample size \u2014 more than 100 students \u2014 to make the average debt load meaningful.",
+              "SortOrder": 3
+            },
+            {
+              "Id": "832a68b3-b5c7-45c8-aa65-c13ea89ff122",
+              "Text": "Append Daytona State College to the query results so its figures appear for comparison.",
+              "SortOrder": 4
+            }
+          ]
+        },
+        {
+          "Id": "0a6354d7-d993-4ffe-8c84-ce2c4905b0eb",
+          "TopicId": "242555f2-715e-42af-8176-b3d70d3d67b7",
+          "Title": "Including Daytona State College for Comparison",
+          "BodyText": "Daytona State College serves as a benchmark institution throughout the report. Its debt figures give context to the extreme high and low values in the ranked lists.",
+          "Notes": "A UNION or appended SELECT clause is a simple way to attach the DSC row to each ranked result set.",
+          "SortOrder": 4,
+          "CreatedDate": "2026-11-17T05:01:02.4610265-05:00",
+          "ModifiedDate": "2026-11-17T05:01:02.4610265-05:00",
+          "Items": [
+            {
+              "Id": "1aff38b3-f28a-4e7e-8a72-00f643ab77ad",
+              "Text": "Include DSC cumulative loan debt values for both the 75th and 90th percentile fields.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "21858a5b-9d25-49c0-930c-53fa385b6bd1",
+              "Text": "The DSC figures do not have to appear inside the ranking tables, but they must appear somewhere in the report.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "ee946dd4-7a3c-4d96-b1c5-f9e589ea7f68",
+              "Text": "Discuss how DSC debt loads compare to the highest and lowest institutions in your narrative.",
+              "SortOrder": 2
+            }
+          ]
+        },
+        {
+          "Id": "d7e2deb6-9360-4404-b73c-4c7c42e758c4",
+          "TopicId": "242555f2-715e-42af-8176-b3d70d3d67b7",
+          "Title": "Writing in Report Format",
+          "BodyText": "Professional database work requires presenting query results in a friendly, easy-to-read format. Every report should explain the data, summarize the process, and describe what the results mean.",
+          "Notes": "Example description of results: \u0022These numbers represent the average debt owed by students after 90% completion of their program of study in dollars.\u0022",
+          "SortOrder": 5,
+          "CreatedDate": "2026-11-17T05:01:02.4610265-05:00",
+          "ModifiedDate": "2026-11-17T05:01:02.4610265-05:00",
+          "Items": [
+            {
+              "Id": "d21261cb-6804-4cee-b555-ab92d0888ca9",
+              "Text": "Open with an explanation of the data source and the fields analyzed.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "37e71e8f-be96-48ab-9cd9-897a7e64b1ce",
+              "Text": "Summarize the process you used to download, clean, import, and query the data.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "743a0e53-fe8e-4ca7-ab88-709580d9069d",
+              "Text": "Format result sets as tables with clear column headings such as Institution Name and 90th Percentile Cumulative Loan Debt.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "e10ea723-fb66-49d2-85c7-b5b2c566b3ca",
+              "Text": "Describe what the numbers mean \u2014 a description of results is not the same as the results themselves.",
+              "SortOrder": 3
+            },
+            {
+              "Id": "f86c6566-b976-4a33-96ff-7c0b73de891b",
+              "Text": "Avoid screen captures; they are not typically acceptable in professional reports.",
+              "SortOrder": 4
+            }
+          ]
+        },
+        {
+          "Id": "ccd9c9ca-1c06-44fa-8e7a-62c0294e8023",
+          "TopicId": "242555f2-715e-42af-8176-b3d70d3d67b7",
+          "Title": "Prerequisite SQL Skills and Support Resources",
+          "BodyText": "The assignment assumes comfort with basic SQL SELECT, filtering, sorting, and limiting. If you are not yet comfortable at that level, practice before attempting the queries.",
+          "Notes": "This course will go into far greater SQL depth later, so building fluency now pays off.",
+          "SortOrder": 6,
+          "CreatedDate": "2026-11-17T05:01:02.4610265-05:00",
+          "ModifiedDate": "2026-11-17T05:01:02.4610265-05:00",
+          "Items": [
+            {
+              "Id": "a7f55c46-d0ee-4d48-9f68-8cc547295406",
+              "Text": "Practice with the interactive SQL editor at W3Schools (sql_tryit).",
+              "SortOrder": 0
+            },
+            {
+              "Id": "f90cbf29-2774-4825-aba9-e46aef93cd19",
+              "Text": "Work through the commands covered at sqlcourse2.com as a baseline skill set.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "df77583f-0db3-4f9f-b187-3ef5c43d5104",
+              "Text": "A sample schema is available on SQLFiddle for experimenting with the data structure.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "e792d1b8-3dbd-40cc-8fba-846e06cefa48",
+              "Text": "Use the Assignments Q\u0026A forum when you hit import or query problems you cannot resolve.",
+              "SortOrder": 3
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "TotalElementCount": 39
+}

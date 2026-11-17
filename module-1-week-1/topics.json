@@ -1,0 +1,2087 @@
+{
+  "ModuleFolderName": "Module_1_(Week_1)",
+  "CourseName": "COP4709 \u2014 Applied Database II",
+  "GeneratedDate": "2026-11-17T04:54:23.8972699-05:00",
+  "ModifiedDate": "2026-11-17T04:58:18.0913309-05:00",
+  "Outcomes": [],
+  "Topics": [
+    {
+      "Id": "8e56a1c4-5cf0-47a2-87f0-65e32bca6cca",
+      "Title": "The Database Skill Level Framework",
+      "Summary": "Introduces the four-tier model (L1 Foundational, L2 Intermediate, L3 Advanced, L4 Expert/Architect) used to classify every database topic by depth of knowledge and years of experience. Explains how to use the framework as a self-assessment checklist, study roadmap, and career planning tool.",
+      "SortOrder": 0,
+      "CreatedDate": "2026-11-17T04:54:23.8972699-05:00",
+      "ModifiedDate": "2026-11-17T04:54:23.8972699-05:00",
+      "Elements": [
+        {
+          "Id": "624ee9a6-a467-48f6-8f70-12b994df0502",
+          "TopicId": "8e56a1c4-5cf0-47a2-87f0-65e32bca6cca",
+          "Title": "Why a Skill Level Framework Exists",
+          "BodyText": "Database knowledge spans an enormous range, from writing a first SELECT statement to architecting multi-region data platforms. The framework tags every topic in the guide with one of four skill levels so you can see where a topic sits in that range.",
+          "Notes": "The guide maps the landscape from Applied Databases I (COP4708), through Database Management (COP4709), and onward to advanced and expert professional practice.",
+          "SortOrder": 0,
+          "CreatedDate": "2026-11-17T04:54:50.3478953-05:00",
+          "ModifiedDate": "2026-11-17T04:54:50.3478953-05:00",
+          "Items": [
+            {
+              "Id": "fab202db-4b4b-4acd-893d-4eb3c5ac32a7",
+              "Text": "Each level describes both the depth of knowledge expected and the experience typically needed to reach it.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "e20757a2-f1f9-4494-a89e-7f0bd11bca71",
+              "Text": "Levels give a shared vocabulary for discussing competence instead of vague terms like \u0027good at SQL\u0027.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "373d9ff1-edd5-45a5-b447-4d1f2b9888af",
+              "Text": "The goal is not to know everything at once \u2014 it is to know where you are now and where to go next.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "e9305fc6-c9eb-426f-9ed4-8997b566f7d3",
+              "Text": "Topic tags let you quickly triage which material is review, which is current coursework, and which is future growth.",
+              "SortOrder": 3
+            }
+          ]
+        },
+        {
+          "Id": "5f9050ac-150d-45bd-8cbb-89dcbf49a35a",
+          "TopicId": "8e56a1c4-5cf0-47a2-87f0-65e32bca6cca",
+          "Title": "L1 \u2014 Foundational (COP4708 / Entry Level)",
+          "BodyText": "L1 covers the core concepts every person who works with databases must know. These are the bedrock skills of relational database work and form the baseline for any meaningful database job.",
+          "Notes": "Examples of L1 topics include the relational model, keys and constraints, ERDs, normalization to 3NF/BCNF, DDL and DML, SELECT/JOIN/GROUP BY, subqueries, views, basic stored procedures, transactions and ACID, data types, basic indexing, and basic permissions.",
+          "SortOrder": 1,
+          "CreatedDate": "2026-11-17T04:54:50.3478953-05:00",
+          "ModifiedDate": "2026-11-17T04:54:50.3478953-05:00",
+          "Items": [
+            {
+              "Id": "9122f05e-4f72-4b66-8298-13983ebb3e2b",
+              "Text": "Expected of entry-level analysts, developers, and junior DBAs within their first year.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "1907a03a-399e-457d-8500-b422d01b65a8",
+              "Text": "Without these skills you cannot perform any meaningful database work.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "1bf89568-ee21-4812-942c-7cf92d0d5925",
+              "Text": "Self-check: can you design a normalised schema from a business description and write a multi-table JOIN query with grouping and filtering?",
+              "SortOrder": 2
+            },
+            {
+              "Id": "8206eb57-17d7-4221-868e-93dae580f723",
+              "Text": "Self-check: can you wrap that query in a stored procedure and execute it inside a transaction?",
+              "SortOrder": 3
+            }
+          ]
+        },
+        {
+          "Id": "b79340d0-c855-4cdf-b154-1421f1f00978",
+          "TopicId": "8e56a1c4-5cf0-47a2-87f0-65e32bca6cca",
+          "Title": "L2 \u2014 Intermediate (COP4709 / 1\u20133 Years)",
+          "BodyText": "L2 represents the skills of a working database professional with roughly one to three years of hands-on experience. These are the topics covered in Database Management (COP4709).",
+          "Notes": "L2 topics include window functions, CTEs, MERGE, triggers, index design, execution plan reading, Query Store and DMVs, advanced aggregation, data analysis with SQL, NoSQL/MongoDB, authentication and encryption, auditing, and SQL injection prevention.",
+          "SortOrder": 2,
+          "CreatedDate": "2026-11-17T04:54:50.3478953-05:00",
+          "ModifiedDate": "2026-11-17T04:54:50.3478953-05:00",
+          "Items": [
+            {
+              "Id": "903f32db-cb9c-4e1b-974f-187c843697a0",
+              "Text": "At L2 you can design and maintain real production systems rather than classroom examples.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "da0837c1-c406-46ed-8e52-b5447de31746",
+              "Text": "You can write complex queries and understand the performance trade-offs behind them.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "dd549c9e-c783-47e2-8655-a15db0d1b8c6",
+              "Text": "Self-check: can you tune a slow query by reading its execution plan and design a security model with RLS and encryption?",
+              "SortOrder": 2
+            },
+            {
+              "Id": "a55251cf-3a3e-4906-951f-da2daa471a8f",
+              "Text": "Self-check: can you explain when MongoDB is a better fit than SQL Server for a given workload?",
+              "SortOrder": 3
+            }
+          ]
+        },
+        {
+          "Id": "b35a0ecb-52cd-40db-84ed-5eb0a7202dec",
+          "TopicId": "8e56a1c4-5cf0-47a2-87f0-65e32bca6cca",
+          "Title": "L3 \u2014 Advanced (Professional / 3\u20136 Years)",
+          "BodyText": "L3 skills go beyond coursework and are developed through hands-on professional experience, typically over three to six years or through dedicated specialised study. They are expected of senior developers, experienced DBAs, and emerging specialists.",
+          "Notes": "Representative L3 areas include table partitioning, columnstore indexes, In-Memory OLTP, wait statistics analysis, Always On Availability Groups, backup and recovery strategy, replication, cloud databases, data warehouse design, ETL/ELT, CDC, temporal tables, regulatory compliance, and database forensics.",
+          "SortOrder": 3,
+          "CreatedDate": "2026-11-17T04:54:50.3478953-05:00",
+          "ModifiedDate": "2026-11-17T04:54:50.3478953-05:00",
+          "Items": [
+            {
+              "Id": "288aa73a-c9e1-43dd-9a3b-fa28106109a3",
+              "Text": "These topics require deeper system knowledge and genuine architectural thinking.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "00146929-f505-4a79-a2d3-1c5923f6109d",
+              "Text": "Decisions made at this level affect production systems operating at scale.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "5e3e7b40-33d1-4427-b5eb-643d0f4ed195",
+              "Text": "L3 is the typical entry point into specialist or team-lead database roles.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "87f87c86-79b2-4022-ac53-897b37f0692f",
+              "Text": "Much of L3 is learned by diagnosing real incidents rather than by reading documentation.",
+              "SortOrder": 3
+            }
+          ]
+        },
+        {
+          "Id": "a29a8b2b-e3f3-441e-9669-4b66eecfa093",
+          "TopicId": "8e56a1c4-5cf0-47a2-87f0-65e32bca6cca",
+          "Title": "L4 \u2014 Expert / Architect (Senior / 6\u002B Years)",
+          "BodyText": "L4 is the level of a senior DBA, database architect, or principal engineer, typically reached after six or more years of work on complex, large-scale production systems. It combines system design, cross-functional architecture decisions, and deep internals knowledge.",
+          "Notes": "L4 topics include database architecture patterns, distributed systems and CAP theorem, sharding strategies, storage engine internals, advanced data modelling (6NF, event sourcing, CQRS), schema migration management, data lake and lakehouse architecture, data governance and lineage, polyglot persistence, and capacity planning.",
+          "SortOrder": 4,
+          "CreatedDate": "2026-11-17T04:54:50.3478953-05:00",
+          "ModifiedDate": "2026-11-17T04:54:50.3478953-05:00",
+          "Items": [
+            {
+              "Id": "fa24316b-62d5-41d6-8cef-305586ac7176",
+              "Text": "Experts design entire data ecosystems rather than individual databases.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "3d5b2e9a-c497-4470-a59f-57a11544904b",
+              "Text": "They evaluate technology choices at the organisational level, including build-vs-buy decisions.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "e4b6d1bc-00c8-41ec-a80f-3420ce797bde",
+              "Text": "They guide teams on best practices, standards, and long-term data strategy.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "52ae891f-d9d8-4b86-9929-05a1bde7c338",
+              "Text": "L4 mastery is earned through production experience, not coursework alone.",
+              "SortOrder": 3
+            }
+          ]
+        },
+        {
+          "Id": "312b4662-e97b-4a5f-bc58-9aa5e5413f6a",
+          "TopicId": "8e56a1c4-5cf0-47a2-87f0-65e32bca6cca",
+          "Title": "Using the Framework as a Self-Assessment Checklist",
+          "BodyText": "The most immediate use of the framework is honest self-assessment: work through the tagged topics and mark which you can perform confidently without assistance.",
+          "Notes": "Each level section in the guide ends with a concrete self-assessment question you can answer yes or no to.",
+          "SortOrder": 5,
+          "CreatedDate": "2026-11-17T04:54:50.3478953-05:00",
+          "ModifiedDate": "2026-11-17T04:54:50.3478953-05:00",
+          "Items": [
+            {
+              "Id": "0c67f324-db32-448b-9bd0-f6dfb9bb6237",
+              "Text": "Treat any L1 gap as a priority \u2014 master foundational topics before advancing.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "25a61fae-c770-427d-9764-ee09f72a7965",
+              "Text": "Distinguish \u0027I have heard of it\u0027 from \u0027I could do it unsupervised in production\u0027.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "8b26cf86-f404-4f67-b28d-4186a17fab9b",
+              "Text": "Revisit the checklist periodically; competence decays in areas you do not practise.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "23be34c1-d1cd-40bf-8682-4256496e5424",
+              "Text": "Use gaps as concrete study goals rather than as a general sense of being behind.",
+              "SortOrder": 3
+            }
+          ]
+        },
+        {
+          "Id": "f74b983b-3a00-4f63-b842-8e2982a4f1f8",
+          "TopicId": "8e56a1c4-5cf0-47a2-87f0-65e32bca6cca",
+          "Title": "Using the Framework as a Study Roadmap and Career Tool",
+          "BodyText": "Beyond self-assessment, the levels sequence your learning and connect directly to career planning through the skills-by-role matrix.",
+          "Notes": "For example, a target DBA role expects L3 in index design, execution plans, and security, and L4 in backup and high availability, while a Data Analyst path concentrates on L1\u2013L2 SQL plus L3 analysis and KPI reporting.",
+          "SortOrder": 6,
+          "CreatedDate": "2026-11-17T04:54:50.3478953-05:00",
+          "ModifiedDate": "2026-11-17T04:54:50.3478953-05:00",
+          "Items": [
+            {
+              "Id": "1a73d34a-2f35-402f-b4f1-509abf9e9c6e",
+              "Text": "Levels build on each other, so study in order rather than jumping to advanced topics.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "4129ef2e-8337-4583-8971-c13db11bffe7",
+              "Text": "Match your target role\u0027s required levels against your current levels to find the real gaps.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "0cc0a61d-e0ef-4547-9477-feaea7b4db88",
+              "Text": "Certifications map onto levels too (for example DP-900 at L1, PL-300 at L2, DP-203 at L3).",
+              "SortOrder": 2
+            },
+            {
+              "Id": "57fea4f6-d694-4e5d-ab40-d47249477c9a",
+              "Text": "Accelerate progress with portfolio projects, practice on real datasets, and early exposure to production environments.",
+              "SortOrder": 3
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Id": "6436f592-4cc9-4cf2-985b-0916a60f42be",
+      "Title": "Foundational Database Knowledge (L1)",
+      "Summary": "Reviews the bedrock relational concepts expected of every database practitioner: the relational model, keys and constraints, ERDs, normalization, DDL/DML, SQL querying, JOINs, aggregation, subqueries, views, basic stored procedures, transactions and ACID, data types, basic indexing, and permissions. These are the prerequisite skills from Applied Databases I that must be solid before progressing.",
+      "SortOrder": 1,
+      "CreatedDate": "2026-11-17T04:54:23.8972699-05:00",
+      "ModifiedDate": "2026-11-17T04:54:23.8972699-05:00",
+      "Elements": [
+        {
+          "Id": "1d21ecfe-9b75-483a-9291-433c7610ea23",
+          "TopicId": "6436f592-4cc9-4cf2-985b-0916a60f42be",
+          "Title": "The Relational Model and Schema Structure",
+          "BodyText": "A relational database organises data into tables (relations) made up of rows (tuples) and columns (attributes), each drawn from a defined domain. The schema enforces structure before any data is inserted, which is what distinguishes relational systems from loosely structured stores.",
+          "Notes": "In SQL Server Management Studio you can see this structure directly \u2014 tables are created with explicit column definitions, and the engine rejects any row that violates them. Example: an Artists table with an id column and an nvarchar(200) name column.",
+          "SortOrder": 0,
+          "CreatedDate": "2026-11-17T04:55:23.8519889-05:00",
+          "ModifiedDate": "2026-11-17T04:55:23.8519889-05:00",
+          "Items": [
+            {
+              "Id": "49c78982-0522-4a38-9d4d-2ccf83d44adf",
+              "Text": "A relation is a table; a tuple is a row; an attribute is a column with a defined domain.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "699ffe51-fcac-4f2c-8e79-4fcda878c2a1",
+              "Text": "Schema-on-write means the structure is validated by the engine at insert time, not by the application.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "f33558ba-1eef-4c18-a673-6ee5a31fc8b4",
+              "Text": "Every table should have a well-defined grain \u2014 what one row actually represents.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "69897eba-85e7-4b69-afd5-b735b858776c",
+              "Text": "Understanding this model underpins every later topic, from normalization to indexing.",
+              "SortOrder": 3
+            }
+          ]
+        },
+        {
+          "Id": "d58b514c-2633-4c25-9421-5a4d0cb5a6f1",
+          "TopicId": "6436f592-4cc9-4cf2-985b-0916a60f42be",
+          "Title": "Keys and Constraints for Data Integrity",
+          "BodyText": "Keys and constraints are the mechanisms the database uses to guarantee integrity without relying on application code. Primary keys identify rows uniquely, while foreign keys link related tables together.",
+          "Notes": "Example from the music database: Albums.artistID is declared as a FOREIGN KEY REFERENCES Artists(id), so an album can never point to an artist that does not exist. IDENTITY(1,1) supplies auto-incrementing surrogate keys.",
+          "SortOrder": 1,
+          "CreatedDate": "2026-11-17T04:55:23.8519889-05:00",
+          "ModifiedDate": "2026-11-17T04:55:23.8519889-05:00",
+          "Items": [
+            {
+              "Id": "598c502e-f04a-419e-9662-71c14aa2d195",
+              "Text": "PRIMARY KEY enforces uniqueness and non-nullability for row identity.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "a8c3d04e-43d4-4952-b477-24172e2f996e",
+              "Text": "FOREIGN KEY enforces referential integrity between parent and child tables.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "cb8c0b1a-47aa-4d58-b206-fed349a7a248",
+              "Text": "UNIQUE, NOT NULL, CHECK, and DEFAULT constraints restrict what values a column may hold.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "ea431079-8454-47d6-a45c-0aa88a62a959",
+              "Text": "Constraints enforced at the database level protect data regardless of which application writes to it.",
+              "SortOrder": 3
+            }
+          ]
+        },
+        {
+          "Id": "e406e51e-2850-4e67-9744-2568b0a49e8d",
+          "TopicId": "6436f592-4cc9-4cf2-985b-0916a60f42be",
+          "Title": "Entity-Relationship Diagrams and Relationship Modelling",
+          "BodyText": "An ERD is the visual model that translates a business description into entities, attributes, and relationships before any table is created. Reading and drawing ERDs is a core design skill for every database practitioner.",
+          "Notes": "SQL Server Management Studio\u0027s diagram tool can generate an ERD directly from an existing database, which is useful for documentation. Data dictionaries (field names, types, descriptions) should accompany the diagram.",
+          "SortOrder": 2,
+          "CreatedDate": "2026-11-17T04:55:23.8519889-05:00",
+          "ModifiedDate": "2026-11-17T04:55:23.8519889-05:00",
+          "Items": [
+            {
+              "Id": "0b04bb47-fc3f-4c48-88c0-4e371376ae0f",
+              "Text": "Entities become tables, attributes become columns, and relationships become foreign keys.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "3004ec0f-e37c-48cc-98e8-71f0e5e85163",
+              "Text": "Cardinality notation captures one-to-one, one-to-many (1:N), and many-to-many (M:N) relationships.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "73af3c16-d829-4479-ab12-eeafc65811eb",
+              "Text": "A many-to-many relationship requires a join (associative) table holding two foreign keys.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "e06ea29e-f2bc-4014-8563-d5bd0ae511d3",
+              "Text": "Example: Musicians and Songs are M:N because a musician plays on many songs and a song has many musicians.",
+              "SortOrder": 3
+            }
+          ]
+        },
+        {
+          "Id": "701f850e-db44-4f78-b15a-25eb540125cc",
+          "TopicId": "6436f592-4cc9-4cf2-985b-0916a60f42be",
+          "Title": "Normalization from 1NF to BCNF",
+          "BodyText": "Normalization is the systematic process of organising columns and tables to eliminate redundancy and update anomalies. Most practical designs target third normal form, with Boyce-Codd Normal Form for edge cases.",
+          "Notes": "Over-normalization can hurt read performance by forcing excessive joins \u2014 knowing when to stop is part of the skill.",
+          "SortOrder": 3,
+          "CreatedDate": "2026-11-17T04:55:23.8519889-05:00",
+          "ModifiedDate": "2026-11-17T04:55:23.8519889-05:00",
+          "Items": [
+            {
+              "Id": "ce12a879-c43a-401a-b7e8-f4ad4d109b34",
+              "Text": "1NF removes repeating groups and requires atomic column values.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "1cd2606b-6500-4242-8e85-18dbfaf98d53",
+              "Text": "2NF eliminates partial dependencies on part of a composite primary key.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "30f077b8-f219-4c52-9a3e-c3f1846dc54b",
+              "Text": "3NF eliminates transitive dependencies between non-key attributes.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "b79c4e19-413e-4c5b-bc51-8c3c16173933",
+              "Text": "BCNF tightens 3NF where multiple overlapping candidate keys exist.",
+              "SortOrder": 3
+            },
+            {
+              "Id": "3460a0d6-7a9d-45b8-92a1-013ac6c115be",
+              "Text": "Denormalization is a deliberate, documented trade-off \u2014 not an accident.",
+              "SortOrder": 4
+            }
+          ]
+        },
+        {
+          "Id": "68b82445-a88d-4361-a4ef-8ca2303ceedc",
+          "TopicId": "6436f592-4cc9-4cf2-985b-0916a60f42be",
+          "Title": "DDL and DML \u2014 Defining and Changing Data",
+          "BodyText": "SQL splits into Data Definition Language, which shapes the schema, and Data Manipulation Language, which reads and changes the data inside it. Knowing which category a statement belongs to tells you how it behaves and what permissions it needs.",
+          "Notes": "Example DDL: CREATE TABLE [dbo].[Songs] with an identity primary key and a foreign key to Albums. Example DML: INSERT INTO Songs ... followed by SELECT to verify.",
+          "SortOrder": 4,
+          "CreatedDate": "2026-11-17T04:55:23.8519889-05:00",
+          "ModifiedDate": "2026-11-17T04:55:23.8519889-05:00",
+          "Items": [
+            {
+              "Id": "01f86115-7272-4e6f-8b24-730143e18575",
+              "Text": "DDL includes CREATE TABLE, ALTER TABLE, DROP TABLE, and TRUNCATE.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "e2090ce2-c827-4469-95cc-c8b55979f5b3",
+              "Text": "DROP removes the table object entirely; TRUNCATE removes all rows but keeps the structure.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "651ec39b-7430-4690-a3d0-c712a5d64907",
+              "Text": "DML includes SELECT, INSERT, UPDATE, and DELETE.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "0a3cedfb-f3f9-40e2-8851-5b1bc0cbfef3",
+              "Text": "Always pair UPDATE and DELETE with a tested WHERE clause before executing against real data.",
+              "SortOrder": 3
+            }
+          ]
+        },
+        {
+          "Id": "2fe1d71d-1ceb-4701-8720-06722a1a1c7a",
+          "TopicId": "6436f592-4cc9-4cf2-985b-0916a60f42be",
+          "Title": "Core SQL Querying \u2014 SELECT, JOINs, and Aggregation",
+          "BodyText": "The ability to retrieve exactly the rows you need across multiple tables is the single most used database skill. This combines filtering, joining, and summarising in one query.",
+          "Notes": "A typical foundational exercise: join Artists, Albums, and Songs, group by artist, and count tracks \u2014 then filter the grouped output with HAVING.",
+          "SortOrder": 5,
+          "CreatedDate": "2026-11-17T04:55:23.8519889-05:00",
+          "ModifiedDate": "2026-11-17T04:55:23.8519889-05:00",
+          "Items": [
+            {
+              "Id": "9b4ddde8-2b60-4c90-b5a7-470c98c89cba",
+              "Text": "SELECT with WHERE, ORDER BY, and DISTINCT, using AND, OR, NOT, IN, BETWEEN, LIKE, and IS NULL.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "1aaecaac-a44c-4ca4-b4c0-554af2ea1240",
+              "Text": "INNER JOIN returns matches only; LEFT, RIGHT, and FULL OUTER JOIN preserve unmatched rows as NULLs.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "d76fe248-380c-46b1-b8c6-bc735e02a79f",
+              "Text": "CROSS JOIN produces a Cartesian product and is rarely what you want by accident.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "9c514508-556a-4d04-b2a1-3a5f70117a6e",
+              "Text": "COUNT, SUM, AVG, MIN, and MAX summarise rows, with GROUP BY defining the grouping level.",
+              "SortOrder": 3
+            },
+            {
+              "Id": "16af3ae0-8808-4dcc-a0ce-9ecc08d3822e",
+              "Text": "WHERE filters individual rows before grouping; HAVING filters the groups after aggregation.",
+              "SortOrder": 4
+            }
+          ]
+        },
+        {
+          "Id": "2cc4d417-ed63-4fd4-aa4b-0bf57e7b2ff4",
+          "TopicId": "6436f592-4cc9-4cf2-985b-0916a60f42be",
+          "Title": "Subqueries, Views, and Basic Programmability",
+          "BodyText": "Beyond single statements, foundational SQL includes nesting queries, saving them as views, and packaging logic into stored procedures and functions. These are the building blocks of a maintainable data layer.",
+          "Notes": "A view is simply a saved SELECT statement; a procedure performs actions, while a function returns a value.",
+          "SortOrder": 6,
+          "CreatedDate": "2026-11-17T04:55:23.8519889-05:00",
+          "ModifiedDate": "2026-11-17T04:55:23.8519889-05:00",
+          "Items": [
+            {
+              "Id": "336462bb-afb6-44b2-91fa-beba87812c9e",
+              "Text": "Non-correlated subqueries run once; correlated subqueries run per outer row and are often slower.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "91d28e09-5bdf-4b1d-99a2-6512a6bab3e2",
+              "Text": "EXISTS and NOT EXISTS test for presence rather than returning values.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "0fd667d2-927e-4286-9c4e-4670efddc20b",
+              "Text": "Views simplify complex joins, abstract the underlying schema, and can restrict visible columns or rows for security.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "6fd0be71-8ec4-43ea-8316-1122d2fca4a3",
+              "Text": "Simple stored procedures accept input and output parameters and encapsulate reusable logic.",
+              "SortOrder": 3
+            },
+            {
+              "Id": "ad4af5f9-5077-4347-9a49-62b17f068a7c",
+              "Text": "Scalar user-defined functions return a single value and can be used inside expressions.",
+              "SortOrder": 4
+            }
+          ]
+        },
+        {
+          "Id": "0ba4884a-2199-4cad-8629-faa8738b772f",
+          "TopicId": "6436f592-4cc9-4cf2-985b-0916a60f42be",
+          "Title": "Transactions, Data Types, Indexing, and Permissions",
+          "BodyText": "Rounding out the foundation are the operational essentials: keeping multi-step changes safe, choosing correct storage types, making queries fast, and controlling who can do what.",
+          "Notes": "Self-check: can you design a normalised schema from a business description, write a multi-table JOIN that groups and filters, wrap it in a stored procedure, and run it inside a transaction?",
+          "SortOrder": 7,
+          "CreatedDate": "2026-11-17T04:55:23.8519889-05:00",
+          "ModifiedDate": "2026-11-17T04:55:23.8519889-05:00",
+          "Items": [
+            {
+              "Id": "3778ee95-c1e5-4110-8700-7c2a38f3c422",
+              "Text": "BEGIN TRANSACTION, COMMIT, and ROLLBACK make multi-step operations all-or-nothing.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "7ecd2b7d-c4d2-4b46-af21-e7addc83b75b",
+              "Text": "ACID stands for Atomicity, Consistency, Isolation, and Durability.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "432c0ae2-919e-4284-bacb-9e8af2933150",
+              "Text": "Choose types deliberately: INT/BIGINT, DECIMAL for money, VARCHAR/NVARCHAR with sized lengths, DATE/DATETIME, BIT, UNIQUEIDENTIFIER.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "771e69df-b3a4-4a25-aa65-bbb1baa76113",
+              "Text": "NULL follows three-valued logic \u2014 comparisons to NULL return unknown, so use IS NULL.",
+              "SortOrder": 3
+            },
+            {
+              "Id": "1ec541e1-e8b5-4d6f-bd25-2499f03d34b2",
+              "Text": "An index speeds reads but adds write cost; know the clustered versus non-clustered distinction.",
+              "SortOrder": 4
+            },
+            {
+              "Id": "bc306ff4-3d6e-49bf-85a0-9b8f20e2d4c4",
+              "Text": "GRANT, REVOKE, and DENY control access; a server login is distinct from a database user, and passwords are never stored in plain text.",
+              "SortOrder": 5
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Id": "fa56737f-b0d7-4c70-9898-4fb7bae33c67",
+      "Title": "Intermediate Database Skills (L2)",
+      "Summary": "Covers the Database Management course scope: advanced SQL (window functions, CTEs, MERGE, temp tables, advanced procedures, triggers), performance and indexing strategy, execution plans, data design and analysis patterns, NoSQL/MongoDB, and security topics including encryption, auditing, and SQL injection prevention.",
+      "SortOrder": 2,
+      "CreatedDate": "2026-11-17T04:54:23.8972699-05:00",
+      "ModifiedDate": "2026-11-17T04:54:23.8972699-05:00",
+      "Elements": [
+        {
+          "Id": "5a6430ea-d390-4f87-ac39-5396d03cd9c2",
+          "TopicId": "fa56737f-b0d7-4c70-9898-4fb7bae33c67",
+          "Title": "What the L2 Intermediate Level Means",
+          "BodyText": "Intermediate (L2) covers the topics taught in Database Management (COP4709) and represents the working skill set of a database professional with roughly one to three years of hands-on experience.",
+          "Notes": "L2 sits between the foundational COP4708 material and the advanced professional topics developed over 3\u20136 years on the job.",
+          "SortOrder": 0,
+          "CreatedDate": "2026-11-17T04:55:52.3595328-05:00",
+          "ModifiedDate": "2026-11-17T04:55:52.3595328-05:00",
+          "Items": [
+            {
+              "Id": "fb658690-8293-454f-abd8-b375719371cb",
+              "Text": "At L2 you can design and maintain real production systems rather than just classroom schemas.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "24f4fff8-59ec-466c-99f4-b41bd0b277a1",
+              "Text": "You can write complex queries and reason about performance trade-offs, not just correctness.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "d9e80667-cb3b-4814-93d4-2c9c04fd5463",
+              "Text": "The level assumes the full L1 foundation: relational modelling, JOINs, aggregation, transactions, and basic indexing.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "6479d97e-ed5f-4da5-a500-bb2d1fbcbc8f",
+              "Text": "L2 skills are expected of DBAs, database developers, analysts, data engineers, and BI developers across the skills-by-role matrix.",
+              "SortOrder": 3
+            },
+            {
+              "Id": "9e0331d8-a658-4275-b1a5-9ec63d519fb1",
+              "Text": "Self-assessment: tune a slow query from its execution plan, build a security model with RLS and encryption, write a window-function report, and justify MongoDB versus SQL Server.",
+              "SortOrder": 4
+            }
+          ]
+        },
+        {
+          "Id": "d2ea1469-8622-4ddc-bee3-efd8cf4ba2a2",
+          "TopicId": "fa56737f-b0d7-4c70-9898-4fb7bae33c67",
+          "Title": "Advanced SQL Constructs",
+          "BodyText": "The advanced SQL block extends foundational querying with analytic functions, reusable query structures, and set-based upsert logic.",
+          "Notes": "These constructs replace clumsy subquery or cursor-based solutions with clearer, faster set-based code.",
+          "SortOrder": 1,
+          "CreatedDate": "2026-11-17T04:55:52.3595328-05:00",
+          "ModifiedDate": "2026-11-17T04:55:52.3595328-05:00",
+          "Items": [
+            {
+              "Id": "5872a648-b670-4c4b-8453-6d057ed7c20b",
+              "Text": "Window functions \u2014 ROW_NUMBER, RANK, DENSE_RANK, NTILE, LAG, LEAD, SUM/AVG OVER \u2014 with PARTITION BY and ORDER BY for running totals, moving averages, and period-over-period comparisons.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "58da7858-e390-4a67-8e72-e0d82b281472",
+              "Text": "Common Table Expressions use WITH clauses for readable, chainable logic, including recursive CTEs for hierarchies such as org charts and bills of materials.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "58ee2d46-b302-462a-bca3-fbeba0f565d0",
+              "Text": "The MERGE statement performs upserts: insert new rows, update changed rows, and optionally delete missing rows in one operation, common in ETL and sync jobs.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "7b7bf68d-488f-4dc8-9155-2825980c5009",
+              "Text": "Temporary tables (#temp, ##temp), @table variables, and CTEs each suit different situations and affect plan reuse and statistics differently.",
+              "SortOrder": 3
+            },
+            {
+              "Id": "dccda6b8-0e7a-4f20-8f66-b8a9fa47a416",
+              "Text": "Knowing when to choose a CTE versus a temp table versus a subquery is part of the intermediate skill.",
+              "SortOrder": 4
+            }
+          ]
+        },
+        {
+          "Id": "5212482c-0c75-4de9-b0f7-b3d14526eef9",
+          "TopicId": "fa56737f-b0d7-4c70-9898-4fb7bae33c67",
+          "Title": "Programmatic SQL: Procedures and Triggers",
+          "BodyText": "Intermediate work moves beyond simple procedures into robust, secure, event-driven database code.",
+          "Notes": "Procedures and triggers are rated L2 for DBAs and L3 for database developers in the role matrix.",
+          "SortOrder": 2,
+          "CreatedDate": "2026-11-17T04:55:52.3595328-05:00",
+          "ModifiedDate": "2026-11-17T04:55:52.3595328-05:00",
+          "Items": [
+            {
+              "Id": "896482e2-8a17-4a36-bd86-5c2a496d4420",
+              "Text": "Advanced stored procedures use TRY/CATCH error handling, OUTPUT parameters, and dynamic SQL via sp_executesql.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "ec61caec-5b8f-4ec3-affc-1917852c8666",
+              "Text": "Dynamic SQL must be written so it is safe from injection \u2014 never concatenate unsanitised input into an EXEC string.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "53c187d5-8e54-4f3a-8290-21cc57ecae53",
+              "Text": "AFTER and INSTEAD OF triggers respond to INSERT, UPDATE, and DELETE events.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "587a41fb-82ff-411c-8840-d12090ba0652",
+              "Text": "The inserted and deleted pseudo-tables supply the before and after row images used in audit and cascading-update triggers.",
+              "SortOrder": 3
+            },
+            {
+              "Id": "39aae1ee-cb24-4e6f-bdb8-d7ae86b782dd",
+              "Text": "Triggers add hidden complexity, so you must judge when they genuinely help versus when explicit procedural logic is clearer.",
+              "SortOrder": 4
+            }
+          ]
+        },
+        {
+          "Id": "ce78092c-96c1-4f7d-9009-aa063ecea921",
+          "TopicId": "fa56737f-b0d7-4c70-9898-4fb7bae33c67",
+          "Title": "Performance and Indexing Strategy",
+          "BodyText": "Performance work at L2 means designing indexes deliberately and diagnosing slow queries with the engine\u0027s own tooling.",
+          "Notes": "Index design is L2 for developers and data engineers but rises to L3 for DBAs and L4 for architects.",
+          "SortOrder": 3,
+          "CreatedDate": "2026-11-17T04:55:52.3595328-05:00",
+          "ModifiedDate": "2026-11-17T04:55:52.3595328-05:00",
+          "Items": [
+            {
+              "Id": "77cddd0a-4931-4f60-a3fa-c9fb6cb47733",
+              "Text": "Index design covers composite indexes and column order, covering indexes with included columns, and filtered indexes for partial data.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "adbefed4-7a67-40f8-91c6-08f2ff2017c5",
+              "Text": "Fragmentation management and the write cost of over-indexing matter on write-heavy tables.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "7017d9d1-9ba2-4cfb-a45f-01ded3381322",
+              "Text": "Execution plan reading identifies costly operators such as table scans, key lookups, hash joins, and nested loops.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "dbcdc999-23ec-4009-bea9-158a0a4354d1",
+              "Text": "Compare estimated versus actual plans and profile with SET STATISTICS IO and TIME.",
+              "SortOrder": 3
+            },
+            {
+              "Id": "db74a3ed-034f-4a3e-b06f-72652f95aa5e",
+              "Text": "Query Store surfaces regressed queries, while DMVs like sys.dm_exec_requests, sys.dm_exec_query_stats, and sys.dm_index_usage_stats expose expensive and blocking work.",
+              "SortOrder": 4
+            },
+            {
+              "Id": "5d7043d6-c889-459c-94a4-4ede53078cd5",
+              "Text": "Full-text indexing with CONTAINS, FREETEXT, and CONTAINSTABLE handles search workloads where LIKE is inadequate.",
+              "SortOrder": 5
+            }
+          ]
+        },
+        {
+          "Id": "f8ebcc18-783a-411d-b0e3-0f9902243411",
+          "TopicId": "fa56737f-b0d7-4c70-9898-4fb7bae33c67",
+          "Title": "Data Design and Analysis Patterns",
+          "BodyText": "Intermediate data design focuses on clean reference structures and on multi-dimensional analysis patterns used in reporting.",
+          "Notes": "These patterns underpin the recurring reports and KPI dashboards that analysts and BI developers deliver.",
+          "SortOrder": 4,
+          "CreatedDate": "2026-11-17T04:55:52.3595328-05:00",
+          "ModifiedDate": "2026-11-17T04:55:52.3595328-05:00",
+          "Items": [
+            {
+              "Id": "5cb502b6-87ce-42ba-9408-d6a69ff633a6",
+              "Text": "Lookup and reference tables \u2014 type, status, and code tables \u2014 normalise categorical data and remove magic numbers from application logic.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "c039fb51-c132-4bf0-9971-b9e910d15b68",
+              "Text": "ROLLUP, CUBE, and GROUPING SETS produce multi-dimensional aggregations, with GROUPING() distinguishing subtotal rows.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "3966bd9e-a814-4b8b-a982-c90909332c2c",
+              "Text": "PIVOT/UNPIVOT and CASE WHEN patterns reshape result sets for reporting.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "267e35be-657c-49c6-a600-8bd3f96f3417",
+              "Text": "Data analysis with SQL includes descriptive reporting, trend analysis, segmentation, and KPI calculation.",
+              "SortOrder": 3
+            },
+            {
+              "Id": "3ee61023-6bf5-4072-ba01-8665f92a62e8",
+              "Text": "Parameterised cyclic report queries can be wrapped in stored procedures and run on a schedule.",
+              "SortOrder": 4
+            }
+          ]
+        },
+        {
+          "Id": "61f19f64-59d4-44b4-9e63-3c2ddd7147db",
+          "TopicId": "fa56737f-b0d7-4c70-9898-4fb7bae33c67",
+          "Title": "NoSQL Concepts and MongoDB",
+          "BodyText": "Working beyond the relational model is part of the intermediate skill set, starting with document databases such as MongoDB.",
+          "Notes": "NoSQL concepts are rated L2 for DBAs, developers, analysts and data scientists, and higher for engineers and architects.",
+          "SortOrder": 5,
+          "CreatedDate": "2026-11-17T04:55:52.3595328-05:00",
+          "ModifiedDate": "2026-11-17T04:55:52.3595328-05:00",
+          "Items": [
+            {
+              "Id": "4fcd508e-a78e-4f05-b66d-305df738b638",
+              "Text": "Recognise the four main NoSQL families: document, key-value, column-family, and graph.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "c3d879e3-6a93-41d8-97cb-d27658239819",
+              "Text": "Perform MongoDB CRUD operations and build queries with the aggregation pipeline.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "203c8acd-2233-4fb1-983c-eaefed41770e",
+              "Text": "Decide between embedding related data in a document and referencing it across collections.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "cdaf7fac-3dc7-40d2-a686-329dc173f27e",
+              "Text": "Create indexes in MongoDB to support query performance.",
+              "SortOrder": 3
+            },
+            {
+              "Id": "14788435-e5f3-4a95-a7c0-2289061450d6",
+              "Text": "Be able to justify when NoSQL is the right tool and when a relational engine remains the better choice.",
+              "SortOrder": 4
+            }
+          ]
+        },
+        {
+          "Id": "a9d6c085-681e-4f29-a69d-b2fec34a3846",
+          "TopicId": "fa56737f-b0d7-4c70-9898-4fb7bae33c67",
+          "Title": "Security at the Intermediate Level",
+          "BodyText": "L2 security covers controlling access, protecting data at rest and in transit, proving what happened, and preventing injection attacks.",
+          "Notes": "Security is L2 for developers and data engineers, L3 for DBAs, and L4 for architects.",
+          "SortOrder": 6,
+          "CreatedDate": "2026-11-17T04:55:52.3595328-05:00",
+          "ModifiedDate": "2026-11-17T04:55:52.3595328-05:00",
+          "Items": [
+            {
+              "Id": "74c575a9-db6d-4cd0-a64c-bc179dd4a3da",
+              "Text": "Authentication and authorization: Windows versus SQL Server authentication, role-based access control, schema ownership, and least-privilege design.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "bfa0fbfb-d528-4e78-af10-af23e33c30e5",
+              "Text": "Row-Level Security restricts rows by user, and Dynamic Data Masking shields PII from unauthorised viewers.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "37a1a325-565e-4bd5-aea9-1bbe8bf6a4da",
+              "Text": "Encryption options include Transparent Data Encryption at rest, Always Encrypted at column level, and enforced TLS/SSL in transit \u2014 with careful certificate and key backup.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "a8fb8aa7-cce3-4e60-ba8f-0ca3e5dedccd",
+              "Text": "SQL Server Audit specifications log logins, DDL, and DML on sensitive tables, and fn_get_audit_file queries the results.",
+              "SortOrder": 3
+            },
+            {
+              "Id": "7dd06afa-1dcb-41f3-b4c7-23c2a0455b7b",
+              "Text": "DMVs monitor active sessions and blocked queries as part of ongoing security and health monitoring.",
+              "SortOrder": 4
+            },
+            {
+              "Id": "6713cd81-d888-4446-baa2-439ee9078adc",
+              "Text": "SQL injection prevention requires parameterised queries, stored procedures, and input validation \u2014 never dynamic SQL built from unsanitised input.",
+              "SortOrder": 5
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Id": "3021984f-b700-4a05-b255-abc6507f7250",
+      "Title": "Advanced Professional Topics (L3)",
+      "Summary": "Explores skills built through 3\u20136 years of production experience: performance at scale (partitioning, columnstore, In-Memory OLTP, wait statistics), high availability and disaster recovery, cloud databases, data warehousing and ETL/CDC/temporal tables, plus regulatory compliance and database forensics.",
+      "SortOrder": 3,
+      "CreatedDate": "2026-11-17T04:54:23.8972699-05:00",
+      "ModifiedDate": "2026-11-17T04:54:23.8972699-05:00",
+      "Elements": [
+        {
+          "Id": "665116bf-0822-4faf-8a98-40d421e3b672",
+          "TopicId": "3021984f-b700-4a05-b255-abc6507f7250",
+          "Title": "What Defines the Advanced (L3) Level",
+          "BodyText": "L3 topics go beyond coursework and are developed through hands-on professional experience, typically over 3\u20136 years. They require architectural thinking and the ability to make design decisions that affect production systems at scale.",
+          "Notes": "L3 skills are expected of senior database developers, experienced DBAs, data engineers, and those moving into specialist or lead roles.",
+          "SortOrder": 0,
+          "CreatedDate": "2026-11-17T04:56:22.378602-05:00",
+          "ModifiedDate": "2026-11-17T04:56:22.378602-05:00",
+          "Items": [
+            {
+              "Id": "61ae89ce-977e-4613-bf60-78649a35a009",
+              "Text": "L3 sits between L2 (COP4709 / 1\u20133 years) and L4 (architect / 6\u002B years).",
+              "SortOrder": 0
+            },
+            {
+              "Id": "38c2c4f7-fa9a-40e0-a603-447694f1bee9",
+              "Text": "These skills are rarely learned from textbooks alone \u2014 production incidents teach them fastest.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "1926edf1-9cfc-43d0-b5bd-de350e9c3b09",
+              "Text": "The role matrix shows L3 expectations for DBAs (backup, HA, cloud, tuning) and Data Engineers (warehouse design, CDC).",
+              "SortOrder": 2
+            },
+            {
+              "Id": "a9189914-b277-4407-9908-7f77d4398448",
+              "Text": "Certifications such as DP-203, AWS Database Specialty, and Oracle OCP map to this level.",
+              "SortOrder": 3
+            }
+          ]
+        },
+        {
+          "Id": "592e3e0c-79b8-490e-984b-0b7a9b10cb65",
+          "TopicId": "3021984f-b700-4a05-b255-abc6507f7250",
+          "Title": "Performance at Scale",
+          "BodyText": "When tables grow to hundreds of millions of rows, ordinary indexing is no longer enough. Advanced engine features reshape how data is stored, processed, and diagnosed.",
+          "Notes": "Each feature targets a specific workload type \u2014 misapplying them can hurt rather than help performance.",
+          "SortOrder": 1,
+          "CreatedDate": "2026-11-17T04:56:22.378602-05:00",
+          "ModifiedDate": "2026-11-17T04:56:22.378602-05:00",
+          "Items": [
+            {
+              "Id": "165b7796-ada4-435e-8484-3122766ba340",
+              "Text": "Table partitioning splits large tables horizontally by date, customer ID, or region using partition functions and schemes; partition switching enables near-instant bulk loads and archival.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "0b375916-9195-4d4d-b2ef-be485893a62e",
+              "Text": "Columnstore indexes (clustered and non-clustered) use batch mode execution, delta stores, and tuple movers to accelerate OLAP aggregate queries.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "48f3cc7d-b271-49a0-9e9f-c518a9c85656",
+              "Text": "In-Memory OLTP (Hekaton) provides memory-optimised tables and natively compiled stored procedures with an optimistic concurrency model for ultra-high-throughput transactional workloads.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "a957b399-5f69-45ee-8e72-b54314d248d4",
+              "Text": "Durability options in In-Memory OLTP trade write safety for throughput and must be chosen deliberately.",
+              "SortOrder": 3
+            }
+          ]
+        },
+        {
+          "Id": "4b07affa-cf37-47c5-a29a-4963a92e5a85",
+          "TopicId": "3021984f-b700-4a05-b255-abc6507f7250",
+          "Title": "Wait Statistics Analysis",
+          "BodyText": "Wait statistics tell you what the SQL Server engine is waiting on, turning vague \u0022the database is slow\u0022 complaints into a specific, targetable bottleneck.",
+          "Notes": "The key discipline is fixing the dominant wait type rather than guessing at indexes or hardware.",
+          "SortOrder": 2,
+          "CreatedDate": "2026-11-17T04:56:22.378602-05:00",
+          "ModifiedDate": "2026-11-17T04:56:22.378602-05:00",
+          "Items": [
+            {
+              "Id": "7a7b403f-e620-44b2-8edd-7566abaf2981",
+              "Text": "sys.dm_os_wait_stats aggregates wait types across the instance since last restart or clear.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "31e292da-2630-4ce0-acd0-f0bd81afb680",
+              "Text": "CPU pressure appears as CXPACKET and SOS_SCHEDULER_YIELD waits.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "79d699e6-52d7-48d5-b65f-db2f19c25619",
+              "Text": "I/O bottlenecks show up as PAGEIOLATCH waits; memory grant pressure as RESOURCE_SEMAPHORE.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "236b6442-4969-41f7-b1f1-1a6f24ab8269",
+              "Text": "Blocking appears as LCK_M_* waits and client/network issues as ASYNC_NETWORK_IO.",
+              "SortOrder": 3
+            },
+            {
+              "Id": "7d59df8a-2b34-458b-9f8c-46607b69c02d",
+              "Text": "Wait stats pair naturally with Query Store and DMVs to isolate the offending workload.",
+              "SortOrder": 4
+            }
+          ]
+        },
+        {
+          "Id": "e641d20d-3a6c-4ff6-b07a-5a386199065c",
+          "TopicId": "3021984f-b700-4a05-b255-abc6507f7250",
+          "Title": "High Availability \u0026 Disaster Recovery",
+          "BodyText": "HA/DR work protects the business from outages and data loss. It combines replica architectures, disciplined backup chains, and tested restore procedures.",
+          "Notes": "Backup and HA is one of the few areas rated L4 for DBAs in the skills matrix \u2014 it is the DBA\u0027s defining responsibility.",
+          "SortOrder": 3,
+          "CreatedDate": "2026-11-17T04:56:22.378602-05:00",
+          "ModifiedDate": "2026-11-17T04:56:22.378602-05:00",
+          "Items": [
+            {
+              "Id": "4020843f-f1d0-4286-a1d6-157b813d704c",
+              "Text": "Always On Availability Groups use primary/secondary replicas with synchronous or asynchronous commit, automatic failover, readable secondaries, and listener-based connection routing.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "65c1d771-3741-4d2c-89af-d21c8531d2d2",
+              "Text": "Backup strategy combines full, differential, and transaction log backup chains under SIMPLE, BULK-LOGGED, or FULL recovery models.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "5e1b7b4a-8142-4e99-be42-c99cb3cf2269",
+              "Text": "RTO and RPO targets drive backup frequency and the choice of HA technology; point-in-time restores depend on an unbroken log chain.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "d80e2df7-802f-427c-86d9-a30482bd02b4",
+              "Text": "Backups must be verified and restores rehearsed on a regular cadence \u2014 an untested backup is not a backup.",
+              "SortOrder": 3
+            },
+            {
+              "Id": "2ac53ca8-2a06-4ed2-98a6-79e10af56049",
+              "Text": "Replication (transactional, snapshot, merge) uses a publisher/distributor/subscriber model for reporting replicas, geographic distribution, and consolidation, with latency and conflict resolution trade-offs.",
+              "SortOrder": 4
+            }
+          ]
+        },
+        {
+          "Id": "ee89f4c6-21a8-48a3-9f8b-6f5a15147dce",
+          "TopicId": "3021984f-b700-4a05-b255-abc6507f7250",
+          "Title": "Cloud Databases",
+          "BodyText": "Cloud platforms shift much of the operational burden of database management to the provider, but introduce new decisions about hosting model, scaling, and migration.",
+          "Notes": "Students can connect SSMS to an Azure SQL Database instance to get hands-on exposure early, as suggested in the course assignments.",
+          "SortOrder": 4,
+          "CreatedDate": "2026-11-17T04:56:22.378602-05:00",
+          "ModifiedDate": "2026-11-17T04:56:22.378602-05:00",
+          "Items": [
+            {
+              "Id": "74f245bc-8961-44ab-a378-ff7b6bb2f789",
+              "Text": "Azure SQL Database, Azure SQL Managed Instance, AWS RDS, and Aurora are the dominant managed offerings.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "5074c53a-4f10-45aa-9b0d-96a0d4cc5f63",
+              "Text": "PaaS removes patching and backup chores but limits instance-level control; IaaS retains control at the cost of administration effort.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "939a7cd2-cb3a-4d9e-bf45-c96e9bebd9b0",
+              "Text": "Elastic pools, serverless tiers, and auto-scaling let capacity follow demand and control cost.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "6e881809-32ef-4eb6-a5ed-b6bced7b6b0c",
+              "Text": "Managed services provide built-in backup, patching, and high availability.",
+              "SortOrder": 3
+            },
+            {
+              "Id": "d9a09f6f-a0ea-4c8d-b9ce-4f74c4580763",
+              "Text": "Migration strategies range from lift-and-shift (minimal change) to cloud-native redesign (greater benefit, greater effort).",
+              "SortOrder": 4
+            }
+          ]
+        },
+        {
+          "Id": "0f24d21a-77b3-42cb-a03b-ba53438a0b8c",
+          "TopicId": "3021984f-b700-4a05-b255-abc6507f7250",
+          "Title": "Data Warehousing, ETL and Change Tracking",
+          "BodyText": "Analytical systems require different modelling and loading patterns than transactional systems. This cluster covers warehouse design, pipeline construction, and efficient incremental data movement.",
+          "Notes": "Data warehouse design and ETL are L3\u2013L4 expectations for data engineers and BI developers.",
+          "SortOrder": 5,
+          "CreatedDate": "2026-11-17T04:56:22.378602-05:00",
+          "ModifiedDate": "2026-11-17T04:56:22.378602-05:00",
+          "Items": [
+            {
+              "Id": "693519bc-33ba-4d4f-9b36-66c5364685d5",
+              "Text": "Warehouse design uses star and snowflake schemas built from fact and dimension tables, with slowly changing dimensions (Type 1, 2, 3) and conformed dimensions for cross-functional reporting.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "0cffe0cd-eef3-4059-af41-6bcdb57ce67b",
+              "Text": "Kimball (dimensional, bottom-up) and Inmon (normalised, top-down) represent the two classic methodologies.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "0859d8be-f95c-4118-a79e-a1d0b11912d3",
+              "Text": "ETL/ELT pipelines built with SSIS, Azure Data Factory, or dbt need staging tables, data quality gates, and error handling.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "09050bbc-4b30-4fc5-af16-b23dde5cd38c",
+              "Text": "Incremental loads outperform full loads but require reliable change detection.",
+              "SortOrder": 3
+            },
+            {
+              "Id": "c2710c75-b13a-4a07-944f-803d7c3a910e",
+              "Text": "Change Data Capture reads row-level changes from the transaction log without triggers; compare it with Change Tracking and temporal tables when choosing an approach.",
+              "SortOrder": 4
+            },
+            {
+              "Id": "79786db0-d3de-4291-b516-9d2dc441892c",
+              "Text": "System-versioned temporal tables automatically maintain full row history, queried with FOR SYSTEM_TIME AS OF, BETWEEN, and CONTAINED IN.",
+              "SortOrder": 5
+            }
+          ]
+        },
+        {
+          "Id": "e7195259-2014-4222-9d61-54436bab849a",
+          "TopicId": "3021984f-b700-4a05-b255-abc6507f7250",
+          "Title": "Regulatory Compliance \u0026 Database Forensics",
+          "BodyText": "Advanced security work moves from configuring controls to proving they exist and investigating when they fail. Both compliance and forensics demand documentation as much as technical skill.",
+          "Notes": "These skills become critical during audits, breach response, and litigation.",
+          "SortOrder": 6,
+          "CreatedDate": "2026-11-17T04:56:22.378602-05:00",
+          "ModifiedDate": "2026-11-17T04:56:22.378602-05:00",
+          "Items": [
+            {
+              "Id": "f398f28d-01e6-46eb-bb5c-37d76455f77b",
+              "Text": "Map database controls to the specific requirements of PCI DSS, HIPAA, GDPR, SOX, and FERPA.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "d228fd21-e2a0-4d63-9f1f-1060e454819f",
+              "Text": "Understand data residency obligations and build data classification schemas that identify sensitive columns.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "1e07b1db-468f-4385-b7c5-baa5a22ad6e9",
+              "Text": "Compliance is demonstrated through evidence \u2014 audit specifications, access reviews, encryption configuration, and retention policies.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "3553fe81-97ff-48ad-893d-d6e5898f0c34",
+              "Text": "Forensics requires preserving database state as evidence before remediation changes it.",
+              "SortOrder": 3
+            },
+            {
+              "Id": "922dae0c-769b-49ed-8f93-854b70f872b0",
+              "Text": "Timelines are reconstructed from transaction logs and audit files; investigators look for exfiltration patterns and persistence mechanisms.",
+              "SortOrder": 4
+            },
+            {
+              "Id": "f12a44f0-2ea6-4e3c-8887-c07dff18847c",
+              "Text": "Chain-of-custody documentation determines whether findings will hold up in an investigation or court.",
+              "SortOrder": 5
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Id": "901b1186-e402-4abf-8195-006535c532ad",
+      "Title": "Expert and Architect-Level Topics (L4)",
+      "Summary": "Surveys the architectural and internals knowledge of senior DBAs and database architects, including data platform architecture patterns, distributed systems and the CAP theorem, sharding, storage engine internals, advanced modelling, schema migration, lakehouse architecture, governance, polyglot persistence, and capacity planning.",
+      "SortOrder": 4,
+      "CreatedDate": "2026-11-17T04:54:23.8972699-05:00",
+      "ModifiedDate": "2026-11-17T04:54:23.8972699-05:00",
+      "Elements": [
+        {
+          "Id": "58d933a4-bde9-4a9e-af8f-dcfb4f7d15d4",
+          "TopicId": "901b1186-e402-4abf-8195-006535c532ad",
+          "Title": "Database Architecture Patterns",
+          "BodyText": "Expert-level architects design entire data platforms rather than individual databases, deciding how transactional, analytical, caching, and messaging components fit together. These decisions shape cost, scalability, and resilience for years.",
+          "Notes": "Examples include separating OLTP from OLAP so reporting never degrades transaction throughput, or adding a cache layer in front of a read-heavy API.",
+          "SortOrder": 0,
+          "CreatedDate": "2026-11-17T04:56:48.3991396-05:00",
+          "ModifiedDate": "2026-11-17T04:56:48.3991396-05:00",
+          "Items": [
+            {
+              "Id": "061b0155-92f2-4110-8a51-798544482498",
+              "Text": "Separate OLTP and OLAP workloads, and add read replicas to offload reporting.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "5382aed0-eb9c-4f1c-88fc-ebbd6fee42a6",
+              "Text": "Incorporate caching layers, message queues, and data lakes into the overall platform design.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "a0309fac-c886-43aa-a96f-27e60db8ce7c",
+              "Text": "Evaluate build vs buy decisions for database and data platform technology.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "21b143ea-35f8-455b-b3c5-04d2d212eb5a",
+              "Text": "Design explicitly for multi-tenancy, multi-region deployment, and disaster recovery at the architecture level.",
+              "SortOrder": 3
+            }
+          ]
+        },
+        {
+          "Id": "cfd9436b-f276-4261-b8b5-8d3033b79b26",
+          "TopicId": "901b1186-e402-4abf-8195-006535c532ad",
+          "Title": "Distributed Database Systems and the CAP Theorem",
+          "BodyText": "Once data spans multiple nodes or regions, trade-offs between consistency, availability, and partition tolerance become unavoidable. Experts understand these trade-offs conceptually and in the behaviour of real products.",
+          "Notes": "CockroachDB, Cassandra, and Google Spanner each resolve CAP trade-offs differently \u2014 comparing them is a practical way to learn the theory.",
+          "SortOrder": 1,
+          "CreatedDate": "2026-11-17T04:56:48.3991396-05:00",
+          "ModifiedDate": "2026-11-17T04:56:48.3991396-05:00",
+          "Items": [
+            {
+              "Id": "157332c5-9617-4c26-8968-ed4a156c3b22",
+              "Text": "The CAP theorem states that during a network partition you must choose between consistency and availability.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "6addd37d-a009-45a6-bec7-88748587b460",
+              "Text": "Eventual consistency patterns accept temporary divergence in exchange for availability and latency.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "007dc31e-b0db-46c5-907d-e86c13f8b74b",
+              "Text": "Distributed transactions use protocols such as two-phase commit, with their own failure modes.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "b3942c5b-d68d-4e02-be61-40b4f5add64c",
+              "Text": "Consensus algorithms like Paxos and Raft keep replicas in agreement and should be understood conceptually.",
+              "SortOrder": 3
+            },
+            {
+              "Id": "4a79ecc9-3923-4c91-9b69-7932855b3596",
+              "Text": "Studying Cassandra, CockroachDB, and Spanner architectures makes the trade-offs concrete.",
+              "SortOrder": 4
+            }
+          ]
+        },
+        {
+          "Id": "1cdf9d93-0e03-41dd-9a73-9dd691cfe7fa",
+          "TopicId": "901b1186-e402-4abf-8195-006535c532ad",
+          "Title": "Sharding Strategies",
+          "BodyText": "Sharding spreads a single logical dataset horizontally across multiple database nodes to exceed the capacity of one server. It is powerful but introduces permanent operational complexity.",
+          "Notes": "A common architect principle: delay sharding as long as possible by scaling up, partitioning, and offloading reads first.",
+          "SortOrder": 2,
+          "CreatedDate": "2026-11-17T04:56:48.3991396-05:00",
+          "ModifiedDate": "2026-11-17T04:56:48.3991396-05:00",
+          "Items": [
+            {
+              "Id": "ff5ca856-0fa6-4ff7-88ce-99dfce226ec0",
+              "Text": "Range-based sharding splits data by value ranges such as date or customer ID.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "453f8384-0c9e-481e-8f8f-73661c05aa38",
+              "Text": "Hash-based sharding distributes rows evenly but makes range queries expensive.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "bb69eb2d-adb2-465d-9daa-f4ef6eb25964",
+              "Text": "Directory-based sharding uses a lookup service to map keys to shards, adding flexibility and a dependency.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "802ab8f0-ad6d-4abb-b22f-07f26f0469ac",
+              "Text": "Cross-shard queries, joins, and transactions are difficult and often must be redesigned away.",
+              "SortOrder": 3
+            },
+            {
+              "Id": "44ff6042-a8e6-4cd1-b121-65d9a342ca59",
+              "Text": "Re-sharding a live system requires careful migration planning to avoid downtime.",
+              "SortOrder": 4
+            }
+          ]
+        },
+        {
+          "Id": "3dd96f6d-19d0-4e26-9e55-9faa6540cd78",
+          "TopicId": "901b1186-e402-4abf-8195-006535c532ad",
+          "Title": "Storage Engine Internals",
+          "BodyText": "Expert tuning decisions rest on knowing how the engine physically stores and writes data. SQL Server internals explain why certain index and configuration choices succeed or fail.",
+          "Notes": "Recommended reading at this level includes SQL Server Internals (Kalen Delaney) and Use The Index, Luke.",
+          "SortOrder": 3,
+          "CreatedDate": "2026-11-17T04:56:48.3991396-05:00",
+          "ModifiedDate": "2026-11-17T04:56:48.3991396-05:00",
+          "Items": [
+            {
+              "Id": "9bea42ce-b181-4023-8fca-6d33353c9f90",
+              "Text": "SQL Server stores data in 8KB pages grouped into extents and tracked by IAM pages.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "98d78def-94cb-4da7-ab5e-a6a446dc836b",
+              "Text": "B-tree indexes have leaf and non-leaf levels; page splits and fill factor affect fragmentation and write cost.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "406ee272-7c10-4381-95e9-ae6bd139ec3d",
+              "Text": "The buffer pool caches pages in memory, while the lazy writer and checkpoint process manage flushing to disk.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "d9d3940c-c07e-4605-8e6d-5aee6983501e",
+              "Text": "Write-ahead logging (WAL) guarantees durability by writing log records before data pages.",
+              "SortOrder": 3
+            },
+            {
+              "Id": "35e9c897-5c57-4ac2-94bd-bdb90f8dc6bb",
+              "Text": "This internals knowledge directly drives index design, fill factor, and memory configuration decisions.",
+              "SortOrder": 4
+            }
+          ]
+        },
+        {
+          "Id": "4e8c98a3-f62e-493f-8e2f-4fb8b6d3508d",
+          "TopicId": "901b1186-e402-4abf-8195-006535c532ad",
+          "Title": "Advanced Data Modelling and Schema Migration",
+          "BodyText": "At architect level, modelling goes beyond third normal form to include specialised patterns, and schema change must happen without taking production offline.",
+          "Notes": "Expand-contract (parallel change) adds the new structure, migrates and dual-writes, then removes the old structure once no deployed code depends on it.",
+          "SortOrder": 4,
+          "CreatedDate": "2026-11-17T04:56:48.3991396-05:00",
+          "ModifiedDate": "2026-11-17T04:56:48.3991396-05:00",
+          "Items": [
+            {
+              "Id": "966c6c09-7abf-49d7-a880-b09bb4f31ec8",
+              "Text": "Sixth Normal Form and anchor modelling support highly flexible, change-tolerant schemas.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "bc7310f0-1b60-463c-ac5a-1ab02856c2ae",
+              "Text": "Event sourcing and CQRS separate the write model from read models for auditability and scale.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "34a4b357-cf7b-4f97-8c7d-76cd48175de3",
+              "Text": "Graph modelling suits relationship-heavy domains; the same business domain may need normalised, denormalised, and document models simultaneously.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "f5208dd0-ce54-4377-9156-6fcf14fc2b3f",
+              "Text": "Zero-downtime migrations rely on the expand-contract pattern and backwards-compatible changes for rolling deployments.",
+              "SortOrder": 3
+            },
+            {
+              "Id": "d87e45b8-bbd1-4536-91e7-7ad801ba2237",
+              "Text": "Schema versioning tools such as Flyway, Liquibase, or SSDT make migrations repeatable and auditable across microservices.",
+              "SortOrder": 4
+            }
+          ]
+        },
+        {
+          "Id": "1239191e-9f45-426e-8181-dc2957efcec3",
+          "TopicId": "901b1186-e402-4abf-8195-006535c532ad",
+          "Title": "Data Lake, Lakehouse, and Governance",
+          "BodyText": "Modern analytics platforms blend warehouse structure with lake flexibility, and that scale makes governance and lineage essential rather than optional.",
+          "Notes": "Separating storage from compute (Azure Synapse, Databricks, Snowflake) lets organisations scale query capacity independently of data volume.",
+          "SortOrder": 5,
+          "CreatedDate": "2026-11-17T04:56:48.3991396-05:00",
+          "ModifiedDate": "2026-11-17T04:56:48.3991396-05:00",
+          "Items": [
+            {
+              "Id": "ce373eb9-e9e6-4de0-b02e-9227e46ee445",
+              "Text": "Medallion architecture organises data into Bronze (raw), Silver (cleansed), and Gold (curated) layers.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "85aaf743-c43a-4c94-9a6a-3b66d0ac2ae9",
+              "Text": "Open file formats such as Parquet, Delta Lake, and Apache Iceberg underpin lakehouse storage.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "979af1e7-6c81-49bb-bb7c-008cdce287b5",
+              "Text": "Architects must judge where a data warehouse ends and a data lake begins for a given workload.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "8e430d3d-0415-4c3c-8a11-0b1fcfb40605",
+              "Text": "Data catalogues like Microsoft Purview or Apache Atlas support discovery and column-level lineage tracking.",
+              "SortOrder": 3
+            },
+            {
+              "Id": "b1ace4e2-0492-47df-8a50-96f8e7b99bf6",
+              "Text": "Data stewardship roles, Master Data Management, and data quality SLAs make governance enforceable at scale.",
+              "SortOrder": 4
+            }
+          ]
+        },
+        {
+          "Id": "84582426-e40d-478d-a8f7-12f8941751d9",
+          "TopicId": "901b1186-e402-4abf-8195-006535c532ad",
+          "Title": "Polyglot Persistence and Capacity Planning",
+          "BodyText": "Expert architects intentionally combine multiple database technologies and then forecast the capacity and cost those systems will require over time.",
+          "Notes": "Cost modelling for cloud versus on-premises is increasingly part of the architect\u0027s deliverable, not just a finance exercise.",
+          "SortOrder": 6,
+          "CreatedDate": "2026-11-17T04:56:48.3991396-05:00",
+          "ModifiedDate": "2026-11-17T04:56:48.3991396-05:00",
+          "Items": [
+            {
+              "Id": "b9d1e698-f7ba-4645-9e46-ccd3899a97b2",
+              "Text": "Use relational stores for transactions, document stores for flexible content, key-value for caching, graph for relationships, and search engines for text.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "28996419-e090-4b30-a36b-0776766756f1",
+              "Text": "Managing consistency across heterogeneous stores is the central challenge of polyglot persistence.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "b78df61f-6ee7-40b3-b42d-4bfbb234c2e5",
+              "Text": "Capacity planning analyses growth trends in data volume, transaction rate, and query concurrency.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "f772efcd-2330-4604-b9a0-c7bfc36ea7c8",
+              "Text": "Model future hardware needs and decide between scaling up (a bigger server) and scaling out (more servers).",
+              "SortOrder": 3
+            },
+            {
+              "Id": "e6cbfcb9-54db-49fe-875b-ccf42cc44c93",
+              "Text": "Compare total cost of ownership across cloud and on-premises options before committing.",
+              "SortOrder": 4
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Id": "c02956f7-f2e5-415a-9b19-37d843034319",
+      "Title": "Database Career Roles and the Skills-by-Role Matrix",
+      "Summary": "Profiles the seven major database career paths \u2014 DBA, Database Developer, Data Analyst, Data Engineer, Database Architect, BI Developer, and Data Scientist \u2014 with their responsibilities, required skills, and progression. Uses the skills-by-role matrix to map which skill level each role requires for each topic area.",
+      "SortOrder": 5,
+      "CreatedDate": "2026-11-17T04:54:23.8972699-05:00",
+      "ModifiedDate": "2026-11-17T04:54:23.8972699-05:00",
+      "Elements": [
+        {
+          "Id": "1a7ee596-b919-4a26-9bdf-f38164608b7f",
+          "TopicId": "c02956f7-f2e5-415a-9b19-37d843034319",
+          "Title": "Why Roles Matter: Mapping Skills to Career Targets",
+          "BodyText": "Database professionals work under several different titles, each with a distinct focus area, and the same person may wear multiple hats at a smaller organisation. Understanding these roles helps you target your learning toward a specific career goal rather than trying to learn everything at once.",
+          "Notes": "The seven primary roles are DBA, Database Developer, Data Analyst, Data Engineer, Database Architect, BI Developer, and Data Scientist. Each is profiled with responsibilities, required skills, typical progression, and a focus level expressed in the L1\u2013L4 framework.",
+          "SortOrder": 0,
+          "CreatedDate": "2026-11-17T04:57:22.6848156-05:00",
+          "ModifiedDate": "2026-11-17T04:57:22.6848156-05:00",
+          "Items": [
+            {
+              "Id": "03e5c091-b211-446e-ac08-d3bb46f68bed",
+              "Text": "Roles differ by focus area: the engine, the code, the insight, the pipeline, or the architecture.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "7e7f5ab1-88a0-425e-8169-5b5513cb2bbc",
+              "Text": "Each role carries a focus level range (for example L1\u2013L2 for Analyst, L3\u2013L4 for Architect) that shows the depth expected.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "d00a9a09-4ec8-4afa-9226-b78554355a16",
+              "Text": "Typical progression ladders are given for each role so you can see the path from junior to principal.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "b5065a72-bf21-4888-9fc4-0c63a841204b",
+              "Text": "In small organisations one person may cover several roles simultaneously; in large organisations they are distinct teams.",
+              "SortOrder": 3
+            },
+            {
+              "Id": "08366051-ee0a-4ee0-b2dc-d7536bb45f85",
+              "Text": "Use the role profiles to decide which skill areas to prioritise and which you can safely leave at awareness level.",
+              "SortOrder": 4
+            }
+          ]
+        },
+        {
+          "Id": "5e1f3f18-7dc4-415b-8089-0d5ab2006344",
+          "TopicId": "c02956f7-f2e5-415a-9b19-37d843034319",
+          "Title": "Database Administrator (DBA) and Database Developer",
+          "BodyText": "These two roles sit closest to the database engine and its code. The DBA keeps the engine running, healthy, and secure, while the Database Developer builds the data layer that applications run on.",
+          "Notes": "DBA progression: Junior DBA \u2192 DBA \u2192 Senior DBA \u2192 Lead/Principal DBA, focus level L2\u2013L4. Database Developer progression: Junior SQL Developer \u2192 SQL Developer \u2192 Senior Database Developer, focus level L1\u2013L3.",
+          "SortOrder": 1,
+          "CreatedDate": "2026-11-17T04:57:22.6848156-05:00",
+          "ModifiedDate": "2026-11-17T04:57:22.6848156-05:00",
+          "Items": [
+            {
+              "Id": "728a5c85-c99e-478e-944f-f26e9e6d0b49",
+              "Text": "DBAs install, configure and patch instances, own backup and recovery, monitor performance, manage storage and HA, and control user access.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "46740e3a-e9a9-4094-8dc3-acb483a97ab5",
+              "Text": "DBA skills centre on query tuning, execution plans, recovery models, replication, wait statistics, security hardening, plus OS administration and PowerShell.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "a73f5fa1-33cc-4abe-8d34-eed0d0a7c502",
+              "Text": "Database Developers design normalised schemas, write stored procedures, functions and triggers, build ETL, and maintain schema migration scripts.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "7efdcbe5-e783-4727-b0a9-22d7f0960bd3",
+              "Text": "Developer skills include advanced T-SQL, CTEs and window functions, index design, Git/SSDT version control, migration tools, and ORM awareness.",
+              "SortOrder": 3
+            },
+            {
+              "Id": "86f5d0cb-579e-49de-9dd7-449eb5197984",
+              "Text": "DBAs are on call and own reliability; developers own the correctness and performance of the data layer code.",
+              "SortOrder": 4
+            }
+          ]
+        },
+        {
+          "Id": "42f99b41-d95e-4c42-82a7-9f992b9d3184",
+          "TopicId": "c02956f7-f2e5-415a-9b19-37d843034319",
+          "Title": "Data Analyst and Business Intelligence Developer",
+          "BodyText": "These roles translate raw database data into reports, metrics, and dashboards for business users. The Analyst answers business questions with queries and visualisations; the BI Developer builds the reporting platform and semantic models underneath them.",
+          "Notes": "Analyst progression: Junior Analyst \u2192 Data Analyst \u2192 Senior Analyst \u2192 Analytics Manager, focus L1\u2013L2. BI Developer progression: BI Analyst \u2192 BI Developer \u2192 Senior BI Developer \u2192 BI Architect, focus L2\u2013L3.",
+          "SortOrder": 2,
+          "CreatedDate": "2026-11-17T04:57:22.6848156-05:00",
+          "ModifiedDate": "2026-11-17T04:57:22.6848156-05:00",
+          "Items": [
+            {
+              "Id": "d74a19f0-2332-45ce-8b2d-be88cb598a0b",
+              "Text": "Data Analysts write complex extraction queries, clean and profile data, define KPIs, and communicate findings to non-technical stakeholders.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "3a02c542-1b21-4753-ad5d-abbf0c062e83",
+              "Text": "Analyst skills are intermediate SQL (JOINs, GROUP BY, window functions), analysis patterns, Power BI/Tableau/Looker, Excel, and business acumen.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "939d3a85-0f69-4496-9494-b56478f4d54c",
+              "Text": "BI Developers design warehouse schemas, build ETL loads, create Power BI or SSAS semantic models, and publish dashboards and reports.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "024f870b-6739-4037-95f8-e9c6c3ae29bf",
+              "Text": "BI skills add star schema and slowly changing dimension design (L3), DAX, MDX for older SSAS cubes, and ETL tools such as SSIS, ADF, or dbt.",
+              "SortOrder": 3
+            },
+            {
+              "Id": "6b44eb3a-f8a3-4f62-b396-9384548c9d3c",
+              "Text": "Both roles depend on documenting business metric definitions so numbers are consistent across reports.",
+              "SortOrder": 4
+            }
+          ]
+        },
+        {
+          "Id": "799e0675-9cd7-47eb-982e-eafd04de87e0",
+          "TopicId": "c02956f7-f2e5-415a-9b19-37d843034319",
+          "Title": "Data Engineer and Data Scientist",
+          "BodyText": "Data Engineers build the pipelines and platforms that move and transform data at scale, while Data Scientists consume that data to build statistical and machine learning models. Both sit at the intersection of databases and software engineering.",
+          "Notes": "Data Engineer progression: Data Engineer \u2192 Senior Data Engineer \u2192 Staff Engineer / Data Platform Lead, focus L2\u2013L4. Data Scientist progression: Data Analyst \u2192 Data Scientist \u2192 Senior Data Scientist \u2192 Principal Scientist, database focus L1\u2013L2.",
+          "SortOrder": 3,
+          "CreatedDate": "2026-11-17T04:57:22.6848156-05:00",
+          "ModifiedDate": "2026-11-17T04:57:22.6848156-05:00",
+          "Items": [
+            {
+              "Id": "623e0bb2-c496-4651-97a2-e3a4cc0f27ac",
+              "Text": "Data Engineers design ETL/ELT pipelines, build warehouses and lakes, ensure data quality and lineage, and optimise pipeline performance and cost.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "8ce51ade-9dde-49fa-82b9-99bc0020d4c9",
+              "Text": "Engineer skills include advanced SQL and ETL patterns, star/snowflake design (L3), dbt/SSIS/ADF/Airflow/Spark, Python or Scala, cloud platforms, CDC, and CI/CD for pipelines.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "e8d0836c-f523-4403-96ff-63478a6275ca",
+              "Text": "Data Scientists extract and prepare data, build predictive models, run A/B tests, deploy models with engineering support, and monitor model performance.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "5b19146b-0b15-4f93-ab14-1309b3b76a3b",
+              "Text": "Scientist database skills stay at intermediate SQL plus data cleaning, awareness of relational and NoSQL types, and enough performance awareness to write efficient extraction queries.",
+              "SortOrder": 3
+            },
+            {
+              "Id": "8b569c01-f0e9-46d1-a284-3ab6cb81de3b",
+              "Text": "Engineers enable scientists and analysts by delivering clean, trustworthy, well-documented datasets.",
+              "SortOrder": 4
+            }
+          ]
+        },
+        {
+          "Id": "79936b26-cdc7-41e1-8e3a-def7ffa90455",
+          "TopicId": "c02956f7-f2e5-415a-9b19-37d843034319",
+          "Title": "Database Architect \u2014 The Senior Design Role",
+          "BodyText": "Database Architects design the overall data strategy and system architecture for entire organisations. This is typically a senior role reached after substantial DBA or developer experience.",
+          "Notes": "Progression: Senior DBA/Developer \u2192 Solutions Architect \u2192 Data Architect / Principal Architect, focus level L3\u2013L4.",
+          "SortOrder": 4,
+          "CreatedDate": "2026-11-17T04:57:22.6848156-05:00",
+          "ModifiedDate": "2026-11-17T04:57:22.6848156-05:00",
+          "Items": [
+            {
+              "Id": "b096e07b-a303-4846-948d-47328362e15b",
+              "Text": "Responsibilities include designing enterprise data architectures, selecting technologies for new systems, and defining modelling standards.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "016d76de-f222-49c6-9b5e-f654a709945a",
+              "Text": "Architects review and approve major schema changes and plan for scalability, high availability, and disaster recovery at the platform level.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "080d0eb9-02cc-4c5e-b28c-f6c0ac3c08ab",
+              "Text": "They guide teams on data governance and security and evaluate emerging technologies and platforms.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "de4793b6-22c7-400a-a772-4a7fe9236791",
+              "Text": "Required skills span expert SQL and data modelling, relational/NoSQL/cloud databases, distributed systems and CAP theorem, and cost modelling and capacity planning.",
+              "SortOrder": 3
+            },
+            {
+              "Id": "d0a9dc94-d8e2-4cf6-abf9-41600ef3db6f",
+              "Text": "Communication and stakeholder management matter as much as technical depth, since architects influence decisions across teams.",
+              "SortOrder": 4
+            }
+          ]
+        },
+        {
+          "Id": "f6691077-eb97-4e53-9707-78cbe2eb12fe",
+          "TopicId": "c02956f7-f2e5-415a-9b19-37d843034319",
+          "Title": "Reading the Skills-by-Role Matrix",
+          "BodyText": "The matrix shows which skill level is expected for each of fourteen topic areas across the seven primary roles. Use it to identify the skills required for the role you are targeting and where your current gaps are.",
+          "Notes": "Key: L1 = foundational awareness, L2 = intermediate/working skill, L3 = advanced/expert use, L4 = expert/architect-level mastery, and an em dash (\u2014) means the skill is not typically required for that role.",
+          "SortOrder": 5,
+          "CreatedDate": "2026-11-17T04:57:22.6848156-05:00",
+          "ModifiedDate": "2026-11-17T04:57:22.6848156-05:00",
+          "Items": [
+            {
+              "Id": "a81d1018-e2cb-414c-9f37-74ce5eb81d2f",
+              "Text": "Rows cover SQL fundamentals, JOINs and subqueries, stored procedures, window functions and CTEs, index design, execution plans, security, backup and HA, warehouse design, ETL, NoSQL, cloud, analysis and KPI reporting, and distributed architecture.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "a974a3de-867b-4680-8a00-5ef8ecaaf8da",
+              "Text": "Compare your self-assessed level in each row against the target column to produce a concrete gap list.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "dc24422a-2c88-4f3e-aee2-63eb68efa403",
+              "Text": "A dash is as informative as a level \u2014 it tells you where not to invest effort for a given role.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "1039861c-23cc-4433-94da-3f97506e0a57",
+              "Text": "The matrix complements the role profiles: profiles give context and responsibilities, the matrix gives precise depth targets.",
+              "SortOrder": 3
+            },
+            {
+              "Id": "abffec24-1577-46a5-9ef5-63f42f58e665",
+              "Text": "Revisit the matrix periodically as a self-assessment checklist rather than treating it as a one-time exercise.",
+              "SortOrder": 4
+            }
+          ]
+        },
+        {
+          "Id": "6220e129-ee86-4d78-9b1f-7ee16a69c24c",
+          "TopicId": "c02956f7-f2e5-415a-9b19-37d843034319",
+          "Title": "Patterns and Gaps Revealed by the Matrix",
+          "BodyText": "Comparing columns in the matrix exposes clear patterns about which skills are universal and which are role-specific. These patterns help explain why certain roles are gateways into others.",
+          "Notes": "Example: a Data Analyst at L2 in SQL who wants to become a Data Engineer must lift warehouse design to L3 and ETL from L1 to L4 \u2014 a concrete, prioritised learning plan.",
+          "SortOrder": 6,
+          "CreatedDate": "2026-11-17T04:57:22.6848156-05:00",
+          "ModifiedDate": "2026-11-17T04:57:22.6848156-05:00",
+          "Items": [
+            {
+              "Id": "9248f04f-0166-4958-87f4-a5adcaabe537",
+              "Text": "SQL fundamentals, JOINs, subqueries, and window functions are required by every role, making them the universal core worth mastering first.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "fa8edcc8-df12-49ec-9217-606c84da60ca",
+              "Text": "The Architect column is the highest overall, sitting at L3\u2013L4 across nearly every skill area, which reflects it being a destination rather than an entry role.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "358d8380-a141-4b36-b99f-1521c5e7ca80",
+              "Text": "Backup, high availability, execution plans, and index tuning are concentrated in the DBA and Architect columns and are marked as not required for Analysts and Data Scientists.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "19539334-4101-452e-ba1e-5a15924abb23",
+              "Text": "ETL and pipeline development peaks at L4 for Data Engineers and Architects, while Analysts need only foundational awareness.",
+              "SortOrder": 3
+            },
+            {
+              "Id": "6b7757af-4451-4447-863b-4d710513ba78",
+              "Text": "Data analysis and KPI reporting peaks at L3 for Analysts, BI Developers, and Data Scientists, and is not typically required for DBAs.",
+              "SortOrder": 4
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Id": "b18fad24-13ea-4826-a90e-b010f5b73739",
+      "Title": "Certifications and Building Skills Beyond Coursework",
+      "Summary": "Reviews respected Microsoft/Azure and vendor-neutral certifications aligned to each skill level and role, and outlines practical ways to develop real expertise through portfolio projects, practice on real datasets, internals reading, and production experience.",
+      "SortOrder": 6,
+      "CreatedDate": "2026-11-17T04:54:23.8972699-05:00",
+      "ModifiedDate": "2026-11-17T04:54:23.8972699-05:00",
+      "Elements": [
+        {
+          "Id": "7efabf94-bbe3-42fe-827a-77aebca9f340",
+          "TopicId": "b18fad24-13ea-4826-a90e-b010f5b73739",
+          "Title": "What Certifications Do (and Don\u0027t Do)",
+          "BodyText": "Certifications validate your skills to employers and clients, but they are a complement to hands-on experience rather than a substitute for it. Their main value is accelerating credibility, especially early in a career.",
+          "Notes": "The most respected credentials vary by role and by the technology stack an employer runs \u2014 choose based on where you want to work, not on what is easiest to pass.",
+          "SortOrder": 0,
+          "CreatedDate": "2026-11-17T04:57:52.6051055-05:00",
+          "ModifiedDate": "2026-11-17T04:57:52.6051055-05:00",
+          "Items": [
+            {
+              "Id": "58163297-6f15-45f9-bade-f4b05c33b66d",
+              "Text": "Certifications signal verified baseline knowledge to recruiters who cannot assess your SQL directly.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "4819e025-7944-4701-bc10-2e47b9339855",
+              "Text": "They are most useful for students, career changers, and junior professionals who lack a long work history.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "e2d3e4a8-7c6c-4d14-b663-413c44175078",
+              "Text": "No certificate replaces the judgement developed from running and fixing real production systems.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "040b966d-a78d-4121-9bbf-549f02f09867",
+              "Text": "Align the certification you pursue to a target role and skill level (L1\u2013L4) rather than collecting badges.",
+              "SortOrder": 3
+            }
+          ]
+        },
+        {
+          "Id": "cc170636-de75-4689-9714-04557c9bf931",
+          "TopicId": "b18fad24-13ea-4826-a90e-b010f5b73739",
+          "Title": "Microsoft SQL Server and Azure Certification Path",
+          "BodyText": "The Microsoft data certification track covers fundamentals through role-based associate credentials for administrators, engineers, and analysts. These map cleanly onto the skill-level framework used in this guide.",
+          "Notes": "DP-900 is the usual entry point; the associate-level exams assume real working experience with Azure data services.",
+          "SortOrder": 1,
+          "CreatedDate": "2026-11-17T04:57:52.6051055-05:00",
+          "ModifiedDate": "2026-11-17T04:57:52.6051055-05:00",
+          "Items": [
+            {
+              "Id": "d73fcac2-b133-4010-9210-75e154833a03",
+              "Text": "DP-900 (Azure Data Fundamentals, L1) establishes baseline cloud data knowledge for students and career changers.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "2d78904f-ce5d-49f3-a486-9728a6449dd3",
+              "Text": "DP-300 (Azure Database Administrator Associate, L2\u2013L3) targets DBAs managing Azure SQL Database and Managed Instance.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "8b8417e4-9290-4b21-81a1-802a2aee2509",
+              "Text": "DP-203 (Azure Data Engineer Associate, L3) suits engineers building Azure pipelines and data warehouses.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "6d5ca182-fbde-4e7b-a129-7499afed725b",
+              "Text": "PL-300 (Power BI Data Analyst Associate, L2) fits BI developers and data analysts working in Power BI.",
+              "SortOrder": 3
+            }
+          ]
+        },
+        {
+          "Id": "0caa99bf-45f6-49b8-9dcc-a86c50051c10",
+          "TopicId": "b18fad24-13ea-4826-a90e-b010f5b73739",
+          "Title": "Vendor-Neutral and Other Platform Certifications",
+          "BodyText": "Beyond the Microsoft stack, several platform-specific credentials are well respected for cloud, NoSQL, big-data, and open-source database work. Choose these when your target employer or specialism uses that platform.",
+          "Notes": "Multi-platform credentials become more valuable as you move toward architect roles where technology selection is part of the job.",
+          "SortOrder": 2,
+          "CreatedDate": "2026-11-17T04:57:52.6051055-05:00",
+          "ModifiedDate": "2026-11-17T04:57:52.6051055-05:00",
+          "Items": [
+            {
+              "Id": "477db7ae-ad38-403a-b6bb-a2d9f8e8f6ee",
+              "Text": "AWS Certified Database Specialty (L3) covers RDS, Aurora, and DynamoDB for AWS-centric teams.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "35783dda-b7df-44e2-81c6-2b4fb173199d",
+              "Text": "MongoDB Associate Developer/DBA (L2) validates document-database CRUD, aggregation, and indexing skills.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "39e6ee88-b18e-45b5-8302-3ca14c2b536b",
+              "Text": "Databricks Certified Data Engineer (L3) targets Spark and Delta Lake pipeline work.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "e76978c2-92be-461d-8cf3-ab00ccd07ae2",
+              "Text": "Oracle OCP \u2014 Database Administrator (L3) remains the standard in Oracle shops.",
+              "SortOrder": 3
+            },
+            {
+              "Id": "c184db7b-6dee-4988-9e83-3345f990744b",
+              "Text": "PostgreSQL credentials such as PGCE (Credly) or EDB courses (L2\u2013L3) serve open-source and cloud environments.",
+              "SortOrder": 4
+            }
+          ]
+        },
+        {
+          "Id": "25e279ea-e96a-498e-bb5d-950dc4a5e7b9",
+          "TopicId": "b18fad24-13ea-4826-a90e-b010f5b73739",
+          "Title": "Build Something Real: Portfolio Projects",
+          "BodyText": "Designing and building a complete database project end-to-end demonstrates capability better than any certificate. A finished project shows design judgement, not just recall.",
+          "Notes": "Course assignments \u2014 such as building a music, sports statistics, or class advising database with 1:N and M:N relationships, a diagram, and a data dictionary \u2014 can be grown into portfolio pieces.",
+          "SortOrder": 3,
+          "CreatedDate": "2026-11-17T04:57:52.6051055-05:00",
+          "ModifiedDate": "2026-11-17T04:57:52.6051055-05:00",
+          "Items": [
+            {
+              "Id": "9ccbd9d6-c5d2-4d42-9243-1286e67ef98d",
+              "Text": "Include the full stack of artefacts: schema, constraints, sample data, indexes, stored procedures, security, and at least one report.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "9559b3e5-cd16-446d-855e-de507ebc42c8",
+              "Text": "Document the design with a data dictionary, SQL creation scripts, and an ER diagram.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "d00386da-db02-4cf7-8d61-5123398c2b37",
+              "Text": "Put the project under version control so reviewers can see how it evolved.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "f26ca196-47b6-4c89-a533-f365b0c3aae6",
+              "Text": "Be ready to explain your normalisation choices and index decisions in an interview.",
+              "SortOrder": 3
+            }
+          ]
+        },
+        {
+          "Id": "89e0c556-3019-4683-a6cf-0093b8f452c9",
+          "TopicId": "b18fad24-13ea-4826-a90e-b010f5b73739",
+          "Title": "Practice on Real Datasets",
+          "BodyText": "Toy tables with ten rows hide the performance and data-quality problems that define professional work. Practising on realistic datasets exposes you to scale, messiness, and tuning trade-offs.",
+          "Notes": "Free sources include the Stack Overflow data dump, AdventureWorks, Northwind, NYC Open Data, and Kaggle datasets.",
+          "SortOrder": 4,
+          "CreatedDate": "2026-11-17T04:57:52.6051055-05:00",
+          "ModifiedDate": "2026-11-17T04:57:52.6051055-05:00",
+          "Items": [
+            {
+              "Id": "2065733d-802e-4471-82d4-a438916d52e4",
+              "Text": "Use large public datasets to practise query writing, index design, and execution plan reading at realistic scale.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "52d1fb66-9268-41fa-ae44-5e575ecb8175",
+              "Text": "Deliberately create slow queries, then fix them, to learn how plans and indexes interact.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "149d19c4-78d9-40c3-9a79-2b24f2e2ae2a",
+              "Text": "Practise data cleaning: NULL handling, deduplication, and profiling before analysis.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "2448c59f-bd01-4f28-8b34-20ae0d216b4e",
+              "Text": "Repeat the same analysis in a relational database and in MongoDB to feel the trade-offs firsthand.",
+              "SortOrder": 3
+            }
+          ]
+        },
+        {
+          "Id": "bb60495a-dba8-4285-97a6-b4dbbc25e3e2",
+          "TopicId": "b18fad24-13ea-4826-a90e-b010f5b73739",
+          "Title": "Read the Internals and Follow Practitioners",
+          "BodyText": "Moving from intermediate to advanced requires deliberate reading about how the engine actually works, not just more query practice. Internals knowledge is what drives correct tuning decisions.",
+          "Notes": "Essential sources include SQL Server Internals (Kalen Delaney), Brent Ozar\u0027s blog, the official Microsoft documentation, and Use The Index, Luke (markus-winand.com).",
+          "SortOrder": 5,
+          "CreatedDate": "2026-11-17T04:57:52.6051055-05:00",
+          "ModifiedDate": "2026-11-17T04:57:52.6051055-05:00",
+          "Items": [
+            {
+              "Id": "7108af9d-b6b1-4af6-abe0-da66fcf88f99",
+              "Text": "Internals reading explains page structure, B-tree behaviour, and buffer pool management behind observed performance.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "8662851a-4e79-437b-b19c-231074b28f5e",
+              "Text": "Practitioner blogs translate engine behaviour into diagnostic scripts and repeatable troubleshooting patterns.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "8c907794-809a-4a89-b628-afeddeeb1016",
+              "Text": "Official vendor documentation is the authoritative reference for feature behaviour and version differences.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "56fb5d9b-377a-4dbc-bdb3-4860424a1f8d",
+              "Text": "Read with a test database open so you can verify each concept with your own experiments.",
+              "SortOrder": 3
+            }
+          ]
+        },
+        {
+          "Id": "71232b29-a914-4e59-8338-6545cbb432bb",
+          "TopicId": "b18fad24-13ea-4826-a90e-b010f5b73739",
+          "Title": "Get Into Production Environments Early",
+          "BodyText": "The most important career advice is that no database professional became an expert from coursework alone. L3\u2013L4 skills come from real operational pressure.",
+          "Notes": "Internships, on-call rotations, junior DBA roles, and volunteering to own a small production system all accelerate this.",
+          "SortOrder": 6,
+          "CreatedDate": "2026-11-17T04:57:52.6051055-05:00",
+          "ModifiedDate": "2026-11-17T04:57:52.6051055-05:00",
+          "Items": [
+            {
+              "Id": "fe9e249c-2293-4c0b-8c1d-ddc3730da6dc",
+              "Text": "Advanced skill is built by diagnosing production incidents at 2am and explaining the fix afterwards.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "9e1ceac2-167e-4c2c-9636-6a0caf54cd5e",
+              "Text": "Experiences like a query suddenly running 10x slower after a statistics update teach lessons textbooks cannot.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "09a92f9d-4965-4e48-aec9-5ae2e045892a",
+              "Text": "Seek roles or tasks that give you exposure to backups, deployments, and performance monitoring on live systems.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "7b5a6b1b-fee9-4c2b-bf26-ba625c5aeac7",
+              "Text": "Combine production exposure with certifications and portfolio work for the fastest credible progression.",
+              "SortOrder": 3
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Id": "190deb0a-87b3-49d8-8ab4-d85f3a163c19",
+      "Title": "Getting Started: SQL Server Setup and Database Creation",
+      "Summary": "Applies foundational knowledge in practice by installing SQL Server and SSMS, creating a database with tables, keys, and 1:N and M:N relationships, and documenting it with a data dictionary, SQL script, and ERD diagram. Includes worked examples from the music, class advising, and sports statistics data dictionaries.",
+      "SortOrder": 7,
+      "CreatedDate": "2026-11-17T04:54:23.8972699-05:00",
+      "ModifiedDate": "2026-11-17T04:54:23.8972699-05:00",
+      "Elements": [
+        {
+          "Id": "c2650e45-4109-42d8-a8a7-19464676b9f6",
+          "TopicId": "190deb0a-87b3-49d8-8ab4-d85f3a163c19",
+          "Title": "Installing SQL Server and SQL Server Management Studio",
+          "BodyText": "Before any database work can begin, you need a running database engine and a client tool to manage it. SQL Server Developer Edition is free and fully featured, making it the recommended choice for coursework.",
+          "Notes": "Download both from https://www.microsoft.com/en-us/sql-server/sql-server-downloads. A simple connection guide is available at https://msdn.microsoft.com/en-us/library/ms345318.aspx.",
+          "SortOrder": 0,
+          "CreatedDate": "2026-11-17T04:58:18.0912279-05:00",
+          "ModifiedDate": "2026-11-17T04:58:18.0912279-05:00",
+          "Items": [
+            {
+              "Id": "0f08fa76-79e8-4669-a96c-2951ecc59418",
+              "Text": "SQL Server Management Studio (SSMS) is a client tool only \u2014 it is not a database and must connect to an instance to be useful.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "98f2cf52-e93f-4773-8ab2-561c9110c2e9",
+              "Text": "A SQL Server Instance or SQL Express runs as a Windows service on your local or a remote machine and actually hosts the databases.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "8d366cb2-7a79-4f41-8a00-1ea034d2c067",
+              "Text": "Azure lets you host a SQL Server instance in the cloud; you still run SSMS locally and connect to that instance.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "f4b8c49d-2df5-4a08-bfe8-addfeff68aac",
+              "Text": "Research and justify which edition and version you install, since later assignments may require Azure connectivity.",
+              "SortOrder": 3
+            },
+            {
+              "Id": "b678b933-9bb7-4406-bcbe-46ad425393b6",
+              "Text": "Allow 3\u20136 hours if you are experienced with databases, and up to 10\u201320 hours if you are newer to the tools.",
+              "SortOrder": 4
+            }
+          ]
+        },
+        {
+          "Id": "985392d7-2350-48d6-ba5e-3d5f46bbb215",
+          "TopicId": "190deb0a-87b3-49d8-8ab4-d85f3a163c19",
+          "Title": "Creating a Database and Tables in SSMS",
+          "BodyText": "Once connected, you create a new database and then populate it with tables using either the graphical wizards or hand-written DDL. Both approaches produce the same result, but writing the SQL gives you a reusable, version-controllable script.",
+          "Notes": "The music example in the lecture builds Artists, Albums, and Songs tables with IDENTITY primary keys and nvarchar name columns.",
+          "SortOrder": 1,
+          "CreatedDate": "2026-11-17T04:58:18.0912279-05:00",
+          "ModifiedDate": "2026-11-17T04:58:18.0912279-05:00",
+          "Items": [
+            {
+              "Id": "a4e866fa-a1ab-4448-ae3b-25115ee8eb40",
+              "Text": "Use CREATE TABLE statements to define columns, data types, nullability, and key constraints explicitly.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "ee17a350-ce82-4657-8a2e-8c888803afe2",
+              "Text": "The SSMS table designer and wizards accomplish the same task through a GUI and can generate the script for you.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "fa8c9dc7-698d-4220-9940-1093d36f29f5",
+              "Text": "Declare an INT PRIMARY KEY IDENTITY(1,1) column to give each table a reliable surrogate key.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "3ccce862-09f9-4936-966f-7a5f73314332",
+              "Text": "Choose appropriate data types and sizes \u2014 for example nvarchar(200) for names and nvarchar(4) for a release year.",
+              "SortOrder": 3
+            },
+            {
+              "Id": "408a9051-3d06-444e-a5f7-d6dbbaaa67d7",
+              "Text": "Explore the SSMS Object Explorer, query window, and results pane as you work, since these are the tools you will use all semester.",
+              "SortOrder": 4
+            }
+          ]
+        },
+        {
+          "Id": "5b7010c8-de6f-4d00-b78e-692bfa3dc815",
+          "TopicId": "190deb0a-87b3-49d8-8ab4-d85f3a163c19",
+          "Title": "Modelling 1:N Relationships with Foreign Keys",
+          "BodyText": "A one-to-many relationship is implemented by placing a foreign key column on the \u0027many\u0027 side that references the primary key of the \u0027one\u0027 side. This is the most common relationship type in relational design.",
+          "Notes": "Example: FOREIGN KEY REFERENCES Artists(id) on the Albums table, and FOREIGN KEY REFERENCES Albums(id) on the Songs table.",
+          "SortOrder": 2,
+          "CreatedDate": "2026-11-17T04:58:18.0912279-05:00",
+          "ModifiedDate": "2026-11-17T04:58:18.0912279-05:00",
+          "Items": [
+            {
+              "Id": "b098f0d7-684f-4657-988d-38cc0a517805",
+              "Text": "One artist can have many albums, so artistID lives in the Albums table, not in Artists.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "63dc95fe-f5ac-4c1a-b853-055786d25e22",
+              "Text": "One album can contain many songs, so albumID lives in the Songs table alongside a TrackNumber column.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "c46a8bbc-fd80-4d8b-ace5-51b03df216bd",
+              "Text": "The foreign key constraint enforces referential integrity \u2014 you cannot insert an album for an artist that does not exist.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "e8f52d9f-50df-414c-ad9f-c7dd2905e610",
+              "Text": "Never repeat the parent\u0027s attributes in the child table; store only the key reference.",
+              "SortOrder": 3
+            },
+            {
+              "Id": "7aaa5774-3f61-4855-a8e5-53368f2dee8d",
+              "Text": "Your assignment database must include at least one 1:N (N:1) relationship.",
+              "SortOrder": 4
+            }
+          ]
+        },
+        {
+          "Id": "cf854c3f-555f-4f34-be08-47ab87cd7c01",
+          "TopicId": "190deb0a-87b3-49d8-8ab4-d85f3a163c19",
+          "Title": "Modelling M:N Relationships with Join Tables",
+          "BodyText": "Relational tables cannot express many-to-many relationships directly, so you resolve them with a join (bridge) table that holds foreign keys to both parent tables. Thinking in terms of object relationships can simplify these designs.",
+          "Notes": "In the music data dictionary, musicians can play for multiple artists and on multiple songs, and a song has multiple musicians \u2014 a classic M:N case requiring a join table.",
+          "SortOrder": 3,
+          "CreatedDate": "2026-11-17T04:58:18.0912279-05:00",
+          "ModifiedDate": "2026-11-17T04:58:18.0912279-05:00",
+          "Items": [
+            {
+              "Id": "060adc00-4326-4aa6-bab3-9c4cc41ba8c3",
+              "Text": "A join table typically contains two foreign key columns plus any attributes describing the relationship itself.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "18fe3287-dd15-4ac3-9d47-47a0e2a6bd96",
+              "Text": "Relationship attributes, such as the instrument a musician played on a particular song, belong on the join table.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "74561ab9-1076-4581-8079-61f419306fb6",
+              "Text": "A composite primary key across the two foreign keys prevents duplicate pairings.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "8e43b309-8bf9-4918-ac9e-8ec14cba2a98",
+              "Text": "Using an object-oriented style relationship hierarchy can reduce the complexity of tangled many-to-many designs.",
+              "SortOrder": 3
+            },
+            {
+              "Id": "edd4d7f2-df50-471e-8696-c76010f64b8e",
+              "Text": "Your assignment database must include at least one M:N relationship implemented with a join table.",
+              "SortOrder": 4
+            }
+          ]
+        },
+        {
+          "Id": "88d53115-d4bc-4f3c-b52e-5ed042daa09a",
+          "TopicId": "190deb0a-87b3-49d8-8ab4-d85f3a163c19",
+          "Title": "Worked Data Dictionary Examples",
+          "BodyText": "Three supplied data dictionaries give you ready-made business scenarios to model, or you may propose your own design. Each naturally contains both 1:N and M:N relationships.",
+          "Notes": "You may also use this assignment to begin work on your larger course database project.",
+          "SortOrder": 4,
+          "CreatedDate": "2026-11-17T04:58:18.0912279-05:00",
+          "ModifiedDate": "2026-11-17T04:58:18.0912279-05:00",
+          "Items": [
+            {
+              "Id": "42fb96d4-57e6-44d9-ba70-c926bc1c955d",
+              "Text": "Music Database: Artists, Musical Releases, Songs, and Musicians \u2014 musicians to songs is many-to-many.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "6e624f8c-64b3-4dbf-b7ca-27966e97b41f",
+              "Text": "Class Advising System: CollegeCourse, Major, CatalogYear, RequiredCourses, and ElectiveCourses to track progress toward graduation.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "03903ff0-5dd4-42ee-876c-8b2e6bae4c3d",
+              "Text": "Sports Player Statistics: a player-centred design capturing statistics from sources such as baseball-reference.com, whoscored.com, or NFL.com.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "53247b38-f079-4fd6-8e45-e7e6bf205c65",
+              "Text": "Entries in a data dictionary describe each entity and its attributes in plain business language before any SQL is written.",
+              "SortOrder": 3
+            },
+            {
+              "Id": "3536a87f-b159-4fc3-a3af-36f8ef2e43cf",
+              "Text": "If you design your own schema, it must still satisfy the 1:N and M:N relationship requirements.",
+              "SortOrder": 4
+            }
+          ]
+        },
+        {
+          "Id": "67eb5562-d728-4642-bb3a-1417d917dafb",
+          "TopicId": "190deb0a-87b3-49d8-8ab4-d85f3a163c19",
+          "Title": "Documenting the Database: Data Dictionary, Script, and ERD",
+          "BodyText": "The deliverable for this work is not just a working database but clear documentation that another developer could use to rebuild and understand it. Three artefacts are required.",
+          "Notes": "Submit a single Word document or PDF to the dropbox containing all required artefacts.",
+          "SortOrder": 5,
+          "CreatedDate": "2026-11-17T04:58:18.0912279-05:00",
+          "ModifiedDate": "2026-11-17T04:58:18.0912279-05:00",
+          "Items": [
+            {
+              "Id": "fe5d8ddd-1ff9-4348-a5d3-656ac8866b0d",
+              "Text": "Data dictionary: list every table and field with its data type and a plain-language description.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "df5ed86f-5ff9-4c85-aed0-a69c2414c2c8",
+              "Text": "SQL script: the complete CREATE TABLE code, including primary key and foreign key constraints.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "9f15ebc4-9af3-46d6-b177-118a8fd55961",
+              "Text": "ERD diagram: use the SSMS database diagram tool and capture a screenshot showing keys and relationship lines.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "359ef7dc-289f-4dd8-9281-66fe876ed008",
+              "Text": "Grading rewards a well-structured database that meets all relationship requirements plus complete documentation.",
+              "SortOrder": 3
+            },
+            {
+              "Id": "861de41f-6e01-4cea-bec3-e0bf33199ebe",
+              "Text": "Keep the script in version control or saved alongside the document so the database can be recreated from scratch.",
+              "SortOrder": 4
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "TotalElementCount": 56
+}

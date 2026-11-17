@@ -1,0 +1,27 @@
+﻿[
+  {
+    "title": "Getting Started (module page)",
+    "href": "index.html",
+    "type": "Module page"
+  },
+  {
+    "title": "Getting Started \u2014 Topics \u0026 Learning Outcomes",
+    "href": "topics-outcomes.html",
+    "type": "Page"
+  },
+  {
+    "title": "Getting Started \u2014 Module Topics",
+    "href": "topics.html",
+    "type": "Page"
+  },
+  {
+    "title": "Guide to Writing Good Reports",
+    "href": "content/Guide_to_Writing_Good_Reports.html",
+    "type": "Content"
+  },
+  {
+    "title": "Guide to Writing Good Reports",
+    "href": "source-materials/Guide_to_Writing_Good_Reports.html",
+    "type": "Source-materials"
+  }
+]

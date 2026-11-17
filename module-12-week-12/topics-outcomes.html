@@ -1,0 +1,202 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Module 12 (Week 12) — Topics &amp; Learning Outcomes</title>
+<style>
+body{font-family:'Segoe UI',Arial,sans-serif;max-width:880px;margin:0 auto;padding:32px 24px;color:#222;line-height:1.55}
+h1{font-size:1.6rem;border-bottom:2px solid #dcdcdc;padding-bottom:8px}
+h2{font-size:1.25rem;margin-top:30px;color:#1a3c6e;border-bottom:1px solid #ececec;padding-bottom:4px}
+h3{font-size:1.05rem;margin-top:22px;color:#1a3c6e}
+.toc{border:1px solid #c9d4e3;background:#f5f8fc;border-radius:8px;padding:10px 16px;margin:14px 0 6px;display:flex;gap:18px;flex-wrap:wrap}
+.toc a{color:#1a3c6e;font-weight:600;text-decoration:none}
+.toc a:hover{text-decoration:underline}
+.summary{color:#555;font-style:italic;margin:4px 0 10px}
+ul{margin:6px 0 6px 4px}
+li{margin:5px 0}
+.el-body{color:#555}
+.prefix{color:#555;font-style:italic;margin:6px 0 14px}
+.mo{border:1px solid #e2e2e2;border-radius:6px;padding:12px 16px;margin:12px 0}
+.mo .code{font-size:.8rem;color:#595959;text-transform:uppercase;letter-spacing:.04em}
+.mo .statement{font-weight:600;margin:4px 0 8px}
+.meta span{display:inline-block;background:#eef2f8;color:#1a3c6e;border-radius:3px;padding:1px 8px;margin:0 6px 0 0;font-size:.85rem}
+.meta .map{background:#eaf6ec;color:#137333}
+.co{margin:7px 0}
+.co .code{font-weight:600;color:#1a3c6e;margin-right:6px}
+.empty{color:#595959}
+.topic{border:1px solid #e2e2e2;border-radius:8px;padding:4px 18px 10px;margin:16px 0}
+.topic h2{margin-top:12px}
+.topic h3{font-size:1rem;margin:14px 0 4px;color:#333}
+.topic .desc{margin:4px 0 6px}
+ul.tm li{margin:7px 0}
+ul.tm a{color:#1a3c6e;font-weight:600}
+.tm-kind{display:inline-block;background:#eef2f8;color:#1a3c6e;border-radius:3px;padding:1px 8px;margin-left:6px;font-size:.82rem}
+.tm-also{color:#555;font-size:.88rem}
+.tm-desc{color:#555;font-size:.92rem;margin-top:2px}
+.tm-back a,.empty a{color:#1a3c6e;font-weight:600}
+</style>
+</head>
+<body>
+<div class="pm-backlink" style="font-family:'Segoe UI',Arial,sans-serif;padding:8px 16px;background:#f5f8fc;border-bottom:1px solid #dce3ec"><a href="index.html" style="color:#1a3c6e;font-weight:600;text-decoration:none">↑ Module 12 (Week 12)</a></div>
+<h1>Module 12 (Week 12) — Topics &amp; Learning Outcomes</h1>
+<div class="toc"><a href="#topics">📋 Module Topics</a><a href="#outcomes">🎯 Student Learning Outcomes</a></div>
+
+<div id="topics">
+<section class="topic" aria-labelledby="topic-1">
+<h2 id="topic-1">1. Database Security Threat Landscape</h2>
+<h3>Description</h3>
+<p class="desc">Examines why databases are high-value targets and introduces the defence-in-depth model spanning network, OS, authentication, authorization, data, audit, and application layers. Covers the most common breach sources and the regulatory frameworks (PCI DSS, HIPAA, GDPR, SOX, FERPA) that mandate database controls.</p>
+<h3>Subtopics</h3>
+<ul>
+<li><strong>Why Databases Are High-Value Targets</strong> <span class="el-body">— Databases concentrate an organization&#39;s most sensitive and regulated assets in one place, making them the prime objective of most serious attacks. A single successful breach can trigger consequences far beyond the IT department.</span></li>
+<li><strong>Defence in Depth: The Seven Security Layers</strong> <span class="el-body">— Effective database security requires protection at every layer so that an attacker who penetrates one layer is still stopped by the next. Seven distinct layers each protect a different aspect of the environment.</span></li>
+<li><strong>Common Sources of Database Breaches</strong> <span class="el-body">— Most real-world database compromises trace back to a small number of recurring attack sources. Recognising these categories helps prioritise defensive effort.</span></li>
+<li><strong>Regulatory Frameworks Mandating Database Controls</strong> <span class="el-body">— Several regulatory frameworks impose specific, auditable database security requirements. Non-compliance carries financial penalties independent of any actual breach.</span></li>
+<li><strong>Translating the Threat Landscape into Priorities</strong> <span class="el-body">— Understanding the layers and threat sources allows a hardening effort to be sequenced by risk reduction rather than convenience. Early actions should close the largest and most exploited gaps first.</span></li>
+</ul>
+<h3>Supporting Materials</h3>
+<p class="empty">Nothing has been made just for this topic yet. The materials for the whole module are on the <a href="index.html#content-h">module page</a>.</p>
+</section>
+<section class="topic" aria-labelledby="topic-2">
+<h2 id="topic-2">2. Authentication, Authorization &amp; Least Privilege</h2>
+<h3>Description</h3>
+<p class="desc">Covers verifying identity and controlling what authenticated users can do, including strong password policies, Windows/AD authentication, and role-based GRANT/DENY design. Explores least-privilege patterns, Row-Level Security, and Dynamic Data Masking for protecting sensitive columns.</p>
+<h3>Subtopics</h3>
+<ul>
+<li><strong>Authentication vs. Authorization</strong> <span class="el-body">— Authentication and authorization are two distinct layers of the defence-in-depth model, and failing either creates a critical security gap. Authentication answers &quot;Who are you?&quot; while authorization answers &quot;What can you do?&quot;</span></li>
+<li><strong>Strong Login and Password Policy in SQL Server</strong> <span class="el-body">— SQL Server logins should never be created with weak, guessable passwords. Password policy options allow SQL Server to enforce Windows-level complexity, expiration, and forced change rules.</span></li>
+<li><strong>Windows / Active Directory Authentication</strong> <span class="el-body">— For internal systems, Windows or Active Directory authentication is preferred over SQL authentication because no password is stored in SQL Server at all. Identity is established through Kerberos or NTLM at the domain level.</span></li>
+<li><strong>The Principle of Least Privilege</strong> <span class="el-body">— Every login, application account, and user should have only the minimum permissions required to perform their function — nothing more. Over-privileged accounts are among the most exploited attack surfaces in database environments.</span></li>
+<li><strong>Role-Based GRANT and DENY Design</strong> <span class="el-body">— Permissions should be granted to roles rather than to individual users, so access is consistent, reviewable, and easy to revoke. DENY can then explicitly block dangerous operations even when a higher role would otherwise inherit them.</span></li>
+<li><strong>Row-Level Security (RLS)</strong> <span class="el-body">— Row-Level Security restricts which rows a user can see within a table, automatically and transparently. The same query returns only one region&#39;s orders to a sales rep but all orders to a manager.</span></li>
+<li><strong>Dynamic Data Masking for Sensitive Columns</strong> <span class="el-body">— Dynamic Data Masking hides sensitive column values from unauthorized users at query time without changing the stored data. It lets support and reporting staff work with records without ever seeing raw PII.</span></li>
+</ul>
+<h3>Supporting Materials</h3>
+<p class="empty">Nothing has been made just for this topic yet. The materials for the whole module are on the <a href="index.html#content-h">module page</a>.</p>
+</section>
+<section class="topic" aria-labelledby="topic-3">
+<h2 id="topic-3">3. Encryption of Data at Rest and in Transit</h2>
+<h3>Description</h3>
+<p class="desc">Explains Transparent Data Encryption, column-level and Always Encrypted protection, TLS-enforced connections, and secure password hashing. Emphasizes certificate backup, key management, and why encryption is the last line of defence when other controls fail.</p>
+<h3>Subtopics</h3>
+<ul>
+<li><strong>Why Encryption Is the Last Line of Defence</strong> <span class="el-body">— Encryption protects data even when every other control has failed. If an attacker steals a database file, a backup, or intercepts network traffic, encryption ensures they obtain only unintelligible ciphertext instead of readable records.</span></li>
+<li><strong>Transparent Data Encryption (TDE)</strong> <span class="el-body">— TDE encrypts the entire database at the file level — data files, log files, and backups — without requiring any application or query changes. It is the primary defence against theft of physical media or backup files.</span></li>
+<li><strong>Certificate Backup and Key Management</strong> <span class="el-body">— The TDE certificate is the single point of failure for an encrypted database. If it is lost, the database cannot be decrypted by anyone — including its legitimate owner.</span></li>
+<li><strong>Column-Level Encryption and Always Encrypted</strong> <span class="el-body">— For highly sensitive fields such as SSNs, payment card numbers, and healthcare identifiers, column-level encryption gives finer control than TDE by encrypting only specific columns under separate keys.</span></li>
+<li><strong>Encrypting Connections with TLS</strong> <span class="el-body">— Unencrypted database connections transmit credentials and query results in plaintext, exposing them to interception and man-in-the-middle attacks. Forcing TLS ensures all client sessions are encrypted in transit.</span></li>
+<li><strong>Secure Password Hashing — Never Store Plaintext</strong> <span class="el-body">— Application passwords must never be stored in plaintext or with reversible encryption, as a single database breach would expose every user credential instantly.</span></li>
+</ul>
+<h3>Supporting Materials</h3>
+<p class="empty">Nothing has been made just for this topic yet. The materials for the whole module are on the <a href="index.html#content-h">module page</a>.</p>
+</section>
+<section class="topic" aria-labelledby="topic-4">
+<h2 id="topic-4">4. Auditing &amp; Activity Monitoring</h2>
+<h3>Description</h3>
+<p class="desc">Shows how to configure SQL Server Audit, database audit specifications, and login auditing to create an immutable record of access and changes. Covers monitoring for suspicious sessions, failed logins, and anomalous hosts for both detection and compliance.</p>
+<h3>Subtopics</h3>
+<ul>
+<li><strong>Why Auditing Matters: Detection and Forensics</strong> <span class="el-body">— Auditing creates an immutable record of who accessed what data, when, and from where. It serves both real-time detection of suspicious activity and after-the-fact reconstruction of an incident.</span></li>
+<li><strong>Creating a SQL Server Audit (Where Logs Go)</strong> <span class="el-body">— The server audit object defines the destination and behaviour of audit output. It is created at the server level and must be explicitly turned on.</span></li>
+<li><strong>Database Audit Specifications (What to Capture)</strong> <span class="el-body">— A database audit specification attaches to a server audit and defines exactly which actions and objects are recorded. This is where you scope auditing to sensitive tables and security-relevant events.</span></li>
+<li><strong>Querying and Protecting the Audit Log</strong> <span class="el-body">— Audit files are read with sys.fn_get_audit_file, which returns a structured event stream you can filter and sort. Protecting those files is as important as generating them.</span></li>
+<li><strong>Monitoring for Suspicious Sessions and Anomalous Hosts</strong> <span class="el-body">— Dynamic management views let you inspect live activity for signs of abuse, blocking, or connections from unexpected sources. These checks complement persistent audit logs with real-time visibility.</span></li>
+<li><strong>Login Auditing and Failed-Login Alerting</strong> <span class="el-body">— Login auditing records authentication attempts, which is the primary signal for brute force and credential stuffing attacks. SQL Server can capture successful logins, failed logins, or both.</span></li>
+<li><strong>Building an Alerting and Review Routine</strong> <span class="el-body">— Audit data only delivers value when someone or something acts on it. Define the specific conditions that trigger an alert and the cadence for human review.</span></li>
+</ul>
+<h3>Supporting Materials</h3>
+<p class="empty">Nothing has been made just for this topic yet. The materials for the whole module are on the <a href="index.html#content-h">module page</a>.</p>
+</section>
+<section class="topic" aria-labelledby="topic-5">
+<h2 id="topic-5">5. Attack Methods — How Databases Are Compromised</h2>
+<h3>Description</h3>
+<p class="desc">Dissects SQL injection (authentication bypass, UNION-based extraction, blind boolean techniques), privilege escalation, credential attacks, reconnaissance, backup theft, and xp_cmdshell OS command execution. Each attack is paired with concrete defences such as parameterized queries and surface area reduction.</p>
+<h3>Supporting Materials</h3>
+<p class="empty">Nothing has been made just for this topic yet. The materials for the whole module are on the <a href="index.html#content-h">module page</a>.</p>
+</section>
+<section class="topic" aria-labelledby="topic-6">
+<h2 id="topic-6">6. Database Forensics After an Incident</h2>
+<h3>Description</h3>
+<p class="desc">Walks through the forensic principles of preservation, chain of custody, and evidence-based reconstruction. Covers capturing volatile session state, mining the transaction log and audit files, identifying exfiltrated data, and hunting for attacker persistence mechanisms.</p>
+<h3>Subtopics</h3>
+<ul>
+<li><strong>The Three Forensic Principles</strong> <span class="el-body">— Database forensics is the process of collecting, preserving, and analyzing database evidence after a suspected security incident. The investigation must answer what happened, who did it, when it happened, and what data was affected.</span></li>
+<li><strong>Step 1 — Capture Volatile Session State</strong> <span class="el-body">— Active session data is the most perishable evidence in a database incident and is lost the moment a connection drops or the service restarts. Capturing it should be the very first action taken on discovery.</span></li>
+<li><strong>Step 2 — Mining the Transaction Log</strong> <span class="el-body">— The SQL Server transaction log records every modification made to the database, making it a powerful source for reconstructing exactly what data changed. The undocumented fn_dblog function, or third-party tools such as ApexSQL Log, can read it.</span></li>
+<li><strong>Step 3 — Reconstructing the Timeline from Audit Logs</strong> <span class="el-body">— SQL Server Audit files provide a persistent, file-based record that combines login events, DDL, and DML into a chronological narrative of the incident.</span></li>
+<li><strong>Step 4 — Identifying Accessed and Exfiltrated Data</strong> <span class="el-body">— Determining scope requires identifying which sensitive tables were read and how much data left the environment — a critical input to breach notification obligations.</span></li>
+<li><strong>Step 5 — Hunting for Attacker Persistence</strong> <span class="el-body">— Attackers routinely leave backdoors so they can return after the initial intrusion is remediated. Eradication is incomplete until these persistence mechanisms are found and removed.</span></li>
+<li><strong>Evidence Sources and Their Volatility</strong> <span class="el-body">— Each forensic source offers different visibility and survives for a different length of time, so collection must be prioritized by volatility — most perishable first.</span></li>
+</ul>
+<h3>Supporting Materials</h3>
+<p class="empty">Nothing has been made just for this topic yet. The materials for the whole module are on the <a href="index.html#content-h">module page</a>.</p>
+</section>
+<section class="topic" aria-labelledby="topic-7">
+<h2 id="topic-7">7. Network &amp; Infrastructure Hardening</h2>
+<h3>Description</h3>
+<p class="desc">Addresses network isolation, firewall restriction of SQL Server ports, disabling the Browser service, and surface area reduction of dangerous features. Includes service account hardening with dedicated least-privilege or managed service accounts.</p>
+<h3>Subtopics</h3>
+<ul>
+<li><strong>Network Isolation — Databases Must Never Be Public-Facing</strong> <span class="el-body">— A database server should never be reachable directly from the public internet. It belongs in a private network segment that only application servers can reach.</span></li>
+<li><strong>Firewall Rules and SQL Server Port Restriction</strong> <span class="el-body">— Operating-system firewall rules restrict which hosts may reach SQL Server&#39;s listening ports. This is configured outside T-SQL but is essential security configuration.</span></li>
+<li><strong>Disabling the Browser Service and Changing Default Ports</strong> <span class="el-body">— The SQL Server Browser service advertises instances to the network and is unnecessary on single-instance servers. Changing the default port reduces hits from automated scanners.</span></li>
+<li><strong>Surface Area Reduction — Disabling Dangerous Features</strong> <span class="el-body">— Every enabled feature expands the attack surface. Features that the application does not use should be turned off and verified.</span></li>
+<li><strong>Service Account Hardening</strong> <span class="el-body">— The account that SQL Server runs under determines what an attacker inherits if the engine is compromised. It must be dedicated and least-privilege.</span></li>
+<li><strong>Patch Management and Host Hardening</strong> <span class="el-body">— Known CVEs in the database engine and host operating system are exploited because patches were not applied. Patch currency is part of infrastructure hardening.</span></li>
+</ul>
+<h3>Supporting Materials</h3>
+<p class="empty">Nothing has been made just for this topic yet. The materials for the whole module are on the <a href="index.html#content-h">module page</a>.</p>
+</section>
+<section class="topic" aria-labelledby="topic-8">
+<h2 id="topic-8">8. Security Hardening Checklist &amp; Applied Practice</h2>
+<h3>Description</h3>
+<p class="desc">Consolidates authentication, authorization, encryption, network, auditing, application, and backup controls into a systematic audit checklist with prioritized remediation order. Connects the checklist to the hands-on hacker/defender SQL injection report and discussion on the greatest database security risk.</p>
+<h3>Subtopics</h3>
+<ul>
+<li><strong>Using the Hardening Checklist as a Systematic Audit Tool</strong> <span class="el-body">— The complete hardening checklist consolidates every security layer into a single, repeatable audit instrument. Each unchecked item represents a live attack surface rather than a theoretical gap.</span></li>
+<li><strong>Authentication, Authorization and Encryption Checks</strong> <span class="el-body">— The first three checklist domains govern who connects, what they can do, and whether data is readable if stolen. These controls address the identity and data-protection layers.</span></li>
+<li><strong>Network, Surface Area and Auditing Checks</strong> <span class="el-body">— These domains reduce the reachable attack surface and ensure that any activity is recorded. A database that cannot be reached and whose dangerous features are disabled is dramatically harder to exploit.</span></li>
+<li><strong>Application-Level and Backup Security Checks</strong> <span class="el-body">— Application code and backup files are the two places where strong database configuration is most often undone. Both domains carry ⚠️ critical items.</span></li>
+<li><strong>Prioritised Remediation Order</strong> <span class="el-body">— When hardening a database from scratch, order matters — some controls remove entire classes of risk immediately while others take longer to implement. The source gives a seven-step prioritisation sequence.</span></li>
+<li><strong>Applied Practice: The Hacker/Defender SQL Injection Report</strong> <span class="el-body">— The assignment applies the checklist by requiring a two-part report: planning a SQL injection attack, then defending against it. The attacker half is worth 40% and the defence half 60%, reflecting the emphasis on hardening.</span></li>
+<li><strong>Discussion: Identifying the Greatest Database Security Risk</strong> <span class="el-body">— The graded discussion asks you to name the single biggest risk to database security and the best practices that alleviate it. This forces you to prioritise rather than list every control.</span></li>
+</ul>
+<h3>Supporting Materials</h3>
+<p class="empty">Nothing has been made just for this topic yet. The materials for the whole module are on the <a href="index.html#content-h">module page</a>.</p>
+</section>
+</div>
+<p class="tm-back"><a href="index.html">← Back to the module page</a></p>
+<h2 id="outcomes">Student Learning Outcomes</h2>
+<p class="prefix">By the end of this module, students will be able to:</p>
+<div class="mo">
+<div class="code">MO1</div>
+<div class="statement">Explain how the seven layers of the defence-in-depth model protect a database against the most common breach sources and regulatory compliance failures</div>
+<div class="meta"><span>Level: Understand</span><span>Type: Cognitive</span><span class="map">Course mapping: —</span></div>
+</div>
+<div class="mo">
+<div class="code">MO2</div>
+<div class="statement">Implement least-privilege access controls in SQL Server using role-based GRANT/DENY statements, Row-Level Security, and Dynamic Data Masking</div>
+<div class="meta"><span>Level: Apply</span><span>Type: Cognitive</span><span class="map">Course mapping: —</span></div>
+</div>
+<div class="mo">
+<div class="code">MO3</div>
+<div class="statement">Configure encryption protections for data at rest and in transit, including Transparent Data Encryption, column-level encryption, certificate backup, and TLS-enforced connections</div>
+<div class="meta"><span>Level: Apply</span><span>Type: Cognitive</span><span class="map">Course mapping: —</span></div>
+</div>
+<div class="mo">
+<div class="code">MO4</div>
+<div class="statement">Construct a SQL Server Audit with database audit specifications and login auditing that captures access to sensitive objects for detection and forensic reconstruction</div>
+<div class="meta"><span>Level: Create</span><span>Type: Cognitive</span><span class="map">Course mapping: —</span></div>
+</div>
+<div class="mo">
+<div class="code">MO5</div>
+<div class="statement">Evaluate a database environment against a security hardening checklist and justify a prioritised remediation order based on risk reduction</div>
+<div class="meta"><span>Level: Evaluate</span><span>Type: Cognitive</span><span class="map">Course mapping: —</span></div>
+</div>
+<h3>Course Outcomes (reference)</h3>
+<p class="empty">No course outcomes have been defined.</p>
+
+<footer class="presemaker-credit" data-credit="2" style="margin-top:2rem;padding:14px 8px;border-top:1px solid #ddd;background:#fff;text-align:center;font:13px/1.5 -apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;color:#595959;"><svg width="20" height="20" viewBox="0 0 2048 2048" aria-hidden="true" focusable="false" style="vertical-align:-5px;margin-right:7px"><rect width="2048" height="2048" rx="384" fill="#0F6E6E"/><path fill="#0A5050" d="M1024 1000 344 832v816l680 168zm0 0 680-168v816l-680 168z"/><path fill="#fff" d="M1024 944 384 784v808l640 160zm0 0 640-160v808l-640 160z"/><rect x="1002" y="944" width="44" height="808" fill="#0F6E6E"/><rect x="936" y="246" width="176" height="448" rx="44" fill="#fff"/><rect x="800" y="382" width="448" height="176" rx="44" fill="#fff"/></svg>Created with <a href="https://softwareplus.ai/coursebuilder/" target="_blank" rel="noopener" style="color:#2f5d8f;font-weight:600;text-decoration:none;">CourseBuilder+</a><span aria-hidden="true"> · </span><a href="https://softwareplus.ai/" target="_blank" rel="noopener" style="color:#2f5d8f;text-decoration:none;">SoftwarePlus.ai</a></footer>
+</body>
+</html>

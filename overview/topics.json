@@ -1,0 +1,1111 @@
+{
+  "ModuleFolderName": "Overview",
+  "CourseName": "COP4709 \u2014 Applied Database II",
+  "GeneratedDate": "2026-11-17T04:50:17.1919287-05:00",
+  "ModifiedDate": "2026-11-17T04:51:43.5366676-05:00",
+  "Outcomes": [],
+  "Topics": [
+    {
+      "Id": "610abc47-5cc6-45a1-bac7-5bbf75f6daf8",
+      "Title": "Getting Started in the Course",
+      "Summary": "An introduction to the essential information students need before beginning the course, including how the module components fit together. It sets expectations for navigating weekly work and knowing where to find key details.",
+      "SortOrder": 0,
+      "CreatedDate": "2026-11-17T04:50:17.1919287-05:00",
+      "ModifiedDate": "2026-11-17T04:50:17.1919287-05:00",
+      "Elements": [
+        {
+          "Id": "67482aa6-f9f0-4347-9a4a-1494add101fd",
+          "TopicId": "610abc47-5cc6-45a1-bac7-5bbf75f6daf8",
+          "Title": "What You Need to Know to Get Started",
+          "BodyText": "This module orients you to the structure of the course before you begin your first week of work. Knowing how the pieces fit together helps you plan your time and avoid surprises.",
+          "Notes": "Review this overview first, then move into the weekly materials.",
+          "SortOrder": 0,
+          "CreatedDate": "2026-11-17T04:50:33.3845592-05:00",
+          "ModifiedDate": "2026-11-17T04:50:33.3845592-05:00",
+          "Items": [
+            {
+              "Id": "8b403f1b-52d7-4383-9b07-21a63f46b29b",
+              "Text": "The course is built around three graded components: weekly assignments, weekly graded discussions, and quizzes.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "a61a37f7-5708-44a1-b0c7-983df36d4c53",
+              "Text": "Each component carries a different weight toward your final grade.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "a1239827-4709-4a4d-bbd0-30ba50e68020",
+              "Text": "Due dates and flexibility differ by component, so read the expectations for each.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "4c998dca-48cb-46d6-9646-1ab1f88e53b8",
+              "Text": "Return to this overview whenever you need a reminder of how the course is organized.",
+              "SortOrder": 3
+            }
+          ]
+        },
+        {
+          "Id": "9808b087-21f8-4ca3-b655-86e7e557193d",
+          "TopicId": "610abc47-5cc6-45a1-bac7-5bbf75f6daf8",
+          "Title": "Weekly Assignments (60% of Your Grade)",
+          "BodyText": "Weekly assignments make up the largest portion of your grade at 60%. They are the primary way you demonstrate your learning each week.",
+          "Notes": "Attempting the work matters more than perfect timing \u2014 but do not let assignments pile up.",
+          "SortOrder": 1,
+          "CreatedDate": "2026-11-17T04:50:33.3845592-05:00",
+          "ModifiedDate": "2026-11-17T04:50:33.3845592-05:00",
+          "Items": [
+            {
+              "Id": "b0b55746-2443-4176-b253-5cd684b0050e",
+              "Text": "Assignments are released and completed on a weekly cycle.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "fc840df1-3468-43cd-b10e-5ac9fba94c55",
+              "Text": "The instructor is flexible if you cannot meet a due date.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "b39d9f4d-0458-40d0-b252-36d3a9ed2802",
+              "Text": "You are still expected to attempt every assignment.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "c742fd10-a1e5-45c9-9a54-291dd17543cf",
+              "Text": "If you run into problems, reach out rather than skipping the work.",
+              "SortOrder": 3
+            }
+          ]
+        },
+        {
+          "Id": "83d2e0a5-5837-4bab-abf6-3e3deca16a40",
+          "TopicId": "610abc47-5cc6-45a1-bac7-5bbf75f6daf8",
+          "Title": "Weekly Graded Discussions (20% of Your Grade)",
+          "BodyText": "Each week includes a graded discussion worth a combined 20% of your grade. Discussions have stricter timing than assignments because they serve a second purpose.",
+          "Notes": "Treat the discussion due date as a hard deadline.",
+          "SortOrder": 2,
+          "CreatedDate": "2026-11-17T04:50:33.3845592-05:00",
+          "ModifiedDate": "2026-11-17T04:50:33.3845592-05:00",
+          "Items": [
+            {
+              "Id": "9989b7d8-4b61-41b0-9435-9e0ed6e50b29",
+              "Text": "Discussions must be completed before the posted due date.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "123d1a53-8ddb-419c-8f51-bb6b1871d836",
+              "Text": "Discussion participation is used to record your attendance.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "5f1ccff5-287e-48ad-bcd3-bdb489a5d54e",
+              "Text": "Late discussion posts may affect both your grade and your attendance record.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "81ae7390-5c3e-4d7b-bf7d-7c8e3e006616",
+              "Text": "Plan to post early in the week so you do not miss the deadline.",
+              "SortOrder": 3
+            }
+          ]
+        },
+        {
+          "Id": "268ad8f4-2603-4fd7-968e-3713c85de4e9",
+          "TopicId": "610abc47-5cc6-45a1-bac7-5bbf75f6daf8",
+          "Title": "Quizzes (20% of Your Grade)",
+          "BodyText": "There are 12 quizzes across the course, together worth 20% of your grade. They are designed to reinforce the material you work with in your assignments.",
+          "Notes": "Even without a deadline, pacing yourself keeps the workload manageable.",
+          "SortOrder": 3,
+          "CreatedDate": "2026-11-17T04:50:33.3845592-05:00",
+          "ModifiedDate": "2026-11-17T04:50:33.3845592-05:00",
+          "Items": [
+            {
+              "Id": "798e08b4-fa85-4bcd-9a68-2df1d28f4ad3",
+              "Text": "The course includes 12 quizzes in total.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "d4e43c63-8644-476e-a82e-b106dabfdb77",
+              "Text": "Quizzes have no due date, so you can complete them at your own pace.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "f01ad1f8-de4e-422f-a12c-67c118d7c649",
+              "Text": "Quiz content supports and reinforces the weekly assignment material.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "85c48db5-c0e0-4679-9bc6-f4fcf02984ae",
+              "Text": "Using quizzes alongside assignments helps you check your understanding.",
+              "SortOrder": 3
+            }
+          ]
+        },
+        {
+          "Id": "c71e028a-2a74-4baa-8303-853ee6f57b17",
+          "TopicId": "610abc47-5cc6-45a1-bac7-5bbf75f6daf8",
+          "Title": "Navigating Your Weekly Work",
+          "BodyText": "Each week follows a predictable rhythm so you always know what to do next. Building a routine around the weekly cycle keeps you on track.",
+          "Notes": "",
+          "SortOrder": 4,
+          "CreatedDate": "2026-11-17T04:50:33.3845592-05:00",
+          "ModifiedDate": "2026-11-17T04:50:33.3845592-05:00",
+          "Items": [
+            {
+              "Id": "8396fe86-ab1e-48b7-83de-b3c5b7bbc31b",
+              "Text": "Start each week by reviewing the assignment and discussion prompt.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "b1c60d74-9b20-4db0-8250-a27228d3f215",
+              "Text": "Post to the graded discussion before its due date to secure attendance credit.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "028d39e6-8ffc-4bd8-9bd4-edfe33cdb483",
+              "Text": "Complete the weekly assignment, reaching out early if you anticipate a delay.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "66b25718-3bdb-4b40-92eb-03258c7cd2ec",
+              "Text": "Use quizzes to review and confirm your grasp of the week\u0027s concepts.",
+              "SortOrder": 3
+            }
+          ]
+        },
+        {
+          "Id": "72b1978f-7c6c-4cba-b2d0-e64029d75834",
+          "TopicId": "610abc47-5cc6-45a1-bac7-5bbf75f6daf8",
+          "Title": "Getting Help and Contacting Your Instructor",
+          "BodyText": "Support is available whenever you encounter problems or have questions about the course. Communicating early is the best way to stay on track.",
+          "Notes": "Flexibility on assignment deadlines depends on you reaching out.",
+          "SortOrder": 5,
+          "CreatedDate": "2026-11-17T04:50:33.3845592-05:00",
+          "ModifiedDate": "2026-11-17T04:50:33.3845592-05:00",
+          "Items": [
+            {
+              "Id": "4041d2be-75df-4c8d-b428-1ec2c2e40b5f",
+              "Text": "Send the instructor an email with any problems or questions.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "6d39575e-2b54-4a14-bd71-518c9137f16a",
+              "Text": "Contact the instructor as soon as an issue arises rather than waiting.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "0e0cbbe9-ef65-49e6-bb48-970691776428",
+              "Text": "Explaining difficulties with assignment deadlines allows the instructor to be understanding.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "e5c73c4c-33b9-4c97-be3d-1a94d407a9d7",
+              "Text": "Use email for clarification about grading, due dates, or course materials.",
+              "SortOrder": 3
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Id": "fc4e5fbd-3f09-4786-a76a-6a31c28aa6bf",
+      "Title": "Weekly Assignments (60% of Grade)",
+      "Summary": "Weekly assignments make up the largest portion of the final grade at 60%. Students should attempt each assignment by its due date, though the instructor is flexible and understanding when difficulties arise.",
+      "SortOrder": 1,
+      "CreatedDate": "2026-11-17T04:50:17.1919287-05:00",
+      "ModifiedDate": "2026-11-17T04:50:17.1919287-05:00",
+      "Elements": [
+        {
+          "Id": "f3ac33cf-2b03-48e3-9d98-9a5bf918c003",
+          "TopicId": "fc4e5fbd-3f09-4786-a76a-6a31c28aa6bf",
+          "Title": "Weight of Weekly Assignments in the Final Grade",
+          "BodyText": "Weekly assignments are the single largest graded component of this course, accounting for 60% of your final grade.",
+          "Notes": "The remaining 40% comes from weekly graded discussions (20%) and 12 quizzes (20%).",
+          "SortOrder": 0,
+          "CreatedDate": "2026-11-17T04:50:48.5982523-05:00",
+          "ModifiedDate": "2026-11-17T04:50:48.5982523-05:00",
+          "Items": [
+            {
+              "Id": "f50c6127-6b7d-4068-861c-7de3844c69c0",
+              "Text": "Weekly assignments carry more weight than any other course component.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "ef0c3542-db4a-4a96-9221-689c6435d79d",
+              "Text": "Consistent performance on assignments has the greatest impact on your overall grade.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "6e53d8f3-a248-463b-aab4-f8d37cbcbf90",
+              "Text": "Because they are weighted at 60%, skipping assignments can significantly lower your final result.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "2f484c19-09ea-454c-bd6b-2059242f2b1d",
+              "Text": "Treat each weekly assignment as a priority task in your study schedule.",
+              "SortOrder": 3
+            }
+          ]
+        },
+        {
+          "Id": "062b9400-a4cc-4d9f-8bee-9abf1899ed30",
+          "TopicId": "fc4e5fbd-3f09-4786-a76a-6a31c28aa6bf",
+          "Title": "Weekly Cadence and Due Dates",
+          "BodyText": "Assignments are released and due on a weekly basis, giving the course a predictable rhythm.",
+          "Notes": "",
+          "SortOrder": 1,
+          "CreatedDate": "2026-11-17T04:50:48.5982523-05:00",
+          "ModifiedDate": "2026-11-17T04:50:48.5982523-05:00",
+          "Items": [
+            {
+              "Id": "3f4db67a-d2b7-4950-aa6f-f8772cd81651",
+              "Text": "Expect a new assignment each week of the course.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "1cbf493d-1f81-4f0c-bb34-6e87baa87734",
+              "Text": "Each assignment has a posted due date you should work toward.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "49edcdb4-c3fd-49c6-8459-fdb448470e92",
+              "Text": "Planning your week around the assignment due date helps you stay current with the material.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "890acadc-c968-4575-9077-709bb0e131b0",
+              "Text": "Falling several weeks behind makes it harder to catch up on later topics.",
+              "SortOrder": 3
+            }
+          ]
+        },
+        {
+          "Id": "6f8b68d9-549e-4d9f-b257-4c2fd3d49456",
+          "TopicId": "fc4e5fbd-3f09-4786-a76a-6a31c28aa6bf",
+          "Title": "Attempt Every Assignment",
+          "BodyText": "The expectation is that you make a genuine attempt at every weekly assignment, even if you are unsure of the answers.",
+          "Notes": "An incomplete attempt is far more valuable than no submission at all.",
+          "SortOrder": 2,
+          "CreatedDate": "2026-11-17T04:50:48.5982523-05:00",
+          "ModifiedDate": "2026-11-17T04:50:48.5982523-05:00",
+          "Items": [
+            {
+              "Id": "c08c82fe-1946-4cdb-872e-5db4fd2fc34a",
+              "Text": "Submit what you can rather than skipping an assignment entirely.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "994b9f37-10d8-4a76-bfc5-d483bf0acdac",
+              "Text": "Attempting the work shows your effort and helps identify where you need support.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "01da50da-4c9c-4c99-8a52-218ce46156ba",
+              "Text": "Partial work gives the instructor something concrete to give feedback on.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "7e654055-882f-4b6a-b8a9-f5bdc1a50198",
+              "Text": "Unsubmitted assignments provide no opportunity for credit or guidance.",
+              "SortOrder": 3
+            }
+          ]
+        },
+        {
+          "Id": "f0c81508-6a94-42f0-9fcb-1a8f3e290298",
+          "TopicId": "fc4e5fbd-3f09-4786-a76a-6a31c28aa6bf",
+          "Title": "Flexibility When Difficulties Arise",
+          "BodyText": "The instructor is flexible and understanding if circumstances prevent you from completing an assignment by the due date.",
+          "Notes": "This flexibility applies to weekly assignments; graded discussions must still be completed before their due date because they are used for attendance.",
+          "SortOrder": 3,
+          "CreatedDate": "2026-11-17T04:50:48.5982523-05:00",
+          "ModifiedDate": "2026-11-17T04:50:48.5982523-05:00",
+          "Items": [
+            {
+              "Id": "be79ec68-17e7-45ae-af8c-c8ef428d5fa5",
+              "Text": "Late work is accommodated when you encounter genuine problems.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "56e6d832-3a34-4223-9f1b-032409a8faf0",
+              "Text": "Flexibility is intended to support you, not to encourage routine lateness.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "bb6bc767-2d72-491c-9706-407bd7a06063",
+              "Text": "Communicate early rather than letting multiple assignments pile up.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "f3d85faf-36e8-43c3-9003-6d8777e7786a",
+              "Text": "Understanding is extended to students who stay engaged and keep trying.",
+              "SortOrder": 3
+            }
+          ]
+        },
+        {
+          "Id": "90ca450c-aad8-47db-8a15-e9b598f43a65",
+          "TopicId": "fc4e5fbd-3f09-4786-a76a-6a31c28aa6bf",
+          "Title": "Getting Help with Assignments",
+          "BodyText": "If you run into problems or have questions about an assignment, reach out to the instructor directly by email.",
+          "Notes": "",
+          "SortOrder": 4,
+          "CreatedDate": "2026-11-17T04:50:48.5982523-05:00",
+          "ModifiedDate": "2026-11-17T04:50:48.5982523-05:00",
+          "Items": [
+            {
+              "Id": "d6b39ec5-65ac-4ff9-a9c7-970d4587c49b",
+              "Text": "Email is the primary channel for questions and problem reporting.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "79d0a75d-8627-43e4-8d86-9d9e36015c2f",
+              "Text": "Contact the instructor as soon as an issue appears rather than after the due date passes.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "5da69b59-20b4-451d-99a2-38436f2d0ab5",
+              "Text": "Describe the specific difficulty so you receive targeted guidance.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "56ee9dac-b73a-404e-956f-b1c1ab040ff4",
+              "Text": "Asking questions early often prevents a missed deadline altogether.",
+              "SortOrder": 3
+            }
+          ]
+        },
+        {
+          "Id": "08b8eb8e-0ad5-4774-bbc5-b2f32c11658a",
+          "TopicId": "fc4e5fbd-3f09-4786-a76a-6a31c28aa6bf",
+          "Title": "How Quizzes Reinforce Your Assignments",
+          "BodyText": "The 12 course quizzes are designed to support the material covered in the weekly assignments.",
+          "Notes": "Quizzes have no due date, so you can use them as a flexible study aid alongside your assignment work.",
+          "SortOrder": 5,
+          "CreatedDate": "2026-11-17T04:50:48.5982523-05:00",
+          "ModifiedDate": "2026-11-17T04:50:48.5982523-05:00",
+          "Items": [
+            {
+              "Id": "8b21b758-7f6f-4bea-86ac-f4a115db13f5",
+              "Text": "Completing quizzes can strengthen your understanding before tackling an assignment.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "d3988f93-c34f-4a27-b831-4e1403c3b6c6",
+              "Text": "Quiz content mirrors the concepts assessed in weekly assignments.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "e3490e8f-d2c4-4145-9d77-87ca18fed373",
+              "Text": "Use quizzes to check your grasp of a topic and find gaps in your knowledge.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "6dae6986-c609-4685-b23b-8ab38d80a446",
+              "Text": "Although quizzes are only 20% of the grade, they directly improve assignment performance.",
+              "SortOrder": 3
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Id": "a03d849e-c79d-4f96-b802-b8689d6ad2e1",
+      "Title": "Weekly Graded Discussions (20% of Grade)",
+      "Summary": "A weekly graded discussion accounts for 20% of the final grade and must be submitted before the posted due date. These discussions also serve as the official record of attendance, so late posts are not accepted.",
+      "SortOrder": 2,
+      "CreatedDate": "2026-11-17T04:50:17.1919287-05:00",
+      "ModifiedDate": "2026-11-17T04:50:17.1919287-05:00",
+      "Elements": [
+        {
+          "Id": "7b44b588-e450-41f4-b75d-a602395c0e6d",
+          "TopicId": "a03d849e-c79d-4f96-b802-b8689d6ad2e1",
+          "Title": "Weight in the Final Grade",
+          "BodyText": "Weekly graded discussions make up 20% of your overall course grade.",
+          "Notes": "Discussions sit alongside weekly assignments (60%) and 12 quizzes (20%) to form the complete grading structure.",
+          "SortOrder": 0,
+          "CreatedDate": "2026-11-17T04:50:59.9443128-05:00",
+          "ModifiedDate": "2026-11-17T04:50:59.9443128-05:00",
+          "Items": [
+            {
+              "Id": "bbce71d0-cf11-4d03-8185-c2d11dbacf90",
+              "Text": "Each week includes one graded discussion that contributes to this 20% portion.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "eab205d3-b5fc-42ae-b68d-22d7eee8cd99",
+              "Text": "Consistent weekly participation is required to earn the full value of this category.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "98592485-39c9-46b3-9197-67c5d68caa96",
+              "Text": "Missing discussions directly reduces one-fifth of your possible final grade.",
+              "SortOrder": 2
+            }
+          ]
+        },
+        {
+          "Id": "3f9259e0-7c1b-4c24-a245-f679ee76090d",
+          "TopicId": "a03d849e-c79d-4f96-b802-b8689d6ad2e1",
+          "Title": "Strict Due Dates",
+          "BodyText": "Unlike weekly assignments, discussions must be completed prior to the posted due date.",
+          "Notes": "",
+          "SortOrder": 1,
+          "CreatedDate": "2026-11-17T04:50:59.9443128-05:00",
+          "ModifiedDate": "2026-11-17T04:50:59.9443128-05:00",
+          "Items": [
+            {
+              "Id": "6fa4d6cb-ed8c-40b2-b393-9bd86230a784",
+              "Text": "There is no flexibility or extension granted for discussion posts.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "787170f9-4cc6-4aaf-9f5e-b4bf8d1b5de4",
+              "Text": "Late posts are not accepted, even if the content is complete and correct.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "1b8fd5d5-c88d-40b8-aac8-f07168e52656",
+              "Text": "Check the course calendar each week so you know exactly when the discussion closes.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "4ac41cdf-6411-41ba-b190-82526f0f8e6f",
+              "Text": "Plan to post early in the week to avoid last-minute technical or scheduling problems.",
+              "SortOrder": 3
+            }
+          ]
+        },
+        {
+          "Id": "2655f6c4-263f-4873-b4b2-c061b4ddca16",
+          "TopicId": "a03d849e-c79d-4f96-b802-b8689d6ad2e1",
+          "Title": "Discussions Serve as Attendance",
+          "BodyText": "Your discussion post is the official record that you attended the course that week.",
+          "Notes": "This is the reason the due date cannot be extended \u2014 attendance must be recorded within the week it occurs.",
+          "SortOrder": 2,
+          "CreatedDate": "2026-11-17T04:50:59.9443128-05:00",
+          "ModifiedDate": "2026-11-17T04:50:59.9443128-05:00",
+          "Items": [
+            {
+              "Id": "68afa8f3-c4e3-4486-8565-447cbd19e398",
+              "Text": "Posting on time documents your presence and participation for that week.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "e8c932e3-c1f2-423b-bfd1-ec81f73f8ef1",
+              "Text": "A missed discussion is recorded as a missed week of attendance.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "0c4d8a7b-1d91-4f18-a09c-3b1829d0b656",
+              "Text": "Attendance records may affect enrollment status and other institutional requirements.",
+              "SortOrder": 2
+            }
+          ]
+        },
+        {
+          "Id": "82728d0a-8256-476b-83ba-c32742b0c660",
+          "TopicId": "a03d849e-c79d-4f96-b802-b8689d6ad2e1",
+          "Title": "How Discussions Differ from Assignments",
+          "BodyText": "The flexibility offered for weekly assignments does not extend to graded discussions.",
+          "Notes": "",
+          "SortOrder": 3,
+          "CreatedDate": "2026-11-17T04:50:59.9443128-05:00",
+          "ModifiedDate": "2026-11-17T04:50:59.9443128-05:00",
+          "Items": [
+            {
+              "Id": "f4c60a02-c417-434b-b5d0-420f11e3e286",
+              "Text": "Weekly assignments allow for understanding and flexibility if you encounter problems.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "992f81e4-7141-413b-80a5-6d89c7c4da8a",
+              "Text": "Discussions have a firm deadline because of their attendance function.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "e3079af2-77e6-4a2a-85cf-e7698effee4e",
+              "Text": "Quizzes have no due date at all, making discussions the most time-sensitive item each week.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "9c469be7-9350-421b-8d10-9bfa19fb4848",
+              "Text": "Knowing these differences helps you prioritize your weekly workload.",
+              "SortOrder": 3
+            }
+          ]
+        },
+        {
+          "Id": "3aa73707-431e-4c7a-95fb-95687f81f415",
+          "TopicId": "a03d849e-c79d-4f96-b802-b8689d6ad2e1",
+          "Title": "Getting Help with Discussions",
+          "BodyText": "If you run into problems or have questions about a discussion, contact the instructor by email.",
+          "Notes": "Reaching out before the due date is far more effective than explaining a missed post afterward.",
+          "SortOrder": 4,
+          "CreatedDate": "2026-11-17T04:50:59.9443128-05:00",
+          "ModifiedDate": "2026-11-17T04:50:59.9443128-05:00",
+          "Items": [
+            {
+              "Id": "b63ba1a1-bb88-44a8-84fc-bd4b43192706",
+              "Text": "Email the instructor as soon as an issue arises rather than waiting until after the deadline.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "056bba0b-1c7f-4bf1-b552-62155351315c",
+              "Text": "Include the week and discussion topic so your question can be answered quickly.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "13658745-e626-472a-b21f-416568bbe9b6",
+              "Text": "Use email for technical access problems as well as content questions.",
+              "SortOrder": 2
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Id": "8a0cfc64-3e03-4e46-94d7-d3db0fe63bad",
+      "Title": "Quizzes (20% of Grade)",
+      "Summary": "Twelve quizzes together account for 20% of the final grade and have no fixed due dates. They are designed to reinforce and support the material covered in the weekly assignments.",
+      "SortOrder": 3,
+      "CreatedDate": "2026-11-17T04:50:17.1919287-05:00",
+      "ModifiedDate": "2026-11-17T04:50:17.1919287-05:00",
+      "Elements": [
+        {
+          "Id": "603f27d3-494c-42a1-8261-889359d53470",
+          "TopicId": "8a0cfc64-3e03-4e46-94d7-d3db0fe63bad",
+          "Title": "Quiz Weight in the Final Grade",
+          "BodyText": "Quizzes make up 20% of your overall course grade. They are one of three graded components alongside weekly assignments and graded discussions.",
+          "Notes": "Assignments account for 60% and graded discussions for 20%, so quizzes carry equal weight to the discussion component.",
+          "SortOrder": 0,
+          "CreatedDate": "2026-11-17T04:51:17.3448101-05:00",
+          "ModifiedDate": "2026-11-17T04:51:17.3448101-05:00",
+          "Items": [
+            {
+              "Id": "abfbd3dd-8a89-446c-95e4-ef2acf3afabf",
+              "Text": "The quiz category is worth one-fifth of the total course grade.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "4403be4d-5926-4b60-8ca2-c73ad634b997",
+              "Text": "Quiz scores are combined with assignment and discussion scores to determine your final grade.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "b272f45f-0489-4bce-aaa3-b0f57616faa2",
+              "Text": "Because quizzes share equal weight with discussions, they can meaningfully raise or lower your standing.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "1ccc3f4f-49ae-44f5-b764-742c625df665",
+              "Text": "Consistently completing quizzes protects your grade if other components are weaker.",
+              "SortOrder": 3
+            }
+          ]
+        },
+        {
+          "Id": "ca62de8e-926d-4247-8564-aedd422d68c0",
+          "TopicId": "8a0cfc64-3e03-4e46-94d7-d3db0fe63bad",
+          "Title": "Twelve Quizzes Across the Course",
+          "BodyText": "The course includes a total of twelve quizzes spread across the term. Each one targets a specific portion of the course material.",
+          "Notes": "",
+          "SortOrder": 1,
+          "CreatedDate": "2026-11-17T04:51:17.3448101-05:00",
+          "ModifiedDate": "2026-11-17T04:51:17.3448101-05:00",
+          "Items": [
+            {
+              "Id": "d2d4e3d6-246b-4830-bef4-e9e90a22f52a",
+              "Text": "There are 12 quizzes in total for the course.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "2ad2be79-bc1a-4e58-b36d-c4fe334e2adb",
+              "Text": "Each quiz focuses on content tied to a particular segment of the material.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "ed7539b4-f62f-4d62-bbcb-064318bf8765",
+              "Text": "The quizzes together form a single grade category worth 20%.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "6715f558-d865-4e17-a1e9-10326513984c",
+              "Text": "Completing all twelve gives you the fullest possible credit in this category.",
+              "SortOrder": 3
+            }
+          ]
+        },
+        {
+          "Id": "d357c001-4968-4e17-80c4-72d5f5207f88",
+          "TopicId": "8a0cfc64-3e03-4e46-94d7-d3db0fe63bad",
+          "Title": "No Fixed Due Dates",
+          "BodyText": "Unlike discussions, quizzes do not have set due dates. This gives you flexibility in deciding when to complete them.",
+          "Notes": "Keep in mind that \u0027no due date\u0027 does not mean \u0027optional\u0027 \u2014 the points still count toward your 20%.",
+          "SortOrder": 2,
+          "CreatedDate": "2026-11-17T04:51:17.3448101-05:00",
+          "ModifiedDate": "2026-11-17T04:51:17.3448101-05:00",
+          "Items": [
+            {
+              "Id": "cbb210c7-7e82-44e5-baf5-5f1b19065aee",
+              "Text": "You may complete quizzes on your own schedule rather than by a posted deadline.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "4b900b88-767b-482c-98bf-b7835d0770f1",
+              "Text": "This flexibility accommodates varied work and personal schedules.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "0c5ebf77-3a9e-4498-9d1c-17e5ab1345a8",
+              "Text": "Unfinished quizzes still count as missing points, so plan to complete them all.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "85ac248f-e98b-467f-bbdb-6dae62a5c9c5",
+              "Text": "Setting your own informal deadlines helps prevent a backlog at the end of the course.",
+              "SortOrder": 3
+            }
+          ]
+        },
+        {
+          "Id": "07d2ffde-a3c1-4540-bab7-8dd1bfee01e4",
+          "TopicId": "8a0cfc64-3e03-4e46-94d7-d3db0fe63bad",
+          "Title": "Quizzes Support the Assignments",
+          "BodyText": "Quizzes are designed to reinforce the material covered in the weekly assignments. They serve a learning function, not just an assessment function.",
+          "Notes": "Treat each quiz as a checkpoint that confirms you understood the week\u0027s concepts before moving on.",
+          "SortOrder": 3,
+          "CreatedDate": "2026-11-17T04:51:17.3448101-05:00",
+          "ModifiedDate": "2026-11-17T04:51:17.3448101-05:00",
+          "Items": [
+            {
+              "Id": "10a8c21f-fa0c-4110-b1ed-cdb6c762cf50",
+              "Text": "Quiz content is aligned with the concepts practiced in the weekly assignments.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "f1e3688f-93d7-4971-aeda-1fcb4001c398",
+              "Text": "Taking the quiz helps confirm whether you have grasped the week\u0027s material.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "78481915-e525-478c-ace0-616b703a1ef4",
+              "Text": "Quizzes can reveal gaps in understanding before they affect larger assignment grades.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "45c270c4-b7aa-4d51-a0c9-51bacff1b110",
+              "Text": "Reviewing assignment material before a quiz strengthens retention of key concepts.",
+              "SortOrder": 3
+            }
+          ]
+        },
+        {
+          "Id": "4f650e53-25ca-4188-a4a4-a8b9119b8ffe",
+          "TopicId": "8a0cfc64-3e03-4e46-94d7-d3db0fe63bad",
+          "Title": "Recommended Approach to Pacing",
+          "BodyText": "Because quizzes are self-paced, a deliberate strategy helps you stay on track. Aligning quizzes with the weekly assignment cycle is the most effective approach.",
+          "Notes": "",
+          "SortOrder": 4,
+          "CreatedDate": "2026-11-17T04:51:17.3448101-05:00",
+          "ModifiedDate": "2026-11-17T04:51:17.3448101-05:00",
+          "Items": [
+            {
+              "Id": "20173c88-7110-462c-b585-af658c2c4894",
+              "Text": "Take each quiz shortly after completing the related weekly assignment.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "6b618502-1623-40c1-b201-f00082602511",
+              "Text": "Avoid saving all twelve quizzes until the end of the term.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "6ad8f39c-b8be-482d-b2fd-5265c3b9ea35",
+              "Text": "Track which quizzes you have completed so none are overlooked.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "dc5e2590-495b-4494-a3fe-5e7ec3ebeb75",
+              "Text": "Use quiz results to decide whether to revisit any course material.",
+              "SortOrder": 3
+            }
+          ]
+        },
+        {
+          "Id": "79aad30b-2d91-48d3-ab33-5c2d464d92a3",
+          "TopicId": "8a0cfc64-3e03-4e46-94d7-d3db0fe63bad",
+          "Title": "Getting Help with Quizzes",
+          "BodyText": "If you encounter problems or have questions about a quiz, reach out to the instructor. Email is the preferred channel for support.",
+          "Notes": "",
+          "SortOrder": 5,
+          "CreatedDate": "2026-11-17T04:51:17.3448101-05:00",
+          "ModifiedDate": "2026-11-17T04:51:17.3448101-05:00",
+          "Items": [
+            {
+              "Id": "a874834b-2a53-436c-8be7-e3e6b4b7ba78",
+              "Text": "Send an email to the instructor if a quiz does not open or function correctly.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "dd0e3045-7dbb-4daa-b0a1-4ccdde3a565c",
+              "Text": "Ask questions about quiz content or expectations rather than guessing.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "03a8cf6a-0de7-4570-a4a1-482670a5d9dc",
+              "Text": "Early communication makes it easier to resolve technical or content issues.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "a34b0760-a809-4ce8-95c2-c3412ca99e84",
+              "Text": "Instructor support applies to quizzes just as it does to assignments and discussions.",
+              "SortOrder": 3
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Id": "d06a0073-e7b3-4600-add1-56ffb139b535",
+      "Title": "Grading Breakdown Summary",
+      "Summary": "A consolidated look at how the three graded components\u2014assignments, discussions, and quizzes\u2014combine to form 100% of the course grade. This topic helps students prioritize their effort across deadline-driven and self-paced work.",
+      "SortOrder": 4,
+      "CreatedDate": "2026-11-17T04:50:17.1919287-05:00",
+      "ModifiedDate": "2026-11-17T04:50:17.1919287-05:00",
+      "Elements": [
+        {
+          "Id": "4359bfb2-a2b2-4a7f-abc3-34b12bc0aa2a",
+          "TopicId": "d06a0073-e7b3-4600-add1-56ffb139b535",
+          "Title": "The Three Graded Components",
+          "BodyText": "Your final course grade is built from three categories that together total 100%. Knowing the weight of each helps you decide where to invest your time.",
+          "Notes": "Weekly assignments: 60% | Weekly graded discussions: 20% | Quizzes: 20%",
+          "SortOrder": 0,
+          "CreatedDate": "2026-11-17T04:51:30.5004045-05:00",
+          "ModifiedDate": "2026-11-17T04:51:30.5004045-05:00",
+          "Items": [
+            {
+              "Id": "995252de-0824-48e9-b6cb-673a07820b5b",
+              "Text": "Weekly assignments carry the largest weight at 60% of the final grade.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "f2ae002d-c977-4193-8449-2700ac8d1751",
+              "Text": "Weekly graded discussions account for 20% of the final grade.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "45c9adfe-ec27-4669-b7bd-b0f93ca37ab0",
+              "Text": "Twelve quizzes make up the remaining 20% of the final grade.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "eca9eb29-4e07-4e3f-a751-219e0f1599e0",
+              "Text": "No other categories contribute to the course grade.",
+              "SortOrder": 3
+            }
+          ]
+        },
+        {
+          "Id": "92249d05-1a76-4589-a2aa-43e8b107be6b",
+          "TopicId": "d06a0073-e7b3-4600-add1-56ffb139b535",
+          "Title": "Assignments: The Largest Share at 60%",
+          "BodyText": "Weekly assignments represent the majority of your grade, making them the highest priority each week. Consistent completion here has the greatest impact on your final score.",
+          "Notes": "",
+          "SortOrder": 1,
+          "CreatedDate": "2026-11-17T04:51:30.5004045-05:00",
+          "ModifiedDate": "2026-11-17T04:51:30.5004045-05:00",
+          "Items": [
+            {
+              "Id": "2a9608c6-eba7-43a7-953a-11c9f2f67560",
+              "Text": "Assignments are submitted on a weekly basis throughout the course.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "2a8c181a-3f5c-439d-a469-e7c179d11c8e",
+              "Text": "Because they are worth 60%, missed assignments are the hardest to recover from.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "033c91bc-9189-4e58-8fc9-59b0537417a2",
+              "Text": "Due dates are flexible \u2014 reach out to the instructor if you encounter problems.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "01a98075-f33b-48ea-bc79-c06274218407",
+              "Text": "You should still attempt every assignment, even if you cannot meet the posted deadline.",
+              "SortOrder": 3
+            }
+          ]
+        },
+        {
+          "Id": "a9b9fd76-4648-4584-b48d-1508080fd36a",
+          "TopicId": "d06a0073-e7b3-4600-add1-56ffb139b535",
+          "Title": "Discussions: 20% and Deadline-Driven",
+          "BodyText": "Weekly graded discussions are worth 20% of your grade and are the only component with firm deadlines. They also serve a second purpose beyond points.",
+          "Notes": "Treat discussion deadlines as non-negotiable scheduling anchors for each week.",
+          "SortOrder": 2,
+          "CreatedDate": "2026-11-17T04:51:30.5004045-05:00",
+          "ModifiedDate": "2026-11-17T04:51:30.5004045-05:00",
+          "Items": [
+            {
+              "Id": "afb4f2a0-d0d6-4258-a244-2338e129fc13",
+              "Text": "Discussions must be completed before the posted due date.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "83d826f1-15f2-42ee-9517-afb13ca6ca0b",
+              "Text": "Discussion posts are used to record course attendance.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "139b3ca2-11c4-44d6-bf72-37f20e49d788",
+              "Text": "Late discussion participation cannot be counted toward attendance.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "c3f0d93a-aec0-4e31-aea9-1335795dea11",
+              "Text": "Plan your week so discussions are finished first, ahead of other work.",
+              "SortOrder": 3
+            }
+          ]
+        },
+        {
+          "Id": "2631f8a3-34e6-4d7c-b58b-e380e748fb13",
+          "TopicId": "d06a0073-e7b3-4600-add1-56ffb139b535",
+          "Title": "Quizzes: 20% and Self-Paced",
+          "BodyText": "Twelve quizzes make up the final 20% of your grade and have no due dates. They are designed to reinforce the material covered in your assignments.",
+          "Notes": "",
+          "SortOrder": 3,
+          "CreatedDate": "2026-11-17T04:51:30.5004045-05:00",
+          "ModifiedDate": "2026-11-17T04:51:30.5004045-05:00",
+          "Items": [
+            {
+              "Id": "7badc5a1-1451-466a-930b-20adb2ecc9db",
+              "Text": "There are 12 quizzes spread across the course.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "1b3aa928-35fc-4573-b09e-c1da58a9ef47",
+              "Text": "No due dates apply, so you control when you complete them.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "50f41ebb-91ef-4106-85a9-b3ceee241507",
+              "Text": "Quizzes directly support and reinforce assignment content.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "df8b4897-7c35-4081-b37d-5536f8583e77",
+              "Text": "Taking a quiz before or alongside the related assignment can improve your assignment performance.",
+              "SortOrder": 3
+            }
+          ]
+        },
+        {
+          "Id": "90ea14ab-6ffa-4558-94cd-5728d6c4b0a0",
+          "TopicId": "d06a0073-e7b3-4600-add1-56ffb139b535",
+          "Title": "Prioritizing Deadline-Driven vs. Self-Paced Work",
+          "BodyText": "Because the three components have different deadline rules, a simple weekly strategy helps you stay on track. Handle fixed deadlines first, then flexible work, then self-paced work.",
+          "Notes": "Suggested order each week: discussion \u2192 assignment \u2192 quiz.",
+          "SortOrder": 4,
+          "CreatedDate": "2026-11-17T04:51:30.5004045-05:00",
+          "ModifiedDate": "2026-11-17T04:51:30.5004045-05:00",
+          "Items": [
+            {
+              "Id": "e301a072-5ec4-4083-831a-4a67f2b3958f",
+              "Text": "Complete the graded discussion first, since it is the only hard deadline and tracks attendance.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "4ba68fd0-e1d9-4f55-9ab9-c94df01b63a4",
+              "Text": "Work on the weekly assignment next, as it carries the most grade weight.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "f9743246-5f5f-4280-bc8e-71526f01ae3d",
+              "Text": "Fit quizzes in where your schedule allows, but do not let all 12 pile up at the end.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "a82d3b4f-b642-4920-9eda-020b04ce44bd",
+              "Text": "Contact the instructor by email as soon as a problem arises rather than after a deadline passes.",
+              "SortOrder": 3
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Id": "59566dc3-c0ee-4150-ba42-79e061334818",
+      "Title": "Getting Help and Communicating with the Instructor",
+      "Summary": "Guidance on reaching out when problems or questions arise during the course. Email is the designated channel for contacting the instructor for support.",
+      "SortOrder": 5,
+      "CreatedDate": "2026-11-17T04:50:17.1919287-05:00",
+      "ModifiedDate": "2026-11-17T04:50:17.1919287-05:00",
+      "Elements": [
+        {
+          "Id": "7488d636-ae1c-4e3f-a5c5-c81dc8cc6788",
+          "TopicId": "59566dc3-c0ee-4150-ba42-79e061334818",
+          "Title": "Email Is the Primary Contact Channel",
+          "BodyText": "When problems or questions come up during the course, email is the designated way to reach the instructor.",
+          "Notes": "Using a single, consistent channel ensures your message is seen and tracked.",
+          "SortOrder": 0,
+          "CreatedDate": "2026-11-17T04:51:43.532978-05:00",
+          "ModifiedDate": "2026-11-17T04:51:43.532978-05:00",
+          "Items": [
+            {
+              "Id": "cf2b7ccb-1cb4-49ae-a380-f7cc55e565f1",
+              "Text": "Send an email to the instructor whenever you have a problem or question.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "97c56230-b1ce-4be0-bfdc-332b8d5ca1c1",
+              "Text": "Do not rely on informal or unofficial channels to raise course concerns.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "e56a7941-8392-4383-96d4-27d719f2bc87",
+              "Text": "Use your official course email account so your message can be identified.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "da13db49-ab7c-4e69-b6a7-25840f896323",
+              "Text": "Keep a record of your sent messages in case follow-up is needed.",
+              "SortOrder": 3
+            }
+          ]
+        },
+        {
+          "Id": "49424e22-d708-4cff-946d-7ea5d776e5fa",
+          "TopicId": "59566dc3-c0ee-4150-ba42-79e061334818",
+          "Title": "When to Reach Out",
+          "BodyText": "Contact the instructor as soon as an issue affects your ability to participate or complete work.",
+          "Notes": "",
+          "SortOrder": 1,
+          "CreatedDate": "2026-11-17T04:51:43.532978-05:00",
+          "ModifiedDate": "2026-11-17T04:51:43.532978-05:00",
+          "Items": [
+            {
+              "Id": "946298f6-616f-47f7-89b4-a789c8c9eddd",
+              "Text": "Email if you are unclear about assignment instructions or expectations.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "aad19f99-7019-434f-abd7-96426fa643ab",
+              "Text": "Email if a technical issue prevents you from submitting work or accessing a quiz.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "8adbc18c-d3f5-4aa5-a4fa-b2dca8ca6768",
+              "Text": "Email if personal circumstances will delay a weekly assignment.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "b7a32a6d-471b-4a8d-bcf0-60db416887fc",
+              "Text": "Email if you need clarification on how grading weights apply to your work.",
+              "SortOrder": 3
+            }
+          ]
+        },
+        {
+          "Id": "61390df8-3e78-4fde-a6df-e5b5e9c27591",
+          "TopicId": "59566dc3-c0ee-4150-ba42-79e061334818",
+          "Title": "Communicating About Late or Missed Work",
+          "BodyText": "The instructor is flexible with weekly assignments, but communication is what makes that flexibility possible.",
+          "Notes": "Weekly assignments carry the most flexibility; graded discussions are tied to attendance and must be completed before the due date.",
+          "SortOrder": 2,
+          "CreatedDate": "2026-11-17T04:51:43.532978-05:00",
+          "ModifiedDate": "2026-11-17T04:51:43.532978-05:00",
+          "Items": [
+            {
+              "Id": "fb7b6c69-20ef-475d-a931-7ad00c293d3e",
+              "Text": "Let the instructor know in advance if you cannot meet an assignment due date.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "d704a400-1d7a-45bc-a6d5-ffe870ec3433",
+              "Text": "Always attempt the assignment, even if it will be submitted late.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "83028161-b4e7-4f80-8857-6ba3e37487b0",
+              "Text": "Understand that graded discussions have firmer deadlines because they record attendance.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "208bd212-c526-4a89-82f3-da0034a673bb",
+              "Text": "Quizzes have no due date, so questions about them can be raised at any point in the course.",
+              "SortOrder": 3
+            }
+          ]
+        },
+        {
+          "Id": "a8ff7eaf-03a6-4f28-8b1e-55a2cf3f9899",
+          "TopicId": "59566dc3-c0ee-4150-ba42-79e061334818",
+          "Title": "Writing an Effective Message",
+          "BodyText": "A clear, specific email helps the instructor respond quickly and accurately.",
+          "Notes": "Example subject line: \u0022Week 3 Assignment \u2013 Submission Problem.\u0022",
+          "SortOrder": 3,
+          "CreatedDate": "2026-11-17T04:51:43.532978-05:00",
+          "ModifiedDate": "2026-11-17T04:51:43.532978-05:00",
+          "Items": [
+            {
+              "Id": "dc114027-48cc-4dcc-afe1-db0aeda509af",
+              "Text": "State the course, week, and specific assignment, discussion, or quiz in question.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "cecc502a-a9ba-4e10-9b8c-38b5cfc4d3bb",
+              "Text": "Describe what you have already tried before asking for help.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "b619f8c3-7b25-4297-b618-5d15914479bb",
+              "Text": "Include any error messages or screenshots if the issue is technical.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "655fe77f-5a10-4278-aa4e-569c2905e865",
+              "Text": "Keep the message brief and end with a clear question or request.",
+              "SortOrder": 3
+            }
+          ]
+        },
+        {
+          "Id": "b59c70c9-94f9-4e30-8c04-e8e223670c61",
+          "TopicId": "59566dc3-c0ee-4150-ba42-79e061334818",
+          "Title": "Asking Questions Early",
+          "BodyText": "Raising questions early prevents small problems from affecting your grade later in the term.",
+          "Notes": "",
+          "SortOrder": 4,
+          "CreatedDate": "2026-11-17T04:51:43.532978-05:00",
+          "ModifiedDate": "2026-11-17T04:51:43.532978-05:00",
+          "Items": [
+            {
+              "Id": "b7f21e36-0b85-4c61-81b3-d15439cf047a",
+              "Text": "Do not wait until a due date has passed to report a problem.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "ba859daf-a0e3-43b4-96d3-677c3e884a77",
+              "Text": "Early questions about assignments can clarify expectations before you submit.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "96d58b80-a112-4970-8f5c-07cf22a5fa1a",
+              "Text": "Quizzes support the assignment material, so questions about content are welcome at any time.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "7f977b40-d52a-43f5-b3cc-2b3c13873301",
+              "Text": "Consistent communication keeps you on track across all three graded components.",
+              "SortOrder": 3
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "TotalElementCount": 33
+}

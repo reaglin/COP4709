@@ -1,0 +1,2091 @@
+{
+  "ModuleFolderName": "Module_7_(Week_7)",
+  "CourseName": "COP4709 \u2014 Applied Database II",
+  "GeneratedDate": "2026-11-17T05:16:41.1169511-05:00",
+  "ModifiedDate": "2026-11-17T05:19:56.1295958-05:00",
+  "Outcomes": [],
+  "Topics": [
+    {
+      "Id": "c5ed06a1-08fd-4b0d-8dde-15818701d596",
+      "Title": "Foundations of Database Reporting",
+      "Summary": "Defines database reporting and distinguishes operational, analytical, tactical, and strategic report types along with their audiences and characteristics. Introduces the components of effective reports and the five-stage reporting process from requirements gathering through deployment.",
+      "SortOrder": 0,
+      "CreatedDate": "2026-11-17T05:16:41.1169511-05:00",
+      "ModifiedDate": "2026-11-17T05:16:41.1169511-05:00",
+      "Elements": [
+        {
+          "Id": "713edc5b-59a1-4894-a6e6-866d367863cd",
+          "TopicId": "c5ed06a1-08fd-4b0d-8dde-15818701d596",
+          "Title": "What Is Database Reporting?",
+          "BodyText": "Database reporting is the process of extracting, transforming, and presenting data from databases in a structured, readable format. Reports turn raw data into meaningful information that supports decision-making.",
+          "Notes": "Reporting sits between the raw storage of data and the business decisions that data is meant to inform; nearly all reporting tools operate on the same underlying principles.",
+          "SortOrder": 0,
+          "CreatedDate": "2026-11-17T05:17:02.0094755-05:00",
+          "ModifiedDate": "2026-11-17T05:17:02.0094755-05:00",
+          "Items": [
+            {
+              "Id": "6315f810-7177-456c-a6ae-c5ba084ccb9c",
+              "Text": "Extraction pulls the required rows and columns from one or more data sources.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "b401b210-f585-4a93-9945-4c18a10a2f54",
+              "Text": "Transformation applies joins, aggregations, calculations, and filtering to shape the data.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "563d7c4a-bc02-4e7d-ad75-d8868f0620c3",
+              "Text": "Presentation organizes results into tables, matrices, charts, and formatted layouts.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "1aefc4c6-5ad8-46f8-921d-fb45e2719942",
+              "Text": "The purpose of every report is actionable insight, not simply a data dump.",
+              "SortOrder": 3
+            },
+            {
+              "Id": "f69d1c22-f524-40b9-8e10-cce1504e0b97",
+              "Text": "Skills learned in one reporting tool transfer readily to other tools.",
+              "SortOrder": 4
+            }
+          ]
+        },
+        {
+          "Id": "43f934e8-199d-4e79-b019-2f1eab6f37da",
+          "TopicId": "c5ed06a1-08fd-4b0d-8dde-15818701d596",
+          "Title": "Operational and Analytical Reports",
+          "BodyText": "Operational and analytical reports serve two different time horizons: running the business day to day versus understanding how it is performing over time.",
+          "Notes": "Examples: a daily sales or inventory status report is operational; a year-over-year sales trend by region is analytical.",
+          "SortOrder": 1,
+          "CreatedDate": "2026-11-17T05:17:02.0094755-05:00",
+          "ModifiedDate": "2026-11-17T05:17:02.0094755-05:00",
+          "Items": [
+            {
+              "Id": "73bc33c7-6c63-4e9e-8ec8-463e3a99b694",
+              "Text": "Operational reports support day-to-day business operations such as daily sales, inventory status, and customer orders.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "31cc7a68-06ce-4034-8de5-3296eb1831c8",
+              "Text": "Operational reports run daily, hourly, or in real time for operational staff and front-line managers.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "c1514f3a-f6d5-49f5-b5ad-f8ae50c17057",
+              "Text": "Operational reports are detail-oriented, use current data, and track specific metrics.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "56a3f792-153c-4299-a945-1d66952942d3",
+              "Text": "Analytical reports examine trends and patterns such as customer segmentation or year-over-year comparisons.",
+              "SortOrder": 3
+            },
+            {
+              "Id": "344f33b1-eaaf-4b63-a0d9-1731986845a0",
+              "Text": "Analytical reports run weekly, monthly, or quarterly for managers, analysts, and executives.",
+              "SortOrder": 4
+            },
+            {
+              "Id": "439dc02c-3a30-4b0e-bca9-8e219bb3fb05",
+              "Text": "Analytical reports rely on historical data, aggregations, and visualizations.",
+              "SortOrder": 5
+            }
+          ]
+        },
+        {
+          "Id": "d620b851-e12b-49d9-b073-4221d00f4efa",
+          "TopicId": "c5ed06a1-08fd-4b0d-8dde-15818701d596",
+          "Title": "Tactical and Strategic Reports",
+          "BodyText": "Tactical and strategic reports move up the decision-making ladder, from supporting specific actions to guiding long-range direction.",
+          "Notes": "Examples: marketing campaign ROI is tactical; an executive KPI scorecard is strategic.",
+          "SortOrder": 2,
+          "CreatedDate": "2026-11-17T05:17:02.0094755-05:00",
+          "ModifiedDate": "2026-11-17T05:17:02.0094755-05:00",
+          "Items": [
+            {
+              "Id": "647956dd-90e5-4753-9d74-87688873592c",
+              "Text": "Tactical reports support specific decisions or actions, such as product performance analysis or campaign ROI.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "ce77daf3-3d51-4374-bf08-6f40b4fff20b",
+              "Text": "Tactical reports are produced as needed for department managers and project teams.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "0fb41962-ef90-487a-9e92-1dac64d9ba7d",
+              "Text": "Tactical reports have a focused scope and emphasize actionable insights.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "c7e9586b-b584-40fb-8eae-43fb1cbd2bc6",
+              "Text": "Strategic reports deliver high-level business intelligence such as executive dashboards and KPI scorecards.",
+              "SortOrder": 3
+            },
+            {
+              "Id": "34f5f6be-f66c-4a0f-8d8f-2aa698764860",
+              "Text": "Strategic reports are produced monthly, quarterly, or annually for executives and board members.",
+              "SortOrder": 4
+            },
+            {
+              "Id": "0fa0d075-6f25-4c56-890f-5a37d11d80de",
+              "Text": "Strategic reports are summary-level and emphasize trends and forecasts.",
+              "SortOrder": 5
+            }
+          ]
+        },
+        {
+          "Id": "8fac9773-0a2d-4ab9-aab1-d14fc13eabc2",
+          "TopicId": "c5ed06a1-08fd-4b0d-8dde-15818701d596",
+          "Title": "Components of an Effective Report",
+          "BodyText": "Regardless of type, effective reports share a common set of design and technical qualities. Missing any one of them reduces the report\u0027s usefulness to its audience.",
+          "Notes": "These components become the checklist you apply when reviewing your own report designs.",
+          "SortOrder": 3,
+          "CreatedDate": "2026-11-17T05:17:02.0094755-05:00",
+          "ModifiedDate": "2026-11-17T05:17:02.0094755-05:00",
+          "Items": [
+            {
+              "Id": "f26342c0-8d84-4a6a-8696-e21f6c3cf484",
+              "Text": "Clear structure organizes content logically with headers, sections, and groupings.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "38d2d92a-e219-40b9-a09a-382a11aaa09f",
+              "Text": "Appropriate visualization matches the chart, table, or matrix to the type of data being shown.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "c49a7316-3b63-4a89-8962-66bba570027f",
+              "Text": "Relevant filters and parameters let users focus on the specific data they need.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "2ecf2be7-8fdf-49bf-86cd-ef2c3dcbb005",
+              "Text": "Key metrics present the important calculations, totals, and KPIs prominently.",
+              "SortOrder": 3
+            },
+            {
+              "Id": "4f6fe84f-c341-4ab1-b937-8018dea73d27",
+              "Text": "Professional design uses consistent formatting, readable fonts, and appropriate colors.",
+              "SortOrder": 4
+            },
+            {
+              "Id": "1e7b1caf-80b9-47d7-ad54-e9f9def56e90",
+              "Text": "Good performance comes from efficient queries that return results quickly.",
+              "SortOrder": 5
+            }
+          ]
+        },
+        {
+          "Id": "2628f783-c9dd-441b-a25e-33c11c10b71d",
+          "TopicId": "c5ed06a1-08fd-4b0d-8dde-15818701d596",
+          "Title": "Stages 1\u20132: Requirements and Data Query",
+          "BodyText": "The reporting process begins long before any layout is drawn, with clarifying what the report must answer and building the query that feeds it.",
+          "Notes": "Getting requirements wrong at stage 1 guarantees rework later, no matter how polished the layout becomes.",
+          "SortOrder": 4,
+          "CreatedDate": "2026-11-17T05:17:02.0094755-05:00",
+          "ModifiedDate": "2026-11-17T05:17:02.0094755-05:00",
+          "Items": [
+            {
+              "Id": "ddb52dab-006d-4da3-8f8a-cad31c94290a",
+              "Text": "Define requirements by identifying who will use the report and what questions it must answer.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "c3375b9d-c48f-4975-9c79-02f316ac87fc",
+              "Text": "Determine the data needed, how often the report will run, and the required output format such as PDF, Excel, or web.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "3f87562f-2411-4136-b16d-49c19f0ce6d7",
+              "Text": "Design the data query by identifying the correct data sources and tables.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "7cb8b637-7234-4eec-b948-289e67d67ada",
+              "Text": "Write efficient SQL that selects only the needed columns and filters in the WHERE clause.",
+              "SortOrder": 3
+            },
+            {
+              "Id": "a1bb641e-aaba-46f9-bbd1-b02a42e46b2f",
+              "Text": "Test the query with sample data and optimize it for performance before moving on.",
+              "SortOrder": 4
+            }
+          ]
+        },
+        {
+          "Id": "9f3728f9-ccfa-4b44-afc9-282248c1f5e9",
+          "TopicId": "c5ed06a1-08fd-4b0d-8dde-15818701d596",
+          "Title": "Stages 3\u20135: Layout, Interactivity, and Deployment",
+          "BodyText": "The final three stages turn a validated dataset into a polished, interactive report that is tested and released to users.",
+          "Notes": "Deployment is not the end point \u2014 user training and feedback close the loop on the reporting process.",
+          "SortOrder": 5,
+          "CreatedDate": "2026-11-17T05:17:02.0094755-05:00",
+          "ModifiedDate": "2026-11-17T05:17:02.0094755-05:00",
+          "Items": [
+            {
+              "Id": "35bdb4a0-9aa9-4125-a1af-a57d471ddce8",
+              "Text": "Create the report layout by choosing visualizations, designing headers and footers, and adding groupings and sorting.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "cafad678-f3c2-405a-94cb-7043c6381073",
+              "Text": "Apply consistent formatting and styling so the report looks professional.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "4de68911-2823-4c43-97c6-443156cb0e96",
+              "Text": "Add interactivity through parameters for filtering, drill-down, drill-through to detail reports, and export options.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "7af79c9c-5d9b-449b-8476-5bf0a307f068",
+              "Text": "Test with various data scenarios and verify that all calculations and totals are correct.",
+              "SortOrder": 3
+            },
+            {
+              "Id": "1e2de10f-c957-43c6-b641-e6ef43226839",
+              "Text": "Check performance against full production datasets before release.",
+              "SortOrder": 4
+            },
+            {
+              "Id": "fabfadd2-0f28-4b6e-b249-a408bc5144c9",
+              "Text": "Deploy to the production report server and train the users who will rely on it.",
+              "SortOrder": 5
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Id": "6bc064c3-8d68-4e24-83c6-35cad7a50c73",
+      "Title": "Reporting Tools and Platform Selection",
+      "Summary": "Compares major reporting platforms including SSRS, Power BI, Crystal Reports, Tableau, and Jaspersoft across cost, learning curve, and best use cases. Explains the criteria for choosing a reporting tool and why SSRS Report Builder is the focus of this course.",
+      "SortOrder": 1,
+      "CreatedDate": "2026-11-17T05:16:41.1169511-05:00",
+      "ModifiedDate": "2026-11-17T05:16:41.1169511-05:00",
+      "Elements": [
+        {
+          "Id": "a76a74ff-abac-4abb-a129-6e20b781c552",
+          "TopicId": "6bc064c3-8d68-4e24-83c6-35cad7a50c73",
+          "Title": "Microsoft SQL Server Reporting Services (SSRS)",
+          "BodyText": "SSRS is an enterprise reporting platform tightly integrated with SQL Server and is the primary tool used in this course. It excels at producing paginated, printable reports for operational use.",
+          "Notes": "Report Builder is the free authoring tool used to create .rdl paginated reports that can be published to an SSRS report server.",
+          "SortOrder": 0,
+          "CreatedDate": "2026-11-17T05:17:23.5160501-05:00",
+          "ModifiedDate": "2026-11-17T05:17:23.5160501-05:00",
+          "Items": [
+            {
+              "Id": "507e8c80-b3e2-4666-8291-41d0d3f7b878",
+              "Text": "It is free with a SQL Server license, making it cost-effective for organizations already running SQL Server.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "765f5264-1353-40ef-93f7-d91c50144c72",
+              "Text": "Strengths include parameterized and drill-through reports, subscriptions, scheduling, and exports to PDF, Excel, and Word.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "647b1243-10ea-4b7f-aa21-ed1322b00318",
+              "Text": "Considerations include a Windows-centric platform (though Linux support was added) and a steeper learning curve than some alternatives.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "0f7a5a8c-64e9-46fa-b824-e60537949f08",
+              "Text": "It is best for organizations needing complex, enterprise-grade paginated reports.",
+              "SortOrder": 3
+            }
+          ]
+        },
+        {
+          "Id": "cb76e94b-2dac-44fb-b78f-e2220761d7f9",
+          "TopicId": "6bc064c3-8d68-4e24-83c6-35cad7a50c73",
+          "Title": "Microsoft Power BI",
+          "BodyText": "Power BI is a modern business intelligence and visualization platform aimed at interactive, self-service analytics. It emphasizes dashboards rather than printed, paginated output.",
+          "Notes": "Free Desktop version with Pro subscription for sharing; paginated report capability requires Premium.",
+          "SortOrder": 1,
+          "CreatedDate": "2026-11-17T05:17:23.5160501-05:00",
+          "ModifiedDate": "2026-11-17T05:17:23.5160501-05:00",
+          "Items": [
+            {
+              "Id": "a71548da-c344-4009-9972-c61e39385055",
+              "Text": "Its drag-and-drop interface and low learning curve support self-service BI for non-developers.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "a3b8c66b-1789-4578-b856-2ad24578814c",
+              "Text": "It produces beautiful interactive visualizations, real-time dashboards, and mobile-friendly content.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "cde3f4a3-1516-4a2e-8f79-9273408691bb",
+              "Text": "It connects to many data sources and includes natural language Q\u0026A querying.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "1d95674b-5d17-4670-8e41-d8900a8639d5",
+              "Text": "Paginated reporting is limited compared to SSRS, so it is best for exploratory analysis and monitoring.",
+              "SortOrder": 3
+            }
+          ]
+        },
+        {
+          "Id": "2d20e90a-887c-4a95-abe3-187fd832bc32",
+          "TopicId": "6bc064c3-8d68-4e24-83c6-35cad7a50c73",
+          "Title": "Crystal Reports, Tableau, and Jaspersoft",
+          "BodyText": "Several other established platforms serve distinct reporting niches, from legacy enterprise formatting to open-source embedded reporting. Knowing their strengths helps match a tool to an organizational context.",
+          "Notes": "Most reporting tools operate in a similar fashion, so skills learned in one transfer readily to another.",
+          "SortOrder": 2,
+          "CreatedDate": "2026-11-17T05:17:23.5160501-05:00",
+          "ModifiedDate": "2026-11-17T05:17:23.5160501-05:00",
+          "Items": [
+            {
+              "Id": "68a63203-2d87-413a-97c1-0be79edb2bef",
+              "Text": "Crystal Reports (SAP, since 1991) offers excellent complex layouts and formatting but carries a license fee and a moderate-to-high learning curve.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "8b804d09-1257-44ee-9c31-88a1e90e283f",
+              "Text": "Tableau is subscription-based with exceptional visualization and data exploration features, but paginated reporting is not its focus.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "a04c15cd-0ec9-4bd3-b0a3-8becb1ed3932",
+              "Text": "Jaspersoft (JasperReports) is Java-based with a free community edition, strong cross-platform support, and good fit for embedded reporting.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "b5cb19b2-6094-4683-b3b7-896f996b9d45",
+              "Text": "Crystal Reports suits organizations on SAP or legacy systems; Jaspersoft suits cost-conscious Java environments.",
+              "SortOrder": 3
+            }
+          ]
+        },
+        {
+          "Id": "398ebe33-38db-418b-997f-858eec65a8f8",
+          "TopicId": "6bc064c3-8d68-4e24-83c6-35cad7a50c73",
+          "Title": "Comparing Tools: Cost, Learning Curve, and Use Case",
+          "BodyText": "A side-by-side comparison across cost, learning curve, best use case, and paginated report support clarifies the tradeoffs among platforms. No single tool is best for every reporting scenario.",
+          "Notes": "Paginated report support: SSRS excellent, Crystal Reports excellent, Jaspersoft good, Power BI limited (Premium required), Tableau not a primary focus.",
+          "SortOrder": 3,
+          "CreatedDate": "2026-11-17T05:17:23.5160501-05:00",
+          "ModifiedDate": "2026-11-17T05:17:23.5160501-05:00",
+          "Items": [
+            {
+              "Id": "bef8bc44-df49-4c5f-adff-caf68c44d782",
+              "Text": "SSRS: included with SQL Server, moderate learning curve, best for operational and printable reports.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "2e44e59f-3cbc-4bd2-9895-734a68bd8f6f",
+              "Text": "Power BI: free Desktop or Pro subscription, low learning curve, best for interactive dashboards.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "ab28a521-bbeb-4b64-8f0e-a9f5d6f2976c",
+              "Text": "Crystal Reports: license fee, moderate-to-high learning curve, best for complex formatted reports.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "487f58e3-a70b-4d3d-8ceb-7ef513a58c7c",
+              "Text": "Tableau: subscription-based, low-to-moderate learning curve, best for visual analysis.",
+              "SortOrder": 3
+            },
+            {
+              "Id": "47ea4ece-59d5-4397-a335-602f04bce756",
+              "Text": "Jaspersoft: free community or paid pro, moderate-to-high learning curve, best for embedded reports.",
+              "SortOrder": 4
+            }
+          ]
+        },
+        {
+          "Id": "260ce38d-9125-4a8b-8d54-2a8e9df1ff8c",
+          "TopicId": "6bc064c3-8d68-4e24-83c6-35cad7a50c73",
+          "Title": "Criteria for Selecting a Reporting Tool",
+          "BodyText": "Choosing a reporting platform requires weighing technical fit, user skill level, budget, and the type of output required. The right choice aligns the tool with both the data environment and the audience.",
+          "Notes": "This is also the focus of the graded discussion: what you should consider when deciding which database reporting tool to use.",
+          "SortOrder": 4,
+          "CreatedDate": "2026-11-17T05:17:23.5160501-05:00",
+          "ModifiedDate": "2026-11-17T05:17:23.5160501-05:00",
+          "Items": [
+            {
+              "Id": "5c8e56ad-e715-4ad5-9111-789657e0edf9",
+              "Text": "Evaluate integration with your existing database platform and infrastructure.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "1ea04cd7-2ce0-4eb1-bd98-c2ea2ac3d46b",
+              "Text": "Compare licensing and total cost against the project budget and number of users.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "51ced08d-7087-42ac-ae49-c9a91fe3cba9",
+              "Text": "Consider the learning curve relative to the skills of report authors and consumers.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "ceb85469-2677-4086-a5c1-45bd7cf7ab6f",
+              "Text": "Determine whether output must be paginated and printable or interactive and exploratory.",
+              "SortOrder": 3
+            },
+            {
+              "Id": "53ed8db0-e2ec-4e78-a1ae-0bbc6228373d",
+              "Text": "Assess deployment needs such as cloud, mobile, scheduling, subscriptions, and embedding.",
+              "SortOrder": 4
+            },
+            {
+              "Id": "76b6714c-e50d-4148-af23-1d70f477a085",
+              "Text": "Weigh community support, documentation, and available training resources.",
+              "SortOrder": 5
+            }
+          ]
+        },
+        {
+          "Id": "a3d8f636-1902-402c-b3f3-19c36e999ca3",
+          "TopicId": "6bc064c3-8d68-4e24-83c6-35cad7a50c73",
+          "Title": "Why This Course Focuses on SSRS Report Builder",
+          "BodyText": "SSRS Report Builder was selected for this course because it pairs naturally with the SQL Server skills already being developed and is freely available to students.",
+          "Notes": "Assignments allow Crystal Reports or another tool, but Report Builder is the supported path since it is free and works well with SQL Server.",
+          "SortOrder": 5,
+          "CreatedDate": "2026-11-17T05:17:23.5160501-05:00",
+          "ModifiedDate": "2026-11-17T05:17:23.5160501-05:00",
+          "Items": [
+            {
+              "Id": "e5b1d464-4bfe-4fb6-b18e-0faf32ed567d",
+              "Text": "It integrates directly with the SQL Server databases used throughout the course.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "e0ded75d-099e-41fd-b335-5389912589d7",
+              "Text": "It is the industry standard for operational, paginated reporting.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "79c7f057-869a-4c25-bf9e-07c0d2acebec",
+              "Text": "There is no additional cost when using it with SQL Server.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "cf099f6d-84fc-4faf-b280-84f1a8f762e0",
+              "Text": "Core concepts such as data sources, datasets, grouping, parameters, and expressions transfer to nearly all other reporting tools.",
+              "SortOrder": 3
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Id": "1cbcd33d-8723-44c4-937c-011c49a70e9e",
+      "Title": "Getting Started with SSRS Report Builder",
+      "Summary": "Covers downloading and installing Report Builder, system requirements, and a tour of the interface including the Report Data pane, design surface, properties pane, ribbon, and grouping pane. Introduces core concepts of data sources, datasets, and report items.",
+      "SortOrder": 2,
+      "CreatedDate": "2026-11-17T05:16:41.1169511-05:00",
+      "ModifiedDate": "2026-11-17T05:16:41.1169511-05:00",
+      "Elements": [
+        {
+          "Id": "513f6ce4-ea13-4aa1-a9a3-b9b1db9a7b27",
+          "TopicId": "1cbcd33d-8723-44c4-937c-011c49a70e9e",
+          "Title": "What Is Report Builder?",
+          "BodyText": "Report Builder is Microsoft\u0027s free, stand-alone report authoring tool for creating paginated reports that publish to SQL Server Reporting Services. It offers a visual, drag-and-drop design environment so you can build professional reports without extensive programming.",
+          "Notes": "The course uses Report Builder 3 (or the current version available from Microsoft) because it is free, integrates tightly with SQL Server, and teaches concepts that transfer to tools like Crystal Reports.",
+          "SortOrder": 0,
+          "CreatedDate": "2026-11-17T05:17:44.8285171-05:00",
+          "ModifiedDate": "2026-11-17T05:17:44.8285171-05:00",
+          "Items": [
+            {
+              "Id": "f53c5ea8-705d-4780-8c64-3cd2157db901",
+              "Text": "Reports are authored and saved as .rdl (Report Definition Language) files.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "42418952-9e35-4718-863e-6a76fbc47732",
+              "Text": "Reports can be kept as local files or deployed to a report server for shared access.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "0ead5604-2e3b-466b-a9c2-827b6842e2d9",
+              "Text": "It is designed for paginated, printable output such as operational and tactical reports.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "0e5daba2-4d39-4e7c-ba47-2f77ee1bf637",
+              "Text": "The skills learned apply to most other reporting tools, which operate in a similar fashion.",
+              "SortOrder": 3
+            }
+          ]
+        },
+        {
+          "Id": "c724a5c5-cca9-40eb-a0cf-8736a989fa0e",
+          "TopicId": "1cbcd33d-8723-44c4-937c-011c49a70e9e",
+          "Title": "Downloading and Installing Report Builder",
+          "BodyText": "Report Builder is downloaded directly from the Microsoft Download Center and installed with a simple MSI installer. The whole process takes only a few minutes on a standard Windows machine.",
+          "Notes": "Go to https://www.microsoft.com/download and search for \u0022Report Builder\u0022 to find the current release.",
+          "SortOrder": 1,
+          "CreatedDate": "2026-11-17T05:17:44.8285171-05:00",
+          "ModifiedDate": "2026-11-17T05:17:44.8285171-05:00",
+          "Items": [
+            {
+              "Id": "228ab2d0-dd70-4505-bb14-ebc5c44832a2",
+              "Text": "Download the installer package named ReportBuilder.msi from Microsoft.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "8dcb5083-7821-4d43-bf28-ea281edffe98",
+              "Text": "Run the installer and accept the license agreement.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "1be586e7-8ac1-4f50-abf0-2fed21c144f8",
+              "Text": "Choose an installation location and click Install.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "007c859e-8118-426e-b34b-ea4cf1250dc9",
+              "Text": "Launch Report Builder from the Windows Start Menu after installation completes.",
+              "SortOrder": 3
+            }
+          ]
+        },
+        {
+          "Id": "84509695-67c8-4870-a75d-ad60b014b2ab",
+          "TopicId": "1cbcd33d-8723-44c4-937c-011c49a70e9e",
+          "Title": "System Requirements",
+          "BodyText": "Report Builder has modest hardware and software requirements, but it is a Windows-based tool that depends on the .NET Framework. Verify these prerequisites before installing.",
+          "Notes": "If a report server is targeted for deployment, you also need network access and permissions to that server.",
+          "SortOrder": 2,
+          "CreatedDate": "2026-11-17T05:17:44.8285171-05:00",
+          "ModifiedDate": "2026-11-17T05:17:44.8285171-05:00",
+          "Items": [
+            {
+              "Id": "83a76f90-a036-4e79-8234-140b55461daf",
+              "Text": "Windows 10/11 or a supported version of Windows Server.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "6fdceb85-4bb5-479f-8407-47556b4741ec",
+              "Text": ".NET Framework 4.7.2 or later must be installed.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "9103eb20-bf4a-4780-9e18-eda4dd4d447c",
+              "Text": "Approximately 100 MB of free disk space is required.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "8e400011-f3f2-4485-887a-1481e1f08e3a",
+              "Text": "Access to a SQL Server instance (local or remote) is needed to connect to data.",
+              "SortOrder": 3
+            }
+          ]
+        },
+        {
+          "Id": "910754f1-37e9-4abf-bf49-61d6f6665e53",
+          "TopicId": "1cbcd33d-8723-44c4-937c-011c49a70e9e",
+          "Title": "Touring the Report Builder Interface",
+          "BodyText": "The Report Builder window is divided into several panes that each serve a distinct purpose in the authoring workflow. Learning where things live makes report building much faster.",
+          "Notes": "A typical layout places Report Data on the left, the Design Surface in the center, Properties on the right, the Ribbon across the top, and the Grouping pane at the bottom.",
+          "SortOrder": 3,
+          "CreatedDate": "2026-11-17T05:17:44.8285171-05:00",
+          "ModifiedDate": "2026-11-17T05:17:44.8285171-05:00",
+          "Items": [
+            {
+              "Id": "7b1f3503-29e6-4200-b7ae-321173347fd5",
+              "Text": "Report Data pane (left): holds data sources, datasets, fields, parameters, images, and built-in fields.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "299f82cb-5809-4e9e-a35e-4a88f85d2d38",
+              "Text": "Design Surface (center): the canvas with report header, body, and footer where you drag and arrange items.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "5df02cd4-6d98-4692-a0b1-d50b00c73b59",
+              "Text": "Properties pane (right): configures settings such as name, format, color, and visibility for the selected item.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "993d331a-2edd-4483-a826-55833343c256",
+              "Text": "Ribbon (top): File, Home, Insert, View, Run, and Help tabs group the available tools and commands.",
+              "SortOrder": 3
+            },
+            {
+              "Id": "7a1ccd30-a8b9-44c7-aea5-e999657d9cbd",
+              "Text": "Grouping pane (bottom): manages row groups and column groups for tables and matrices.",
+              "SortOrder": 4
+            },
+            {
+              "Id": "bedbce33-7882-425f-8d35-69672330f79c",
+              "Text": "The Run button (or F5) previews the report; the Design button returns you to editing.",
+              "SortOrder": 5
+            }
+          ]
+        },
+        {
+          "Id": "6f79ee8e-196d-4dbf-949d-616cd3bc1f1f",
+          "TopicId": "1cbcd33d-8723-44c4-937c-011c49a70e9e",
+          "Title": "Core Concept: Data Sources",
+          "BodyText": "A data source stores the connection information Report Builder uses to reach your database. Every dataset must point to a data source.",
+          "Notes": "Use the Build button to assemble a connection string, then Test Connection to verify it before saving.",
+          "SortOrder": 4,
+          "CreatedDate": "2026-11-17T05:17:44.8285171-05:00",
+          "ModifiedDate": "2026-11-17T05:17:44.8285171-05:00",
+          "Items": [
+            {
+              "Id": "e1bc7e30-d147-4803-acf3-0dd2af69f0f1",
+              "Text": "The connection string identifies the server name and target database.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "584c4a4e-a721-46a8-a4ec-300f70fb7ab5",
+              "Text": "Credentials define how the report authenticates \u2014 Windows Authentication or SQL Server login.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "b35c5f5a-52e1-4a25-ae64-621312c7cb0f",
+              "Text": "Supported types include SQL Server, Oracle, OLE DB, ODBC, and others.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "0652b98b-3ece-4c74-b9d5-7060a847d9cf",
+              "Text": "Data sources can be embedded in a single report or shared across many reports on a server.",
+              "SortOrder": 3
+            }
+          ]
+        },
+        {
+          "Id": "a8708baa-9642-4723-b4fd-4d7a6e6b3b5f",
+          "TopicId": "1cbcd33d-8723-44c4-937c-011c49a70e9e",
+          "Title": "Core Concept: Datasets",
+          "BodyText": "A dataset is the query that actually retrieves rows from a data source for use in the report. It defines the fields available to drag onto the design surface.",
+          "Notes": "After entering a query, click Refresh Fields so Report Builder populates the field list in the Report Data pane.",
+          "SortOrder": 5,
+          "CreatedDate": "2026-11-17T05:17:44.8285171-05:00",
+          "ModifiedDate": "2026-11-17T05:17:44.8285171-05:00",
+          "Items": [
+            {
+              "Id": "f3d5d689-77db-4303-96ae-53e641aa4e07",
+              "Text": "The query can be a Text SQL statement or a call to a stored procedure.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "36908235-d07a-4438-a8d3-4cd690009518",
+              "Text": "Fields correspond to the columns returned by the query and appear under the dataset.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "57d38e5c-b37d-48c9-81e7-ab693cd8fb21",
+              "Text": "Query parameters (for example @StartDate) let users filter the results at run time.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "acbde537-c209-4feb-8979-316047ce1e8c",
+              "Text": "Give datasets clear, descriptive names such as SalesData or EmployeeList.",
+              "SortOrder": 3
+            }
+          ]
+        },
+        {
+          "Id": "005e5f28-92f5-4e3c-9ce0-3e15b2341c7b",
+          "TopicId": "1cbcd33d-8723-44c4-937c-011c49a70e9e",
+          "Title": "Core Concept: Report Items",
+          "BodyText": "Report items are the visual elements you drag from the Insert tab onto the design surface to present your data. Choosing the right item for the data type is key to an effective report.",
+          "Notes": "Items are bound to data using expressions like =Fields!CategoryName.Value, which Report Builder generates automatically when you drag a field.",
+          "SortOrder": 6,
+          "CreatedDate": "2026-11-17T05:17:44.8285171-05:00",
+          "ModifiedDate": "2026-11-17T05:17:44.8285171-05:00",
+          "Items": [
+            {
+              "Id": "f29d622b-d4a4-4286-b1e3-5e6068fab52e",
+              "Text": "Tablix: a table or matrix used to display rows, columns, and grouped data.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "2a1b6f37-9359-4812-9498-312029875b2c",
+              "Text": "Chart: column, bar, line, pie, area, or scatter visualizations.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "493b6797-aaad-4623-bdf6-c4dbd3894475",
+              "Text": "Text Box: static text such as titles, or expressions and calculated values.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "80ab07c0-90f6-48e0-bcdd-5b05b4de2c80",
+              "Text": "Image: company logos or other embedded graphics.",
+              "SortOrder": 3
+            },
+            {
+              "Id": "bc735686-8856-43dc-a3d4-9117ca28357e",
+              "Text": "Rectangle: a container used to group and position other report items.",
+              "SortOrder": 4
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Id": "27e627bc-806b-4d94-be7a-7e290c87b879",
+      "Title": "Building Your First Report Step by Step",
+      "Summary": "Walks through creating a tabular sales report from a blank report: configuring a data source, writing a dataset query, inserting a table, adding fields, formatting, adding totals and a title, previewing, and saving the .rdl file. Includes a testing checklist to validate data, calculations, formatting, and export.",
+      "SortOrder": 3,
+      "CreatedDate": "2026-11-17T05:16:41.1169511-05:00",
+      "ModifiedDate": "2026-11-17T05:16:41.1169511-05:00",
+      "Elements": [
+        {
+          "Id": "d326e1c3-30aa-4994-9f71-3bdae3e53887",
+          "TopicId": "27e627bc-806b-4d94-be7a-7e290c87b879",
+          "Title": "Start a Blank Report and Connect a Data Source",
+          "BodyText": "Every SSRS report begins with a blank design surface and a connection to the database that holds your data. The data source stores the connection string and credentials Report Builder uses at runtime.",
+          "Notes": "Example goal: a basic tabular report showing product sales data with totals and formatting. In the Report Builder lectures, the US Aid database scripts are used as a practice data source.",
+          "SortOrder": 0,
+          "CreatedDate": "2026-11-17T05:18:11.0315861-05:00",
+          "ModifiedDate": "2026-11-17T05:18:11.0315861-05:00",
+          "Items": [
+            {
+              "Id": "4e9719dd-d98d-43b8-badc-90085eb97264",
+              "Text": "Launch Report Builder and click Blank Report (or File \u2192 New) to open an empty design surface.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "5f590558-73b3-4c67-b551-44e9e895b4cd",
+              "Text": "In the Report Data pane, right-click Data Sources and choose Add Data Source, then name it something meaningful such as SalesDB.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "4b202f30-d9d9-4be2-a50f-5e1bd97655cb",
+              "Text": "Select the connection type Microsoft SQL Server and click Build to specify server name (e.g., localhost), authentication (Windows or SQL Server), and database.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "dda73097-c9e7-408e-84cf-ab1ed4d282bd",
+              "Text": "Always click Test Connection before saving to confirm the server and credentials work.",
+              "SortOrder": 3
+            },
+            {
+              "Id": "930bb96a-4763-4b18-b3f4-f7c63e81a48c",
+              "Text": "Avoid hardcoding credentials; use Windows Authentication whenever possible.",
+              "SortOrder": 4
+            }
+          ]
+        },
+        {
+          "Id": "68512a7b-af24-41b9-88a0-07632a509cd3",
+          "TopicId": "27e627bc-806b-4d94-be7a-7e290c87b879",
+          "Title": "Create the Dataset and Refresh Fields",
+          "BodyText": "A dataset is the query that retrieves rows from the data source and exposes fields to the report layout. Writing and testing the SQL first makes the rest of the build straightforward.",
+          "Notes": "Sample query: SELECT p.ProductName, c.CategoryName, SUM(od.Quantity) AS TotalQuantity, SUM(od.Quantity * od.UnitPrice) AS TotalSales FROM OrderDetails od INNER JOIN Products p ON od.ProductID = p.ProductID INNER JOIN Categories c ON p.CategoryID = c.CategoryID GROUP BY p.ProductName, c.CategoryName ORDER BY c.CategoryName, TotalSales DESC;",
+          "SortOrder": 1,
+          "CreatedDate": "2026-11-17T05:18:11.0315861-05:00",
+          "ModifiedDate": "2026-11-17T05:18:11.0315861-05:00",
+          "Items": [
+            {
+              "Id": "04727d21-7695-45f4-b8a2-1ace08ac292b",
+              "Text": "Right-click Datasets in the Report Data pane, click Add Dataset, and name it descriptively (for example, SalesData).",
+              "SortOrder": 0
+            },
+            {
+              "Id": "e43a3184-acf1-4e09-ba7f-7d4158c81133",
+              "Text": "Select the SalesDB data source and set Query type to Text, then paste or write your SQL statement.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "3246e52f-306f-4f3e-b58d-f862abe921b6",
+              "Text": "Aggregate in the query with SUM and GROUP BY so the report does less work at render time.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "11efbd54-0f8b-4453-91cb-5a5619e95272",
+              "Text": "Click Refresh Fields to populate the field list, then OK; the dataset and its fields appear in the Report Data pane.",
+              "SortOrder": 3
+            },
+            {
+              "Id": "6258f040-6f7d-4a77-88de-398a8712e6d6",
+              "Text": "Select only the columns you need rather than SELECT * to keep the report fast.",
+              "SortOrder": 4
+            }
+          ]
+        },
+        {
+          "Id": "45321c60-98a8-47ad-9188-086e75241268",
+          "TopicId": "27e627bc-806b-4d94-be7a-7e290c87b879",
+          "Title": "Insert a Table and Bind Fields",
+          "BodyText": "The Tablix (table) is the primary report item for displaying detail rows. Dragging fields onto it automatically generates the field expressions.",
+          "Notes": "Dragged fields produce expressions such as =Fields!CategoryName.Value in the data row and a matching label in the header row.",
+          "SortOrder": 2,
+          "CreatedDate": "2026-11-17T05:18:11.0315861-05:00",
+          "ModifiedDate": "2026-11-17T05:18:11.0315861-05:00",
+          "Items": [
+            {
+              "Id": "7647cf8c-e72e-45dd-af10-5452db4f6766",
+              "Text": "On the Insert tab, click Table \u2192 Insert Table, then click the design surface to place a default three-column table with header and data rows.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "c999b729-3347-4f6f-a663-6df7992cadd7",
+              "Text": "Drag CategoryName to the first column, ProductName to the second, and TotalQuantity to the third.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "f1ab3b88-f49c-4cff-9f41-3cf3574d5fa8",
+              "Text": "Right-click the table and choose Insert Column \u2192 Right to add a fourth column for TotalSales.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "a14e6d86-d060-447f-9088-f23abaa84e47",
+              "Text": "Report Builder fills the header row with friendly column names you can edit as needed.",
+              "SortOrder": 3
+            }
+          ]
+        },
+        {
+          "Id": "832ec34b-b88c-450c-b714-081117abb1a9",
+          "TopicId": "27e627bc-806b-4d94-be7a-7e290c87b879",
+          "Title": "Format Headers, Numbers, and Columns",
+          "BodyText": "Formatting turns a raw data grid into a readable, professional report. Use the Properties pane to set colors, fonts, number formats, and widths.",
+          "Notes": "Consistent number formatting and right-aligned numeric columns make values easier to scan and compare.",
+          "SortOrder": 3,
+          "CreatedDate": "2026-11-17T05:18:11.0315861-05:00",
+          "ModifiedDate": "2026-11-17T05:18:11.0315861-05:00",
+          "Items": [
+            {
+              "Id": "899e16ae-4b13-4930-8ce7-9f93d4eeea06",
+              "Text": "Select the header row and set BackgroundColor to DarkBlue, Color to White, and FontWeight to Bold.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "0f67721e-e8dc-43b8-80d8-b4f3248e3141",
+              "Text": "Click the TotalSales data cell (not the header) and set Format to C2 for currency with two decimals.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "b3fd9324-417a-47d7-8895-27e5aec6dc58",
+              "Text": "Click the TotalQuantity data cell and set Format to N0 for whole numbers with thousands separators.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "f7b16c37-444e-4295-959d-fd4e14e09d3f",
+              "Text": "Drag column borders to widen ProductName and narrow the numeric columns.",
+              "SortOrder": 3
+            },
+            {
+              "Id": "2d6ad3db-ca86-421e-9fa6-3d46ed4c193b",
+              "Text": "Keep the palette simple \u2014 limit the report to a few coordinated colors.",
+              "SortOrder": 4
+            }
+          ]
+        },
+        {
+          "Id": "cc3b438b-e179-43dc-acfd-ef312f30c725",
+          "TopicId": "27e627bc-806b-4d94-be7a-7e290c87b879",
+          "Title": "Add Totals and a Report Title",
+          "BodyText": "Totals summarize the detail rows, and a clear title tells readers what the report shows. Both are added directly in the design surface.",
+          "Notes": "Add Total inserts a footer row containing an aggregate expression such as =Sum(Fields!TotalQuantity.Value).",
+          "SortOrder": 4,
+          "CreatedDate": "2026-11-17T05:18:11.0315861-05:00",
+          "ModifiedDate": "2026-11-17T05:18:11.0315861-05:00",
+          "Items": [
+            {
+              "Id": "765bdb4d-bd46-43ba-9ab8-3f5a5101c62f",
+              "Text": "Right-click the TotalQuantity data cell and choose Add Total to create a footer row with a Sum expression.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "347c968b-a9a6-4d1f-affe-92e63e52901f",
+              "Text": "Repeat the Add Total step on the TotalSales column so both numeric columns are summed.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "5c8e0892-25eb-4e17-b9af-e74ce9fcffd0",
+              "Text": "Type \u0022Total:\u0022 in the first column of the footer row to label the summary line.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "58363103-0270-4f1b-8f30-0e282c841e14",
+              "Text": "From the Insert tab, add a Text Box above the table and type \u0022Product Sales Report\u0022.",
+              "SortOrder": 3
+            },
+            {
+              "Id": "1aab00d7-d6f8-4903-b370-b038a0e02a29",
+              "Text": "On the Home tab, set the title to 18pt, bold, and center aligned.",
+              "SortOrder": 4
+            }
+          ]
+        },
+        {
+          "Id": "382e2f89-1234-4b2c-8284-7dbbf9e2a3ac",
+          "TopicId": "27e627bc-806b-4d94-be7a-7e290c87b879",
+          "Title": "Preview, Verify, and Save the .rdl File",
+          "BodyText": "Running the report executes the dataset and renders the layout so you can confirm the result before saving. The saved file is an .rdl definition that can be reopened or deployed.",
+          "Notes": "Keyboard shortcuts: F5 runs/previews the report and Ctrl\u002BS saves it.",
+          "SortOrder": 5,
+          "CreatedDate": "2026-11-17T05:18:11.0315861-05:00",
+          "ModifiedDate": "2026-11-17T05:18:11.0315861-05:00",
+          "Items": [
+            {
+              "Id": "fb610c7b-4f71-4ef2-8744-704d69c2ce09",
+              "Text": "Click Run on the ribbon (or press F5) to execute the report and view live data.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "bf196ba8-5020-46df-bd30-9c1dd5752de2",
+              "Text": "Verify that data appears correctly, formatting is applied, and totals calculate as expected.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "fecc31db-a66c-4359-90aa-aa2fc4211cc2",
+              "Text": "Click Design to return to the design view and make corrections.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "a569472c-1a43-401f-b898-5f107ad3e29b",
+              "Text": "Choose File \u2192 Save, pick a local folder or report server location, and name the file ProductSalesReport.rdl.",
+              "SortOrder": 3
+            },
+            {
+              "Id": "ba574832-4d20-4a61-af3d-a405fc4bd19b",
+              "Text": "The .rdl file can be reopened in Report Builder or deployed to a report server for shared access.",
+              "SortOrder": 4
+            }
+          ]
+        },
+        {
+          "Id": "a65e1bfd-8e18-431a-95ec-24d4d4a12e5f",
+          "TopicId": "27e627bc-806b-4d94-be7a-7e290c87b879",
+          "Title": "Testing Checklist for Your Report",
+          "BodyText": "Before considering a report finished, validate it systematically against data, calculations, formatting, and output formats. A short checklist catches most common defects.",
+          "Notes": "Also test with empty result sets, with the maximum expected data volume, and across every export format users will rely on.",
+          "SortOrder": 6,
+          "CreatedDate": "2026-11-17T05:18:11.0315861-05:00",
+          "ModifiedDate": "2026-11-17T05:18:11.0315861-05:00",
+          "Items": [
+            {
+              "Id": "c6ac2d2b-bc79-432d-a0c8-9b21646e64f2",
+              "Text": "Confirm the report runs without errors and that all expected data is displayed.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "0736077c-cc14-4fe0-a32b-42c3f51892f2",
+              "Text": "Verify calculations are accurate and totals match values computed manually or in SQL.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "06afba80-a0fa-435a-8731-3c6528eaaf6d",
+              "Text": "Check that formatting \u2014 fonts, colors, currency, and number formats \u2014 is applied consistently.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "c2ca1b56-eb36-45d4-b53e-ce7f58315fdd",
+              "Text": "Export the report to PDF and Excel to confirm layout and data survive the conversion.",
+              "SortOrder": 3
+            },
+            {
+              "Id": "46f22225-0e8a-4917-ade7-80996927c06c",
+              "Text": "Measure performance with a realistic data volume and tune the query if render time is unacceptable.",
+              "SortOrder": 4
+            },
+            {
+              "Id": "e474ba95-d84a-490d-84df-6c2e047bd56f",
+              "Text": "Gather user feedback to confirm the report answers the questions it was designed for.",
+              "SortOrder": 5
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Id": "65104eff-9b8e-4158-b257-12111b8787fe",
+      "Title": "Common Report Types and Implementations",
+      "Summary": "Demonstrates how to build tabular, matrix/crosstab, chart, parameterized, drill-through, and subreport designs with supporting SQL examples. Covers grouping, dynamic columns, cascading parameters, and performance cautions for subreports.",
+      "SortOrder": 4,
+      "CreatedDate": "2026-11-17T05:16:41.1169511-05:00",
+      "ModifiedDate": "2026-11-17T05:16:41.1169511-05:00",
+      "Elements": [
+        {
+          "Id": "f6a8de44-4f13-4452-adf4-6db60a68b44f",
+          "TopicId": "65104eff-9b8e-4158-b257-12111b8787fe",
+          "Title": "Tabular Reports with Grouping and Totals",
+          "BodyText": "Tabular reports present detail data in rows and columns, organized by one or more grouping levels. They are the most common operational report format and form the foundation for most other report types.",
+          "Notes": "Example use case: an Employee Roster by Department built from a query joining Employees and Departments, ordered by DepartmentName and LastName. Alternating row colors improve readability on dense detail reports.",
+          "SortOrder": 0,
+          "CreatedDate": "2026-11-17T05:18:38.0933538-05:00",
+          "ModifiedDate": "2026-11-17T05:18:38.0933538-05:00",
+          "Items": [
+            {
+              "Id": "c3a87013-e3d6-4028-97c8-e1aa1678ec87",
+              "Text": "Add a row group on a field such as DepartmentName, then insert a group header displaying the department name.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "855932dc-3d71-44a5-9e40-c36c10ad99cc",
+              "Text": "Place subtotals in the group footer using aggregates like =Sum(Fields!Salary.Value) and add a grand total at the bottom of the table.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "71260113-6bce-4e82-be6f-987eae3cf430",
+              "Text": "Sort the dataset in SQL (ORDER BY DepartmentName, LastName) so the report renders in a predictable order.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "8e4b14ac-861d-45ff-ae99-dcac9f2ea0e6",
+              "Text": "Apply alternating row colors with the expression =IIf(RowNumber(Nothing) Mod 2 = 0, \u0022White\u0022, \u0022LightGray\u0022).",
+              "SortOrder": 3
+            },
+            {
+              "Id": "a9df3dd0-d3c0-4e7e-8c6a-fdc20964de10",
+              "Text": "Select only the columns the report needs rather than SELECT * to keep the tabular dataset efficient.",
+              "SortOrder": 4
+            }
+          ]
+        },
+        {
+          "Id": "86bad55f-8623-498c-8c5e-d386f562b1fb",
+          "TopicId": "65104eff-9b8e-4158-b257-12111b8787fe",
+          "Title": "Matrix (Crosstab) Reports",
+          "BodyText": "A matrix, or crosstab, report pivots data so that values are aggregated at the intersection of row groups and column groups. Columns are generated dynamically from the data rather than being fixed at design time.",
+          "Notes": "Classic example: Sales by Region and Quarter, where the SQL groups by RegionName, DATEPART(QUARTER, OrderDate), and YEAR(OrderDate). The Assignment 7 practice report uses the same pattern with Fiscal Year on rows and Continent on columns.",
+          "SortOrder": 1,
+          "CreatedDate": "2026-11-17T05:18:38.0933538-05:00",
+          "ModifiedDate": "2026-11-17T05:18:38.0933538-05:00",
+          "Items": [
+            {
+              "Id": "3cd6341e-4ad9-4332-9782-75779288210f",
+              "Text": "Insert \u2192 Matrix, then drag the row-group field (e.g., RegionName) into Row Groups.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "e7c8da29-dab8-402d-963a-0121c2749846",
+              "Text": "Drag the field that should become dynamic columns (e.g., Quarter) into Column Groups.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "d09a0070-63b8-49c5-aa0a-bf0710540b67",
+              "Text": "Drag the measure (e.g., Sales) into the Data cell, where SSRS aggregates it with Sum by default.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "1b09ceb9-9b4d-4334-b9c5-b037c674e383",
+              "Text": "Right-click row or column groups to add subtotals along either axis plus an overall grand total.",
+              "SortOrder": 3
+            },
+            {
+              "Id": "3e0814ec-d60f-47d3-a6c4-f6a80f027231",
+              "Text": "Pre-aggregate in SQL with GROUP BY so the matrix receives one row per row/column combination.",
+              "SortOrder": 4
+            },
+            {
+              "Id": "be2ea4f5-dddb-4707-92aa-caca6a9bba8b",
+              "Text": "Format the data cell (for example C2 or N2) so large currency figures stay readable.",
+              "SortOrder": 5
+            }
+          ]
+        },
+        {
+          "Id": "a0d08800-1e13-4df4-80db-df278f13ed02",
+          "TopicId": "65104eff-9b8e-4158-b257-12111b8787fe",
+          "Title": "Chart Reports for Visual Analysis",
+          "BodyText": "Charts turn aggregated data into visual comparisons and trends. SSRS supports column/bar, line, pie/doughnut, area, and scatter chart types, each suited to a different analytical question.",
+          "Notes": "Example: a Monthly Sales Trend line chart whose query uses DATEPART and DATENAME on OrderDate and filters with OrderDate \u003E= DATEADD(MONTH, -12, GETDATE()).",
+          "SortOrder": 2,
+          "CreatedDate": "2026-11-17T05:18:38.0933538-05:00",
+          "ModifiedDate": "2026-11-17T05:18:38.0933538-05:00",
+          "Items": [
+            {
+              "Id": "98d063b5-8e55-4d0c-bf1f-dee072b5cb0e",
+              "Text": "Choose the chart type to match the question: column/bar to compare categories, line for trends over time, pie for proportions, area for cumulative totals, scatter for correlation.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "c04d9d94-2d9e-43b9-86e8-c1a8e71ec3bd",
+              "Text": "Insert \u2192 Chart, pick the type, then click the chart to open the Chart Data pane.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "5ade4a13-1066-4f7e-a485-f0daa9faeb88",
+              "Text": "Drag the label field (e.g., MonthName) to Category Groups and the measure (e.g., MonthlySales) to Values.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "8f4bf77a-e1d6-462f-aeca-4dd70a513b4c",
+              "Text": "Return the sort keys (Year, Month numbers) in the query so months display in chronological rather than alphabetical order.",
+              "SortOrder": 3
+            },
+            {
+              "Id": "a3179587-b290-483c-b222-f4982a68d538",
+              "Text": "Finish with a chart title, formatted axis labels, optional data labels, and a consistent color palette.",
+              "SortOrder": 4
+            },
+            {
+              "Id": "94759951-47ef-40df-b04f-44fe99cbe3f5",
+              "Text": "Limit pie charts to roughly 5\u20137 slices; switch to a bar chart when there are more categories.",
+              "SortOrder": 5
+            }
+          ]
+        },
+        {
+          "Id": "81b44535-5997-47cc-8af2-acebea33b775",
+          "TopicId": "65104eff-9b8e-4158-b257-12111b8787fe",
+          "Title": "Parameterized Reports and Cascading Parameters",
+          "BodyText": "Parameters let users filter or customize a report at run time instead of requiring separate report versions. Filtering should happen in the query so the database does the work.",
+          "Notes": "Example: StartDate with default =DateAdd(\u0022d\u0022, -30, Today()) and EndDate with default =Today(), referenced in the query as WHERE o.OrderDate \u003E= @StartDate AND o.OrderDate \u003C= @EndDate.",
+          "SortOrder": 3,
+          "CreatedDate": "2026-11-17T05:18:38.0933538-05:00",
+          "ModifiedDate": "2026-11-17T05:18:38.0933538-05:00",
+          "Items": [
+            {
+              "Id": "74058e3b-bd12-4d91-ab5c-e1d107e0b61b",
+              "Text": "Right-click Parameters in the Report Data pane, then define each parameter\u0027s name, data type, and default value.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "e604e6ce-3fdb-466a-ae98-930d2a15c81c",
+              "Text": "Reference parameters directly in the dataset query using @ParameterName in the WHERE clause.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "34facc3d-7b7f-4f26-ac1b-80844dc3d97d",
+              "Text": "Provide sensible defaults so the report runs immediately without user input.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "c13f7a96-4483-471a-81bc-3aebfd56952e",
+              "Text": "Build cascading parameters by creating a Category parameter from a lookup dataset, then a Product parameter whose dataset filters with WHERE CategoryID = @CategoryID.",
+              "SortOrder": 3
+            },
+            {
+              "Id": "9a4c8ca2-6a4f-4a95-9ff8-d5a97b479719",
+              "Text": "Display the selected parameter values on the report so readers know what filters produced the results.",
+              "SortOrder": 4
+            },
+            {
+              "Id": "0a2151dc-7ff9-49d5-ac74-4db21041c6c1",
+              "Text": "If parameters fail, verify the names match the query, check data types, and test the dataset query on its own.",
+              "SortOrder": 5
+            }
+          ]
+        },
+        {
+          "Id": "e597f523-2781-4bce-9700-206cc58808d7",
+          "TopicId": "65104eff-9b8e-4158-b257-12111b8787fe",
+          "Title": "Drill-Through Reports",
+          "BodyText": "Drill-through links a summary report to a separate detail report, letting users click a value to see the underlying records. It keeps the summary uncluttered while preserving access to detail.",
+          "Notes": "Example: a Sales by Category summary that opens a Products in Category detail report when the category name is clicked.",
+          "SortOrder": 4,
+          "CreatedDate": "2026-11-17T05:18:38.0933538-05:00",
+          "ModifiedDate": "2026-11-17T05:18:38.0933538-05:00",
+          "Items": [
+            {
+              "Id": "6e75b751-04ae-4730-9b3a-64866617e70f",
+              "Text": "Build the summary report and the detail report as two separate .rdl files.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "194979ff-c166-41cb-bdf9-8ae532d5a44d",
+              "Text": "In the summary report, right-click the field to make clickable and open Properties \u2192 Action.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "243c2d4b-4cfe-4363-b533-9c8334a2e9b5",
+              "Text": "Select \u0022Go to report\u0022 and choose the detail report as the target.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "8bed00a3-f3ed-4afc-83e4-1ec7a0905065",
+              "Text": "Map the summary field to the detail report\u0027s parameter (for example, CategoryID) so the detail opens pre-filtered.",
+              "SortOrder": 3
+            },
+            {
+              "Id": "0518cd0a-ad60-4cf7-9d5f-b50b9fdf74a4",
+              "Text": "Distinguish drill-through (opens another report) from drill-down (toggles visibility of hidden rows in the same report).",
+              "SortOrder": 4
+            }
+          ]
+        },
+        {
+          "Id": "fa7b31ec-e7b5-4efe-b6bf-4032b9d19392",
+          "TopicId": "65104eff-9b8e-4158-b257-12111b8787fe",
+          "Title": "Subreports and Their Performance Trade-offs",
+          "BodyText": "A subreport embeds one report inside another, typically to show related detail beneath a parent record. It is powerful but carries a significant performance cost.",
+          "Notes": "Example: a Customer Report whose body contains a subreport listing that customer\u0027s order history, passed the CustomerID parameter. Guidance in the module explicitly warns against subreports placed inside tablixes.",
+          "SortOrder": 5,
+          "CreatedDate": "2026-11-17T05:18:38.0933538-05:00",
+          "ModifiedDate": "2026-11-17T05:18:38.0933538-05:00",
+          "Items": [
+            {
+              "Id": "7ee4ac07-3d65-4e88-810a-b36da24d3bdc",
+              "Text": "Create the detail report first, exposing the linking value (e.g., CustomerID) as a parameter.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "91ed1766-f79a-4d7d-9fa7-786b8bb13d63",
+              "Text": "In the main report, use Insert \u2192 Subreport, then set the subreport path in Properties.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "14210126-4c81-4d25-af96-a4acb36e00ad",
+              "Text": "Map the main report\u0027s field to the subreport\u0027s parameter so each instance renders the correct detail.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "0d14b07a-7a2e-4156-a636-ae70339d1858",
+              "Text": "Be aware that a subreport inside a tablix executes once per row, which can make the report very slow.",
+              "SortOrder": 3
+            },
+            {
+              "Id": "6f900677-f23d-4988-9067-162329508f9b",
+              "Text": "Prefer a single query with JOINs and table grouping over a subreport whenever the data can be combined.",
+              "SortOrder": 4
+            },
+            {
+              "Id": "cbd67488-2a23-496e-8176-57d42e3cbf10",
+              "Text": "If a report is slow, removing subreports is one of the first optimizations to try.",
+              "SortOrder": 5
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Id": "259f10ba-b1f0-4cee-b926-36306196470f",
+      "Title": "Advanced Report Features",
+      "Summary": "Explores Visual Basic expressions and calculated fields, grouping, sorting, interactive sorting, drill-down visibility toggles, pagination control, headers and footers, and built-in globals. Also addresses export formats such as PDF, Excel, CSV, and XML with optimization tips.",
+      "SortOrder": 5,
+      "CreatedDate": "2026-11-17T05:16:41.1169511-05:00",
+      "ModifiedDate": "2026-11-17T05:16:41.1169511-05:00",
+      "Elements": [
+        {
+          "Id": "8af0501d-14f5-45e8-93af-5832ace60edc",
+          "TopicId": "259f10ba-b1f0-4cee-b926-36306196470f",
+          "Title": "Expressions and Calculated Fields",
+          "BodyText": "Report Builder expressions use Visual Basic syntax and always begin with an equals sign (=). They let you calculate, concatenate, and format values beyond what the dataset query returns.",
+          "Notes": "Expressions can be entered in any property that accepts them, not just text boxes \u2014 including color, visibility, and format properties. Common troubleshooting tip: wrap potentially null fields with IsNothing() to avoid #Error.",
+          "SortOrder": 0,
+          "CreatedDate": "2026-11-17T05:19:04.6999376-05:00",
+          "ModifiedDate": "2026-11-17T05:19:04.6999376-05:00",
+          "Items": [
+            {
+              "Id": "aa63cc40-7b19-4b14-82a0-33d645fc113e",
+              "Text": "Concatenate text with the ampersand operator: =Fields!FirstName.Value \u0026 \u0022 \u0022 \u0026 Fields!LastName.Value.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "e6df044c-cbe0-436a-ab13-0eb806a66544",
+              "Text": "Perform row-level math such as =Fields!Quantity.Value * Fields!UnitPrice.Value.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "ef28b99b-4fb7-422e-85e8-46e061159aa5",
+              "Text": "Calculate a percent of total by dividing a field by an aggregate with a scope: =(Fields!Sales.Value / Sum(Fields!Sales.Value, \u0022DataSet1\u0022)) * 100.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "2319cd01-937d-48ab-8485-e3a9ec901858",
+              "Text": "Use =RunningValue(Fields!Sales.Value, Sum, Nothing) for a running total and =RowNumber(Nothing) for row numbering.",
+              "SortOrder": 3
+            },
+            {
+              "Id": "2dbed39a-edc1-4a2b-8810-80ec1741449f",
+              "Text": "Format dates and values with functions such as =Format(Fields!OrderDate.Value, \u0022MM/dd/yyyy\u0022).",
+              "SortOrder": 4
+            },
+            {
+              "Id": "fd905a1b-6b63-466d-8818-6a1dd29000e7",
+              "Text": "Apply conditional logic with IIf, for example =IIf(Fields!Sales.Value \u003E 10000, \u0022Green\u0022, \u0022Red\u0022).",
+              "SortOrder": 5
+            }
+          ]
+        },
+        {
+          "Id": "71d2af67-4794-43e6-936f-52afedc2bec5",
+          "TopicId": "259f10ba-b1f0-4cee-b926-36306196470f",
+          "Title": "Grouping and Aggregation",
+          "BodyText": "Row groups organize detail rows under a shared field value and provide natural places for subtotals. Group headers and footers hold the labels and aggregate expressions.",
+          "Notes": "Aggregate scope matters: Nothing means the entire dataset, a dataset name targets a specific dataset, and a group name targets that group.",
+          "SortOrder": 1,
+          "CreatedDate": "2026-11-17T05:19:04.6999376-05:00",
+          "ModifiedDate": "2026-11-17T05:19:04.6999376-05:00",
+          "Items": [
+            {
+              "Id": "106b9e0c-9240-4ba1-934e-c638c97df2c6",
+              "Text": "Right-click a table row and choose Insert Group \u2192 Parent Group, then select the grouping field such as CategoryName.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "2e2e51de-9385-4a81-94c0-f34ec3cba5b0",
+              "Text": "Elect to add a group header and/or footer when creating the group.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "0599abde-b91d-4911-ae5a-77fb44002902",
+              "Text": "Place aggregates in the group footer, such as =Sum(Fields!Sales.Value), =Count(Fields!ProductID.Value), or =Avg(Fields!Price.Value).",
+              "SortOrder": 2
+            },
+            {
+              "Id": "1b09af54-d6a9-4044-9153-97e80f3cebf9",
+              "Text": "Grand totals can be added below the final group to summarize the whole dataset.",
+              "SortOrder": 3
+            },
+            {
+              "Id": "f9b69959-708a-4cf0-83c2-2ef35bfa69de",
+              "Text": "Alternating row colors improve readability: =IIf(RowNumber(Nothing) Mod 2 = 0, \u0022White\u0022, \u0022AliceBlue\u0022).",
+              "SortOrder": 4
+            }
+          ]
+        },
+        {
+          "Id": "01499d61-9383-4e2f-aa65-32a48fbfc6a0",
+          "TopicId": "259f10ba-b1f0-4cee-b926-36306196470f",
+          "Title": "Interactive Sorting",
+          "BodyText": "Interactive sorting lets report consumers re-order data at run time by clicking a column header instead of requiring a new report or parameter.",
+          "Notes": "This is one of the simplest ways to make a paginated report feel interactive and reduce the number of report variants you must maintain.",
+          "SortOrder": 2,
+          "CreatedDate": "2026-11-17T05:19:04.6999376-05:00",
+          "ModifiedDate": "2026-11-17T05:19:04.6999376-05:00",
+          "Items": [
+            {
+              "Id": "38a1db76-ca36-46a9-8c55-b2d4b2960eb8",
+              "Text": "Select the text box in the column header that users will click.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "4fb1d703-3218-4201-ad9f-05ec222f4147",
+              "Text": "Open Properties and go to the Interactive Sorting tab.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "cead6b61-1ab3-4743-92ec-18dcdc35cefc",
+              "Text": "Enable interactive sorting and choose the field the sort should apply to.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "fcc3d995-a5f9-4251-887f-ce702e829f9f",
+              "Text": "A sort arrow icon appears in the header when the report is run.",
+              "SortOrder": 3
+            },
+            {
+              "Id": "8a6bfadc-2e5e-4609-8338-89c2546adf85",
+              "Text": "Sorting can be scoped to detail rows or to a specific group.",
+              "SortOrder": 4
+            }
+          ]
+        },
+        {
+          "Id": "774f8007-f5c8-4705-8b4d-310a4a1d43dd",
+          "TopicId": "259f10ba-b1f0-4cee-b926-36306196470f",
+          "Title": "Visibility and Drill-Down Toggles",
+          "BodyText": "Visibility settings let you hide detail rows initially and allow users to expand them on demand, creating a drill-down experience inside a single report.",
+          "Notes": "Drill-down differs from drill-through: drill-down expands hidden rows in the same report, while drill-through opens a separate detail report.",
+          "SortOrder": 3,
+          "CreatedDate": "2026-11-17T05:19:04.6999376-05:00",
+          "ModifiedDate": "2026-11-17T05:19:04.6999376-05:00",
+          "Items": [
+            {
+              "Id": "25e9e207-a984-4f1f-b6ef-a4efcb0f1756",
+              "Text": "Select the detail row you want hidden and open its Visibility properties.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "6d7020c3-44e7-48e7-8f84-cc2b9c4d02c5",
+              "Text": "Set the initial visibility to \u0022Hide\u0022.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "56c3bc68-6c8b-4c06-860f-149ea1753ddb",
+              "Text": "Check \u0022Display can be toggled by this report item\u0022 and choose the toggling text box, usually the group header.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "de409727-77c8-4130-b918-be89e0ebce15",
+              "Text": "A \u002B/- icon appears at run time so users can expand or collapse the detail rows.",
+              "SortOrder": 3
+            },
+            {
+              "Id": "b620d7bd-37c3-4508-863d-3dba2d3de5c2",
+              "Text": "This keeps summary-level reports compact while still giving access to detail.",
+              "SortOrder": 4
+            }
+          ]
+        },
+        {
+          "Id": "698c5a57-945a-4b8b-84a1-154e67f66b9d",
+          "TopicId": "259f10ba-b1f0-4cee-b926-36306196470f",
+          "Title": "Page Layout and Pagination Control",
+          "BodyText": "Pagination settings control how content flows across printed or exported pages, which is critical for paginated reports.",
+          "Notes": "Repeating headers is especially important for multi-page tabular reports so readers always know what each column means.",
+          "SortOrder": 4,
+          "CreatedDate": "2026-11-17T05:19:04.6999376-05:00",
+          "ModifiedDate": "2026-11-17T05:19:04.6999376-05:00",
+          "Items": [
+            {
+              "Id": "423a70d6-302c-492a-9f93-2b87e0b5cace",
+              "Text": "Add a page break after each group via Group Properties \u2192 Page Breaks \u2192 \u0022Between each instance of a group\u0022.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "0e3ecca4-2e1e-45ba-845b-33efe0d31a0e",
+              "Text": "Set KeepTogether = True on a table or group to avoid splitting related rows across pages.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "2b230dbb-8080-465a-af06-d145d7978506",
+              "Text": "Use Advanced Mode in the grouping pane to select the static header row.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "cd75b2c0-9eec-496d-a771-4fe8a1997f8a",
+              "Text": "Set KeepWithGroup = After and RepeatOnNewPage = True so column headers repeat on every page.",
+              "SortOrder": 3
+            },
+            {
+              "Id": "42e4f23f-e4a0-40b1-ac85-dd4e7747c4b0",
+              "Text": "Choose a page size and orientation that match the intended output format.",
+              "SortOrder": 4
+            }
+          ]
+        },
+        {
+          "Id": "23b54695-26ac-4ca4-af42-c700d0b965fb",
+          "TopicId": "259f10ba-b1f0-4cee-b926-36306196470f",
+          "Title": "Headers, Footers, and Built-in Globals",
+          "BodyText": "Page headers and footers provide consistent context on every page, and built-in global collections supply runtime values such as page number and execution time.",
+          "Notes": "Including the run date/time and the parameter values used is a usability best practice, because it tells readers exactly what data the report reflects.",
+          "SortOrder": 5,
+          "CreatedDate": "2026-11-17T05:19:04.6999376-05:00",
+          "ModifiedDate": "2026-11-17T05:19:04.6999376-05:00",
+          "Items": [
+            {
+              "Id": "7bbd3567-010b-44bb-9819-3f304f6151b0",
+              "Text": "Add a header or footer section from the Insert tab.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "adf16b5a-eb52-4a81-b658-323d3eb262c8",
+              "Text": "Show pagination with =Globals!PageNumber \u0026 \u0022 of \u0022 \u0026 Globals!TotalPages.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "1f4beadc-32da-4694-a431-5f6d60c110d2",
+              "Text": "Display the report name using =Globals!ReportName.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "4113406f-a0a8-45d3-88a7-357b1faa2363",
+              "Text": "Stamp the run time with =Globals!ExecutionTime.",
+              "SortOrder": 3
+            },
+            {
+              "Id": "576e29f5-7297-4e21-92cf-97fa7c7e1b9a",
+              "Text": "Identify the viewer with =User!UserID for auditing or row-level context.",
+              "SortOrder": 4
+            }
+          ]
+        },
+        {
+          "Id": "5bd81902-0601-4fb2-b45f-f8584460c1ba",
+          "TopicId": "259f10ba-b1f0-4cee-b926-36306196470f",
+          "Title": "Export Formats and Optimization",
+          "BodyText": "SSRS reports can be rendered to several formats so users can print, analyze, or integrate the data. Each format has layout implications you should design for.",
+          "Notes": "Always test every export format you intend to support \u2014 a layout that looks correct in the browser preview can break in Excel or PDF.",
+          "SortOrder": 6,
+          "CreatedDate": "2026-11-17T05:19:04.6999376-05:00",
+          "ModifiedDate": "2026-11-17T05:19:04.6999376-05:00",
+          "Items": [
+            {
+              "Id": "34f81b8f-bbb2-4f6f-8f4f-7aaa0b7b71a7",
+              "Text": "PDF preserves the exact layout and is best for printing and archiving.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "62bc5d66-4bc7-4ae9-bba0-ba41464910ca",
+              "Text": "Excel produces editable data for further analysis; avoid merged cells and keep the layout simple.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "6d8d5d5d-0b2c-4d1d-a69c-5d07c0809242",
+              "Text": "Word provides an editable document format, while MHTML packages the report as a single web archive file.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "9ba5c370-72dd-46ca-9c52-c238390a99bd",
+              "Text": "CSV exports raw data only \u2014 no formatting, images, or charts.",
+              "SortOrder": 3
+            },
+            {
+              "Id": "d5e90a50-29c7-4ea2-ac68-5598642a8ca8",
+              "Text": "XML delivers structured data suitable for downstream system integration.",
+              "SortOrder": 4
+            },
+            {
+              "Id": "de8c4b9c-0939-4980-8d28-8c1da9a60496",
+              "Text": "For PDF, set an appropriate page size and use deliberate page breaks to avoid awkward splits.",
+              "SortOrder": 5
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Id": "373c214a-722e-450b-8b24-0596a14cadaf",
+      "Title": "Report Design Best Practices",
+      "Summary": "Presents guidelines for query and report performance optimization, caching, dataset limits, visual design principles, consistent number formatting, and usability through context and interactivity. Includes documentation, naming conventions, and security practices such as authentication and row-level security.",
+      "SortOrder": 6,
+      "CreatedDate": "2026-11-17T05:16:41.1169511-05:00",
+      "ModifiedDate": "2026-11-17T05:16:41.1169511-05:00",
+      "Elements": [
+        {
+          "Id": "b7dda364-33fd-4bf9-abb5-f62e533adac0",
+          "TopicId": "373c214a-722e-450b-8b24-0596a14cadaf",
+          "Title": "Optimize Queries for Report Performance",
+          "BodyText": "Report performance begins with the query that feeds the dataset, not with the layout. Writing selective, filtered SQL keeps reports responsive even as data volumes grow.",
+          "Notes": "Example of a good query: SELECT ProductName, Category, Price, Stock FROM Products WHERE IsActive = 1 AND Price \u003E 0; Avoid SELECT * FROM Products, which retrieves every column and row.",
+          "SortOrder": 0,
+          "CreatedDate": "2026-11-17T05:19:29.9173413-05:00",
+          "ModifiedDate": "2026-11-17T05:19:29.9173413-05:00",
+          "Items": [
+            {
+              "Id": "316e656c-7850-476f-b491-480f21905b0b",
+              "Text": "Select only the columns the report actually needs instead of using SELECT *.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "a988ca5f-9e24-4ff9-a358-ab034190876b",
+              "Text": "Filter data in the SQL WHERE clause rather than filtering inside the report.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "05a8e2f5-2bab-4e01-b185-57c6e7de472e",
+              "Text": "Index the columns used in filters and joins to speed up retrieval.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "b1c56a45-5455-42e9-a512-8d5d887a36bb",
+              "Text": "Use stored procedures for complex logic and views to encapsulate report data.",
+              "SortOrder": 3
+            },
+            {
+              "Id": "36d81a69-863e-491b-9b74-1ae56dfe11a8",
+              "Text": "Avoid subreports inside a tablix because they execute once for every row; use grouping or JOINs instead.",
+              "SortOrder": 4
+            },
+            {
+              "Id": "1752cc1c-bceb-474d-84c4-54e6f4c9b9f0",
+              "Text": "If a report is slow, check the execution plan, reduce dataset size, and remove unnecessary subreports.",
+              "SortOrder": 5
+            }
+          ]
+        },
+        {
+          "Id": "f333bdf8-ccf6-4bf5-9c33-1880b4e32ce2",
+          "TopicId": "373c214a-722e-450b-8b24-0596a14cadaf",
+          "Title": "Caching and Dataset Size Limits",
+          "BodyText": "Even an efficient query can overwhelm a report server if it returns too much data or runs repeatedly. Caching and dataset limits control both server load and user wait time.",
+          "Notes": "Example: SELECT TOP 1000 OrderDate, CustomerName, OrderTotal FROM Orders ORDER BY OrderDate DESC;",
+          "SortOrder": 1,
+          "CreatedDate": "2026-11-17T05:19:29.9173413-05:00",
+          "ModifiedDate": "2026-11-17T05:19:29.9173413-05:00",
+          "Items": [
+            {
+              "Id": "904b9147-2b66-4aca-acf5-5b2033af414a",
+              "Text": "Cache reports that are run frequently and set an appropriate cache expiration period.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "cb16aa4a-dd55-48a2-b662-06722f466aa8",
+              "Text": "Use snapshots to preserve historical reports that do not need live data.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "ac43924e-821e-4dc0-9d61-82bb21ca4143",
+              "Text": "Limit results with TOP or pagination when datasets are large.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "50f562df-dd75-480c-a787-a1e0923c4425",
+              "Text": "Provide date range parameters so users retrieve only the period they need.",
+              "SortOrder": 3
+            },
+            {
+              "Id": "a3f4fcf8-58e9-4c91-ab84-3a0952efa7fd",
+              "Text": "Decide deliberately whether a summary report or a full detail report is required.",
+              "SortOrder": 4
+            }
+          ]
+        },
+        {
+          "Id": "c04aa5f5-de74-474d-8c81-ee94c7035be1",
+          "TopicId": "373c214a-722e-450b-8b24-0596a14cadaf",
+          "Title": "Visual Design Principles",
+          "BodyText": "Effective reports present key information clearly without visual clutter. Simplicity and the right chart type help readers interpret data accurately.",
+          "Notes": "Misleading visuals include truncated Y-axes that exaggerate differences, 3D charts that distort perception, and pie charts with too many slices.",
+          "SortOrder": 2,
+          "CreatedDate": "2026-11-17T05:19:29.9173413-05:00",
+          "ModifiedDate": "2026-11-17T05:19:29.9173413-05:00",
+          "Items": [
+            {
+              "Id": "43381c5e-d296-4e40-a6e0-3a41f57ddeca",
+              "Text": "Focus on key information, use white space effectively, and avoid cluttered layouts.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "2627f674-e2a3-4311-90c9-b36b41aa71fc",
+              "Text": "Limit the report palette to roughly five to seven colors.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "ed145224-ea54-4070-9294-4ab47d47a2d2",
+              "Text": "Use tables for precise values and detailed data.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "c0258642-0f1c-4106-9fc5-aed1eaabd50f",
+              "Text": "Use bar charts to compare categories and line charts to show trends over time.",
+              "SortOrder": 3
+            },
+            {
+              "Id": "263c0b4d-859e-4e1d-8a60-4cb7a670cbbe",
+              "Text": "Use pie charts sparingly and keep them to a maximum of five to seven slices.",
+              "SortOrder": 4
+            }
+          ]
+        },
+        {
+          "Id": "3d0cc372-02d9-4304-8388-e37a6a59e003",
+          "TopicId": "373c214a-722e-450b-8b24-0596a14cadaf",
+          "Title": "Consistent Number Formatting",
+          "BodyText": "Consistent numeric formatting makes values easy to scan and compare across a report. SSRS format strings apply these conventions uniformly.",
+          "Notes": "Common format strings: C2 for currency with two decimals ($1,234.56), N0 for a number with no decimals (1,234), P2 for percentage with two decimals (12.34%), D for short date.",
+          "SortOrder": 3,
+          "CreatedDate": "2026-11-17T05:19:29.9173413-05:00",
+          "ModifiedDate": "2026-11-17T05:19:29.9173413-05:00",
+          "Items": [
+            {
+              "Id": "bb50754a-aa9e-4d6c-8434-7d0574e39252",
+              "Text": "Apply currency symbols using the C2 format string for monetary values.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "be687147-646e-46e0-98ce-e65c9b2b228d",
+              "Text": "Use thousands separators (N0) so large numbers remain readable.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "37236709-9c75-4053-89c8-9c3a8fe6eba8",
+              "Text": "Keep the number of decimal places consistent within and across columns.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "c0666dfa-5201-4fca-81bc-ea5dfccde99e",
+              "Text": "Right-align numeric columns so digits line up for easy comparison.",
+              "SortOrder": 3
+            },
+            {
+              "Id": "d0612f88-1606-44f0-b706-eb1a12c63746",
+              "Text": "Scale very large figures where it aids readability, such as reporting dollars in millions.",
+              "SortOrder": 4
+            }
+          ]
+        },
+        {
+          "Id": "a92ae077-ac5e-4426-8a20-5a8f61a14dd9",
+          "TopicId": "373c214a-722e-450b-8b24-0596a14cadaf",
+          "Title": "Usability: Context and Interactivity",
+          "BodyText": "Users need enough context to trust a report and enough interactivity to explore it. Clear labeling plus drill-down and sorting features turn a static page into a useful tool.",
+          "Notes": "Context elements can be added with built-in globals such as =Globals!ExecutionTime, =Globals!ReportName, and =User!UserID.",
+          "SortOrder": 4,
+          "CreatedDate": "2026-11-17T05:19:29.9173413-05:00",
+          "ModifiedDate": "2026-11-17T05:19:29.9173413-05:00",
+          "Items": [
+            {
+              "Id": "c3fd32e9-e776-47b2-97c1-c39065aecfbd",
+              "Text": "Give every report a descriptive title and display the run date and time.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "2db995b8-e48b-459c-9382-ab622f7cdec0",
+              "Text": "Show the parameter values used so readers know what the data represents.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "8462767b-5a1b-4788-b009-e37d02e88a81",
+              "Text": "Add legends to charts and state units of measure.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "a0ecf786-8b7e-4227-8ec8-6fcd9f150f37",
+              "Text": "Enable drill-down so users can expand summary rows into detail.",
+              "SortOrder": 3
+            },
+            {
+              "Id": "280003ee-91fa-43fc-916e-74ed1386780b",
+              "Text": "Turn on interactive sorting so users can reorder by clicking column headers.",
+              "SortOrder": 4
+            },
+            {
+              "Id": "39708a64-f25d-47aa-8943-760b50bd96de",
+              "Text": "Link summary figures to related detail using drill-through reports.",
+              "SortOrder": 5
+            }
+          ]
+        },
+        {
+          "Id": "e4a946e6-ec98-4ad4-b24e-34921ed4e5f6",
+          "TopicId": "373c214a-722e-450b-8b24-0596a14cadaf",
+          "Title": "Thorough Testing Before Release",
+          "BodyText": "A report should be validated against realistic and edge-case conditions before it reaches users. Testing confirms both accuracy and acceptable performance.",
+          "Notes": "Testing checklist: does the report run without errors, is data correct, are calculations accurate, is formatting applied, do totals match, does export work, and is performance acceptable?",
+          "SortOrder": 5,
+          "CreatedDate": "2026-11-17T05:19:29.9173413-05:00",
+          "ModifiedDate": "2026-11-17T05:19:29.9173413-05:00",
+          "Items": [
+            {
+              "Id": "6aa6d7fc-deed-41fb-9690-4bfff6264033",
+              "Text": "Test with a variety of parameter combinations, including boundary values.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "4195f412-4f07-40d7-a010-43002cce34cc",
+              "Text": "Verify behavior when the query returns an empty result set.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "049c3fde-5693-431c-be1b-d5576211d7db",
+              "Text": "Run against the maximum expected data volume to confirm performance.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "e94f1fa6-b20c-4ab6-9cfc-3bc1d3c71e49",
+              "Text": "Verify calculations and totals manually against known values.",
+              "SortOrder": 3
+            },
+            {
+              "Id": "ac77d3c4-2452-4b3c-9e1e-a0a93b6e5b13",
+              "Text": "Test every export format the users will rely on, such as PDF and Excel.",
+              "SortOrder": 4
+            },
+            {
+              "Id": "3c32e072-c7d8-4163-b074-a1af4960ad5f",
+              "Text": "Collect user feedback before finalizing the report.",
+              "SortOrder": 5
+            }
+          ]
+        },
+        {
+          "Id": "e5c056cc-4d2a-4a8f-80c3-5d0700a1ef6b",
+          "TopicId": "373c214a-722e-450b-8b24-0596a14cadaf",
+          "Title": "Documentation, Naming Conventions, and Security",
+          "BodyText": "Reports are long-lived assets that other developers must maintain and that often expose sensitive data. Documentation, consistent naming, and access controls protect both maintainability and privacy.",
+          "Notes": "Use clear dataset names such as SalesData or EmployeeList, and descriptive parameter names such as StartDate rather than Param1.",
+          "SortOrder": 6,
+          "CreatedDate": "2026-11-17T05:19:29.9173413-05:00",
+          "ModifiedDate": "2026-11-17T05:19:29.9173413-05:00",
+          "Items": [
+            {
+              "Id": "fd1f5243-d02a-44cd-9cda-cc4ecc9cf2c1",
+              "Text": "Add a description in the report properties and comment complex expressions.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "dc454331-ec26-42b3-9533-055b8c7db784",
+              "Text": "Document data sources and refresh schedules, and maintain a change log.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "7bb3dbe2-2250-479a-8346-4561d0311bca",
+              "Text": "Apply standard prefixes for groups and totals so structures are recognizable.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "266ee266-96a2-49a4-a2c5-500de397eb06",
+              "Text": "Use Windows Authentication where possible and never hardcode credentials.",
+              "SortOrder": 3
+            },
+            {
+              "Id": "bfe4f3cb-8c8c-43e3-8747-99381d33ea47",
+              "Text": "Implement row-level security for sensitive data and filter by user context with parameters.",
+              "SortOrder": 4
+            },
+            {
+              "Id": "4c4e1c5f-bc3e-4874-8416-e32e7ee6a690",
+              "Text": "Set appropriate folder permissions on the report server.",
+              "SortOrder": 5
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Id": "d635d98c-1c10-4a86-b4dd-5e12eac5bf1c",
+      "Title": "Resources, Troubleshooting, and Applied Practice",
+      "Summary": "Provides official documentation, tutorials, video channels, sample databases, and community and certification resources for continued learning. Includes troubleshooting for slow reports, expression errors, deployment failures, and parameter problems, plus practice activities such as matrix and menu-style reports.",
+      "SortOrder": 7,
+      "CreatedDate": "2026-11-17T05:16:41.1169511-05:00",
+      "ModifiedDate": "2026-11-17T05:16:41.1169511-05:00",
+      "Elements": [
+        {
+          "Id": "0eee6980-0b52-427e-b7e0-9ea9c0a7e666",
+          "TopicId": "d635d98c-1c10-4a86-b4dd-5e12eac5bf1c",
+          "Title": "Official Microsoft Documentation and Reference Libraries",
+          "BodyText": "Microsoft maintains a complete set of authoritative references for Report Builder and SQL Server Reporting Services that should be your first stop when learning or troubleshooting.",
+          "Notes": "Bookmark these pages \u2014 they are updated with each SSRS release and include version-specific guidance.",
+          "SortOrder": 0,
+          "CreatedDate": "2026-11-17T05:19:56.1294972-05:00",
+          "ModifiedDate": "2026-11-17T05:19:56.1294972-05:00",
+          "Items": [
+            {
+              "Id": "c538495d-d794-4e49-8621-5adfe51f5da7",
+              "Text": "The Report Builder Documentation provides complete official coverage of the authoring tool and its interface.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "9c4f7284-a2fc-4b70-820a-7baa5caaea6a",
+              "Text": "The SSRS Complete Guide covers the broader Reporting Services platform, including the report server and deployment.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "be4b3b44-9d4f-4015-961e-474eeba958cb",
+              "Text": "The Expression Examples library offers ready-made expressions for calculations, formatting, and conditional logic.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "4a5ed7de-5266-4b39-9068-38016706815c",
+              "Text": "The Built-in Collections reference documents Globals, Parameters, Fields, and User collections used in expressions.",
+              "SortOrder": 3
+            },
+            {
+              "Id": "29017dd8-c981-403d-97ff-f00aa6f50d91",
+              "Text": "Report Design Best Practices pages give Microsoft\u0027s guidelines for creating effective, readable reports.",
+              "SortOrder": 4
+            }
+          ]
+        },
+        {
+          "Id": "9fa09a51-619f-4d43-bfef-423175d2034a",
+          "TopicId": "d635d98c-1c10-4a86-b4dd-5e12eac5bf1c",
+          "Title": "Tutorials, Video Channels, and Structured Learning",
+          "BodyText": "Beyond written documentation, step-by-step tutorials and video series accelerate skill-building by showing the authoring workflow in action.",
+          "Notes": "Search YouTube for \u0022SSRS Report Builder Tutorial\u0022 or \u0022SQL Server Reporting Services\u0022 to find current walkthroughs.",
+          "SortOrder": 1,
+          "CreatedDate": "2026-11-17T05:19:56.1294972-05:00",
+          "ModifiedDate": "2026-11-17T05:19:56.1294972-05:00",
+          "Items": [
+            {
+              "Id": "f3726a30-ed4e-4349-81e2-ecdd34b365d1",
+              "Text": "Microsoft\u0027s Official Tutorials walk through common report types from start to finish.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "992210f0-7c64-4dc3-8b3a-f59f7b2b3460",
+              "Text": "The Microsoft SQL Server YouTube channel publishes official SSRS tutorials and feature demonstrations.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "b3158d15-513d-4eab-94e4-7d16ae887cf2",
+              "Text": "WiseOwlTutorials offers a well-regarded free video series covering SSRS fundamentals and advanced topics.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "8e611dea-7d30-4484-b829-370b5efdcf4d",
+              "Text": "Pragmatic Works produces professional-grade training videos for reporting and BI.",
+              "SortOrder": 3
+            },
+            {
+              "Id": "9511e212-b8eb-4c56-9010-c463c9c51836",
+              "Text": "Course lecture videos such as \u0022Getting Started with Report Builder (v3)\u0022 demonstrate building a report against a real dataset like the US Aid database.",
+              "SortOrder": 4
+            }
+          ]
+        },
+        {
+          "Id": "90837544-34b9-4578-9dda-29102b6ad965",
+          "TopicId": "d635d98c-1c10-4a86-b4dd-5e12eac5bf1c",
+          "Title": "Sample Databases and Practice Exercises",
+          "BodyText": "Practicing against a realistic sample database is the fastest way to build reporting fluency without needing production data.",
+          "Notes": "Course-provided datasets, such as the zipped SQL scripts for the US Aid raw and multi-table databases, can be restored locally to follow along with lectures.",
+          "SortOrder": 2,
+          "CreatedDate": "2026-11-17T05:19:56.1294972-05:00",
+          "ModifiedDate": "2026-11-17T05:19:56.1294972-05:00",
+          "Items": [
+            {
+              "Id": "9e9a12da-5099-4e1a-9012-f66bad8c7868",
+              "Text": "Microsoft\u0027s AdventureWorks sample database is ideal for learning reporting against rich, realistic data.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "130624a3-2883-4fca-9c14-24ffa690bc91",
+              "Text": "Build a Sales Report showing sales by territory to practice grouping and totals.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "7cf1af6b-b8ad-41a3-85ce-8f96234db505",
+              "Text": "Create an Employee Roster listing employees by department, including photos, to practice images and grouping.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "163d0e22-ae35-42df-adc0-48cdd30cb660",
+              "Text": "Build a Product Catalog as a matrix report using categories and subcategories.",
+              "SortOrder": 3
+            },
+            {
+              "Id": "649470a2-a91b-4c18-b57f-2980c5218299",
+              "Text": "Create a Sales Trend line chart of monthly sales over time, and a Customer Orders drill-through from customer list to order details.",
+              "SortOrder": 4
+            }
+          ]
+        },
+        {
+          "Id": "b5248282-69ef-4941-b952-eec7b676973c",
+          "TopicId": "d635d98c-1c10-4a86-b4dd-5e12eac5bf1c",
+          "Title": "Troubleshooting Performance and Expression Errors",
+          "BodyText": "Slow reports and #Error values in cells are the two most frequent problems report authors encounter, and both have predictable causes.",
+          "Notes": "A typical null-safe expression: =IIf(IsNothing(Fields!Value), 0, Fields!Value)",
+          "SortOrder": 3,
+          "CreatedDate": "2026-11-17T05:19:56.1294972-05:00",
+          "ModifiedDate": "2026-11-17T05:19:56.1294972-05:00",
+          "Items": [
+            {
+              "Id": "3b2e1cae-9646-4e46-ac40-78b14b597d4e",
+              "Text": "For slow reports, optimize the SQL query by reviewing the execution plan and adding indexes to filter and join columns.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "19d4ddee-ed7c-427e-99d4-b3094623761d",
+              "Text": "Reduce dataset size with filters, remove subreports where possible, and enable report caching to improve response time.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "11feb42a-fa19-4f0c-97c0-89c99534e28c",
+              "Text": "For #Error in an expression, check for null values using IsNothing() and handle them with IIf.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "615aaabd-c9e6-4647-9614-484328b2741a",
+              "Text": "Verify that field names in expressions exactly match the dataset field list.",
+              "SortOrder": 3
+            },
+            {
+              "Id": "bc7f9b08-e699-43db-b7ef-d212a044beb1",
+              "Text": "Confirm data types are compatible \u2014 you cannot perform arithmetic such as division on string values.",
+              "SortOrder": 4
+            }
+          ]
+        },
+        {
+          "Id": "3b10d9e2-527b-491b-8f80-f71216d9b468",
+          "TopicId": "d635d98c-1c10-4a86-b4dd-5e12eac5bf1c",
+          "Title": "Troubleshooting Deployment and Parameter Problems",
+          "BodyText": "Deployment failures and non-functioning parameters usually stem from configuration mismatches rather than report design flaws.",
+          "Notes": "Isolate the problem by testing the dataset query directly in SQL Server Management Studio before blaming the report.",
+          "SortOrder": 4,
+          "CreatedDate": "2026-11-17T05:19:56.1294972-05:00",
+          "ModifiedDate": "2026-11-17T05:19:56.1294972-05:00",
+          "Items": [
+            {
+              "Id": "dc6fc618-5663-4f7f-997f-6c857cd7a779",
+              "Text": "If a report won\u0027t deploy, verify the Report Server URL is correct and that the report server service is running.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "5c5b78a0-af13-496d-b078-a7fbfce0fd9f",
+              "Text": "Check your permissions on the target report server folder and test the connection before retrying deployment.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "d6661db8-b6ee-4e89-9be4-353be6fd174c",
+              "Text": "If parameters are not working, confirm that parameter names match exactly between the report and the query.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "4acce1f9-7117-4e27-82f3-42409cebc439",
+              "Text": "Validate parameter data types \u2014 a date parameter passed to a text comparison will fail or return no rows.",
+              "SortOrder": 3
+            },
+            {
+              "Id": "e07805a2-4ade-4e73-a7f8-0f19dac00f4d",
+              "Text": "Ensure parameters are explicitly mapped and passed through to any subreports or drill-through targets.",
+              "SortOrder": 4
+            }
+          ]
+        },
+        {
+          "Id": "c88b45d8-4a01-480e-a976-2fa230e1b3cd",
+          "TopicId": "d635d98c-1c10-4a86-b4dd-5e12eac5bf1c",
+          "Title": "Community Support and Certification Pathways",
+          "BodyText": "Active communities and formal certifications extend learning beyond the course and connect you with practitioners solving similar problems.",
+          "Notes": "Choosing a reporting tool is also a career decision \u2014 consider licensing cost, learning curve, integration with existing infrastructure, and paginated versus interactive output needs.",
+          "SortOrder": 5,
+          "CreatedDate": "2026-11-17T05:19:56.1294972-05:00",
+          "ModifiedDate": "2026-11-17T05:19:56.1294972-05:00",
+          "Items": [
+            {
+              "Id": "cd6a4460-47f5-4c0e-83d6-9daa23b9d3a7",
+              "Text": "Stack Overflow\u0027s \u0022ssrs\u0022 tag is a fast source of answers to specific technical questions.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "57bdb4c9-1bd4-4292-9b73-80a44c5391c1",
+              "Text": "MSDN Forums host a dedicated SQL Server Reporting Services discussion area.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "ebc9d998-14a9-4b54-a8f6-e75c762592a5",
+              "Text": "Reddit\u0027s r/SQLServer and LinkedIn SSRS user groups provide peer discussion and job-market insight.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "f65613d8-37ad-4ddc-a3f5-37100c1733c8",
+              "Text": "Microsoft Certified: Azure Data Engineer Associate and Data Analyst Associate both include reporting skills.",
+              "SortOrder": 3
+            },
+            {
+              "Id": "1fc80eb0-eab7-4c90-936f-289e48e66e24",
+              "Text": "Pluralsight\u0027s SSRS course path and LinkedIn Learning SSRS courses offer structured, paced instruction.",
+              "SortOrder": 4
+            }
+          ]
+        },
+        {
+          "Id": "8faeb8cf-a99f-4fd6-9378-b6d59a9d9a17",
+          "TopicId": "d635d98c-1c10-4a86-b4dd-5e12eac5bf1c",
+          "Title": "Applied Practice: Matrix and Menu-Style Reports",
+          "BodyText": "The course assignment applies these skills through two contrasting reports \u2014 a crosstab matrix and a hierarchical menu listing.",
+          "Notes": "Allot at least 10 hours for the assignment and start early; completing both reports demonstrates proficiency sufficient for building complex production reports.",
+          "SortOrder": 6,
+          "CreatedDate": "2026-11-17T05:19:56.1294972-05:00",
+          "ModifiedDate": "2026-11-17T05:19:56.1294972-05:00",
+          "Items": [
+            {
+              "Id": "69f26d6e-5db1-49c2-ab7f-9f5eebf5c397",
+              "Text": "Part 1 builds a matrix report with Fiscal Year in the left column, Continent across the top row, and summed financial aid in the cells.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "95f2b090-f994-4000-aab6-6ce991d96e11",
+              "Text": "Scale dollar figures to millions for readability, so 1,250,000 displays as 1.25.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "a2e99f58-45f6-4ff0-b182-f85558a7dbd7",
+              "Text": "Part 2 builds a menu-style report listing each Menu Group with its Menu Items and descriptions nested beneath.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "d2ca4c34-da64-47bf-88bd-b055da5eaf8a",
+              "Text": "Include at least two menu groups with at least two items each to demonstrate the grouping structure.",
+              "SortOrder": 3
+            },
+            {
+              "Id": "9d25d706-f07f-497c-9e1b-986bc95b6133",
+              "Text": "Submit formatted screen captures of both finished reports, following the standards in the Guide to Writing Good Reports.",
+              "SortOrder": 4
+            },
+            {
+              "Id": "a03bbf24-2a3e-477f-ace2-4e5d47737ed3",
+              "Text": "You may substitute your own project databases to demonstrate the same reporting proficiency.",
+              "SortOrder": 5
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "TotalElementCount": 53
+}

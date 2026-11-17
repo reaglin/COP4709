@@ -1,0 +1,210 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Module 10 (Week 10) — Topics &amp; Learning Outcomes</title>
+<style>
+body{font-family:'Segoe UI',Arial,sans-serif;max-width:880px;margin:0 auto;padding:32px 24px;color:#222;line-height:1.55}
+h1{font-size:1.6rem;border-bottom:2px solid #dcdcdc;padding-bottom:8px}
+h2{font-size:1.25rem;margin-top:30px;color:#1a3c6e;border-bottom:1px solid #ececec;padding-bottom:4px}
+h3{font-size:1.05rem;margin-top:22px;color:#1a3c6e}
+.toc{border:1px solid #c9d4e3;background:#f5f8fc;border-radius:8px;padding:10px 16px;margin:14px 0 6px;display:flex;gap:18px;flex-wrap:wrap}
+.toc a{color:#1a3c6e;font-weight:600;text-decoration:none}
+.toc a:hover{text-decoration:underline}
+.summary{color:#555;font-style:italic;margin:4px 0 10px}
+ul{margin:6px 0 6px 4px}
+li{margin:5px 0}
+.el-body{color:#555}
+.prefix{color:#555;font-style:italic;margin:6px 0 14px}
+.mo{border:1px solid #e2e2e2;border-radius:6px;padding:12px 16px;margin:12px 0}
+.mo .code{font-size:.8rem;color:#595959;text-transform:uppercase;letter-spacing:.04em}
+.mo .statement{font-weight:600;margin:4px 0 8px}
+.meta span{display:inline-block;background:#eef2f8;color:#1a3c6e;border-radius:3px;padding:1px 8px;margin:0 6px 0 0;font-size:.85rem}
+.meta .map{background:#eaf6ec;color:#137333}
+.co{margin:7px 0}
+.co .code{font-weight:600;color:#1a3c6e;margin-right:6px}
+.empty{color:#595959}
+.topic{border:1px solid #e2e2e2;border-radius:8px;padding:4px 18px 10px;margin:16px 0}
+.topic h2{margin-top:12px}
+.topic h3{font-size:1rem;margin:14px 0 4px;color:#333}
+.topic .desc{margin:4px 0 6px}
+ul.tm li{margin:7px 0}
+ul.tm a{color:#1a3c6e;font-weight:600}
+.tm-kind{display:inline-block;background:#eef2f8;color:#1a3c6e;border-radius:3px;padding:1px 8px;margin-left:6px;font-size:.82rem}
+.tm-also{color:#555;font-size:.88rem}
+.tm-desc{color:#555;font-size:.92rem;margin-top:2px}
+.tm-back a,.empty a{color:#1a3c6e;font-weight:600}
+</style>
+</head>
+<body>
+<div class="pm-backlink" style="font-family:'Segoe UI',Arial,sans-serif;padding:8px 16px;background:#f5f8fc;border-bottom:1px solid #dce3ec"><a href="index.html" style="color:#1a3c6e;font-weight:600;text-decoration:none">↑ Module 10 (Week 10)</a></div>
+<h1>Module 10 (Week 10) — Topics &amp; Learning Outcomes</h1>
+<div class="toc"><a href="#topics">📋 Module Topics</a><a href="#outcomes">🎯 Student Learning Outcomes</a></div>
+
+<div id="topics">
+<section class="topic" aria-labelledby="topic-1">
+<h2 id="topic-1">1. Full-Text Indexing Fundamentals</h2>
+<h3>Description</h3>
+<p class="desc">Explains what a full-text index is, how the full-text engine transforms text through word breaking, stopword filtering, stemming, thesaurus expansion, and inverted index construction. Contrasts full-text indexes with standard B-Tree indexes and with LIKE &#39;%term%&#39; scans.</p>
+<h3>Subtopics</h3>
+<ul>
+<li><strong>What a Full-Text Index Is</strong> <span class="el-body">— A full-text index is a specialised database index built to support fast, linguistic searches across large bodies of text rather than exact value comparisons. It turns long text columns into a searchable word map.</span></li>
+<li><strong>The Problem With LIKE &#39;%term%&#39;</strong> <span class="el-body">— A LIKE search with a leading wildcard cannot use any B-Tree index, so the database must scan every row and every character. This is one of the most common text-search performance anti-patterns.</span></li>
+<li><strong>The Full-Text Processing Pipeline</strong> <span class="el-body">— When a full-text index is created, a background process transforms the raw text through a series of linguistic stages before storing it. Understanding these stages explains why a document does or does not match.</span></li>
+<li><strong>The Inverted Index</strong> <span class="el-body">— The output of the pipeline is an inverted index — the core data structure of all full-text search. It maps each unique word to the list of documents and positions where that word appears.</span></li>
+<li><strong>Full-Text Index vs Standard B-Tree Index</strong> <span class="el-body">— Full-text and B-Tree indexes solve different problems and behave differently in structure, maintenance, and capability. Choosing between them starts with the kind of question being asked.</span></li>
+<li><strong>Asynchronous Index Maintenance</strong> <span class="el-body">— Unlike a B-Tree index, a full-text index is not updated synchronously with the write that changed the data. It is populated by a background crawl process, which introduces a propagation delay.</span></li>
+</ul>
+<h3>Supporting Materials</h3>
+<p class="empty">Nothing has been made just for this topic yet. The materials for the whole module are on the <a href="index.html#content-h">module page</a>.</p>
+</section>
+<section class="topic" aria-labelledby="topic-2">
+<h2 id="topic-2">2. Setting Up Full-Text Search in SQL Server</h2>
+<h3>Description</h3>
+<p class="desc">Walks through verifying the Full-Text Search feature, creating a sample table with a unique key, creating a full-text catalog, and building a full-text index with language and change-tracking options. Covers full, incremental, and update population methods and the implications of asynchronous index maintenance.</p>
+<h3>Subtopics</h3>
+<ul>
+<li><strong>Prerequisites for Full-Text Search</strong> <span class="el-body">— Before any full-text index can be created, three conditions must be satisfied at the server, database, and table level. Missing any one of them will cause the CREATE FULLTEXT INDEX statement to fail.</span></li>
+<li><strong>Step 1 — Verify the Feature Is Installed and Enabled</strong> <span class="el-body">— The first step is confirming that the Full-Text Search engine is actually present on the instance and enabled for the current database. Two built-in property functions answer both questions.</span></li>
+<li><strong>Step 2 — Create the Sample Table with a Unique Key</strong> <span class="el-body">— Full-text indexing targets tables with long text columns. The example kb_articles table models a knowledge base — a classic full-text candidate — and includes the mandatory unique key.</span></li>
+<li><strong>Step 3 — Create a Full-Text Catalog</strong> <span class="el-body">— A full-text catalog is a logical container that groups one or more full-text indexes. It is created once per database (or per application area) before any index is defined.</span></li>
+<li><strong>Step 4 — Create the Full-Text Index</strong> <span class="el-body">— The CREATE FULLTEXT INDEX statement names the columns to index, the key index used to identify rows, the catalog that stores it, and the change-tracking behaviour.</span></li>
+<li><strong>Population Methods — Full, Incremental, and Update</strong> <span class="el-body">— Populating (or crawling) is how text gets into the index. ALTER FULLTEXT INDEX offers three population modes, each suited to a different situation.</span></li>
+<li><strong>Asynchronous Maintenance and Its Implications</strong> <span class="el-body">— Unlike B-Tree indexes, full-text indexes are not updated synchronously with INSERT, UPDATE, or DELETE. A background crawl process does the work, which introduces a searchability delay.</span></li>
+</ul>
+<h3>Supporting Materials</h3>
+<p class="empty">Nothing has been made just for this topic yet. The materials for the whole module are on the <a href="index.html#content-h">module page</a>.</p>
+</section>
+<section class="topic" aria-labelledby="topic-3">
+<h2 id="topic-3">3. Precise Searching with CONTAINS</h2>
+<h3>Description</h3>
+<p class="desc">Covers the CONTAINS predicate for single words, exact phrases, Boolean AND/OR/NOT logic, prefix wildcards, FORMSOF inflectional and thesaurus expansion, and NEAR proximity searching. Also shows searching across multiple or all indexed columns.</p>
+<h3>Subtopics</h3>
+<ul>
+<li><strong>CONTAINS: The Precision Search Predicate</strong> <span class="el-body">— CONTAINS is the primary full-text predicate used in the WHERE clause to perform precise, structured searches inside indexed text columns. It evaluates to TRUE or FALSE for each row, just like any other WHERE condition.</span></li>
+<li><strong>Single Words and Exact Phrases</strong> <span class="el-body">— The simplest CONTAINS searches look for a single word or an exact multi-word phrase inside an indexed column. Double quotes inside the single-quoted search string mark a phrase.</span></li>
+<li><strong>Boolean Logic: AND, OR, AND NOT</strong> <span class="el-body">— CONTAINS supports Boolean operators so you can require, alternate, or exclude terms within a single search condition. This is how you build precise, multi-term queries.</span></li>
+<li><strong>Prefix Searching with the Asterisk Wildcard</strong> <span class="el-body">— A prefix term lets you match every word beginning with a given stem using the asterisk wildcard inside double quotes. This is the full-text equivalent of a trailing-wildcard LIKE, but index-backed and fast.</span></li>
+<li><strong>Linguistic Expansion with FORMSOF</strong> <span class="el-body">— FORMSOF instructs the engine to expand a search term into related forms before matching — either grammatical inflections or thesaurus synonyms. This gives CONTAINS linguistic awareness on demand.</span></li>
+<li><strong>Proximity Searching with NEAR</strong> <span class="el-body">— NEAR finds documents where two or more terms appear close to one another, rather than merely co-occurring somewhere in a long document. Closer matches also rank higher when used with CONTAINSTABLE.</span></li>
+<li><strong>Searching Multiple or All Indexed Columns</strong> <span class="el-body">— CONTAINS is not limited to one column — you can supply a column list or the asterisk to search every full-text indexed column of the table at once.</span></li>
+</ul>
+<h3>Supporting Materials</h3>
+<p class="empty">Nothing has been made just for this topic yet. The materials for the whole module are on the <a href="index.html#content-h">module page</a>.</p>
+</section>
+<section class="topic" aria-labelledby="topic-4">
+<h2 id="topic-4">4. Natural Language Searching with FREETEXT</h2>
+<h3>Description</h3>
+<p class="desc">Introduces FREETEXT as a higher-level predicate that interprets user input as natural language with automatic inflections and synonym expansion. Compares precision, recall, and ideal use cases of FREETEXT versus CONTAINS.</p>
+<h3>Subtopics</h3>
+<ul>
+<li><strong>What FREETEXT Does</strong> <span class="el-body">— FREETEXT is a higher-level full-text predicate that treats the search string as natural language rather than a structured query expression. It requires no special operators or syntax from the end user.</span></li>
+<li><strong>FREETEXT Syntax and Usage Patterns</strong> <span class="el-body">— FREETEXT follows the same column-targeting patterns as CONTAINS — a single column, a column list, or all indexed columns. It can be freely combined with ordinary SQL predicates.</span></li>
+<li><strong>How FREETEXT Differs from CONTAINS</strong> <span class="el-body">— CONTAINS and FREETEXT both query the same full-text index, but they differ in how the search string is interpreted and how much control the developer has.</span></li>
+<li><strong>Precision Versus Recall</strong> <span class="el-body">— The choice between the two predicates is fundamentally a trade-off between precision (returning only exactly what was asked for) and recall (returning everything potentially relevant).</span></li>
+<li><strong>Ideal Use Cases for FREETEXT</strong> <span class="el-body">— FREETEXT is best suited anywhere a human types words into a box and expects relevant results without learning a query syntax.</span></li>
+<li><strong>Equivalents in Other Database Systems</strong> <span class="el-body">— Natural-language searching is not unique to SQL Server; every major RDBMS offers a comparable concept-based search mode.</span></li>
+</ul>
+<h3>Supporting Materials</h3>
+<p class="empty">Nothing has been made just for this topic yet. The materials for the whole module are on the <a href="index.html#content-h">module page</a>.</p>
+</section>
+<section class="topic" aria-labelledby="topic-5">
+<h2 id="topic-5">5. Relevance Ranking with CONTAINSTABLE and FREETEXTTABLE</h2>
+<h3>Description</h3>
+<p class="desc">Explains the table-valued functions that return KEY and RANK pairs so results can be joined back and ordered by relevance score. Demonstrates limiting candidates, filtering by rank threshold, and building search-engine-style result pages.</p>
+<h3>Subtopics</h3>
+<ul>
+<li><strong>What CONTAINSTABLE and FREETEXTTABLE Return</strong> <span class="el-body">— CONTAINSTABLE and FREETEXTTABLE are table-valued functions that mirror the CONTAINS and FREETEXT predicates, but instead of returning TRUE/FALSE they return a result set of matching rows with a relevance score.</span></li>
+<li><strong>Joining the Rank Table Back to the Base Table</strong> <span class="el-body">— The table-valued functions return only a key and a rank, so you must join their output back to the source table to retrieve the actual column values.</span></li>
+<li><strong>Ordering Results by Relevance</strong> <span class="el-body">— The main purpose of the rank column is to allow search results to be presented most-relevant-first, exactly as a web search engine does, instead of by insertion order or ID.</span></li>
+<li><strong>Limiting Candidate Rows with top_n_by_rank</strong> <span class="el-body">— Both functions accept an optional numeric argument that caps how many of the highest-ranked candidate rows the full-text engine returns, which keeps large searches efficient.</span></li>
+<li><strong>Filtering by Rank Threshold and Combining with SQL Predicates</strong> <span class="el-body">— Because RANK is an ordinary column in the joined result, it can be filtered in the WHERE clause alongside normal relational conditions.</span></li>
+<li><strong>Building Search-Engine-Style Result Pages</strong> <span class="el-body">— Combining ranked table-valued functions, candidate limits, and ordinary SQL filtering yields the pattern used for production search results pages.</span></li>
+</ul>
+<h3>Supporting Materials</h3>
+<p class="empty">Nothing has been made just for this topic yet. The materials for the whole module are on the <a href="index.html#content-h">module page</a>.</p>
+</section>
+<section class="topic" aria-labelledby="topic-6">
+<h2 id="topic-6">6. Stoplists, Thesaurus, and Index Management</h2>
+<h3>Description</h3>
+<p class="desc">Covers viewing system stopwords, creating and attaching custom stoplists, and configuring the XML thesaurus file for domain-specific synonyms. Includes administrative tasks such as inspecting indexed columns, disabling, enabling, and dropping full-text indexes and catalogs.</p>
+<h3>Subtopics</h3>
+<ul>
+<li><strong>Stopwords and Why They Are Excluded</strong> <span class="el-body">— Stopwords are high-frequency words such as &#39;a&#39;, &#39;and&#39;, &#39;the&#39;, and &#39;of&#39; that carry no search value and are discarded by the full-text engine during the word-breaking pipeline. Excluding them keeps the inverted index smaller and queries faster.</span></li>
+<li><strong>Viewing the System Stoplist</strong> <span class="el-body">— Before customising anything, inspect the words SQL Server already treats as noise using the sys.fulltext_system_stopwords catalog view. Filtering by language_id shows the list that applies to your indexed columns.</span></li>
+<li><strong>Creating and Attaching a Custom Stoplist</strong> <span class="el-body">— A custom stoplist lets you add domain-specific noise words that appear in almost every document and therefore add no discriminating value. The usual approach is to copy the system list and extend it.</span></li>
+<li><strong>Configuring the XML Thesaurus File</strong> <span class="el-body">— The thesaurus is a per-language XML file that maps terms to their synonyms, enabling domain-specific expansion such as &#39;heart attack&#39; matching &#39;myocardial infarction&#39;. It is consulted by FORMSOF(THESAURUS, term) and automatically by FREETEXT.</span></li>
+<li><strong>Inspecting Indexed Columns and Index Metadata</strong> <span class="el-body">— Catalog views let administrators confirm exactly which columns are full-text indexed, in which language, and in which catalog they are stored. This is essential when troubleshooting unexpected search results.</span></li>
+<li><strong>Disabling, Enabling, and Dropping Indexes and Catalogs</strong> <span class="el-body">— Full-text indexes can be temporarily disabled for maintenance or bulk loading, re-enabled afterwards, or dropped entirely when no longer needed. Catalogs follow a strict removal order.</span></li>
+</ul>
+<h3>Supporting Materials</h3>
+<p class="empty">Nothing has been made just for this topic yet. The materials for the whole module are on the <a href="index.html#content-h">module page</a>.</p>
+</section>
+<section class="topic" aria-labelledby="topic-7">
+<h2 id="topic-7">7. When to Use — and When to Avoid — Full-Text Indexing</h2>
+<h3>Description</h3>
+<p class="desc">Reviews strong use cases such as knowledge bases, product catalogues, content management, medical and legal records, message archives, and resume matching, alongside technical triggers that signal the need for full-text search. Also identifies poor fits such as short codes, exact lookups, numeric ranges, small tables, near-real-time needs, and pattern matching, and compares SQL Server full-text with Elasticsearch and Azure AI Search.</p>
+<h3>Subtopics</h3>
+<ul>
+<li><strong>The Core Decision Criterion</strong> <span class="el-body">— Full-text indexing is the right choice when queries must search inside the content of long text fields where exact-value B-Tree indexes cannot help. The deciding question is whether the search is linguistic or literal.</span></li>
+<li><strong>Strong Use Cases for Full-Text Search</strong> <span class="el-body">— Several application categories map almost perfectly onto full-text capabilities because their primary content is free-form prose that users query approximately.</span></li>
+<li><strong>Technical Triggers That Signal the Need</strong> <span class="el-body">— Beyond business use cases, specific technical symptoms in an existing schema or workload indicate that full-text indexing is warranted.</span></li>
+<li><strong>Where Full-Text Is the Wrong Tool</strong> <span class="el-body">— Full-text indexing carries real storage, maintenance, and CPU overhead, and several common search patterns are better served by simpler mechanisms.</span></li>
+<li><strong>SQL Server Full-Text vs Dedicated Search Platforms</strong> <span class="el-body">— SQL Server&#39;s built-in engine covers many scenarios, but at very large scale or with advanced search requirements a dedicated platform such as Elasticsearch or Azure AI Search is a better fit.</span></li>
+<li><strong>A Decision Flow for Adoption</strong> <span class="el-body">— A short sequence of questions resolves most adoption decisions, ending either in SQL Server full-text, a standard index, or a dedicated search service.</span></li>
+</ul>
+<h3>Supporting Materials</h3>
+<p class="empty">Nothing has been made just for this topic yet. The materials for the whole module are on the <a href="index.html#content-h">module page</a>.</p>
+</section>
+<section class="topic" aria-labelledby="topic-8">
+<h2 id="topic-8">8. Trade-offs, Performance, and Cross-Platform Reference</h2>
+<h3>Description</h3>
+<p class="desc">Summarises the advantages and disadvantages of full-text indexing along with its impact on reads, writes, bulk loads, rebuilds, and disk space. Provides a predicate and search-syntax quick reference, an implementation checklist, a decision flowchart, and a comparison of full-text features across Oracle, MySQL, PostgreSQL, and Db2.</p>
+<h3>Subtopics</h3>
+<ul>
+<li><strong>Advantages of Full-Text Indexing</strong> <span class="el-body">— Full-text indexing delivers performance and linguistic capabilities that standard indexes and LIKE searches simply cannot provide. These benefits are most pronounced on large volumes of free-form text.</span></li>
+<li><strong>Disadvantages and Limitations</strong> <span class="el-body">— Full-text indexing carries real overhead in storage, maintenance, and predictability. Understanding these limits prevents misapplying the feature.</span></li>
+<li><strong>Performance Impact by Operation</strong> <span class="el-body">— The cost of a full-text index varies sharply depending on the operation. Read performance improves greatly, while certain maintenance operations are expensive.</span></li>
+<li><strong>Predicate and Search Syntax Quick Reference</strong> <span class="el-body">— Four full-text constructs cover the common search patterns, and CONTAINS supports a compact term syntax for words, phrases, and proximity. Knowing which to reach for speeds up implementation.</span></li>
+<li><strong>Decision Flowchart and Implementation Checklist</strong> <span class="el-body">— A short series of questions determines whether full-text indexing is the right tool, and a checklist ensures a complete, production-ready implementation.</span></li>
+<li><strong>Cross-Platform Full-Text Comparison</strong> <span class="el-body">— Every major RDBMS supports full-text indexing, but each uses distinct syntax and feature sets. Translating a SQL Server search to another platform means mapping predicates and ranking functions.</span></li>
+</ul>
+<h3>Supporting Materials</h3>
+<p class="empty">Nothing has been made just for this topic yet. The materials for the whole module are on the <a href="index.html#content-h">module page</a>.</p>
+</section>
+</div>
+<p class="tm-back"><a href="index.html">← Back to the module page</a></p>
+<h2 id="outcomes">Student Learning Outcomes</h2>
+<p class="prefix">By the end of this module, students will be able to:</p>
+<div class="mo">
+<div class="code">MO1</div>
+<div class="statement">Explain how the full-text processing pipeline (word breaking, stopword filtering, stemming, thesaurus expansion) produces an inverted index that supports linguistic search</div>
+<div class="meta"><span>Level: Understand</span><span>Type: Cognitive</span><span class="map">Course mapping: —</span></div>
+</div>
+<div class="mo">
+<div class="code">MO2</div>
+<div class="statement">Implement a full-text search configuration in SQL Server by creating a full-text catalog and a full-text index with appropriate key, language, and change-tracking options</div>
+<div class="meta"><span>Level: Apply</span><span>Type: Cognitive</span><span class="map">Course mapping: —</span></div>
+</div>
+<div class="mo">
+<div class="code">MO3</div>
+<div class="statement">Construct CONTAINS queries that use exact phrases, Boolean operators, prefix wildcards, FORMSOF expansion, and NEAR proximity terms to retrieve targeted text results</div>
+<div class="meta"><span>Level: Apply</span><span>Type: Cognitive</span><span class="map">Course mapping: —</span></div>
+</div>
+<div class="mo">
+<div class="code">MO4</div>
+<div class="statement">Differentiate the precision and recall characteristics of CONTAINS and FREETEXT predicates for a given search scenario</div>
+<div class="meta"><span>Level: Analyze</span><span>Type: Cognitive</span><span class="map">Course mapping: —</span></div>
+</div>
+<div class="mo">
+<div class="code">MO5</div>
+<div class="statement">Justify whether full-text indexing, a standard B-Tree index, or a dedicated search platform is the appropriate solution for a stated workload based on its storage, maintenance, and latency trade-offs</div>
+<div class="meta"><span>Level: Evaluate</span><span>Type: Cognitive</span><span class="map">Course mapping: —</span></div>
+</div>
+<h3>Course Outcomes (reference)</h3>
+<p class="empty">No course outcomes have been defined.</p>
+
+<footer class="presemaker-credit" data-credit="2" style="margin-top:2rem;padding:14px 8px;border-top:1px solid #ddd;background:#fff;text-align:center;font:13px/1.5 -apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;color:#595959;"><svg width="20" height="20" viewBox="0 0 2048 2048" aria-hidden="true" focusable="false" style="vertical-align:-5px;margin-right:7px"><rect width="2048" height="2048" rx="384" fill="#0F6E6E"/><path fill="#0A5050" d="M1024 1000 344 832v816l680 168zm0 0 680-168v816l-680 168z"/><path fill="#fff" d="M1024 944 384 784v808l640 160zm0 0 640-160v808l-640 160z"/><rect x="1002" y="944" width="44" height="808" fill="#0F6E6E"/><rect x="936" y="246" width="176" height="448" rx="44" fill="#fff"/><rect x="800" y="382" width="448" height="176" rx="44" fill="#fff"/></svg>Created with <a href="https://softwareplus.ai/coursebuilder/" target="_blank" rel="noopener" style="color:#2f5d8f;font-weight:600;text-decoration:none;">CourseBuilder+</a><span aria-hidden="true"> · </span><a href="https://softwareplus.ai/" target="_blank" rel="noopener" style="color:#2f5d8f;text-decoration:none;">SoftwarePlus.ai</a></footer>
+</body>
+</html>

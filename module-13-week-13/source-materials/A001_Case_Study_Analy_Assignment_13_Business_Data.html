@@ -1,0 +1,34 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Assignment 13 - Business Data Analysis</title>
+<style>body{font-family:Segoe UI,Arial,sans-serif;max-width:900px;margin:24px auto;padding:0 16px;line-height:1.5;color:#222}h1{font-size:1.6em;margin-bottom:.3em}h2{font-size:1.25em;margin-top:1.4em;border-bottom:1px solid #ddd;padding-bottom:.2em}h3{font-size:1.05em;margin-bottom:.2em}.lead{color:#555}.summary{color:#444;margin:.2em 0 .4em}.bloom{color:#777;font-size:.9em}ul,ol{padding-left:1.4em}pre{background:#f6f6f6;padding:12px;border-radius:4px}.mo{display:grid;grid-template-columns:56px 1fr;gap:2px 10px;margin:0 0 10px;padding:8px 10px;background:#f7f9fc;border-left:3px solid #2e6cb4;border-radius:3px}.mo .code{font-weight:600;color:#2e6cb4}.mo .statement{grid-column:2}.mo .meta{grid-column:2;font-size:.85em;color:#777}.mo .meta span{margin-right:12px}</style>
+</head>
+<body>
+<div class="pm-backlink" style="font-family:'Segoe UI',Arial,sans-serif;padding:8px 16px;background:#f5f8fc;border-bottom:1px solid #dce3ec"><a href="../index.html" style="color:#1a3c6e;font-weight:600;text-decoration:none">↑ Module 13 (Week 13)</a></div>
+<h1>Assignment 13 - Business Data Analysis</h1>
+<h1 align="center"><strong>Assignment – Reporting with Data Analysis</strong></h1>
+<h3><strong>Objectives</strong></h3>
+<p>– Create a report using real data based on high-level requirements</p>
+<h3><strong>Assignment</strong></h3>
+<p>The following spreadsheet <a rel="noopener" href="Assignment_13_Business_Data_Analysis_files/sections-grades-by-im-subsess.zip" target="_blank">Grades Data by Session and Class Type</a> contains grade information from Fall 2014. Information about the mode of delivery (online, hybrid, live) and term length (Full, Short: A/B) is included with the analysis.</p>
+<p>The business question you will be answering is;&nbsp;</p>
+<ol>
+<li>Term Length: Do students perform better in the short terms or full-terms (Use both measures)?&nbsp;</li>
+<li>Mode of Delivery: Do students perform better in live courses, hybrid courses, or online courses (use both measures) ?</li>
+<li>Does removing FN grades from the analysis have an effect on either 1 r 2?</li>
+<li>Does the Term Length have an effect on the results of conclusion for Course Delivery Type?&nbsp;</li>
+</ol>
+<p>Definitions (you will need to use both of these equations in your analysis);</p>
+<p><strong>Course success</strong> = Grade of A, B , or C in course.</p>
+<p><strong>Course Overall GPA</strong> - Use the values (A=4, B=3, C=2, D=1, F=0) and the GPA calculation using number of each students earning each grade.&nbsp;&nbsp;</p>
+<p><math title="" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><semantics><mstyle><mfrac><mrow><mn>4</mn><msub><mi>n</mi><mi>A</mi></msub><mo>+</mo><mn>3</mn><msub><mi>n</mi><mi>B</mi></msub><mo>+</mo><mn>2</mn><msub><mi>n</mi><mi>C</mi></msub><mo>+</mo><msub><mi>n</mi><mi>D</mi></msub></mrow><mi>n</mi></mfrac></mstyle><annotation encoding="wiris">{"version":"1.1","math":"&lt;math xmlns="http://www.w3.org/1998/Math/MathML"&gt;&lt;mfrac&gt;&lt;mrow&gt;&lt;mn&gt;4&lt;/mn&gt;&lt;msub&gt;&lt;mi&gt;n&lt;/mi&gt;&lt;mi&gt;A&lt;/mi&gt;&lt;/msub&gt;&lt;mo&gt;+&lt;/mo&gt;&lt;mn&gt;3&lt;/mn&gt;&lt;msub&gt;&lt;mi&gt;n&lt;/mi&gt;&lt;mi&gt;B&lt;/mi&gt;&lt;/msub&gt;&lt;mo&gt;+&lt;/mo&gt;&lt;mn&gt;2&lt;/mn&gt;&lt;msub&gt;&lt;mi&gt;n&lt;/mi&gt;&lt;mi&gt;C&lt;/mi&gt;&lt;/msub&gt;&lt;mo&gt;+&lt;/mo&gt;&lt;msub&gt;&lt;mi&gt;n&lt;/mi&gt;&lt;mi&gt;D&lt;/mi&gt;&lt;/msub&gt;&lt;/mrow&gt;&lt;mi&gt;n&lt;/mi&gt;&lt;/mfrac&gt;&lt;/math&gt;"}</annotation></semantics></math></p>
+<p><strong>Course Success Score</strong> - A,B, or C is worth 100%; D or F is worth 0% -&nbsp;&nbsp;</p>
+<p><math title="" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><semantics><mstyle><mfrac><mrow><mn>100</mn><mo>&nbsp;</mo><mo>*</mo><mo>&nbsp;</mo><msub><mi>n</mi><mrow><mi>A</mi><mo>,</mo><mi>B</mi><mo>,</mo><mi>C</mi></mrow></msub></mrow><msub><mi>n</mi><mrow><mi>a</mi><mi>l</mi><mi>l</mi></mrow></msub></mfrac></mstyle><annotation encoding="wiris">{"version":"1.1","math":"&lt;math xmlns="http://www.w3.org/1998/Math/MathML"&gt;&lt;mfrac&gt;&lt;mrow&gt;&lt;mn&gt;100&lt;/mn&gt;&lt;mo&gt;&amp;#xA0;&lt;/mo&gt;&lt;mo&gt;*&lt;/mo&gt;&lt;mo&gt;&amp;#xA0;&lt;/mo&gt;&lt;msub&gt;&lt;mi&gt;n&lt;/mi&gt;&lt;mrow&gt;&lt;mi&gt;A&lt;/mi&gt;&lt;mo&gt;,&lt;/mo&gt;&lt;mi&gt;B&lt;/mi&gt;&lt;mo&gt;,&lt;/mo&gt;&lt;mi&gt;C&lt;/mi&gt;&lt;/mrow&gt;&lt;/msub&gt;&lt;/mrow&gt;&lt;msub&gt;&lt;mi&gt;n&lt;/mi&gt;&lt;mrow&gt;&lt;mi&gt;a&lt;/mi&gt;&lt;mi&gt;l&lt;/mi&gt;&lt;mi&gt;l&lt;/mi&gt;&lt;/mrow&gt;&lt;/msub&gt;&lt;/mfrac&gt;&lt;/math&gt;"}</annotation></semantics></math></p>
+<p>Your report should give methodology (Much of which I gave you), results, and conclusion. You should include all queries used and query results in the appendix.</p>
+<h3><strong>Grading Criteria</strong></h3>
+<p>Follow reporting requirements as outlined in "Guide to Writing Good Reports "&nbsp;</p>
+</body>
+</html>

@@ -1,0 +1,87 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Module 2 (Week 2) — Module Topics</title>
+<style>
+body{font-family:'Segoe UI',Arial,sans-serif;max-width:880px;margin:0 auto;padding:32px 24px;color:#222;line-height:1.55}
+h1{font-size:1.6rem;border-bottom:2px solid #dcdcdc;padding-bottom:8px}
+h2{font-size:1.2rem;margin-top:28px;color:#1a3c6e}
+.summary{color:#555;font-style:italic;margin:4px 0 10px}
+ul{margin:6px 0 6px 4px}
+li{margin:5px 0}
+.el-body{color:#555}
+.empty{color:#595959}
+</style>
+</head>
+<body>
+<div class="pm-backlink" style="font-family:'Segoe UI',Arial,sans-serif;padding:8px 16px;background:#f5f8fc;border-bottom:1px solid #dce3ec"><a href="index.html" style="color:#1a3c6e;font-weight:600;text-decoration:none">↑ Module 2 (Week 2)</a></div>
+<h1>Module 2 (Week 2) — Module Topics</h1>
+<h2>Importing XML Data from Data.gov into SQL Server</h2>
+<div class="summary">Walks through locating and downloading an XML dataset from Data.gov and moving it into SQL Server, using Excel and XML as intermediate steps in the import workflow. Assumes working familiarity with both SQL Server and Excel.</div>
+<ul>
+<li><strong>Why Import Data from Data.gov</strong> <span class="el-body">— Data.gov is a large public repository of government datasets that are commonly used as practice and production data sources for database work. Importing from it mirrors the real ETL (Extract, Transform, Load) work you will do throughout this course.</span></li>
+<li><strong>Prerequisites and Tools for the Workflow</strong> <span class="el-body">— This import demonstration assumes a working familiarity with both SQL Server and Microsoft Excel. Each tool plays a specific role in moving XML data into a relational table.</span></li>
+<li><strong>Locating and Downloading the XML Dataset</strong> <span class="el-body">— The first step is to find a suitable dataset on Data.gov and download the XML version of the file to your local machine. Reviewing the dataset description before downloading saves rework later.</span></li>
+<li><strong>Using Excel as an Intermediate Step</strong> <span class="el-body">— Excel can open an XML file and map its elements into a tabular worksheet, which makes the data far easier to move into SQL Server. This intermediate step also gives you a chance to inspect and clean the data.</span></li>
+<li><strong>Importing into SQL Server</strong> <span class="el-body">— With the data flattened and cleaned, you use SQL Server&#39;s import tooling to create and populate a destination table. Choosing appropriate data types at this stage prevents errors and simplifies later queries.</span></li>
+<li><strong>Troubleshooting Common Import Errors</strong> <span class="el-body">— Import failures are normal and usually trace back to formatting problems in the source data rather than SQL Server itself. Knowing where to look makes resolution quick.</span></li>
+</ul>
+<h2>Preparing CSV Flat Files for Import</h2>
+<div class="summary">Covers using Excel to open, inspect, and clean a CSV file so that every cell contains a valid value suitable for a flat-file database import. Demonstrates several common data-cleaning techniques while emphasizing that many valid approaches exist.</div>
+<ul>
+<li><strong>Why Flat Files Need Preparation Before Import</strong> <span class="el-body">— A CSV flat file is a simple text format where each row is a record and commas separate the fields, but the raw file is rarely ready for a database. The cleanest, easiest import happens when every cell holds a valid value and nothing else.</span></li>
+<li><strong>Opening and Inspecting a CSV in Excel</strong> <span class="el-body">— Excel is a convenient tool for reading a CSV file and seeing the shape of the data before it ever touches SQL Server. The first pass is purely diagnostic: understand the columns, the row count, and where the problems live.</span></li>
+<li><strong>Handling Blanks, Nulls, and Placeholder Values</strong> <span class="el-body">— Datasets frequently use special markers such as NULL, PrivacySuppressed, N/A, or blanks instead of real numbers. These placeholders must be resolved so the column can be typed consistently.</span></li>
+<li><strong>Converting Formulas and Formats to Clean Values</strong> <span class="el-body">— Anything in a cell that is not a plain value — a formula, a currency symbol, a stray space — can confuse the import process. Converting everything to static, correctly typed values makes the flat file predictable.</span></li>
+<li><strong>Trimming the File to the Columns You Actually Need</strong> <span class="el-body">— You do not have to import every field in a large public dataset. Reducing the file to the relevant columns shortens the import, simplifies the schema, and lowers the chance of a single bad column failing the whole load.</span></li>
+<li><strong>There Are Many Valid Ways to Clean Data</strong> <span class="el-body">— The techniques shown are examples, not a fixed procedure. Different analysts will reach a clean, importable file by different routes, and the test is whether the result loads correctly and preserves meaning.</span></li>
+</ul>
+<h2>ETL/ELT Concepts and SQL Server Import Tools</h2>
+<div class="summary">Introduces ETL (or ELT) as the practice of moving data from external sources into your database, a task repeated throughout the course. Explores the most effective import methods and the free integration and import tools available for SQL Server.</div>
+<ul>
+<li><strong>What ETL (and ELT) Means in Practice</strong> <span class="el-body">— ETL stands for Extract, Transform, Load — the practice of pulling data from an external source, shaping it, and placing it into your database. In this course you will perform some form of ETL (or ELT) nearly every week.</span></li>
+<li><strong>Common External Data Sources and File Formats</strong> <span class="el-body">— Public data portals publish datasets in a handful of standard formats, and the format you download determines the import path you take. The course demonstrations use XML and CSV files pulled from government data sites.</span></li>
+<li><strong>Importing an XML File into SQL Server</strong> <span class="el-body">— The Lecture 2-1 demonstration walks through pulling an XML file from Data.gov and bringing it into SQL Server. It shows how Excel and XML each serve as a step along the import path.</span></li>
+<li><strong>Preparing a CSV Flat File for Import</strong> <span class="el-body">— Flat files rarely arrive clean, so Excel is used to inspect and correct the data before loading. The cleanest import happens when every cell holds a valid value of the expected type.</span></li>
+<li><strong>Free Integration and Import Tools for SQL Server</strong> <span class="el-body">— SQL Server ships with and is supported by several no-cost tools for moving data in, and you will use them repeatedly throughout the course. Knowing which tool fits which situation saves considerable time.</span></li>
+<li><strong>Choosing the Most Effective Import Method</strong> <span class="el-body">— There is no single best way to import data; the effective choice depends on file size, format, frequency, and how much cleanup is required. The graded discussion asks you to research and defend an answer to exactly this question.</span></li>
+<li><strong>Applying ETL in Assignment 2</strong> <span class="el-body">— Assignment 2 puts these concepts to work by having you create a CollegeDatabase and import College Scorecard statistics into SQL Server. You then query the loaded data and present results in a formatted report.</span></li>
+</ul>
+<h2>Querying and Analyzing Imported Data</h2>
+<div class="summary">Applies basic SQL to the imported dataset to identify highest and lowest values, filter non-zero results, and enforce sample-size thresholds. Points to foundational SQL practice resources needed before tackling deeper course material.</div>
+<ul>
+<li><strong>Purpose of Querying the Imported Data</strong> <span class="el-body">— Once the College Scorecard data is loaded into the CollegeDatabase, the next step is to interrogate it with basic SQL to answer specific questions about student loan debt. The goal is to turn raw imported rows into meaningful comparisons.</span></li>
+<li><strong>Identifying Highest and Lowest Values</strong> <span class="el-body">— The core analytical task is ranking institutions by cumulative loan debt and extracting the extremes at each end of the range. This is accomplished with ordering and row-limiting in SQL.</span></li>
+<li><strong>Filtering Out Zero and Invalid Results</strong> <span class="el-body">— Raw scorecard data contains zero or missing debt values that would distort a &#39;lowest&#39; ranking. A WHERE clause is used to exclude these records before ranking.</span></li>
+<li><strong>Enforcing a Sample-Size Threshold</strong> <span class="el-body">— Averages computed from very small student populations are statistically unreliable. The analysis therefore restricts results to institutions with a sufficient number of students.</span></li>
+<li><strong>Including a Comparison Institution</strong> <span class="el-body">— To give the rankings context, a specific benchmark institution is appended to the result set regardless of where it ranks. This demonstrates how to combine filtered results with targeted lookups.</span></li>
+<li><strong>Reporting Query Results Professionally</strong> <span class="el-body">— Analysis is only valuable when communicated clearly, so results must be presented in a readable report rather than raw output. The report shows both the SQL used and the formatted results.</span></li>
+<li><strong>Foundational SQL Practice Resources</strong> <span class="el-body">— Students who are not yet comfortable writing SELECT, WHERE, and ORDER BY statements should build those skills before attempting the deeper material later in the course. Several free practice sites are recommended.</span></li>
+</ul>
+<h2>Professional Reporting of Database Results</h2>
+<div class="summary">Explains report format expectations: an explanation of the data, a summary of the process, and a description of what the results actually mean. Stresses presenting query output as formatted tables rather than screen captures.</div>
+<ul>
+<li><strong>Why Report Format Matters</strong> <span class="el-body">— When you work with databases, running the query is only half the job; communicating the results is the other half. A database results report presents your findings in a friendly, easy-to-read format for a reader who did not run the query.</span></li>
+<li><strong>The Three Required Report Sections</strong> <span class="el-body">— Every report should contain an explanation of the data, a summary of the process, and a description of the results. These three parts frame the numbers so they can be understood correctly.</span></li>
+<li><strong>Explaining the Data and the Process</strong> <span class="el-body">— Before showing numbers, state where the data came from and how it was prepared. This establishes credibility and makes your work reproducible.</span></li>
+<li><strong>Describing Results Versus Showing Results</strong> <span class="el-body">— The description of the results is not the results themselves; it is an explanation of what the numbers mean. This distinction is the most commonly missed part of a report.</span></li>
+<li><strong>Presenting Query Output as Formatted Tables</strong> <span class="el-body">— Results must be reported as a formatted table, not as a screen capture. Screen captures are not typically acceptable in professional reports.</span></li>
+<li><strong>Including the Queries That Produced the Results</strong> <span class="el-body">— A database results report shows the SQL used alongside the output it produced. This lets a reader verify and reproduce your work.</span></li>
+</ul>
+<h2>Assignment 2: Import and Analyze College Scorecard Data</h2>
+<div class="summary">Students build a CollegeDatabase in SQL Server, import College Scorecard files, and query cumulative loan debt fields at the 75th and 90th percentiles. The deliverable is a Word or PDF report showing queries, top/bottom ten institutions, and Daytona State College for comparison.</div>
+<ul>
+<li><strong>Assignment Objective and Deliverable</strong> <span class="el-body">— Assignment 2 asks you to demonstrate that you can import external data into SQL Server and analyze it with basic queries. The deliverable is a written database results report, not a collection of screen captures.</span></li>
+<li><strong>Obtaining the College Scorecard Data</strong> <span class="el-body">— The assignment uses U.S. Department of Education College Scorecard data, which is published as downloadable files with an accompanying data dictionary. Two files are provided in the module for the 2015 data set.</span></li>
+<li><strong>Importing the Data into SQL Server</strong> <span class="el-body">— Before querying, the raw Scorecard file must be loaded into your CollegeDatabase as a usable table. Use the import techniques demonstrated in the Module 2 lectures.</span></li>
+<li><strong>Querying Cumulative Loan Debt Fields</strong> <span class="el-body">— The Scorecard data contains four cumulative loan debt fields: CUML_DEBT_P10, CUML_DEBT_P25, CUML_DEBT_P75, and CUML_DEBT_P90. The report focuses on the 75th and 90th percentile measures.</span></li>
+<li><strong>Including Daytona State College for Comparison</strong> <span class="el-body">— Daytona State College serves as a benchmark institution throughout the report. Its debt figures give context to the extreme high and low values in the ranked lists.</span></li>
+<li><strong>Writing in Report Format</strong> <span class="el-body">— Professional database work requires presenting query results in a friendly, easy-to-read format. Every report should explain the data, summarize the process, and describe what the results mean.</span></li>
+<li><strong>Prerequisite SQL Skills and Support Resources</strong> <span class="el-body">— The assignment assumes comfort with basic SQL SELECT, filtering, sorting, and limiting. If you are not yet comfortable at that level, practice before attempting the queries.</span></li>
+</ul>
+
+<footer class="presemaker-credit" data-credit="2" style="margin-top:2rem;padding:14px 8px;border-top:1px solid #ddd;background:#fff;text-align:center;font:13px/1.5 -apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;color:#595959;"><svg width="20" height="20" viewBox="0 0 2048 2048" aria-hidden="true" focusable="false" style="vertical-align:-5px;margin-right:7px"><rect width="2048" height="2048" rx="384" fill="#0F6E6E"/><path fill="#0A5050" d="M1024 1000 344 832v816l680 168zm0 0 680-168v816l-680 168z"/><path fill="#fff" d="M1024 944 384 784v808l640 160zm0 0 640-160v808l-640 160z"/><rect x="1002" y="944" width="44" height="808" fill="#0F6E6E"/><rect x="936" y="246" width="176" height="448" rx="44" fill="#fff"/><rect x="800" y="382" width="448" height="176" rx="44" fill="#fff"/></svg>Created with <a href="https://softwareplus.ai/coursebuilder/" target="_blank" rel="noopener" style="color:#2f5d8f;font-weight:600;text-decoration:none;">CourseBuilder+</a><span aria-hidden="true"> · </span><a href="https://softwareplus.ai/" target="_blank" rel="noopener" style="color:#2f5d8f;text-decoration:none;">SoftwarePlus.ai</a></footer>
+</body>
+</html>

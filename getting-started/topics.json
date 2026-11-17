@@ -1,0 +1,1561 @@
+{
+  "ModuleFolderName": "Getting_Started",
+  "CourseName": "COP4709 \u2014 Applied Database II",
+  "GeneratedDate": "2026-11-17T04:51:59.1332223-05:00",
+  "ModifiedDate": "2026-11-17T04:54:04.0169268-05:00",
+  "Outcomes": [],
+  "Topics": [
+    {
+      "Id": "f88c473f-3b06-4dea-949f-431fad90af1a",
+      "Title": "Why Report Structure Matters",
+      "Summary": "Introduces the purpose of a well-written assignment report: showing not only the answer but the understanding and reasoning behind it. Presents the six-section standard structure \u2014 Cover Page, Problem Statement, Approach \u0026 Methodology, Solution \u0026 Results, Conclusion, and Appendices \u2014 as a roadmap for the module.",
+      "SortOrder": 0,
+      "CreatedDate": "2026-11-17T04:51:59.1332223-05:00",
+      "ModifiedDate": "2026-11-17T04:51:59.1332223-05:00",
+      "Elements": [
+        {
+          "Id": "7ea49161-1eeb-4f8a-8787-550fdcf1c5c6",
+          "TopicId": "f88c473f-3b06-4dea-949f-431fad90af1a",
+          "Title": "Every Submission Tells a Story",
+          "BodyText": "An assignment report is more than a container for an answer \u2014 it is a narrative of what the problem was, how you approached it, and what you found.",
+          "Notes": "Graders read dozens of submissions; a report that tells a clear story is easier to follow and easier to award credit to.",
+          "SortOrder": 0,
+          "CreatedDate": "2026-11-17T04:52:13.7702012-05:00",
+          "ModifiedDate": "2026-11-17T04:52:13.7702012-05:00",
+          "Items": [
+            {
+              "Id": "8469fc91-a9df-491f-81e8-77d4018c87d4",
+              "Text": "The report should move logically from problem, to plan, to result.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "c45a530d-2c7a-4b9f-9410-9dd56f49c07f",
+              "Text": "A reader should be able to follow your reasoning without having to guess at missing steps.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "03b9151c-46b6-49fc-9e93-25ce88692a47",
+              "Text": "The structure itself carries part of the message \u2014 organization signals understanding.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "b7c2c346-4b89-44fe-bf10-1b39d2a400a6",
+              "Text": "Treat the report as communication, not as paperwork attached to an answer.",
+              "SortOrder": 3
+            }
+          ]
+        },
+        {
+          "Id": "d4b49abc-c6ba-4a95-9fe9-22ebeb746610",
+          "TopicId": "f88c473f-3b06-4dea-949f-431fad90af1a",
+          "Title": "Demonstrating Understanding, Not Just the Answer",
+          "BodyText": "A well-structured report shows that you understood the problem and reasoned through it clearly \u2014 not merely that you arrived at a result.",
+          "Notes": "Even when an approach has limitations, explaining your decisions shows maturity as a problem-solver.",
+          "SortOrder": 1,
+          "CreatedDate": "2026-11-17T04:52:13.7702012-05:00",
+          "ModifiedDate": "2026-11-17T04:52:13.7702012-05:00",
+          "Items": [
+            {
+              "Id": "1651f2e0-59c9-4902-8072-4faa94a2b8ed",
+              "Text": "The correct answer alone does not prove you knew why it was correct.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "0fc39efe-81b8-4ef7-b186-a48aeddc4c4a",
+              "Text": "Explaining your reasoning shows you made informed decisions rather than stumbling onto a result.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "0650cf75-36d7-4abb-a463-a3222c6ea223",
+              "Text": "Clear writing lets the grader see your thinking, which protects partial credit when something goes wrong.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "908690f6-8cba-40d1-90a3-ffd435249d39",
+              "Text": "Restating the problem and justifying your approach are evidence of comprehension.",
+              "SortOrder": 3
+            }
+          ]
+        },
+        {
+          "Id": "e58b407c-03e2-4186-a90a-e136c5dda99b",
+          "TopicId": "f88c473f-3b06-4dea-949f-431fad90af1a",
+          "Title": "The Six-Section Standard Structure",
+          "BodyText": "Standard technical reports follow a consistent six-section sequence that readers expect and graders look for.",
+          "Notes": "Section 5, the Conclusion, is optional for short homework assignments but adds value when there are limitations or lessons to report.",
+          "SortOrder": 2,
+          "CreatedDate": "2026-11-17T04:52:13.7702012-05:00",
+          "ModifiedDate": "2026-11-17T04:52:13.7702012-05:00",
+          "Items": [
+            {
+              "Id": "bd30b9e9-e01b-4abd-a84d-344b3897ff68",
+              "Text": "Section 1 \u2014 Cover Page: identity and context for the submission.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "96edf0e6-2604-4724-b0de-d8039bc822e2",
+              "Text": "Section 2 \u2014 Problem Statement: what you were asked to do.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "42a90ddb-b6a0-423f-9e94-3d274769b226",
+              "Text": "Section 3 \u2014 Approach \u0026 Methodology: how you planned to solve it.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "db3f1d29-071a-4762-9e29-3904c27948d4",
+              "Text": "Section 4 \u2014 Solution \u0026 Results: the actual answer, well presented.",
+              "SortOrder": 3
+            },
+            {
+              "Id": "29613a64-c0ab-42b0-b76d-db43ac8790e5",
+              "Text": "Section 5 \u2014 Conclusion (optional): reflection, limitations, and takeaways.",
+              "SortOrder": 4
+            },
+            {
+              "Id": "de498e75-4a04-4e89-b68b-7664d2b12504",
+              "Text": "Section 6 \u2014 Appendices: code, screenshots, and supporting material.",
+              "SortOrder": 5
+            }
+          ]
+        },
+        {
+          "Id": "522d8752-f7f2-4e6c-93f1-37461883e791",
+          "TopicId": "f88c473f-3b06-4dea-949f-431fad90af1a",
+          "Title": "Why a Consistent Structure Helps You",
+          "BodyText": "Using the same predictable structure on every assignment benefits both the writer and the reader.",
+          "Notes": "",
+          "SortOrder": 3,
+          "CreatedDate": "2026-11-17T04:52:13.7702012-05:00",
+          "ModifiedDate": "2026-11-17T04:52:13.7702012-05:00",
+          "Items": [
+            {
+              "Id": "536e0d29-dd3f-48a5-b753-5d02c58f326f",
+              "Text": "Graders know exactly where to look for each piece of required work.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "a94f14f2-8b37-4be5-b0ba-20e6672857ac",
+              "Text": "A fixed template reduces the chance of omitting a required element.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "91543209-db50-4737-85cd-611f58079249",
+              "Text": "Separating sections prevents methodology, results, and supporting material from blurring together.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "bd4b539b-f35e-4436-bb92-fa9998cb6724",
+              "Text": "Consistency makes the report easier to proofread and check against a submission checklist.",
+              "SortOrder": 3
+            }
+          ]
+        },
+        {
+          "Id": "a345c23c-69b9-42c0-b5f4-d996d1e2cacc",
+          "TopicId": "f88c473f-3b06-4dea-949f-431fad90af1a",
+          "Title": "How This Module Is Organized",
+          "BodyText": "The rest of this module walks through each of the six sections in order, explaining what belongs in it and what to avoid.",
+          "Notes": "Two worked examples and a pre-submission checklist appear at the end of the module to reinforce the structure in practice.",
+          "SortOrder": 4,
+          "CreatedDate": "2026-11-17T04:52:13.7702012-05:00",
+          "ModifiedDate": "2026-11-17T04:52:13.7702012-05:00",
+          "Items": [
+            {
+              "Id": "261acdd7-f888-45a6-961e-bfafed23d40c",
+              "Text": "Each section is covered with its required contents, formatting tips, and common mistakes.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "1045b486-5eaa-4813-881e-3552b3616225",
+              "Text": "Do and Don\u0027t guidance accompanies every section to make expectations concrete.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "0ee51b85-f806-42ed-ad69-730dc4874ed0",
+              "Text": "A recurring theme is deciding whether code is the solution or simply a tool used to find it.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "6f4223ce-d775-4212-9c92-93b2bf6c8358",
+              "Text": "A final checklist lets you verify your report before you submit.",
+              "SortOrder": 3
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Id": "d7afe100-34c4-486c-a1e6-70fb487e5f87",
+      "Title": "Cover Page and Problem Statement",
+      "Summary": "Covers the required identity and context elements of a cover page (name, date, course, assignment title, instructor) and formatting conventions. Then explains how to restate the problem in your own words, including inputs, constraints, and expected deliverables, so a reader unfamiliar with the assignment understands the task.",
+      "SortOrder": 1,
+      "CreatedDate": "2026-11-17T04:51:59.1332223-05:00",
+      "ModifiedDate": "2026-11-17T04:51:59.1332223-05:00",
+      "Elements": [
+        {
+          "Id": "8ca5298a-6ebe-4123-ab7c-674c1f383a4a",
+          "TopicId": "d7afe100-34c4-486c-a1e6-70fb487e5f87",
+          "Title": "Purpose of the Cover Page",
+          "BodyText": "The cover page is the identity card for your submission \u2014 it tells the grader instantly whose work this is and which assignment it answers.",
+          "Notes": "Think of it as metadata: it should be scannable in two seconds without reading any prose.",
+          "SortOrder": 0,
+          "CreatedDate": "2026-11-17T04:52:30.250987-05:00",
+          "ModifiedDate": "2026-11-17T04:52:30.250987-05:00",
+          "Items": [
+            {
+              "Id": "2b3b2a66-37ed-4665-8db2-bf3d6078a332",
+              "Text": "It establishes identity and context before any technical content begins.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "663e63be-db0e-4e38-b6e5-07ac69e1d1b5",
+              "Text": "A grader handling dozens of submissions should be able to sort and identify yours at a glance.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "3835e386-012a-4409-a7d1-6a1ff50cce93",
+              "Text": "It is not a place to demonstrate creativity \u2014 it is a place to be instantly legible.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "69565a39-eb84-412b-81f5-404174aa2905",
+              "Text": "A missing or incomplete cover page can cause a submission to be misattributed or ungraded.",
+              "SortOrder": 3
+            }
+          ]
+        },
+        {
+          "Id": "7460b0d1-7bd9-4142-9d8c-aab6056407c2",
+          "TopicId": "d7afe100-34c4-486c-a1e6-70fb487e5f87",
+          "Title": "Required Cover Page Elements",
+          "BodyText": "At minimum, every cover page must carry five pieces of identifying information.",
+          "Notes": "Example: Alex Rivera \u00B7 September 20, 2024 \u00B7 COP 3530 \u2013 Data Structures and Algorithms \u00B7 Homework 3: Implementing Binary Search in C \u00B7 Prof. Martinez",
+          "SortOrder": 1,
+          "CreatedDate": "2026-11-17T04:52:30.250987-05:00",
+          "ModifiedDate": "2026-11-17T04:52:30.250987-05:00",
+          "Items": [
+            {
+              "Id": "eb63a43e-8188-4273-852b-ba3c930d4c1d",
+              "Text": "Your full name, plus student ID if the course requires it.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "02ac9f08-9935-4031-b341-64692dd6ccdd",
+              "Text": "The date of submission \u2014 not the date the assignment was released.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "7fefec9e-7ff4-4eff-8ada-210571df3eef",
+              "Text": "Course name and number, such as COP 3530 \u2013 Data Structures.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "65870693-c6b6-4a69-8a7a-63ec8cd165f4",
+              "Text": "Assignment title, such as Homework 2: Binary Search Trees.",
+              "SortOrder": 3
+            },
+            {
+              "Id": "357f5234-c448-459e-a489-2871b6856d11",
+              "Text": "Instructor name is strongly recommended even when not explicitly required.",
+              "SortOrder": 4
+            }
+          ]
+        },
+        {
+          "Id": "8abed85d-029d-4d2a-afc9-db64c578373f",
+          "TopicId": "d7afe100-34c4-486c-a1e6-70fb487e5f87",
+          "Title": "Cover Page Formatting Conventions",
+          "BodyText": "Clean, consistent formatting makes the cover page do its job; decoration gets in the way.",
+          "Notes": "",
+          "SortOrder": 2,
+          "CreatedDate": "2026-11-17T04:52:30.250987-05:00",
+          "ModifiedDate": "2026-11-17T04:52:30.250987-05:00",
+          "Items": [
+            {
+              "Id": "7f769089-37ef-4143-bd55-681228669d65",
+              "Text": "Use consistent font sizes and align content logically \u2014 centered or as a left-aligned block.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "c293c848-564f-4a5e-a329-7574cafd7744",
+              "Text": "Keep the cover page on its own page; never merge it with the start of the Problem Statement.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "f0536a1f-ee6d-49c6-a0f8-67f5d5215fd9",
+              "Text": "Use the assignment name exactly as it appears in the syllabus or assignment sheet.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "23215b41-02bd-427e-a58d-0a2460f9dc25",
+              "Text": "Do not abbreviate your name or omit the course number.",
+              "SortOrder": 3
+            },
+            {
+              "Id": "bdfba936-ae0c-43a5-9527-096faa577fb6",
+              "Text": "Avoid decorative graphics, clip art, or filler text.",
+              "SortOrder": 4
+            }
+          ]
+        },
+        {
+          "Id": "5ee765d0-a2ad-46f6-8ff6-409b167b949c",
+          "TopicId": "d7afe100-34c4-486c-a1e6-70fb487e5f87",
+          "Title": "Purpose of the Problem Statement",
+          "BodyText": "The Problem Statement proves you understood what was being asked before you attempted to solve it.",
+          "Notes": "A useful test: a reader who has never seen the assignment sheet should understand exactly what you were asked to do after reading this section alone.",
+          "SortOrder": 3,
+          "CreatedDate": "2026-11-17T04:52:30.250987-05:00",
+          "ModifiedDate": "2026-11-17T04:52:30.250987-05:00",
+          "Items": [
+            {
+              "Id": "0fa46012-f29a-4464-b90e-6abf3b9db038",
+              "Text": "It restates the task either paraphrased or quoted from the assignment.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "83df3a0b-096a-4d3e-97f2-90372d8d2686",
+              "Text": "It frames everything that follows in the Approach, Solution, and Conclusion sections.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "7525879e-f984-4344-a4c1-9177c6c82611",
+              "Text": "Writing it in your own words forces you to confirm your own understanding.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "aa4c115f-3790-4c54-a7d6-db602d9f3af4",
+              "Text": "Skipping it because \u0027the instructor already knows the problem\u0027 misses the point \u2014 the section is also for you.",
+              "SortOrder": 3
+            }
+          ]
+        },
+        {
+          "Id": "471fb7a9-2956-4ccb-9010-7df2d701356f",
+          "TopicId": "d7afe100-34c4-486c-a1e6-70fb487e5f87",
+          "Title": "What to Include in the Problem Statement",
+          "BodyText": "A complete problem statement names the task, the inputs, the constraints, and the expected deliverable.",
+          "Notes": "Example: \u0027Given scores.txt containing 50 exam scores, compute mean, median, mode, standard deviation, minimum, and maximum, and report counts per letter-grade band. The deliverable is the statistical summary \u2014 not the program used to compute it.\u0027",
+          "SortOrder": 4,
+          "CreatedDate": "2026-11-17T04:52:30.250987-05:00",
+          "ModifiedDate": "2026-11-17T04:52:30.250987-05:00",
+          "Items": [
+            {
+              "Id": "81c8a4a3-6e6c-45f2-a925-d3cf37bc6b6f",
+              "Text": "State the task or question being solved in a clear sentence.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "ddfb0e90-4a45-45f6-8574-fa2fdfc83f11",
+              "Text": "Identify relevant inputs, data sets, or given conditions, including file names where applicable.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "43270d2b-4999-4a20-a1ac-a1b2b106bb79",
+              "Text": "Specify what form the answer or output should take.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "eb642163-8c34-4359-8049-c16e28cd53e2",
+              "Text": "List constraints or special conditions, such as required time complexity or mandatory test cases.",
+              "SortOrder": 3
+            },
+            {
+              "Id": "54c709b5-f375-40a4-a8c4-aedc5d0400eb",
+              "Text": "Make the deliverable explicit so the reader knows what counts as the answer.",
+              "SortOrder": 4
+            }
+          ]
+        },
+        {
+          "Id": "b3cc6f22-f4ae-4c90-8160-07ee648b5d8d",
+          "TopicId": "d7afe100-34c4-486c-a1e6-70fb487e5f87",
+          "Title": "Do\u0027s and Don\u0027ts for Restating the Problem",
+          "BodyText": "How you restate the problem signals whether you engaged with it or merely copied it.",
+          "Notes": "",
+          "SortOrder": 5,
+          "CreatedDate": "2026-11-17T04:52:30.250987-05:00",
+          "ModifiedDate": "2026-11-17T04:52:30.250987-05:00",
+          "Items": [
+            {
+              "Id": "ea6c7ea1-d162-4a26-95f3-7151be438fe8",
+              "Text": "Paraphrase in your own words \u2014 it demonstrates you read and understood the assignment.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "925d72b6-5815-46ae-baf0-641253a93823",
+              "Text": "Highlight any ambiguities you noticed and explain how you resolved them.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "896325fa-eb4a-4d5e-b979-14f8b5177d7c",
+              "Text": "Do not copy-paste the full assignment prompt verbatim with no synthesis.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "1edca91f-b4a4-46c0-9736-0ef62c64a096",
+              "Text": "Do not omit constraints that will later justify your approach, such as an O(log n) requirement.",
+              "SortOrder": 3
+            },
+            {
+              "Id": "3aae86a2-ef5a-4a7c-b365-534fca4cf141",
+              "Text": "Keep it factual and forward-looking; save reasoning about method for the Approach section.",
+              "SortOrder": 4
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Id": "373aaabd-3e5a-4bd9-9888-345c1007ac1c",
+      "Title": "Approach \u0026 Methodology",
+      "Summary": "Explains how to document your plan of attack before presenting the solution, including the chosen algorithm or technique, alternatives considered, assumptions, and tools used. Emphasizes explaining the \u0027why\u0027 rather than the \u0027what\u0027 and how to describe code that served as a computational tool.",
+      "SortOrder": 2,
+      "CreatedDate": "2026-11-17T04:51:59.1332223-05:00",
+      "ModifiedDate": "2026-11-17T04:51:59.1332223-05:00",
+      "Elements": [
+        {
+          "Id": "9ec13da2-dd1d-4cbc-ad53-76466afbc574",
+          "TopicId": "373aaabd-3e5a-4bd9-9888-345c1007ac1c",
+          "Title": "Purpose of the Approach \u0026 Methodology Section",
+          "BodyText": "The Approach \u0026 Methodology section describes how you planned to solve the problem, written before you present the actual solution. It is where your reasoning \u2014 not your results \u2014 takes center stage.",
+          "Notes": "Think of this section as the narrative bridge between understanding the problem and delivering the answer.",
+          "SortOrder": 0,
+          "CreatedDate": "2026-11-17T04:52:48.8479919-05:00",
+          "ModifiedDate": "2026-11-17T04:52:48.8479919-05:00",
+          "Items": [
+            {
+              "Id": "2c502624-afdb-4bb6-850e-2a4020201b84",
+              "Text": "It should explain your reasoning rather than simply list the steps you performed.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "7e164d53-f763-43d6-ac64-adf44e0bed2d",
+              "Text": "This is where critical thinking lives in the report.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "17a7c561-4e59-42ec-b00d-b895a84f8cd3",
+              "Text": "A strong section shows the instructor you made informed decisions instead of stumbling onto an answer.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "9e4c1108-ee30-4822-9d30-301abe5bbe3a",
+              "Text": "Discussing limitations of your chosen approach demonstrates maturity as a problem-solver.",
+              "SortOrder": 3
+            }
+          ]
+        },
+        {
+          "Id": "2aec9d26-cb35-49e8-abdd-bc721d829ed1",
+          "TopicId": "373aaabd-3e5a-4bd9-9888-345c1007ac1c",
+          "Title": "What to Include",
+          "BodyText": "A complete methodology section covers your chosen technique, the options you rejected, your assumptions, your process, and your tooling.",
+          "Notes": "",
+          "SortOrder": 1,
+          "CreatedDate": "2026-11-17T04:52:48.8479919-05:00",
+          "ModifiedDate": "2026-11-17T04:52:48.8479919-05:00",
+          "Items": [
+            {
+              "Id": "220f4e83-2580-44fc-b538-b09d40a2e256",
+              "Text": "State the algorithm, technique, or design pattern you chose and why you chose it.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "d1068e3b-f5b4-4082-93f7-b0f7bb2ea6ac",
+              "Text": "List any alternatives you considered and explain why you ruled them out.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "fb3c5e63-5034-480f-ba36-ceb2c1c3ee09",
+              "Text": "Document assumptions you made about the problem or data.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "b23c8aaf-6428-4374-9d20-3059144a464a",
+              "Text": "Give a high-level description of your process using a flowchart, pseudocode, or prose.",
+              "SortOrder": 3
+            },
+            {
+              "Id": "dbeccf94-41ba-4dfe-8733-d2ce75d65231",
+              "Text": "Identify the tools, languages, or libraries you used and the rationale behind them.",
+              "SortOrder": 4
+            }
+          ]
+        },
+        {
+          "Id": "ce8df2f6-4e9e-4d1e-a330-2038c45ed730",
+          "TopicId": "373aaabd-3e5a-4bd9-9888-345c1007ac1c",
+          "Title": "Explain the Why, Not the What",
+          "BodyText": "The most common weakness in this section is describing actions without justifying them. Graders are looking for the decision-making behind each step.",
+          "Notes": "Example of a strong justification: \u0022I used a hash map for O(1) lookups because the data set was large and sorted order wasn\u0027t required.\u0022",
+          "SortOrder": 2,
+          "CreatedDate": "2026-11-17T04:52:48.8479919-05:00",
+          "ModifiedDate": "2026-11-17T04:52:48.8479919-05:00",
+          "Items": [
+            {
+              "Id": "3f6ee07a-8a18-4adf-a927-0baf1c2dcb00",
+              "Text": "Pair every design choice with the reason that drove it.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "20389658-2afb-4c37-804c-c685ed86e6b9",
+              "Text": "Never write \u0022I just wrote the code\u0022 \u2014 that is not a methodology.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "7f0a3675-de5d-4503-a43c-f7c0c8327699",
+              "Text": "Trade-offs, constraints, and performance requirements are all valid justifications.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "58abe013-46ec-43a4-bdf1-0e9b5a4e71f2",
+              "Text": "Acknowledging a known limitation of your approach strengthens rather than weakens the report.",
+              "SortOrder": 3
+            }
+          ]
+        },
+        {
+          "Id": "0fd8d2bb-9e9f-4ba6-bf1b-e7e359da1eaa",
+          "TopicId": "373aaabd-3e5a-4bd9-9888-345c1007ac1c",
+          "Title": "When Code Is a Computational Tool",
+          "BodyText": "Sometimes you write a program simply to compute or analyze something; the code is how you obtained the answer, not the answer itself. In that case, the code is methodology.",
+          "Notes": "Example: a Python script that computes mean, median, and standard deviation from a data file.",
+          "SortOrder": 3,
+          "CreatedDate": "2026-11-17T04:52:48.8479919-05:00",
+          "ModifiedDate": "2026-11-17T04:52:48.8479919-05:00",
+          "Items": [
+            {
+              "Id": "8995c878-d98a-4b73-9e1d-b1b06126025f",
+              "Text": "Mention in Methodology that you wrote a program to perform the computation.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "94654485-a2f7-4928-968a-54ca99dcfc8a",
+              "Text": "Describe at a high level what the program does and why that approach was appropriate.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "0af9631f-aa0b-4a0c-942c-5a805d27bfee",
+              "Text": "Note the language and any relevant libraries used.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "b934ea9a-7662-40e0-b01c-90717bb2ddba",
+              "Text": "Place the full source code in the Appendix, labeled and referenced from the body.",
+              "SortOrder": 3
+            },
+            {
+              "Id": "b56db0b9-2812-4fb3-a7f2-e1ce0080aee3",
+              "Text": "Do not paste full source code into Methodology \u2014 a brief description or pseudocode is enough.",
+              "SortOrder": 4
+            }
+          ]
+        },
+        {
+          "Id": "11368dea-e8a9-4872-a5ae-eb85cdb0fdcb",
+          "TopicId": "373aaabd-3e5a-4bd9-9888-345c1007ac1c",
+          "Title": "The Tool-vs-Deliverable Test",
+          "BodyText": "Before deciding where code belongs, determine whether the code is what the instructor is grading or merely how you found the answer.",
+          "Notes": "\u0022Implement a binary search function in C\u0022 \u2192 code is the solution. \u0022Analyze this dataset and report the mean, median, and standard deviation\u0022 \u2192 code is a tool.",
+          "SortOrder": 4,
+          "CreatedDate": "2026-11-17T04:52:48.8479919-05:00",
+          "ModifiedDate": "2026-11-17T04:52:48.8479919-05:00",
+          "Items": [
+            {
+              "Id": "bd69425f-a7f1-4004-a9e0-b9cd00b540fa",
+              "Text": "Ask: \u0022Is the code what the instructor is grading, or is it just how I found the answer?\u0022",
+              "SortOrder": 0
+            },
+            {
+              "Id": "c92c19e8-d644-41dd-9950-e2ff6d9251eb",
+              "Text": "If you would submit the same result had you calculated it by hand, the code is methodology and belongs in the Appendix.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "88b2f0a5-27ff-431e-a8d1-444f8a596007",
+              "Text": "If the assignment asks you to implement something, the code is the deliverable and belongs in the Solution section.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "3848a7dc-cf56-4508-b259-f6a7d01b2991",
+              "Text": "Getting this distinction right is one of the most important skills in technical report writing.",
+              "SortOrder": 3
+            }
+          ]
+        },
+        {
+          "Id": "517d0249-76c0-478e-a7aa-6e52793db8ea",
+          "TopicId": "373aaabd-3e5a-4bd9-9888-345c1007ac1c",
+          "Title": "Worked Example of a Strong Methodology",
+          "BodyText": "A model methodology names the technique, justifies it against alternatives, and highlights a key design decision.",
+          "Notes": "Drawn from the binary search and grade-distribution example reports.",
+          "SortOrder": 5,
+          "CreatedDate": "2026-11-17T04:52:48.8479919-05:00",
+          "ModifiedDate": "2026-11-17T04:52:48.8479919-05:00",
+          "Items": [
+            {
+              "Id": "fec9742a-92d1-418a-96df-295f4e1629af",
+              "Text": "Binary search example: explained divide-and-conquer, justified the O(log n) requirement, and chose iteration over recursion to avoid call overhead and boundary-condition errors.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "069afe1c-aba9-4f1d-b8ad-9bf168eecf96",
+              "Text": "It also flagged a specific design decision: using mid = left \u002B (right - left) / 2 to prevent integer overflow.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "2960a543-1357-4806-9dec-8831dc523c7d",
+              "Text": "Grade analysis example: stated that a Python script loaded scores.txt, computed the statistics, and classified grade bands \u2014 with the full code in Appendix A.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "f05c7014-fdbe-4c79-b200-0b01e31bc090",
+              "Text": "It also noted verification: the mean was cross-checked against a spot calculation on a subset of the data.",
+              "SortOrder": 3
+            }
+          ]
+        },
+        {
+          "Id": "3da073b3-18ec-4dd2-8137-273affa39db2",
+          "TopicId": "373aaabd-3e5a-4bd9-9888-345c1007ac1c",
+          "Title": "Self-Check Before Submitting",
+          "BodyText": "Use a short checklist to confirm your Approach \u0026 Methodology section does its job.",
+          "Notes": "",
+          "SortOrder": 6,
+          "CreatedDate": "2026-11-17T04:52:48.8479919-05:00",
+          "ModifiedDate": "2026-11-17T04:52:48.8479919-05:00",
+          "Items": [
+            {
+              "Id": "dfc359dd-2a5f-4196-a5d0-509ecf4fed4a",
+              "Text": "Confirm the section explains why this approach was chosen, not just what was done.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "d1a0421f-9dcc-49b8-91aa-c38db3cd23de",
+              "Text": "Verify that any assumptions you made about the problem are explicitly stated.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "9f4bca19-d418-46b7-b79e-3427824e789a",
+              "Text": "Make sure alternatives considered and rejected are mentioned where relevant.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "68cacca9-9bbd-40fb-a2bf-b73edd964300",
+              "Text": "Check that methodology code is summarized here and placed in full in the Appendix.",
+              "SortOrder": 3
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Id": "f72031e7-894d-4519-a49b-7923e97ce2a6",
+      "Title": "Solution \u0026 Results: Code as Solution vs. Code as Tool",
+      "Summary": "Establishes the critical distinction between assignments where the code itself is the deliverable and those where code is merely a tool used to compute results. Provides the test question \u2014 could the answer have been reached another way? \u2014 to decide whether code belongs in Section 4 or the Appendix.",
+      "SortOrder": 3,
+      "CreatedDate": "2026-11-17T04:51:59.1332223-05:00",
+      "ModifiedDate": "2026-11-17T04:51:59.1332223-05:00",
+      "Elements": [
+        {
+          "Id": "9834b515-d9fc-4e37-998a-ecea4cbfd4ca",
+          "TopicId": "f72031e7-894d-4519-a49b-7923e97ce2a6",
+          "Title": "Identify the Deliverable First",
+          "BodyText": "Before writing Section 4, determine what the instructor is actually grading. The answer to that question decides what goes into the Solution section and what gets relegated to the Appendix.",
+          "Notes": "This is one of the most important distinctions in technical report writing \u2014 getting it wrong is a common source of lost points.",
+          "SortOrder": 0,
+          "CreatedDate": "2026-11-17T04:53:07.0808676-05:00",
+          "ModifiedDate": "2026-11-17T04:53:07.0808676-05:00",
+          "Items": [
+            {
+              "Id": "dc88017a-af9b-4847-aacb-4778688e8673",
+              "Text": "Ask: \u0022Is the code what the instructor is grading, or is it just how I found the answer?\u0022",
+              "SortOrder": 0
+            },
+            {
+              "Id": "bbd88cbf-e78d-43d7-a10b-4597615e92c5",
+              "Text": "The Solution section must always be self-contained and legible, regardless of assignment type.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "f30065e9-aab3-4b27-9642-190abf1a990f",
+              "Text": "Making this decision up front prevents you from either burying your deliverable or cluttering your results with irrelevant source code.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "0ce4d532-c876-477c-b861-98fe9712d567",
+              "Text": "The Problem Statement often signals the deliverable explicitly \u2014 e.g., \u0022The deliverable is the statistical summary, not the program used to compute it.\u0022",
+              "SortOrder": 3
+            }
+          ]
+        },
+        {
+          "Id": "9cf1c388-0e8d-41e5-be11-c9685f5c6df2",
+          "TopicId": "f72031e7-894d-4519-a49b-7923e97ce2a6",
+          "Title": "When Code IS the Solution",
+          "BodyText": "Some assignments ask you to implement something \u2014 a function, data structure, algorithm, or complete program. In those cases the code itself is what you are turning in, so it belongs directly in Section 4.",
+          "Notes": "Example prompt: \u0022Implement a binary search function in C.\u0022",
+          "SortOrder": 1,
+          "CreatedDate": "2026-11-17T04:53:07.0808676-05:00",
+          "ModifiedDate": "2026-11-17T04:53:07.0808676-05:00",
+          "Items": [
+            {
+              "Id": "60265b63-24c2-4279-afae-fd5ab8283617",
+              "Text": "Include the formatted, commented source code directly in the Solution section.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "e293c20f-751a-42ed-908d-bf6fd9f63042",
+              "Text": "Walk through the key functions and explain how the implementation works.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "f0972300-418d-4796-a681-3e3d51ed2c6d",
+              "Text": "Show sample input and output in a clean table or formatted block \u2014 never as a screenshot.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "7de79b37-1c34-4f32-8706-55f957966f84",
+              "Text": "Include any requested complexity analysis, stated explicitly (e.g., \u0022The algorithm runs in O(log n) time\u0022).",
+              "SortOrder": 3
+            },
+            {
+              "Id": "085a5e2d-f7fd-4c8a-a4eb-fdabbb80319d",
+              "Text": "Never bury implementation code in the Appendix when the implementation is what was asked for.",
+              "SortOrder": 4
+            }
+          ]
+        },
+        {
+          "Id": "e2eb312a-6704-4f38-9186-8c8d915f7e5c",
+          "TopicId": "f72031e7-894d-4519-a49b-7923e97ce2a6",
+          "Title": "When Code IS a Tool",
+          "BodyText": "Other assignments ask you to find, compute, or analyze something, and you write a script to do the work. Here the code is how you reached the answer \u2014 not the answer itself.",
+          "Notes": "Example prompt: \u0022Analyze this dataset and report the mean, median, and standard deviation.\u0022",
+          "SortOrder": 2,
+          "CreatedDate": "2026-11-17T04:53:07.0808676-05:00",
+          "ModifiedDate": "2026-11-17T04:53:07.0808676-05:00",
+          "Items": [
+            {
+              "Id": "af92b443-3fe1-4df2-8595-4dbc34b337a6",
+              "Text": "Present only the results in Section 4 \u2014 tables, statistics, findings, and narrative.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "ceba9b7c-6012-4825-b1b3-28245a31ac82",
+              "Text": "Mention in the Methodology section that you wrote a program, what it does at a high level, and the language and libraries used.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "e85d6dd8-986c-4893-bce3-21a485d5ebc9",
+              "Text": "Place the full source code in the Appendix with a descriptive label, such as \u0022Appendix A: Python script used to compute descriptive statistics.\u0022",
+              "SortOrder": 2
+            },
+            {
+              "Id": "1d5faea7-258f-4ca6-8eed-6017b4e31f2d",
+              "Text": "Reference the appendix from the body of the report so the grader can verify your work.",
+              "SortOrder": 3
+            }
+          ]
+        },
+        {
+          "Id": "04a14fa5-3f41-41f5-a3c2-850a41f01327",
+          "TopicId": "f72031e7-894d-4519-a49b-7923e97ce2a6",
+          "Title": "The Test Question",
+          "BodyText": "A single question resolves nearly every case: could you have arrived at the same answer by hand calculation or another method?",
+          "Notes": "If the result would be identical whether you coded it or computed it manually, the code is methodology \u2014 not a deliverable.",
+          "SortOrder": 3,
+          "CreatedDate": "2026-11-17T04:53:07.0808676-05:00",
+          "ModifiedDate": "2026-11-17T04:53:07.0808676-05:00",
+          "Items": [
+            {
+              "Id": "0ba7a0d8-2c75-4b6a-9445-c3aca1f151dc",
+              "Text": "If yes, the code is a tool \u2014 its job ends when it produces the result, and only the result belongs in Section 4.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "1900e472-3049-4a5a-87ab-d08af149cf1e",
+              "Text": "If no \u2014 because producing the code was the task \u2014 the code is the solution and belongs in Section 4.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "adc11d72-2373-4c38-94c1-407d2c6a5731",
+              "Text": "Rephrased: \u0022If you would turn in the same result if you had calculated it by hand, the code is methodology \u2014 put it in the Appendix.\u0022",
+              "SortOrder": 2
+            },
+            {
+              "Id": "bfe6e187-75f9-4281-b75a-fc01a178d3eb",
+              "Text": "Apply the test before you start writing Section 4, not after.",
+              "SortOrder": 3
+            }
+          ]
+        },
+        {
+          "Id": "822e79f2-a517-4d88-86fc-c2bc627e688a",
+          "TopicId": "f72031e7-894d-4519-a49b-7923e97ce2a6",
+          "Title": "Worked Contrast: Two Reports, Two Placements",
+          "BodyText": "Comparing a binary search implementation report to a grade distribution analysis report shows the rule in action.",
+          "Notes": "Both reports use the same six-section structure; only the placement of code differs.",
+          "SortOrder": 4,
+          "CreatedDate": "2026-11-17T04:53:07.0808676-05:00",
+          "ModifiedDate": "2026-11-17T04:53:07.0808676-05:00",
+          "Items": [
+            {
+              "Id": "f27305cb-35c8-4d23-986d-ec4d13573326",
+              "Text": "In the binary search report, Section 4 contains the full commented C source plus a test-results table \u2014 the code is the deliverable.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "dec91871-677c-47d9-9dc6-8b72f58e1b8a",
+              "Text": "In the grade analysis report, Section 4 contains only a descriptive statistics table and a grade distribution table \u2014 no code appears at all.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "1d356f55-23ec-4e4d-b7d5-85f9f5cbb651",
+              "Text": "The Python script that produced those statistics appears in Appendix A, labeled as supporting methodology.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "653850c3-9c7b-4b80-b34b-11641b402bac",
+              "Text": "In both reports, terminal screenshots live in the appendices as supplemental evidence only.",
+              "SortOrder": 3
+            }
+          ]
+        },
+        {
+          "Id": "a51621cb-874c-40ae-a791-8f80ec54c807",
+          "TopicId": "f72031e7-894d-4519-a49b-7923e97ce2a6",
+          "Title": "Presenting Results Clearly",
+          "BodyText": "Whatever the assignment type, Section 4 must present findings in readable, typeset form and explain what they mean.",
+          "Notes": "Critical rule: a screen capture must never substitute for a written solution. Screenshots belong in the Appendix.",
+          "SortOrder": 5,
+          "CreatedDate": "2026-11-17T04:53:07.0808676-05:00",
+          "ModifiedDate": "2026-11-17T04:53:07.0808676-05:00",
+          "Items": [
+            {
+              "Id": "8f56b544-8243-4be5-8c40-7d83f14fd7ba",
+              "Text": "Summarize results in plain language: what answer did you get, does it make sense, and did you verify it?",
+              "SortOrder": 0
+            },
+            {
+              "Id": "ec0c1755-eed6-4876-b640-60399ad57400",
+              "Text": "Use tables rather than prose lists when comparing multiple values or test cases.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "978d9e16-6440-44d5-bd65-ffffc67c9417",
+              "Text": "State the final answer explicitly instead of leaving the grader to infer it.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "db968d91-38c1-4270-a6ed-bf0ab7fe3567",
+              "Text": "Avoid raw, unformatted output, terminal dumps, and IDE screenshots as the solution itself.",
+              "SortOrder": 3
+            },
+            {
+              "Id": "7274edf2-0b4e-48ba-afb8-d8076602097e",
+              "Text": "Format any code with consistent indentation, meaningful variable names, and comments on non-obvious logic.",
+              "SortOrder": 4
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Id": "629c054e-e402-41a9-9b31-dd780564dde2",
+      "Title": "Presenting the Solution Clearly",
+      "Summary": "Details how to present solutions for programming, mathematical, and design assignments using formatted code blocks, labeled steps, tables, and clear prose. Reinforces the critical rule that screen captures must never substitute for a written, typeset solution and that final answers must be explicitly stated.",
+      "SortOrder": 4,
+      "CreatedDate": "2026-11-17T04:51:59.1332223-05:00",
+      "ModifiedDate": "2026-11-17T04:51:59.1332223-05:00",
+      "Elements": [
+        {
+          "Id": "935a98e1-a33c-4572-850a-02a7fdb2609d",
+          "TopicId": "629c054e-e402-41a9-9b31-dd780564dde2",
+          "Title": "The Critical Rule: Never Substitute Screenshots for a Written Solution",
+          "BodyText": "The Solution section must present your work in clear, readable, typeset form. Screen captures are supplemental evidence only and belong in the Appendix.",
+          "Notes": "Graders need to read and follow your reasoning directly in the body of the report; an image of an IDE window or terminal dump does not demonstrate understanding.",
+          "SortOrder": 0,
+          "CreatedDate": "2026-11-17T04:53:25.0278401-05:00",
+          "ModifiedDate": "2026-11-17T04:53:25.0278401-05:00",
+          "Items": [
+            {
+              "Id": "e0949979-6b3d-4045-9e89-9fcda18e3b8c",
+              "Text": "Never use a screenshot of your IDE or terminal as the solution itself.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "f84ba4fc-b554-41e0-afac-b2d423e38ec6",
+              "Text": "Place all screen captures in a labeled appendix as evidence that your program ran correctly.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "6dac1763-12a0-4498-bb73-10b9f39d5fb1",
+              "Text": "Avoid pasting raw, unformatted output or terminal dumps into the Solution section.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "469d3f1c-809e-451d-b1f0-32f03dd6ada2",
+              "Text": "Every solution must be self-contained and legible without reference to an image.",
+              "SortOrder": 3
+            },
+            {
+              "Id": "cf2f68c4-a350-4155-b838-2324286e030b",
+              "Text": "Reference supporting screenshots from the body with a note such as \u0022(see Appendix B)\u0022.",
+              "SortOrder": 4
+            }
+          ]
+        },
+        {
+          "Id": "3f26b21e-06eb-4479-b297-4ce2c0d61cf3",
+          "TopicId": "629c054e-e402-41a9-9b31-dd780564dde2",
+          "Title": "Presenting Programming Assignments",
+          "BodyText": "When the code is the deliverable, present it directly in the Solution section using formatted, syntax-highlighted code blocks and explain how it works.",
+          "Notes": "Example: \u0022Implement a binary search function in C\u0022 \u2014 the code is what the instructor is grading, so it belongs in Section 4.",
+          "SortOrder": 1,
+          "CreatedDate": "2026-11-17T04:53:25.0278401-05:00",
+          "ModifiedDate": "2026-11-17T04:53:25.0278401-05:00",
+          "Items": [
+            {
+              "Id": "ecef5f47-d05a-4b5f-b02c-4478ab3cea03",
+              "Text": "Use consistent indentation, meaningful variable names, and comments explaining non-obvious logic.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "21c6a351-7326-465b-82cb-4674f3e84c05",
+              "Text": "Walk the reader through the key functions and describe what each one does.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "5b8d6e83-50d7-424e-b9d9-cb41e2ff56f8",
+              "Text": "Show sample input and output in a clean table or formatted block rather than a screenshot.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "e1d897e0-c263-4dfe-92f6-0e4ebec44221",
+              "Text": "Include any complexity analysis the assignment requested.",
+              "SortOrder": 3
+            },
+            {
+              "Id": "906831e3-6639-49ca-8242-952e9f8de44b",
+              "Text": "Note design decisions inside the code, such as using mid = left \u002B (right - left) / 2 to avoid integer overflow.",
+              "SortOrder": 4
+            }
+          ]
+        },
+        {
+          "Id": "56fc3bd0-d00e-4f76-92af-153d8dde9c5a",
+          "TopicId": "629c054e-e402-41a9-9b31-dd780564dde2",
+          "Title": "Presenting Mathematical and Analytical Work",
+          "BodyText": "For mathematical or analytical assignments, show your work step by step so a grader can follow your reasoning from the given data to the final answer.",
+          "Notes": "If you wrote a script to compute the values, present only the computed results here \u2014 the script itself goes in the Appendix.",
+          "SortOrder": 2,
+          "CreatedDate": "2026-11-17T04:53:25.0278401-05:00",
+          "ModifiedDate": "2026-11-17T04:53:25.0278401-05:00",
+          "Items": [
+            {
+              "Id": "f76e09f7-5199-4c2c-861f-4e553a055431",
+              "Text": "Label each step of the derivation or calculation explicitly.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "ec95bb74-46cc-45ad-859f-725cd98ced96",
+              "Text": "Do not require the grader to guess at intermediate reasoning or skipped steps.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "a2e92db8-d050-4397-893e-6aa4a374f665",
+              "Text": "Use tables when results are comparative or when reporting multiple values.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "84012924-7f78-46f8-832a-42ebeee8bb99",
+              "Text": "Present data in structured tables, not as a paragraph of numbers.",
+              "SortOrder": 3
+            },
+            {
+              "Id": "d66de4b6-8ff5-4e91-b41d-ff1c7d4a5b9b",
+              "Text": "Example: a descriptive statistics table listing mean, median, mode, standard deviation, minimum, and maximum.",
+              "SortOrder": 4
+            }
+          ]
+        },
+        {
+          "Id": "db515cf6-06ea-4f12-80bb-337ec12a86af",
+          "TopicId": "629c054e-e402-41a9-9b31-dd780564dde2",
+          "Title": "Presenting Design and Written Assignments",
+          "BodyText": "Design and written deliverables rely on clear structure and explicit description rather than on the reader inferring your intent.",
+          "Notes": "",
+          "SortOrder": 3,
+          "CreatedDate": "2026-11-17T04:53:25.0278401-05:00",
+          "ModifiedDate": "2026-11-17T04:53:25.0278401-05:00",
+          "Items": [
+            {
+              "Id": "142c727e-0a6c-45cd-a027-ae4479440905",
+              "Text": "Use headings to organize the solution into logical, navigable sections.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "c29b93d8-f14a-4b5c-8766-13cefba6ba06",
+              "Text": "Embed diagrams as images or describe them clearly in prose.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "3e6984b4-5670-463b-9f0d-50d1f9f8f22b",
+              "Text": "Describe your design explicitly \u2014 don\u0027t rely on the reader seeing what you saw.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "4da7fc52-a79e-4135-bb3b-08199be0d9c8",
+              "Text": "Keep prose concise and focused on what the design does and why.",
+              "SortOrder": 3
+            }
+          ]
+        },
+        {
+          "Id": "d611382c-8d55-4a0e-bce2-92e0bb67985a",
+          "TopicId": "629c054e-e402-41a9-9b31-dd780564dde2",
+          "Title": "Using Tables and Formatting for Readability",
+          "BodyText": "Structured formatting makes results easy to scan and verify, which is why tables are preferred over prose whenever multiple values are being compared.",
+          "Notes": "Example test-results table columns: Test Case, Target, Expected Index, Actual Index, Pass?",
+          "SortOrder": 4,
+          "CreatedDate": "2026-11-17T04:53:25.0278401-05:00",
+          "ModifiedDate": "2026-11-17T04:53:25.0278401-05:00",
+          "Items": [
+            {
+              "Id": "e774a45f-be3e-4eca-bf53-282c4501cdab",
+              "Text": "Present comparative data in tables rather than as prose lists.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "24ead8fe-9501-4dcb-a47a-c5c71974393f",
+              "Text": "Use tables for test cases, showing expected versus actual results and a pass/fail indicator.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "bd8c3ac0-cda6-4355-a93a-1c9c7d27eb53",
+              "Text": "Keep code blocks formatted with consistent indentation and syntax highlighting.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "66c2a3c9-54a4-460d-a90f-61464625a695",
+              "Text": "Structured output also helps you catch your own errors before submission.",
+              "SortOrder": 3
+            }
+          ]
+        },
+        {
+          "Id": "a517e3dd-c9c3-4402-967c-101e2752b85f",
+          "TopicId": "629c054e-e402-41a9-9b31-dd780564dde2",
+          "Title": "Stating Results and the Final Answer Explicitly",
+          "BodyText": "After presenting the solution, summarize your results in plain language and state the final answer outright. A brief results narrative ties the section together.",
+          "Notes": "Example: \u0022All three test cases produced the expected results. The function correctly handles boundary elements and returns \u22121 for values outside the array.\u0022",
+          "SortOrder": 5,
+          "CreatedDate": "2026-11-17T04:53:25.0278401-05:00",
+          "ModifiedDate": "2026-11-17T04:53:25.0278401-05:00",
+          "Items": [
+            {
+              "Id": "fb68ef83-de24-4914-bd67-71fc93097f00",
+              "Text": "State the answer explicitly, for example: \u0022The algorithm runs in O(n log n) time.\u0022",
+              "SortOrder": 0
+            },
+            {
+              "Id": "a3162529-f3e7-43b7-9571-f7630cbf2a6c",
+              "Text": "Explain what the answer means \u2014 never leave results unexplained.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "6694e077-e443-4d44-9c7f-1cb9c30ae864",
+              "Text": "Address whether the result makes sense and how you verified it.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "cd6f3de1-227d-4825-8284-65a1e2c49d0a",
+              "Text": "Interpret data findings narratively, such as noting that a standard deviation of 12.7 indicates moderate spread.",
+              "SortOrder": 3
+            },
+            {
+              "Id": "a907769e-94c3-4290-a1ae-2da13b365284",
+              "Text": "Confirm on your final review that the explicit final answer appears in the Solution section.",
+              "SortOrder": 4
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Id": "569f9378-244d-4b97-9144-1d9ccbff6832",
+      "Title": "Conclusions and Appendices",
+      "Summary": "Describes when an optional conclusion adds value \u2014 acknowledging limitations, unexpected difficulties, lessons learned, or future extensions \u2014 and how to keep it brief and substantive. Also covers what belongs in appendices, how to label them, and how to reference them from the report body.",
+      "SortOrder": 5,
+      "CreatedDate": "2026-11-17T04:51:59.1332223-05:00",
+      "ModifiedDate": "2026-11-17T04:51:59.1332223-05:00",
+      "Elements": [
+        {
+          "Id": "8e02d1ae-1e6c-41ff-a82b-9cb7853152f0",
+          "TopicId": "569f9378-244d-4b97-9144-1d9ccbff6832",
+          "Title": "When a Conclusion Adds Value",
+          "BodyText": "The Conclusion is optional for short homework assignments, but in several situations it meaningfully strengthens your report. Use it when there is something real to say beyond the solution itself.",
+          "Notes": "If none of these conditions apply, it is acceptable to end the report after the Solution \u0026 Results section.",
+          "SortOrder": 0,
+          "CreatedDate": "2026-11-17T04:53:40.3773226-05:00",
+          "ModifiedDate": "2026-11-17T04:53:40.3773226-05:00",
+          "Items": [
+            {
+              "Id": "acabe4e9-3890-4601-a03d-2dfc6b03d335",
+              "Text": "Include one when your solution has known limitations you want to acknowledge.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "62d99dd8-9d45-4b62-98e6-c1e930371ea6",
+              "Text": "Include one when unexpected difficulties affected your result or approach.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "add50f76-0b31-4823-8741-0057283370a2",
+              "Text": "Include one when you want to reflect on what the assignment taught you.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "8aa3e182-54d0-45f7-aa5a-a979befd916e",
+              "Text": "Include one when there are extensions or improvements you would explore with more time.",
+              "SortOrder": 3
+            }
+          ]
+        },
+        {
+          "Id": "72d3c53c-8212-44f0-8f1b-a527343b2db4",
+          "TopicId": "569f9378-244d-4b97-9144-1d9ccbff6832",
+          "Title": "How to Write a Strong Conclusion",
+          "BodyText": "A good conclusion is short \u2014 roughly 2\u20134 sentences up to a brief paragraph. It looks forward or inward rather than backward over material the reader has already seen.",
+          "Notes": "Example: \u0022This implementation correctly solves the stated problem for all tested inputs. The current approach uses O(n) auxiliary space for the stack; a future improvement could explore an iterative solution to reduce space overhead. The assignment reinforced the relationship between recursion and explicit stack-based iteration, which I found clarifying.\u0022",
+          "SortOrder": 1,
+          "CreatedDate": "2026-11-17T04:53:40.3773226-05:00",
+          "ModifiedDate": "2026-11-17T04:53:40.3773226-05:00",
+          "Items": [
+            {
+              "Id": "b09cd417-545f-4fe0-9cbb-8b4a122e8f71",
+              "Text": "Do not re-summarize the entire report \u2014 the reader just read it.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "47c1019d-97b3-4d0c-a319-93f6ed8ff3cc",
+              "Text": "Focus on lessons learned, caveats, or next steps.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "f9dc0b7a-a960-44e8-b6bb-fa9c1095b44e",
+              "Text": "Be honest about limitations; it demonstrates maturity, not weakness.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "7f1d288f-43a7-49d8-8c9a-be6e1fc284f8",
+              "Text": "Keep it brief and substantive rather than padded.",
+              "SortOrder": 3
+            }
+          ]
+        },
+        {
+          "Id": "e289c42a-2b64-4499-8137-b93fd4a008bf",
+          "TopicId": "569f9378-244d-4b97-9144-1d9ccbff6832",
+          "Title": "Conclusion Pitfalls to Avoid",
+          "BodyText": "Weak conclusions are usually filler sentences that restate the obvious or make excuses. Avoid these common traps.",
+          "Notes": "",
+          "SortOrder": 2,
+          "CreatedDate": "2026-11-17T04:53:40.3773226-05:00",
+          "ModifiedDate": "2026-11-17T04:53:40.3773226-05:00",
+          "Items": [
+            {
+              "Id": "9da31541-4b3d-4ea4-93ae-99e8cf58d512",
+              "Text": "Don\u0027t write \u0022In conclusion, I completed the assignment\u0022 \u2014 it adds nothing.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "f2ba3495-f670-4673-9658-7b2fd10447cc",
+              "Text": "Don\u0027t use the conclusion to apologize for errors; fix the errors instead.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "7409dedf-b218-408f-b2f0-d5163ed5ae5d",
+              "Text": "Don\u0027t stretch a conclusion to fill space when you have nothing substantive to add.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "27f11ee4-60f8-4830-88d1-a3fc7255b7fd",
+              "Text": "Don\u0027t introduce brand-new results that belong in the Solution section.",
+              "SortOrder": 3
+            }
+          ]
+        },
+        {
+          "Id": "f423bf42-a649-46b3-80fe-2ebfbdcb2f12",
+          "TopicId": "569f9378-244d-4b97-9144-1d9ccbff6832",
+          "Title": "What Belongs in the Appendices",
+          "BodyText": "Appendices hold supporting materials \u2014 anything that would interrupt the flow of your Solution section but that a grader might want to verify.",
+          "Notes": "",
+          "SortOrder": 3,
+          "CreatedDate": "2026-11-17T04:53:40.3773226-05:00",
+          "ModifiedDate": "2026-11-17T04:53:40.3773226-05:00",
+          "Items": [
+            {
+              "Id": "6dd39fe4-a241-40f3-bc36-10af96aacf37",
+              "Text": "Full source code, especially when only excerpts appeared in the Solution section.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "e57bba7a-1b70-464a-9d89-d1cbc35eb5a4",
+              "Text": "Screen captures of program output, test runs, IDE windows, or terminal sessions.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "dca5bc5c-a62d-4d76-9abe-46a7d861eefc",
+              "Text": "Test data such as input files, data sets, or sample test cases.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "bd8a5ec5-9cbd-480b-ba17-71168e58da16",
+              "Text": "Reference materials, cited sources, algorithm references, or external documentation.",
+              "SortOrder": 3
+            },
+            {
+              "Id": "7e8b3abb-0493-49f7-b24b-d07679d04844",
+              "Text": "Additional diagrams or UML and other supporting design artifacts.",
+              "SortOrder": 4
+            }
+          ]
+        },
+        {
+          "Id": "3160b020-d2be-42ee-a4ce-42198a1b6d5f",
+          "TopicId": "569f9378-244d-4b97-9144-1d9ccbff6832",
+          "Title": "Labeling and Referencing Appendices",
+          "BodyText": "Every appendix needs a clear label and a pointer from the main body so the grader knows where to look and why the material matters.",
+          "Notes": "Example labels: \u0022Appendix A: Full Source Code\u0022, \u0022Appendix B: Sample Output Screenshots\u0022, \u0022Appendix A: Python script used to compute descriptive statistics.\u0022",
+          "SortOrder": 4,
+          "CreatedDate": "2026-11-17T04:53:40.3773226-05:00",
+          "ModifiedDate": "2026-11-17T04:53:40.3773226-05:00",
+          "Items": [
+            {
+              "Id": "3a6116ab-6c70-4ac3-8d15-4f8c010b395f",
+              "Text": "Label each appendix with a letter and a descriptive title, e.g., Appendix A: Full Source Code.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "2165b462-7800-4a5c-8306-364b5b518bdf",
+              "Text": "Reference appendices from the report body using a parenthetical such as \u0022(see Appendix A).\u0022",
+              "SortOrder": 1
+            },
+            {
+              "Id": "94e5161d-e3f5-434e-9a62-88fa19abf6f0",
+              "Text": "Order appendices logically in the sequence they are first referenced.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "01563bb4-13bb-48ad-b0a3-651e7ce51993",
+              "Text": "Don\u0027t dump unorganized files \u2014 label and order everything deliberately.",
+              "SortOrder": 3
+            }
+          ]
+        },
+        {
+          "Id": "2e619153-d857-4bcb-8ff4-cb78794fc838",
+          "TopicId": "569f9378-244d-4b97-9144-1d9ccbff6832",
+          "Title": "Methodology Code Belongs in the Appendix",
+          "BodyText": "When the assignment asked you to compute or analyze something and you wrote a script to do the work, that code is a methodology tool, not the deliverable.",
+          "Notes": "In the grade-distribution example, the Python script appears in Appendix A while Section 4 presents only the statistics and grade-band tables.",
+          "SortOrder": 5,
+          "CreatedDate": "2026-11-17T04:53:40.3773226-05:00",
+          "ModifiedDate": "2026-11-17T04:53:40.3773226-05:00",
+          "Items": [
+            {
+              "Id": "a3247912-da9e-4450-a8df-625b1bbada0d",
+              "Text": "Place the full source code in the Appendix with a descriptive label identifying its purpose.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "90c64aee-f57d-40d1-bc72-692baae7ab38",
+              "Text": "Keep only the results the code produced in Section 4, presented in tables or formatted clearly.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "4ee06369-a8fe-417b-9ce5-99d3b99ca585",
+              "Text": "Conversely, don\u0027t put solution code in the Appendix when the implementation is what was asked for.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "7e00b5a3-fb71-4047-993e-2f0958f2523f",
+              "Text": "Never substitute appendix screenshots for a written solution in Section 4.",
+              "SortOrder": 3
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Id": "dbd721cf-ffb5-4199-a3b1-b33eebe8f031",
+      "Title": "Worked Examples and Pre-Submission Checklist",
+      "Summary": "Walks through two full illustrative reports \u2014 a binary search implementation where code is the solution, and a grade distribution analysis where code is a tool \u2014 highlighting where code appears in each. Closes with a section-by-section checklist for reviewing a report before submission.",
+      "SortOrder": 6,
+      "CreatedDate": "2026-11-17T04:51:59.1332223-05:00",
+      "ModifiedDate": "2026-11-17T04:51:59.1332223-05:00",
+      "Elements": [
+        {
+          "Id": "a88792de-f7e1-40b0-b921-539e867f02d8",
+          "TopicId": "dbd721cf-ffb5-4199-a3b1-b33eebe8f031",
+          "Title": "Why Two Worked Examples?",
+          "BodyText": "The guide closes with two complete illustrative reports that differ in one critical way: what the deliverable actually is. Reading them side by side makes the \u0027code as solution\u0027 versus \u0027code as tool\u0027 distinction concrete.",
+          "Notes": "Example 1 is a binary search implementation (COP 3530, Homework 3). Example 2 is a grade distribution analysis (COP 3530, Homework 5).",
+          "SortOrder": 0,
+          "CreatedDate": "2026-11-17T04:54:04.0168848-05:00",
+          "ModifiedDate": "2026-11-17T04:54:04.0168848-05:00",
+          "Items": [
+            {
+              "Id": "f1fb3074-6b58-409c-9513-cd50043c5f7b",
+              "Text": "Both examples use the same six-section structure, so the only meaningful difference is where the code lives.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "b192fa86-d7ea-4756-98ac-dcd653772445",
+              "Text": "In Example 1, the assignment asks the student to implement something, so the code is the answer.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "f4c6e7f1-dd65-4d3d-a726-31655e4076c8",
+              "Text": "In Example 2, the assignment asks the student to compute and report statistics, so the code is only the means.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "1923b8dd-55b7-4591-aaf3-ba70c969264c",
+              "Text": "As you read each, track which section contains source code and ask why it belongs there.",
+              "SortOrder": 3
+            }
+          ]
+        },
+        {
+          "Id": "45e452b0-7a3a-4f92-9da4-599c339ad259",
+          "TopicId": "dbd721cf-ffb5-4199-a3b1-b33eebe8f031",
+          "Title": "Example 1 \u2014 Binary Search: Code IS the Solution",
+          "BodyText": "Alex Rivera\u0027s Homework 3 report implements binary search in C, where the code itself is the graded deliverable. The full, commented source appears directly in Section 4.",
+          "Notes": "Problem Statement specifies: sorted integer array, return index or -1, O(log n) required, tested on middle, endpoint, and absent targets.",
+          "SortOrder": 1,
+          "CreatedDate": "2026-11-17T04:54:04.0168848-05:00",
+          "ModifiedDate": "2026-11-17T04:54:04.0168848-05:00",
+          "Items": [
+            {
+              "Id": "fcec1a1b-fc61-4462-943b-f2ded5c89bfb",
+              "Text": "The Methodology section explains the divide-and-conquer reasoning and justifies choosing iteration over recursion for lower overhead and simpler boundary logic.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "500f39c8-f2b7-413e-a4cc-97711f0df264",
+              "Text": "It also flags the design decision to use mid = left \u002B (right - left) / 2 to prevent integer overflow.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "9bb6488e-ca6b-43a7-8811-0dcd9f5c9e5e",
+              "Text": "Section 4 presents formatted, commented C code followed by a test-results table showing expected versus actual index for all three cases.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "5a0b04f2-64e9-4bfc-a70a-b1d25ec3e883",
+              "Text": "A short narrative confirms all three tests passed, including the boundary case at index 0 and the not-found case.",
+              "SortOrder": 3
+            },
+            {
+              "Id": "ed5dacbb-97d1-448e-bebb-a2956bd78d37",
+              "Text": "Appendix A holds the terminal screenshot of program output \u2014 supplementing, never replacing, the written solution.",
+              "SortOrder": 4
+            }
+          ]
+        },
+        {
+          "Id": "247efe63-7182-4781-94d7-ae69e20f9e82",
+          "TopicId": "dbd721cf-ffb5-4199-a3b1-b33eebe8f031",
+          "Title": "Example 2 \u2014 Grade Distribution: Code IS a Tool",
+          "BodyText": "Jordan Kim\u0027s Homework 5 report analyzes 50 exam scores from scores.txt and reports descriptive statistics and grade bands. Here the findings are the deliverable, so no code appears in Section 4.",
+          "Notes": "The Problem Statement explicitly states: \u0027The deliverable is the statistical summary and grade distribution table \u2014 not the program used to compute them.\u0027",
+          "SortOrder": 2,
+          "CreatedDate": "2026-11-17T04:54:04.0168848-05:00",
+          "ModifiedDate": "2026-11-17T04:54:04.0168848-05:00",
+          "Items": [
+            {
+              "Id": "d10b02c5-dae1-4dd5-a1fe-108462216192",
+              "Text": "Section 3 describes the Python script at a high level, names the language and the statistics module, and explains why Python suited the task.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "1174860c-4beb-41b7-bc46-a3f85aa14688",
+              "Text": "Section 3 also notes that results were verified by spot-checking the mean against a subset of the data.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "afda9e18-f74a-4700-87f6-988e3639197f",
+              "Text": "Section 4 contains only two tables \u2014 descriptive statistics (mean 74.3, median 76.0, SD 12.7) and the grade distribution by band \u2014 plus a plain-language interpretation.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "420ef942-ee06-4732-a06b-f04e522159cd",
+              "Text": "Appendix A carries the full, labeled Python script with a header comment identifying it as methodology, not the solution.",
+              "SortOrder": 3
+            },
+            {
+              "Id": "774099a4-384c-4135-b00c-bb8273c2d9a4",
+              "Text": "Appendix B holds the terminal output screenshot as evidence the program ran correctly.",
+              "SortOrder": 4
+            }
+          ]
+        },
+        {
+          "Id": "60c9a9e5-2d0a-497d-9459-b54bb1eb1a7e",
+          "TopicId": "dbd721cf-ffb5-4199-a3b1-b33eebe8f031",
+          "Title": "Spot the Difference: Where the Code Lives",
+          "BodyText": "Comparing the two reports isolates a single decision point that changes the structure of your entire submission.",
+          "Notes": "Useful test: could you have reached the same answer by hand? If yes, the code is a tool.",
+          "SortOrder": 3,
+          "CreatedDate": "2026-11-17T04:54:04.0168848-05:00",
+          "ModifiedDate": "2026-11-17T04:54:04.0168848-05:00",
+          "Items": [
+            {
+              "Id": "8996f43a-6122-45b2-9abc-c4dbd05d27ce",
+              "Text": "Example 1 places source code in Section 4 because the implementation is what is being graded.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "ea2f9fea-4ce8-493d-a6cd-3d70cb5a7947",
+              "Text": "Example 2 places source code in Appendix A because only the computed results are being graded.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "aab65188-be04-4ee5-b329-961484a3ddc6",
+              "Text": "Both reports put screenshots in the appendix \u2014 neither uses a screen capture in place of a written solution.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "1f506f82-3da3-4dd1-9a26-5b472d844e4a",
+              "Text": "Both reference their appendices from the body of the report, keeping the grader oriented.",
+              "SortOrder": 3
+            }
+          ]
+        },
+        {
+          "Id": "e39d6d51-9e44-45b6-a345-971af062a7f4",
+          "TopicId": "dbd721cf-ffb5-4199-a3b1-b33eebe8f031",
+          "Title": "Checklist: Cover Page Through Methodology",
+          "BodyText": "The pre-submission checklist walks section by section. Start at the front of the document and confirm the basics before reviewing the substance.",
+          "Notes": "",
+          "SortOrder": 4,
+          "CreatedDate": "2026-11-17T04:54:04.0168848-05:00",
+          "ModifiedDate": "2026-11-17T04:54:04.0168848-05:00",
+          "Items": [
+            {
+              "Id": "84780b41-daac-48e4-beb2-c1fb1ec6ff8e",
+              "Text": "Cover page includes full name, date, course name and number, and the assignment title.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "087af182-3f5b-49ca-bc4f-f51a1afeb8e3",
+              "Text": "The cover page stands on its own page and is not merged with the Problem Statement.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "6ebddf8e-772a-4b1c-933e-ccdfa81d6e35",
+              "Text": "The problem is described clearly enough for someone who never saw the assignment sheet to understand it.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "58a748cd-3cee-42e2-ad5c-ee84b0f27057",
+              "Text": "Inputs, outputs, and constraints are explicitly identified.",
+              "SortOrder": 3
+            },
+            {
+              "Id": "669a15de-b741-4106-9796-34fe5bdb0c37",
+              "Text": "Methodology explains why the approach was chosen, not merely what was done.",
+              "SortOrder": 4
+            },
+            {
+              "Id": "5f4d7ab8-f034-44f5-879f-fecfe6748b31",
+              "Text": "All assumptions made about the problem are stated.",
+              "SortOrder": 5
+            }
+          ]
+        },
+        {
+          "Id": "f427817e-339b-4117-b89a-fc6ac416d28c",
+          "TopicId": "dbd721cf-ffb5-4199-a3b1-b33eebe8f031",
+          "Title": "Checklist: Solution, Results, and Appendices",
+          "BodyText": "This is where most point deductions occur, so review it carefully against the worked examples.",
+          "Notes": "",
+          "SortOrder": 5,
+          "CreatedDate": "2026-11-17T04:54:04.0168848-05:00",
+          "ModifiedDate": "2026-11-17T04:54:04.0168848-05:00",
+          "Items": [
+            {
+              "Id": "4e14c6f2-6b55-4785-aab7-3ea759a7ce4b",
+              "Text": "Confirm no screen capture is standing in for a written solution.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "071d3207-50f8-428a-b208-f5624f72d4aa",
+              "Text": "If code is the solution, formatted code with explanation appears in Section 4.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "f2eb0ae1-422f-44af-8572-3f6fd31a9d9e",
+              "Text": "If code was a tool, only results and findings appear in Section 4 and the code sits in the Appendix.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "4a03278e-8792-454d-a9b9-22847ec15508",
+              "Text": "Code is properly formatted and indented, and results appear in tables rather than paragraphs of numbers.",
+              "SortOrder": 3
+            },
+            {
+              "Id": "963a3b8f-3533-499d-95bb-082ad22dcef0",
+              "Text": "The final answer is stated explicitly somewhere in the section.",
+              "SortOrder": 4
+            },
+            {
+              "Id": "0199183b-2222-4b49-885a-efb9a3efb805",
+              "Text": "Every appendix is labeled (Appendix A, B, \u2026), referenced from the body, and holds any screenshots.",
+              "SortOrder": 5
+            }
+          ]
+        },
+        {
+          "Id": "31877fc7-667a-48e4-91f3-0bfa72457965",
+          "TopicId": "dbd721cf-ffb5-4199-a3b1-b33eebe8f031",
+          "Title": "Checklist: Final General Review",
+          "BodyText": "The last pass catches the mechanical issues that are easy to fix and costly to ignore.",
+          "Notes": "A five-minute final sweep protects the hours of work that preceded it.",
+          "SortOrder": 6,
+          "CreatedDate": "2026-11-17T04:54:04.0168848-05:00",
+          "ModifiedDate": "2026-11-17T04:54:04.0168848-05:00",
+          "Items": [
+            {
+              "Id": "df50082f-6c24-404a-ac89-5747893af648",
+              "Text": "Spell-check and proofread the entire document.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "4afc9eba-6b9f-41ef-ac56-ea1a1df275b1",
+              "Text": "Verify the sections appear in the correct order, one through six.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "1f1b6856-f4f3-4912-9697-9c2268002aa9",
+              "Text": "Submit in the required format \u2014 PDF, Word, or whatever the course specifies.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "d1cf017d-d9cb-4c2a-a995-57a268b357e5",
+              "Text": "Name the file according to the course naming convention before uploading.",
+              "SortOrder": 3
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "TotalElementCount": 43
+}

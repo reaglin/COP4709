@@ -1,0 +1,1994 @@
+{
+  "ModuleFolderName": "Module_5_(Week_5)",
+  "CourseName": "COP4709 \u2014 Applied Database II",
+  "GeneratedDate": "2026-11-17T05:08:37.485379-05:00",
+  "ModifiedDate": "2026-11-17T05:12:11.6836562-05:00",
+  "Outcomes": [],
+  "Topics": [
+    {
+      "Id": "8318e321-3dee-46ea-8862-197ed7aaadd6",
+      "Title": "Transaction Fundamentals",
+      "Summary": "Introduces what a database transaction is, why grouping operations into a single logical unit protects data integrity, and the BEGIN\u2013EXECUTE\u2013COMMIT/ROLLBACK lifecycle. Uses the classic bank transfer scenario to show the danger of unprotected multi-step operations.",
+      "SortOrder": 0,
+      "CreatedDate": "2026-11-17T05:08:37.485379-05:00",
+      "ModifiedDate": "2026-11-17T05:08:37.485379-05:00",
+      "Elements": [
+        {
+          "Id": "bcfb1848-cb05-41f5-8770-9faf49950a26",
+          "TopicId": "8318e321-3dee-46ea-8862-197ed7aaadd6",
+          "Title": "What Is a Transaction?",
+          "BodyText": "A transaction is a logical unit of work containing one or more database operations that are treated as a single, indivisible action. It either completes entirely or has no effect at all.",
+          "Notes": "Think of a transaction as a wrapper placed around several SQL statements so the database treats them as one action.",
+          "SortOrder": 0,
+          "CreatedDate": "2026-11-17T05:08:59.161988-05:00",
+          "ModifiedDate": "2026-11-17T05:08:59.161988-05:00",
+          "Items": [
+            {
+              "Id": "59f4b563-1cf5-4429-870a-18f831bea943",
+              "Text": "All operations within a transaction succeed together or fail together as a single unit.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "ca914934-ac78-4669-837e-3eec9a7ef0ac",
+              "Text": "The database moves from one valid, consistent state to another valid state.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "419e6cc6-6be4-4c94-95b7-a3358a2a4158",
+              "Text": "Concurrent transactions execute in isolation so they do not interfere with one another.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "5471aa09-f784-438e-ba44-e190355e0937",
+              "Text": "Once committed, the changes are permanent and survive system failures.",
+              "SortOrder": 3
+            },
+            {
+              "Id": "a2064179-5d54-436f-a27c-10248dd55c83",
+              "Text": "A transaction may contain INSERT, UPDATE, DELETE and SELECT statements across multiple tables.",
+              "SortOrder": 4
+            }
+          ]
+        },
+        {
+          "Id": "85af62c8-5d45-46e3-9634-b97ac2cd6531",
+          "TopicId": "8318e321-3dee-46ea-8862-197ed7aaadd6",
+          "Title": "Why Transactions Matter: The Bank Transfer Problem",
+          "BodyText": "The classic bank transfer illustrates the danger of running multi-step operations without transaction protection. Money must never be created or destroyed by a partial update.",
+          "Notes": "Without a transaction: UPDATE Accounts SET Balance = Balance - 500 WHERE AccountID = 1; -- crash here -- UPDATE Accounts SET Balance = Balance \u002B 500 WHERE AccountID = 2;",
+          "SortOrder": 1,
+          "CreatedDate": "2026-11-17T05:08:59.161988-05:00",
+          "ModifiedDate": "2026-11-17T05:08:59.161988-05:00",
+          "Items": [
+            {
+              "Id": "e64f31cc-459e-45b0-8289-4b9bcb499946",
+              "Text": "A transfer requires two updates: debit the source account and credit the destination account.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "f1287ee5-c0b4-48ad-9d60-06131d9d9853",
+              "Text": "If the system crashes between the two statements, the debited money simply disappears.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "7076752b-f718-4310-b635-d8a19652b185",
+              "Text": "Wrapping both updates in BEGIN TRANSACTION ... COMMIT TRANSACTION guarantees both apply or neither does.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "9274e333-8c57-42e0-8c74-7248e70da622",
+              "Text": "The same risk applies to inventory deductions, seat bookings, and any multi-step business operation.",
+              "SortOrder": 3
+            },
+            {
+              "Id": "199769ad-906e-487c-ab5f-67fd92399542",
+              "Text": "Transactions remove the need for applications to write complex manual clean-up logic after failures.",
+              "SortOrder": 4
+            }
+          ]
+        },
+        {
+          "Id": "28f654b9-5654-401c-900c-c614de13a924",
+          "TopicId": "8318e321-3dee-46ea-8862-197ed7aaadd6",
+          "Title": "The Transaction Lifecycle",
+          "BodyText": "Every explicit transaction follows a predictable lifecycle of four stages that the developer controls. Understanding these stages is the foundation of all transaction programming.",
+          "Notes": "A transaction must always end in either a COMMIT or a ROLLBACK \u2014 never be left open.",
+          "SortOrder": 2,
+          "CreatedDate": "2026-11-17T05:08:59.161988-05:00",
+          "ModifiedDate": "2026-11-17T05:08:59.161988-05:00",
+          "Items": [
+            {
+              "Id": "c26f8b34-a152-47fa-8857-c1148e7df3f1",
+              "Text": "BEGIN: the transaction starts and the database begins tracking changes in the transaction log.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "68e51740-8ffc-42f0-be46-aa866d3e06a9",
+              "Text": "EXECUTE: one or more database operations are performed, with changes held pending.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "0b799e74-6d24-45ce-8314-25785137321b",
+              "Text": "COMMIT: on success, all changes are made permanent and visible to other sessions.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "fb444e1b-4399-44b5-a11b-1c8e2b7de490",
+              "Text": "ROLLBACK: on failure, every change made since BEGIN is undone and the database returns to its prior state.",
+              "SortOrder": 3
+            },
+            {
+              "Id": "4452084a-58e1-4a4c-b1f8-81261f411679",
+              "Text": "Locks acquired during the transaction are released when the transaction ends.",
+              "SortOrder": 4
+            }
+          ]
+        },
+        {
+          "Id": "fd715fe9-9ec9-47a2-984f-5d8132b2f62e",
+          "TopicId": "8318e321-3dee-46ea-8862-197ed7aaadd6",
+          "Title": "When to Use an Explicit Transaction",
+          "BodyText": "Not every statement needs an explicit transaction, so it helps to know which scenarios demand one. The deciding factor is whether multiple related changes must stand or fall together.",
+          "Notes": "Single-statement work is already atomic under autocommit mode, so wrapping it adds overhead without benefit.",
+          "SortOrder": 3,
+          "CreatedDate": "2026-11-17T05:08:59.161988-05:00",
+          "ModifiedDate": "2026-11-17T05:08:59.161988-05:00",
+          "Items": [
+            {
+              "Id": "8f5a0036-c49d-4f72-a452-63bf6c3473e4",
+              "Text": "Use an explicit transaction whenever two or more related operations must succeed or fail as a unit.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "791fcb45-4052-4086-906e-4d4a32523de3",
+              "Text": "A single INSERT, UPDATE or DELETE can rely on autocommit \u2014 no explicit transaction is needed.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "a3f179f2-df31-4225-8d62-00d7ebc477fe",
+              "Text": "Financial operations such as transfers and payments always warrant explicit transactions with full validation.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "882a6796-86f3-4e6b-98a0-d4ca3d3bec67",
+              "Text": "Order processing that touches Orders, OrderItems and Inventory is a textbook multi-step case.",
+              "SortOrder": 3
+            },
+            {
+              "Id": "42c83733-a8c7-49c5-84d2-ce6af155f8f4",
+              "Text": "User registration that creates an account, profile, preferences and role records also belongs in one transaction.",
+              "SortOrder": 4
+            }
+          ]
+        },
+        {
+          "Id": "f624b008-5ff6-4ce0-b2f9-220f976a0992",
+          "TopicId": "8318e321-3dee-46ea-8862-197ed7aaadd6",
+          "Title": "A Complete Transaction Example",
+          "BodyText": "Combining multiple operations into one transaction makes the all-or-nothing guarantee concrete. The order and inventory example shows three dependent statements protected as one unit.",
+          "Notes": "BEGIN TRANSACTION; INSERT INTO Orders ...; INSERT INTO OrderItems ...; UPDATE Inventory SET Quantity = Quantity - 2 ...; COMMIT TRANSACTION;",
+          "SortOrder": 4,
+          "CreatedDate": "2026-11-17T05:08:59.161988-05:00",
+          "ModifiedDate": "2026-11-17T05:08:59.161988-05:00",
+          "Items": [
+            {
+              "Id": "5e8e81ef-245c-4ea7-9de0-4aa3a12b9c3a",
+              "Text": "The order header is inserted first and its generated key is captured with SCOPE_IDENTITY().",
+              "SortOrder": 0
+            },
+            {
+              "Id": "1df8c180-b7e4-4c07-9769-364ac7b81a03",
+              "Text": "The related order line items are inserted using that key.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "8c79dd10-59e6-4259-b660-e29cf4f3f768",
+              "Text": "Inventory quantities are reduced to reflect the goods sold.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "ac906fe5-1da8-4e3f-88bb-796c01e35250",
+              "Text": "If any single step fails, none of the three changes are retained in the database.",
+              "SortOrder": 3
+            },
+            {
+              "Id": "303b2cf5-065a-46ea-a3cb-3e1b0297f936",
+              "Text": "Without the transaction, an order could exist with no items or inventory could drop with no matching order.",
+              "SortOrder": 4
+            }
+          ]
+        },
+        {
+          "Id": "51bb36e3-0df1-4791-a34a-d06fa21133b8",
+          "TopicId": "8318e321-3dee-46ea-8862-197ed7aaadd6",
+          "Title": "Transactions and Critical Business Data",
+          "BodyText": "Transactions are most essential where incorrect or partial data carries real business consequences. They are a core tool for maintaining data integrity in multi-step operations.",
+          "Notes": "Data integrity, business criticality, simplified development and system reliability are the four main reasons transactions matter.",
+          "SortOrder": 5,
+          "CreatedDate": "2026-11-17T05:08:59.161988-05:00",
+          "ModifiedDate": "2026-11-17T05:08:59.161988-05:00",
+          "Items": [
+            {
+              "Id": "4d1f52b5-b713-4428-90ac-6d689e6a0f81",
+              "Text": "Money, inventory, and other critical business data demand transactional protection.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "0c4f598b-feef-4fa0-95e2-00dddde9108e",
+              "Text": "Transactions prevent corruption and inconsistencies that arise from partial updates or concurrent access.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "65149678-f172-4578-b432-0e665767d433",
+              "Text": "Developers can rely on the database\u0027s guarantees instead of hand-coding recovery logic.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "852aea72-7b33-4b34-9f04-0aebf3b04265",
+              "Text": "Industries such as finance, healthcare, e-commerce and airline reservations depend on these guarantees.",
+              "SortOrder": 3
+            },
+            {
+              "Id": "a0b8d327-43c0-4d97-99e8-35192d0ef537",
+              "Text": "Transactions also improve overall system reliability by making the database resilient to unexpected failures.",
+              "SortOrder": 4
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Id": "df0fce1f-6c01-4467-8006-3cdda61fec84",
+      "Title": "The ACID Properties",
+      "Summary": "Explains Atomicity, Consistency, Isolation, and Durability with definitions, analogies, SQL examples, and the implementation mechanisms (logging, constraints, locking, WAL) behind each. Also examines the benefits, costs, and trade-offs of relaxing each property.",
+      "SortOrder": 1,
+      "CreatedDate": "2026-11-17T05:08:37.485379-05:00",
+      "ModifiedDate": "2026-11-17T05:08:37.485379-05:00",
+      "Elements": [
+        {
+          "Id": "028672d1-4ab0-4681-96b2-9891987dc6d7",
+          "TopicId": "df0fce1f-6c01-4467-8006-3cdda61fec84",
+          "Title": "ACID Overview: Four Guarantees of Reliable Transactions",
+          "BodyText": "ACID is an acronym describing the four fundamental properties that guarantee reliable transaction processing in a database system. Together they protect data integrity during concurrent access and system failures.",
+          "Notes": "ACID is a set of rules, not an algorithm \u2014 each database vendor must choose algorithms (logging, locking, versioning) to implement them.",
+          "SortOrder": 0,
+          "CreatedDate": "2026-11-17T05:09:25.6632145-05:00",
+          "ModifiedDate": "2026-11-17T05:09:25.6632145-05:00",
+          "Items": [
+            {
+              "Id": "1bd680c0-8d57-4993-859c-a9030f229528",
+              "Text": "A stands for Atomicity, C for Consistency, I for Isolation, and D for Durability.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "eed880a9-1a53-4fe1-8233-d20e3687f871",
+              "Text": "ACID guarantees matter most in financial, e-commerce, healthcare, and other business-critical systems.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "1d6c4992-c255-4c50-9990-284c415eff41",
+              "Text": "They simplify development because programmers can rely on the engine instead of hand-coding error recovery and concurrency control.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "12b3dbcf-a3d0-4ad1-b478-53b30278e93f",
+              "Text": "Full ACID compliance carries performance costs, so engines expose tuning options such as isolation levels.",
+              "SortOrder": 3
+            }
+          ]
+        },
+        {
+          "Id": "d2e07387-c3df-4759-912f-a6a4d1261382",
+          "TopicId": "df0fce1f-6c01-4467-8006-3cdda61fec84",
+          "Title": "Atomicity: All or Nothing",
+          "BodyText": "Atomicity means every operation in a transaction succeeds or they all fail; there is no partial completion. Like an atom, the transaction cannot be split into smaller independently-surviving parts.",
+          "Notes": "Example: BEGIN TRANSACTION; INSERT INTO Orders...; INSERT INTO OrderItems...; UPDATE Inventory SET Quantity = Quantity - 2...; COMMIT TRANSACTION; \u2014 all three statements complete or none do.",
+          "SortOrder": 1,
+          "CreatedDate": "2026-11-17T05:09:25.6632145-05:00",
+          "ModifiedDate": "2026-11-17T05:09:25.6632145-05:00",
+          "Items": [
+            {
+              "Id": "aea93efa-b750-4838-bae6-2a468a515e32",
+              "Text": "A bank transfer must debit the source account and credit the destination account together, or neither.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "64b2db37-5b90-4b92-aca6-c9400e55395e",
+              "Text": "Implementation relies on a transaction log that records every change made inside the transaction.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "9f8b5781-0fef-43a2-8779-ce5b8b7ca44f",
+              "Text": "If the transaction fails or the server crashes, ROLLBACK uses the log to undo incomplete work and restore the prior state.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "7a36732b-5ba1-4552-8b72-b66258d01c97",
+              "Text": "SQL Server uses write-ahead logging in .ldf files, MySQL InnoDB uses redo logs, and Oracle combines redo logs with undo tablespaces.",
+              "SortOrder": 3
+            },
+            {
+              "Id": "07024187-cf39-48c9-9dac-f8b4df477eea",
+              "Text": "Atomicity is fundamental and cannot be relaxed; its only cost is transaction log overhead.",
+              "SortOrder": 4
+            }
+          ]
+        },
+        {
+          "Id": "2923baa1-603c-4ffd-9322-60e39fd375e1",
+          "TopicId": "df0fce1f-6c01-4467-8006-3cdda61fec84",
+          "Title": "Consistency: Valid State to Valid State",
+          "BodyText": "Consistency guarantees that a transaction moves the database from one valid state to another, preserving all constraints and business rules. Think of a balanced scale that stays balanced before and after the operation.",
+          "Notes": "Example: UPDATE Accounts SET Balance = Balance - 1000 WHERE AccountID = 1; \u2014 if a CHECK constraint forbids negative balances, the violation forces a rollback and no negative balance is ever stored.",
+          "SortOrder": 2,
+          "CreatedDate": "2026-11-17T05:09:25.6632145-05:00",
+          "ModifiedDate": "2026-11-17T05:09:25.6632145-05:00",
+          "Items": [
+            {
+              "Id": "d24cbae6-104b-4a9a-88c6-e4c8edf188ba",
+              "Text": "Enforcement comes from CHECK, FOREIGN KEY, UNIQUE and NOT NULL constraints, plus triggers and application-level business logic.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "2019867f-2bee-45eb-bc12-11d8ab6caa2a",
+              "Text": "The engine validates changes before allowing a COMMIT; a constraint violation aborts the transaction.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "36416717-8401-4a14-8ce9-4aa418578c9c",
+              "Text": "PostgreSQL adds DEFERRABLE constraints so checking can be postponed until commit time.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "d3a4fe6d-4213-4cfc-a0f0-e638237b6707",
+              "Text": "The benefit is enforced data integrity; the cost is constraint-checking overhead on every write.",
+              "SortOrder": 3
+            },
+            {
+              "Id": "2b9b300c-1efd-463a-b9df-e67042cd5bda",
+              "Text": "Relaxing consistency is dangerous and not recommended, because it allows corrupt or invalid data to persist.",
+              "SortOrder": 4
+            }
+          ]
+        },
+        {
+          "Id": "4b62bc39-4d9c-45b1-96a2-d15e3b6c9ce2",
+          "TopicId": "df0fce1f-6c01-4467-8006-3cdda61fec84",
+          "Title": "Isolation: Concurrent Transactions Don\u0027t Collide",
+          "BodyText": "Isolation ensures concurrent transactions execute independently without interfering with each other\u0027s intermediate results. It works like separate lanes on a highway that keep traffic from colliding.",
+          "Notes": "Example: a transaction that runs UPDATE Products SET Price = 100 keeps that price invisible to others until COMMIT. Classic scenario: two users booking the last seat on a flight \u2014 only one booking can succeed.",
+          "SortOrder": 3,
+          "CreatedDate": "2026-11-17T05:09:25.6632145-05:00",
+          "ModifiedDate": "2026-11-17T05:09:25.6632145-05:00",
+          "Items": [
+            {
+              "Id": "aec456fb-e1a5-442d-85e5-6b7a562eeed1",
+              "Text": "Implementation uses locking (shared, exclusive, update locks) and multi-version concurrency control (MVCC).",
+              "SortOrder": 0
+            },
+            {
+              "Id": "e5023db4-b280-4f85-ac58-425807a586c7",
+              "Text": "MVCC lets each transaction read a consistent snapshot of row versions as of its start time, reducing blocking.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "3ca615a8-37e1-4fda-a04d-ce9efbe96eae",
+              "Text": "Optimistic concurrency control allows work to proceed without locks and checks for conflicts at commit.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "28ae8c30-0e28-498e-a984-854793cd140f",
+              "Text": "SQL defines isolation levels \u2014 READ UNCOMMITTED, READ COMMITTED, REPEATABLE READ, SERIALIZABLE \u2014 plus SNAPSHOT in SQL Server.",
+              "SortOrder": 3
+            },
+            {
+              "Id": "7db6a1c1-db02-4715-b1e4-f0dcdc025516",
+              "Text": "Isolation is the one property safely tuned: lowering the level increases concurrency but permits anomalies such as dirty or phantom reads.",
+              "SortOrder": 4
+            }
+          ]
+        },
+        {
+          "Id": "ff4d29a1-3733-4aa3-a77b-37a2c5254ec4",
+          "TopicId": "df0fce1f-6c01-4467-8006-3cdda61fec84",
+          "Title": "Durability: Committed Means Permanent",
+          "BodyText": "Durability guarantees that once a transaction commits, its changes survive crashes, power loss, and restarts. It is like writing in permanent marker rather than pencil.",
+          "Notes": "Example: after COMMIT on an INSERT INTO Orders, the order remains saved even if the server crashes immediately afterward, because the log replays the change on restart.",
+          "SortOrder": 4,
+          "CreatedDate": "2026-11-17T05:09:25.6632145-05:00",
+          "ModifiedDate": "2026-11-17T05:09:25.6632145-05:00",
+          "Items": [
+            {
+              "Id": "3c192507-beff-4bdb-9ccf-3be6f17fe4e3",
+              "Text": "Write-ahead logging (WAL) writes log records to disk before the data pages are updated.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "de18935a-3855-4d3a-8787-54f8be5cb825",
+              "Text": "Recovery on restart replays committed log records and undoes uncommitted ones.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "e05d37d0-83de-4df4-9560-2fb5eba4ed86",
+              "Text": "PostgreSQL uses WAL plus fsync controlled by synchronous_commit; MySQL InnoDB uses a doublewrite buffer and innodb_flush_log_at_trx_commit.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "af1d956b-5d2c-4cb0-ae00-3f0306621b2d",
+              "Text": "Replication and regular backups extend durability by protecting against whole-server loss.",
+              "SortOrder": 3
+            },
+            {
+              "Id": "6341d2dd-cb99-4fcd-ab49-4f4c86253be0",
+              "Text": "The cost is disk I/O and slower commits; durability should only be relaxed in specific, well-understood scenarios.",
+              "SortOrder": 4
+            }
+          ]
+        },
+        {
+          "Id": "ae3fbbd4-029e-4bab-921c-7d96341e7d9d",
+          "TopicId": "df0fce1f-6c01-4467-8006-3cdda61fec84",
+          "Title": "ACID Trade-offs and When to Relax",
+          "BodyText": "Each ACID property delivers a benefit at a measurable cost, and the properties differ in whether they can safely be weakened. Understanding the trade-offs guides configuration decisions.",
+          "Notes": "Distributed systems complicate matters: the CAP theorem forces a choice among consistency, availability and partition tolerance, which is why AP stores like Cassandra offer only eventual consistency.",
+          "SortOrder": 5,
+          "CreatedDate": "2026-11-17T05:09:25.6632145-05:00",
+          "ModifiedDate": "2026-11-17T05:09:25.6632145-05:00",
+          "Items": [
+            {
+              "Id": "e89c0393-eaff-4bfb-9099-5d37ab5d7d43",
+              "Text": "Atomicity: benefit is the all-or-nothing guarantee, cost is log overhead, and it cannot be relaxed.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "d32bb1e6-8e6d-4925-866b-9946438992af",
+              "Text": "Consistency: benefit is enforced integrity, cost is constraint checking, and relaxing it is dangerous.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "0099cbe4-e915-4e70-a4bb-491cce5b9146",
+              "Text": "Isolation: benefit is non-interference, cost is locking, blocking and reduced concurrency, and it can be tuned through isolation levels.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "15753d0a-d8d6-4284-aa2d-4955c1f6c2d9",
+              "Text": "Durability: benefit is crash survival, cost is disk I/O and slower commits, and it should be relaxed only in special cases such as in-memory caching.",
+              "SortOrder": 3
+            },
+            {
+              "Id": "fb60e1e5-2800-4cef-9e84-6bf26e3a8fdf",
+              "Text": "Traditional RDBMSs like SQL Server, PostgreSQL and Oracle give the strongest ACID guarantees for critical applications.",
+              "SortOrder": 4
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Id": "59aacefc-ad61-4a1a-a037-6754ef5cf8d5",
+      "Title": "ACID Implementation Across Database Platforms",
+      "Summary": "Compares how SQL Server, PostgreSQL, MySQL/InnoDB, Oracle, and major NoSQL systems implement each ACID property. Connects these differences to the CAP theorem and the consistency/availability choices made by distributed data stores.",
+      "SortOrder": 2,
+      "CreatedDate": "2026-11-17T05:08:37.485379-05:00",
+      "ModifiedDate": "2026-11-17T05:08:37.485379-05:00",
+      "Elements": [
+        {
+          "Id": "a72d1efa-f9f5-44d0-8464-f973408db647",
+          "TopicId": "59aacefc-ad61-4a1a-a037-6754ef5cf8d5",
+          "Title": "ACID Is a Standard, Not an Algorithm",
+          "BodyText": "ACID defines four guarantees that every database must provide, but each vendor chooses its own internal algorithms to deliver them. Understanding the shared building blocks makes platform comparisons much easier.",
+          "Notes": "This is why research into a specific product is required: SQL Server, PostgreSQL, Oracle and MySQL all satisfy ACID yet use different log structures, file names and configuration switches.",
+          "SortOrder": 0,
+          "CreatedDate": "2026-11-17T05:09:52.9701858-05:00",
+          "ModifiedDate": "2026-11-17T05:09:52.9701858-05:00",
+          "Items": [
+            {
+              "Id": "b8c8fdd8-793b-44ce-a3bf-f04f9707f266",
+              "Text": "Atomicity is almost always delivered through write-ahead or redo logging plus rollback/undo capability.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "6f8e9c2c-02e1-429f-9282-aaaf3e87dd39",
+              "Text": "Consistency is enforced by constraints (CHECK, FOREIGN KEY, UNIQUE), triggers and data validation performed before commit.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "c59560a0-6b1a-4d1f-87e6-2a1b0f61cd73",
+              "Text": "Isolation is achieved through locking, multi-version concurrency control (MVCC), or optimistic concurrency checks at commit time.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "f49fc688-3283-4a47-97e4-5f927dc905af",
+              "Text": "Durability relies on flushing log records to disk before commit, supplemented by replication, backups and recovery replay.",
+              "SortOrder": 3
+            },
+            {
+              "Id": "21474b08-d78b-4581-94b9-59e15cac7cc1",
+              "Text": "The underlying principles are identical across systems; only the implementation details and tuning knobs differ.",
+              "SortOrder": 4
+            }
+          ]
+        },
+        {
+          "Id": "8e21d7df-5aa5-4fda-9ae2-5c4e210e64ca",
+          "TopicId": "59aacefc-ad61-4a1a-a037-6754ef5cf8d5",
+          "Title": "SQL Server and PostgreSQL Implementations",
+          "BodyText": "Both SQL Server and PostgreSQL are considered to offer very strong ACID guarantees, but they emphasise different concurrency mechanisms.",
+          "Notes": "PostgreSQL\u0027s MVCC is often cited for excellent concurrency because readers never block writers; SQL Server achieves similar behaviour only when snapshot isolation or read-committed snapshot is enabled.",
+          "SortOrder": 1,
+          "CreatedDate": "2026-11-17T05:09:52.9701858-05:00",
+          "ModifiedDate": "2026-11-17T05:09:52.9701858-05:00",
+          "Items": [
+            {
+              "Id": "2319bde7-e3bf-418d-b3c1-6f596fdd353c",
+              "Text": "SQL Server uses Write-Ahead Logging stored in .ldf transaction log files for atomicity and durability, with checkpoints and full, bulk-logged or simple recovery models.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "c3526681-9ff6-4700-8e38-63d9ae4ceebc",
+              "Text": "SQL Server enforces consistency with CHECK, FOREIGN KEY and UNIQUE constraints plus triggers and rules.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "e2c9f06d-a231-40bc-ba1f-7068f3a3709b",
+              "Text": "SQL Server isolation combines locking with row versioning and offers five isolation levels including SNAPSHOT.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "91152b55-1cfc-4541-9f06-3b2d7a0ccda0",
+              "Text": "PostgreSQL writes its WAL into the pg_wal directory and controls durability through WAL plus fsync and the synchronous_commit setting.",
+              "SortOrder": 3
+            },
+            {
+              "Id": "c08b90d3-9aa8-4994-8e21-63a0e12a032a",
+              "Text": "PostgreSQL supports DEFERRABLE constraints and relies on MVCC with four isolation levels for high concurrency.",
+              "SortOrder": 4
+            }
+          ]
+        },
+        {
+          "Id": "1d8e2002-8876-4c92-b11d-b2dd154c8a2e",
+          "TopicId": "59aacefc-ad61-4a1a-a037-6754ef5cf8d5",
+          "Title": "MySQL (InnoDB) and Oracle Implementations",
+          "BodyText": "MySQL\u0027s InnoDB engine and Oracle Database both use redo logging, but Oracle adds undo structures that also power read consistency.",
+          "Notes": "InnoDB\u0027s innodb_flush_log_at_trx_commit setting is a classic example of trading durability for speed; Oracle\u0027s COMMIT NOWAIT option offers a similar trade-off.",
+          "SortOrder": 2,
+          "CreatedDate": "2026-11-17T05:09:52.9701858-05:00",
+          "ModifiedDate": "2026-11-17T05:09:52.9701858-05:00",
+          "Items": [
+            {
+              "Id": "02059a31-3be5-47ff-8a15-cd66272de6f7",
+              "Text": "InnoDB provides atomicity through redo logs (ib_logfile0, ib_logfile1) and durability via the doublewrite buffer plus redo logs.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "29b63ebd-c84a-4edd-8a1c-f49288cf9459",
+              "Text": "InnoDB supports foreign key constraints, though constraint support was more limited in older MySQL versions and storage engines.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "725eda87-6dab-4195-b8cc-c0ae06e0a7f3",
+              "Text": "InnoDB isolation mixes MVCC with locking across four isolation levels.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "ec0a590c-8377-468f-bbe2-07cf11341093",
+              "Text": "Oracle uses online redo logs together with undo tablespaces to support both rollback and read consistency.",
+              "SortOrder": 3
+            },
+            {
+              "Id": "7e513bad-b7c7-4705-b98f-6a890cfc9748",
+              "Text": "Oracle isolation is MVCC-based using undo segments, defaulting to READ COMMITTED with SERIALIZABLE available.",
+              "SortOrder": 4
+            }
+          ]
+        },
+        {
+          "Id": "192945a2-dc19-4f6a-8ef9-4b75ef84d5a2",
+          "TopicId": "59aacefc-ad61-4a1a-a037-6754ef5cf8d5",
+          "Title": "ACID Support in NoSQL Databases",
+          "BodyText": "NoSQL systems have moved toward ACID support, but usually with scope limits and performance trade-offs that differ sharply from relational engines.",
+          "Notes": "The common pattern is strong guarantees at the single-document or single-item level, with multi-record transactions available but constrained.",
+          "SortOrder": 3,
+          "CreatedDate": "2026-11-17T05:09:52.9701858-05:00",
+          "ModifiedDate": "2026-11-17T05:09:52.9701858-05:00",
+          "Items": [
+            {
+              "Id": "fff7aa5c-cddd-41e4-a4fe-633da39002f1",
+              "Text": "MongoDB offers full ACID for single documents and, since version 4.0, multi-document transactions, at a performance cost on distributed operations.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "b01802b3-b2d3-4be7-8558-7db7c4be7b67",
+              "Text": "Cassandra provides only limited guarantees, relying on eventual consistency with lightweight transactions for special cases.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "50c37702-328b-4109-8f06-bf3c5a17fd10",
+              "Text": "Redis gives ACID behaviour for single commands and supports multi-command transactions, but durability is optional because it is in-memory.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "4a7ac6a4-f9ef-4b65-8946-2f94f91144c5",
+              "Text": "DynamoDB supports ACID for a single item and TransactWriteItems for multi-item work, limited to 25 items per transaction.",
+              "SortOrder": 3
+            },
+            {
+              "Id": "22607ca4-d67e-402a-b186-f14fc9a88b59",
+              "Text": "Choosing a NoSQL store means explicitly accepting these scope and consistency limits.",
+              "SortOrder": 4
+            }
+          ]
+        },
+        {
+          "Id": "83842ea9-9754-4ba1-b5e9-b69531010d76",
+          "TopicId": "59aacefc-ad61-4a1a-a037-6754ef5cf8d5",
+          "Title": "The CAP Theorem and Distributed Trade-offs",
+          "BodyText": "In distributed systems the CAP theorem states that only two of Consistency, Availability and Partition Tolerance can be guaranteed simultaneously. This constraint explains why distributed stores relax ACID.",
+          "Notes": "Partition tolerance is effectively mandatory in any real network, so the practical decision is between consistency (CP) and availability (AP).",
+          "SortOrder": 4,
+          "CreatedDate": "2026-11-17T05:09:52.9701858-05:00",
+          "ModifiedDate": "2026-11-17T05:09:52.9701858-05:00",
+          "Items": [
+            {
+              "Id": "f8157afe-18ea-4670-9a71-082ac10c95ac",
+              "Text": "Consistency means every node sees the same data at the same time.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "c1316a9e-cff1-4195-91b0-c9964e6b7cc5",
+              "Text": "Availability means the system keeps responding to requests even when some nodes are unhealthy.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "9d497467-1452-4a46-93cd-afe34e920a25",
+              "Text": "Partition tolerance means the system continues operating despite network failures between nodes.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "8c9c1bc9-dbb1-4a50-b122-dc5179527b70",
+              "Text": "Traditional RDBMS are described as CA systems and deliver full ACID.",
+              "SortOrder": 3
+            },
+            {
+              "Id": "0d2dda58-30f7-4599-8d30-61a1f137c308",
+              "Text": "MongoDB and HBase lean CP, preserving strong ACID semantics at the expense of availability during partitions.",
+              "SortOrder": 4
+            },
+            {
+              "Id": "2c4d9dbb-c18c-4079-81a5-23324661d7d4",
+              "Text": "Cassandra and DynamoDB lean AP, favouring availability with eventual consistency and limited ACID.",
+              "SortOrder": 5
+            }
+          ]
+        },
+        {
+          "Id": "24be48ad-7dbf-4cd0-b508-1cea776883cd",
+          "TopicId": "59aacefc-ad61-4a1a-a037-6754ef5cf8d5",
+          "Title": "Choosing a Platform Based on ACID Requirements",
+          "BodyText": "Matching the database engine to the integrity requirements of the workload is a core design decision. The strength of ACID guarantees should follow the business risk of incorrect data.",
+          "Notes": "Relational engines such as SQL Server, PostgreSQL and Oracle remain the default for financial, medical and other critical applications where data integrity is paramount.",
+          "SortOrder": 5,
+          "CreatedDate": "2026-11-17T05:09:52.9701858-05:00",
+          "ModifiedDate": "2026-11-17T05:09:52.9701858-05:00",
+          "Items": [
+            {
+              "Id": "469e5ee5-9483-48a6-ab97-e499c116b784",
+              "Text": "Use a full-ACID relational engine for money movement, healthcare records, reservations and other high-integrity workloads.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "44ab96ec-d8a2-4745-acd9-7e7a13c89ec2",
+              "Text": "Consider AP NoSQL stores for high-volume, high-availability workloads where eventual consistency is acceptable.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "40b4fa69-86a4-4c66-b97c-3c9f975fd7f5",
+              "Text": "Remember that relaxing isolation is a supported tuning option, while relaxing atomicity or consistency is not advisable.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "f9c98ae5-1b7f-4ab4-8567-952ff86dc32a",
+              "Text": "Check platform-specific durability settings, because some engines allow commits to return before the log is flushed.",
+              "SortOrder": 3
+            },
+            {
+              "Id": "25baba66-4477-419f-8fec-0ee686062626",
+              "Text": "When comparing products, evaluate each ACID property separately rather than accepting a blanket \u0027ACID compliant\u0027 claim.",
+              "SortOrder": 4
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Id": "f7204b27-ffaa-403d-ae65-ee8df9338b2a",
+      "Title": "T-SQL Transaction Control",
+      "Summary": "Covers explicit, implicit, and autocommit transaction modes along with BEGIN, COMMIT, ROLLBACK, and SAVE TRANSACTION statements. Includes savepoints for partial rollback and techniques for inspecting transaction state with @@TRANCOUNT and DMVs.",
+      "SortOrder": 3,
+      "CreatedDate": "2026-11-17T05:08:37.485379-05:00",
+      "ModifiedDate": "2026-11-17T05:08:37.485379-05:00",
+      "Elements": [
+        {
+          "Id": "fb116621-255b-4073-8164-28268275e308",
+          "TopicId": "f7204b27-ffaa-403d-ae65-ee8df9338b2a",
+          "Title": "Transaction Modes in SQL Server",
+          "BodyText": "SQL Server runs every statement inside some kind of transaction, and the mode determines when a transaction starts and ends. T-SQL supports autocommit, explicit, and implicit transaction modes.",
+          "Notes": "Autocommit is the default mode; most applications only switch to explicit transactions when multiple statements must succeed or fail together.",
+          "SortOrder": 0,
+          "CreatedDate": "2026-11-17T05:10:16.425373-05:00",
+          "ModifiedDate": "2026-11-17T05:10:16.425373-05:00",
+          "Items": [
+            {
+              "Id": "4196917c-f5ee-44cc-b525-c25c47f1721e",
+              "Text": "Autocommit mode treats each individual statement as its own transaction that commits automatically on success.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "fc6e300e-c7dc-42f1-b36f-0be9aa6b256a",
+              "Text": "Explicit mode begins when you issue BEGIN TRANSACTION and ends only at COMMIT or ROLLBACK.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "e424791c-8827-4519-9881-e27c175ae8ac",
+              "Text": "Implicit mode is enabled with SET IMPLICIT_TRANSACTIONS ON, which auto-starts a transaction but still requires an explicit COMMIT or ROLLBACK.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "7a565c5f-b666-4d7f-a6fe-12a10fcd2972",
+              "Text": "Turn implicit mode off with SET IMPLICIT_TRANSACTIONS OFF to return to autocommit behaviour.",
+              "SortOrder": 3
+            },
+            {
+              "Id": "c9365cc3-3eb7-4579-9e2d-2ffd8e2740b0",
+              "Text": "Use autocommit for a single INSERT/UPDATE/DELETE and explicit transactions for multi-step operations.",
+              "SortOrder": 4
+            }
+          ]
+        },
+        {
+          "Id": "54628737-03de-4b02-b1e9-4a0c8be42b2a",
+          "TopicId": "f7204b27-ffaa-403d-ae65-ee8df9338b2a",
+          "Title": "Explicit Transactions with BEGIN and COMMIT",
+          "BodyText": "Explicit transactions group several related statements into one atomic unit of work. They are the standard approach for multi-step business operations such as price updates with history logging.",
+          "Notes": "Example: BEGIN TRANSACTION; UPDATE Products SET Price = Price * 1.1 WHERE CategoryID = 1; INSERT INTO PriceHistory ...; COMMIT TRANSACTION;",
+          "SortOrder": 1,
+          "CreatedDate": "2026-11-17T05:10:16.425373-05:00",
+          "ModifiedDate": "2026-11-17T05:10:16.425373-05:00",
+          "Items": [
+            {
+              "Id": "8972de4d-0772-4d30-9127-c5194867011a",
+              "Text": "BEGIN TRANSACTION (or BEGIN TRAN) marks the start of the unit of work.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "e02363cd-2a6c-4617-8991-f2a1aea097ae",
+              "Text": "COMMIT TRANSACTION (or COMMIT) makes all changes within the transaction permanent.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "a7b17e96-3221-434d-a319-1afe5900fefb",
+              "Text": "The lifecycle is BEGIN \u2192 EXECUTE operations \u2192 COMMIT on success or ROLLBACK on failure.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "783f0fe4-17bd-47b5-9d20-de22e643c51b",
+              "Text": "Wrap the body in BEGIN TRY / BEGIN CATCH so failures can be rolled back and re-thrown.",
+              "SortOrder": 3
+            },
+            {
+              "Id": "9da9a99a-c889-4b4e-afa5-83345c9b3516",
+              "Text": "Validate inputs before BEGIN TRANSACTION to keep the transaction short and reduce lock contention.",
+              "SortOrder": 4
+            }
+          ]
+        },
+        {
+          "Id": "3766d42f-9223-40b9-93b7-06519645f22f",
+          "TopicId": "f7204b27-ffaa-403d-ae65-ee8df9338b2a",
+          "Title": "ROLLBACK and Undoing Work",
+          "BodyText": "ROLLBACK TRANSACTION undoes every change made since the transaction began, restoring the database to its prior valid state. It is the safety net that enforces atomicity.",
+          "Notes": "The classic bank transfer illustrates the risk: without a transaction, a crash between the debit and the credit makes money disappear.",
+          "SortOrder": 2,
+          "CreatedDate": "2026-11-17T05:10:16.425373-05:00",
+          "ModifiedDate": "2026-11-17T05:10:16.425373-05:00",
+          "Items": [
+            {
+              "Id": "191f5c2e-5793-4611-81c5-5845434cb2c9",
+              "Text": "ROLLBACK TRANSACTION (or ROLLBACK) reverses all uncommitted changes in the current transaction.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "7ea5a30b-7ca2-486f-814b-a6fd41d443a7",
+              "Text": "A ROLLBACK issued at any nesting level rolls back the entire outermost transaction.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "5f38f5cd-8e02-4dcb-86c6-8f019c714646",
+              "Text": "Place ROLLBACK inside a CATCH block, followed by THROW to propagate the original error.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "058a748a-3da8-4d7b-bc96-1ee63c1a4972",
+              "Text": "SET XACT_ABORT ON causes SQL Server to roll back automatically when any run-time error occurs.",
+              "SortOrder": 3
+            },
+            {
+              "Id": "7f4ecbb0-b4d5-414d-a383-9b9bf61ab087",
+              "Text": "Never leave a transaction open after an error \u2014 always commit or roll back.",
+              "SortOrder": 4
+            }
+          ]
+        },
+        {
+          "Id": "143d0052-769b-4aed-9028-876e323482c4",
+          "TopicId": "f7204b27-ffaa-403d-ae65-ee8df9338b2a",
+          "Title": "Savepoints and Partial Rollback",
+          "BodyText": "SAVE TRANSACTION creates a named savepoint inside an active transaction so that only part of the work can be undone. This allows recovery from a failed step without discarding everything already done.",
+          "Notes": "Example: SAVE TRANSACTION AfterOrderInsert; ... ROLLBACK TRANSACTION AfterOrderInsert; \u2014 the order header insert survives while the failed item insert is discarded.",
+          "SortOrder": 3,
+          "CreatedDate": "2026-11-17T05:10:16.425373-05:00",
+          "ModifiedDate": "2026-11-17T05:10:16.425373-05:00",
+          "Items": [
+            {
+              "Id": "970a0bfa-43b2-4a1b-b1bd-69e66f370347",
+              "Text": "Syntax is SAVE TRANSACTION SavePointName, placed before a risky operation.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "25ecb5f7-eff7-4379-8819-68e24a8a1c83",
+              "Text": "ROLLBACK TRANSACTION SavePointName undoes only the work performed after that savepoint.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "ff96360a-f13c-484a-9672-13c81f58ac63",
+              "Text": "The outer transaction remains active and must still be committed or rolled back.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "13d91862-3b40-44ee-8a6e-cd09be9db7b0",
+              "Text": "Savepoints enable alternative actions, such as logging the error and marking a record as \u0027Pending Review\u0027.",
+              "SortOrder": 3
+            },
+            {
+              "Id": "68375f7c-f23f-419f-add6-d2c7dd9aa9c1",
+              "Text": "Savepoints are preferable to nested BEGIN TRANSACTION when you need partial rollback behaviour.",
+              "SortOrder": 4
+            }
+          ]
+        },
+        {
+          "Id": "4fd9f4ae-5c81-42c9-a651-b742302484e3",
+          "TopicId": "f7204b27-ffaa-403d-ae65-ee8df9338b2a",
+          "Title": "Inspecting Transaction State with @@TRANCOUNT",
+          "BodyText": "@@TRANCOUNT reports the current transaction nesting depth for the session and is the key to safe transaction control. Checking it prevents errors from rolling back when no transaction exists.",
+          "Notes": "Common pattern: IF @@TRANCOUNT \u003E 0 ROLLBACK TRANSACTION;",
+          "SortOrder": 4,
+          "CreatedDate": "2026-11-17T05:10:16.425373-05:00",
+          "ModifiedDate": "2026-11-17T05:10:16.425373-05:00",
+          "Items": [
+            {
+              "Id": "43167f6e-3585-4e2e-8a93-679e0bb6627b",
+              "Text": "@@TRANCOUNT returns 0 when no transaction is active and a value greater than 0 for nesting depth.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "98b4cb4e-6717-4ce4-95b8-b48d7aaf2aa5",
+              "Text": "Each BEGIN TRANSACTION increments @@TRANCOUNT; each COMMIT decrements it.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "cb4a9e21-b43b-4b2f-92b0-bcc9c23afa29",
+              "Text": "Always test @@TRANCOUNT before issuing ROLLBACK, especially inside CATCH blocks.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "5b4c0369-4545-4aab-89f9-fc327bbe6a7a",
+              "Text": "Use a flag variable so a nested procedure only commits the transaction it actually started.",
+              "SortOrder": 3
+            },
+            {
+              "Id": "5761f41c-4d42-4876-b7a5-fee26c3afbbe",
+              "Text": "Never assume the calling code has already opened a transaction.",
+              "SortOrder": 4
+            }
+          ]
+        },
+        {
+          "Id": "6612628a-8e7d-4ab2-abd5-bc814aaea5bf",
+          "TopicId": "f7204b27-ffaa-403d-ae65-ee8df9338b2a",
+          "Title": "Monitoring Transactions with DMVs",
+          "BodyText": "Dynamic management views and DBCC commands let you see which transactions are active, how long they have run, and what isolation settings are in effect.",
+          "Notes": "Long-running transactions (over 10 seconds) signal high blocking and deadlock risk and should be investigated or redesigned.",
+          "SortOrder": 5,
+          "CreatedDate": "2026-11-17T05:10:16.425373-05:00",
+          "ModifiedDate": "2026-11-17T05:10:16.425373-05:00",
+          "Items": [
+            {
+              "Id": "ed79f841-34c0-441b-97fb-0facb02b1fe1",
+              "Text": "sys.dm_tran_active_transactions lists all currently active transactions on the instance.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "9e2a7940-e3be-4c0b-959c-bc6042ce6216",
+              "Text": "sys.dm_tran_session_transactions maps transactions to the sessions that own them.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "f7cd1121-621a-449a-b22b-88196d42bafb",
+              "Text": "Join these DMVs with sys.dm_exec_sessions and use transaction_begin_time to find long-running transactions.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "d6829b7f-c2f9-4ca7-9d06-53e766b55f47",
+              "Text": "DBCC USEROPTIONS displays the current session\u0027s transaction isolation level.",
+              "SortOrder": 3
+            },
+            {
+              "Id": "e30f2106-2cc4-418b-8b25-363bc289d32e",
+              "Text": "DBCC SQLPERF(LOGSPACE) reports transaction log usage across databases.",
+              "SortOrder": 4
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Id": "26a5aba0-475a-4988-9bf8-9bcf11bbdda2",
+      "Title": "Isolation Levels, Locking, and Concurrency",
+      "Summary": "Compares READ UNCOMMITTED through SERIALIZABLE and SNAPSHOT isolation in terms of dirty, non-repeatable, and phantom reads versus concurrency. Examines SQL Server lock types, granularity, compatibility, lock hints, and strategies for detecting and preventing deadlocks.",
+      "SortOrder": 4,
+      "CreatedDate": "2026-11-17T05:08:37.485379-05:00",
+      "ModifiedDate": "2026-11-17T05:08:37.485379-05:00",
+      "Elements": [
+        {
+          "Id": "ac39d4bb-c99e-49e0-af27-f7a49f3f2339",
+          "TopicId": "26a5aba0-475a-4988-9bf8-9bcf11bbdda2",
+          "Title": "Concurrency Anomalies: Dirty, Non-Repeatable, and Phantom Reads",
+          "BodyText": "Isolation levels exist to control three classic read anomalies that occur when transactions run concurrently. Understanding each anomaly is the key to choosing the right level.",
+          "Notes": "Example: a REPEATABLE READ transaction locks the rows it read, but another session can still INSERT a new row matching the same WHERE clause, producing a phantom on the second read.",
+          "SortOrder": 0,
+          "CreatedDate": "2026-11-17T05:10:48.6656785-05:00",
+          "ModifiedDate": "2026-11-17T05:10:48.6656785-05:00",
+          "Items": [
+            {
+              "Id": "82621fc3-848b-4f61-9979-033352a5d441",
+              "Text": "A dirty read occurs when a transaction reads data another transaction has changed but not yet committed, so the value may later be rolled back.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "e7a4a52e-717d-48b5-9977-5c4dccb94867",
+              "Text": "A non-repeatable read occurs when the same row is read twice in one transaction and returns different values because another transaction committed an update in between.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "52dbe1d7-6f78-4d46-864b-c85d9bbf1467",
+              "Text": "A phantom read occurs when a repeated range query returns additional rows because another transaction inserted data matching the predicate.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "1edc6f0f-5579-4bea-9c15-1a8e36399714",
+              "Text": "Higher isolation prevents more anomalies but places more locks and reduces concurrency.",
+              "SortOrder": 3
+            },
+            {
+              "Id": "2977b69c-5f82-423d-97e3-10555791f320",
+              "Text": "The trade-off table maps each level to which anomalies it allows and its relative concurrency rating.",
+              "SortOrder": 4
+            }
+          ]
+        },
+        {
+          "Id": "98e14e44-f724-4954-a1d6-d7722b763953",
+          "TopicId": "26a5aba0-475a-4988-9bf8-9bcf11bbdda2",
+          "Title": "READ UNCOMMITTED and READ COMMITTED",
+          "BodyText": "These are the two lowest isolation levels, trading consistency guarantees for throughput. READ COMMITTED is SQL Server\u0027s default.",
+          "Notes": "SET TRANSACTION ISOLATION LEVEL READ UNCOMMITTED; is useful for approximate reporting totals such as SELECT COUNT(*), SUM(TotalAmount) FROM Orders.",
+          "SortOrder": 1,
+          "CreatedDate": "2026-11-17T05:10:48.6656785-05:00",
+          "ModifiedDate": "2026-11-17T05:10:48.6656785-05:00",
+          "Items": [
+            {
+              "Id": "32e60196-ca80-4942-aa43-e627b7ee2fbf",
+              "Text": "READ UNCOMMITTED (Level 0) places no shared locks, allows dirty, non-repeatable, and phantom reads, and gives maximum concurrency with no blocking.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "85f85bbd-af21-49c6-b840-b9ec886dabe2",
+              "Text": "Use READ UNCOMMITTED only for reporting queries where approximate data is acceptable and accuracy is not critical.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "53e1b897-07ce-40ab-b5b2-91d6901d69c1",
+              "Text": "READ COMMITTED (Level 1) reads only committed data, preventing dirty reads while still allowing non-repeatable and phantom reads.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "c9c34686-6c9c-4eb4-8a01-81818525d56c",
+              "Text": "Within a READ COMMITTED transaction, a balance read as 1000 can return 1500 on a second read if another session commits an update.",
+              "SortOrder": 3
+            },
+            {
+              "Id": "64d741e1-6555-4b29-b228-fba3db46a487",
+              "Text": "READ COMMITTED is recommended for most applications as a balance of consistency and concurrency.",
+              "SortOrder": 4
+            }
+          ]
+        },
+        {
+          "Id": "abd1e4eb-4920-40b6-9da2-89bf158b72fb",
+          "TopicId": "26a5aba0-475a-4988-9bf8-9bcf11bbdda2",
+          "Title": "REPEATABLE READ, SERIALIZABLE, and SNAPSHOT",
+          "BodyText": "The higher isolation levels add protection against changing data during a transaction, with SNAPSHOT achieving consistency through row versioning instead of blocking.",
+          "Notes": "SNAPSHOT requires ALTER DATABASE MyDatabase SET ALLOW_SNAPSHOT_ISOLATION ON; before SET TRANSACTION ISOLATION LEVEL SNAPSHOT can be used.",
+          "SortOrder": 2,
+          "CreatedDate": "2026-11-17T05:10:48.6656785-05:00",
+          "ModifiedDate": "2026-11-17T05:10:48.6656785-05:00",
+          "Items": [
+            {
+              "Id": "f64a74eb-760f-4cb2-be59-6c73316db418",
+              "Text": "REPEATABLE READ (Level 2) locks rows that are read so repeated reads return the same values, but new rows can still appear as phantoms.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "f54a1155-342a-40d8-acc7-87255f50e6f2",
+              "Text": "SERIALIZABLE (Level 3) uses range locks to prevent inserts, updates, and deletes in the queried range, eliminating all anomalies at the cost of heavy blocking and deadlock risk.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "c2777a7f-9af0-4bcd-8a23-3ffeb54f615b",
+              "Text": "SNAPSHOT isolation uses row versioning (MVCC) so each transaction sees a consistent snapshot of the data as of its start time.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "fcf9dded-a95c-49fc-944e-91e9d8cf8d98",
+              "Text": "With SNAPSHOT, readers do not block writers and writers do not block readers, giving the highest concurrency of the consistent levels.",
+              "SortOrder": 3
+            },
+            {
+              "Id": "df9c436b-92d8-459a-9f72-61577f7417d5",
+              "Text": "SNAPSHOT costs tempdb overhead to store row versions and can produce update conflicts that must be handled.",
+              "SortOrder": 4
+            }
+          ]
+        },
+        {
+          "Id": "1a81d35c-97ee-4342-aea8-96eef43adff6",
+          "TopicId": "26a5aba0-475a-4988-9bf8-9bcf11bbdda2",
+          "Title": "Setting Isolation Levels in T-SQL",
+          "BodyText": "Isolation can be specified at the session, transaction, or individual query level, and the current setting can be inspected at runtime.",
+          "Notes": "Recommendation: use READ COMMITTED for most applications, consider SNAPSHOT for high-concurrency read-heavy workloads, and avoid READ UNCOMMITTED unless accuracy is unimportant.",
+          "SortOrder": 3,
+          "CreatedDate": "2026-11-17T05:10:48.6656785-05:00",
+          "ModifiedDate": "2026-11-17T05:10:48.6656785-05:00",
+          "Items": [
+            {
+              "Id": "f19ef32d-a6d3-48c0-a740-e588df39fbd2",
+              "Text": "SET TRANSACTION ISOLATION LEVEL \u003Clevel\u003E; applies to the session until changed or the connection ends.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "1ee21f00-8c3a-4d84-9188-8fba0e80af1b",
+              "Text": "Setting the level inside BEGIN TRANSACTION scopes the behaviour to that unit of work and is the recommended practice.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "19470af7-43c8-4853-ad3b-414a04299e2d",
+              "Text": "Query-level table hints such as WITH (READUNCOMMITTED) or WITH (NOLOCK) override the session setting for a single table reference.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "4c3aac5f-bf51-4f61-bc39-b56405822539",
+              "Text": "DBCC USEROPTIONS reports the current transaction isolation level for the session.",
+              "SortOrder": 3
+            },
+            {
+              "Id": "a943793d-740f-4555-a9e4-bc9f97f7d94c",
+              "Text": "sys.dm_tran_active_transactions and sys.dm_tran_session_transactions expose active transaction information.",
+              "SortOrder": 4
+            }
+          ]
+        },
+        {
+          "Id": "04a318aa-7ade-4e2d-8d6c-f9b3c31bee2d",
+          "TopicId": "26a5aba0-475a-4988-9bf8-9bcf11bbdda2",
+          "Title": "SQL Server Lock Types and Granularity",
+          "BodyText": "SQL Server enforces isolation with locks that vary by mode and by the size of the resource they protect. Choosing granularity balances concurrency against memory overhead.",
+          "Notes": "Intent locks (IS, IX, IU) are applied automatically to indicate the lock hierarchy, and schema locks (Sch-S, Sch-M) protect against DDL changes during queries.",
+          "SortOrder": 4,
+          "CreatedDate": "2026-11-17T05:10:48.6656785-05:00",
+          "ModifiedDate": "2026-11-17T05:10:48.6656785-05:00",
+          "Items": [
+            {
+              "Id": "87555616-b943-4c16-8965-5ff5c212e655",
+              "Text": "Shared (S) locks are taken for SELECT statements and allow multiple concurrent readers.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "e2024e1e-8c1d-40db-8cfd-60b6bd23b30f",
+              "Text": "Exclusive (X) locks are taken for INSERT, UPDATE, and DELETE and block all other lock requests.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "7e93e0cd-2d5e-4016-b42a-69e36b830800",
+              "Text": "Update (U) locks signal intent to update and help prevent conversion deadlocks during UPDATE operations.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "533ac7a8-47ac-4b6c-a7cb-30598b1afe83",
+              "Text": "Granularity ranges from row (RID) and key through page, extent, table, and database.",
+              "SortOrder": 3
+            },
+            {
+              "Id": "60820823-6c34-453f-abc7-ed81285460ce",
+              "Text": "Finer granularity such as row locking maximizes concurrency but consumes more lock memory; coarser table locks use minimal memory but serialize access.",
+              "SortOrder": 4
+            }
+          ]
+        },
+        {
+          "Id": "60d9f2b1-6ec6-4269-82bd-865024c74db7",
+          "TopicId": "26a5aba0-475a-4988-9bf8-9bcf11bbdda2",
+          "Title": "Lock Compatibility, Hints, and Monitoring",
+          "BodyText": "Whether a requested lock is granted depends on the compatibility matrix with existing locks; hints let developers override default behaviour, and DMVs expose current blocking.",
+          "Notes": "Example hints: WITH (NOLOCK), WITH (HOLDLOCK), WITH (UPDLOCK), WITH (XLOCK), WITH (TABLOCK), WITH (ROWLOCK). Banking procedures often use WITH (UPDLOCK, ROWLOCK) when reading a balance that will be updated.",
+          "SortOrder": 5,
+          "CreatedDate": "2026-11-17T05:10:48.6656785-05:00",
+          "ModifiedDate": "2026-11-17T05:10:48.6656785-05:00",
+          "Items": [
+            {
+              "Id": "ad489f48-d8b0-4589-bb02-fd6d1a1e0e50",
+              "Text": "Shared locks are compatible with other shared and update locks, but exclusive locks are incompatible with everything.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "07c3b148-122b-4bac-85bc-2f35cb3ae19d",
+              "Text": "An update lock is compatible with existing shared locks but blocks other update and exclusive requests.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "6e5062cd-280c-46f5-af36-04097ea5cc4b",
+              "Text": "NOLOCK mimics READ UNCOMMITTED, HOLDLOCK holds locks until the transaction ends, and UPDLOCK/XLOCK escalate the lock mode taken by a read.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "c267c1f2-de58-4f99-b89d-402f9b26dc4f",
+              "Text": "sys.dm_tran_locks shows resource type, request mode, and request status for the current session\u0027s locks.",
+              "SortOrder": 3
+            },
+            {
+              "Id": "0eab234a-1801-493b-bd4d-146a21d7fd65",
+              "Text": "Joining sys.dm_exec_requests to itself on blocking_session_id identifies blocker and blocked sessions and wait times; KILL terminates a blocking session but should be used with caution.",
+              "SortOrder": 4
+            }
+          ]
+        },
+        {
+          "Id": "a23624c2-aa07-4ef1-9864-5f5a59f76fe8",
+          "TopicId": "26a5aba0-475a-4988-9bf8-9bcf11bbdda2",
+          "Title": "Deadlocks: Detection, Handling, and Prevention",
+          "BodyText": "A deadlock occurs when two transactions each hold a lock the other needs, forcing SQL Server to choose a victim and roll it back. Most deadlocks are preventable through design.",
+          "Notes": "Error number 1205 identifies a deadlock victim and is a good candidate for retry logic inside a CATCH block. DBCC TRACEON(1222, -1) logs deadlock details to the error log, and the system_health extended events ring buffer stores deadlock graphs.",
+          "SortOrder": 6,
+          "CreatedDate": "2026-11-17T05:10:48.6656785-05:00",
+          "ModifiedDate": "2026-11-17T05:10:48.6656785-05:00",
+          "Items": [
+            {
+              "Id": "3720b0ca-10c0-4a2c-a2ca-531531b835f5",
+              "Text": "A classic deadlock arises when Transaction 1 updates Account 1 then Account 2, while Transaction 2 updates Account 2 then Account 1.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "3df48a5d-c81c-47bc-83d4-fcef4cb9faa1",
+              "Text": "Access tables and rows in a consistent order across all transactions, and keep transactions short and fast.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "6b24a067-6256-4125-a07b-28630bbabab9",
+              "Text": "Use the lowest appropriate isolation level, consider SNAPSHOT isolation, and create indexes that avoid broad scan locks.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "c5b4eac5-79aa-4041-9e32-bd27554f615a",
+              "Text": "ROWLOCK hints can reduce lock escalation that contributes to deadlocks.",
+              "SortOrder": 3
+            },
+            {
+              "Id": "262d8677-5308-48ae-9abc-0a89cf18829e",
+              "Text": "Detect deadlocks with trace flag 1222 or the system_health session and implement retry logic for the deadlock victim.",
+              "SortOrder": 4
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Id": "fed1cec5-43ac-45a7-accc-d83dba54b67f",
+      "Title": "Transactions in Stored Procedures and Error Handling",
+      "Summary": "Shows proven patterns for encapsulating transactional logic in stored procedures using validation-first design, TRY...CATCH, XACT_ABORT, THROW, and error logging. Explains how SQL Server treats nested transactions and how to safely coordinate procedures with @@TRANCOUNT checks and savepoints.",
+      "SortOrder": 5,
+      "CreatedDate": "2026-11-17T05:08:37.485379-05:00",
+      "ModifiedDate": "2026-11-17T05:08:37.485379-05:00",
+      "Elements": [
+        {
+          "Id": "418a056b-2b3c-4d46-9a96-9281e178ae89",
+          "TopicId": "fed1cec5-43ac-45a7-accc-d83dba54b67f",
+          "Title": "Encapsulating Transactions in Stored Procedures",
+          "BodyText": "Stored procedures are the preferred place to put transactional logic because they centralize business rules, guarantee consistent error handling, and keep the unit of work on the server.",
+          "Notes": "Example: usp_TransferFunds debits one account, credits another, writes a TransactionLog row, then commits \u2014 all inside one procedure.",
+          "SortOrder": 0,
+          "CreatedDate": "2026-11-17T05:11:17.3042229-05:00",
+          "ModifiedDate": "2026-11-17T05:11:17.3042229-05:00",
+          "Items": [
+            {
+              "Id": "c143dfde-6d1e-4f28-92d7-1bd7c765db4b",
+              "Text": "Begin every procedure with SET NOCOUNT ON to suppress extra row-count messages.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "14fd3697-aa1e-4b8e-bdef-748cc92ee5e0",
+              "Text": "Wrap the BEGIN TRANSACTION / COMMIT TRANSACTION block inside BEGIN TRY ... END TRY.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "49911ebf-6934-4bc6-8596-872abf3a0496",
+              "Text": "Return 0 on success and let the CATCH block signal failure to the caller.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "98907ecc-721d-42ec-a25f-6bb31793f313",
+              "Text": "Use OUTPUT parameters (such as @OrderID) to pass generated keys back to the caller.",
+              "SortOrder": 3
+            },
+            {
+              "Id": "3dbba6ce-349d-454f-8ee5-def884ec9d21",
+              "Text": "Document the procedure\u0027s transaction expectations in the header so callers know whether it opens its own transaction.",
+              "SortOrder": 4
+            }
+          ]
+        },
+        {
+          "Id": "ccde68d0-3a25-4f01-b540-6f63ba3ddcd9",
+          "TopicId": "fed1cec5-43ac-45a7-accc-d83dba54b67f",
+          "Title": "Validation-First Design",
+          "BodyText": "All validation that can be done without locks should happen before BEGIN TRANSACTION so the transaction stays as short as possible and locks are held for a minimal time.",
+          "Notes": "usp_CreateOrderWithValidation checks customer existence, product existence, and a positive quantity with RAISERROR and RETURN -1 before any transaction is opened.",
+          "SortOrder": 1,
+          "CreatedDate": "2026-11-17T05:11:17.3042229-05:00",
+          "ModifiedDate": "2026-11-17T05:11:17.3042229-05:00",
+          "Items": [
+            {
+              "Id": "6237df41-066a-4b1a-8600-d5c1d56ab489",
+              "Text": "Check referential existence with IF NOT EXISTS (SELECT 1 ...) before opening the transaction.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "fec9614a-e0c5-42d7-9711-ac813fa2f68a",
+              "Text": "Validate parameter ranges, such as rejecting quantities less than or equal to zero.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "5a3ff0a8-4407-4f9c-aa2a-916f4485f9fd",
+              "Text": "Raise an error and RETURN a negative code so the caller can distinguish validation failures.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "53d277cb-3696-456f-9643-7f6361ed042d",
+              "Text": "Only checks that require locking (such as stock availability with UPDLOCK) belong inside the transaction.",
+              "SortOrder": 3
+            },
+            {
+              "Id": "088f8a65-fa4e-49f1-b80c-6574527cc821",
+              "Text": "Skipping validation to save time is listed explicitly as an anti-pattern.",
+              "SortOrder": 4
+            }
+          ]
+        },
+        {
+          "Id": "12347957-af26-4c8d-9153-e3af33dcff56",
+          "TopicId": "fed1cec5-43ac-45a7-accc-d83dba54b67f",
+          "Title": "TRY...CATCH and @@TRANCOUNT Rollback Pattern",
+          "BodyText": "The standard SQL Server pattern places the transaction inside TRY and the rollback inside CATCH, always guarded by a check on @@TRANCOUNT.",
+          "Notes": "Critical rule: never let a transaction remain open after an error \u2014 every path must either commit or roll back.",
+          "SortOrder": 2,
+          "CreatedDate": "2026-11-17T05:11:17.3042229-05:00",
+          "ModifiedDate": "2026-11-17T05:11:17.3042229-05:00",
+          "Items": [
+            {
+              "Id": "2d6fe49d-ff93-40d5-9194-c941fbaaf43b",
+              "Text": "Always test IF @@TRANCOUNT \u003E 0 before issuing ROLLBACK TRANSACTION to avoid an error when no transaction is active.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "06db7d1f-b1e0-4883-80a0-3902d6550ff0",
+              "Text": "@@TRANCOUNT returns 0 when no transaction is open and a value greater than 0 for nesting depth.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "b5621142-a12e-4198-9bab-814bc132e84e",
+              "Text": "Capture diagnostics with ERROR_MESSAGE(), ERROR_SEVERITY(), ERROR_STATE(), ERROR_NUMBER(), and ERROR_LINE().",
+              "SortOrder": 2
+            },
+            {
+              "Id": "fdc2bd50-61a3-49f4-a186-7a5cafe4c2e6",
+              "Text": "THROW (SQL Server 2012\u002B) re-throws the original error with all details intact and is preferred over re-raising with RAISERROR.",
+              "SortOrder": 3
+            },
+            {
+              "Id": "1e9d5024-ebdd-47ff-bb1a-b5d5829c2b6a",
+              "Text": "RAISERROR(@ErrorMsg, 16, 1) is still used when you need to substitute a friendlier message.",
+              "SortOrder": 4
+            }
+          ]
+        },
+        {
+          "Id": "308dfbd4-914b-4607-9b2c-94cfe4ca7ae5",
+          "TopicId": "fed1cec5-43ac-45a7-accc-d83dba54b67f",
+          "Title": "Using SET XACT_ABORT ON",
+          "BodyText": "SET XACT_ABORT ON instructs SQL Server to automatically roll back the entire transaction when any run-time error occurs, simplifying straightforward procedures.",
+          "Notes": "usp_ProcessOrderWithXactAbort and usp_BankTransfer both set XACT_ABORT ON at the top of the procedure.",
+          "SortOrder": 3,
+          "CreatedDate": "2026-11-17T05:11:17.3042229-05:00",
+          "ModifiedDate": "2026-11-17T05:11:17.3042229-05:00",
+          "Items": [
+            {
+              "Id": "7fa6377f-0c4c-4960-86a0-e819b43d33e9",
+              "Text": "With XACT_ABORT ON, simple procedures may not need a TRY...CATCH block at all.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "cff2f2ef-73dd-429c-8bf2-f24fdc6a6905",
+              "Text": "It prevents the dangerous situation of a doomed transaction being left open after an error.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "845b7cff-de37-497e-bcb8-c36e13bd53e1",
+              "Text": "It pairs well with explicit transactions in financial procedures where partial completion is unacceptable.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "bb1c1ec6-d24e-481f-b7ca-2e5b06fecc08",
+              "Text": "Best practices recommend XACT_ABORT ON for simple cases and TRY...CATCH when custom handling or logging is required.",
+              "SortOrder": 3
+            }
+          ]
+        },
+        {
+          "Id": "1bf16572-36fa-4855-a0c1-efeed13cc203",
+          "TopicId": "fed1cec5-43ac-45a7-accc-d83dba54b67f",
+          "Title": "Error Logging and Handling Specific Error Numbers",
+          "BodyText": "Comprehensive error handling logs full diagnostic detail to a dedicated table and translates well-known SQL Server error numbers into meaningful messages.",
+          "Notes": "An ErrorLog table typically stores ErrorTime, UserName, ErrorNumber, ErrorSeverity, ErrorState, ErrorProcedure, ErrorLine, and ErrorMessage.",
+          "SortOrder": 4,
+          "CreatedDate": "2026-11-17T05:11:17.3042229-05:00",
+          "ModifiedDate": "2026-11-17T05:11:17.3042229-05:00",
+          "Items": [
+            {
+              "Id": "1f79b60c-9d50-47a4-b2f3-589cc2f0e8de",
+              "Text": "Roll back first, then insert the log row so the logging INSERT itself is not undone.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "3282794e-f4f3-4ea8-b6aa-538572905b6c",
+              "Text": "Capture SUSER_SNAME() and ERROR_PROCEDURE() to identify who and what failed.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "33c68235-27d5-49ea-a40f-07afb7eb1561",
+              "Text": "Error 2627 indicates a unique constraint violation \u2014 report \u0027Username or email already exists\u0027.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "c9dad462-7a17-4d3c-9209-49348ab7fbb8",
+              "Text": "Error 547 indicates a foreign key violation \u2014 report an invalid reference to a related table.",
+              "SortOrder": 3
+            },
+            {
+              "Id": "2106c0ab-d894-4bf1-8de5-256bff9717fd",
+              "Text": "Error 1205 indicates a deadlock victim \u2014 implement retry logic rather than simply failing.",
+              "SortOrder": 4
+            },
+            {
+              "Id": "db5fb8b5-8637-458c-a13c-c8ec6116e0d8",
+              "Text": "Fall through to THROW for any unrecognized error so nothing is silently swallowed.",
+              "SortOrder": 5
+            }
+          ]
+        },
+        {
+          "Id": "66f98433-9914-48c3-a180-b1d788dbfb0e",
+          "TopicId": "fed1cec5-43ac-45a7-accc-d83dba54b67f",
+          "Title": "How Nested Transactions Really Behave",
+          "BodyText": "SQL Server does not truly support nested transactions; additional BEGIN TRANSACTION statements only increment @@TRANCOUNT.",
+          "Notes": "Example: BEGIN TRAN (@@TRANCOUNT=1), BEGIN TRAN (@@TRANCOUNT=2), COMMIT (@@TRANCOUNT=1, nothing committed), COMMIT (@@TRANCOUNT=0, everything commits).",
+          "SortOrder": 5,
+          "CreatedDate": "2026-11-17T05:11:17.3042229-05:00",
+          "ModifiedDate": "2026-11-17T05:11:17.3042229-05:00",
+          "Items": [
+            {
+              "Id": "783f0bc9-8ed6-4bcc-a380-409ce6b5ab79",
+              "Text": "Only the outermost COMMIT actually makes changes permanent.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "5f5bd712-7f29-42f9-b53b-bfe6cff147d8",
+              "Text": "A ROLLBACK at any nesting level rolls back the entire outer transaction.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "1432c2a4-19f7-4de1-99b7-d70341b69bc7",
+              "Text": "Inner COMMIT statements merely decrement @@TRANCOUNT without persisting anything.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "6e88e0ac-2ed6-4dd4-80cb-44729b82a850",
+              "Text": "This behaviour surprises developers who expect independent inner transactions.",
+              "SortOrder": 3
+            },
+            {
+              "Id": "95980a62-3be5-4edc-b647-4c18d5efda5a",
+              "Text": "Never nest transactions without first checking @@TRANCOUNT.",
+              "SortOrder": 4
+            }
+          ]
+        },
+        {
+          "Id": "e4bf2859-3e47-4f2f-95a3-388bdf1df352",
+          "TopicId": "fed1cec5-43ac-45a7-accc-d83dba54b67f",
+          "Title": "Safe Coordination Between Procedures Using @@TRANCOUNT and Savepoints",
+          "BodyText": "Callable procedures should detect whether a transaction is already active and use a flag so that only the procedure that started a transaction commits or rolls it back.",
+          "Notes": "usp_InnerProcedure sets @TranStarted = 1 only when @@TRANCOUNT = 0, and usp_OuterProcedure wraps multiple EXEC calls in a single transaction.",
+          "SortOrder": 6,
+          "CreatedDate": "2026-11-17T05:11:17.3042229-05:00",
+          "ModifiedDate": "2026-11-17T05:11:17.3042229-05:00",
+          "Items": [
+            {
+              "Id": "b1148def-0f71-4182-9477-9181ed22d564",
+              "Text": "Declare a BIT flag such as @TranStarted and set it to 1 only if the procedure opened the transaction.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "d3287eb5-cd57-46ba-b700-14af9d163010",
+              "Text": "Commit only when @TranStarted = 1; otherwise let the caller decide.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "178445df-b88d-4cd1-bed2-92a584180a92",
+              "Text": "In CATCH, roll back only if @TranStarted = 1 AND @@TRANCOUNT \u003E 0, then THROW to propagate the error.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "6b2ac763-1f41-488a-b9f3-464fcacd127f",
+              "Text": "Use SAVE TRANSACTION SavePointName before risky steps and ROLLBACK TRANSACTION SavePointName to undo just that step.",
+              "SortOrder": 3
+            },
+            {
+              "Id": "e881204c-f540-4659-bd90-2c9377852dff",
+              "Text": "Partial rollback lets you keep an order row while logging the failure and setting status to \u0027Pending Review\u0027.",
+              "SortOrder": 4
+            },
+            {
+              "Id": "a48261a1-9dcd-4a21-916c-2e41cef647dd",
+              "Text": "An outer procedure can coordinate several child procedures (create order, add items, shipping, payment, shipment) in one atomic unit.",
+              "SortOrder": 5
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Id": "ef7a3d7c-3e45-42e5-b5e9-42aae89255c7",
+      "Title": "Distributed Transactions and the Saga Pattern",
+      "Summary": "Explores cross-database and cross-server transactions using MS-DTC, BEGIN DISTRIBUTED TRANSACTION, and two-phase commit, along with their performance and availability challenges. Presents the Saga pattern with compensating transactions as a modern alternative for microservice architectures.",
+      "SortOrder": 6,
+      "CreatedDate": "2026-11-17T05:08:37.485379-05:00",
+      "ModifiedDate": "2026-11-17T05:08:37.485379-05:00",
+      "Elements": [
+        {
+          "Id": "783e562c-dbf1-4241-9a77-d037575d2679",
+          "TopicId": "ef7a3d7c-3e45-42e5-b5e9-42aae89255c7",
+          "Title": "What Distributed Transactions Are",
+          "BodyText": "A distributed transaction is a logical unit of work that spans multiple databases, servers, or resource managers, requiring coordination so that all participants commit or roll back together.",
+          "Notes": "Common scenarios include updating a local Orders table while simultaneously decrementing inventory in a remote warehouse database via a linked server.",
+          "SortOrder": 0,
+          "CreatedDate": "2026-11-17T05:11:40.4820487-05:00",
+          "ModifiedDate": "2026-11-17T05:11:40.4820487-05:00",
+          "Items": [
+            {
+              "Id": "f70a19f3-0029-47b3-9f19-b8d0257d0c43",
+              "Text": "Each participating system is a separate resource manager with its own transaction log.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "77818c91-799c-4509-b48c-284e8b1664f4",
+              "Text": "ACID guarantees must be extended across machine and network boundaries.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "f9293c31-02a2-4f04-9fc4-3335e2fba359",
+              "Text": "A transaction coordinator is required to arbitrate the final commit or rollback decision.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "e8df049e-6dae-416f-8dbb-244d7234b6a0",
+              "Text": "Typical uses are cross-database operations within a server and cross-server operations over linked servers.",
+              "SortOrder": 3
+            }
+          ]
+        },
+        {
+          "Id": "9c540320-e2c2-4130-bf2c-ce1e632843e0",
+          "TopicId": "ef7a3d7c-3e45-42e5-b5e9-42aae89255c7",
+          "Title": "Coordination Technologies: MS-DTC, 2PC, and Saga",
+          "BodyText": "Three main technologies address distributed coordination, each suited to a different platform and style of system.",
+          "Notes": "",
+          "SortOrder": 1,
+          "CreatedDate": "2026-11-17T05:11:40.4820487-05:00",
+          "ModifiedDate": "2026-11-17T05:11:40.4820487-05:00",
+          "Items": [
+            {
+              "Id": "4279e1e0-65dc-4323-9e5d-08405fb00266",
+              "Text": "MS-DTC runs on Windows with SQL Server and coordinates cross-database and cross-server transactions.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "1493051b-52c2-4494-b968-70bdf472f4de",
+              "Text": "Two-Phase Commit (2PC) is supported by most RDBMS platforms and underpins traditional distributed transactions.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "0da436cd-cd36-4bf5-adc1-0fbc851d1e04",
+              "Text": "The Saga pattern targets microservice architectures and long-running work using compensating transactions.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "b8dab826-1a61-496f-938e-2deb62f081e3",
+              "Text": "MS-DTC must be installed, configured, and enabled on every participating server before distributed transactions will work.",
+              "SortOrder": 3
+            }
+          ]
+        },
+        {
+          "Id": "7fcf29d5-6833-4d33-baca-9a4e727d570a",
+          "TopicId": "ef7a3d7c-3e45-42e5-b5e9-42aae89255c7",
+          "Title": "BEGIN DISTRIBUTED TRANSACTION in T-SQL",
+          "BodyText": "SQL Server exposes distributed transactions through the BEGIN DISTRIBUTED TRANSACTION statement, which enlists MS-DTC to coordinate the commit across all participants.",
+          "Notes": "Example: BEGIN DISTRIBUTED TRANSACTION; UPDATE LocalDB.dbo.Orders SET Status = \u0027Completed\u0027 WHERE OrderID = 1; UPDATE RemoteServer.RemoteDB.dbo.Inventory SET Quantity = Quantity - 1 WHERE ProductID = 5; COMMIT TRANSACTION;",
+          "SortOrder": 2,
+          "CreatedDate": "2026-11-17T05:11:40.4820487-05:00",
+          "ModifiedDate": "2026-11-17T05:11:40.4820487-05:00",
+          "Items": [
+            {
+              "Id": "23157fc0-0412-42f6-8557-f4f41214f8af",
+              "Text": "Statements inside the transaction can reference local objects and remote objects through linked servers.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "185d29c0-6d0a-461b-b39a-14d8297e2c79",
+              "Text": "A single COMMIT TRANSACTION tells MS-DTC to commit on every enlisted resource manager.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "6ed442a4-24a2-435c-9ba8-30b95219fcbd",
+              "Text": "If any participant cannot commit, MS-DTC rolls back the work on all participants.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "4540a4cf-3191-4339-862a-22ad1ea20a08",
+              "Text": "Four-part naming (Server.Database.Schema.Object) is used to reach remote tables.",
+              "SortOrder": 3
+            }
+          ]
+        },
+        {
+          "Id": "ef55057a-f582-4f3a-ba28-b0ff86063b69",
+          "TopicId": "ef7a3d7c-3e45-42e5-b5e9-42aae89255c7",
+          "Title": "How Two-Phase Commit Works",
+          "BodyText": "Two-phase commit is the protocol that makes an all-or-nothing outcome possible across independent systems.",
+          "Notes": "",
+          "SortOrder": 3,
+          "CreatedDate": "2026-11-17T05:11:40.4820487-05:00",
+          "ModifiedDate": "2026-11-17T05:11:40.4820487-05:00",
+          "Items": [
+            {
+              "Id": "0e15a159-ca37-4b58-bd80-28cc399e424b",
+              "Text": "Phase 1 (prepare): the coordinator asks every participant whether it can commit, and each one durably writes its changes and votes yes or no.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "acbb1739-6f4f-42d1-8d78-787b5a1254f3",
+              "Text": "Phase 2 (commit): if all votes are yes, the coordinator instructs everyone to commit; a single no triggers a global rollback.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "42aa988e-8e6a-452c-90f8-09b1c87f7cd5",
+              "Text": "Participants hold their locks between the prepare and commit phases, extending lock duration.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "102b4338-7953-4d4c-aa4c-12bab5927e7a",
+              "Text": "If the coordinator fails after prepare, participants may be left \u0027in doubt\u0027 until it recovers.",
+              "SortOrder": 3
+            }
+          ]
+        },
+        {
+          "Id": "9a82286f-b022-4af8-b62e-0eb2625a1159",
+          "TopicId": "ef7a3d7c-3e45-42e5-b5e9-42aae89255c7",
+          "Title": "Challenges of Distributed Transactions",
+          "BodyText": "Distributed transactions deliver strong guarantees but carry significant performance, availability, and operational costs.",
+          "Notes": "The best practice list states: do not use distributed transactions unless they are genuinely required.",
+          "SortOrder": 4,
+          "CreatedDate": "2026-11-17T05:11:40.4820487-05:00",
+          "ModifiedDate": "2026-11-17T05:11:40.4820487-05:00",
+          "Items": [
+            {
+              "Id": "66c8063c-0dfe-4ef5-b2ef-4cbc6c99dcbc",
+              "Text": "Performance is noticeably slower than local transactions because of coordination round-trips.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "a293ed76-0408-4f4a-8ebb-322582a17584",
+              "Text": "Every participant must be available, so overall availability is the product of each system\u0027s availability.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "a7181602-f94b-4245-a32c-2a918e3d491f",
+              "Text": "Network latency and failures increase the chance of timeouts and in-doubt transactions.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "623debff-62ec-46f6-ba86-d7ad8be7cc49",
+              "Text": "Locks are held across multiple systems for longer, raising blocking and deadlock risk.",
+              "SortOrder": 3
+            },
+            {
+              "Id": "efcbd09f-28e9-4dcb-9cb8-05c685c9a150",
+              "Text": "Complexity grows with more points of failure and required MS-DTC configuration on every node.",
+              "SortOrder": 4
+            }
+          ]
+        },
+        {
+          "Id": "5f387275-db18-45e5-87ef-610343cb6d0b",
+          "TopicId": "ef7a3d7c-3e45-42e5-b5e9-42aae89255c7",
+          "Title": "The Saga Pattern with Compensating Transactions",
+          "BodyText": "A saga replaces one global transaction with a sequence of local transactions, each paired with a compensating action that semantically undoes it if a later step fails.",
+          "Notes": "Example flow: create order (local transaction) \u2192 reserve inventory \u2192 process payment \u2192 confirm order; on failure, refund payment, release inventory, and set order status to \u0027Cancelled\u0027.",
+          "SortOrder": 5,
+          "CreatedDate": "2026-11-17T05:11:40.4820487-05:00",
+          "ModifiedDate": "2026-11-17T05:11:40.4820487-05:00",
+          "Items": [
+            {
+              "Id": "c9c4d263-730c-4d3e-9871-e4de89cd1e97",
+              "Text": "Each step commits immediately in its own system, so no locks are held across services.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "5a1a77b3-3d2b-458f-9f63-e7e18dab3452",
+              "Text": "Progress flags such as @InventoryReserved and @PaymentProcessed record which steps completed.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "182f29b4-7954-436d-83db-56f23082afaa",
+              "Text": "The CATCH block runs compensating procedures in reverse order of the steps that succeeded.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "744bc0ef-c3b1-429b-a9a0-fc3992dee145",
+              "Text": "Compensation is a business-level undo (a refund), not a database rollback of committed data.",
+              "SortOrder": 3
+            },
+            {
+              "Id": "abe5fced-e636-46e8-9f88-4efd48b638cc",
+              "Text": "The system is eventually consistent rather than immediately consistent during the saga.",
+              "SortOrder": 4
+            }
+          ]
+        },
+        {
+          "Id": "e1f941f0-8c41-49e2-a297-689bf9c4609c",
+          "TopicId": "ef7a3d7c-3e45-42e5-b5e9-42aae89255c7",
+          "Title": "Choosing Between 2PC and Saga",
+          "BodyText": "Selecting an approach depends on how tightly coupled the systems are, how long the work runs, and how much scalability and fault tolerance matter.",
+          "Notes": "The quick reference checklist recommends considering the Saga pattern over distributed transactions for cross-database operations.",
+          "SortOrder": 6,
+          "CreatedDate": "2026-11-17T05:11:40.4820487-05:00",
+          "ModifiedDate": "2026-11-17T05:11:40.4820487-05:00",
+          "Items": [
+            {
+              "Id": "c0254291-1b57-48e4-aef9-faeaefb77fb9",
+              "Text": "Use MS-DTC/2PC for short, tightly coupled operations inside a controlled environment that demand immediate consistency.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "e618b11d-076a-4607-9dd7-b78cd68b71eb",
+              "Text": "Prefer sagas for microservices, external API calls, and long-running workflows where blocking is unacceptable.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "b64f5561-9806-4a2e-8985-fa9930a9305a",
+              "Text": "Sagas scale better and tolerate partial outages because each service commits independently.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "47db2004-56c1-4201-87d8-4f9dd460a2b8",
+              "Text": "Sagas shift complexity to the application, which must design and test every compensating action.",
+              "SortOrder": 3
+            },
+            {
+              "Id": "e5537baf-61f4-4105-965d-ad375ef69e58",
+              "Text": "Never place external API calls inside a distributed transaction \u2014 do that work outside and keep database transactions short.",
+              "SortOrder": 4
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Id": "c7b5aa32-c981-41c5-95c2-65fee398764b",
+      "Title": "Real-World Use Cases, Performance, and Best Practices",
+      "Summary": "Walks through practical transactional procedures for banking transfers, e-commerce orders, inventory adjustment, and user registration. Concludes with performance guidance on transaction duration, lock contention, batching, monitoring, and a do/don\u0027t best-practice checklist.",
+      "SortOrder": 7,
+      "CreatedDate": "2026-11-17T05:08:37.485379-05:00",
+      "ModifiedDate": "2026-11-17T05:08:37.485379-05:00",
+      "Elements": [
+        {
+          "Id": "19f1a408-1c7a-4a92-b157-c35681c83b78",
+          "TopicId": "c7b5aa32-c981-41c5-95c2-65fee398764b",
+          "Title": "Banking: Account Transfer Procedure",
+          "BodyText": "Financial transfers are the classic transaction use case \u2014 money must never be created or destroyed. A transfer procedure locks the source account, validates funds, moves the money, and records an audit entry atomically.",
+          "Notes": "Example: usp_BankTransfer uses SET XACT_ABORT ON, reads the source balance WITH (UPDLOCK, ROWLOCK), and raises \u0027Insufficient funds\u0027 before touching any balances.",
+          "SortOrder": 0,
+          "CreatedDate": "2026-11-17T05:12:11.6836144-05:00",
+          "ModifiedDate": "2026-11-17T05:12:11.6836144-05:00",
+          "Items": [
+            {
+              "Id": "08f8dfac-8526-44c0-8c40-ec92f0846526",
+              "Text": "Use UPDLOCK/ROWLOCK hints when reading the source balance to prevent other sessions from changing it mid-transaction.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "d1dcaaac-bab4-418c-bdc8-3a16f62fc3d8",
+              "Text": "Check for sufficient funds and ROLLBACK with a clear RAISERROR message before performing any update.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "57dc4580-e3ae-4afa-8a42-92b352a17c9c",
+              "Text": "Debit the source account and credit the destination account inside the same explicit transaction.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "a95345a8-2f47-4645-94f1-f70b92590ef4",
+              "Text": "Insert a row into a Transactions or TransactionLog table so every movement of money is auditable.",
+              "SortOrder": 3
+            },
+            {
+              "Id": "812cc5d9-dca9-47be-8d56-0dfbdda58cb9",
+              "Text": "A pre-transaction logging procedure (e.g., LogTransactionAttempt) can record the attempt and return a TransactionID for later success flagging.",
+              "SortOrder": 4
+            }
+          ]
+        },
+        {
+          "Id": "b59b4e58-e493-4114-b5d7-729e130613a4",
+          "TopicId": "c7b5aa32-c981-41c5-95c2-65fee398764b",
+          "Title": "E-Commerce: Order Processing",
+          "BodyText": "An e-commerce checkout touches many tables at once \u2014 order header, line items, inventory, payment, and cart \u2014 so all of it belongs in one transaction.",
+          "Notes": "Example: usp_ProcessEcommerceOrder wraps the entire checkout in BEGIN TRY / BEGIN TRANSACTION with a @@TRANCOUNT-guarded ROLLBACK and THROW in the CATCH block.",
+          "SortOrder": 1,
+          "CreatedDate": "2026-11-17T05:12:11.6836144-05:00",
+          "ModifiedDate": "2026-11-17T05:12:11.6836144-05:00",
+          "Items": [
+            {
+              "Id": "d7ae6f0b-1e13-46dd-9ea0-626b0f695862",
+              "Text": "Create the order header first and capture the new key with SCOPE_IDENTITY() for use by dependent inserts.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "b2e00db2-d51f-4fea-8418-5808b677b3ae",
+              "Text": "Transfer cart items into OrderItems, then decrement StockQuantity and increment ReservedQuantity in a single set-based UPDATE.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "08e276ff-ae5f-4e04-9670-01bf6d4e3f68",
+              "Text": "Compare @@ROWCOUNT against the expected item count to detect out-of-stock products and raise an error.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "87e29d7f-13dc-4714-977f-4f503d364b8d",
+              "Text": "Recalculate the order total, record a pending payment row, clear the cart, and set the status to \u0027Confirmed\u0027 before committing.",
+              "SortOrder": 3
+            },
+            {
+              "Id": "f70b5a97-421f-4886-b0e6-1ba91e9a88b4",
+              "Text": "Any failure rolls back the whole checkout so stock is never reserved for an order that does not exist.",
+              "SortOrder": 4
+            }
+          ]
+        },
+        {
+          "Id": "84de6003-5ae6-4187-82a2-cb22525cba54",
+          "TopicId": "c7b5aa32-c981-41c5-95c2-65fee398764b",
+          "Title": "Inventory Adjustment with an Audit Trail",
+          "BodyText": "Stock adjustments must change the quantity and record who changed it and why, as a single unit of work.",
+          "Notes": "Example: usp_AdjustInventory reads the current quantity WITH (UPDLOCK), validates the result, updates Products, and writes an InventoryAudit row.",
+          "SortOrder": 2,
+          "CreatedDate": "2026-11-17T05:12:11.6836144-05:00",
+          "ModifiedDate": "2026-11-17T05:12:11.6836144-05:00",
+          "Items": [
+            {
+              "Id": "d361a2d5-aa34-42ea-b5f7-23b5a998a177",
+              "Text": "Read the current StockQuantity with an update lock so concurrent adjustments cannot interleave.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "7213e2ff-29a1-4c0c-b025-18d097d8e8bb",
+              "Text": "Raise an error if the product does not exist or if the adjustment would produce a negative inventory balance.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "320924e3-7e2a-41f8-8b46-456cd3d88160",
+              "Text": "Update the stock level and LastUpdated timestamp only after validation succeeds.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "67314271-5443-4f8c-966c-d83acfef743b",
+              "Text": "Write an audit record capturing old quantity, new quantity, adjustment amount, reason, user, and date.",
+              "SortOrder": 3
+            },
+            {
+              "Id": "fe70213c-eae4-4742-bf15-8a05a096307d",
+              "Text": "Commit only when both the update and the audit entry succeed, keeping stock and audit history in sync.",
+              "SortOrder": 4
+            }
+          ]
+        },
+        {
+          "Id": "93b28843-d1c4-4303-b808-97891a24fd09",
+          "TopicId": "c7b5aa32-c981-41c5-95c2-65fee398764b",
+          "Title": "User Registration with Related Data",
+          "BodyText": "Creating a user account also means creating a profile, default preferences, a role assignment, and an activity log entry \u2014 a partially created user is a broken user.",
+          "Notes": "Example: usp_RegisterUser inserts into Users, UserProfiles, UserPreferences, UserRoles, and ActivityLog within one transaction.",
+          "SortOrder": 3,
+          "CreatedDate": "2026-11-17T05:12:11.6836144-05:00",
+          "ModifiedDate": "2026-11-17T05:12:11.6836144-05:00",
+          "Items": [
+            {
+              "Id": "5a75ca97-40c4-4d4e-b401-5ef6bc763ec0",
+              "Text": "Insert the Users row first and capture @UserID with SCOPE_IDENTITY() for all child inserts.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "d499e083-2c88-4876-aa7f-2a71b97f18bd",
+              "Text": "Create the profile, default preferences (notifications, theme, language), and assign the default \u0027User\u0027 role.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "2d818e06-1c8b-4802-9989-6e2383c694d9",
+              "Text": "Add an ActivityLog entry recording the registration event before committing.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "5d983702-d683-4f8b-9bce-522c9fb60e18",
+              "Text": "In the CATCH block, test ERROR_NUMBER() = 2627 to convert a unique constraint violation into a friendly \u0027Username or email already exists\u0027 message.",
+              "SortOrder": 3
+            },
+            {
+              "Id": "56b5dc04-e1f7-48e6-b5c9-f97db97f0fa9",
+              "Text": "Other domains follow the same multi-table pattern: healthcare records, airline seat booking, payroll, logistics, and student enrollment.",
+              "SortOrder": 4
+            }
+          ]
+        },
+        {
+          "Id": "2829b5bb-e0dd-43d8-86f0-4b47968ab88e",
+          "TopicId": "c7b5aa32-c981-41c5-95c2-65fee398764b",
+          "Title": "Transaction Duration and Lock Contention",
+          "BodyText": "The longer a transaction runs, the longer it holds locks and the greater the risk of blocking and deadlocks. Duration is the single biggest performance lever in transaction design.",
+          "Notes": "Guidance: under 1 second is ideal; 1\u20135 seconds is acceptable; 5\u201310 seconds signals a need to optimize; over 10 seconds requires redesign.",
+          "SortOrder": 4,
+          "CreatedDate": "2026-11-17T05:12:11.6836144-05:00",
+          "ModifiedDate": "2026-11-17T05:12:11.6836144-05:00",
+          "Items": [
+            {
+              "Id": "c57c34b6-e087-4ca0-b234-7446ad5233d3",
+              "Text": "Do all validation and lookups before BEGIN TRANSACTION so locks are held for the minimum time.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "5308621b-7ebb-4f28-8e74-9251d14c63af",
+              "Text": "Never include user interaction, WAITFOR delays, or external API calls inside a transaction \u2014 do that work outside and commit the result.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "911c3a4e-9182-45a3-822f-f389d2e987de",
+              "Text": "Access tables in a consistent order across all procedures to avoid circular lock waits and deadlocks.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "f2a38fa6-9e98-483f-baf8-9c576ee382e7",
+              "Text": "Choose isolation levels to match the workload: READ UNCOMMITTED or SNAPSHOT for reporting, READ COMMITTED or SNAPSHOT for high-concurrency updates.",
+              "SortOrder": 3
+            }
+          ]
+        },
+        {
+          "Id": "d4ce6846-cbdb-4a80-b9c1-a718ed1f2539",
+          "TopicId": "c7b5aa32-c981-41c5-95c2-65fee398764b",
+          "Title": "Batching Large Operations and Monitoring",
+          "BodyText": "Massive single-statement updates create huge transactions and long lock holds; splitting them into batches keeps the system responsive. Monitoring tells you when transactions are running too long.",
+          "Notes": "Use sys.dm_tran_active_transactions joined to sys.dm_tran_session_transactions and sys.dm_exec_sessions to find long runners; DBCC SQLPERF(LOGSPACE) shows log usage.",
+          "SortOrder": 5,
+          "CreatedDate": "2026-11-17T05:12:11.6836144-05:00",
+          "ModifiedDate": "2026-11-17T05:12:11.6836144-05:00",
+          "Items": [
+            {
+              "Id": "a3feb5ca-7a89-440b-af54-e5e847ec2f42",
+              "Text": "Use a WHILE loop with UPDATE TOP (@BatchSize) and check @@ROWCOUNT to process archival or bulk changes incrementally.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "aa8cfcc4-db4d-458b-9f71-e29e7ad54839",
+              "Text": "Commit each batch separately and add a brief WAITFOR DELAY so other transactions can acquire locks.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "c2224de0-b354-498b-a314-e5339f98035d",
+              "Text": "Query the transaction DMVs filtered on DATEDIFF(SECOND, transaction_begin_time, GETDATE()) \u003E 10 to surface long-running transactions.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "ff5b9096-a237-4b8e-bf0e-b2eae88c8c65",
+              "Text": "Inspect sys.dm_tran_locks and sys.dm_exec_requests to identify blocking chains and wait times.",
+              "SortOrder": 3
+            },
+            {
+              "Id": "45b45cae-a326-4f83-b203-590a74db7097",
+              "Text": "Monitor transaction log space regularly, since large uncommitted transactions prevent log truncation.",
+              "SortOrder": 4
+            }
+          ]
+        },
+        {
+          "Id": "4cb93d3a-f984-4904-80ac-14586ffafec9",
+          "TopicId": "c7b5aa32-c981-41c5-95c2-65fee398764b",
+          "Title": "Best-Practice Do and Don\u0027t Checklist",
+          "BodyText": "A short checklist captures the habits that keep transactional code correct, fast, and maintainable.",
+          "Notes": "Quick reference: single statements can rely on autocommit; multiple related operations need an explicit transaction with TRY...CATCH; cross-database work should favour the Saga pattern over distributed transactions.",
+          "SortOrder": 6,
+          "CreatedDate": "2026-11-17T05:12:11.6836144-05:00",
+          "ModifiedDate": "2026-11-17T05:12:11.6836144-05:00",
+          "Items": [
+            {
+              "Id": "404c056b-e108-4618-b251-a350500e0c7a",
+              "Text": "Do keep transactions short, validate first, wrap work in TRY...CATCH, and check @@TRANCOUNT before ROLLBACK.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "33b08239-c8b9-4d42-8019-1eae05b9a2ad",
+              "Text": "Do use XACT_ABORT ON for simple cases, log errors comprehensively, and test rollback paths deliberately.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "785361b8-3100-4a52-8aa5-97bf4261ba6c",
+              "Text": "Don\u0027t leave a transaction open after an error, hold locks longer than necessary, or use high isolation levels without need.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "5b6c9c53-4ba4-4e2e-a95b-d8086cd8ec6b",
+              "Text": "Don\u0027t nest transactions without checking @@TRANCOUNT, skip validation to save time, or assume a transaction will always succeed.",
+              "SortOrder": 3
+            },
+            {
+              "Id": "2b61c29f-0140-4901-8b30-19f921120693",
+              "Text": "Document transaction expectations in each procedure header so callers know whether they must manage the transaction.",
+              "SortOrder": 4
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "TotalElementCount": 52
+}

@@ -1,0 +1,2003 @@
+{
+  "ModuleFolderName": "Module_14_(Week_14)",
+  "CourseName": "COP4709 \u2014 Applied Database II",
+  "GeneratedDate": "2026-11-17T05:42:16.3681124-05:00",
+  "ModifiedDate": "2026-11-17T05:45:28.6759609-05:00",
+  "Outcomes": [],
+  "Topics": [
+    {
+      "Id": "17254c7d-97f0-4844-8308-372c8098c22c",
+      "Title": "NoSQL Fundamentals and Database Types",
+      "Summary": "Introduces what NoSQL means, why it emerged, and the four main families \u2014 document, key-value, column-family, and graph stores \u2014 along with their typical use cases and leading products. Compares NoSQL and relational systems across data model, schema, relationships, scaling, and consistency.",
+      "SortOrder": 0,
+      "CreatedDate": "2026-11-17T05:42:16.3681124-05:00",
+      "ModifiedDate": "2026-11-17T05:42:16.3681124-05:00",
+      "Elements": [
+        {
+          "Id": "89b086e8-a5ed-4082-b054-247725d6f527",
+          "TopicId": "17254c7d-97f0-4844-8308-372c8098c22c",
+          "Title": "What NoSQL Means and Why It Emerged",
+          "BodyText": "NoSQL stands for \u0022Not Only SQL\u0022 \u2014 a broad category of database systems that store and retrieve data using models other than the traditional relational table. These systems emerged to address limitations of relational databases under specific modern workloads.",
+          "Notes": "Many NoSQL systems support SQL-like query languages; the defining characteristic is freedom from the relational model, not the absence of SQL syntax.",
+          "SortOrder": 0,
+          "CreatedDate": "2026-11-17T05:42:39.621477-05:00",
+          "ModifiedDate": "2026-11-17T05:42:39.621477-05:00",
+          "Items": [
+            {
+              "Id": "2626d30e-7d02-4155-a607-7c47bc5b5c91",
+              "Text": "NoSQL was developed to handle massive scale, flexible or evolving schemas, unstructured data, and high-velocity writes.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "a0dcfbcc-2422-43c4-93bd-ff0111254b9a",
+              "Text": "The term does not mean \u0022no SQL\u0022 \u2014 it means the system is not constrained to tables, rows, and fixed schemas.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "6e4bcea4-a9e7-44a0-8801-93cdaf892e65",
+              "Text": "NoSQL databases trade some strict consistency guarantees for gains in scalability, flexibility, and performance.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "44567f88-fcb8-4a38-8243-91207a9373ac",
+              "Text": "NoSQL is a family of different data models rather than a single technology or product.",
+              "SortOrder": 3
+            }
+          ]
+        },
+        {
+          "Id": "cbfed00b-f8f6-4425-8e85-6b29cde46f39",
+          "TopicId": "17254c7d-97f0-4844-8308-372c8098c22c",
+          "Title": "Document Stores",
+          "BodyText": "Document stores keep data as self-contained documents, typically in JSON or BSON format, grouped into collections. They are the most flexible and widely used NoSQL type.",
+          "Notes": "MongoDB is the world\u0027s most popular document database and serves as the primary example for this module.",
+          "SortOrder": 1,
+          "CreatedDate": "2026-11-17T05:42:39.621477-05:00",
+          "ModifiedDate": "2026-11-17T05:42:39.621477-05:00",
+          "Items": [
+            {
+              "Id": "0f7bd882-c9ea-4579-ab66-8fe4122f726a",
+              "Text": "Each document can have a different structure \u2014 there is no fixed schema enforced across a collection.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "d8bafd69-c25e-48e9-b96d-eac0ce39aa29",
+              "Text": "Collections are the rough equivalent of relational tables, and documents the equivalent of rows.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "861080d3-e41b-48e4-b290-ef8b2ca001f5",
+              "Text": "Leading products include MongoDB, CouchDB, Amazon DocumentDB, and Firestore.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "a83fb79c-be8e-4a1d-98fd-0d0f7ba83ef0",
+              "Text": "Best suited to user profiles, product catalogues, content management, e-commerce, and mobile applications.",
+              "SortOrder": 3
+            }
+          ]
+        },
+        {
+          "Id": "5da5b5e4-0ad1-4c8c-a13e-bcdbd8826160",
+          "TopicId": "17254c7d-97f0-4844-8308-372c8098c22c",
+          "Title": "Key-Value Stores",
+          "BodyText": "Key-value stores are the simplest NoSQL model: every item is stored as a key paired with an associated value. They deliver extremely fast performance for simple lookups.",
+          "Notes": "Because the value is opaque to the database, key-value stores cannot query inside the value \u2014 you must know the key.",
+          "SortOrder": 2,
+          "CreatedDate": "2026-11-17T05:42:39.621477-05:00",
+          "ModifiedDate": "2026-11-17T05:42:39.621477-05:00",
+          "Items": [
+            {
+              "Id": "b414f930-fd4e-4514-ad16-5fa17ebe70ed",
+              "Text": "The stored value may be a string, number, JSON object, or binary blob and is treated as opaque by the engine.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "dc72e2e4-d67c-4b70-984a-9918c085ecb6",
+              "Text": "Lookups by key are blazing fast, often sub-millisecond.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "c4efdc70-3ed0-4dbf-ae12-961f1484c0af",
+              "Text": "Leading products include Redis, Amazon DynamoDB, Memcached, and Riak.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "f8f0fe23-7bc3-4c1a-9e12-b9b502cad5fd",
+              "Text": "Best suited to session caching, shopping carts, real-time leaderboards, pub/sub messaging, and rate limiting.",
+              "SortOrder": 3
+            }
+          ]
+        },
+        {
+          "Id": "aa5301f0-a510-4ad3-9dba-0d0ca88a6cac",
+          "TopicId": "17254c7d-97f0-4844-8308-372c8098c22c",
+          "Title": "Column-Family (Wide-Column) Stores",
+          "BodyText": "Column-family stores organise data into rows, but group columns into column families, allowing each row to have a different set of columns. They are engineered for enormous distributed write throughput.",
+          "Notes": "These systems are typically deployed across many nodes in a cluster and favour write performance over complex ad-hoc querying.",
+          "SortOrder": 3,
+          "CreatedDate": "2026-11-17T05:42:39.621477-05:00",
+          "ModifiedDate": "2026-11-17T05:42:39.621477-05:00",
+          "Items": [
+            {
+              "Id": "533e07c6-249f-4f6f-a840-dd40f84a0a17",
+              "Text": "Each row can carry a different set of columns within its column families.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "f76bb66a-3bf1-4773-8412-ddcef31537ad",
+              "Text": "The design targets massive distributed write volumes and time-series data spread across many nodes.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "91e69049-5e37-44f8-bea3-813f1c74af97",
+              "Text": "Leading products include Apache Cassandra, HBase, Google Bigtable, and Amazon Keyspaces.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "bd572290-c8df-4794-89d7-eacd91d1f64a",
+              "Text": "Best suited to IoT sensor data, time-series metrics, event logging, and write-heavy analytics at scale.",
+              "SortOrder": 3
+            }
+          ]
+        },
+        {
+          "Id": "da05f78e-e60c-402d-a332-a8da72c8ca9a",
+          "TopicId": "17254c7d-97f0-4844-8308-372c8098c22c",
+          "Title": "Graph Databases",
+          "BodyText": "Graph databases store data as nodes representing entities and edges representing the relationships between them. Relationships are first-class citizens rather than derived at query time.",
+          "Notes": "Traversing connections in a graph database is dramatically faster than chaining multiple JOINs in a relational database.",
+          "SortOrder": 4,
+          "CreatedDate": "2026-11-17T05:42:39.621477-05:00",
+          "ModifiedDate": "2026-11-17T05:42:39.621477-05:00",
+          "Items": [
+            {
+              "Id": "fe4971dc-89d2-405b-9fd3-2273fdadb566",
+              "Text": "Nodes hold entity data while edges explicitly store the connection and its properties.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "d264438d-def2-4aaf-82a2-b493e29adc54",
+              "Text": "Deep relationship traversals outperform equivalent multi-table JOIN chains.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "41e82531-a6c6-4963-9926-a95611e43198",
+              "Text": "Leading products include Neo4j, Amazon Neptune, ArangoDB, and TigerGraph.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "ffbb22f8-4350-4262-9f04-e0828ddabd46",
+              "Text": "Best suited to social networks, recommendation engines, fraud detection, knowledge graphs, and network topology.",
+              "SortOrder": 3
+            }
+          ]
+        },
+        {
+          "Id": "4fd22c45-a04a-474c-acc1-cdce9eb333ba",
+          "TopicId": "17254c7d-97f0-4844-8308-372c8098c22c",
+          "Title": "NoSQL vs Relational \u2014 Key Differences",
+          "BodyText": "Comparing a document store with a relational database highlights fundamental differences in data model, schema handling, relationships, scaling strategy, and consistency guarantees.",
+          "Notes": "Relational systems fit structured business data, financial records, and complex queries; document stores fit variable-structure data, rapid development, and high-volume writes.",
+          "SortOrder": 5,
+          "CreatedDate": "2026-11-17T05:42:39.621477-05:00",
+          "ModifiedDate": "2026-11-17T05:42:39.621477-05:00",
+          "Items": [
+            {
+              "Id": "3fdd5a0c-4387-4c37-9e31-1227ff7ae04f",
+              "Text": "Data model: relational uses tables of rows and columns with a fixed schema; document stores use collections of flexible JSON documents.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "16ab0aa8-6273-45c4-a8f9-d9235a4f1a8d",
+              "Text": "Schema: relational is schema-on-write (defined before insert); NoSQL is schema-on-read (structure inferred at query time).",
+              "SortOrder": 1
+            },
+            {
+              "Id": "25e1c00f-cb4a-4f1d-acae-f44cf36741c2",
+              "Text": "Relationships: relational uses foreign keys and JOINs; document stores embed data within documents or use manual references.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "6f0703d6-586b-4d76-9176-a0bb6029c86d",
+              "Text": "Scaling: relational scales primarily vertically with a bigger server; NoSQL scales horizontally across more servers via sharding.",
+              "SortOrder": 3
+            },
+            {
+              "Id": "f4eb547d-273d-4d1d-a95a-942c2e15be6d",
+              "Text": "Consistency: relational offers ACID transactions and strong consistency; NoSQL is eventually consistent by default, with ACID available in MongoDB 4\u002B.",
+              "SortOrder": 4
+            }
+          ]
+        },
+        {
+          "Id": "a0c7b060-ae07-4ed5-a38a-0d2cfd02f456",
+          "TopicId": "17254c7d-97f0-4844-8308-372c8098c22c",
+          "Title": "Choosing the Right Store and Polyglot Persistence",
+          "BodyText": "NoSQL is not a replacement for relational databases \u2014 it is an alternative optimised for different problems. The right choice depends on what the data looks like and how it must be accessed.",
+          "Notes": "A typical large architecture might use PostgreSQL for orders and accounts, MongoDB for product catalogues and user content, Redis for session caching, and Elasticsearch for full-text search.",
+          "SortOrder": 6,
+          "CreatedDate": "2026-11-17T05:42:39.621477-05:00",
+          "ModifiedDate": "2026-11-17T05:42:39.621477-05:00",
+          "Items": [
+            {
+              "Id": "2abda949-af0f-48e5-a090-c3d23f07c0c9",
+              "Text": "Selecting a NoSQL type \u2014 or deciding to stay relational \u2014 depends entirely on data shape and access patterns.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "8ac3e767-ab36-4c48-bf8d-e9e0e795b918",
+              "Text": "Many modern applications use both: a relational database for transactional data such as orders and accounts.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "040b7c95-246b-46a8-905a-2955e9f9db67",
+              "Text": "The same application may use a document database for flexible content such as user profiles, logs, and product details.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "bd53d158-1ab7-43b2-ad47-321ba17b5f9e",
+              "Text": "Polyglot persistence means deliberately combining multiple database types, each chosen for its strengths in a specific use case.",
+              "SortOrder": 3
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Id": "d0701067-5b20-4929-8acc-86e0ce540a69",
+      "Title": "MongoDB Core Concepts: Documents, Collections, and BSON",
+      "Summary": "Explains the MongoDB hierarchy of databases, collections, documents, and fields and how it maps to relational tables, rows, and keys. Covers BSON data types, embedded documents, array fields, and basic shell commands for connecting and selecting a database.",
+      "SortOrder": 1,
+      "CreatedDate": "2026-11-17T05:42:16.3681124-05:00",
+      "ModifiedDate": "2026-11-17T05:42:16.3681124-05:00",
+      "Elements": [
+        {
+          "Id": "c5cded8e-d06c-4cd8-ace5-1e83f31b9acd",
+          "TopicId": "d0701067-5b20-4929-8acc-86e0ce540a69",
+          "Title": "The MongoDB Storage Hierarchy",
+          "BodyText": "MongoDB organises data as BSON documents grouped into collections, which live inside a named database. This hierarchy maps loosely onto the relational model but relaxes many of its rules.",
+          "Notes": "Example: a \u0027bookstore\u0027 database containing a \u0027books\u0027 collection, where each book is one document.",
+          "SortOrder": 0,
+          "CreatedDate": "2026-11-17T05:42:59.6157998-05:00",
+          "ModifiedDate": "2026-11-17T05:42:59.6157998-05:00",
+          "Items": [
+            {
+              "Id": "18b9a1d4-c33f-4de8-834e-2eebae5eaf1c",
+              "Text": "A database is simply a named container for collections, just like a relational database holds tables.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "c15b47d1-ef04-4766-becd-9e3e6e20f695",
+              "Text": "A collection is a group of documents and is the rough equivalent of a table, but no schema is enforced by default.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "1fee2bd5-6b37-465d-a0b1-2319f884c0c8",
+              "Text": "A document is a single JSON/BSON object and is the unit of storage, equivalent to a row.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "93262d61-69b1-48ed-8bba-21f157a149cd",
+              "Text": "A field is a key-value pair inside a document, equivalent to a column.",
+              "SortOrder": 3
+            },
+            {
+              "Id": "1f09b202-cccb-4821-9412-1aed3ba842c0",
+              "Text": "Collections are created automatically on first insert \u2014 there is no CREATE TABLE step.",
+              "SortOrder": 4
+            }
+          ]
+        },
+        {
+          "Id": "4335e5bf-d7b4-4a67-b1cd-234c7229f88c",
+          "TopicId": "d0701067-5b20-4929-8acc-86e0ce540a69",
+          "Title": "The _id Field and Document Identity",
+          "BodyText": "Every MongoDB document must have a unique _id field, which acts as its primary key. MongoDB generates one automatically if you do not supply it.",
+          "Notes": "Example value: ObjectId(\u002264b7c3e2f4a5d10023abc001\u0022).",
+          "SortOrder": 1,
+          "CreatedDate": "2026-11-17T05:42:59.6157998-05:00",
+          "ModifiedDate": "2026-11-17T05:42:59.6157998-05:00",
+          "Items": [
+            {
+              "Id": "c775d7fa-e08d-4e02-be90-0cdcff91fa4f",
+              "Text": "The default _id value is an ObjectId \u2014 a 12-byte auto-generated unique identifier.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "915ecaae-ff1b-47f2-a294-01df88b82f91",
+              "Text": "An index on _id exists on every collection by default, so lookups by _id are always fast.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "a2b8885e-e84b-43c8-90d7-ff896990738b",
+              "Text": "You may supply your own _id value (for example an ISBN or SKU) provided it is unique within the collection.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "6dc8a3d6-4e78-4027-82d1-32694ee9aed1",
+              "Text": "Because _id is unique per collection, it fills the same role as a relational primary key.",
+              "SortOrder": 3
+            }
+          ]
+        },
+        {
+          "Id": "2810b673-f85a-4579-a75b-5730856ef109",
+          "TopicId": "d0701067-5b20-4929-8acc-86e0ce540a69",
+          "Title": "Anatomy of a MongoDB Document",
+          "BodyText": "Documents look like JSON objects but can contain nested objects and arrays, so an entire related data set can live inside a single document.",
+          "Notes": "A product document can hold its specs sub-document, a tags array, and a reviews array of sub-documents, replacing three relational tables.",
+          "SortOrder": 2,
+          "CreatedDate": "2026-11-17T05:42:59.6157998-05:00",
+          "ModifiedDate": "2026-11-17T05:42:59.6157998-05:00",
+          "Items": [
+            {
+              "Id": "055e8747-6563-4faa-a048-9bc0f6f47560",
+              "Text": "Top-level fields hold simple scalar values such as sku, name, price, and in_stock.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "93ba767b-9753-4a56-bd9d-922aeeeb4411",
+              "Text": "An embedded (nested) document replaces what would be a foreign key plus a JOIN in SQL \u2014 for example a \u0027specs\u0027 object holding cpu, ram_gb, and ssd_gb.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "22d9cc81-ece8-4be4-aab9-b5bd15e9928b",
+              "Text": "An array field such as \u0027tags\u0027 replaces a separate one-to-many lookup table.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "aa982129-d076-4c0f-bbc9-527200433e9f",
+              "Text": "An array of sub-documents such as \u0027reviews\u0027 stores many related records inside the parent document.",
+              "SortOrder": 3
+            },
+            {
+              "Id": "5de91023-b8e9-4d7e-8e23-94b0d5ca8ce1",
+              "Text": "Reading one document can therefore return everything the application needs with no joins.",
+              "SortOrder": 4
+            }
+          ]
+        },
+        {
+          "Id": "c4e8433d-00b2-4819-af21-b6aeac22ce4f",
+          "TopicId": "d0701067-5b20-4929-8acc-86e0ce540a69",
+          "Title": "Schema Flexibility Across Documents",
+          "BodyText": "Collections do not enforce a fixed schema, so documents in the same collection may have different sets of fields. This is the defining difference from a relational table.",
+          "Notes": "Relational databases are schema-on-write; MongoDB is schema-on-read, with structure interpreted at query time.",
+          "SortOrder": 3,
+          "CreatedDate": "2026-11-17T05:42:59.6157998-05:00",
+          "ModifiedDate": "2026-11-17T05:42:59.6157998-05:00",
+          "Items": [
+            {
+              "Id": "3a90bbd7-75e1-47f5-85d5-9f036c739a70",
+              "Text": "One book document may include a \u0027tags\u0027 field while another omits it entirely, with no error raised.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "fdf6cd7f-875f-4f2c-82f4-d09bdb2cc4a6",
+              "Text": "Adding a new field requires no ALTER TABLE statement or migration script.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "11a41b78-5e10-4cde-af72-99c54db04cac",
+              "Text": "Flexibility shifts responsibility to the application to handle missing or inconsistent fields.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "9e641a8e-6bbc-4d5f-8ba1-2c65aa24a84e",
+              "Text": "Optional schema validation rules can be applied to a collection when more control is needed.",
+              "SortOrder": 3
+            }
+          ]
+        },
+        {
+          "Id": "f79459d1-54f6-4aaa-84dd-ebffdbd24aa4",
+          "TopicId": "d0701067-5b20-4929-8acc-86e0ce540a69",
+          "Title": "BSON Data Types",
+          "BodyText": "MongoDB stores data in BSON \u2014 Binary JSON \u2014 a binary superset of JSON that supports additional data types not available in plain JSON.",
+          "Notes": "BSON\u0027s binary encoding also makes documents faster to traverse and parse than text JSON.",
+          "SortOrder": 4,
+          "CreatedDate": "2026-11-17T05:42:59.6157998-05:00",
+          "ModifiedDate": "2026-11-17T05:42:59.6157998-05:00",
+          "Items": [
+            {
+              "Id": "c0661382-0d90-4de8-a7fd-6983359f6f6f",
+              "Text": "String stores UTF-8 text, and Number covers Int32, Int64, and Double values such as 42 or 3.14.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "d6b0502d-eb00-49d8-840a-b267df4caff5",
+              "Text": "Boolean holds true or false, and Null represents an explicitly absent value.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "e21aaf0e-ec8a-4457-875b-07394c464315",
+              "Text": "Date, written as ISODate(\u00222025-01-15\u0022), is stored as milliseconds since the epoch.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "0143db3e-11c2-416f-beb0-14033c70dc06",
+              "Text": "ObjectId is the 12-byte auto-generated identifier used for _id values.",
+              "SortOrder": 3
+            },
+            {
+              "Id": "543dd71e-377a-4095-9a6b-8c6810b44171",
+              "Text": "Array holds an ordered list of values, and Object holds an embedded sub-document.",
+              "SortOrder": 4
+            },
+            {
+              "Id": "df8555df-ad24-4add-a60f-76ad09155805",
+              "Text": "Decimal128, written as NumberDecimal(\u002219.99\u0022), provides high-precision decimals suitable for currency.",
+              "SortOrder": 5
+            }
+          ]
+        },
+        {
+          "Id": "1fbf2980-6694-47cf-9419-616ffbd57fe4",
+          "TopicId": "d0701067-5b20-4929-8acc-86e0ce540a69",
+          "Title": "Connecting and Selecting a Database in mongosh",
+          "BodyText": "The MongoDB shell, mongosh, is the primary interactive tool for connecting to a server and working with databases and collections.",
+          "Notes": "Databases and collections are created lazily \u2014 \u0027use bookstore\u0027 does not persist the database until the first document is inserted.",
+          "SortOrder": 5,
+          "CreatedDate": "2026-11-17T05:42:59.6157998-05:00",
+          "ModifiedDate": "2026-11-17T05:42:59.6157998-05:00",
+          "Items": [
+            {
+              "Id": "40d846e3-a94e-4ae3-88fb-4d6923bd5e2e",
+              "Text": "Connect to a local server with: mongosh \u0022mongodb://localhost:27017\u0022.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "1e758be6-89ff-4346-8db6-98c2d59192d1",
+              "Text": "Switch to (or implicitly create) a database with: use bookstore.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "021c8a40-081e-4f1c-bf4e-26d1db872899",
+              "Text": "List the collections in the current database with: show collections.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "80bf2a5d-f7e8-4419-9eff-be49cf3e718c",
+              "Text": "Confirm which database you are working in with: db.getName().",
+              "SortOrder": 3
+            },
+            {
+              "Id": "9215fede-d0d3-4afc-b1e5-7510fdf2b223",
+              "Text": "All subsequent commands are issued against the current database using the db object, for example db.books.find().",
+              "SortOrder": 4
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Id": "6c74444d-d5a7-4dba-bcd1-f4432d3aa149",
+      "Title": "Creating and Reading Documents",
+      "Summary": "Covers inserting documents with insertOne and insertMany and the schema flexibility that allows varying field sets. Covers querying with find and findOne, projections, comparison and logical operators, array and embedded-document queries, sorting, limiting, skipping, and counting.",
+      "SortOrder": 2,
+      "CreatedDate": "2026-11-17T05:42:16.3681124-05:00",
+      "ModifiedDate": "2026-11-17T05:42:16.3681124-05:00",
+      "Elements": [
+        {
+          "Id": "008c19eb-9c63-459d-8857-b87b9d4be34b",
+          "TopicId": "6c74444d-d5a7-4dba-bcd1-f4432d3aa149",
+          "Title": "insertOne \u2014 Adding a Single Document",
+          "BodyText": "The insertOne() method adds one document to a collection, creating the collection automatically if it does not yet exist. No CREATE TABLE statement or schema definition is required beforehand.",
+          "Notes": "Example: db.books.insertOne({ \u0022title\u0022: \u0022The Pragmatic Programmer\u0022, \u0022authors\u0022: [\u0022David Thomas\u0022, \u0022Andrew Hunt\u0022], \u0022year\u0022: 2019, \u0022price\u0022: 49.95, \u0022tags\u0022: [\u0022programming\u0022, \u0022software\u0022] })",
+          "SortOrder": 0,
+          "CreatedDate": "2026-11-17T05:43:21.1080654-05:00",
+          "ModifiedDate": "2026-11-17T05:43:21.1080654-05:00",
+          "Items": [
+            {
+              "Id": "b271d310-618f-49a1-8c2d-2f373e37f30d",
+              "Text": "The document is passed as a single JSON/BSON object argument.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "85bf66ee-0f5a-458a-9d78-28e9dcd71adf",
+              "Text": "MongoDB generates an _id field (an ObjectId) automatically if you do not supply one.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "0246d0f7-3726-4817-bb20-90c1f99b9815",
+              "Text": "The shell returns a confirmation such as { acknowledged: true, insertedId: ObjectId(\u0027...\u0027) }.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "98bc1fd4-52bd-4b96-8f08-7c6c46281170",
+              "Text": "Documents may contain nested sub-documents and arrays, so related data can be stored in one write.",
+              "SortOrder": 3
+            }
+          ]
+        },
+        {
+          "Id": "75334c3d-a0a6-4b54-9b25-270206011978",
+          "TopicId": "6c74444d-d5a7-4dba-bcd1-f4432d3aa149",
+          "Title": "insertMany \u2014 Bulk Document Insertion",
+          "BodyText": "insertMany() accepts an array of documents and inserts them in a single operation, which is far more efficient than repeated single inserts.",
+          "Notes": "Example: db.books.insertMany([{ \u0022title\u0022: \u0022Clean Code\u0022, ... }, { \u0022title\u0022: \u0022Dune\u0022, ... }])",
+          "SortOrder": 1,
+          "CreatedDate": "2026-11-17T05:43:21.1080654-05:00",
+          "ModifiedDate": "2026-11-17T05:43:21.1080654-05:00",
+          "Items": [
+            {
+              "Id": "ea00e608-4947-4de3-b030-86a613928859",
+              "Text": "Pass the documents as a JavaScript array wrapped in square brackets.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "6d63a3b4-5859-450f-9bb5-7695fa972390",
+              "Text": "Each document receives its own auto-generated _id unless one is provided.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "d6016251-7294-4510-bb41-0b102be8d3b6",
+              "Text": "Useful for seeding a collection with a starter data set such as the restaurant sample data.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "09e40640-a03e-490f-8442-5561c3e6a1ac",
+              "Text": "The operation returns the list of insertedIds for all documents created.",
+              "SortOrder": 3
+            }
+          ]
+        },
+        {
+          "Id": "f7c093d7-5607-497c-bcd0-7cd3ec35f7e0",
+          "TopicId": "6c74444d-d5a7-4dba-bcd1-f4432d3aa149",
+          "Title": "Schema Flexibility on Insert",
+          "BodyText": "Documents in the same collection are not required to share the same fields, which is one of the defining characteristics of a document store.",
+          "Notes": "This is schema-on-read: structure is interpreted at query time rather than enforced at write time.",
+          "SortOrder": 2,
+          "CreatedDate": "2026-11-17T05:43:21.1080654-05:00",
+          "ModifiedDate": "2026-11-17T05:43:21.1080654-05:00",
+          "Items": [
+            {
+              "Id": "d5af34c9-7b6c-43e7-963e-5d1f2c9d2b04",
+              "Text": "One book may include a \u0022tags\u0022 array while another omits it entirely \u2014 no error is raised.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "34de0c9b-def8-4cee-91e5-7e57a1950ffe",
+              "Text": "Adding a new field requires no ALTER TABLE or migration script.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "b75f53ae-76ac-41da-af86-49d60728333d",
+              "Text": "Missing fields simply do not exist on that document rather than being stored as NULL.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "f535a73e-064b-490c-bd30-c57b8f9c0688",
+              "Text": "Flexibility shifts responsibility for consistency to the application layer.",
+              "SortOrder": 3
+            }
+          ]
+        },
+        {
+          "Id": "28c9e52c-c950-4d47-a7cb-1d0076716f49",
+          "TopicId": "6c74444d-d5a7-4dba-bcd1-f4432d3aa149",
+          "Title": "find and findOne \u2014 Basic Queries",
+          "BodyText": "Reads use a filter document \u2014 a JSON object whose key-value pairs specify the conditions a document must match. An empty filter {} returns every document.",
+          "Notes": "Example: db.books.find({ \u0022category\u0022: \u0022Technology\u0022, \u0022in_stock\u0022: true })",
+          "SortOrder": 3,
+          "CreatedDate": "2026-11-17T05:43:21.1080654-05:00",
+          "ModifiedDate": "2026-11-17T05:43:21.1080654-05:00",
+          "Items": [
+            {
+              "Id": "35658751-c407-4132-9b90-e99c1be90bfe",
+              "Text": "db.books.find() with no arguments returns all documents in the collection.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "9a438412-da27-4665-abb2-fc82b923f23d",
+              "Text": "find() returns a cursor over all matches; findOne() returns only the first matching document.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "251f7ed1-29a6-44a8-9522-82c4b8d3c4b4",
+              "Text": "Listing multiple fields in the filter creates an implicit AND \u2014 all conditions must be true.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "891c9595-806f-418c-ae0c-bbe85533a845",
+              "Text": "Field names and string values are case-sensitive and should be quoted.",
+              "SortOrder": 3
+            }
+          ]
+        },
+        {
+          "Id": "6066cb02-0140-449f-8547-f1f16883590e",
+          "TopicId": "6c74444d-d5a7-4dba-bcd1-f4432d3aa149",
+          "Title": "Projection \u2014 Controlling Returned Fields",
+          "BodyText": "The second argument to find() is a projection document that specifies which fields appear in the result, equivalent to choosing columns in a SQL SELECT list.",
+          "Notes": "Example: db.books.find({ \u0022category\u0022: \u0022Technology\u0022 }, { \u0022title\u0022: 1, \u0022price\u0022: 1, \u0022_id\u0022: 0 })",
+          "SortOrder": 4,
+          "CreatedDate": "2026-11-17T05:43:21.1080654-05:00",
+          "ModifiedDate": "2026-11-17T05:43:21.1080654-05:00",
+          "Items": [
+            {
+              "Id": "65eb0012-1a23-4d6c-9b65-5375f0a6ba45",
+              "Text": "Use 1 to include a field and 0 to exclude it.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "9e38ab3f-a3df-4968-a065-bed0459591c6",
+              "Text": "You cannot mix inclusions and exclusions in the same projection, except for _id.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "a34379d1-557a-4668-9832-0d383cfb8a99",
+              "Text": "_id is returned by default and must be explicitly set to 0 to suppress it.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "9cba9d2d-5fe8-4ff8-b737-21a78fc859a0",
+              "Text": "Projections reduce network payload and are useful for large documents.",
+              "SortOrder": 3
+            }
+          ]
+        },
+        {
+          "Id": "5c2f2e9f-add2-455d-903f-4564f581b60f",
+          "TopicId": "6c74444d-d5a7-4dba-bcd1-f4432d3aa149",
+          "Title": "Comparison and Logical Operators",
+          "BodyText": "MongoDB query operators begin with a dollar sign and express conditions beyond simple equality, mirroring SQL comparison and boolean logic.",
+          "Notes": "Range example: db.books.find({ \u0022price\u0022: { $gte: 10, $lte: 50 } }). List example: db.books.find({ \u0022category\u0022: { $in: [\u0022Fiction\u0022, \u0022Biography\u0022] } }).",
+          "SortOrder": 5,
+          "CreatedDate": "2026-11-17T05:43:21.1080654-05:00",
+          "ModifiedDate": "2026-11-17T05:43:21.1080654-05:00",
+          "Items": [
+            {
+              "Id": "ab9a0272-2d23-4a7e-8042-0c6b152b795d",
+              "Text": "Comparison operators include $eq, $ne, $gt, $gte, $lt, $lte, $in and $nin.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "390e2c1d-51ef-46d6-975d-02baca6041de",
+              "Text": "$in and $nin test membership in a list, matching SQL\u0027s IN and NOT IN.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "f2a8971c-c464-4bd2-be2a-11bc837df3b2",
+              "Text": "$and and $or take arrays of condition documents; $not negates a condition.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "e42b614f-3273-4ceb-b269-d465360e3bb1",
+              "Text": "Multiple operators on the same field combine to form range filters.",
+              "SortOrder": 3
+            }
+          ]
+        },
+        {
+          "Id": "5b5d58f8-8e2a-43e2-bbf1-e4c4b3bb7fc1",
+          "TopicId": "6c74444d-d5a7-4dba-bcd1-f4432d3aa149",
+          "Title": "Array, Embedded Document, and Result-Shaping Queries",
+          "BodyText": "Documents often contain arrays and nested objects, and MongoDB provides dedicated syntax to query inside them as well as cursor methods to order and page results.",
+          "Notes": "Examples: db.books.find({ \u0022tags\u0022: \u0022programming\u0022 }); db.products.find({ \u0022specs.ram_gb\u0022: { $gte: 16 } }); db.books.find().sort({ \u0022price\u0022: -1 }).limit(5).",
+          "SortOrder": 6,
+          "CreatedDate": "2026-11-17T05:43:21.1080654-05:00",
+          "ModifiedDate": "2026-11-17T05:43:21.1080654-05:00",
+          "Items": [
+            {
+              "Id": "2c4f71d5-4def-400f-9928-c3be06f8d162",
+              "Text": "Matching an array field against a single value returns documents whose array contains that value.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "389a5ea9-1b05-472c-be67-7dd4e8587cb3",
+              "Text": "$all requires the array to contain every listed value; $elemMatch matches one array element against multiple conditions.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "9ac50df5-45ed-4c3f-b521-7515573c61a7",
+              "Text": "Dot notation such as \u0022specs.ram_gb\u0022 reaches into embedded sub-documents.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "1cdd1760-36d6-450d-805e-ab119560308c",
+              "Text": "sort() takes 1 for ascending and -1 for descending; skip() and limit() together implement pagination.",
+              "SortOrder": 3
+            },
+            {
+              "Id": "95dd0e51-adf6-4ee4-8a91-6856984e4de2",
+              "Text": "countDocuments() with a filter returns the number of matching documents.",
+              "SortOrder": 4
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Id": "87fdc50e-9cd7-4ea0-831d-2ac07a845f44",
+      "Title": "Updating and Deleting Documents",
+      "Summary": "Explains update operators such as $set, $inc, $push, and $addToSet used with updateOne, updateMany, and upsert operations. Covers deleteOne, deleteMany, dropping collections, and the safety practices needed because deletions are permanent.",
+      "SortOrder": 3,
+      "CreatedDate": "2026-11-17T05:42:16.3681124-05:00",
+      "ModifiedDate": "2026-11-17T05:42:16.3681124-05:00",
+      "Elements": [
+        {
+          "Id": "828ac20a-f5fc-4404-a2c2-7a383e15ae29",
+          "TopicId": "87fdc50e-9cd7-4ea0-831d-2ac07a845f44",
+          "Title": "Update Operators: Describing What Changes",
+          "BodyText": "MongoDB updates do not replace a whole document by default; instead you supply update operators that describe precisely which fields should change. This lets you modify one field while leaving the rest of the document untouched.",
+          "Notes": "Example: db.books.updateOne({ \u0022title\u0022: \u0022Clean Code\u0022 }, { $set: { \u0022price\u0022: 39.99 } }) changes only the price field. Omitting operators and passing a plain document would replace the entire document (replaceOne behaviour).",
+          "SortOrder": 0,
+          "CreatedDate": "2026-11-17T05:43:51.629911-05:00",
+          "ModifiedDate": "2026-11-17T05:43:51.629911-05:00",
+          "Items": [
+            {
+              "Id": "fa207532-d7b0-433b-ba45-1842998dd8ae",
+              "Text": "$set assigns a value to a field and creates the field if it does not already exist.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "f69ce13b-be15-43cf-9e89-fbcf0449004c",
+              "Text": "$unset removes a field from the document entirely.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "4b97ca61-d15a-494b-a613-ab6edbb0ab90",
+              "Text": "$inc increments (or decrements with a negative value) a numeric field, such as { $inc: { \u0022qty\u0022: -1 } }.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "5e81f3b6-1a0b-47a7-a1b5-60464b9b2737",
+              "Text": "$mul multiplies a numeric field, useful for percentage price changes like { $mul: { \u0022price\u0022: 0.9 } }.",
+              "SortOrder": 3
+            },
+            {
+              "Id": "54378420-4518-4c22-bee8-be329a1e3911",
+              "Text": "$rename changes a field\u0027s key name without altering its value.",
+              "SortOrder": 4
+            },
+            {
+              "Id": "072ff47a-bd5e-4e30-9fe2-f2c74639f743",
+              "Text": "Every update call takes two parts: a filter document selecting the target, and an update document describing the change.",
+              "SortOrder": 5
+            }
+          ]
+        },
+        {
+          "Id": "53932033-b9ae-46a4-85a0-43f06e414808",
+          "TopicId": "87fdc50e-9cd7-4ea0-831d-2ac07a845f44",
+          "Title": "Array Update Operators",
+          "BodyText": "Because MongoDB documents often contain arrays of values or sub-documents, dedicated operators exist for modifying array contents in place. These avoid having to read, edit, and rewrite the whole array from the application.",
+          "Notes": "Example: db.products.updateOne({ \u0022sku\u0022: \u0022LAPTOP-PRO-15\u0022 }, { $push: { \u0022reviews\u0022: { \u0022user\u0022: \u0022alice_m\u0022, \u0022rating\u0022: 5, \u0022date\u0022: new Date() } } }) appends a new review sub-document.",
+          "SortOrder": 1,
+          "CreatedDate": "2026-11-17T05:43:51.629911-05:00",
+          "ModifiedDate": "2026-11-17T05:43:51.629911-05:00",
+          "Items": [
+            {
+              "Id": "ccdfaa17-8c86-4b7c-affc-72070b8407a4",
+              "Text": "$push appends a value to the end of an array, allowing duplicates.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "e6d18a4b-6526-4b41-824f-315142c889b5",
+              "Text": "$addToSet appends a value only if it is not already present, keeping the array unique.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "af890977-ad22-4a38-a15d-d37fee993c75",
+              "Text": "$pull removes all array elements matching a given value or condition.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "0e5baa54-3ea5-4748-8681-39f249d03907",
+              "Text": "$push can add entire sub-documents, such as appending a review object to a reviews array.",
+              "SortOrder": 3
+            },
+            {
+              "Id": "b7e4408b-f5a1-411f-8f87-67e3c109803c",
+              "Text": "Array operators let you maintain embedded one-to-many data without a separate collection.",
+              "SortOrder": 4
+            }
+          ]
+        },
+        {
+          "Id": "d20e6c30-7760-4560-9455-2ce660005797",
+          "TopicId": "87fdc50e-9cd7-4ea0-831d-2ac07a845f44",
+          "Title": "updateOne vs updateMany",
+          "BodyText": "MongoDB distinguishes between modifying a single matching document and modifying every document that matches a filter. Choosing the wrong one can silently change far more data than intended.",
+          "Notes": "Example: db.books.updateMany({ \u0022in_stock\u0022: false }, { $mul: { \u0022price\u0022: 0.9 } }) applies a 10% discount to all out-of-stock books.",
+          "SortOrder": 2,
+          "CreatedDate": "2026-11-17T05:43:51.629911-05:00",
+          "ModifiedDate": "2026-11-17T05:43:51.629911-05:00",
+          "Items": [
+            {
+              "Id": "e9eb6006-d9bf-4424-92d0-9794fdc58521",
+              "Text": "updateOne modifies only the first document that matches the filter, even if many match.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "f0a7ed4d-2c5b-46a8-a2bb-9e9ef2bab20a",
+              "Text": "updateMany modifies every document matching the filter in a single operation.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "6f60f75f-f03c-4d1d-8633-bbf55ca6d3b7",
+              "Text": "updateMany is commonly used for bulk corrections, such as adding a new field to all documents missing it.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "7ae160e1-5707-47c0-a175-1cfdebc3e5df",
+              "Text": "Combine updateMany with $exists to backfill fields: { \u0022last_reviewed\u0022: { $exists: false } }.",
+              "SortOrder": 3
+            },
+            {
+              "Id": "c987a645-61bc-4ad8-bded-c301851b63cb",
+              "Text": "replaceOne swaps an entire document for a new one rather than patching individual fields.",
+              "SortOrder": 4
+            },
+            {
+              "Id": "68f5c9b3-e0e7-407c-a7e9-3363133d4dcd",
+              "Text": "The result output reports matchedCount and modifiedCount so you can verify the scope of the change.",
+              "SortOrder": 5
+            }
+          ]
+        },
+        {
+          "Id": "8790d39e-fb35-432e-99d2-957c7588df00",
+          "TopicId": "87fdc50e-9cd7-4ea0-831d-2ac07a845f44",
+          "Title": "Upsert \u2014 Update or Insert",
+          "BodyText": "An upsert combines update and insert: if a matching document exists it is updated, and if none exists a new document is created from the filter and update values. It is enabled with the { upsert: true } option.",
+          "Notes": "Example: db.books.updateOne({ \u0022isbn\u0022: \u0022978-9999999999\u0022 }, { $set: { \u0022title\u0022: \u0022New Release\u0022, \u0022price\u0022: 29.99 } }, { upsert: true }).",
+          "SortOrder": 3,
+          "CreatedDate": "2026-11-17T05:43:51.629911-05:00",
+          "ModifiedDate": "2026-11-17T05:43:51.629911-05:00",
+          "Items": [
+            {
+              "Id": "c20a9ebd-6986-4524-9cd5-fc132a3ad752",
+              "Text": "Pass { upsert: true } as the third argument to updateOne or updateMany.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "be15c3cb-df38-4eea-999c-3273ed4f0f2e",
+              "Text": "The inserted document combines the filter\u0027s equality fields with the fields in the $set clause.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "7ad1ff60-2a39-4f36-b43c-3108efbdfcd3",
+              "Text": "Upserts are ideal for counters, daily rollups, and idempotent data imports.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "ea7e6895-01cf-4ad9-9c68-d9c3b1eaf978",
+              "Text": "Without upsert, an update against a non-existent document simply matches nothing and changes nothing.",
+              "SortOrder": 3
+            },
+            {
+              "Id": "1d3f2ab3-812b-43d0-a0f7-4d2f954d958e",
+              "Text": "The result includes an upsertedId when a new document was created.",
+              "SortOrder": 4
+            }
+          ]
+        },
+        {
+          "Id": "4404b47b-7f13-41b2-ade7-185d8bbb0369",
+          "TopicId": "87fdc50e-9cd7-4ea0-831d-2ac07a845f44",
+          "Title": "Deleting Documents with deleteOne and deleteMany",
+          "BodyText": "Deletion uses the same filter syntax as find(), with deleteOne removing the first match and deleteMany removing every match. Deletes in MongoDB are immediate and permanent unless performed inside an explicit transaction.",
+          "Notes": "Example: db.books.deleteOne({ \u0022isbn\u0022: \u0022978-0201633610\u0022 }) removes one specific book by its unique ISBN.",
+          "SortOrder": 4,
+          "CreatedDate": "2026-11-17T05:43:51.629911-05:00",
+          "ModifiedDate": "2026-11-17T05:43:51.629911-05:00",
+          "Items": [
+            {
+              "Id": "85b73875-bc85-4e50-ac8b-c614ebc6a3d3",
+              "Text": "deleteOne({ filter }) removes a single document \u2014 best targeted at a unique field such as _id or isbn.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "dd66d774-f3af-48cb-8277-a1d7f2e39d59",
+              "Text": "deleteMany({ filter }) removes all documents matching the criteria in one operation.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "3406f3a0-29cb-41d8-b3f0-2576fc469f05",
+              "Text": "deleteMany({}) with an empty filter deletes every document in the collection, equivalent to DELETE FROM table with no WHERE clause.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "5bc18df5-420e-4c5e-98f9-d6db443250c9",
+              "Text": "There is no ROLLBACK for a delete outside a transaction, so mistakes cannot be undone.",
+              "SortOrder": 3
+            },
+            {
+              "Id": "d4e9a147-2903-495c-911f-7b27f89a69cd",
+              "Text": "The result document returns deletedCount so you can confirm how many documents were removed.",
+              "SortOrder": 4
+            }
+          ]
+        },
+        {
+          "Id": "5fdfdb01-1253-4ca2-bd29-1cf8ed45ce57",
+          "TopicId": "87fdc50e-9cd7-4ea0-831d-2ac07a845f44",
+          "Title": "Dropping Collections and Databases",
+          "BodyText": "Beyond removing individual documents, MongoDB can discard an entire collection or database in a single command. These operations also remove indexes and metadata, so they are far more destructive than a delete.",
+          "Notes": "db.books.drop() removes the books collection; db.dropDatabase() destroys the current database entirely.",
+          "SortOrder": 5,
+          "CreatedDate": "2026-11-17T05:43:51.629911-05:00",
+          "ModifiedDate": "2026-11-17T05:43:51.629911-05:00",
+          "Items": [
+            {
+              "Id": "b6d846cb-dc79-42e5-975e-e9c0ed96665f",
+              "Text": "db.collection.drop() deletes the collection, all of its documents, and all of its indexes.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "851c885d-a0ce-4918-9a51-f21b7777256a",
+              "Text": "db.dropDatabase() removes the currently selected database \u2014 always confirm with db.getName() first.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "a7904938-6ffa-485f-a57b-458503ba91e8",
+              "Text": "Dropping is faster than deleteMany({}) but leaves nothing behind to rebuild from.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "0e7d7caf-2c90-4494-90fe-58d4d8c2bb0e",
+              "Text": "Re-inserting after a drop recreates the collection automatically, but indexes must be recreated manually.",
+              "SortOrder": 3
+            },
+            {
+              "Id": "b6b8cdec-6956-4814-9bba-9b1f7d214f10",
+              "Text": "Treat drop commands as production-restricted operations requiring backups and explicit approval.",
+              "SortOrder": 4
+            }
+          ]
+        },
+        {
+          "Id": "c4439efa-b23d-4aaf-acd9-3d28f3b568b9",
+          "TopicId": "87fdc50e-9cd7-4ea0-831d-2ac07a845f44",
+          "Title": "Safety Practices for Destructive Operations",
+          "BodyText": "Because updates and deletes act on everything a filter matches, verification habits are essential. A small filter error can affect an entire collection in milliseconds.",
+          "Notes": "Workflow: run db.books.find({ \u0022in_stock\u0022: false, \u0022last_updated\u0022: { $lt: new Date(\u00222024-01-01\u0022) } }) first, inspect the results, then re-run the same filter with deleteMany().",
+          "SortOrder": 6,
+          "CreatedDate": "2026-11-17T05:43:51.629911-05:00",
+          "ModifiedDate": "2026-11-17T05:43:51.629911-05:00",
+          "Items": [
+            {
+              "Id": "f3e51b42-b00f-4d6d-ac78-c8dc19f0c6df",
+              "Text": "Always test a destructive filter with find() or countDocuments() before running deleteMany() or updateMany().",
+              "SortOrder": 0
+            },
+            {
+              "Id": "5e7dc627-e933-4b02-98df-a6eb8808caf0",
+              "Text": "Start with updateOne/deleteOne to validate behaviour before scaling up to the Many variants.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "266b81d3-2a34-42f8-8faf-abfdc7f38163",
+              "Text": "Consider soft deletes \u2014 setting a { \u0022deleted\u0022: true } flag \u2014 instead of permanent removal in production systems.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "c85f1739-1f77-42cc-a43b-e0f62b401389",
+              "Text": "Take a backup or use mongodump before bulk deletions or drops.",
+              "SortOrder": 3
+            },
+            {
+              "Id": "fa0779ab-dec9-404b-9f90-7ae29fac4fc4",
+              "Text": "Use multi-document transactions when several related changes must succeed or fail together.",
+              "SortOrder": 4
+            },
+            {
+              "Id": "4a1b44f6-289f-4a4d-a848-e3268097a1aa",
+              "Text": "Review the matchedCount, modifiedCount, or deletedCount in the result to confirm the expected impact.",
+              "SortOrder": 5
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Id": "5464dd76-c642-4a4f-ac63-90eccbd91c15",
+      "Title": "The Aggregation Pipeline",
+      "Summary": "Introduces multi-stage aggregation as MongoDB\u0027s answer to SQL GROUP BY, JOIN, and HAVING. Covers key stages including $match, $group, $project, $sort, $unwind, and $lookup through worked analytical examples.",
+      "SortOrder": 4,
+      "CreatedDate": "2026-11-17T05:42:16.3681124-05:00",
+      "ModifiedDate": "2026-11-17T05:42:16.3681124-05:00",
+      "Elements": [
+        {
+          "Id": "df93d59c-ab23-49ca-803c-03c4a3a97992",
+          "TopicId": "5464dd76-c642-4a4f-ac63-90eccbd91c15",
+          "Title": "What the Aggregation Pipeline Is",
+          "BodyText": "The aggregation pipeline processes documents through a sequence of stages, where each stage transforms the documents and passes the results to the next stage. It is MongoDB\u0027s answer to SQL\u0027s GROUP BY, JOIN, HAVING, and complex SELECT expressions.",
+          "Notes": "The pipeline is invoked with db.collection.aggregate([ ... ]), passing an array of stage documents in the order they should execute.",
+          "SortOrder": 0,
+          "CreatedDate": "2026-11-17T05:44:16.3422075-05:00",
+          "ModifiedDate": "2026-11-17T05:44:16.3422075-05:00",
+          "Items": [
+            {
+              "Id": "2e0b1f6a-400e-446b-9ad6-7100b9e71418",
+              "Text": "Stages run in the order they appear in the array, so sequence matters.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "11b7c7f6-f04c-4ae8-849c-9127fdc8be66",
+              "Text": "Each stage receives the output documents of the previous stage as its input.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "0a82e614-9752-443a-9abd-def07903f0b4",
+              "Text": "The same stage type can appear more than once in a single pipeline.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "e7501bf6-09ce-4c76-89b7-77dc381cf77e",
+              "Text": "Aggregation replaces the need to pull data into application code for analysis.",
+              "SortOrder": 3
+            },
+            {
+              "Id": "3634c435-2b88-4355-be72-edca953c5d18",
+              "Text": "It handles grouping, joining, reshaping, and sorting entirely inside the database.",
+              "SortOrder": 4
+            }
+          ]
+        },
+        {
+          "Id": "f2d3e813-d3f7-465a-8e6f-db5a343ae2e0",
+          "TopicId": "5464dd76-c642-4a4f-ac63-90eccbd91c15",
+          "Title": "Core Pipeline Stages and Their SQL Equivalents",
+          "BodyText": "Most analytical pipelines are built from a small set of commonly used stages that map closely onto familiar SQL clauses. Learning these equivalences makes the pipeline much easier to reason about.",
+          "Notes": "$addFields adds computed fields without removing existing ones, and $count returns the number of documents passing through that point in the pipeline.",
+          "SortOrder": 1,
+          "CreatedDate": "2026-11-17T05:44:16.3422075-05:00",
+          "ModifiedDate": "2026-11-17T05:44:16.3422075-05:00",
+          "Items": [
+            {
+              "Id": "0051a801-c0fd-4ab3-bf02-8d7b7dc05bca",
+              "Text": "$match filters documents and corresponds to WHERE.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "1fb3e84a-12fb-4ffc-9a4b-0bc55b75b91d",
+              "Text": "$group groups documents and computes aggregates, corresponding to GROUP BY.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "44ff8854-ca5c-41d0-b3b2-010f99baf13a",
+              "Text": "$project includes, excludes, or computes fields, corresponding to SELECT columns.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "cbd9a18e-7a87-4565-92fd-899f03631777",
+              "Text": "$sort orders results (ORDER BY), while $limit and $skip map to LIMIT/TOP N and OFFSET.",
+              "SortOrder": 3
+            },
+            {
+              "Id": "cbfbeec4-a930-4d5f-83f9-e84f29651707",
+              "Text": "$unwind expands arrays (UNNEST) and $lookup joins another collection (LEFT JOIN).",
+              "SortOrder": 4
+            }
+          ]
+        },
+        {
+          "Id": "1d27073f-8e6c-4575-82de-58d2186b0298",
+          "TopicId": "5464dd76-c642-4a4f-ac63-90eccbd91c15",
+          "Title": "$match and Pipeline Efficiency",
+          "BodyText": "$match filters the document stream using the same query syntax as find(). Placing it as early as possible is the single most important performance habit in aggregation.",
+          "Notes": "An early $match can also take advantage of existing indexes, turning a collection scan into an index scan.",
+          "SortOrder": 2,
+          "CreatedDate": "2026-11-17T05:44:16.3422075-05:00",
+          "ModifiedDate": "2026-11-17T05:44:16.3422075-05:00",
+          "Items": [
+            {
+              "Id": "38d69e80-687a-4a08-b551-5728b0f0106f",
+              "Text": "Filtering early reduces the volume of data every later stage must process.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "e47cccc9-7759-4f3a-ae7f-a446b40c630f",
+              "Text": "$match accepts the same operators as find(), including $gt, $in, $or, and dot notation.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "9f06360f-e792-4798-9d63-e51a4d0359f9",
+              "Text": "A $match placed after $group acts like SQL\u0027s HAVING clause on aggregated results.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "f6da3565-3482-4a80-90d8-8e4a0e88808c",
+              "Text": "Multiple $match stages can be used at different points in the pipeline.",
+              "SortOrder": 3
+            }
+          ]
+        },
+        {
+          "Id": "7bc82ba6-56d2-4191-aeb6-ff9ecedc5a98",
+          "TopicId": "5464dd76-c642-4a4f-ac63-90eccbd91c15",
+          "Title": "$group and Aggregate Accumulators",
+          "BodyText": "$group collects documents sharing a common key and computes summary values across each group. The _id field defines the grouping key, and accumulator operators produce the aggregates.",
+          "Notes": "Example: { $group: { \u0022_id\u0022: \u0022$category\u0022, \u0022book_count\u0022: { $sum: 1 }, \u0022avg_price\u0022: { $avg: \u0022$price\u0022 } } } groups books by category and counts them.",
+          "SortOrder": 3,
+          "CreatedDate": "2026-11-17T05:44:16.3422075-05:00",
+          "ModifiedDate": "2026-11-17T05:44:16.3422075-05:00",
+          "Items": [
+            {
+              "Id": "0a4ca047-50ec-467f-9f1c-7bf8efb5a3a3",
+              "Text": "The grouping key is written with a dollar-prefixed field path, such as \u0022$category\u0022.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "49868a18-d147-4811-87fa-f9114edac6e0",
+              "Text": "$sum: 1 counts documents, equivalent to COUNT(*).",
+              "SortOrder": 1
+            },
+            {
+              "Id": "a296fb7b-cf64-45d1-9ef1-e48438d932d2",
+              "Text": "$avg, $min, and $max compute average, lowest, and highest values for a field.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "c8236a13-d794-403a-a718-1e54926667da",
+              "Text": "$sum: \u0022$price\u0022 totals a numeric field, equivalent to SUM(price).",
+              "SortOrder": 3
+            },
+            {
+              "Id": "ed4c6d3f-ce88-4500-a45b-f0caecfabdbf",
+              "Text": "Setting _id to null groups all documents into a single overall summary.",
+              "SortOrder": 4
+            }
+          ]
+        },
+        {
+          "Id": "86e814aa-c041-4ff3-9b75-8ad6a1a5816c",
+          "TopicId": "5464dd76-c642-4a4f-ac63-90eccbd91c15",
+          "Title": "Shaping Output with $project and $sort",
+          "BodyText": "After grouping, $project reshapes the result documents by renaming, computing, or hiding fields, and $sort orders the final output. Together they produce a clean, report-ready result set.",
+          "Notes": "A worked example renames \u0022$_id\u0022 back to \u0022category\u0022, rounds averages with { $round: [\u0022$avg_price\u0022, 2] }, hides _id with \u0022_id\u0022: 0, and then sorts by total_value descending.",
+          "SortOrder": 4,
+          "CreatedDate": "2026-11-17T05:44:16.3422075-05:00",
+          "ModifiedDate": "2026-11-17T05:44:16.3422075-05:00",
+          "Items": [
+            {
+              "Id": "73eaa3ff-7008-48ab-81cc-dca896e381a3",
+              "Text": "Use 1 to include a field and 0 to exclude it within $project.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "1d62b4ab-34c6-4d8e-8820-297574be5db5",
+              "Text": "New fields can be created from expressions, such as rounding or arithmetic on existing values.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "726f6f05-9b7d-49c1-9d12-4ed83322f434",
+              "Text": "Renaming \u0022$_id\u0022 gives the grouping key a meaningful output name.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "7ab69822-3845-4712-995c-13b711c1ebfe",
+              "Text": "$sort uses 1 for ascending and -1 for descending order.",
+              "SortOrder": 3
+            },
+            {
+              "Id": "4a0ba85a-a210-45a6-9ea6-10ca6dce9348",
+              "Text": "$limit after $sort produces top-N style results.",
+              "SortOrder": 4
+            }
+          ]
+        },
+        {
+          "Id": "f2441ba2-ec81-4745-b01b-c53a6bd6704e",
+          "TopicId": "5464dd76-c642-4a4f-ac63-90eccbd91c15",
+          "Title": "$unwind \u2014 Analysing Array Elements",
+          "BodyText": "$unwind expands an array field so that each element becomes its own document. This makes it possible to group and count individual items stored inside arrays.",
+          "Notes": "Example: unwinding \u0022$tags\u0022, then grouping on \u0022$tags\u0022 with $sum: 1, sorting descending and limiting to 10 produces the ten most common tags.",
+          "SortOrder": 5,
+          "CreatedDate": "2026-11-17T05:44:16.3422075-05:00",
+          "ModifiedDate": "2026-11-17T05:44:16.3422075-05:00",
+          "Items": [
+            {
+              "Id": "1189d9a8-70ad-469e-a2df-a4253810f5ce",
+              "Text": "A document with five array entries becomes five documents after $unwind.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "f4c21a47-8d17-4a39-9ff7-8d5de1433914",
+              "Text": "All other fields in the document are duplicated into each expanded copy.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "8d1e5858-c5cf-47ac-829c-8b4b2c369304",
+              "Text": "$unwind is typically followed by $group to aggregate across the expanded elements.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "de023e55-4c33-40f2-817d-ec04b8869aa2",
+              "Text": "The preserveNullAndEmptyArrays option keeps documents whose array is missing or empty.",
+              "SortOrder": 3
+            },
+            {
+              "Id": "1d27f91b-de42-452d-9e96-28eb943f7213",
+              "Text": "It is the usual bridge between MongoDB\u0027s nested data model and flat aggregate reporting.",
+              "SortOrder": 4
+            }
+          ]
+        },
+        {
+          "Id": "9de7ba36-918b-45c8-8c48-c9b66ffe28c9",
+          "TopicId": "5464dd76-c642-4a4f-ac63-90eccbd91c15",
+          "Title": "$lookup \u2014 Joining Collections",
+          "BodyText": "$lookup performs the equivalent of a SQL LEFT JOIN by pulling matching documents from another collection into an array field. It is the main tool for querying referenced (non-embedded) data.",
+          "Notes": "Example: joining orders to customers uses from: \u0022customers\u0022, localField: \u0022customer_id\u0022, foreignField: \u0022_id\u0022, as: \u0022customer\u0022, then $unwind with preserveNullAndEmptyArrays to flatten the result before projecting customer_name and customer_email.",
+          "SortOrder": 6,
+          "CreatedDate": "2026-11-17T05:44:16.3422075-05:00",
+          "ModifiedDate": "2026-11-17T05:44:16.3422075-05:00",
+          "Items": [
+            {
+              "Id": "e21ea40a-27b4-4ece-8498-5954b6c45b94",
+              "Text": "from names the collection to join, and as names the new array field for matches.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "a0d7ea22-a7f7-4864-8ac1-892074f12c6d",
+              "Text": "localField is the field in the current collection; foreignField is the matching field in the target.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "551e24d2-4b72-4afa-a746-dacc5dbe58ce",
+              "Text": "Results always arrive as an array, even when only one match exists.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "39477510-cba5-4921-bba4-8ffaa4d0964e",
+              "Text": "Follow $lookup with $unwind to flatten the joined array into regular fields.",
+              "SortOrder": 3
+            },
+            {
+              "Id": "2dc0e6c3-942b-4bc3-abfe-8f71e06787da",
+              "Text": "Dot notation such as \u0022$customer.name\u0022 extracts values from the joined document in $project.",
+              "SortOrder": 4
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Id": "60f7e362-1913-40fb-8610-880279b807ea",
+      "Title": "Data Modelling: Embedding vs Referencing",
+      "Summary": "Examines the central MongoDB design decision between embedding related data inside a document and referencing it from a separate collection. Provides criteria such as access patterns, bounded growth, data sharing, and the 16MB document size limit.",
+      "SortOrder": 5,
+      "CreatedDate": "2026-11-17T05:42:16.3681124-05:00",
+      "ModifiedDate": "2026-11-17T05:42:16.3681124-05:00",
+      "Elements": [
+        {
+          "Id": "9347ef0e-d571-42eb-a341-ed8ae8dc1307",
+          "TopicId": "60f7e362-1913-40fb-8610-880279b807ea",
+          "Title": "Access Patterns Drive MongoDB Schema Design",
+          "BodyText": "The most important design decision in MongoDB is whether to embed related data inside a document or reference it from a separate collection. Unlike relational databases where normalisation rules drive schema design, MongoDB modelling is driven by how the data is actually accessed.",
+          "Notes": "In SQL you model the data first and then write queries; in MongoDB you study the queries first and then model the data to serve them.",
+          "SortOrder": 0,
+          "CreatedDate": "2026-11-17T05:44:39.8766879-05:00",
+          "ModifiedDate": "2026-11-17T05:44:39.8766879-05:00",
+          "Items": [
+            {
+              "Id": "8c7f7134-84a0-4561-94cf-38a5f8f06a8a",
+              "Text": "Start by listing the application\u0027s most frequent read and write operations.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "34a3c66a-4714-4c93-a78a-7284563d87ff",
+              "Text": "Design documents so the most common query can be satisfied by a single-document read.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "f88175b5-bfc9-4926-bfaf-14dcb990d160",
+              "Text": "Normalisation is not the goal \u2014 query efficiency and data locality are.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "91ee113e-1c68-425c-8fdc-39c0a3ea7191",
+              "Text": "The same entities may be modelled differently in two applications with different access patterns.",
+              "SortOrder": 3
+            }
+          ]
+        },
+        {
+          "Id": "99ada048-f519-4777-b78f-e38fe33b2a34",
+          "TopicId": "60f7e362-1913-40fb-8610-880279b807ea",
+          "Title": "Embedding \u2014 Related Data Inside One Document",
+          "BodyText": "Embedding stores related data as nested sub-documents or arrays within the parent document. A customer document can carry its home and work addresses directly inside an addresses array.",
+          "Notes": "Example: { \u0022name\u0022: \u0022Jane Smith\u0022, \u0022addresses\u0022: [ { \u0022type\u0022: \u0022home\u0022, \u0022city\u0022: \u0022Tampa\u0022 }, { \u0022type\u0022: \u0022work\u0022, \u0022city\u0022: \u0022Tampa\u0022 } ] }",
+          "SortOrder": 1,
+          "CreatedDate": "2026-11-17T05:44:39.8766879-05:00",
+          "ModifiedDate": "2026-11-17T05:44:39.8766879-05:00",
+          "Items": [
+            {
+              "Id": "929397db-f0ea-4b68-941c-a5aa3f5e38de",
+              "Text": "Embedded data is retrieved in one read with no join or $lookup required.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "9696f337-09be-4edc-ba4c-2890f81d4322",
+              "Text": "Updates to the parent and its embedded data are atomic within a single document.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "6dba7136-bd4a-4f97-a235-299d43137bcf",
+              "Text": "Arrays of sub-documents replace what would be a one-to-many child table in SQL.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "6ae5cd05-ae7e-42d5-a3ba-aa18cfb8db15",
+              "Text": "Nested fields are queried with dot notation, such as specs.ram_gb, and with $elemMatch for arrays.",
+              "SortOrder": 3
+            }
+          ]
+        },
+        {
+          "Id": "fe1e6e6e-783c-4229-81db-fe12ade7ae67",
+          "TopicId": "60f7e362-1913-40fb-8610-880279b807ea",
+          "Title": "Referencing \u2014 Linked Documents Across Collections",
+          "BodyText": "Referencing keeps related data in a separate collection and links it with a stored identifier, such as a customer_id field holding the customer\u0027s ObjectId. This mirrors the foreign-key approach used in relational databases.",
+          "Notes": "Customer: { \u0022_id\u0022: ObjectId(\u0022...010\u0022), \u0022name\u0022: \u0022Jane Smith\u0022 } \u2014 Order: { \u0022customer_id\u0022: ObjectId(\u0022...010\u0022), \u0022total\u0022: 94.94 }",
+          "SortOrder": 2,
+          "CreatedDate": "2026-11-17T05:44:39.8766879-05:00",
+          "ModifiedDate": "2026-11-17T05:44:39.8766879-05:00",
+          "Items": [
+            {
+              "Id": "f0494b2e-21b5-45d7-bdf7-2f771b836dd7",
+              "Text": "Referenced documents can be queried and indexed independently of their parent.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "f97c8f78-a72d-4268-993f-28d2780d730c",
+              "Text": "MongoDB does not enforce referential integrity \u2014 the application must maintain link validity.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "00c236d6-bb99-4a60-b43e-09970c5a4833",
+              "Text": "Joining references at query time requires the $lookup aggregation stage or a second query.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "3da24639-c321-4f73-a127-f765067fbfa8",
+              "Text": "Shared data is stored once, so an update to it is reflected everywhere it is referenced.",
+              "SortOrder": 3
+            }
+          ]
+        },
+        {
+          "Id": "19a9369d-b656-4b7f-a894-a4434176e116",
+          "TopicId": "60f7e362-1913-40fb-8610-880279b807ea",
+          "Title": "Criteria for Choosing Embedding",
+          "BodyText": "Embedding is the right choice when related data behaves as part of the parent entity and stays small. Four criteria signal that embedding will perform well.",
+          "Notes": "Typical embedded examples: addresses, order line items, product specifications, and short review lists.",
+          "SortOrder": 3,
+          "CreatedDate": "2026-11-17T05:44:39.8766879-05:00",
+          "ModifiedDate": "2026-11-17T05:44:39.8766879-05:00",
+          "Items": [
+            {
+              "Id": "dc749e2f-dede-4ac2-a75d-64d910c48f00",
+              "Text": "The related data is always accessed together with the parent (one-to-one or one-to-few).",
+              "SortOrder": 0
+            },
+            {
+              "Id": "bfb5972b-37f8-4798-b7a3-599391a8457f",
+              "Text": "The embedded data has a bounded size and will not grow into thousands of items.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "a5f33ea4-ad0f-4b05-8e3d-188923dc0748",
+              "Text": "The embedded data is not shared between multiple parent documents.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "b1aa00ef-5fc9-40c7-bb3f-649f13d26979",
+              "Text": "You want fast single-document reads with no join overhead.",
+              "SortOrder": 3
+            }
+          ]
+        },
+        {
+          "Id": "3ac29da6-0744-40eb-81f4-3a777cac0436",
+          "TopicId": "60f7e362-1913-40fb-8610-880279b807ea",
+          "Title": "Criteria for Choosing Referencing",
+          "BodyText": "Referencing is preferable when the related data has an independent life cycle, grows without limit, or is shared. These conditions make embedding costly or impossible.",
+          "Notes": "Typical referenced examples: orders, events, log entries, and comments on popular content.",
+          "SortOrder": 4,
+          "CreatedDate": "2026-11-17T05:44:39.8766879-05:00",
+          "ModifiedDate": "2026-11-17T05:44:39.8766879-05:00",
+          "Items": [
+            {
+              "Id": "1fcc9588-c3a7-4836-85b3-26de3b54e29d",
+              "Text": "The related data is queried or reported on independently of the parent.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "2e61cbd2-bb37-49e7-bd39-f742049e1059",
+              "Text": "The relationship is one-to-many with unbounded growth, such as thousands of orders per customer.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "e2505fe4-ebd3-4292-95e3-74153fa23c98",
+              "Text": "The same data is shared by many documents, such as one author across many books.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "b9d7e6a3-1085-4983-b2ca-5d7baab8f43c",
+              "Text": "Embedding would push the document toward the size limit or bloat every read.",
+              "SortOrder": 3
+            }
+          ]
+        },
+        {
+          "Id": "4f4d247b-2fe7-49d1-9286-8b3b76eab22e",
+          "TopicId": "60f7e362-1913-40fb-8610-880279b807ea",
+          "Title": "The 16MB Document Size Limit",
+          "BodyText": "MongoDB enforces a hard maximum of 16MB per BSON document, which acts as a practical ceiling on how much data can be embedded. Any array that can grow without bound risks hitting this limit.",
+          "Notes": "Documents that grow continuously also force MongoDB to relocate and rewrite them, hurting write performance long before the limit is reached.",
+          "SortOrder": 5,
+          "CreatedDate": "2026-11-17T05:44:39.8766879-05:00",
+          "ModifiedDate": "2026-11-17T05:44:39.8766879-05:00",
+          "Items": [
+            {
+              "Id": "280e27da-5dc7-4805-82cb-3b495490ae0c",
+              "Text": "Unbounded arrays such as event logs or comment streams must be referenced, not embedded.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "e5397b1d-a9cd-466b-bb48-a0de97983601",
+              "Text": "Large documents increase network transfer and memory use even when only a few fields are needed.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "e8230c70-4f0c-43b2-940f-9fde4ff5d159",
+              "Text": "A hybrid pattern can embed a summary or the most recent few items and reference the full history.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "724365c7-65b4-4522-8717-3e06e16fed68",
+              "Text": "Estimate worst-case array growth during design rather than after data volume becomes a problem.",
+              "SortOrder": 3
+            }
+          ]
+        },
+        {
+          "Id": "030b94e1-37ce-457b-8b99-a344467edff6",
+          "TopicId": "60f7e362-1913-40fb-8610-880279b807ea",
+          "Title": "Trade-offs and Practical Guidance",
+          "BodyText": "Neither approach is universally correct; each trades read simplicity against update cost and flexibility. Many real schemas combine both patterns within the same application.",
+          "Notes": "Duplicating a small amount of data (such as a customer name on an order) is acceptable in MongoDB if it removes a join from a high-frequency query.",
+          "SortOrder": 6,
+          "CreatedDate": "2026-11-17T05:44:39.8766879-05:00",
+          "ModifiedDate": "2026-11-17T05:44:39.8766879-05:00",
+          "Items": [
+            {
+              "Id": "9f440bbc-7a56-435a-9c4a-0024d9995bc3",
+              "Text": "Embedding favours read performance and atomic updates but risks duplication and document growth.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "509eed4a-fc50-471c-8001-f70cfe38a231",
+              "Text": "Referencing favours flexibility and normalised updates but requires extra queries or $lookup stages.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "0fbb86a7-1302-4eca-a461-ed5e95359daf",
+              "Text": "Denormalised copies must be kept in sync by the application when the source data changes.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "e65b6658-83e3-49e0-bfb7-6d61eb5cb151",
+              "Text": "Revisit the model when access patterns change \u2014 schema flexibility makes migration feasible.",
+              "SortOrder": 3
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Id": "adc0c9e3-9ab6-4b4e-9cfa-074543059eae",
+      "Title": "Indexing and Query Performance",
+      "Summary": "Covers creating single-field, compound, unique, text, and TTL indexes and how they prevent full collection scans. Explains using explain() to distinguish COLLSCAN from IXSCAN and evaluate query efficiency.",
+      "SortOrder": 6,
+      "CreatedDate": "2026-11-17T05:42:16.3681124-05:00",
+      "ModifiedDate": "2026-11-17T05:42:16.3681124-05:00",
+      "Elements": [
+        {
+          "Id": "09b57b44-a310-4f46-b35a-d15916dfcc76",
+          "TopicId": "adc0c9e3-9ab6-4b4e-9cfa-074543059eae",
+          "Title": "Why Indexes Matter in MongoDB",
+          "BodyText": "MongoDB indexes use the same B-tree principle as relational indexes, allowing the engine to locate matching documents without reading the whole collection. Without an index, every query performs a collection scan.",
+          "Notes": "A collection scan is acceptable on a tiny collection but becomes a serious bottleneck as document counts grow into the millions.",
+          "SortOrder": 0,
+          "CreatedDate": "2026-11-17T05:44:59.8665069-05:00",
+          "ModifiedDate": "2026-11-17T05:44:59.8665069-05:00",
+          "Items": [
+            {
+              "Id": "44739776-b84a-437f-9779-ad657af1a088",
+              "Text": "A collection scan reads every document in the collection to evaluate the filter.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "09e9a065-03c5-42c7-ad62-80dd913cb5ca",
+              "Text": "With a suitable index, MongoDB performs a fast index scan instead.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "9e96cc6d-55b1-4db8-8d5d-5d1791edb2aa",
+              "Text": "Every collection automatically has a default index on the _id field.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "fe15190b-3d1f-46da-99c1-eb352ba4aab2",
+              "Text": "Indexes speed reads but add storage overhead and slow down writes slightly.",
+              "SortOrder": 3
+            },
+            {
+              "Id": "e94ae352-816f-4392-92e3-124d1af5d09d",
+              "Text": "Indexes are created with db.collection.createIndex().",
+              "SortOrder": 4
+            }
+          ]
+        },
+        {
+          "Id": "72aed4e0-16a6-4add-87a7-d136788756f2",
+          "TopicId": "adc0c9e3-9ab6-4b4e-9cfa-074543059eae",
+          "Title": "Single-Field and Compound Indexes",
+          "BodyText": "The most common indexes target one field or a combination of fields that queries filter and sort on. The value 1 means ascending order and -1 means descending.",
+          "Notes": "Example: db.books.createIndex({ \u0022category\u0022: 1 }) and db.books.createIndex({ \u0022category\u0022: 1, \u0022price\u0022: -1 }).",
+          "SortOrder": 1,
+          "CreatedDate": "2026-11-17T05:44:59.8665069-05:00",
+          "ModifiedDate": "2026-11-17T05:44:59.8665069-05:00",
+          "Items": [
+            {
+              "Id": "876f8c2f-5f63-44a6-9d87-879573e6bb5c",
+              "Text": "A single-field index such as { \u0022category\u0022: 1 } speeds up queries filtering on that field.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "f3a44d1c-fcf0-4f8b-aaa4-4372209075f3",
+              "Text": "A compound index such as { \u0022category\u0022: 1, \u0022price\u0022: -1 } covers queries using both fields together.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "2cd50b5d-a490-4a01-857a-333fe9892096",
+              "Text": "Field order in a compound index matters \u2014 it supports prefixes of the listed fields.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "ae966592-17aa-4160-a551-a2c66c722c0f",
+              "Text": "Sort direction (1 or -1) affects how efficiently the index can satisfy sort operations.",
+              "SortOrder": 3
+            },
+            {
+              "Id": "d60f24e7-33c9-40ac-a3fd-6011fde9c1c2",
+              "Text": "Design indexes around the actual query patterns of the application.",
+              "SortOrder": 4
+            }
+          ]
+        },
+        {
+          "Id": "e93d2b9a-72f7-4047-89c8-5eb51dc1e97d",
+          "TopicId": "adc0c9e3-9ab6-4b4e-9cfa-074543059eae",
+          "Title": "Unique Indexes for Data Integrity",
+          "BodyText": "A unique index enforces that no two documents share the same value for the indexed field, serving the same role as a UNIQUE constraint in SQL.",
+          "Notes": "Example: db.books.createIndex({ \u0022isbn\u0022: 1 }, { \u0022unique\u0022: true }).",
+          "SortOrder": 2,
+          "CreatedDate": "2026-11-17T05:44:59.8665069-05:00",
+          "ModifiedDate": "2026-11-17T05:44:59.8665069-05:00",
+          "Items": [
+            {
+              "Id": "4583f6be-2d63-44bc-8f52-0ca96531175b",
+              "Text": "Unique indexes reject inserts or updates that would create a duplicate value.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "70b56048-134e-45fc-a556-d15b7cff118a",
+              "Text": "They provide schema-level integrity in an otherwise schema-flexible database.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "02309847-60ce-4721-8497-2b2922219016",
+              "Text": "Natural keys such as ISBN, SKU, or email are common candidates.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "e02c1c81-6c57-477f-ad67-201b32444372",
+              "Text": "The index must be created before duplicates exist, or creation will fail.",
+              "SortOrder": 3
+            },
+            {
+              "Id": "6894d7bc-633c-4f5c-92be-3ab7f603b92a",
+              "Text": "Unique indexes also deliver the normal query-performance benefits of an index.",
+              "SortOrder": 4
+            }
+          ]
+        },
+        {
+          "Id": "2d362c4e-ead8-4dea-bc81-dbd3e4c54ffa",
+          "TopicId": "adc0c9e3-9ab6-4b4e-9cfa-074543059eae",
+          "Title": "Text and TTL Indexes",
+          "BodyText": "MongoDB offers specialised index types for full-text search and for automatic expiry of time-limited data.",
+          "Notes": "Text search example: db.books.find({ $text: { $search: \u0022pragmatic programming\u0022 } }). TTL example: db.sessions.createIndex({ \u0022created_at\u0022: 1 }, { \u0022expireAfterSeconds\u0022: 3600 }).",
+          "SortOrder": 3,
+          "CreatedDate": "2026-11-17T05:44:59.8665069-05:00",
+          "ModifiedDate": "2026-11-17T05:44:59.8665069-05:00",
+          "Items": [
+            {
+              "Id": "6df398b5-f16a-40b3-95db-2ded4a52d6a6",
+              "Text": "A text index on string fields enables full-text search via the $text and $search operators.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "5fa96a82-427d-469a-932c-f4c7d5ecaca8",
+              "Text": "Multiple string fields can be combined in one text index, e.g. title and description.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "0294066c-37f5-4d2d-8224-e163f22da605",
+              "Text": "A TTL index automatically deletes documents after a specified number of seconds.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "54893adc-4e93-44d4-8c53-004dc9714cd8",
+              "Text": "TTL indexes are ideal for session data, logs, caches, and temporary records.",
+              "SortOrder": 3
+            },
+            {
+              "Id": "1ecf5e14-5dcb-407a-9eeb-52cb21a4a513",
+              "Text": "Only one text index is permitted per collection.",
+              "SortOrder": 4
+            }
+          ]
+        },
+        {
+          "Id": "624ebec6-cbdf-40b3-bfb7-284eda4f0ad7",
+          "TopicId": "adc0c9e3-9ab6-4b4e-9cfa-074543059eae",
+          "Title": "Managing Indexes",
+          "BodyText": "Indexes should be reviewed over time so that unused or redundant ones do not consume storage and slow writes.",
+          "Notes": "MongoDB auto-generates index names from field names and directions, such as category_1_price_-1.",
+          "SortOrder": 4,
+          "CreatedDate": "2026-11-17T05:44:59.8665069-05:00",
+          "ModifiedDate": "2026-11-17T05:44:59.8665069-05:00",
+          "Items": [
+            {
+              "Id": "d241e1db-e264-4cf6-bce7-4516680dee0f",
+              "Text": "db.books.getIndexes() lists every index defined on a collection.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "b0da43f7-ca4c-4bb8-86b3-f5df80b194ae",
+              "Text": "db.books.dropIndex(\u0022category_1_price_-1\u0022) removes an index by its generated name.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "789f97c2-d9ff-45be-864b-6288fc63086a",
+              "Text": "Redundant indexes increase write cost without improving read performance.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "101e1250-bd0e-4c6f-9a87-c73f693d8f3b",
+              "Text": "Index names can be customised at creation time for readability.",
+              "SortOrder": 3
+            }
+          ]
+        },
+        {
+          "Id": "254a6617-5bd8-472f-ab31-f18062ab357d",
+          "TopicId": "adc0c9e3-9ab6-4b4e-9cfa-074543059eae",
+          "Title": "Using explain() to Evaluate Query Performance",
+          "BodyText": "The explain() method reveals how MongoDB executed a query, including whether an index was used and how many documents were examined.",
+          "Notes": "Example: db.books.find({ \u0022category\u0022: \u0022Technology\u0022 }).explain(\u0022executionStats\u0022).",
+          "SortOrder": 5,
+          "CreatedDate": "2026-11-17T05:44:59.8665069-05:00",
+          "ModifiedDate": "2026-11-17T05:44:59.8665069-05:00",
+          "Items": [
+            {
+              "Id": "75d876fb-a4e9-49ec-843a-52942df66c29",
+              "Text": "COLLSCAN in the plan means a full collection scan \u2014 a signal that an index is needed on a large collection.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "08eb08c9-414a-43ee-b576-8857793e96ce",
+              "Text": "IXSCAN confirms that an index was used to locate the matching documents.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "f709be30-42f4-4186-8e05-c834c55d6bcb",
+              "Text": "The \u0022executionStats\u0022 mode reports timing and document-examination counts.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "b21addc3-54e5-4e47-b7f6-a084979b6ff7",
+              "Text": "Compare totalDocsExamined with nReturned to judge efficiency \u2014 a ratio near 1:1 is ideal.",
+              "SortOrder": 3
+            },
+            {
+              "Id": "8c8db195-a5bf-4c3e-912f-1ab325507a67",
+              "Text": "A large gap between documents examined and documents returned indicates a poorly targeted index or filter.",
+              "SortOrder": 4
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Id": "7520c5fe-7d00-4de9-96fe-13faefa209bf",
+      "Title": "Choosing Between NoSQL and Relational Databases",
+      "Summary": "Provides side-by-side SQL and MongoDB syntax comparisons for create, read, update, and aggregate operations. Presents decision criteria, limitations of NoSQL, and the polyglot persistence approach of combining multiple database types in one architecture.",
+      "SortOrder": 7,
+      "CreatedDate": "2026-11-17T05:42:16.3681124-05:00",
+      "ModifiedDate": "2026-11-17T05:42:16.3681124-05:00",
+      "Elements": [
+        {
+          "Id": "6f0e5c85-8502-4deb-a57a-3fb68c1e103d",
+          "TopicId": "7520c5fe-7d00-4de9-96fe-13faefa209bf",
+          "Title": "Syntax Comparison: Create and Read Operations",
+          "BodyText": "The same data operations look different but map closely between SQL and MongoDB. Understanding the translation helps SQL-trained developers become productive in MongoDB quickly.",
+          "Notes": "SQL: INSERT INTO books (title, category, price) VALUES (\u0027Clean Code\u0027,\u0027Technology\u0027,44.99); becomes db.books.insertOne({\u0022title\u0022:\u0022Clean Code\u0022,\u0022category\u0022:\u0022Technology\u0022,\u0022price\u0022:44.99}).",
+          "SortOrder": 0,
+          "CreatedDate": "2026-11-17T05:45:28.6759201-05:00",
+          "ModifiedDate": "2026-11-17T05:45:28.6759201-05:00",
+          "Items": [
+            {
+              "Id": "a6dd20b9-d785-4484-a086-b392193a88c0",
+              "Text": "INSERT INTO maps to insertOne() or insertMany(), with no CREATE TABLE required beforehand.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "ed46971e-2ff0-4ae8-81c7-135a3eee56e2",
+              "Text": "SELECT ... WHERE becomes find() with a filter document as the first argument.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "771ea85d-9d27-4949-81e9-a9b812555f78",
+              "Text": "The SQL column list maps to MongoDB\u0027s projection document, where 1 includes a field and 0 excludes it.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "0c9343a1-bc3f-4348-972c-9d569d943c05",
+              "Text": "ORDER BY maps to .sort({ field: 1 }) for ascending or -1 for descending.",
+              "SortOrder": 3
+            },
+            {
+              "Id": "d0d7a79e-e9b1-42e4-8db4-8a177e849fb6",
+              "Text": "Comparison operators translate directly: \u003C becomes $lt, \u003E= becomes $gte, and IN (a,b,c) becomes $in: [a,b,c].",
+              "SortOrder": 4
+            }
+          ]
+        },
+        {
+          "Id": "83959b09-5b67-44a0-9a74-47fa287b1164",
+          "TopicId": "7520c5fe-7d00-4de9-96fe-13faefa209bf",
+          "Title": "Syntax Comparison: Update and Aggregate Operations",
+          "BodyText": "Updates and analytics also have direct equivalents, though MongoDB uses explicit update operators and a staged pipeline instead of single declarative statements.",
+          "Notes": "SQL: UPDATE books SET price = 39.99 WHERE title = \u0027Clean Code\u0027; becomes db.books.updateOne({\u0022title\u0022:\u0022Clean Code\u0022}, {$set: {\u0022price\u0022: 39.99}}).",
+          "SortOrder": 1,
+          "CreatedDate": "2026-11-17T05:45:28.6759201-05:00",
+          "ModifiedDate": "2026-11-17T05:45:28.6759201-05:00",
+          "Items": [
+            {
+              "Id": "81462c50-a5a3-4ade-92fe-f8f4555e4067",
+              "Text": "SQL\u0027s SET clause becomes the $set update operator inside updateOne() or updateMany().",
+              "SortOrder": 0
+            },
+            {
+              "Id": "1f3ecd57-f442-4e49-92c4-b9693e017834",
+              "Text": "The SQL WHERE clause becomes the first (filter) argument of the update method.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "07845d04-7fac-41f1-9ab1-ff5bc88dd50d",
+              "Text": "GROUP BY with aggregates becomes an aggregate() pipeline using $match, $group, and $sort stages.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "1f396ccc-cce7-427e-a246-3733d3e9d363",
+              "Text": "$match corresponds to WHERE, $group to GROUP BY, $project to the SELECT column list, and $lookup to a LEFT JOIN.",
+              "SortOrder": 3
+            },
+            {
+              "Id": "f690f919-86e3-4642-a2d0-ba78079d73f1",
+              "Text": "Aggregate functions translate as COUNT(*) to {$sum: 1}, AVG() to $avg, and SUM() to $sum on a field path.",
+              "SortOrder": 4
+            }
+          ]
+        },
+        {
+          "Id": "bb67bc47-9f90-4425-aa6d-587fba8b232d",
+          "TopicId": "7520c5fe-7d00-4de9-96fe-13faefa209bf",
+          "Title": "When to Choose MongoDB (Document Store)",
+          "BodyText": "MongoDB is the stronger choice when data structure varies, evolves quickly, or is naturally nested. Its strengths align with rapid development and large-scale, write-heavy workloads.",
+          "Notes": "Examples: product catalogues with varying attributes, user profiles with optional fields, orders with embedded line items, blog posts with comments.",
+          "SortOrder": 2,
+          "CreatedDate": "2026-11-17T05:45:28.6759201-05:00",
+          "ModifiedDate": "2026-11-17T05:45:28.6759201-05:00",
+          "Items": [
+            {
+              "Id": "4ad65242-975d-4325-8973-92b822fa848e",
+              "Text": "Choose MongoDB when records have different field sets, such as multi-tenant or variable-attribute data.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "81275cd5-ed28-4e16-b533-8b8308a41f5c",
+              "Text": "It suits hierarchical data where an entire entity can be read as one self-contained document with no JOINs.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "83654091-bd1b-4d63-b2e8-30638a05b2a7",
+              "Text": "Rapidly evolving schemas benefit because fields can be added instantly without migrations or ALTER TABLE.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "d199059d-8dc0-495e-aed7-61f3688af679",
+              "Text": "High write volume at scale is supported through horizontal sharding across many nodes.",
+              "SortOrder": 3
+            },
+            {
+              "Id": "3075ea54-5968-4cb0-a98d-8cb00f90e0d3",
+              "Text": "Native 2dsphere indexing makes MongoDB strong for geospatial and location-based queries.",
+              "SortOrder": 4
+            }
+          ]
+        },
+        {
+          "Id": "b17f62ee-8bca-4035-bc26-43be0207611a",
+          "TopicId": "7520c5fe-7d00-4de9-96fe-13faefa209bf",
+          "Title": "When to Choose a Relational Database",
+          "BodyText": "Relational systems such as SQL Server or PostgreSQL remain the better choice for structured, highly relational, transaction-critical data. Their constraints and query expressiveness are features, not limitations.",
+          "Notes": "Examples: banking and payroll, accounting ledgers, order processing with multi-table consistency, enterprise reporting.",
+          "SortOrder": 3,
+          "CreatedDate": "2026-11-17T05:45:28.6759201-05:00",
+          "ModifiedDate": "2026-11-17T05:45:28.6759201-05:00",
+          "Items": [
+            {
+              "Id": "3c26d3b9-7705-4ee1-b274-f3a3eade1455",
+              "Text": "Favour SQL when data is highly structured and consistent, such as financial, accounting, or inventory records.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "5eb2f390-e5d6-4c5d-ac61-483e57cbf889",
+              "Text": "Complex many-to-many relationships and multi-table JOINs are central to how the data is queried.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "cd7ed3ae-5c56-4663-b194-0fa250fffa74",
+              "Text": "ACID transactions spanning multiple tables are required for correctness.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "053f8cbe-bc6d-47b3-bb4d-c15f326fa897",
+              "Text": "Integrity constraints such as foreign keys, CHECK constraints, and NOT NULL enforcement are critical.",
+              "SortOrder": 3
+            },
+            {
+              "Id": "0a298fc2-0d9f-4f73-a2c9-95e49c69564f",
+              "Text": "SQL\u0027s GROUP BY, subqueries, and window functions are more expressive for complex ad-hoc reporting.",
+              "SortOrder": 4
+            },
+            {
+              "Id": "e4bfd5a2-08d1-470e-babb-b92be72c8603",
+              "Text": "Existing team expertise and mature tooling often tip the decision toward relational systems.",
+              "SortOrder": 5
+            }
+          ]
+        },
+        {
+          "Id": "df06d3c0-e61b-4ea4-8ddc-e0a5835260db",
+          "TopicId": "7520c5fe-7d00-4de9-96fe-13faefa209bf",
+          "Title": "Decision Criteria Summary",
+          "BodyText": "A side-by-side factor comparison helps structure the choice rather than relying on preference or hype. Evaluate schema, data shape, relationships, transactions, scale, query complexity, and development speed.",
+          "Notes": "No database type is universally superior \u2014 the right choice depends on data characteristics, access patterns, consistency requirements, and team familiarity.",
+          "SortOrder": 4,
+          "CreatedDate": "2026-11-17T05:45:28.6759201-05:00",
+          "ModifiedDate": "2026-11-17T05:45:28.6759201-05:00",
+          "Items": [
+            {
+              "Id": "aeecd20e-6e4d-4546-aa54-2b20b987ab92",
+              "Text": "Schema: fixed and stable favours SQL; variable and evolving favours MongoDB.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "867d9b12-466d-4a5c-95f8-921398c73511",
+              "Text": "Data shape: flat and normalised across many tables favours SQL; nested and self-contained favours MongoDB.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "c7366026-ea8b-4d13-9d28-4a72ac2db32b",
+              "Text": "Transactions: multi-table ACID favours SQL, though MongoDB 4\u002B supports multi-document transactions.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "069548d6-51af-4d52-83fd-4fa155bc32c6",
+              "Text": "Scale: vertical scaling to hundreds of GB favours SQL; horizontal sharding to terabytes and beyond favours MongoDB.",
+              "SortOrder": 3
+            },
+            {
+              "Id": "40139134-01a3-473c-9639-f5d784c69994",
+              "Text": "Development speed: SQL schema changes need migration planning, while MongoDB fields can be added instantly.",
+              "SortOrder": 4
+            }
+          ]
+        },
+        {
+          "Id": "15fba979-9c0a-415e-80ec-05c2b195271b",
+          "TopicId": "7520c5fe-7d00-4de9-96fe-13faefa209bf",
+          "Title": "Limitations and Trade-offs of NoSQL",
+          "BodyText": "NoSQL gains flexibility and scalability by giving something up elsewhere. Documenting these limitations is essential when justifying a database choice.",
+          "Notes": "These trade-offs should be stated explicitly in any report recommending NoSQL for a given use case.",
+          "SortOrder": 5,
+          "CreatedDate": "2026-11-17T05:45:28.6759201-05:00",
+          "ModifiedDate": "2026-11-17T05:45:28.6759201-05:00",
+          "Items": [
+            {
+              "Id": "af90fb9f-1eab-42a3-a199-9aaae4d87d89",
+              "Text": "Eventual consistency by default means reads may briefly return stale data in distributed deployments.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "6b4c3977-a022-4303-ac4a-1028e6c94fee",
+              "Text": "The absence of an enforced schema pushes data validation responsibility into the application layer.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "4719399c-3dd1-492d-8238-7c699f12c877",
+              "Text": "No foreign keys or referential integrity means orphaned references must be prevented by application logic.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "6933a438-460f-4870-aff3-fe32138a026f",
+              "Text": "Documents are limited to 16MB, forcing referencing when related data grows without bound.",
+              "SortOrder": 3
+            },
+            {
+              "Id": "b028478a-feb2-4361-a757-09aee59a6a87",
+              "Text": "Deletes are immediate and permanent outside explicit transactions, so filters must be verified with find() first.",
+              "SortOrder": 4
+            },
+            {
+              "Id": "5a46c5da-458d-4c6e-838f-943f55994979",
+              "Text": "Complex multi-collection analytics with $lookup are generally less expressive and slower than SQL JOINs.",
+              "SortOrder": 5
+            }
+          ]
+        },
+        {
+          "Id": "039bd54d-c22e-4f45-9422-c8a1b4e38a20",
+          "TopicId": "7520c5fe-7d00-4de9-96fe-13faefa209bf",
+          "Title": "Polyglot Persistence: Using Multiple Databases Together",
+          "BodyText": "Large-scale applications rarely pick one database for everything. Polyglot persistence means selecting the best-fit database for each distinct workload within a single architecture.",
+          "Notes": "A typical e-commerce stack: PostgreSQL for orders and accounts, MongoDB for product catalogues and user content, Redis for session caching, Elasticsearch for full-text search.",
+          "SortOrder": 6,
+          "CreatedDate": "2026-11-17T05:45:28.6759201-05:00",
+          "ModifiedDate": "2026-11-17T05:45:28.6759201-05:00",
+          "Items": [
+            {
+              "Id": "1c7b1841-f469-4c9d-aadc-480e63282c58",
+              "Text": "Use a relational database for transactional data such as orders, payments, and accounts where ACID matters.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "47378d16-91aa-459e-88a2-8127b1fe80f8",
+              "Text": "Use a document store for flexible content such as product details, user profiles, and logs.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "66f94ef1-c6ec-48c4-8e09-af3e12804f54",
+              "Text": "Use a key-value store like Redis for sub-millisecond session caching, carts, and rate limiting.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "f3577ada-e37a-4e36-9774-9e1bd9cc1702",
+              "Text": "Use a search engine or graph database where full-text relevance or relationship traversal dominates.",
+              "SortOrder": 3
+            },
+            {
+              "Id": "1e2f6221-0b3d-4bf2-a73f-8221d10281ec",
+              "Text": "The cost of polyglot persistence is operational complexity: more systems to deploy, monitor, secure, and keep in sync.",
+              "SortOrder": 4
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "TotalElementCount": 54
+}

@@ -1,0 +1,107 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Module 3 (Week 3) — Module Topics</title>
+<style>
+body{font-family:'Segoe UI',Arial,sans-serif;max-width:880px;margin:0 auto;padding:32px 24px;color:#222;line-height:1.55}
+h1{font-size:1.6rem;border-bottom:2px solid #dcdcdc;padding-bottom:8px}
+h2{font-size:1.2rem;margin-top:28px;color:#1a3c6e}
+.summary{color:#555;font-style:italic;margin:4px 0 10px}
+ul{margin:6px 0 6px 4px}
+li{margin:5px 0}
+.el-body{color:#555}
+.empty{color:#595959}
+</style>
+</head>
+<body>
+<div class="pm-backlink" style="font-family:'Segoe UI',Arial,sans-serif;padding:8px 16px;background:#f5f8fc;border-bottom:1px solid #dce3ec"><a href="index.html" style="color:#1a3c6e;font-weight:600;text-decoration:none">↑ Module 3 (Week 3)</a></div>
+<h1>Module 3 (Week 3) — Module Topics</h1>
+<h2>Foreign Keys and Identity Columns Fundamentals</h2>
+<div class="summary">Explains the challenge of inserting data across tables linked by foreign keys and how SQL Server identity columns automatically generate unique primary key values. Covers IDENTITY(seed, increment) syntax, custom seeds, and why identity gaps occur.</div>
+<ul>
+<li><strong>The Foreign Key Insert Challenge</strong> <span class="el-body">— Relational databases link tables through foreign keys, which creates an ordering problem when inserting new data. A parent row must exist before any child row that references it can be inserted.</span></li>
+<li><strong>Why Use Identity Columns</strong> <span class="el-body">— An identity column tells SQL Server to generate a unique numeric value for each new row automatically. This removes the burden of key generation from application code.</span></li>
+<li><strong>IDENTITY(seed, increment) Syntax</strong> <span class="el-body">— The IDENTITY property is declared on a single numeric column and takes two arguments: the seed (starting value) and the increment (step size). It is typically paired with PRIMARY KEY.</span></li>
+<li><strong>Custom Seeds and Increments</strong> <span class="el-body">— Seed and increment values can be customized to meet business or formatting requirements. This is useful when IDs must start at a particular number or follow a stepped pattern.</span></li>
+<li><strong>Identity Gaps Are Normal</strong> <span class="el-body">— Identity values are consumed when generated and are never reused, so the sequence can contain gaps. This is expected behavior, not a defect.</span></li>
+<li><strong>Identity Columns in the Example Schema</strong> <span class="el-body">— The e-commerce schema uses identity columns on every primary key and foreign key constraints to link the tables. This setup illustrates why retrieving generated identity values matters.</span></li>
+</ul>
+<h2>Retrieving Generated Identity Values</h2>
+<div class="summary">Compares SCOPE_IDENTITY(), @@IDENTITY, IDENT_CURRENT(), and the OUTPUT clause for capturing newly generated keys. Highlights scope, trigger safety, and concurrency implications so learners choose the correct method for each situation.</div>
+<ul>
+<li><strong>Why You Need Identity Retrieval Functions</strong> <span class="el-body">— Identity columns let SQL Server automatically generate unique sequential keys, but the generated value is not returned to you by the INSERT statement itself. To use a new key as a foreign key in a child table, you must explicitly capture it.</span></li>
+<li><strong>SCOPE_IDENTITY() — The Recommended Default</strong> <span class="el-body">— SCOPE_IDENTITY() returns the last identity value generated within the current scope — the current stored procedure, trigger, function, or batch. This makes it the safest general-purpose choice for single-row inserts.</span></li>
+<li><strong>@@IDENTITY — Use With Caution</strong> <span class="el-body">— @@IDENTITY returns the last identity value generated anywhere in the current session, regardless of scope. This makes it vulnerable to returning a value produced by a trigger rather than by your own INSERT.</span></li>
+<li><strong>IDENT_CURRENT() — Table-Specific and Risky</strong> <span class="el-body">— IDENT_CURRENT(&#39;TableName&#39;) returns the last identity value generated for a specific table across all sessions and scopes. Because it ignores who generated the value, it is unsafe for retrieving a key you just inserted.</span></li>
+<li><strong>The OUTPUT Clause — Most Flexible</strong> <span class="el-body">— The OUTPUT clause captures values directly from the rows affected by an INSERT, using the inserted pseudo-table. It is the only reliable option when a single statement inserts multiple rows.</span></li>
+<li><strong>Choosing the Right Method</strong> <span class="el-body">— Each method differs in scope, trigger safety, and concurrency safety, so the correct choice depends on whether you are inserting one row or many and whether triggers exist on the table.</span></li>
+</ul>
+<h2>Designing the Schema and Dependency Order</h2>
+<div class="summary">Walks through a complete e-commerce schema (Customers, Products, Orders, OrderItems, Addresses) with its foreign key constraints. Introduces dependency-level thinking to determine the correct order of inserts across related tables.</div>
+<ul>
+<li><strong>The E-Commerce Schema at a Glance</strong> <span class="el-body">— The working example for this module is a five-table e-commerce schema: Customers, Products, Orders, OrderItems, and Addresses. Each table uses an INT IDENTITY(1,1) primary key so SQL Server generates surrogate keys automatically.</span></li>
+<li><strong>Foreign Key Constraints in the Schema</strong> <span class="el-body">— Four named foreign key constraints wire the tables together and enforce referential integrity at the database level. Naming constraints explicitly makes errors and maintenance far easier to interpret.</span></li>
+<li><strong>Dependency-Level Thinking</strong> <span class="el-body">— Grouping tables into dependency levels turns an abstract diagram into a concrete insert plan. A table&#39;s level is one higher than the highest level of any table it references.</span></li>
+<li><strong>Deriving the Correct Insert Order</strong> <span class="el-body">— Rows must always be inserted parent-first, moving from the lowest dependency level upward. Inserting a child before its parent raises a foreign key violation and aborts the statement.</span></li>
+<li><strong>Validating Parent Rows Before Inserting</strong> <span class="el-body">— Even with the right ordering, a child insert can fail if the supplied parent key does not exist. Explicit validation produces clearer, more actionable errors than raw constraint violations.</span></li>
+<li><strong>Why Identity Columns Shape the Design</strong> <span class="el-body">— Because every primary key in this schema is an identity column, child values cannot be known until the parent row is actually inserted. This is precisely what makes dependency order and key retrieval inseparable.</span></li>
+</ul>
+<h2>Building INSERT Stored Procedures</h2>
+<div class="summary">Demonstrates progressively complex insert procedures: a simple insert returning an identity value, a one-level foreign key insert with validation, and a multi-level insert that resolves related keys. Includes OUTPUT parameters and usage examples for calling each procedure.</div>
+<ul>
+<li><strong>Procedure Structure and the OUTPUT Parameter Pattern</strong> <span class="el-body">— Every insert procedure in this module follows the same skeleton: input parameters, SET NOCOUNT ON, validation, the INSERT, capture of the identity value, and a return code. OUTPUT parameters are the standard way to hand the newly generated key back to the caller.</span></li>
+<li><strong>Simple Insert Returning an Identity Value</strong> <span class="el-body">— The simplest case inserts into a table with no foreign key dependencies and returns the generated primary key. usp_InsertCustomer demonstrates this pattern against the Customers table.</span></li>
+<li><strong>One-Level Foreign Key Insert with Validation</strong> <span class="el-body">— When the target table references a parent, the procedure must confirm the parent row exists before inserting. usp_InsertOrder validates the customer, then creates the order and returns the new OrderID.</span></li>
+<li><strong>Multi-Level Insert Resolving Related Keys</strong> <span class="el-body">— At the deepest level a row may depend on two different parents and may need to look up data from one of them. usp_InsertOrderItem validates the Order, validates the Product, and pulls the current UnitPrice from Products.</span></li>
+<li><strong>Find-or-Create Logic for Lookup Parents</strong> <span class="el-body">— A common variation inserts the parent only when it does not already exist, reusing the existing key otherwise. The Music Database sp_InsertSong procedure illustrates this find-or-create pattern across Artists, Albums and Songs.</span></li>
+<li><strong>Chaining the Procedures Together</strong> <span class="el-body">— Because each procedure returns its generated key through an OUTPUT parameter, the three levels can be called in sequence to build a complete order from scratch.</span></li>
+</ul>
+<h2>Transaction Management for Multi-Table Inserts</h2>
+<div class="summary">Shows how to wrap related inserts in explicit transactions with TRY...CATCH, XACT_ABORT, and @@TRANCOUNT checks so that all operations succeed or fail together. Covers nested transaction handling and transaction scope best practices.</div>
+<ul>
+<li><strong>Why Transactions Matter for Related Inserts</strong> <span class="el-body">— When a single logical operation spans several tables connected by foreign keys, partial success leaves the database in an inconsistent state. Explicit transactions guarantee that every insert in the sequence either commits together or is undone together.</span></li>
+<li><strong>The BEGIN TRY / BEGIN TRANSACTION Pattern</strong> <span class="el-body">— The standard T-SQL structure wraps BEGIN TRANSACTION and all inserts inside a BEGIN TRY block, with COMMIT TRANSACTION as the last statement before END TRY. The matching BEGIN CATCH block performs the rollback and error reporting.</span></li>
+<li><strong>Checking @@TRANCOUNT Before ROLLBACK</strong> <span class="el-body">— @@TRANCOUNT reports how many transactions are currently open on the connection. Testing it before issuing ROLLBACK prevents a secondary error when no transaction is actually active.</span></li>
+<li><strong>Using SET XACT_ABORT ON</strong> <span class="el-body">— SET XACT_ABORT ON instructs SQL Server to automatically terminate and roll back the entire transaction when a run-time error occurs. It is a safety net for errors that would otherwise leave a transaction open.</span></li>
+<li><strong>Nested Transaction Handling</strong> <span class="el-body">— A stored procedure may be called from another procedure that already started a transaction. The procedure should only begin and commit a transaction if it is the one that opened it.</span></li>
+<li><strong>Transaction Scope Best Practices</strong> <span class="el-body">— Good transaction design keeps the protected region narrow, predictable, and well tested. These guidelines apply to every multi-table insert procedure you write.</span></li>
+</ul>
+<h2>Error Handling, Validation, and Logging</h2>
+<div class="summary">Presents a comprehensive validation and error-handling pattern using RAISERROR, THROW, return codes, and OUTPUT error messages. Includes building an ErrorLog table and a reusable logging procedure for diagnostics.</div>
+<ul>
+<li><strong>Validate Inputs Before Touching Data</strong> <span class="el-body">— Defensive stored procedures check every assumption about foreign keys and business rules before any INSERT occurs. Validation up front avoids wasted work and constraint violations deep inside a transaction.</span></li>
+<li><strong>Raising Errors with RAISERROR and THROW</strong> <span class="el-body">— T-SQL offers two ways to signal failure: RAISERROR, which supports formatted messages and explicit severity/state, and THROW, which re-raises the original error intact.</span></li>
+<li><strong>TRY...CATCH With Transaction-Safe Rollback</strong> <span class="el-body">— Every procedure that performs related inserts should wrap its work in BEGIN TRY / BEGIN CATCH and guard the rollback with a transaction count check.</span></li>
+<li><strong>Return Codes and OUTPUT Error Messages</strong> <span class="el-body">— A stored procedure can communicate outcome two ways at once: a numeric RETURN code for status and OUTPUT parameters for identity values and human-readable error text.</span></li>
+<li><strong>Building an ErrorLog Table</strong> <span class="el-body">— Persisting error details to a dedicated table turns transient failures into a searchable diagnostic history.</span></li>
+<li><strong>A Reusable usp_LogError Procedure</strong> <span class="el-body">— Centralizing the logging INSERT in one procedure keeps CATCH blocks short and guarantees consistent diagnostics across the whole database.</span></li>
+<li><strong>Error Handling Standards and Pitfalls</strong> <span class="el-body">— Consistent conventions make error handling predictable for every developer and every calling application.</span></li>
+</ul>
+<h2>Advanced Techniques: Batch Inserts and Table-Valued Parameters</h2>
+<div class="summary">Covers creating user-defined table types and passing multiple rows into a procedure with READONLY table-valued parameters. Also shows the OUTPUT clause for capturing multiple inserted rows and composing complete orders in a single call.</div>
+<ul>
+<li><strong>Why Table-Valued Parameters?</strong> <span class="el-body">— Table-valued parameters (TVPs) let you pass multiple rows of data into a stored procedure in a single call, making them ideal for batch inserts across foreign key relationships.</span></li>
+<li><strong>Creating User-Defined Table Types</strong> <span class="el-body">— A TVP must be based on a user-defined table type created with CREATE TYPE ... AS TABLE. The type defines the columns and data types of the rows you intend to pass.</span></li>
+<li><strong>Declaring READONLY TVP Parameters</strong> <span class="el-body">— Inside a stored procedure, a table-valued parameter is declared with the table type name followed by the READONLY keyword, which is mandatory for TVPs.</span></li>
+<li><strong>Populating and Calling with a TVP</strong> <span class="el-body">— Callers declare a variable of the table type, insert rows into it, then pass it as a parameter on the EXEC statement.</span></li>
+<li><strong>Set-Based Validation and Insertion Inside the Procedure</strong> <span class="el-body">— Because a TVP behaves like a table, validation and insertion can be done with set-based statements instead of row-by-row loops.</span></li>
+<li><strong>Capturing Multiple Inserted Rows with the OUTPUT Clause</strong> <span class="el-body">— When a single INSERT creates many rows, SCOPE_IDENTITY() returns only the last value; the OUTPUT clause captures every generated key and column instead.</span></li>
+<li><strong>Composing a Complete Order in a Single Call</strong> <span class="el-body">— Advanced procedures combine TVPs, OUTPUT parameters, and transactions to create a customer, address, order, and all line items in one atomic call.</span></li>
+</ul>
+<h2>Evaluating Approaches and Professional Best Practices</h2>
+<div class="summary">Weighs stored procedures against ORM (Entity Framework), ADO.NET, and hybrid approaches across performance, maintainability, testability, and portability. Concludes with naming, performance, security, documentation, testing standards, and common pitfalls to avoid.</div>
+<ul>
+<li><strong>Strengths and Trade-offs of the Stored Procedure Approach</strong> <span class="el-body">— Stored procedures centralize multi-table insert logic inside the database, but that power comes with costs that must be weighed before standardizing on them.</span></li>
+<li><strong>Deciding When a Stored Procedure Is the Right Tool</strong> <span class="el-body">— Not every data operation belongs in a stored procedure; the decision depends on complexity, volume, and how often the rules change.</span></li>
+<li><strong>Alternative 1: ORM-Based Inserts with Entity Framework</strong> <span class="el-body">— Entity Framework can manage the same parent-child insert sequence in C#, using an explicit transaction and successive SaveChanges() calls to obtain generated keys.</span></li>
+<li><strong>Alternative 2: Application-Level Logic with ADO.NET</strong> <span class="el-body">— Raw ADO.NET gives fine-grained control by issuing parameterized INSERT statements that use the OUTPUT clause to return generated identity values.</span></li>
+<li><strong>Alternative 3: The Hybrid Approach and Comparison Matrix</strong> <span class="el-body">— Many production systems combine approaches: an ORM handles simple CRUD while stored procedures handle complex, high-value transactions.</span></li>
+<li><strong>Professional Standards: Naming, Performance, and Security</strong> <span class="el-body">— Consistent conventions and defensive coding habits make procedures predictable, fast, and safe to expose to applications.</span></li>
+<li><strong>Documentation, Testing, and Common Pitfalls</strong> <span class="el-body">— A professional procedure ships with a header comment block, a repeatable test plan, and deliberate avoidance of well-known mistakes.</span></li>
+</ul>
+
+<footer class="presemaker-credit" data-credit="2" style="margin-top:2rem;padding:14px 8px;border-top:1px solid #ddd;background:#fff;text-align:center;font:13px/1.5 -apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;color:#595959;"><svg width="20" height="20" viewBox="0 0 2048 2048" aria-hidden="true" focusable="false" style="vertical-align:-5px;margin-right:7px"><rect width="2048" height="2048" rx="384" fill="#0F6E6E"/><path fill="#0A5050" d="M1024 1000 344 832v816l680 168zm0 0 680-168v816l-680 168z"/><path fill="#fff" d="M1024 944 384 784v808l640 160zm0 0 640-160v808l-640 160z"/><rect x="1002" y="944" width="44" height="808" fill="#0F6E6E"/><rect x="936" y="246" width="176" height="448" rx="44" fill="#fff"/><rect x="800" y="382" width="448" height="176" rx="44" fill="#fff"/></svg>Created with <a href="https://softwareplus.ai/coursebuilder/" target="_blank" rel="noopener" style="color:#2f5d8f;font-weight:600;text-decoration:none;">CourseBuilder+</a><span aria-hidden="true"> · </span><a href="https://softwareplus.ai/" target="_blank" rel="noopener" style="color:#2f5d8f;text-decoration:none;">SoftwarePlus.ai</a></footer>
+</body>
+</html>

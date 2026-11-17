@@ -1,0 +1,2026 @@
+{
+  "ModuleFolderName": "Module_13_(Week_13)",
+  "CourseName": "COP4709 \u2014 Applied Database II",
+  "GeneratedDate": "2026-11-17T05:38:31.6464302-05:00",
+  "ModifiedDate": "2026-11-17T05:41:58.8247548-05:00",
+  "Outcomes": [],
+  "Topics": [
+    {
+      "Id": "3690c3e2-d67a-4b2c-9740-39db5aa72278",
+      "Title": "Databases as the Foundation of Data Analysis",
+      "Summary": "Introduces data analysis as the process of inspecting, cleaning, transforming and modelling data, and explains why relational databases and SQL sit at the heart of that work. Contrasts transactional (OLTP) and analytical (OLAP) use, surveys business domains that rely on database analysis, and walks through the six-stage pipeline from source data to delivered report.",
+      "SortOrder": 0,
+      "CreatedDate": "2026-11-17T05:38:31.6464302-05:00",
+      "ModifiedDate": "2026-11-17T05:38:31.6464302-05:00",
+      "Elements": [
+        {
+          "Id": "adb8d8fb-855f-40bf-9b7a-85f5071093a2",
+          "TopicId": "3690c3e2-d67a-4b2c-9740-39db5aa72278",
+          "Title": "What Data Analysis Is",
+          "BodyText": "Data analysis is the process of inspecting, cleaning, transforming and modelling data to discover useful information, draw conclusions and support decision making. In organisational settings, that process almost always begins with data held in a relational database.",
+          "Notes": "The emphasis in this module is the SQL-based analytical work that feeds regular business reporting \u2014 the data types involved, how to prepare them, and the query patterns that produce recurring reports.",
+          "SortOrder": 0,
+          "CreatedDate": "2026-11-17T05:38:52.8068583-05:00",
+          "ModifiedDate": "2026-11-17T05:38:52.8068583-05:00",
+          "Items": [
+            {
+              "Id": "8477b276-5aec-4131-b15d-6e284bd2e94f",
+              "Text": "Inspecting means profiling the data to understand its shape, ranges and gaps before drawing conclusions.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "fa89b43c-67bb-49bb-92e6-ebf915e95b16",
+              "Text": "Cleaning resolves NULLs, duplicates, inconsistent formats and out-of-range values.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "4d67ed9e-829c-48cf-811e-a116abe923aa",
+              "Text": "Transforming aggregates, joins and derives new values so raw events become meaningful measures.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "06bfe2ea-5ad4-49ac-8132-75f176356dc8",
+              "Text": "Modelling and reporting turn those measures into insight that informs a specific business decision.",
+              "SortOrder": 3
+            },
+            {
+              "Id": "1b64b187-9e9a-41da-8dbe-0bcbac8bbdaa",
+              "Text": "Analysis is only useful when it is tied to a question someone needs answered.",
+              "SortOrder": 4
+            }
+          ]
+        },
+        {
+          "Id": "781125f8-21de-4110-9edc-4884d2cfa9e7",
+          "TopicId": "3690c3e2-d67a-4b2c-9740-39db5aa72278",
+          "Title": "Why Databases Sit at the Heart of Analysis",
+          "BodyText": "Databases are the primary system of record for organisational data \u2014 they store it, structure it and make it queryable at scale. Even when analysis finishes in a visualisation tool, the extraction and preparation work starts with SQL.",
+          "Notes": "Excel via ODBC/PowerQuery, Power BI, Tableau and Looker all connect to a database and run scheduled queries; the SQL layer does the heavy lifting of preparation and aggregation.",
+          "SortOrder": 1,
+          "CreatedDate": "2026-11-17T05:38:52.8068583-05:00",
+          "ModifiedDate": "2026-11-17T05:38:52.8068583-05:00",
+          "Items": [
+            {
+              "Id": "c7feacec-3bcc-48eb-b500-f33e8ea445ca",
+              "Text": "Relational tables impose a defined schema, which makes data directly queryable without pre-parsing.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "a329c797-3e9a-4ec6-a702-6e705a2f2565",
+              "Text": "Dedicated platforms such as Power BI, Tableau and Python pandas are used for visualisation and advanced modelling, not primary extraction.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "f65a8054-79a6-4ac8-84b5-36417a98fc3c",
+              "Text": "Understanding the SQL layer makes you more effective with any downstream reporting tool.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "d8ae16f3-dc45-4c3e-9720-8c55a2ddea41",
+              "Text": "Knowing how to use a database analytically is a fundamental skill for any data-driven role.",
+              "SortOrder": 3
+            },
+            {
+              "Id": "06cf5db1-5b26-47a9-b910-2a79667187a8",
+              "Text": "The database enforces integrity, so the numbers feeding a report have a trusted single source.",
+              "SortOrder": 4
+            }
+          ]
+        },
+        {
+          "Id": "22684b5e-f43b-4eec-9b1c-a3d42416a3d4",
+          "TopicId": "3690c3e2-d67a-4b2c-9740-39db5aa72278",
+          "Title": "Transactional (OLTP) Use of Databases",
+          "BodyText": "Transactional systems exist to record and process live business events as they happen. Their workload is made up of many short INSERT, UPDATE and SELECT statements running concurrently.",
+          "Notes": "Examples include order entry, banking, healthcare records and e-commerce checkout.",
+          "SortOrder": 2,
+          "CreatedDate": "2026-11-17T05:38:52.8068583-05:00",
+          "ModifiedDate": "2026-11-17T05:38:52.8068583-05:00",
+          "Items": [
+            {
+              "Id": "3a1d84fa-114c-4f48-a020-acdb661f2b15",
+              "Text": "OLTP data reflects the current state of the business with high concurrency.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "6a032258-3ee4-4824-98b0-50d84c90a737",
+              "Text": "Optimisation targets write speed, data integrity and concurrent access.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "24e69e52-6176-4efb-800c-20def4926d3b",
+              "Text": "Queries touch few rows each but arrive in very high volume.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "7556871b-5ac8-40bb-b3e0-d152f786bf0e",
+              "Text": "Schemas are typically normalised to avoid update anomalies.",
+              "SortOrder": 3
+            },
+            {
+              "Id": "9797ce4e-2f06-4060-9b01-5e1be7102f33",
+              "Text": "Running heavy analytical queries here can degrade live application performance.",
+              "SortOrder": 4
+            }
+          ]
+        },
+        {
+          "Id": "840ea070-8b90-4e1e-9c63-d3110ea02de7",
+          "TopicId": "3690c3e2-d67a-4b2c-9740-39db5aa72278",
+          "Title": "Analytical (OLAP) Use of Databases",
+          "BodyText": "Analytical use aggregates and summarises data to produce insight rather than to record events. Queries are complex SELECT statements scanning large row counts.",
+          "Notes": "Examples include revenue reports, trend analysis, dashboards and forecasting.",
+          "SortOrder": 3,
+          "CreatedDate": "2026-11-17T05:38:52.8068583-05:00",
+          "ModifiedDate": "2026-11-17T05:38:52.8068583-05:00",
+          "Items": [
+            {
+              "Id": "714ff8cc-36ef-4014-9c78-d029ac74122e",
+              "Text": "OLAP data is often historical snapshots and frequently denormalised for read efficiency.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "a329dc7a-7a4c-45d6-b7ae-fb9a7d770b7e",
+              "Text": "Optimisation targets read speed, large aggregations and query flexibility.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "c2e30088-9e50-4ac4-9189-556d4fbce956",
+              "Text": "Most organisations run analytical queries directly against the OLTP database, often off-peak or on read replicas.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "1aaba270-75a3-4655-840e-d7822512e211",
+              "Text": "Larger organisations separate the two workloads into a dedicated data warehouse.",
+              "SortOrder": 3
+            },
+            {
+              "Id": "a11239b3-7a3a-425d-ad20-3a7eba3fb292",
+              "Text": "Either architecture uses the same SQL skills for analysis.",
+              "SortOrder": 4
+            }
+          ]
+        },
+        {
+          "Id": "57a43145-e9f2-444f-b833-3170f4c6f57d",
+          "TopicId": "3690c3e2-d67a-4b2c-9740-39db5aa72278",
+          "Title": "Business Domains That Rely on Database Analysis",
+          "BodyText": "Almost every sector stores operational data in databases and runs regular analyses against it. The domain changes the tables and metrics, but the query patterns stay remarkably consistent.",
+          "Notes": "Retail stores orders, products, customers, inventory and returns; finance stores accounts, transactions, balances and loans; healthcare stores visits, diagnoses, procedures and billing.",
+          "SortOrder": 4,
+          "CreatedDate": "2026-11-17T05:38:52.8068583-05:00",
+          "ModifiedDate": "2026-11-17T05:38:52.8068583-05:00",
+          "Items": [
+            {
+              "Id": "d893d5c8-bbe3-4a68-85d2-6241447ac083",
+              "Text": "Retail and e-commerce report daily sales totals, product performance, customer lifetime value and stock levels.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "ec5b1723-7192-4708-800f-0a4df1fd33d1",
+              "Text": "Finance and banking track transaction volume, balance trends and delinquency rates.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "36b0c1e5-959c-4105-8c55-072d5f3fae07",
+              "Text": "Healthcare monitors admissions per week, bed occupancy, treatment outcomes and billing cycles.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "b559f45d-0aec-457e-9d30-58dd8b08386c",
+              "Text": "Human resources analyses headcount by department, turnover, payroll totals and absenteeism.",
+              "SortOrder": 3
+            },
+            {
+              "Id": "84c4ee1f-c21d-49db-ae84-ec7ae92eb483",
+              "Text": "Education examines enrolment trends, grade distributions, pass/fail rates and attendance patterns.",
+              "SortOrder": 4
+            },
+            {
+              "Id": "d896af32-e695-4277-8a51-fa3be3bfcc61",
+              "Text": "Logistics and marketing measure on-time delivery, supplier performance, conversion rates and cost per acquisition.",
+              "SortOrder": 5
+            }
+          ]
+        },
+        {
+          "Id": "f7ca1ce4-c450-4174-a22e-f37c3c7d3baa",
+          "TopicId": "3690c3e2-d67a-4b2c-9740-39db5aa72278",
+          "Title": "The Six-Stage Analysis Pipeline",
+          "BodyText": "Every analysis follows the same path from raw operational data to a delivered report. Treating it as a repeatable pipeline makes results consistent and auditable.",
+          "Notes": "Skipping the clean and prepare stage is the most common cause of misleading results \u2014 garbage in, garbage out.",
+          "SortOrder": 5,
+          "CreatedDate": "2026-11-17T05:38:52.8068583-05:00",
+          "ModifiedDate": "2026-11-17T05:38:52.8068583-05:00",
+          "Items": [
+            {
+              "Id": "4ada2391-d4e6-43ca-a5a2-96d7b57295c4",
+              "Text": "Source Data: OLTP tables, external imports and APIs provide the raw material.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "f3dfb197-ae92-430e-9afc-e3badcc3ae46",
+              "Text": "Extract: SQL queries pull only the relevant rows and columns.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "9ae36c13-f25d-4558-89bd-6d40e317e27f",
+              "Text": "Clean \u0026 Prepare: handle NULLs, fix formats and remove duplicates.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "323bacf2-f504-4314-9f2b-d4ecdd6ba981",
+              "Text": "Transform: aggregate, join and calculate derived values such as profit or margin.",
+              "SortOrder": 3
+            },
+            {
+              "Id": "61bfcc89-0325-47f8-9978-a7e1bd66dbbd",
+              "Text": "Analyse: apply aggregations, period comparisons and segmentation.",
+              "SortOrder": 4
+            },
+            {
+              "Id": "bd4ddcaa-63b7-414d-a340-c553fcd69783",
+              "Text": "Report: deliver results to stakeholders through a dashboard or scheduled report.",
+              "SortOrder": 5
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Id": "1a097ede-9682-438e-96ce-e925458cc96f",
+      "Title": "Types of Data Used in Analysis",
+      "Summary": "Explains the data classifications that determine which analytical operations are valid: quantitative versus qualitative, structured versus semi- and unstructured, and the three forms of time-series data. Introduces the dimensions-and-measures framing that drives the core GROUP BY query pattern and shows typical analytical column types in a sales fact table.",
+      "SortOrder": 1,
+      "CreatedDate": "2026-11-17T05:38:31.6464302-05:00",
+      "ModifiedDate": "2026-11-17T05:38:31.6464302-05:00",
+      "Elements": [
+        {
+          "Id": "ffb9c108-eddf-4949-b54c-6eae1eaa7870",
+          "TopicId": "1a097ede-9682-438e-96ce-e925458cc96f",
+          "Title": "Why Data Type Classification Matters",
+          "BodyText": "Before analysing data you must understand what kind of data you are working with, because different data types support different analytical operations. Applying the wrong operation to a data type produces results that look valid but are meaningless.",
+          "Notes": "Example: averaging a categorical field such as product_category returns either an error or a nonsense number; counting it is the valid operation.",
+          "SortOrder": 0,
+          "CreatedDate": "2026-11-17T05:39:20.945417-05:00",
+          "ModifiedDate": "2026-11-17T05:39:20.945417-05:00",
+          "Items": [
+            {
+              "Id": "98bfb2e8-ecc6-46b5-b153-133e24eed9ab",
+              "Text": "Data classification determines which aggregate functions and comparisons are legitimate.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "70d76d70-8ea7-43c4-b6b3-b163bf4669a9",
+              "Text": "Misapplied analysis silently produces misleading numbers rather than obvious errors.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "20d2c387-aa0b-4e2b-b07d-698312096e6e",
+              "Text": "Classification also guides which columns belong in SELECT, which in GROUP BY, and which get aggregated.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "db128cb5-d2bd-45bb-8d8a-d15ace9fd1d9",
+              "Text": "Recognising the data type early prevents rework later in the analysis pipeline.",
+              "SortOrder": 3
+            }
+          ]
+        },
+        {
+          "Id": "686dced0-aaea-461f-ae34-fe890cd5cd6f",
+          "TopicId": "1a097ede-9682-438e-96ce-e925458cc96f",
+          "Title": "Quantitative vs Qualitative Data",
+          "BodyText": "The first split is between numeric data that represents a measurable quantity and categorical data that represents labels or descriptions. Quantitative data supports arithmetic; qualitative data supports counting and grouping.",
+          "Notes": "Quantitative operations: SUM, AVG, MIN/MAX, STDDEV. Qualitative operations: COUNT, COUNT DISTINCT, GROUP BY.",
+          "SortOrder": 1,
+          "CreatedDate": "2026-11-17T05:39:20.945417-05:00",
+          "ModifiedDate": "2026-11-17T05:39:20.945417-05:00",
+          "Items": [
+            {
+              "Id": "d192b0d5-c6a9-46da-9ebc-99075e75f098",
+              "Text": "Quantitative continuous data can take any value in a range, such as a price of $42.75 or a temperature of 98.6\u00B0F.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "cffed73f-dd0d-41a8-8b6b-59df000f2d19",
+              "Text": "Quantitative discrete data consists of whole-number counts, such as an order quantity of 3 or 147 employees.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "c2433e05-b3f2-4093-bdc4-10f924e19df6",
+              "Text": "Qualitative nominal data has no natural order \u2014 colour, region, product category.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "8f7eaf86-48ac-41a9-abd3-9df2c3a75800",
+              "Text": "Qualitative ordinal data has ordered categories \u2014 Low/Medium/High ratings or a 1\u20135 survey score.",
+              "SortOrder": 3
+            },
+            {
+              "Id": "bed6b1dc-58f5-425e-a4cd-14e781389af6",
+              "Text": "Ordinal values stored as numbers (a 1\u20135 satisfaction score) are still categories, so averaging them must be done with caution.",
+              "SortOrder": 4
+            }
+          ]
+        },
+        {
+          "Id": "107dfbd2-996e-4387-8aab-6ac9a75cae46",
+          "TopicId": "1a097ede-9682-438e-96ce-e925458cc96f",
+          "Title": "Structured, Semi-Structured, and Unstructured Data",
+          "BodyText": "Data also varies by how rigidly it is organised, which determines how much preparation is needed before SQL can analyse it. Structured data is query-ready; the other forms require extraction or external tooling.",
+          "Notes": "SQL-based analysis focuses almost entirely on structured relational data; the other two forms are usually flattened into structured form first.",
+          "SortOrder": 2,
+          "CreatedDate": "2026-11-17T05:39:20.945417-05:00",
+          "ModifiedDate": "2026-11-17T05:39:20.945417-05:00",
+          "Items": [
+            {
+              "Id": "d9175223-4c72-4ee6-97cc-b17ec86a46c9",
+              "Text": "Structured data has rows and columns with a defined schema and lives in regular relational tables, allowing direct SQL queries.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "03904fb5-bf24-4b6e-bc49-d83871af6dfb",
+              "Text": "Semi-structured data has flexible schema and is stored in JSON/XML columns or key-value stores; fields must be parsed and extracted before analysis.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "4651836b-d55f-45bd-9a13-a33f10e94c3a",
+              "Text": "Unstructured data is free-form content with no schema, stored as BLOBs, file paths, or text columns.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "39604f1a-8e8f-4c2d-8b03-5adb85c8e7a1",
+              "Text": "Unstructured content normally requires external NLP or text-analysis tools, while SQL handles only its metadata.",
+              "SortOrder": 3
+            },
+            {
+              "Id": "3215423a-eaf3-49c2-9d0f-ac5bff7637e4",
+              "Text": "Knowing the storage form tells you how much transformation work sits between raw data and a report.",
+              "SortOrder": 4
+            }
+          ]
+        },
+        {
+          "Id": "c8744cd7-f05b-4c26-9455-f3a994ced1a1",
+          "TopicId": "1a097ede-9682-438e-96ce-e925458cc96f",
+          "Title": "Time-Series Data and Its Three Forms",
+          "BodyText": "A time series is a sequence of values recorded at regular time intervals, and most business metrics are time-series in nature \u2014 revenue by day, users by month, inventory by week. Time-series data appears in three recognisable shapes.",
+          "Notes": "Identifying which form you have determines whether you group by a date bucket, compare snapshots, or calculate elapsed time.",
+          "SortOrder": 3,
+          "CreatedDate": "2026-11-17T05:39:20.945417-05:00",
+          "ModifiedDate": "2026-11-17T05:39:20.945417-05:00",
+          "Items": [
+            {
+              "Id": "8ddd055b-4bef-4333-b100-4fa2b5e1dd42",
+              "Text": "Event timestamps are datetime columns recording when something happened, such as order_date, login_time, or created_at, and are used to group events into time buckets.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "984bc031-6915-4aed-b14e-40a27e672b8e",
+              "Text": "Snapshot records capture state at a regular interval \u2014 daily stock price, end-of-day inventory count, monthly account balance \u2014 producing one row per entity per period.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "ff76b81b-7445-4081-8560-d396e7f29cd8",
+              "Text": "Duration data records a start and an end time, such as session_start/session_end or ticket open/close times.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "27299c37-7809-4343-90e7-0f4ef67c1600",
+              "Text": "Duration data is analysed for elapsed time, frequency, and concurrency rather than simple counts.",
+              "SortOrder": 3
+            },
+            {
+              "Id": "412c25d0-fef2-4218-a151-e2e986bb86dc",
+              "Text": "Time-series data underpins trend analysis, period-over-period comparison, and running totals.",
+              "SortOrder": 4
+            }
+          ]
+        },
+        {
+          "Id": "92c09bf1-60df-4d64-adae-8cb34b92b21e",
+          "TopicId": "1a097ede-9682-438e-96ce-e925458cc96f",
+          "Title": "Dimensions and Measures",
+          "BodyText": "In analytical thinking, every column in a dataset is either a dimension or a measure. This framing is what guides how you construct GROUP BY queries.",
+          "Notes": "Dimensions answer \u0022which?\u0022 and \u0022what kind?\u0022; measures answer \u0022how much?\u0022 and \u0022how many?\u0022",
+          "SortOrder": 4,
+          "CreatedDate": "2026-11-17T05:39:20.945417-05:00",
+          "ModifiedDate": "2026-11-17T05:39:20.945417-05:00",
+          "Items": [
+            {
+              "Id": "0492b954-1e67-4b2e-be7b-b18ddfb8e2cc",
+              "Text": "Dimensions are categorical columns you slice and dice by: region, product category, customer segment, date/month/quarter, department.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "f51f88df-555b-4afd-bdee-2dd0cf7b080e",
+              "Text": "Measures are numeric columns you aggregate: revenue, cost, profit, quantity sold, session duration, headcount, score.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "746a3398-b8a1-4333-b2b5-719339bfc55d",
+              "Text": "Date columns act as dimensions when used for grouping into days, months, or quarters.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "393ec446-05c9-4f9e-bd40-e630a5f24cdd",
+              "Text": "A single table typically contains several dimensions and several measures side by side.",
+              "SortOrder": 3
+            },
+            {
+              "Id": "6d97b72c-6943-46d6-a493-5253d7247067",
+              "Text": "Deciding dimension versus measure for each column is the first step in designing any report.",
+              "SortOrder": 4
+            }
+          ]
+        },
+        {
+          "Id": "582800b2-dd53-4719-9622-0030751ccf89",
+          "TopicId": "1a097ede-9682-438e-96ce-e925458cc96f",
+          "Title": "The Core Analytical Query Pattern",
+          "BodyText": "The dimensions-and-measures framing resolves into one dominant SQL shape that produces the majority of business reports. Choose which dimension to slice by and which measure to aggregate.",
+          "Notes": "Pattern: SELECT dimension, AGGREGATE(measure) FROM table GROUP BY dimension.",
+          "SortOrder": 5,
+          "CreatedDate": "2026-11-17T05:39:20.945417-05:00",
+          "ModifiedDate": "2026-11-17T05:39:20.945417-05:00",
+          "Items": [
+            {
+              "Id": "615b7918-12a2-451c-9cec-f1852c9bf6c3",
+              "Text": "Every column in the SELECT list is either a grouping dimension or an aggregated measure.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "3ca7258a-edf0-47a6-9633-9bb36856ee7b",
+              "Text": "Changing the dimension changes the perspective \u2014 by region, by category, by month \u2014 without changing the measure.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "95ab145f-9c6b-456d-aa97-c81af6fd9957",
+              "Text": "Changing the aggregate (SUM, COUNT, AVG) changes the question asked of the same measure.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "d5e44972-f0bf-4983-b6fe-ec845c9d24f2",
+              "Text": "Multiple dimensions can be combined to produce cross-tabulated breakdowns.",
+              "SortOrder": 3
+            },
+            {
+              "Id": "30c66756-5837-493d-87dd-2cd94b6bf30c",
+              "Text": "Mastering this single pattern covers most descriptive reporting requirements.",
+              "SortOrder": 4
+            }
+          ]
+        },
+        {
+          "Id": "67ed1848-18f3-47ca-b6f7-f950e4fe19e1",
+          "TopicId": "1a097ede-9682-438e-96ce-e925458cc96f",
+          "Title": "Typical Analytical Columns in a Sales Fact Table",
+          "BodyText": "A sales fact table illustrates how these classifications appear together in a real schema. Columns are deliberately grouped into date/time dimensions, categorical dimensions, and numeric measures.",
+          "Notes": "Example: CREATE TABLE fact_sales (sale_id INT PRIMARY KEY, sale_date DATE, sale_timestamp DATETIME, region VARCHAR(50), product_category VARCHAR(100), sales_channel VARCHAR(30), customer_segment VARCHAR(30), satisfaction_score TINYINT, quantity INT, unit_price DECIMAL(8,2), discount_pct DECIMAL(5,2), revenue DECIMAL(10,2), cost DECIMAL(10,2), profit DECIMAL(10,2));",
+          "SortOrder": 6,
+          "CreatedDate": "2026-11-17T05:39:20.945417-05:00",
+          "ModifiedDate": "2026-11-17T05:39:20.945417-05:00",
+          "Items": [
+            {
+              "Id": "04983b00-6096-4261-a69b-0291b89b03b3",
+              "Text": "sale_date (DATE) and sale_timestamp (DATETIME) are the date/time dimensions used for time-series grouping.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "d32f80f6-1906-48bd-ac24-aa8fd259f51d",
+              "Text": "region, product_category, sales_channel, and customer_segment are nominal categorical dimensions used in GROUP BY.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "a3b9053d-9d52-4108-8ffa-09f785d71489",
+              "Text": "satisfaction_score (TINYINT, 1\u20135) is an ordinal dimension \u2014 ordered categories rather than a true quantity.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "5953d7bb-ca6e-4a7e-b002-4435c58a87f5",
+              "Text": "quantity, unit_price, revenue, cost, and profit are numeric measures aggregated with SUM, AVG, MIN, and MAX.",
+              "SortOrder": 3
+            },
+            {
+              "Id": "9de924b7-3133-4a0f-ae21-8c066559720e",
+              "Text": "Derived measures such as revenue (qty \u00D7 unit_price \u00D7 (1 \u2212 discount)) and profit (revenue \u2212 cost) are pre-calculated to simplify reporting queries.",
+              "SortOrder": 4
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Id": "27d0b940-eb4c-4ec3-a155-c097bb4e3255",
+      "Title": "Preparing and Cleaning Data for Analysis",
+      "Summary": "Covers the data quality problems \u2014 NULLs, duplicates, inconsistent formats, wrong data types, outliers and out-of-range values \u2014 that invalidate analysis if left unaddressed. Provides SQL techniques for NULL handling with COALESCE, deduplication with ROW_NUMBER, category standardisation with CASE, date conversion, outlier detection via z-scores, and upfront data profiling.",
+      "SortOrder": 2,
+      "CreatedDate": "2026-11-17T05:38:31.6464302-05:00",
+      "ModifiedDate": "2026-11-17T05:38:31.6464302-05:00",
+      "Elements": [
+        {
+          "Id": "c4823db4-eca5-4969-ba5d-3e8d985bd016",
+          "TopicId": "27d0b940-eb4c-4ec3-a155-c097bb4e3255",
+          "Title": "Why Data Preparation Matters",
+          "BodyText": "Raw data from operational systems is rarely clean enough to analyse directly, and preparation typically consumes the majority of an analysis project. Skipping this step produces results that look authoritative but are misleading.",
+          "Notes": "The rule of thumb is \u0027garbage in, garbage out\u0027 \u2014 no amount of sophisticated aggregation can rescue a flawed dataset.",
+          "SortOrder": 0,
+          "CreatedDate": "2026-11-17T05:39:51.1065521-05:00",
+          "ModifiedDate": "2026-11-17T05:39:51.1065521-05:00",
+          "Items": [
+            {
+              "Id": "fb229a8f-00f6-4273-97ce-2691f4861d16",
+              "Text": "Studies consistently report that data preparation takes 60\u201380% of the time in a typical analysis project.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "fb49cc03-2411-4433-87b1-72ebf1354502",
+              "Text": "Cleaning and preparation sit between extraction and transformation in the analysis pipeline.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "d716aa69-7355-4ef0-9183-561952f4dff1",
+              "Text": "Unaddressed quality issues silently distort counts, sums, averages and group totals.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "2216c2e2-d283-4ca9-8c8f-9aeaeeccac7d",
+              "Text": "Stakeholders rarely see the underlying data, so errors propagate undetected into dashboards and decisions.",
+              "SortOrder": 3
+            }
+          ]
+        },
+        {
+          "Id": "de243f8e-8703-4993-8fc5-d6985f45ec14",
+          "TopicId": "27d0b940-eb4c-4ec3-a155-c097bb4e3255",
+          "Title": "Common Data Quality Problems",
+          "BodyText": "Six recurring problems account for most of the data quality issues an analyst encounters. Recognising each pattern is the first step to choosing the right remedy.",
+          "Notes": "Each problem has a characteristic symptom in the output: inflated totals, phantom groups, failed filters, or distorted averages.",
+          "SortOrder": 1,
+          "CreatedDate": "2026-11-17T05:39:51.1065521-05:00",
+          "ModifiedDate": "2026-11-17T05:39:51.1065521-05:00",
+          "Items": [
+            {
+              "Id": "3c17f1ba-61fa-4f65-978c-107fefb789b2",
+              "Text": "NULL / missing values: aggregations that ignore NULLs silently change the denominator, so you must decide to exclude, substitute zero, or use a default.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "2be1c525-92dd-4b2c-bbdd-bc8890e3bcb7",
+              "Text": "Duplicate rows: re-imports, system errors or ETL bugs record the same event twice and overstate counts and sums.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "8d301547-1b88-4625-a600-f439b698e265",
+              "Text": "Inconsistent formats: \u0027USA\u0027, \u0027US\u0027, \u0027United States\u0027 and \u0027U.S.A.\u0027 all mean the same country but create four separate GROUP BY groups.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "3f5b6da6-2669-42c6-8362-3303ae317333",
+              "Text": "Wrong data types: dates stored as strings in a VARCHAR column prevent date arithmetic and range filtering.",
+              "SortOrder": 3
+            },
+            {
+              "Id": "20c0d908-28f3-4080-b259-359835b88af8",
+              "Text": "Outliers: a $1,000,000 test order inflates the mean order value and must be excluded, capped or investigated.",
+              "SortOrder": 4
+            },
+            {
+              "Id": "d179639f-3d23-4010-9bb8-29402d14d2f3",
+              "Text": "Out-of-range values: negative quantities, future birth dates or 150% discounts fail logical sanity checks and signal entry errors.",
+              "SortOrder": 5
+            }
+          ]
+        },
+        {
+          "Id": "04754cce-b1c6-40b7-8bb9-5780eeeed781",
+          "TopicId": "27d0b940-eb4c-4ec3-a155-c097bb4e3255",
+          "Title": "Handling NULL Values with COALESCE",
+          "BodyText": "NULL means \u0027unknown\u0027, not zero, and different treatments of NULL produce genuinely different business answers. COALESCE lets you substitute a default so the aggregate reflects the population you intend.",
+          "Notes": "Example: AVG(discount_pct) returns the average discount among orders that HAD a discount; AVG(COALESCE(discount_pct, 0)) returns the average across ALL orders.",
+          "SortOrder": 2,
+          "CreatedDate": "2026-11-17T05:39:51.1065521-05:00",
+          "ModifiedDate": "2026-11-17T05:39:51.1065521-05:00",
+          "Items": [
+            {
+              "Id": "a20b5279-6644-4959-944a-eb9c2d7b1000",
+              "Text": "AVG() silently excludes NULL rows from both the numerator and the denominator.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "154ae174-8503-49e3-85d3-ca163b92e9f7",
+              "Text": "COALESCE(column, 0) replaces NULL with zero so every row contributes to the average.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "8b8e39e0-ae64-41f9-b2cf-3db0297e8d48",
+              "Text": "Measure NULL prevalence first using COUNT(*) minus COUNT(column) to get a null_count and null_pct.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "0f3ea66b-2b8f-4cd1-a31d-cd08fc2076ac",
+              "Text": "Choose the treatment deliberately \u2014 excluding, zero-filling, and defaulting each answer a different question.",
+              "SortOrder": 3
+            },
+            {
+              "Id": "ba5bf94b-7de4-464b-ace1-5c1e05ec1796",
+              "Text": "Document which convention the report uses so consumers interpret the number correctly.",
+              "SortOrder": 4
+            }
+          ]
+        },
+        {
+          "Id": "03193f5d-c8ba-49b0-a684-192997bc22a2",
+          "TopicId": "27d0b940-eb4c-4ec3-a155-c097bb4e3255",
+          "Title": "Identifying and Removing Duplicates",
+          "BodyText": "Duplicate rows must be found and removed before any aggregation, or every total will be overstated. SQL offers a detection pattern and a deduplication pattern.",
+          "Notes": "The GROUP BY ... HAVING COUNT(*) \u003E 1 pattern finds duplicates; the ROW_NUMBER() window function removes them.",
+          "SortOrder": 3,
+          "CreatedDate": "2026-11-17T05:39:51.1065521-05:00",
+          "ModifiedDate": "2026-11-17T05:39:51.1065521-05:00",
+          "Items": [
+            {
+              "Id": "482a14ce-ee89-4ff4-826a-12db0b4d2f34",
+              "Text": "Detect duplicates by grouping on the business key columns and filtering with HAVING COUNT(*) \u003E 1.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "81195f55-ee11-4627-a05c-56c93733d85e",
+              "Text": "Order the detection results by occurrences DESC to see the worst offenders first.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "3adfcb43-d31f-4ffe-b5f9-d6e59cec881b",
+              "Text": "Deduplicate with ROW_NUMBER() OVER (PARTITION BY key_columns ORDER BY id) inside a CTE.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "b5a1aadd-eb20-4bbc-b9ae-8af3ed8ca5b9",
+              "Text": "Filter the CTE to WHERE row_num = 1 to keep only the first occurrence of each duplicate group.",
+              "SortOrder": 3
+            },
+            {
+              "Id": "0dc83693-5036-48d3-b207-a42f103fee4a",
+              "Text": "Choose the PARTITION BY columns carefully \u2014 they define what \u0027the same record\u0027 means for your business.",
+              "SortOrder": 4
+            }
+          ]
+        },
+        {
+          "Id": "3a28f491-ed60-4299-bdf6-51fe315970a7",
+          "TopicId": "27d0b940-eb4c-4ec3-a155-c097bb4e3255",
+          "Title": "Standardising Categories and Converting Dates",
+          "BodyText": "Inconsistent category labels create phantom groups in GROUP BY, and dates stored as text block all time-based analysis. CASE expressions and date conversion functions fix both on the fly.",
+          "Notes": "Normalising with UPPER(TRIM(column)) inside the CASE handles both casing and whitespace variations at once.",
+          "SortOrder": 4,
+          "CreatedDate": "2026-11-17T05:39:51.1065521-05:00",
+          "ModifiedDate": "2026-11-17T05:39:51.1065521-05:00",
+          "Items": [
+            {
+              "Id": "0525b3b6-e34d-44bb-9f9f-ba2c303ab7c7",
+              "Text": "Profile a category column with GROUP BY column to reveal how many spelling variants exist.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "e8973862-7ebf-4069-96b1-7d1d8861b52b",
+              "Text": "Use CASE WHEN UPPER(TRIM(region)) IN (...) THEN \u0027United States\u0027 ... ELSE TRIM(region) END to collapse variants.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "88df1cdf-d2c4-4c77-874b-105ecd8f7ba0",
+              "Text": "The same CASE expression must be repeated in the GROUP BY clause, or wrapped in a CTE or derived table.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "f9860f45-5786-49de-ba64-9131bea3419e",
+              "Text": "CONVERT(DATE, raw, 112) handles YYYYMMDD and style 103 handles DD/MM/YYYY string formats.",
+              "SortOrder": 3
+            },
+            {
+              "Id": "4a7ef155-d78c-43f2-a59f-9fc6331dca70",
+              "Text": "TRY_CONVERT returns NULL on failure instead of throwing an error, which is safer for messy imports.",
+              "SortOrder": 4
+            },
+            {
+              "Id": "62ade320-33c2-4252-9e69-a1bcbe95c74d",
+              "Text": "Once converted, extract YEAR, MONTH, DATENAME(MONTH,...), DATEPART(QUARTER/WEEK,...) and EOMONTH for grouping.",
+              "SortOrder": 5
+            }
+          ]
+        },
+        {
+          "Id": "a3518095-c31a-4b12-b5a8-1d7bd0f1f515",
+          "TopicId": "27d0b940-eb4c-4ec3-a155-c097bb4e3255",
+          "Title": "Detecting Outliers with Z-Scores",
+          "BodyText": "Outliers are extreme values that distort averages and can mask the real pattern in the data. A standard statistical test flags values that sit an unusual distance from the mean.",
+          "Notes": "Calculate the mean and standard deviation in a CTE, then CROSS JOIN it back to every row to compute each row\u0027s z-score.",
+          "SortOrder": 5,
+          "CreatedDate": "2026-11-17T05:39:51.1065521-05:00",
+          "ModifiedDate": "2026-11-17T05:39:51.1065521-05:00",
+          "Items": [
+            {
+              "Id": "a83b086d-4fd3-484a-b11d-32be1edfb87f",
+              "Text": "Values more than three standard deviations from the mean are candidate outliers.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "3bb0a546-01b6-4493-8288-a931c319d3ea",
+              "Text": "Use AVG(revenue) and STDEV(revenue) in a stats CTE, filtering to revenue \u003E 0 so invalid rows do not skew the baseline.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "64ba44a7-db51-4b40-be71-6fd66ebacd18",
+              "Text": "Compute z_score as (value - mean) / stdev and order by the absolute deviation to surface the worst cases.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "194a51b9-6697-4b24-8847-fcb4af1d0159",
+              "Text": "Flagging is not deleting \u2014 investigate each outlier and decide whether to exclude, cap, or keep it.",
+              "SortOrder": 3
+            },
+            {
+              "Id": "e417b78b-c126-41f7-9a85-64ddd9d6e421",
+              "Text": "Legitimate extreme values (a genuine bulk order) should be kept; test records and entry errors should be removed.",
+              "SortOrder": 4
+            }
+          ]
+        },
+        {
+          "Id": "15af7314-7245-4f6a-a36f-4673e2c4247b",
+          "TopicId": "27d0b940-eb4c-4ec3-a155-c097bb4e3255",
+          "Title": "Data Profiling Before Analysis",
+          "BodyText": "Profiling means running a quick diagnostic query over the dataset before writing any analytical SQL. It prevents surprises that would otherwise invalidate your results.",
+          "Notes": "A single profiling query can return row counts, distinct counts, date ranges, value ranges and NULL counts together.",
+          "SortOrder": 6,
+          "CreatedDate": "2026-11-17T05:39:51.1065521-05:00",
+          "ModifiedDate": "2026-11-17T05:39:51.1065521-05:00",
+          "Items": [
+            {
+              "Id": "7f323989-a7a2-43bc-aadd-15aef8e6a3e9",
+              "Text": "Check total row count and COUNT(DISTINCT ...) for key dimensions such as customer_id and product_category.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "5c030599-a5a2-4bab-a20f-7c6f7fe84be4",
+              "Text": "Check MIN and MAX of the date column to confirm the period actually covered by the data.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "adc8215c-3829-456b-a436-01542f7fd7b6",
+              "Text": "Check MIN, MAX and AVG of key measures to spot impossible or implausible values.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "13a98cfb-799e-4b17-a898-70f95d7f37aa",
+              "Text": "Count NULLs per measure with COUNT(*) - COUNT(column).",
+              "SortOrder": 3
+            },
+            {
+              "Id": "599ab7f2-a159-486a-9986-61689c064e21",
+              "Text": "Use SUM(CASE WHEN revenue \u003C= 0 THEN 1 ELSE 0 END) to count zero or negative values that fail a sanity check.",
+              "SortOrder": 4
+            },
+            {
+              "Id": "241e0aad-034c-4cad-8879-032558604f00",
+              "Text": "Profile first, then trust your aggregations \u2014 define the question, profile the data, standardise categories.",
+              "SortOrder": 5
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Id": "27192f8c-bbac-487f-acf5-aa59b79da5ce",
+      "Title": "Descriptive Analysis \u2014 Summarising What Happened",
+      "Summary": "Shows how aggregation compresses raw events into the summary numbers that underpin every dashboard and routine report. Builds a complete monthly sales summary, slices revenue by category with percentage-of-total window functions, and uses conditional counting with CASE WHEN to pivot statuses into columns.",
+      "SortOrder": 3,
+      "CreatedDate": "2026-11-17T05:38:31.6464302-05:00",
+      "ModifiedDate": "2026-11-17T05:38:31.6464302-05:00",
+      "Elements": [
+        {
+          "Id": "5591a5ce-b63d-4cc7-a646-d0cc579e88fa",
+          "TopicId": "27192f8c-bbac-487f-acf5-aa59b79da5ce",
+          "Title": "What Descriptive Analysis Answers",
+          "BodyText": "Descriptive analysis answers the question \u0022What happened?\u0022 by compressing large volumes of raw transactional events into a small set of meaningful summary numbers.",
+          "Notes": "Example output: \u0022We had 4,504 orders in March generating $203K revenue.\u0022 This is the starting point before any comparison or segmentation work.",
+          "SortOrder": 0,
+          "CreatedDate": "2026-11-17T05:40:14.6511992-05:00",
+          "ModifiedDate": "2026-11-17T05:40:14.6511992-05:00",
+          "Items": [
+            {
+              "Id": "b6061266-007a-4439-9b3d-a4ab81ec9866",
+              "Text": "It is the most common type of analysis in business reporting.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "5b257a8d-5fa0-4259-8ec4-d588c8249cc3",
+              "Text": "It forms the foundation of every dashboard, daily operations view, and weekly report.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "10c7e387-f582-4e57-98e7-eec74e662b70",
+              "Text": "The core pattern is SELECT dimension, AGGREGATE(measure) FROM table GROUP BY dimension.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "727cd2f1-816a-4be7-8efe-85c73e8d68de",
+              "Text": "Dimensions answer \u0022which?\u0022 and measures answer \u0022how much?\u0022 \u2014 choose one of each to build a summary.",
+              "SortOrder": 3
+            },
+            {
+              "Id": "81303ba0-3234-447a-addc-a35b626ab4bd",
+              "Text": "Descriptive output describes the past only; it does not explain causes or predict the future.",
+              "SortOrder": 4
+            }
+          ]
+        },
+        {
+          "Id": "1b527f67-b0fa-4673-9cb2-58ded1bb59d0",
+          "TopicId": "27192f8c-bbac-487f-acf5-aa59b79da5ce",
+          "Title": "The Standard Monthly Summary Report",
+          "BodyText": "Most daily, weekly and monthly reports are built from a small, repeatable set of aggregation patterns applied to a date-based grouping.",
+          "Notes": "Typical output columns: year, month, month_name, total_transactions, unique_customers, total_revenue, total_profit, profit_margin_pct.",
+          "SortOrder": 1,
+          "CreatedDate": "2026-11-17T05:40:14.6511992-05:00",
+          "ModifiedDate": "2026-11-17T05:40:14.6511992-05:00",
+          "Items": [
+            {
+              "Id": "16f96350-7363-4063-9d07-b09cc9657143",
+              "Text": "Volume metrics use COUNT(*) for transactions, COUNT(DISTINCT customer_id) for unique customers, and SUM(quantity) for units sold.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "75b004ff-a529-41a7-94e6-7c6b805a4c8a",
+              "Text": "Revenue metrics use SUM(revenue), SUM(cost) and SUM(profit) to total the financial measures.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "2fa8602e-07e6-435d-96c6-fe9e59eb5446",
+              "Text": "Average metrics use AVG(revenue) for average transaction value and AVG(quantity) for average units per transaction.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "afd8a69c-70b8-431f-8d96-4da9a09922be",
+              "Text": "Group by YEAR(sale_date), MONTH(sale_date) and DATENAME(MONTH, sale_date) to produce one row per month.",
+              "SortOrder": 3
+            },
+            {
+              "Id": "67e971c6-093f-47ca-8184-48e7888d616e",
+              "Text": "Wrap results in ROUND() so monetary values display to two decimal places in the report.",
+              "SortOrder": 4
+            }
+          ]
+        },
+        {
+          "Id": "749ae60c-315c-4d79-a1df-061177c6111a",
+          "TopicId": "27192f8c-bbac-487f-acf5-aa59b79da5ce",
+          "Title": "Derived Metrics and Safe Division",
+          "BodyText": "Summary reports rarely stop at raw totals \u2014 most include at least one calculated ratio such as profit margin that puts the totals in context.",
+          "Notes": "Profit margin example: ROUND(SUM(profit) * 100.0 / NULLIF(SUM(revenue), 0), 1) AS profit_margin_pct.",
+          "SortOrder": 2,
+          "CreatedDate": "2026-11-17T05:40:14.6511992-05:00",
+          "ModifiedDate": "2026-11-17T05:40:14.6511992-05:00",
+          "Items": [
+            {
+              "Id": "cb9049c8-b711-4bbf-b0b5-a2f44bd70b13",
+              "Text": "Profit margin is computed as SUM(profit) * 100.0 / SUM(revenue), expressed as a percentage.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "30424dd2-1cd1-43f4-b287-e090f5c7e671",
+              "Text": "Multiply by 100.0 (not 100) to force decimal arithmetic rather than integer division.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "bea41842-12a2-488f-89df-3b668ae3c9b7",
+              "Text": "Always wrap the denominator in NULLIF(value, 0) to prevent divide-by-zero errors.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "87fd9489-8227-47b2-8347-4e33db5e5a31",
+              "Text": "NULLIF returns NULL when the base is zero, which correctly signals \u0022no data\u0022 rather than throwing an error.",
+              "SortOrder": 3
+            },
+            {
+              "Id": "5bc9699e-6116-409b-9281-67d8d99b168e",
+              "Text": "Derived metrics are calculated from the aggregates themselves, not averaged from row-level values.",
+              "SortOrder": 4
+            }
+          ]
+        },
+        {
+          "Id": "6d551fb1-9feb-4952-ba7a-0fddf86ed558",
+          "TopicId": "27192f8c-bbac-487f-acf5-aa59b79da5ce",
+          "Title": "Slicing by Dimension \u2014 Category Breakdown",
+          "BodyText": "Once the period total is known, the next question is which part of the business drove it; this is answered by grouping on a categorical dimension instead of a date.",
+          "Notes": "Example: revenue by product_category for March 2025 \u2014 Electronics 43.4%, Clothing 30.5%, Home \u0026 Garden 17.0%, Books 9.1%.",
+          "SortOrder": 3,
+          "CreatedDate": "2026-11-17T05:40:14.6511992-05:00",
+          "ModifiedDate": "2026-11-17T05:40:14.6511992-05:00",
+          "Items": [
+            {
+              "Id": "c2cdcdfb-1137-42a7-b0a9-bae53a8f76a9",
+              "Text": "Replace the date grouping with a dimension such as product_category, region or sales_channel.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "f4ab9e5c-b5c9-48c7-ae2c-4d85ba29c5d0",
+              "Text": "Filter the period with a half-open date range: sale_date \u003E= \u00272025-03-01\u0027 AND sale_date \u003C \u00272025-04-01\u0027.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "8acdba16-d45c-4502-b15b-41a5487a1dd5",
+              "Text": "Order by the measure descending so the largest contributors appear first.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "ee5ba89c-0ffb-4b8d-9970-b648406b6871",
+              "Text": "The same query shape can be reused for any dimension \u2014 only the GROUP BY column changes.",
+              "SortOrder": 3
+            },
+            {
+              "Id": "86b607e3-1baa-4e5b-b765-9b45acd1a2cf",
+              "Text": "Transaction counts and unit counts alongside revenue reveal whether a category sells high volume or high value.",
+              "SortOrder": 4
+            }
+          ]
+        },
+        {
+          "Id": "b5e5cfbb-b06b-49a1-a5c4-2568d10d4a71",
+          "TopicId": "27192f8c-bbac-487f-acf5-aa59b79da5ce",
+          "Title": "Percentage of Total with Window Functions",
+          "BodyText": "A share-of-total column turns raw category figures into proportions, showing how much of the whole each group represents without a second query or subquery.",
+          "Notes": "Pattern: ROUND(SUM(revenue) * 100.0 / SUM(SUM(revenue)) OVER (), 1) AS revenue_share_pct.",
+          "SortOrder": 4,
+          "CreatedDate": "2026-11-17T05:40:14.6511992-05:00",
+          "ModifiedDate": "2026-11-17T05:40:14.6511992-05:00",
+          "Items": [
+            {
+              "Id": "a2991460-1389-4145-a0a9-535b1f61561e",
+              "Text": "SUM(SUM(revenue)) OVER () computes the grand total across all grouped rows.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "6ef7488b-c652-4dd0-b0c8-10f6d5589add",
+              "Text": "The inner SUM aggregates within the group; the outer SUM with OVER() aggregates across all groups.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "c3960426-28ba-46c4-b6c8-a14f91931705",
+              "Text": "An empty OVER () clause means no partitioning \u2014 the window is the entire result set.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "de9f8714-bcd6-4e26-b9e8-654b85dfb198",
+              "Text": "Percentage shares make unequal contributions immediately visible to report readers.",
+              "SortOrder": 3
+            },
+            {
+              "Id": "82c03ca9-18dd-44f4-8ed4-a7d3b487d218",
+              "Text": "The same pattern works for any measure: units, transactions, cost or profit share.",
+              "SortOrder": 4
+            }
+          ]
+        },
+        {
+          "Id": "94d9dab7-7f4b-4417-b239-e91f71c3f88f",
+          "TopicId": "27192f8c-bbac-487f-acf5-aa59b79da5ce",
+          "Title": "Conditional Counting with CASE WHEN",
+          "BodyText": "Conditional aggregation pivots a column of status values into separate count columns in a single query, producing a compact cross-tab style report.",
+          "Notes": "Example: an order status breakdown with completed, cancelled and returned counts plus a cancellation_rate_pct column, grouped by year and month.",
+          "SortOrder": 5,
+          "CreatedDate": "2026-11-17T05:40:14.6511992-05:00",
+          "ModifiedDate": "2026-11-17T05:40:14.6511992-05:00",
+          "Items": [
+            {
+              "Id": "8e2b248f-718a-4466-a385-a1281c95a320",
+              "Text": "Use SUM(CASE WHEN status = \u0027Completed\u0027 THEN 1 ELSE 0 END) to count rows matching one condition.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "6536993f-9e1a-4f08-83c0-a163825ae381",
+              "Text": "Repeat the pattern with different conditions to create one column per status value.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "64f445ce-2bb8-45a3-b651-a7c934c499fd",
+              "Text": "Combine COUNT(*) as the total with the conditional counts to show the full breakdown side by side.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "96c17faa-6c4b-4363-9da5-18f2ffc56aad",
+              "Text": "Divide a conditional count by COUNT(*) to derive rate metrics such as cancellation rate or return rate.",
+              "SortOrder": 3
+            },
+            {
+              "Id": "08cd587f-5cf6-4057-8da1-c225576b7f20",
+              "Text": "This avoids running several separate filtered queries and keeps all results on one row per period.",
+              "SortOrder": 4
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Id": "d0a77a6c-dbf8-4890-a062-3e8f65900c59",
+      "Title": "Trend and Time-Series Analysis",
+      "Summary": "Addresses whether a metric is improving or declining through period-over-period comparison. Demonstrates month-over-month and year-over-year change with LAG, cumulative running totals, and rolling moving averages, plus the seasonality, trend, spike and day-of-week patterns to watch for.",
+      "SortOrder": 4,
+      "CreatedDate": "2026-11-17T05:38:31.6464302-05:00",
+      "ModifiedDate": "2026-11-17T05:38:31.6464302-05:00",
+      "Elements": [
+        {
+          "Id": "97c9bf76-fbcf-46e2-b9b8-98441f01cd66",
+          "TopicId": "d0a77a6c-dbf8-4890-a062-3e8f65900c59",
+          "Title": "Why Trend Analysis Matters",
+          "BodyText": "Trend analysis answers the question: is this metric going up, down, or staying flat? It adds the context that turns a raw number into a story a decision-maker can act on.",
+          "Notes": "Example: \u0022March revenue was $203K\u0022 means little on its own; \u0022March revenue grew 18.2% versus February\u0022 informs a decision.",
+          "SortOrder": 0,
+          "CreatedDate": "2026-11-17T05:40:36.2966514-05:00",
+          "ModifiedDate": "2026-11-17T05:40:36.2966514-05:00",
+          "Items": [
+            {
+              "Id": "c0a7918b-e5a3-4a94-8660-da2c4cbf3b61",
+              "Text": "Most business decisions need to know whether the current state is better or worse than before, and by how much.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "0e4cfe0b-9324-4bc4-bb34-ac4baef6e658",
+              "Text": "Period-over-period comparison is the most commonly requested analysis in any reporting context.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "8e16b52f-7fea-4751-857c-e496f4685484",
+              "Text": "Trend analysis sits between descriptive analysis (what happened) and segmentation (where to focus).",
+              "SortOrder": 2
+            },
+            {
+              "Id": "6df85254-0f32-426b-bd19-44fa3588e966",
+              "Text": "A raw figure without a prior-period comparison gives stakeholders no basis for action.",
+              "SortOrder": 3
+            }
+          ]
+        },
+        {
+          "Id": "14123733-50bc-4a88-acaf-34524931b929",
+          "TopicId": "d0a77a6c-dbf8-4890-a062-3e8f65900c59",
+          "Title": "Period-Over-Period Comparison with LAG()",
+          "BodyText": "The LAG() window function retrieves a value from a previous row, making it the core technique for month-over-month comparison. Aggregate to the period level first in a CTE, then apply LAG over that result.",
+          "Notes": "Pattern: (current - LAG(current)) * 100.0 / NULLIF(LAG(current), 0) produces the percentage growth rate.",
+          "SortOrder": 1,
+          "CreatedDate": "2026-11-17T05:40:36.2966514-05:00",
+          "ModifiedDate": "2026-11-17T05:40:36.2966514-05:00",
+          "Items": [
+            {
+              "Id": "2c2e9714-2aa0-42f4-b2cd-3e4b0da69638",
+              "Text": "Build a CTE that groups revenue by YEAR(sale_date) and MONTH(sale_date), then order the window by year and month.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "82e4afb8-f307-43ff-ac01-286774462796",
+              "Text": "LAG(revenue) OVER (ORDER BY yr, mo) returns the prior month\u0027s value alongside the current one.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "6514e25e-14e6-4778-aed2-015fb5b3e956",
+              "Text": "Subtract to get absolute change; divide by the prior value for percentage change.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "9d6f0831-1803-4c6c-b0f9-b6201fb756e6",
+              "Text": "Wrap the denominator in NULLIF(..., 0) so a zero prior period returns NULL instead of an error.",
+              "SortOrder": 3
+            },
+            {
+              "Id": "76d0f065-a6bc-44cf-91a9-417eb02188af",
+              "Text": "The first row always has a NULL prior value because no earlier period exists.",
+              "SortOrder": 4
+            }
+          ]
+        },
+        {
+          "Id": "e2e50191-8759-450d-aaab-147d199ff86d",
+          "TopicId": "d0a77a6c-dbf8-4890-a062-3e8f65900c59",
+          "Title": "Year-Over-Year Comparison",
+          "BodyText": "Year-over-year comparison measures each month against the same month one year earlier, which neutralises seasonal effects that distort month-over-month figures.",
+          "Notes": "YoY is standard in quarterly and annual executive reporting, often paired with YTD versus same-period-last-year (SPLY) totals.",
+          "SortOrder": 2,
+          "CreatedDate": "2026-11-17T05:40:36.2966514-05:00",
+          "ModifiedDate": "2026-11-17T05:40:36.2966514-05:00",
+          "Items": [
+            {
+              "Id": "4242c48e-1e9b-4bda-8810-300370a779c6",
+              "Text": "Use LAG(revenue, 12) OVER (ORDER BY yr, mo) to skip back one full year of monthly rows.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "9ac5376d-a8e8-45be-ad78-ebc27099aca1",
+              "Text": "The offset argument requires a complete, gap-free series of monthly rows to land on the correct period.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "35ee8805-56e1-4556-940f-dcd006523052",
+              "Text": "YoY growth avoids falsely flagging a seasonal December spike or January dip as a trend change.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "27cf2650-4bc4-4d51-aa96-315e45b8bd83",
+              "Text": "The same percentage-change formula applies, again guarded with NULLIF to prevent division by zero.",
+              "SortOrder": 3
+            }
+          ]
+        },
+        {
+          "Id": "b991fabc-28ef-436a-9782-c7e72901d87f",
+          "TopicId": "d0a77a6c-dbf8-4890-a062-3e8f65900c59",
+          "Title": "Running Totals (Cumulative Sum)",
+          "BodyText": "A running total accumulates values forward through time, commonly used to track year-to-date progress against a target.",
+          "Notes": "SUM(SUM(revenue)) is not a typo \u2014 the inner SUM aggregates the group, and the outer SUM is the window function applied over those aggregated rows.",
+          "SortOrder": 3,
+          "CreatedDate": "2026-11-17T05:40:36.2966514-05:00",
+          "ModifiedDate": "2026-11-17T05:40:36.2966514-05:00",
+          "Items": [
+            {
+              "Id": "9e8db5c4-69d7-49f2-b54d-aa3c3d944472",
+              "Text": "Use SUM(...) OVER (ORDER BY sale_date ROWS BETWEEN UNBOUNDED PRECEDING AND CURRENT ROW).",
+              "SortOrder": 0
+            },
+            {
+              "Id": "e05036c7-c9f2-4cd5-bc28-ba5e1d135cc5",
+              "Text": "UNBOUNDED PRECEDING means the window starts at the first row of the ordered set.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "af958403-c1a2-4b7a-adb2-b2906eec9270",
+              "Text": "Combine with GROUP BY sale_date to get both the daily figure and the cumulative YTD figure in one result set.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "5df13c53-5a20-46cf-8d2b-82eb79128d05",
+              "Text": "Filtering by YEAR(sale_date) restarts the accumulation each year for a clean YTD view.",
+              "SortOrder": 3
+            }
+          ]
+        },
+        {
+          "Id": "04e34f4e-3178-4188-a858-a62a7f2ca5e9",
+          "TopicId": "d0a77a6c-dbf8-4890-a062-3e8f65900c59",
+          "Title": "Rolling (Moving) Averages",
+          "BodyText": "A moving average smooths out short-term volatility so the underlying direction of the metric becomes visible. A 7-day moving average is the standard choice for daily data.",
+          "Notes": "Technique: AVG(SUM(revenue)) OVER (ORDER BY sale_date ROWS BETWEEN 6 PRECEDING AND CURRENT ROW).",
+          "SortOrder": 4,
+          "CreatedDate": "2026-11-17T05:40:36.2966514-05:00",
+          "ModifiedDate": "2026-11-17T05:40:36.2966514-05:00",
+          "Items": [
+            {
+              "Id": "ee417cb7-cd94-44d6-a43f-acdc5aed83c5",
+              "Text": "ROWS BETWEEN 6 PRECEDING AND CURRENT ROW creates a sliding 7-row window including the current day.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "a2629369-b61e-4f2d-a2a3-e22720177176",
+              "Text": "Seven days covers one full week, cancelling out weekday-versus-weekend differences.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "845722a6-cf92-4fe9-b636-fa40b5dc8b38",
+              "Text": "The first few rows average over fewer periods until the full window is available.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "8b3464ff-1f05-4e4f-8954-8c5008f77985",
+              "Text": "Report the daily value and the rolling average side by side so spikes remain visible against the smoothed trend.",
+              "SortOrder": 3
+            }
+          ]
+        },
+        {
+          "Id": "cfdab70d-1dd5-4163-96e5-17ca51ce6f32",
+          "TopicId": "d0a77a6c-dbf8-4890-a062-3e8f65900c59",
+          "Title": "Time-Series Patterns to Watch For",
+          "BodyText": "When reading a trend line, four recurring patterns explain most of what you see. Recognising which one is present stops you from misinterpreting normal behaviour as a problem.",
+          "Notes": "Always ask whether a movement is a genuine trend or an artefact of the calendar, a one-off event, or a data quality issue.",
+          "SortOrder": 5,
+          "CreatedDate": "2026-11-17T05:40:36.2966514-05:00",
+          "ModifiedDate": "2026-11-17T05:40:36.2966514-05:00",
+          "Items": [
+            {
+              "Id": "f52c4bc0-fee7-467d-8c53-33901fdb6298",
+              "Text": "Seasonality \u2014 repeating calendar-linked patterns such as holiday spikes, summer slowdowns, and month-end surges.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "c876291e-8192-44c3-8221-b7bcaf7e571d",
+              "Text": "Trends \u2014 sustained directional movement across multiple periods, indicating a growing or declining baseline.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "a6c0da09-455c-48ac-9f15-a7685d37b9ad",
+              "Text": "Spikes and anomalies \u2014 single-period deviations caused by outages, promotions, or data errors.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "fc6cfd8c-d3ae-4296-9cbe-f03add7c338d",
+              "Text": "Day-of-week effects \u2014 many metrics behave differently at weekends; a 7-day rolling average removes this noise.",
+              "SortOrder": 3
+            },
+            {
+              "Id": "37a8369b-a4fb-4c9f-9d64-164a18e440d6",
+              "Text": "Confirm anomalies against source events before reporting them as business performance changes.",
+              "SortOrder": 4
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Id": "ac87aee0-8eb4-4961-874f-9746ded36dfd",
+      "Title": "Segmentation and Ranking Analysis",
+      "Summary": "Divides populations into meaningful sub-groups and orders entities by a measure to reveal where value is concentrated. Covers Top-N reporting, RANK and DENSE_RANK within groups, CASE-based customer value tiers, the 80/20 revenue pattern, and NTILE quartile or decile segmentation.",
+      "SortOrder": 5,
+      "CreatedDate": "2026-11-17T05:38:31.6464302-05:00",
+      "ModifiedDate": "2026-11-17T05:38:31.6464302-05:00",
+      "Elements": [
+        {
+          "Id": "bb4adbd1-c1e6-42e9-9aad-a1e628f8ac8e",
+          "TopicId": "ac87aee0-8eb4-4961-874f-9746ded36dfd",
+          "Title": "Purpose of Segmentation and Ranking",
+          "BodyText": "Segmentation divides a population into meaningful sub-groups, while ranking orders entities by a measure. Together they answer the analytical question \u0022where should we focus?\u0022",
+          "Notes": "Where descriptive analysis says what happened and trend analysis says whether it is improving, segmentation says where value is concentrated.",
+          "SortOrder": 0,
+          "CreatedDate": "2026-11-17T05:40:57.8727456-05:00",
+          "ModifiedDate": "2026-11-17T05:40:57.8727456-05:00",
+          "Items": [
+            {
+              "Id": "e4384e31-19c9-429e-a52f-15a0bbfa98b6",
+              "Text": "Segmentation reveals which sub-groups drive the most value \u2014 by tier, region, channel or category.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "1d8d2fc2-9d90-4f9a-92ab-b3297b60f36f",
+              "Text": "Ranking identifies top performers, bottom performers and outliers that deserve attention.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "f940e09b-4807-45de-b36c-6e47061ea767",
+              "Text": "Both patterns turn a large undifferentiated dataset into a prioritised list of actions.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "86f634b5-6628-4f17-b303-3579af6ebeff",
+              "Text": "Typical outputs include top-product lists, customer tier summaries and quartile distributions.",
+              "SortOrder": 3
+            }
+          ]
+        },
+        {
+          "Id": "b0020ace-473d-4c97-9bbf-c33305d15086",
+          "TopicId": "ac87aee0-8eb4-4961-874f-9746ded36dfd",
+          "Title": "Top-N Analysis",
+          "BodyText": "Finding the top or bottom N records by a measure is one of the most frequently requested report types in business reporting.",
+          "Notes": "Example: SELECT TOP 10 product_id, SUM(revenue) AS total_revenue FROM fact_sales WHERE sale_date \u003E= \u00272025-01-01\u0027 GROUP BY product_id ORDER BY total_revenue DESC;",
+          "SortOrder": 1,
+          "CreatedDate": "2026-11-17T05:40:57.8727456-05:00",
+          "ModifiedDate": "2026-11-17T05:40:57.8727456-05:00",
+          "Items": [
+            {
+              "Id": "b47af8e2-0adf-48e6-b8b5-ed7f64d58e47",
+              "Text": "The pattern is TOP N combined with GROUP BY and ORDER BY measure DESC.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "0bb21edd-ab05-46ab-8671-6048dab58b54",
+              "Text": "Common uses include top products, top customers and worst-performing regions.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "15023ab9-b691-4edf-b8b9-e03d65105330",
+              "Text": "Always filter by a date range so the ranking reflects the reporting period, not all history.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "77971418-d76b-439f-a2e7-76d61b1b139a",
+              "Text": "Include supporting columns such as transaction count and average transaction value for context.",
+              "SortOrder": 3
+            },
+            {
+              "Id": "cc9bd6ca-cf23-4e28-acd3-f5a735a58882",
+              "Text": "Reversing to ORDER BY measure ASC produces the bottom-N report for underperformers.",
+              "SortOrder": 4
+            }
+          ]
+        },
+        {
+          "Id": "c4979c54-f49d-44b5-81d0-fdeb608ea1f3",
+          "TopicId": "ac87aee0-8eb4-4961-874f-9746ded36dfd",
+          "Title": "Ranking Within Groups Using RANK and DENSE_RANK",
+          "BodyText": "Window ranking functions assign a position to each row within a partition, allowing you to rank entities inside each category rather than across the whole dataset.",
+          "Notes": "RANK() OVER (PARTITION BY product_category ORDER BY revenue DESC) AS rank_in_category \u2014 run over a CTE that has already aggregated revenue per product per category.",
+          "SortOrder": 2,
+          "CreatedDate": "2026-11-17T05:40:57.8727456-05:00",
+          "ModifiedDate": "2026-11-17T05:40:57.8727456-05:00",
+          "Items": [
+            {
+              "Id": "9ac447fa-aade-4f73-b2a0-0b38fea8d859",
+              "Text": "PARTITION BY defines the group; ORDER BY defines the measure that determines rank order.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "dbb51d2c-552b-4b94-add9-beb4398dc6d0",
+              "Text": "RANK leaves gaps after ties (1, 2, 2, 4) while DENSE_RANK does not (1, 2, 2, 3).",
+              "SortOrder": 1
+            },
+            {
+              "Id": "868b7508-5799-41e7-a015-3de285f7128e",
+              "Text": "Aggregate the measure in a CTE first, then apply the ranking function to the aggregated result.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "6459ccb1-f836-423d-9851-5b6bfda00810",
+              "Text": "Filtering on rank_in_category = 1 produces a \u0022top product per category\u0022 report.",
+              "SortOrder": 3
+            },
+            {
+              "Id": "2b35628a-68b8-4dac-bde3-9cf3732f424f",
+              "Text": "This pattern supports category-level league tables that a single global TOP N cannot provide.",
+              "SortOrder": 4
+            }
+          ]
+        },
+        {
+          "Id": "76a0b83e-5f4c-4940-bc56-4884243305d6",
+          "TopicId": "ac87aee0-8eb4-4961-874f-9746ded36dfd",
+          "Title": "Customer Value Segmentation with CASE",
+          "BodyText": "CASE expressions group customers into named value tiers based on thresholds of a measure such as lifetime spend.",
+          "Notes": "Tiers: lifetime_value \u003E= 5000 \u0027Platinum\u0027; \u003E= 1000 \u0027Gold\u0027; \u003E= 250 \u0027Silver\u0027; ELSE \u0027Bronze\u0027.",
+          "SortOrder": 3,
+          "CreatedDate": "2026-11-17T05:40:57.8727456-05:00",
+          "ModifiedDate": "2026-11-17T05:40:57.8727456-05:00",
+          "Items": [
+            {
+              "Id": "e4db2d7e-f07e-438c-bdab-247d8d9a8cdd",
+              "Text": "First aggregate per customer in a CTE to obtain order count and lifetime value.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "bc34c479-4394-4c10-a1af-b1205dd5807a",
+              "Text": "Apply a CASE ladder with descending thresholds so each row falls into exactly one tier.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "ee3a2ff0-fcb1-456a-9e5d-5743215475a7",
+              "Text": "A second query groups by tier to report customer count and revenue per tier.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "3d0faa8b-9200-43f5-b427-21a6818f90a1",
+              "Text": "Use SUM(x) * 100.0 / SUM(SUM(x)) OVER () to show each tier\u0027s percentage of total revenue.",
+              "SortOrder": 3
+            },
+            {
+              "Id": "ea06110e-c306-4952-b1aa-18fcaf55a50a",
+              "Text": "Tier results drive business actions such as loyalty programmes, re-engagement campaigns or premium support.",
+              "SortOrder": 4
+            }
+          ]
+        },
+        {
+          "Id": "371b3537-c085-45bc-a8bb-a8c895804bd4",
+          "TopicId": "ac87aee0-8eb4-4961-874f-9746ded36dfd",
+          "Title": "The 80/20 Pattern in Business Data",
+          "BodyText": "In most business datasets, roughly 20% of customers, products or sales reps generate about 80% of the revenue. Segmentation makes this concentration visible and actionable.",
+          "Notes": "In the sample tier report, 142 Platinum customers (1.2% of the base) produced 42.1% of revenue, while 11,840 Bronze customers produced only 7.0%.",
+          "SortOrder": 4,
+          "CreatedDate": "2026-11-17T05:40:57.8727456-05:00",
+          "ModifiedDate": "2026-11-17T05:40:57.8727456-05:00",
+          "Items": [
+            {
+              "Id": "a598ba06-1063-4a89-aa31-df71bb8bf665",
+              "Text": "The pattern is also known as the Pareto principle or the law of the vital few.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "bcdbdb76-ca1b-4a1a-aec8-ed3ea8ef2b8a",
+              "Text": "Revenue concentration means small changes in top-tier retention have outsized financial impact.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "1c5f7527-8633-42c1-b223-fa2c2c20ca9c",
+              "Text": "Low-value tiers are often large in count, so cost-to-serve becomes the key question for them.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "07a3d833-8454-4e14-8de8-8c7d33e76635",
+              "Text": "Quantify the pattern with a cumulative revenue share rather than assuming the 80/20 split holds exactly.",
+              "SortOrder": 3
+            }
+          ]
+        },
+        {
+          "Id": "2bbf99fc-9a73-4613-8eea-4982271adbe0",
+          "TopicId": "ac87aee0-8eb4-4961-874f-9746ded36dfd",
+          "Title": "Quartile and Decile Segmentation with NTILE",
+          "BodyText": "NTILE divides an ordered result set into a specified number of approximately equal-sized buckets, producing data-driven segments instead of fixed thresholds.",
+          "Notes": "NTILE(4) OVER (ORDER BY total_spend) gives quartiles; NTILE(10) gives deciles. With ascending order, bucket 4 (or 10) is the highest-spending group.",
+          "SortOrder": 5,
+          "CreatedDate": "2026-11-17T05:40:57.8727456-05:00",
+          "ModifiedDate": "2026-11-17T05:40:57.8727456-05:00",
+          "Items": [
+            {
+              "Id": "a443192a-cb65-49ef-996b-bc9b4fbf34cc",
+              "Text": "NTILE(4) creates quartiles and NTILE(10) creates deciles from the same aggregated spend CTE.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "c3d3ab43-8e98-43f2-b072-02a4ccb17ba5",
+              "Text": "Buckets are sized by row count, so each segment holds a similar number of customers.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "e8a2ff75-39a2-4257-ba20-524333d9d02f",
+              "Text": "Unlike CASE tiers, NTILE adapts automatically as the distribution of the data shifts.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "a7d2469d-4979-4195-8259-be985b4aac11",
+              "Text": "Choose ORDER BY direction carefully so you know which bucket number represents the top group.",
+              "SortOrder": 3
+            },
+            {
+              "Id": "6ade5b61-e775-4130-94b5-c80409da697b",
+              "Text": "Use fixed CASE thresholds when the business has defined tier rules, and NTILE for relative ranking.",
+              "SortOrder": 4
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Id": "17c2bec2-5afb-4d71-8806-946ea6956b93",
+      "Title": "KPIs and Rate Metrics",
+      "Summary": "Defines key performance indicators as the normalised rate metrics organisations track against goals, rather than raw totals. Demonstrates computing conversion rate, average order value, return rate and revenue per visitor in SQL, the critical use of NULLIF to avoid division by zero, and a reference table of common business KPI formulas.",
+      "SortOrder": 6,
+      "CreatedDate": "2026-11-17T05:38:31.6464302-05:00",
+      "ModifiedDate": "2026-11-17T05:38:31.6464302-05:00",
+      "Elements": [
+        {
+          "Id": "64c24ef2-879c-4540-b2c8-4c71bdd21175",
+          "TopicId": "17c2bec2-5afb-4d71-8806-946ea6956b93",
+          "Title": "What a KPI Is \u2014 and Why Rates Beat Raw Totals",
+          "BodyText": "Key Performance Indicators (KPIs) are the specific metrics an organisation tracks to evaluate progress towards its goals. Most KPIs are rate metrics \u2014 ratios that normalise a measure against a base \u2014 rather than raw totals.",
+          "Notes": "A raw total of 4,504 orders tells you volume; a 3.2% cancellation rate tells you quality, and remains comparable as the business grows.",
+          "SortOrder": 0,
+          "CreatedDate": "2026-11-17T05:41:24.7040051-05:00",
+          "ModifiedDate": "2026-11-17T05:41:24.7040051-05:00",
+          "Items": [
+            {
+              "Id": "35ca79d2-fc16-43a0-a9d9-d1fdd3e60a00",
+              "Text": "A rate divides a measure (the numerator) by a base or denominator, producing a normalised figure.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "0b6e8ae5-40d3-4f10-8f7e-7292d17bccc3",
+              "Text": "Normalising lets you compare periods, regions, or teams of different sizes fairly.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "f6ebca7f-7f9e-48d0-94e8-be82b7b242ae",
+              "Text": "Raw totals grow simply because the business grew, hiding whether performance actually improved.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "248b3f10-7f8a-4d3c-a7a4-8e586f2c00f1",
+              "Text": "KPIs are chosen deliberately \u2014 they must link to a goal and inform a decision, not just be an available number.",
+              "SortOrder": 3
+            },
+            {
+              "Id": "f162cb80-029b-4caa-b328-ec4554c38eaf",
+              "Text": "A KPI value is most useful when paired with a comparison, such as change versus the prior period.",
+              "SortOrder": 4
+            }
+          ]
+        },
+        {
+          "Id": "dc7e54ed-8af3-4aa2-b35f-61d940216d73",
+          "TopicId": "17c2bec2-5afb-4d71-8806-946ea6956b93",
+          "Title": "Reading a KPI Dashboard",
+          "BodyText": "KPI dashboards present a small set of headline numbers, each with a comparison against a prior period. The comparison is what turns a number into a story.",
+          "Notes": "Example dashboard tiles: $203.7K Monthly Revenue (\u002B18.2% vs prior month); 28.8% Profit Margin (\u002B1.2pp); 4,504 Orders (\u002B15.8%); 3.2% Cancellation Rate (-0.4pp).",
+          "SortOrder": 1,
+          "CreatedDate": "2026-11-17T05:41:24.7040051-05:00",
+          "ModifiedDate": "2026-11-17T05:41:24.7040051-05:00",
+          "Items": [
+            {
+              "Id": "c709ae4b-b222-4a6a-a1ae-ec68c399f81b",
+              "Text": "Each tile shows a current value, a direction indicator, and the magnitude of change.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "4e2323ff-c078-4dd8-ad2b-43520547d602",
+              "Text": "Percentage metrics change by percentage points (pp), not percent \u2014 margin moving 27.6% to 28.8% is \u002B1.2pp.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "600ba2bf-0db3-4ed9-94d2-1dbeb9f17776",
+              "Text": "A downward arrow is favourable for negative-direction KPIs such as cancellation or error rate.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "91e56eea-0cb5-434a-b06b-1edb404139d5",
+              "Text": "Dashboards typically mix volume metrics (orders), value metrics (revenue) and rate metrics (margin, cancellation rate).",
+              "SortOrder": 3
+            },
+            {
+              "Id": "0d10b44f-8d5f-4115-8f79-37f3277757ee",
+              "Text": "Keep the dashboard small \u2014 a handful of indicators that genuinely drive decisions.",
+              "SortOrder": 4
+            }
+          ]
+        },
+        {
+          "Id": "e025977d-7ac1-4812-bbfd-2ba36f06da7a",
+          "TopicId": "17c2bec2-5afb-4d71-8806-946ea6956b93",
+          "Title": "Computing Rate KPIs in SQL",
+          "BodyText": "Rate KPIs follow a consistent SQL shape: an aggregated numerator divided by an aggregated denominator, multiplied by 100.0 when a percentage is wanted. Several KPIs can be computed together in a single query over the same joined dataset.",
+          "Notes": "Example: joining website_visits to orders on visitor and date lets conversion rate, AOV, return rate and revenue per visitor all be produced in one pass.",
+          "SortOrder": 2,
+          "CreatedDate": "2026-11-17T05:41:24.7040051-05:00",
+          "ModifiedDate": "2026-11-17T05:41:24.7040051-05:00",
+          "Items": [
+            {
+              "Id": "bc395f26-76fe-4e97-99f1-7c1a6e42e47d",
+              "Text": "Conversion rate: COUNT(DISTINCT o.customer_id) * 100.0 / NULLIF(COUNT(DISTINCT v.visitor_id), 0).",
+              "SortOrder": 0
+            },
+            {
+              "Id": "390aec15-a727-4005-98ea-64e4c420d5b9",
+              "Text": "Average Order Value (AOV): SUM(o.revenue) / NULLIF(COUNT(o.order_id), 0).",
+              "SortOrder": 1
+            },
+            {
+              "Id": "9234464d-03fb-46f5-a2d4-7669e9d146f4",
+              "Text": "Return rate: SUM(CASE WHEN o.status = \u0027Returned\u0027 THEN 1 ELSE 0 END) * 100.0 / NULLIF(COUNT(*), 0).",
+              "SortOrder": 2
+            },
+            {
+              "Id": "40702422-5370-4852-8238-2ab2d3778d48",
+              "Text": "Revenue per visitor: SUM(o.revenue) / NULLIF(COUNT(DISTINCT v.visitor_id), 0).",
+              "SortOrder": 3
+            },
+            {
+              "Id": "a6bc2842-4f1f-430d-8b80-c4d99da7526b",
+              "Text": "Multiply by 100.0 rather than 100 to force decimal arithmetic and avoid integer truncation.",
+              "SortOrder": 4
+            },
+            {
+              "Id": "0fc9127b-b92f-4d6b-b9b3-512b68324b8e",
+              "Text": "Wrap results in ROUND() to a sensible precision so the output is presentation-ready.",
+              "SortOrder": 5
+            }
+          ]
+        },
+        {
+          "Id": "70fe3d03-821d-45e9-8fdb-cca90d815639",
+          "TopicId": "17c2bec2-5afb-4d71-8806-946ea6956b93",
+          "Title": "NULLIF and the Division-by-Zero Problem",
+          "BodyText": "Any rate metric risks a denominator of zero \u2014 a day with no visitors, a category with no orders. NULLIF() is the standard defence.",
+          "Notes": "NULLIF(denominator, 0) returns NULL when the denominator equals zero, so the whole expression evaluates to NULL instead of raising an error.",
+          "SortOrder": 3,
+          "CreatedDate": "2026-11-17T05:41:24.7040051-05:00",
+          "ModifiedDate": "2026-11-17T05:41:24.7040051-05:00",
+          "Items": [
+            {
+              "Id": "0b4e8b1e-f4c4-4272-b8c2-23f887779bda",
+              "Text": "Division by zero raises a runtime error that aborts the entire report query.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "3c6276e0-2865-4558-ae52-9699be1b0192",
+              "Text": "NULLIF(x, 0) converts a zero denominator to NULL, and NULL propagates through the division.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "6f367f59-0724-4fdc-bda5-6dd8f3dd58e9",
+              "Text": "Returning NULL is semantically correct: a rate with no base data is genuinely undefined, not zero.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "94f61805-0c16-4e47-9c58-1e70106fd162",
+              "Text": "Apply NULLIF to every denominator in a rate expression, including those inside LAG() growth calculations.",
+              "SortOrder": 3
+            },
+            {
+              "Id": "cc0e2e0b-a61f-4b95-9e3e-efb270ab2f6f",
+              "Text": "Reporting tools can then display NULL as \u0027n/a\u0027 or a blank rather than failing.",
+              "SortOrder": 4
+            }
+          ]
+        },
+        {
+          "Id": "50b73cd2-e370-4c5e-a3a6-0242f1e9616e",
+          "TopicId": "17c2bec2-5afb-4d71-8806-946ea6956b93",
+          "Title": "Reference Library of Common Business KPIs",
+          "BodyText": "A small set of KPI formulas recurs across almost every business domain. Knowing the formula and its SQL pattern lets you build most rate metrics on demand.",
+          "Notes": "Domain examples: marketing tracks conversion rate and cost per acquisition; logistics tracks on-time delivery rate; HR tracks turnover; healthcare tracks bed occupancy.",
+          "SortOrder": 4,
+          "CreatedDate": "2026-11-17T05:41:24.7040051-05:00",
+          "ModifiedDate": "2026-11-17T05:41:24.7040051-05:00",
+          "Items": [
+            {
+              "Id": "02850b79-67aa-44f7-b43e-bb7a2c6a4807",
+              "Text": "Conversion Rate = Conversions \u00F7 Visitors \u00D7 100 \u2192 COUNT(orders) * 100.0 / NULLIF(COUNT(visits), 0).",
+              "SortOrder": 0
+            },
+            {
+              "Id": "5af22309-3667-4dcf-81f9-8aa4d46db1e1",
+              "Text": "Customer Lifetime Value = total revenue per customer \u2192 SUM(revenue) GROUP BY customer_id.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "b5ddd704-818d-4ec7-b398-a0e08a81b38c",
+              "Text": "Churn Rate = Lost customers \u00F7 Start-of-period customers \u00D7 100.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "3a37d1d9-efb5-4ab9-8d42-0c3793f38152",
+              "Text": "Gross Margin % = SUM(revenue - cost) * 100.0 / NULLIF(SUM(revenue), 0).",
+              "SortOrder": 3
+            },
+            {
+              "Id": "0edbb2ce-71bb-4aed-ab4c-f64223215b1a",
+              "Text": "Growth Rate = (current - LAG(current)) * 100.0 / NULLIF(LAG(current), 0).",
+              "SortOrder": 4
+            },
+            {
+              "Id": "c9f9ca9f-0a1c-4ab5-9f21-f0a4b07bf2cf",
+              "Text": "Error/Defect Rate and Occupancy/Utilisation Rate both follow the conditional-count-over-total pattern.",
+              "SortOrder": 5
+            }
+          ]
+        },
+        {
+          "Id": "e3e00a73-b103-43e6-992f-8a2a8bd53891",
+          "TopicId": "17c2bec2-5afb-4d71-8806-946ea6956b93",
+          "Title": "Defining KPIs Consistently",
+          "BodyText": "The same KPI name can mean different things to different teams, so a documented definition matters as much as the SQL. Agreeing the numerator, the denominator and the filter conditions prevents conflicting numbers in meetings.",
+          "Notes": "For example, a course success rate can be defined as the proportion scoring A/B/C, while a GPA measure weights each grade (4\u00B7nA \u002B 3\u00B7nB \u002B 2\u00B7nC \u002B nD) \u00F7 n \u2014 two legitimate measures of the same question that can disagree.",
+          "SortOrder": 5,
+          "CreatedDate": "2026-11-17T05:41:24.7040051-05:00",
+          "ModifiedDate": "2026-11-17T05:41:24.7040051-05:00",
+          "Items": [
+            {
+              "Id": "5ad6a402-ec4d-40b8-87b3-594c79fc8573",
+              "Text": "State explicitly whether cancelled or returned orders are included in a revenue KPI.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "dc99cf84-2d16-4d3f-9b2e-17afd6dd0937",
+              "Text": "Decide whether the denominator counts all records or only eligible ones, and document the choice in a query comment.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "168053d3-87d4-4bcd-8bbb-4050b9491bff",
+              "Text": "Two different measures of the same concept can point to different conclusions \u2014 report both when they disagree.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "3ecf816a-5f45-496e-b7c3-bc85964ac0bf",
+              "Text": "Exclusions (test orders, outliers, administrative grades) should be stated, not applied silently.",
+              "SortOrder": 3
+            },
+            {
+              "Id": "a8175634-0a96-47f5-9aa2-0bad7c45ae41",
+              "Text": "Keep definitions in the query itself so the KPI remains reproducible when someone else reruns the report.",
+              "SortOrder": 4
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Id": "5d076815-d79d-4f73-80eb-ab852a8864ad",
+      "Title": "Cyclic Reporting and Analysis Patterns Reference",
+      "Summary": "Explains how daily, weekly, monthly, quarterly and annual reports are standardised and parameterised by date so one query serves any period, including stored procedures for scheduled execution and year-to-date comparisons. Concludes with a quick-reference table of core SQL analysis patterns, the descriptive-comparative-segmentation thinking framework, best practices for a reporting practice, and how SQL feeds visualisation tools.",
+      "SortOrder": 7,
+      "CreatedDate": "2026-11-17T05:38:31.6464302-05:00",
+      "ModifiedDate": "2026-11-17T05:38:31.6464302-05:00",
+      "Elements": [
+        {
+          "Id": "c755e34e-8224-499c-be3c-b52b99de7b54",
+          "TopicId": "5d076815-d79d-4f73-80eb-ab852a8864ad",
+          "Title": "What Cyclic Reports Are and Why They Are Standardised",
+          "BodyText": "Cyclic reports run on a fixed schedule \u2014 daily, weekly, monthly, quarterly, annually \u2014 and feed recurring business decisions. Because the same question is asked every period, the query should be written once and reused rather than rewritten each cycle.",
+          "Notes": "Standardisation also protects consistency: if the definition of \u0027revenue\u0027 changes between report runs, trend comparisons become meaningless.",
+          "SortOrder": 0,
+          "CreatedDate": "2026-11-17T05:41:58.8246249-05:00",
+          "ModifiedDate": "2026-11-17T05:41:58.8246249-05:00",
+          "Items": [
+            {
+              "Id": "2db38178-3955-41d2-a6f8-21f25a68a29f",
+              "Text": "Cyclic reports form the backbone of operational and management reporting.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "244e30ed-1d92-4bf9-8f69-4c52f5ad64b0",
+              "Text": "The query logic stays fixed while only the reporting period changes.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "e9fbfa42-b78e-4fa5-ac49-b8c5e4c316dd",
+              "Text": "Standardised queries reduce manual editing errors and ensure comparable results across periods.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "9c5c0ced-0006-4161-945b-c62e98f32c0e",
+              "Text": "Documenting metric definitions inside the query prevents teams from interpreting the same number differently.",
+              "SortOrder": 3
+            }
+          ]
+        },
+        {
+          "Id": "d533d46f-6629-43af-9ca7-342e572643cc",
+          "TopicId": "5d076815-d79d-4f73-80eb-ab852a8864ad",
+          "Title": "Parameterising a Report Query by Date",
+          "BodyText": "A well-designed cyclic report declares date variables for the start and end of the period instead of hardcoding literal dates. The same query then serves any week, month or quarter without modification.",
+          "Notes": "Example: DECLARE @report_start DATE = \u00272025-03-17\u0027; DECLARE @report_end DATE = \u00272025-03-23\u0027; then filter WHERE sale_date BETWEEN @report_start AND @report_end.",
+          "SortOrder": 1,
+          "CreatedDate": "2026-11-17T05:41:58.8246249-05:00",
+          "ModifiedDate": "2026-11-17T05:41:58.8246249-05:00",
+          "Items": [
+            {
+              "Id": "5adfcd7c-d98a-4d25-a66e-2928945b1116",
+              "Text": "Date variables are substituted at run time so one query covers every reporting period.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "7f021452-91d3-48e7-a0e8-ac8e8a6d1d3d",
+              "Text": "A weekly operations report groups by sale_date and DATENAME(WEEKDAY, sale_date) to show each day of the week.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "95c7ee18-a24e-496a-b128-e4be520de58e",
+              "Text": "Typical weekly columns include orders, unique customers, units sold, revenue and average order value.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "414cabf9-ad8c-4847-9512-e204659b88a7",
+              "Text": "Hardcoded dates force manual editing every cycle and are a common source of reporting errors.",
+              "SortOrder": 3
+            }
+          ]
+        },
+        {
+          "Id": "52ff49dc-75ee-4560-8a1d-13836a7bcbfb",
+          "TopicId": "5d076815-d79d-4f73-80eb-ab852a8864ad",
+          "Title": "Typical Cyclic Report Types by Frequency",
+          "BodyText": "Different reporting frequencies serve different audiences and carry different metrics. Matching the frequency, metric set and audience is a key design decision.",
+          "Notes": "",
+          "SortOrder": 2,
+          "CreatedDate": "2026-11-17T05:41:58.8246249-05:00",
+          "ModifiedDate": "2026-11-17T05:41:58.8246249-05:00",
+          "Items": [
+            {
+              "Id": "f6f0778c-49d4-44dc-9dbc-465850b44e48",
+              "Text": "Daily operations dashboards show orders, revenue, units sold, exceptions and uptime for operations managers and team leads.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "2d6d80fc-f6b7-4711-9d21-0011b8ca0bb3",
+              "Text": "Weekly performance reviews cover week-over-week trends, SLA adherence and top/bottom performers for department heads.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "b1d373f5-dcaf-42d1-bb0d-83f43a2e9e35",
+              "Text": "Monthly business reviews report revenue, costs, profit margin, customer counts and MoM growth for senior management and finance.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "37b25a67-ee82-4d97-9942-0e6c72b4479e",
+              "Text": "Quarterly executive reports present QoQ and YoY trends and KPI performance against targets for executives and the board.",
+              "SortOrder": 3
+            },
+            {
+              "Id": "cc58f58d-2a92-4fe3-bdfd-fde36c03b851",
+              "Text": "Annual year-end summaries give full-year totals, year-over-year comparison and forecast versus actual for executives and regulators.",
+              "SortOrder": 4
+            }
+          ]
+        },
+        {
+          "Id": "3c810b08-da65-4bef-92e7-81dee5245ccf",
+          "TopicId": "5d076815-d79d-4f73-80eb-ab852a8864ad",
+          "Title": "Stored Procedures for Scheduled Execution",
+          "BodyText": "Wrapping a report query in a stored procedure allows a scheduler such as SQL Server Agent to run it automatically, with the procedure calculating its own dates when no parameters are supplied.",
+          "Notes": "Example: usp_MonthlySalesReport @year INT = NULL, @month INT = NULL \u2014 if the parameters are NULL it defaults to the prior month using DATEADD(MONTH, -1, GETDATE()).",
+          "SortOrder": 3,
+          "CreatedDate": "2026-11-17T05:41:58.8246249-05:00",
+          "ModifiedDate": "2026-11-17T05:41:58.8246249-05:00",
+          "Items": [
+            {
+              "Id": "8747d8a4-4f8a-4d67-9383-f56a8f8e20ae",
+              "Text": "Optional parameters with NULL defaults let the procedure run for a specific month or automatically for the prior month.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "e69e6c0a-b25d-45c7-843a-c906523cdb87",
+              "Text": "DATEFROMPARTS builds the period start date and EOMONTH derives the period end date.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "f17855b5-1714-472c-872a-0782fb31e300",
+              "Text": "The procedure body aggregates transactions, unique customers, units, revenue, profit and margin by product category.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "ac810e44-0cf8-45df-8c1b-5fca73911577",
+              "Text": "SET NOCOUNT ON keeps the result set clean for scheduled consumers.",
+              "SortOrder": 3
+            },
+            {
+              "Id": "592cd628-14cd-4323-a73f-97c182eb6fb3",
+              "Text": "Call it explicitly (EXEC usp_MonthlySalesReport @year = 2025, @month = 3) or let the scheduled job call it with no arguments.",
+              "SortOrder": 4
+            }
+          ]
+        },
+        {
+          "Id": "b3d909f0-e4fb-4ef3-bb77-75b5c10648e2",
+          "TopicId": "5d076815-d79d-4f73-80eb-ab852a8864ad",
+          "Title": "Year-to-Date and Same-Period-Last-Year Comparison",
+          "BodyText": "Year-to-date reporting accumulates the current year\u0027s performance and compares it against the same elapsed portion of the prior year. Without the elapsed-day restriction, the comparison would be unfair.",
+          "Notes": "DATEPART(DAYOFYEAR, GETDATE()) captures how far into the year we are, and the prior-year total is filtered to the same day-of-year boundary.",
+          "SortOrder": 4,
+          "CreatedDate": "2026-11-17T05:41:58.8246249-05:00",
+          "ModifiedDate": "2026-11-17T05:41:58.8246249-05:00",
+          "Items": [
+            {
+              "Id": "20f32f8f-1e67-496e-b919-a1820da00535",
+              "Text": "Conditional SUM with CASE WHEN YEAR(sale_date) = @this_year isolates current-year revenue.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "cde63814-4f32-416e-bf92-5af8ead12703",
+              "Text": "Prior-year revenue is limited to DATEPART(DAYOFYEAR, sale_date) \u003C= @day_of_year so both periods cover equal time.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "17a81b07-0eaa-4889-b81a-ae1e5cd70b90",
+              "Text": "The growth percentage divides the difference by the prior YTD figure, guarded by NULLIF to avoid division by zero.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "0f1ff532-653d-4374-ad77-f18399520a69",
+              "Text": "Filtering WHERE YEAR(sale_date) IN (@this_year, @prior_year) keeps the scan limited to the two relevant years.",
+              "SortOrder": 3
+            }
+          ]
+        },
+        {
+          "Id": "51fa5452-58e4-4a7f-b8ba-cfd03b165d55",
+          "TopicId": "5d076815-d79d-4f73-80eb-ab852a8864ad",
+          "Title": "Quick Reference \u2014 Core SQL Analysis Patterns",
+          "BodyText": "A small set of SQL techniques covers the great majority of business analysis requests. Knowing which pattern answers which question speeds up report writing considerably.",
+          "Notes": "Each row of the reference maps a business question to its SQL construct.",
+          "SortOrder": 5,
+          "CreatedDate": "2026-11-17T05:41:58.8246249-05:00",
+          "ModifiedDate": "2026-11-17T05:41:58.8246249-05:00",
+          "Items": [
+            {
+              "Id": "d2b667d7-d476-4499-88dc-4a3291745755",
+              "Text": "Descriptive summary and category breakdown: GROUP BY with SUM/COUNT/AVG, ordered by the measure.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "5a5707ee-3066-41c4-ab79-ef0b7fcf221f",
+              "Text": "Percentage share: SUM(x) * 100.0 / SUM(SUM(x)) OVER(); conditional count: SUM(CASE WHEN condition THEN 1 ELSE 0 END).",
+              "SortOrder": 1
+            },
+            {
+              "Id": "e232d2de-07d8-4a9d-b157-d24dbb7ae990",
+              "Text": "Period-over-period: LAG(measure) OVER (ORDER BY period); running total: SUM(SUM(x)) OVER (ORDER BY date ROWS UNBOUNDED PRECEDING).",
+              "SortOrder": 2
+            },
+            {
+              "Id": "d2dd45e9-26e0-46a2-974d-f434620863c0",
+              "Text": "Moving average: AVG(SUM(x)) OVER (ORDER BY date ROWS BETWEEN N PRECEDING AND CURRENT ROW).",
+              "SortOrder": 3
+            },
+            {
+              "Id": "d2cf7ca9-5adb-4dfc-a03a-81caa14aae11",
+              "Text": "Ranking: TOP N with ORDER BY, or RANK() OVER (PARTITION BY group ORDER BY measure DESC); segmentation via CASE WHEN thresholds.",
+              "SortOrder": 4
+            },
+            {
+              "Id": "ec2d789f-875e-4418-9cb2-70e2db6acf2d",
+              "Text": "Rates use measure_a * 100.0 / NULLIF(measure_b, 0); deduplication uses ROW_NUMBER() OVER (PARTITION BY key); NULLs use COALESCE.",
+              "SortOrder": 5
+            }
+          ]
+        },
+        {
+          "Id": "aa2ef249-0bb0-44a6-b78e-cac6e8b347ed",
+          "TopicId": "5d076815-d79d-4f73-80eb-ab852a8864ad",
+          "Title": "The Analytical Thinking Framework",
+          "BodyText": "Business analysis questions generally fall into three layers: describing what happened, comparing it to prior periods, and segmenting to decide where to focus. Together they turn raw numbers into a narrative.",
+          "Notes": "Example narrative: \u0027We had 4,504 orders in March generating $203K revenue; that is 18.2% above February; and 42% of revenue came from just 1.2% of customers.\u0027",
+          "SortOrder": 6,
+          "CreatedDate": "2026-11-17T05:41:58.8246249-05:00",
+          "ModifiedDate": "2026-11-17T05:41:58.8246249-05:00",
+          "Items": [
+            {
+              "Id": "56fe25d6-d72a-458f-9503-9879fa76e265",
+              "Text": "Descriptive asks \u0027What happened?\u0027 and uses aggregations, counts and totals.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "56a44526-d7cc-4ecb-a635-da48f9c83863",
+              "Text": "Comparative asks \u0027Is it getting better?\u0027 using LAG, running totals and growth rates.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "d4d32cb4-e53a-420b-a50a-15f3d7afd3cd",
+              "Text": "Segmentation asks \u0027Where should we focus?\u0027 using Top-N, CASE tiers and RANK within groups.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "33431a80-316a-41b7-a7ae-f270eebdbf54",
+              "Text": "Each layer builds on the previous one \u2014 a total alone is not actionable without comparison and focus.",
+              "SortOrder": 3
+            }
+          ]
+        },
+        {
+          "Id": "2a03610f-d4f9-4cf9-bbd0-2c00a9e947db",
+          "TopicId": "5d076815-d79d-4f73-80eb-ab852a8864ad",
+          "Title": "Best Practices for a Regular Reporting Practice",
+          "BodyText": "A sustainable reporting practice depends as much on discipline and process as on SQL syntax. These habits prevent the common failures that make recurring reports untrustworthy.",
+          "Notes": "",
+          "SortOrder": 7,
+          "CreatedDate": "2026-11-17T05:41:58.8246249-05:00",
+          "ModifiedDate": "2026-11-17T05:41:58.8246249-05:00",
+          "Items": [
+            {
+              "Id": "247d7c83-b116-4e42-9ddb-63caaddf89c4",
+              "Text": "Define the question and the decision the report informs before writing any SQL.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "07d941cd-8470-4a83-8d17-b65398af9149",
+              "Text": "Profile the data for NULLs, duplicates and outliers before trusting aggregations, and standardise category values to avoid phantom GROUP BY groups.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "9b8b4967-0444-4037-8c85-5f9726dc8bd8",
+              "Text": "Parameterise by date so no manual editing is required each period, and wrap the query in a stored procedure for automatic scheduling.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "6a36545a-6886-443b-9e48-a96225d94184",
+              "Text": "Add context \u2014 pair every raw number with a prior-period comparison so it tells a story.",
+              "SortOrder": 3
+            },
+            {
+              "Id": "5ce529d8-16e0-464f-80ef-405057c003fa",
+              "Text": "Document metric definitions in comments because terms like \u0027revenue\u0027 mean different things to different teams.",
+              "SortOrder": 4
+            }
+          ]
+        },
+        {
+          "Id": "22ed0284-d19d-4618-9ca5-711d34f92598",
+          "TopicId": "5d076815-d79d-4f73-80eb-ab852a8864ad",
+          "Title": "Feeding Visualisation Tools from SQL",
+          "BodyText": "The structured result sets produced by these queries are consumed directly by reporting and BI platforms. SQL performs the preparation and aggregation; the tool handles charts and formatting.",
+          "Notes": "Excel via ODBC/PowerQuery, Power BI, Tableau and Looker all connect to the database and can run these queries on a schedule.",
+          "SortOrder": 8,
+          "CreatedDate": "2026-11-17T05:41:58.8246249-05:00",
+          "ModifiedDate": "2026-11-17T05:41:58.8246249-05:00",
+          "Items": [
+            {
+              "Id": "4df9297e-a37a-4aef-8d90-8d06d8c77d35",
+              "Text": "BI tools connect to the database and execute the report query on a recurring schedule.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "6bbd00f8-dae5-484f-9d05-a815f0152fc3",
+              "Text": "Pushing aggregation into SQL reduces the data volume the visualisation layer must handle.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "47c94a71-1140-40ad-9347-0900906d8b6f",
+              "Text": "Consistent, parameterised queries mean every dashboard refresh uses the same metric definitions.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "be20ccfc-8db2-49bf-ba9a-0648ac043784",
+              "Text": "Understanding the SQL layer makes you more effective with any downstream visualisation tool.",
+              "SortOrder": 3
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "TotalElementCount": 53
+}

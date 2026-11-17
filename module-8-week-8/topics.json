@@ -1,0 +1,1757 @@
+{
+  "ModuleFolderName": "Module_8_(Week_8)",
+  "CourseName": "COP4709 \u2014 Applied Database II",
+  "GeneratedDate": "2026-11-17T05:20:12.8322724-05:00",
+  "ModifiedDate": "2026-11-17T05:23:39.7953426-05:00",
+  "Outcomes": [],
+  "Topics": [
+    {
+      "Id": "70a47611-98f8-447c-81c6-34f68460aa4d",
+      "Title": "Lookup Table Fundamentals and Structure",
+      "Summary": "Defines what lookup (reference, code, or dimension) tables are and the role they play as the single source of truth for standardized values. Covers the typical structure \u2014 primary key, value/name, and optional fields \u2014 along with key characteristics such as small size, static data, and read-heavy usage.",
+      "SortOrder": 0,
+      "CreatedDate": "2026-11-17T05:20:12.8322724-05:00",
+      "ModifiedDate": "2026-11-17T05:20:12.8322724-05:00",
+      "Elements": [
+        {
+          "Id": "2abb8bdf-5929-4d9d-bf18-98971620adbe",
+          "TopicId": "70a47611-98f8-447c-81c6-34f68460aa4d",
+          "Title": "What Is a Lookup Table?",
+          "BodyText": "A lookup table \u2014 also called a reference table, dimension table, or code table \u2014 stores a finite set of values that other tables in the database reference. It acts as the single source of truth for standardized data values.",
+          "Notes": "Example: instead of writing \u0022United States\u0022 in 1,000 customer records, store it once with ID=1 and reference that ID. Census PUMS data works the same way: the field ACR is coded, and the value \u00271\u0027 means \u0022House on less than one acre\u0022.",
+          "SortOrder": 0,
+          "CreatedDate": "2026-11-17T05:20:35.9074782-05:00",
+          "ModifiedDate": "2026-11-17T05:20:35.9074782-05:00",
+          "Items": [
+            {
+              "Id": "b7844c1c-1755-4098-acf4-18063f7f3202",
+              "Text": "The terms reference table, dimension table, and code table all describe the same concept.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "0330f181-2257-4bd2-ae7a-45cee2b32e5e",
+              "Text": "Lookup tables support data integrity, consistency, and normalization.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "74e57d2e-72d8-4184-bc38-a97b0e27a46d",
+              "Text": "Other tables point to the lookup table rather than repeating the literal text value.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "562d5f76-03db-4367-b3f2-e41c8bc31f23",
+              "Text": "Storing an ID instead of a repeated string saves space and makes updates trivial.",
+              "SortOrder": 3
+            },
+            {
+              "Id": "50a92443-b0c1-4ddc-bb4a-ffc6fadc9b7e",
+              "Text": "Government data sets such as Census Bureau PUMS rely on coded fields documented in a data dictionary.",
+              "SortOrder": 4
+            }
+          ]
+        },
+        {
+          "Id": "28343619-c231-4847-bcb0-3563ffae9700",
+          "TopicId": "70a47611-98f8-447c-81c6-34f68460aa4d",
+          "Title": "Basic Structure and Components",
+          "BodyText": "Lookup tables follow a simple, standardized structure that is easy to recognize across any database. At minimum they contain a unique identifier and the value being stored.",
+          "Notes": "Example: CREATE TABLE countries (country_id INT PRIMARY KEY, country_code CHAR(2) UNIQUE NOT NULL, country_name VARCHAR(100) NOT NULL, region VARCHAR(50), is_active BOOLEAN DEFAULT TRUE, display_order INT);",
+          "SortOrder": 1,
+          "CreatedDate": "2026-11-17T05:20:35.9074782-05:00",
+          "ModifiedDate": "2026-11-17T05:20:35.9074782-05:00",
+          "Items": [
+            {
+              "Id": "4c863b48-f337-4721-9a1e-ba376fb7dec3",
+              "Text": "Primary Key (ID): a unique identifier, usually an integer or short code.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "a5456074-0e55-4cca-aeca-c13483b0e81d",
+              "Text": "Value/Name: the actual data value being stored, such as \u0027United States\u0027.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "093484ca-9544-4e4d-a817-e7c3ff6cf151",
+              "Text": "Optional fields: description, sort order, active/inactive flag, and parent ID for hierarchies.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "8c715abf-ebae-42ca-8e90-56a37b08ea95",
+              "Text": "A unique code column (like ISO 3166-1 alpha-2) adds human readability alongside the numeric key.",
+              "SortOrder": 3
+            },
+            {
+              "Id": "f9824869-96b7-4d30-b2c4-01c6fcb9256a",
+              "Text": "Columns such as display_order control the sequence of items in dropdown menus.",
+              "SortOrder": 4
+            }
+          ]
+        },
+        {
+          "Id": "52ddf8e4-df29-4e92-b260-79ba9d74d10e",
+          "TopicId": "70a47611-98f8-447c-81c6-34f68460aa4d",
+          "Title": "Key Characteristics of Lookup Tables",
+          "BodyText": "Lookup tables share a recognizable profile that distinguishes them from transactional tables. Understanding these traits helps you decide when a table qualifies as reference data.",
+          "Notes": "",
+          "SortOrder": 2,
+          "CreatedDate": "2026-11-17T05:20:35.9074782-05:00",
+          "ModifiedDate": "2026-11-17T05:20:35.9074782-05:00",
+          "Items": [
+            {
+              "Id": "4715ee7d-03d8-4626-8770-0045f7424084",
+              "Text": "Small size: typically 5\u2013500 rows, a limited and manageable set.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "a2087e57-3ce3-4df3-b45f-da27ed9472d7",
+              "Text": "Static or semi-static: data changes infrequently and updates are rare and controlled.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "6ba15ab8-0ade-4478-a3da-1130e08e69d2",
+              "Text": "Read-heavy: queried constantly but rarely modified.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "d0142d94-5077-46b9-83c6-1003a4d9a1de",
+              "Text": "Few outgoing foreign keys: lookup tables usually don\u0027t reference other tables, except self-references for hierarchies.",
+              "SortOrder": 3
+            },
+            {
+              "Id": "64d0713e-2421-45cc-b490-128604053199",
+              "Text": "Referenced by many: multiple tables hold foreign keys pointing back to the lookup table.",
+              "SortOrder": 4
+            }
+          ]
+        },
+        {
+          "Id": "65f13e79-e8c8-474f-b6f6-e11f28bac0c8",
+          "TopicId": "70a47611-98f8-447c-81c6-34f68460aa4d",
+          "Title": "Lookup Tables as the Source of Truth",
+          "BodyText": "Because every dependent table references the same row, the lookup table becomes the authoritative definition for a standardized value. This centralization is what delivers consistency across the whole database.",
+          "Notes": "Without a lookup table you end up with \u0022USA\u0022, \u0022United States\u0022, \u0022U.S.A.\u0022, and \u0022US\u0022 scattered through the data with no way to validate entries.",
+          "SortOrder": 3,
+          "CreatedDate": "2026-11-17T05:20:35.9074782-05:00",
+          "ModifiedDate": "2026-11-17T05:20:35.9074782-05:00",
+          "Items": [
+            {
+              "Id": "04166eb9-e60f-455b-a816-45023389d1dc",
+              "Text": "Values are spelled and formatted identically everywhere they appear.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "39944395-1196-484f-a9f2-b73d33f72435",
+              "Text": "Correcting or renaming a value happens in one row and propagates to all references.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "0b6958aa-fbb4-4104-b59d-eaff26eb8e0d",
+              "Text": "Foreign key constraints prevent invalid or misspelled values from being entered.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "26fd2e48-55ce-4142-a5de-50133eb6a5de",
+              "Text": "Applications can bind dropdown lists and selection menus directly to the lookup table.",
+              "SortOrder": 3
+            },
+            {
+              "Id": "878fc222-b426-4be9-b723-e8e3e15717ca",
+              "Text": "Integer joins and indexing perform better than repeated string comparisons.",
+              "SortOrder": 4
+            }
+          ]
+        },
+        {
+          "Id": "b1e06481-f94e-463a-a26e-1704fda0358a",
+          "TopicId": "70a47611-98f8-447c-81c6-34f68460aa4d",
+          "Title": "Example Lookup Table Designs",
+          "BodyText": "Concrete examples show how the standard structure adapts to different domains while keeping the same shape. Each design pairs an ID with a code, a readable name, and supporting attributes.",
+          "Notes": "Healthcare systems commonly use lookup tables for insurance providers, blood types (A\u002B, A-, B\u002B, B-, AB\u002B, AB-, O\u002B, O-), appointment types, medication frequencies, and ICD-10 diagnosis codes.",
+          "SortOrder": 4,
+          "CreatedDate": "2026-11-17T05:20:35.9074782-05:00",
+          "ModifiedDate": "2026-11-17T05:20:35.9074782-05:00",
+          "Items": [
+            {
+              "Id": "dbe85b49-d07f-4415-a228-e21f23f71afc",
+              "Text": "order_statuses: status_id, status_code (\u0027PENDING\u0027), status_name, description, display_order.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "ab2ba434-15da-479c-98f3-3f1c38b19d81",
+              "Text": "employment_types: type_id, type_name, plus business-rule flags like is_fulltime and benefits_eligible.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "8cf8552b-148e-428c-8420-afcdb1690e43",
+              "Text": "grade_scale: grade_id, letter_grade, grade_points, and min/max percentage boundaries.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "0ac44af9-49d0-455d-9316-2088eefdbb5a",
+              "Text": "countries/states/cities form a chained set of lookups for geographic data.",
+              "SortOrder": 3
+            },
+            {
+              "Id": "d3c0b0da-ff12-4b12-8946-f7a373a774d0",
+              "Text": "Attribute columns let the lookup table carry business rules, not just labels.",
+              "SortOrder": 4
+            }
+          ]
+        },
+        {
+          "Id": "30648d00-5527-4875-8059-85cf2c54b277",
+          "TopicId": "70a47611-98f8-447c-81c6-34f68460aa4d",
+          "Title": "Single-Table vs. Two-Table Lookup Designs",
+          "BodyText": "You can build one lookup table per field, or consolidate many small code lists into a two-table category/code design. Both approaches serve the same purpose with different trade-offs.",
+          "Notes": "Example two-table design: CREATE TABLE Categories ([Name] NVARCHAR(50) PRIMARY KEY, [Description] NVARCHAR(200)); CREATE TABLE Codes ([Name] NVARCHAR(50), [CategoryName] NVARCHAR(50) FOREIGN KEY REFERENCES Categories(Name), [Description] NVARCHAR(200));",
+          "SortOrder": 5,
+          "CreatedDate": "2026-11-17T05:20:35.9074782-05:00",
+          "ModifiedDate": "2026-11-17T05:20:35.9074782-05:00",
+          "Items": [
+            {
+              "Id": "7d123f96-1d88-433c-bed2-d90c86322719",
+              "Text": "One table per field (e.g., an ACR table with Code and Description) keeps joins simple and explicit.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "d829b399-9812-429e-90eb-276e48f9056c",
+              "Text": "A Categories \u002B Codes pair stores many code lists in a single shared structure.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "746d9e8f-4216-4339-a51a-4acdcdfc0398",
+              "Text": "Categories names the coded field (ACR = Lot Size); Codes holds each value and its description.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "d86b2440-93fb-46bc-b06c-dc22372de2c0",
+              "Text": "A view such as CatCodes can flatten the two tables into one convenient lookup surface.",
+              "SortOrder": 3
+            },
+            {
+              "Id": "34a9aafd-357b-44e6-89db-b46f45c08f96",
+              "Text": "The generic approach reduces table proliferation but weakens type safety and foreign key clarity.",
+              "SortOrder": 4
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Id": "13b91bc3-565a-454d-9990-1e64263bddf1",
+      "Title": "When and Why to Use Lookup Tables",
+      "Summary": "Explains the decision criteria for using a lookup table versus storing values inline, including the rule of thumb for good and poor candidates. Covers the benefits of consistency, storage efficiency, easy updates, referential integrity, and performance, plus their role in achieving Third Normal Form.",
+      "SortOrder": 1,
+      "CreatedDate": "2026-11-17T05:20:12.8322724-05:00",
+      "ModifiedDate": "2026-11-17T05:20:12.8322724-05:00",
+      "Elements": [
+        {
+          "Id": "35850cb9-d30c-47a7-8a89-f6e9cf22c0e9",
+          "TopicId": "13b91bc3-565a-454d-9990-1e64263bddf1",
+          "Title": "When to Use a Lookup Table",
+          "BodyText": "Lookup tables are appropriate whenever a finite, predefined set of values is repeated across many records. They turn free-text repetition into controlled, referenced values.",
+          "Notes": "Examples: countries, states, order statuses, departments, payment methods, units of measure, time zones.",
+          "SortOrder": 0,
+          "CreatedDate": "2026-11-17T05:21:14.3496464-05:00",
+          "ModifiedDate": "2026-11-17T05:21:14.3496464-05:00",
+          "Items": [
+            {
+              "Id": "9eb1e2fc-8da6-40ab-96ef-d340e2b6cf49",
+              "Text": "Use one when you have a finite, predefined set of values such as countries, states, or status codes.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "b45ff0ef-8bfb-4577-8917-c590412453f6",
+              "Text": "Use one when the same values repeat across multiple records or multiple tables.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "0d8f20fc-aabc-47d3-94f4-e23b9f85c413",
+              "Text": "Use one when you need to enforce data integrity through foreign key constraints.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "deda248d-68fa-4eec-a96b-526c96f15d45",
+              "Text": "Use one when values must be updated in a single place and standardized across the database.",
+              "SortOrder": 3
+            },
+            {
+              "Id": "e0eac2e5-a120-4d12-8237-e714dd1f054e",
+              "Text": "Use one when applications need dropdown lists or selection menus populated from the database.",
+              "SortOrder": 4
+            },
+            {
+              "Id": "1e4c4488-3ace-4e1d-a860-b2acff2b2e97",
+              "Text": "Use one when you want to normalize the design and reduce redundancy.",
+              "SortOrder": 5
+            }
+          ]
+        },
+        {
+          "Id": "529b8f55-a9b9-49cd-87ed-e147928ea9a9",
+          "TopicId": "13b91bc3-565a-454d-9990-1e64263bddf1",
+          "Title": "When NOT to Use a Lookup Table",
+          "BodyText": "Not every column benefits from being externalized. Some data is unique, unbounded, or too simple to justify an extra table and join.",
+          "Notes": "Poor candidates include customer names, product descriptions, email addresses, password hashes, unique identifiers, and unbounded user content.",
+          "SortOrder": 1,
+          "CreatedDate": "2026-11-17T05:21:14.3496464-05:00",
+          "ModifiedDate": "2026-11-17T05:21:14.3496464-05:00",
+          "Items": [
+            {
+              "Id": "762fe642-9739-48da-92df-687aa7f9fac4",
+              "Text": "Avoid lookup tables for user-generated, unlimited values such as customer names or product descriptions.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "229f5119-32ec-483f-aa50-18ab5325dabf",
+              "Text": "Avoid them when the list would grow to thousands of constantly changing rows.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "48b7faf1-251f-4606-b72c-30973709576b",
+              "Text": "Avoid them when values are unique to each record and will never be reused.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "90d0a914-4c5e-4a43-a827-1e5a2d4c12be",
+              "Text": "Avoid them for true binary flags \u2014 use a BOOLEAN, ENUM, or CHECK constraint instead.",
+              "SortOrder": 3
+            },
+            {
+              "Id": "af1c0417-b729-4b12-97cc-4db4067a039c",
+              "Text": "In rare cases the overhead of joins can outweigh the benefits, so evaluate the tradeoff.",
+              "SortOrder": 4
+            }
+          ]
+        },
+        {
+          "Id": "172ba960-7612-4737-af34-9c4d3c7bfb73",
+          "TopicId": "13b91bc3-565a-454d-9990-1e64263bddf1",
+          "Title": "The Rule of Thumb",
+          "BodyText": "A simple decision test helps you judge borderline cases quickly without over-analyzing the design.",
+          "Notes": "Over-engineering is a real pitfall: a two-value Gender list is better handled with an ENUM or CHECK constraint than a dedicated table.",
+          "SortOrder": 2,
+          "CreatedDate": "2026-11-17T05:21:14.3496464-05:00",
+          "ModifiedDate": "2026-11-17T05:21:14.3496464-05:00",
+          "Items": [
+            {
+              "Id": "902f4ccc-8ae2-456a-bb5b-f0197addac87",
+              "Text": "Create a lookup table when you have three or more distinct values that repeat.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "6fa0aa82-5e97-486a-b304-02c6bcba775f",
+              "Text": "Create one when values are relatively stable and not user-generated.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "e4d99420-e071-4840-849e-297240c01a70",
+              "Text": "Create one when referential integrity is required or multiple tables will reference the values.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "e10bdf7a-5528-450b-94e3-4f449c371e1e",
+              "Text": "Create one when the list may grow modestly over time.",
+              "SortOrder": 3
+            },
+            {
+              "Id": "98a753b7-2040-4cb3-ba0c-4039b1a821fc",
+              "Text": "Skip the lookup table when there are only two fixed values that will never change.",
+              "SortOrder": 4
+            },
+            {
+              "Id": "011d54af-7600-4d6d-8b3e-a9d8e517e0a6",
+              "Text": "Skip it when values are unique per record or the list is unlimited and user-driven.",
+              "SortOrder": 5
+            }
+          ]
+        },
+        {
+          "Id": "af0c0472-db4d-4571-baea-9ff26f3261db",
+          "TopicId": "13b91bc3-565a-454d-9990-1e64263bddf1",
+          "Title": "Benefits: Consistency and Storage Efficiency",
+          "BodyText": "Centralizing values guarantees that each concept is spelled and stored exactly one way, while references consume far less space than repeated strings.",
+          "Notes": "Without a lookup table you end up with \u0027USA\u0027, \u0027United States\u0027, \u0027U.S.A.\u0027, and \u0027US\u0027 all meaning the same thing.",
+          "SortOrder": 3,
+          "CreatedDate": "2026-11-17T05:21:14.3496464-05:00",
+          "ModifiedDate": "2026-11-17T05:21:14.3496464-05:00",
+          "Items": [
+            {
+              "Id": "54fec232-5eae-4a69-a3a7-b5d4366df604",
+              "Text": "Data consistency means \u0027United States\u0027 is written identically in every record.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "e1f30100-2c98-43b0-8a68-1035e457c65b",
+              "Text": "Storage efficiency comes from storing a small integer ID instead of a full string thousands of times.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "621e9ed0-ff97-4366-8ff4-0ddc64da0b85",
+              "Text": "Standardized terminology makes reporting and grouping queries reliable.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "208933fb-219a-4a6d-b6b9-3e0264ff1bea",
+              "Text": "Inconsistent inline values fragment counts and totals in aggregate queries.",
+              "SortOrder": 3
+            }
+          ]
+        },
+        {
+          "Id": "8c4d6dab-3759-4dbc-a8bd-5ad8eb98444a",
+          "TopicId": "13b91bc3-565a-454d-9990-1e64263bddf1",
+          "Title": "Benefits: Easy Updates, Integrity, and Performance",
+          "BodyText": "Lookup tables concentrate maintenance in one row and let the database engine enforce valid values while speeding up queries.",
+          "Notes": "Because they are read-heavy and change rarely, lookup tables are also excellent candidates for caching in the application layer.",
+          "SortOrder": 4,
+          "CreatedDate": "2026-11-17T05:21:14.3496464-05:00",
+          "ModifiedDate": "2026-11-17T05:21:14.3496464-05:00",
+          "Items": [
+            {
+              "Id": "d191893c-82b4-4e80-924f-650e4f8ec25f",
+              "Text": "Change a value once in the lookup table and every referencing record reflects the update.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "474581f4-047a-4f62-b558-098b667d153c",
+              "Text": "Foreign key constraints prevent invalid or misspelled values from ever being stored.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "2b82b3e3-5a73-4a40-9417-cf5ab701e167",
+              "Text": "Integer joins and indexes outperform repeated string comparisons.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "3d5e4e6b-468c-4263-92d4-3141be7723bc",
+              "Text": "Without lookup tables, a single terminology change becomes an update of thousands of rows.",
+              "SortOrder": 3
+            },
+            {
+              "Id": "0f3292ec-05b2-4f8e-912a-46e0d718761d",
+              "Text": "No validation layer means typos and orphaned values can corrupt analysis.",
+              "SortOrder": 4
+            }
+          ]
+        },
+        {
+          "Id": "6a026af7-c207-4291-ba79-5f5216314eb3",
+          "TopicId": "13b91bc3-565a-454d-9990-1e64263bddf1",
+          "Title": "The Normalization Perspective",
+          "BodyText": "Lookup tables are a practical mechanism for achieving normalized database designs, particularly Third Normal Form.",
+          "Notes": "The guiding principle: every piece of information should be stored exactly once, in exactly one place.",
+          "SortOrder": 5,
+          "CreatedDate": "2026-11-17T05:21:14.3496464-05:00",
+          "ModifiedDate": "2026-11-17T05:21:14.3496464-05:00",
+          "Items": [
+            {
+              "Id": "d11c3b00-2e8e-4710-b053-88896438e1f1",
+              "Text": "They help eliminate repeating groups, satisfying First Normal Form.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "34ce9beb-2e07-4ef4-a631-5fb277f284c5",
+              "Text": "They support removal of partial dependencies for Second Normal Form.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "a8d5ff78-2e2b-42fa-bcf6-25ebd14b9a5d",
+              "Text": "They eliminate transitive dependencies, a requirement of Third Normal Form.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "8d830915-4003-42b0-8c3e-16f0974f0ba9",
+              "Text": "Extracting repeated values into their own table reduces redundancy across the schema.",
+              "SortOrder": 3
+            },
+            {
+              "Id": "30ad94e4-b039-4bad-92bf-354da2da97a5",
+              "Text": "The added tables and joins are a modest cost compared with the integrity and maintainability gained.",
+              "SortOrder": 4
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Id": "97fcad16-bc1c-490a-93d7-7742625fc0b1",
+      "Title": "Real-World Lookup Table Examples",
+      "Summary": "Walks through practical implementations across e-commerce order statuses, HR departments and employment types, healthcare reference data, geographic hierarchies, and university course systems. Shows the SQL for creating lookup tables and wiring them to transactional tables with foreign keys.",
+      "SortOrder": 2,
+      "CreatedDate": "2026-11-17T05:20:12.8322724-05:00",
+      "ModifiedDate": "2026-11-17T05:20:12.8322724-05:00",
+      "Elements": [
+        {
+          "Id": "caafab45-ec12-4d4b-b322-771542ede520",
+          "TopicId": "97fcad16-bc1c-490a-93d7-7742625fc0b1",
+          "Title": "E-Commerce Order Status Lookup",
+          "BodyText": "An order status lookup table defines the finite set of states an order can occupy, from pending payment through delivery or cancellation. The orders table stores only a status_id that points back to this reference table.",
+          "Notes": "Sample values: PENDING, PAID, PROCESSING, SHIPPED, DELIVERED, CANCELLED \u2014 each with a code, a friendly name, a description, and a display order.",
+          "SortOrder": 0,
+          "CreatedDate": "2026-11-17T05:21:41.3653107-05:00",
+          "ModifiedDate": "2026-11-17T05:21:41.3653107-05:00",
+          "Items": [
+            {
+              "Id": "7c32ff9d-32ad-46b0-8aba-5350022e30a4",
+              "Text": "CREATE TABLE order_statuses holds status_id as the primary key plus a UNIQUE status_code such as \u0027PENDING\u0027 or \u0027SHIPPED\u0027.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "1e9edc6a-b91b-4383-8efb-2bcc95f1df57",
+              "Text": "A status_name column supplies the human-readable label (\u0027Payment Confirmed\u0027) for UI display.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "3c4d403f-27d3-43b4-afb7-f596c24e67ea",
+              "Text": "A description column documents the business meaning, e.g. \u0027Order placed, awaiting payment\u0027.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "6b3f334c-5395-47f7-8c1d-1dd0fd825956",
+              "Text": "display_order controls the consistent sequence of statuses in dropdowns and reports.",
+              "SortOrder": 3
+            },
+            {
+              "Id": "289a2091-c380-417e-9f4e-27a7c2433a03",
+              "Text": "The orders table declares FOREIGN KEY (status_id) REFERENCES order_statuses(status_id) so no invalid status can ever be stored.",
+              "SortOrder": 4
+            }
+          ]
+        },
+        {
+          "Id": "587a43d0-6cf7-4b4e-8f28-f344db76db54",
+          "TopicId": "97fcad16-bc1c-490a-93d7-7742625fc0b1",
+          "Title": "Human Resources: Departments and Employment Types",
+          "BodyText": "An HR schema commonly uses two lookup tables \u2014 departments and employment_types \u2014 both referenced by the employees table. This lets one employee row carry two validated classifications without duplicating text.",
+          "Notes": "Lookup tables can carry business rules as extra columns rather than just a label.",
+          "SortOrder": 1,
+          "CreatedDate": "2026-11-17T05:21:41.3653107-05:00",
+          "ModifiedDate": "2026-11-17T05:21:41.3653107-05:00",
+          "Items": [
+            {
+              "Id": "f0f1eeda-14e7-4e44-9d82-da0b99e7d039",
+              "Text": "departments stores dept_id, a UNIQUE dept_code, dept_name, and location.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "3a0bfb74-caa8-4671-ba61-d15b5ec7d80e",
+              "Text": "employment_types stores type_id and type_name such as Full-Time, Part-Time, Contractor, and Intern.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "32cc0969-1869-4691-825c-bbd4200f84be",
+              "Text": "Boolean attributes is_fulltime and benefits_eligible embed policy directly in the lookup row so application code need not hard-code the rules.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "68c3ff17-efcb-4572-bf04-fabdb00579fd",
+              "Text": "The employees table defines two foreign keys: dept_id to departments and employment_type_id to employment_types.",
+              "SortOrder": 3
+            },
+            {
+              "Id": "85c60e4c-df80-4d7e-9024-58efe94f8742",
+              "Text": "Changing a department\u0027s name or location updates every employee record implicitly, with no mass UPDATE required.",
+              "SortOrder": 4
+            }
+          ]
+        },
+        {
+          "Id": "e1349b49-d362-43c3-9582-a8b2d24002dc",
+          "TopicId": "97fcad16-bc1c-490a-93d7-7742625fc0b1",
+          "Title": "Healthcare Reference Data",
+          "BodyText": "Healthcare systems rely heavily on standardized reference data, much of it mandated externally. These lists are ideal lookup tables because they are finite, stable, and reused across many transactional tables.",
+          "Notes": "Externally governed code sets such as ICD-10 show how lookup tables can mirror an industry standard rather than an internal convention.",
+          "SortOrder": 2,
+          "CreatedDate": "2026-11-17T05:21:41.3653107-05:00",
+          "ModifiedDate": "2026-11-17T05:21:41.3653107-05:00",
+          "Items": [
+            {
+              "Id": "80a85f45-00d8-43dc-8b62-e9510cfa55c2",
+              "Text": "Insurance Providers: the list of accepted insurance companies referenced by patient and claim records.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "f0cb9831-d1c4-4ecb-91f6-191a1e484c3a",
+              "Text": "Blood Types: the fixed set A\u002B, A-, B\u002B, B-, AB\u002B, AB-, O\u002B, O-.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "b9dd30b2-8c70-4242-b03f-d30042caea4a",
+              "Text": "Appointment Types: Consultation, Follow-up, Emergency, Physical.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "9d4f600b-a720-4369-ab69-e4d12192c174",
+              "Text": "Medication Frequencies: Once daily, Twice daily, Three times daily, As needed.",
+              "SortOrder": 3
+            },
+            {
+              "Id": "b0aac334-8d01-4368-bda3-49d9e77af1c7",
+              "Text": "Diagnosis Codes (ICD-10): standardized medical condition codes maintained outside the organization.",
+              "SortOrder": 4
+            },
+            {
+              "Id": "e9ee97f3-b1c5-462b-b7bd-7cc776ba7199",
+              "Text": "Because these drive billing and clinical decisions, foreign key enforcement and soft deletes are essential.",
+              "SortOrder": 5
+            }
+          ]
+        },
+        {
+          "Id": "3ce9f1ea-d58c-458c-afd0-18e8fe0d28be",
+          "TopicId": "97fcad16-bc1c-490a-93d7-7742625fc0b1",
+          "Title": "Geographic Hierarchy: Countries, States, and Cities",
+          "BodyText": "Location data is modeled as a chain of lookup tables in which each level references the level above it. This is one of the few cases where a lookup table legitimately holds a foreign key.",
+          "Notes": "Example: cities.state_id references states.state_id, and states.country_id references countries.country_id.",
+          "SortOrder": 3,
+          "CreatedDate": "2026-11-17T05:21:41.3653107-05:00",
+          "ModifiedDate": "2026-11-17T05:21:41.3653107-05:00",
+          "Items": [
+            {
+              "Id": "c96bace6-7850-4b44-a7da-25ce9499d81a",
+              "Text": "countries stores country_id, country_name, and a two-character iso_code.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "dfa78792-7da6-48d5-84c9-47b79cb05866",
+              "Text": "states stores state_id, state_name, state_abbr, and a country_id foreign key to countries.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "6bad2aef-a609-43e4-a72c-2d0a07699c15",
+              "Text": "cities stores city_id, city_name, and a state_id foreign key to states.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "a8b81c89-d82a-430a-b71d-114b9313c1b6",
+              "Text": "customer_addresses holds street_address and postal_code plus city_id, state_id, and country_id foreign keys.",
+              "SortOrder": 3
+            },
+            {
+              "Id": "d6603976-4ccd-477a-8436-e43a160d7b07",
+              "Text": "Storing all three IDs denormalizes slightly for query speed, but every value is still validated against a lookup table.",
+              "SortOrder": 4
+            }
+          ]
+        },
+        {
+          "Id": "4ad59340-da12-466c-8af7-d8b4021e4f14",
+          "TopicId": "97fcad16-bc1c-490a-93d7-7742625fc0b1",
+          "Title": "University Course System Lookups",
+          "BodyText": "An academic database uses several small lookup tables to standardize semesters, grading scales, and course states. Each demonstrates a different pattern of enriching a lookup with extra attributes.",
+          "Notes": "The grade_scale table shows how a lookup can encode calculation rules, not just labels.",
+          "SortOrder": 4,
+          "CreatedDate": "2026-11-17T05:21:41.3653107-05:00",
+          "ModifiedDate": "2026-11-17T05:21:41.3653107-05:00",
+          "Items": [
+            {
+              "Id": "2712945d-1de2-4a22-a80b-bb27fbbba849",
+              "Text": "semesters stores semester_id, a semester_code like \u0027FALL2025\u0027, a semester_name like \u0027Fall 2025\u0027, plus start_date and end_date.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "9723b529-20b7-4d10-8e7c-84d690e94dbc",
+              "Text": "grade_scale stores grade_id, letter_grade (A, A-, B\u002B), grade_points as DECIMAL(3,2), and min_percentage/max_percentage ranges.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "4e081491-8330-4f0b-9ea8-dec71f275a89",
+              "Text": "Storing grade_points in the lookup lets GPA calculations join rather than hard-code conversion logic.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "20518179-a690-4a63-b7e6-ee47c32a6bf2",
+              "Text": "course_statuses is a minimal lookup holding status_id and status_name values such as Active, Cancelled, Completed, and Waitlisted.",
+              "SortOrder": 3
+            },
+            {
+              "Id": "c3e2b4b7-701a-4c95-b7b0-b6115172fc89",
+              "Text": "Enrollment and course-offering tables reference these lookups by ID to keep terminology consistent across terms.",
+              "SortOrder": 4
+            }
+          ]
+        },
+        {
+          "Id": "76bf0b7c-e6c5-4712-b851-9a593a91ca66",
+          "TopicId": "97fcad16-bc1c-490a-93d7-7742625fc0b1",
+          "Title": "The Two-Table Category/Code Pattern",
+          "BodyText": "Instead of one lookup table per field, a generic two-table design stores every code set in a shared structure. This is the pattern used with coded Census PUMS data, where fields like ACR (acreage) and FS (food stamps) each become a category.",
+          "Notes": "Categories holds the field names; Codes holds the permitted values for each field, linked by CategoryName.",
+          "SortOrder": 5,
+          "CreatedDate": "2026-11-17T05:21:41.3653107-05:00",
+          "ModifiedDate": "2026-11-17T05:21:41.3653107-05:00",
+          "Items": [
+            {
+              "Id": "7afae6a0-fb39-4418-8640-ba593a72a244",
+              "Text": "CREATE TABLE Categories stores [Name] as the primary key plus a [Description] such as \u0027ACR\u0027 / \u0027Lot Size\u0027.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "d54e6d6b-3400-41cf-9a37-6847a7730540",
+              "Text": "CREATE TABLE Codes stores [Name], a [CategoryName] foreign key to Categories(Name), and a [Description] like \u0027House on ten acres or more\u0027.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "59626261-08ce-4e7f-bc9f-12b5192b5fa5",
+              "Text": "A CatCodes view joins the two tables so queries can select CodeName, CategoryName, and both descriptions in one step.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "2a09d236-3faa-4c9a-b4c3-823a08445c7d",
+              "Text": "Analysis queries join raw data to Codes on the coded value while filtering Codes.CategoryName to the field being decoded.",
+              "SortOrder": 3
+            },
+            {
+              "Id": "de5d0ce6-52d9-48d3-bfe4-6aec20da25e9",
+              "Text": "The trade-off is fewer tables but weaker type safety, since one Codes table serves many unrelated fields.",
+              "SortOrder": 4
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Id": "55e91f26-7eee-4557-8bd3-c6a2c4598e33",
+      "Title": "Best Practices for Designing Lookup Tables",
+      "Summary": "Presents design standards including naming conventions, surrogate versus natural key strategy, descriptive and UI-support columns, foreign key enforcement, soft deletes, indexing, documentation, caching, and validation constraints. Includes a consolidated best-practices checklist.",
+      "SortOrder": 3,
+      "CreatedDate": "2026-11-17T05:20:12.8322724-05:00",
+      "ModifiedDate": "2026-11-17T05:20:12.8322724-05:00",
+      "Elements": [
+        {
+          "Id": "bdac3763-9656-47b4-ab32-c81bef71356e",
+          "TopicId": "55e91f26-7eee-4557-8bd3-c6a2c4598e33",
+          "Title": "Naming Conventions and Consistency",
+          "BodyText": "Consistent, descriptive naming makes lookup tables self-documenting and predictable for every developer who touches the schema.",
+          "Notes": "Example: order_statuses with order_status_id is clearer than statuses with id, especially in a database that also has ticket_statuses and payment_statuses.",
+          "SortOrder": 0,
+          "CreatedDate": "2026-11-17T05:22:11.0671915-05:00",
+          "ModifiedDate": "2026-11-17T05:22:11.0671915-05:00",
+          "Items": [
+            {
+              "Id": "d02ac7a2-d80c-4b88-a813-ffdf367f2910",
+              "Text": "Use plural nouns for lookup table names such as countries, statuses, and departments.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "b505d328-19da-483f-9150-8432e2352067",
+              "Text": "Prefer descriptive names like order_statuses rather than a generic statuses.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "93047c4d-4826-4af5-84aa-ab49c740dc7c",
+              "Text": "Apply consistent suffixes across the schema: _types, _categories, _codes.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "83d25d19-89bc-4eeb-a14b-c08b1a8a00f4",
+              "Text": "Name primary keys predictably as table_name_id or simply id, and never mix both styles in one database.",
+              "SortOrder": 3
+            },
+            {
+              "Id": "c3f742ea-7a4e-4fef-a9e8-aeb1dd40e6bd",
+              "Text": "Consistent naming also helps ORM tools, code generators, and documentation remain readable.",
+              "SortOrder": 4
+            }
+          ]
+        },
+        {
+          "Id": "a2a72b1b-45b0-4d8f-a159-a8e69693264d",
+          "TopicId": "55e91f26-7eee-4557-8bd3-c6a2c4598e33",
+          "Title": "Primary Key Strategy: Surrogate vs. Natural Keys",
+          "BodyText": "Choosing the key type determines join performance, readability, and how resilient the table is to business changes.",
+          "Notes": "Recommended approach: use an INT surrogate key as the primary key, and add a code or abbreviation column with a UNIQUE constraint for human readability and business logic.",
+          "SortOrder": 1,
+          "CreatedDate": "2026-11-17T05:22:11.0671915-05:00",
+          "ModifiedDate": "2026-11-17T05:22:11.0671915-05:00",
+          "Items": [
+            {
+              "Id": "6fd43239-8b16-4786-a8dc-197da88d7fde",
+              "Text": "Surrogate INT keys give fast joins, a small storage footprint, and flexibility, but carry no inherent meaning.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "0144a177-1a4a-45c5-ab25-eaec3db23314",
+              "Text": "Natural keys (codes such as \u0027US\u0027 or \u0027PENDING\u0027) are meaningful and readable but produce slower joins and larger storage.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "82daa530-0bce-45d4-ab71-9d3ca7a267eb",
+              "Text": "A composite approach \u2014 surrogate key plus unique code column \u2014 offers both speed and meaning at the cost of slight complexity.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "17a0d2fb-265b-4262-8f20-533cc19c7f84",
+              "Text": "Natural keys work best for small, extremely stable lookups where the code will never change.",
+              "SortOrder": 3
+            },
+            {
+              "Id": "bddf2d7b-e7eb-4f74-9753-cdca306207b9",
+              "Text": "The unique code column lets application logic reference meaningful values instead of magic numbers.",
+              "SortOrder": 4
+            }
+          ]
+        },
+        {
+          "Id": "08e27fd3-5d6f-4ca5-8d33-f04a12137d8e",
+          "TopicId": "55e91f26-7eee-4557-8bd3-c6a2c4598e33",
+          "Title": "Descriptive and UI-Support Columns",
+          "BodyText": "Beyond an ID and a name, well-designed lookup tables carry columns that support business rules, user interfaces, and auditing.",
+          "Notes": "Example: a priorities table may include priority_code, priority_name, description, color_hex for UI display, response_time_hours for SLA rules, display_order, is_active, created_at, and updated_at.",
+          "SortOrder": 2,
+          "CreatedDate": "2026-11-17T05:22:11.0671915-05:00",
+          "ModifiedDate": "2026-11-17T05:22:11.0671915-05:00",
+          "Items": [
+            {
+              "Id": "c3c9b92f-4dc9-4043-8988-c57c8b6bce96",
+              "Text": "Add a description column to fully explain each value for developers and end users.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "8da7eff0-2d2f-427e-aed2-8a847025c6e3",
+              "Text": "Include display_order so dropdown lists and menus sort consistently across the application.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "325f75b7-8043-4328-b46b-5fd54e8079a3",
+              "Text": "Store UI attributes such as color_hex when the value drives visual presentation.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "e8ddb9b3-32db-4792-a6e2-efb190643c11",
+              "Text": "Capture business-rule attributes (for example, SLA response hours or benefits_eligible flags) directly on the lookup row.",
+              "SortOrder": 3
+            },
+            {
+              "Id": "a509e903-c2b7-4671-b7b9-76edca7866a9",
+              "Text": "Add created_at and updated_at timestamps to support auditing and change tracking.",
+              "SortOrder": 4
+            }
+          ]
+        },
+        {
+          "Id": "d266ee0d-dd4a-4870-b467-d5498ceb4685",
+          "TopicId": "55e91f26-7eee-4557-8bd3-c6a2c4598e33",
+          "Title": "Enforcing Referential Integrity with Foreign Keys",
+          "BodyText": "Foreign key constraints are what turn a lookup table from a convention into an enforced rule, preventing invalid or orphaned references.",
+          "Notes": "Example: CONSTRAINT fk_order_status FOREIGN KEY (status_id) REFERENCES order_statuses(status_id) ON DELETE RESTRICT ON UPDATE CASCADE.",
+          "SortOrder": 3,
+          "CreatedDate": "2026-11-17T05:22:11.0671915-05:00",
+          "ModifiedDate": "2026-11-17T05:22:11.0671915-05:00",
+          "Items": [
+            {
+              "Id": "67b74f80-4ae8-45d6-ba69-4e736c13d748",
+              "Text": "Always declare an explicit FOREIGN KEY constraint rather than relying on application code to validate values.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "2f0b9412-7d44-4b70-91d3-db9e6c7448d8",
+              "Text": "Name constraints meaningfully (for example, fk_order_status) so errors are easy to trace.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "b89b332e-1f76-4e05-bffb-83e2ee5a132f",
+              "Text": "Use ON DELETE RESTRICT to prevent deletion of lookup values that are still referenced.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "fef97115-ed72-4df7-b87d-060eb79d7c99",
+              "Text": "Use ON UPDATE CASCADE so dependent rows follow if a key value legitimately changes.",
+              "SortOrder": 3
+            },
+            {
+              "Id": "7620d5ca-7d58-4271-ae2c-8425a7e988d4",
+              "Text": "Mark the referencing column NOT NULL when a value is always required.",
+              "SortOrder": 4
+            }
+          ]
+        },
+        {
+          "Id": "5d7eeacb-bdc6-40cb-bb2d-4d47f4b681e4",
+          "TopicId": "55e91f26-7eee-4557-8bd3-c6a2c4598e33",
+          "Title": "Soft Deletes and Managing Change Over Time",
+          "BodyText": "Lookup values that have already been referenced by historical records must never be hard deleted, because doing so breaks foreign keys and destroys historical meaning.",
+          "Notes": "Bad: DELETE FROM statuses WHERE status_id = 3. Good: UPDATE statuses SET is_active = FALSE, retired_date = CURRENT_DATE WHERE status_id = 3.",
+          "SortOrder": 4,
+          "CreatedDate": "2026-11-17T05:22:11.0671915-05:00",
+          "ModifiedDate": "2026-11-17T05:22:11.0671915-05:00",
+          "Items": [
+            {
+              "Id": "6cea10b9-83ec-477b-8d23-bca2ed6df7b5",
+              "Text": "Include an is_active BOOLEAN flag (defaulting to TRUE) on every lookup table.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "675efccf-89e1-4020-8eea-4442c8fd8aad",
+              "Text": "Retire deprecated values by setting is_active = FALSE and recording a retired_date.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "607ecab6-4681-423e-be88-686aa9cdb1ae",
+              "Text": "Filter application dropdowns to active rows only while still resolving inactive values for historical records.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "7f99a6e3-35a3-47b4-8e60-48454ff588b2",
+              "Text": "Soft deletes preserve referential integrity and keep old reports accurate.",
+              "SortOrder": 3
+            },
+            {
+              "Id": "05f38fb8-7e7c-4dcb-9492-9af4200f7ddc",
+              "Text": "For values that change meaning over time, consider effective-dated versioning instead of in-place edits.",
+              "SortOrder": 4
+            }
+          ]
+        },
+        {
+          "Id": "a64a8c4e-6af6-4c36-a840-554b98669ac1",
+          "TopicId": "55e91f26-7eee-4557-8bd3-c6a2c4598e33",
+          "Title": "Indexing and Caching for Performance",
+          "BodyText": "Lookup tables are read-heavy and change infrequently, which makes them ideal targets for targeted indexes and application-layer caching.",
+          "Notes": "Example indexes: CREATE INDEX idx_country_name ON countries(country_name); CREATE INDEX idx_active ON countries(is_active) WHERE is_active = TRUE.",
+          "SortOrder": 5,
+          "CreatedDate": "2026-11-17T05:22:11.0671915-05:00",
+          "ModifiedDate": "2026-11-17T05:22:11.0671915-05:00",
+          "Items": [
+            {
+              "Id": "a4fbc00f-baed-43dd-b240-126156d52630",
+              "Text": "The primary key is indexed automatically, and UNIQUE code columns get a unique index as well.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "6c2c5a05-4c6e-437c-82c0-7126fadab05c",
+              "Text": "Add indexes on frequently queried descriptive columns such as country_name.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "7c140186-47c8-4cce-9977-396320086e25",
+              "Text": "Use filtered or partial indexes on is_active when queries routinely retrieve only active values.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "65201393-a7b1-4d11-b3db-6dc23aa8c3d4",
+              "Text": "Load lookup tables into an application cache at startup and refresh periodically or on demand.",
+              "SortOrder": 3
+            },
+            {
+              "Id": "599f73fb-eeef-4bb2-be92-6c95bdf2f1e9",
+              "Text": "Caching eliminates repeated round trips for data that rarely changes, improving response times.",
+              "SortOrder": 4
+            }
+          ]
+        },
+        {
+          "Id": "1f7e0547-5de4-413f-af8f-a3cf332003ad",
+          "TopicId": "55e91f26-7eee-4557-8bd3-c6a2c4598e33",
+          "Title": "Documentation and Validation Constraints",
+          "BodyText": "Comments and CHECK constraints capture intent in the database itself, protecting data quality and helping future maintainers.",
+          "Notes": "Example: COMMENT ON TABLE order_statuses IS \u0027Valid order status values\u0027; and CONSTRAINT chk_code_uppercase CHECK (priority_code = UPPER(priority_code)).",
+          "SortOrder": 6,
+          "CreatedDate": "2026-11-17T05:22:11.0671915-05:00",
+          "ModifiedDate": "2026-11-17T05:22:11.0671915-05:00",
+          "Items": [
+            {
+              "Id": "0242b176-defc-425e-8706-6cf37b0d8a09",
+              "Text": "Document each table\u0027s purpose, who references it, and the rule that values are retired rather than deleted.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "8ebd02c3-85b4-4712-8289-455104e14290",
+              "Text": "Comment individual columns such as display_order to explain how they are used.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "c84263f6-e308-4561-b67a-42e10ee95e89",
+              "Text": "Apply UNIQUE NOT NULL to code columns to prevent duplicates and enable code-based lookups.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "c07e671a-603b-4276-9609-4bf930c656f4",
+              "Text": "Use CHECK constraints to validate formats, for example requiring uppercase codes or positive display_order values.",
+              "SortOrder": 3
+            },
+            {
+              "Id": "6146ab02-d8cb-45d1-ac3d-b406df957723",
+              "Text": "Make display_order UNIQUE when duplicate sort positions would produce unpredictable UI ordering.",
+              "SortOrder": 4
+            }
+          ]
+        },
+        {
+          "Id": "26c8708f-edb5-468c-841f-1e278d92a715",
+          "TopicId": "55e91f26-7eee-4557-8bd3-c6a2c4598e33",
+          "Title": "Consolidated Best-Practices Checklist",
+          "BodyText": "These practices together form a repeatable standard that can be applied to every lookup table you design.",
+          "Notes": "Applying the full checklist yields tables that are fast to join, safe to change, easy to render in a UI, and self-explanatory to the next developer.",
+          "SortOrder": 7,
+          "CreatedDate": "2026-11-17T05:22:11.0671915-05:00",
+          "ModifiedDate": "2026-11-17T05:22:11.0671915-05:00",
+          "Items": [
+            {
+              "Id": "696251a4-0932-428b-af36-99e3db0dd6bb",
+              "Text": "Use surrogate INT primary keys for fast joins and a small footprint, and include a meaningful code column for business logic and debugging.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "ce419cbe-13d4-4122-96c1-e0a55ce51c5c",
+              "Text": "Always declare foreign key constraints to prevent orphaned or invalid references.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "a13f1a11-c150-4e82-ae30-350cb954c8d3",
+              "Text": "Implement soft deletes with an is_active flag to preserve historical data integrity.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "b79accb8-f554-4f3b-a8e5-f28efee1d79c",
+              "Text": "Add display_order for consistent dropdown sorting and document the table\u0027s purpose and constraints.",
+              "SortOrder": 3
+            },
+            {
+              "Id": "58818ea7-ab4a-496d-a7a0-1c8535334da6",
+              "Text": "Apply unique constraints on code columns and consider caching the table in the application layer.",
+              "SortOrder": 4
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Id": "05efba4f-0abe-4330-a7f7-da0e27d797c0",
+      "Title": "Common Pitfalls to Avoid",
+      "Summary": "Identifies frequent mistakes such as over-engineering tiny lists, omitting foreign keys, hard-coding lookup IDs in application code, failing to plan for growth, breaking historical data, and proliferating single-purpose tables. Offers corrective approaches for each.",
+      "SortOrder": 4,
+      "CreatedDate": "2026-11-17T05:20:12.8322724-05:00",
+      "ModifiedDate": "2026-11-17T05:20:12.8322724-05:00",
+      "Elements": [
+        {
+          "Id": "d49b9726-e4f7-429d-908a-f0661ae2d6ba",
+          "TopicId": "05efba4f-0abe-4330-a7f7-da0e27d797c0",
+          "Title": "Pitfall #1: Over-Engineering Tiny, Fixed Lists",
+          "BodyText": "Not every set of repeated values deserves its own table. Creating a lookup table for a truly binary or permanently fixed list adds joins and maintenance overhead with little benefit.",
+          "Notes": "Example: a \u0060genders\u0060 table with only M/F, or a \u0060yes_no\u0060 table, usually costs more than it returns. An ENUM or CHECK constraint keeps the rule close to the data it governs.",
+          "SortOrder": 0,
+          "CreatedDate": "2026-11-17T05:22:41.1196843-05:00",
+          "ModifiedDate": "2026-11-17T05:22:41.1196843-05:00",
+          "Items": [
+            {
+              "Id": "d5cbebdd-f4a9-40bf-8e51-9ef1e48959c3",
+              "Text": "Values that will never change and number only two or three are better expressed as an ENUM column or a CHECK constraint.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "a9e3d43b-13b9-42e9-8999-d66f98259dd9",
+              "Text": "A CHECK such as gender VARCHAR(20) CHECK (gender IN (\u0027Male\u0027,\u0027Female\u0027,\u0027Other\u0027)) enforces validity without an extra join.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "ab01af4d-5b6d-4d9c-85ef-8f429606a646",
+              "Text": "True binary flags should be stored as BOOLEAN rather than as a foreign key to a two-row table.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "cf022b7d-e64a-4b97-adc0-8dd188b1e3fb",
+              "Text": "Reserve lookup tables for lists that may gain descriptive attributes, grow modestly, or need to be edited by business users.",
+              "SortOrder": 3
+            }
+          ]
+        },
+        {
+          "Id": "b0e2964f-239e-4ae2-9443-4faa2909556f",
+          "TopicId": "05efba4f-0abe-4330-a7f7-da0e27d797c0",
+          "Title": "Pitfall #2: Referencing a Lookup Without a Foreign Key",
+          "BodyText": "A lookup table only guarantees integrity if the referencing columns are actually constrained. Declaring status_id INT with no FOREIGN KEY clause leaves the door open to invalid data.",
+          "Notes": "Compare: \u0060status_id INT\u0060 (can hold 99 or NULL silently) versus \u0060CONSTRAINT fk_order_status FOREIGN KEY (status_id) REFERENCES order_statuses(status_id)\u0060.",
+          "SortOrder": 1,
+          "CreatedDate": "2026-11-17T05:22:41.1196843-05:00",
+          "ModifiedDate": "2026-11-17T05:22:41.1196843-05:00",
+          "Items": [
+            {
+              "Id": "c363b142-b624-4259-8f58-67125980b381",
+              "Text": "Without constraints you get orphaned records, invalid code values, and silent data corruption.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "e8f5bfdb-fd4c-48d7-afef-5af48553f230",
+              "Text": "Always declare the FOREIGN KEY explicitly and name the constraint for easier troubleshooting.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "8ab66c57-50fd-4177-8b1a-c9938b314d74",
+              "Text": "Use ON DELETE RESTRICT to block deletion of lookup rows that are still referenced.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "1a3ca68e-21af-4e69-acd8-0e82f4340abd",
+              "Text": "Use ON UPDATE CASCADE so reference values stay aligned if a key ever changes.",
+              "SortOrder": 3
+            },
+            {
+              "Id": "ceb425fa-561c-4401-a73d-73bcb7a7fb6b",
+              "Text": "Add NOT NULL where a value is always required so rows cannot bypass the lookup entirely.",
+              "SortOrder": 4
+            }
+          ]
+        },
+        {
+          "Id": "071ca2c7-5a0a-422a-8053-3abfb322e3cf",
+          "TopicId": "05efba4f-0abe-4330-a7f7-da0e27d797c0",
+          "Title": "Pitfall #3: Hard-Coding Lookup IDs in Application Code",
+          "BodyText": "Scattering magic numbers such as \u0060if (order.status_id == 3)\u0060 through application code hides meaning and breaks when IDs differ between environments.",
+          "Notes": "Better: SELECT status_id FROM order_statuses WHERE status_code = \u0027PROCESSING\u0027. Best: const STATUS_PROCESSING = db.lookupCache.getStatusId(\u0027PROCESSING\u0027).",
+          "SortOrder": 2,
+          "CreatedDate": "2026-11-17T05:22:41.1196843-05:00",
+          "ModifiedDate": "2026-11-17T05:22:41.1196843-05:00",
+          "Items": [
+            {
+              "Id": "6d370c0f-7b49-4984-89b0-376be3cfc0be",
+              "Text": "A raw integer gives a future maintainer no clue about what state the code is testing.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "a3277c1e-3393-4e6a-8f99-fc41bcca7e5d",
+              "Text": "Query by a stable, meaningful code column rather than by the surrogate ID.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "842e5574-7180-49be-b92b-96bdb2aff79f",
+              "Text": "Load lookup values once into application constants or a cache at startup, keyed by code.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "5feed30e-919e-4231-a5f7-2df1a6504a7e",
+              "Text": "This is a strong reason to always include a UNIQUE code column alongside the INT primary key.",
+              "SortOrder": 3
+            }
+          ]
+        },
+        {
+          "Id": "445b913b-b92b-40cc-a93d-0919bde38e85",
+          "TopicId": "05efba4f-0abe-4330-a7f7-da0e27d797c0",
+          "Title": "Pitfall #4: Failing to Plan for Growth",
+          "BodyText": "A list designed for ten rows can quietly become ten thousand, at which point the original lookup design no longer fits.",
+          "Notes": "Example: a \u0027product categories\u0027 lookup that evolves into a full taxonomy, or a \u0027cities\u0027 list that balloons as the business expands internationally.",
+          "SortOrder": 3,
+          "CreatedDate": "2026-11-17T05:22:41.1196843-05:00",
+          "ModifiedDate": "2026-11-17T05:22:41.1196843-05:00",
+          "Items": [
+            {
+              "Id": "d9595d29-ea9a-4d31-88d4-3b119e060d60",
+              "Text": "Ask whether the list is genuinely bounded or whether it is driven by unbounded user or operational data.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "ddde8dea-bedf-4353-9339-406b10735b45",
+              "Text": "Large, constantly growing lists may need their own entity, indexing strategy, and search behaviour rather than a simple code table.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "db972696-ebe9-4c62-afba-2bd1b266a45e",
+              "Text": "Watch for warning signs such as frequent inserts, user-generated entries, or a need for full-text search.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "5867cca1-4c54-4d0c-ad3c-9c930b80c4df",
+              "Text": "Be prepared to re-architect: add hierarchy, effective dates, or additional attributes rather than forcing the old shape.",
+              "SortOrder": 3
+            }
+          ]
+        },
+        {
+          "Id": "aaf876af-9b7b-4e84-b1ca-34f49a6be8d2",
+          "TopicId": "05efba4f-0abe-4330-a7f7-da0e27d797c0",
+          "Title": "Pitfall #5: Breaking Historical Data",
+          "BodyText": "Editing or deleting lookup rows that historical records point to rewrites the past. Renaming \u0027Expedited Shipping\u0027 to \u0027Express Shipping\u0027 makes old orders display a term that did not exist when they were placed.",
+          "Notes": "Bad: DELETE FROM statuses WHERE status_id = 3. Good: UPDATE statuses SET is_active = FALSE, retired_date = CURRENT_DATE WHERE status_id = 3.",
+          "SortOrder": 4,
+          "CreatedDate": "2026-11-17T05:22:41.1196843-05:00",
+          "ModifiedDate": "2026-11-17T05:22:41.1196843-05:00",
+          "Items": [
+            {
+              "Id": "51e0d16e-9804-4969-bba3-22323fe6a299",
+              "Text": "Never hard-delete a lookup value that is referenced by existing rows; it breaks foreign keys or orphans records.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "455ecc89-0fac-49c1-b160-6a4570d49918",
+              "Text": "Use a soft delete with an is_active flag (and optionally a retired_date) to retire values while preserving history.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "92072637-4445-42dd-bb23-fa44e8db4b61",
+              "Text": "Filter dropdowns and new-record forms on is_active = TRUE so retired values stay available for reporting only.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "5311d6f9-89fa-4cdc-9991-463fc21c68ec",
+              "Text": "For values whose meaning genuinely changes over time, use versioning with effective_from and effective_to dates.",
+              "SortOrder": 3
+            },
+            {
+              "Id": "1d0b21c4-b41b-417d-94e3-07d9fc4b5f40",
+              "Text": "Alternatively, document and accept that historical records will display current terminology.",
+              "SortOrder": 4
+            }
+          ]
+        },
+        {
+          "Id": "4af6d2bc-210c-49b5-84b0-91c71e5d06a0",
+          "TopicId": "05efba4f-0abe-4330-a7f7-da0e27d797c0",
+          "Title": "Pitfall #6: Proliferating Single-Purpose Lookup Tables",
+          "BodyText": "Dozens of tiny two-column tables clutter a schema and make it harder to navigate, document, and maintain.",
+          "Notes": "A generic design uses a Categories (or lookup_types) table plus a Codes (or lookup_values) table, with codes linked to their category by foreign key \u2014 the two-table pattern demonstrated with the Census PUMS data.",
+          "SortOrder": 5,
+          "CreatedDate": "2026-11-17T05:22:41.1196843-05:00",
+          "ModifiedDate": "2026-11-17T05:22:41.1196843-05:00",
+          "Items": [
+            {
+              "Id": "754ea2b6-9582-444d-abe5-15d898f8aa38",
+              "Text": "Consider a generic reference-data structure that groups all codes under a category column.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "992dcc29-4ffd-4323-a17d-b9d679ca77d3",
+              "Text": "A view joining the category and code tables can present a single, convenient CatCodes result set to queries.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "1b3b07f7-5196-44d2-9353-3928c84679b5",
+              "Text": "Trade-offs: you lose type safety, foreign keys become harder to enforce per-field, and schema clarity drops.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "46b63c1b-edd2-4571-8036-28caddeb876c",
+              "Text": "Use the generic approach sparingly \u2014 only when you genuinely have many similar small lookups.",
+              "SortOrder": 3
+            }
+          ]
+        },
+        {
+          "Id": "a459e4b3-e985-4925-9be8-309b0551761b",
+          "TopicId": "05efba4f-0abe-4330-a7f7-da0e27d797c0",
+          "Title": "The Rule of Thumb for Deciding",
+          "BodyText": "Most of these pitfalls stem from applying the lookup pattern in the wrong place. A short checklist keeps the decision consistent.",
+          "Notes": "Good candidates include countries, order statuses, priorities, departments, payment methods, and units of measure. Poor candidates include customer names, descriptions, email addresses, and unbounded user content.",
+          "SortOrder": 6,
+          "CreatedDate": "2026-11-17T05:22:41.1196843-05:00",
+          "ModifiedDate": "2026-11-17T05:22:41.1196843-05:00",
+          "Items": [
+            {
+              "Id": "839f7f42-e4ac-4c19-9cbc-e5348fe397d6",
+              "Text": "Create a lookup table when there are three or more distinct repeating values, the list is stable, and multiple tables will reference it.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "bb04fd38-b1dc-4dce-897d-48c98d2fb8d4",
+              "Text": "Create one when referential integrity matters and the list may grow modestly over time.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "8aa7588c-4fbe-4178-a99c-23ba784017c2",
+              "Text": "Skip it when only two fixed values exist, when values are unique per record, or when the list is unlimited and user-driven.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "580d8257-c557-4d67-b5f5-439dd2a5745e",
+              "Text": "When in doubt, favour the lookup table \u2014 the join cost is usually far smaller than the cost of inconsistent data.",
+              "SortOrder": 3
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Id": "ee6da7ce-6a57-451e-8edc-cace5cbd5e79",
+      "Title": "Advanced Lookup Table Patterns",
+      "Summary": "Explores hierarchical (parent-child) lookups, versioned or temporal lookups with effective dating, multi-language translation tables, and the generic two-table lookup architecture. Discusses the trade-offs of each pattern, including loss of type safety in generic designs.",
+      "SortOrder": 5,
+      "CreatedDate": "2026-11-17T05:20:12.8322724-05:00",
+      "ModifiedDate": "2026-11-17T05:20:12.8322724-05:00",
+      "Elements": [
+        {
+          "Id": "9dc2d54e-4009-4377-ad83-28c0a3fa77ba",
+          "TopicId": "ee6da7ce-6a57-451e-8edc-cace5cbd5e79",
+          "Title": "Hierarchical (Parent-Child) Lookup Tables",
+          "BodyText": "Some reference data is naturally nested, such as product categories or organizational units, and can be modeled with a self-referencing lookup table. A parent_category_id column pointing back at the same table\u0027s primary key captures the hierarchy.",
+          "Notes": "Example: Electronics (NULL parent) \u2192 Computers \u2192 Laptops/Desktops, and Electronics \u2192 Phones. A nullable parent column identifies root nodes.",
+          "SortOrder": 0,
+          "CreatedDate": "2026-11-17T05:23:08.0123064-05:00",
+          "ModifiedDate": "2026-11-17T05:23:08.0123064-05:00",
+          "Items": [
+            {
+              "Id": "a76752d0-7b2f-4696-9d9f-dd3752705192",
+              "Text": "Add a parent_id column with a foreign key referencing the same table\u0027s primary key.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "a536232b-94d8-40d8-bc8c-9ea00ddd5d2c",
+              "Text": "Store NULL in the parent column to mark top-level (root) entries.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "137e3706-8518-468c-a4be-5be4ee55ccad",
+              "Text": "An optional level column caches depth so UI code can indent or filter by tier without recursion.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "2408517b-98e5-448d-aa69-891e433fc751",
+              "Text": "Queries typically use recursive CTEs or repeated self-joins to walk the tree.",
+              "SortOrder": 3
+            },
+            {
+              "Id": "3ecd31a1-773a-4fab-bab3-65872e613b06",
+              "Text": "Guard against orphaned nodes and accidental cycles when editing parent assignments.",
+              "SortOrder": 4
+            }
+          ]
+        },
+        {
+          "Id": "2856a84b-af63-4932-8ae3-e96a75b1fe9c",
+          "TopicId": "ee6da7ce-6a57-451e-8edc-cace5cbd5e79",
+          "Title": "Versioned Lookup Tables with Effective Dating",
+          "BodyText": "When a reference value legitimately changes over time \u2014 such as tax rates \u2014 a single current row destroys history. Temporal lookup tables add effective_from and effective_to columns so every version of the value is retained.",
+          "Notes": "Example: tax_rates(tax_rate_id, state_id, tax_percentage, effective_from, effective_to) where a NULL effective_to marks the currently active row.",
+          "SortOrder": 1,
+          "CreatedDate": "2026-11-17T05:23:08.0123064-05:00",
+          "ModifiedDate": "2026-11-17T05:23:08.0123064-05:00",
+          "Items": [
+            {
+              "Id": "fee2bafa-4501-45cd-b096-c1172ff9c29a",
+              "Text": "Store effective_from as NOT NULL and leave effective_to NULL for the row currently in force.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "e1606be4-dba0-48bd-b8a1-0d02e8c77749",
+              "Text": "Retrieve the value in effect on a given date with a BETWEEN clause using COALESCE(effective_to, \u00279999-12-31\u0027).",
+              "SortOrder": 1
+            },
+            {
+              "Id": "44774f10-d365-4cbc-8496-463b877fef5a",
+              "Text": "Versioning lets historical orders or invoices reprice correctly against the rate that applied at the time.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "9238b213-5906-4ce7-87f0-fce6757efb29",
+              "Text": "The alternative is accepting that historical records display current terminology, as when \u0027Expedited Shipping\u0027 is renamed \u0027Express Shipping\u0027.",
+              "SortOrder": 3
+            },
+            {
+              "Id": "9e401694-7e47-4aab-a5fa-cee5b28505c2",
+              "Text": "Enforce non-overlapping date ranges per key so a lookup never returns two competing values.",
+              "SortOrder": 4
+            }
+          ]
+        },
+        {
+          "Id": "1c2e83a5-e61c-4aa1-8dd0-c70b95ae4631",
+          "TopicId": "ee6da7ce-6a57-451e-8edc-cace5cbd5e79",
+          "Title": "Multi-Language Translation Tables",
+          "BodyText": "Internationalized applications must display the same reference value in several languages without duplicating its identity. The pattern splits the lookup into a stable entity table and a separate translations table.",
+          "Notes": "Example: countries(country_id, country_code) plus country_translations(country_id, language_code, country_name) holding \u0027United States\u0027, \u0027Estados Unidos\u0027, and \u0027\u00C9tats-Unis\u0027 for country_id 1.",
+          "SortOrder": 2,
+          "CreatedDate": "2026-11-17T05:23:08.0123064-05:00",
+          "ModifiedDate": "2026-11-17T05:23:08.0123064-05:00",
+          "Items": [
+            {
+              "Id": "5427198b-e205-44f9-ae27-f786c158708c",
+              "Text": "Keep language-neutral data (IDs, ISO codes, flags) in the base lookup table.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "7d9eadb5-47ab-4e40-b716-5566a0d40d93",
+              "Text": "Put all display text in a child table keyed on the entity ID plus a language_code.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "95587ebb-e15f-4ac1-9954-b3e8dbe68ccf",
+              "Text": "Use a composite primary key of (entity_id, language_code) to prevent duplicate translations.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "39e4bde8-6928-47cf-af74-a1ebe4d02e8a",
+              "Text": "Foreign keys in business tables still reference the stable base ID, so translations can be added without schema changes.",
+              "SortOrder": 3
+            },
+            {
+              "Id": "39e6f248-3dd6-422b-8a02-4c95aaa5b963",
+              "Text": "Plan a fallback language for codes that have not yet been translated.",
+              "SortOrder": 4
+            }
+          ]
+        },
+        {
+          "Id": "4efd1848-0933-415d-b833-e72ca6564239",
+          "TopicId": "ee6da7ce-6a57-451e-8edc-cace5cbd5e79",
+          "Title": "The Generic Two-Table Lookup Architecture",
+          "BodyText": "Systems with dozens of tiny two-column lookup tables can consolidate them into a generic pair: one table of categories (lookup types) and one table of codes (lookup values). This is the Categories/Codes design used in the course assignment.",
+          "Notes": "Categories(Name, Description) holds entries like \u0027ACR\u0027 (Lot Size) and \u0027FS\u0027 (Food stamp recipient); Codes(Name, CategoryName, Description) holds \u00271\u0027 \u2192 \u0027House on less than one acre\u0027 for category ACR.",
+          "SortOrder": 3,
+          "CreatedDate": "2026-11-17T05:23:08.0123064-05:00",
+          "ModifiedDate": "2026-11-17T05:23:08.0123064-05:00",
+          "Items": [
+            {
+              "Id": "3a718e0c-6bdf-4a63-b2c5-e137ba14efdb",
+              "Text": "The parent table names each lookup domain; the child table stores the coded values belonging to that domain.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "6874625f-41d0-458b-8ee1-212215b364f0",
+              "Text": "The child table carries a foreign key back to the category name, grouping all codes by type.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "2904ef90-3c8c-4774-846f-bf71ca945e27",
+              "Text": "A joining view such as CatCodes flattens code name, category name, and both descriptions for easy querying.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "b2001641-91b4-4d48-b1bf-f1ebe71808b8",
+              "Text": "Stored procedures (sp_InsertCategory, sp_InsertCode) can create categories on demand and centralize insert logic.",
+              "SortOrder": 3
+            },
+            {
+              "Id": "1b91fe47-13e2-4f74-adea-092d79f4faeb",
+              "Text": "A scalar function like func_GetDescription(code, category) returns a human-readable label from a code pair.",
+              "SortOrder": 4
+            }
+          ]
+        },
+        {
+          "Id": "66f1af28-3a84-4a11-9962-70a3099ef6d0",
+          "TopicId": "ee6da7ce-6a57-451e-8edc-cace5cbd5e79",
+          "Title": "Querying Generic Lookups Against Coded Data",
+          "BodyText": "Coded source data such as Census PUMS extracts stores values like \u0027ACR = 1\u0027 that mean nothing until joined to a lookup. The generic design requires filtering on the category as well as matching the code.",
+          "Notes": "Compare the per-field join (RawData.ACR = ACR.Code) with the generic join (RawData.ACR = Codes.Name AND Codes.CategoryName = \u0027ACR\u0027).",
+          "SortOrder": 4,
+          "CreatedDate": "2026-11-17T05:23:08.0123064-05:00",
+          "ModifiedDate": "2026-11-17T05:23:08.0123064-05:00",
+          "Items": [
+            {
+              "Id": "06403005-6771-45f7-ab56-1bb07154e100",
+              "Text": "Always include the category predicate; otherwise identical code values from different domains collide.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "c726e2d2-22b0-498d-9faa-e0409e1a8ebb",
+              "Text": "Join raw data to Codes on the code value, then to Categories on CategoryName to resolve descriptions.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "978293fd-c6c0-4455-9e2a-1c369b4aecdd",
+              "Text": "Group by the code description rather than the raw code to produce readable aggregate reports.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "4759dcd2-a17e-4a63-965b-2481c94b17b1",
+              "Text": "Using the CatCodes view shortens queries to a single join plus a category filter.",
+              "SortOrder": 3
+            },
+            {
+              "Id": "b631a979-4084-4c36-b244-befe23d4bb06",
+              "Text": "Cross-tabulating two coded fields (for example FS by ACR) requires resolving both codes in one query.",
+              "SortOrder": 4
+            }
+          ]
+        },
+        {
+          "Id": "89eeec38-001a-48a6-b497-83958b46632c",
+          "TopicId": "ee6da7ce-6a57-451e-8edc-cace5cbd5e79",
+          "Title": "Trade-Offs of Generic vs. Dedicated Lookup Tables",
+          "BodyText": "The generic architecture reduces table proliferation but sacrifices several benefits of purpose-built lookup tables. Choose deliberately rather than by default.",
+          "Notes": "Rule of thumb: use the generic pattern only when you have many similar, small, low-risk lookups; keep dedicated tables for values that drive business logic or carry extra attributes.",
+          "SortOrder": 5,
+          "CreatedDate": "2026-11-17T05:23:08.0123064-05:00",
+          "ModifiedDate": "2026-11-17T05:23:08.0123064-05:00",
+          "Items": [
+            {
+              "Id": "d34938b0-6949-44ba-bfbd-4342497df044",
+              "Text": "Generic designs lose type safety \u2014 nothing stops an order status code from being stored in a priority column.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "deff3f92-ca1f-4812-ae5c-8bb018030732",
+              "Text": "Foreign keys become complex or impossible because the child column must also be constrained by category.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "962c7017-561d-4d1b-8deb-157cd0a2c619",
+              "Text": "Dedicated tables can carry domain-specific columns such as color_hex, SLA hours, or benefits_eligible flags.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "5978102b-79c4-4a3a-befc-39f3b9b1e0b7",
+              "Text": "Dedicated tables are clearer to read, document, and index for the specific values they hold.",
+              "SortOrder": 3
+            },
+            {
+              "Id": "8910721a-1a3e-4124-bcc2-da82c4372576",
+              "Text": "The generic approach shines when the main problem is dozens of near-identical two-column tables cluttering the schema.",
+              "SortOrder": 4
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Id": "c859e7db-d4c8-4ea0-b99d-83bfc70cb735",
+      "Title": "Applying Lookup Tables: Two-Table Design and Coded Data Analysis",
+      "Summary": "Demonstrates the Categories/Codes two-table lookup system, supporting views, stored procedures, and functions used to populate and query coded data. Applies these structures to Census PUMS data to produce grouped counts and cross-tabulated analysis with a single query.",
+      "SortOrder": 6,
+      "CreatedDate": "2026-11-17T05:20:12.8322724-05:00",
+      "ModifiedDate": "2026-11-17T05:20:12.8322724-05:00",
+      "Elements": [
+        {
+          "Id": "4518c8cd-3d67-470d-9c24-3f787299e540",
+          "TopicId": "c859e7db-d4c8-4ea0-b99d-83bfc70cb735",
+          "Title": "The Two-Table Categories/Codes Design",
+          "BodyText": "Instead of building a separate lookup table for every coded column, a two-table design stores all categories and all codes in one generic structure. Categories holds the field names, and Codes holds the valid values belonging to each category.",
+          "Notes": "CREATE TABLE Categories ([Name] NVARCHAR(50) PRIMARY KEY, [Description] NVARCHAR(200)); CREATE TABLE Codes ([Name] NVARCHAR(50), [CategoryName] NVARCHAR(50) FOREIGN KEY REFERENCES Categories(Name), [Description] NVARCHAR(200)).",
+          "SortOrder": 0,
+          "CreatedDate": "2026-11-17T05:23:39.7952044-05:00",
+          "ModifiedDate": "2026-11-17T05:23:39.7952044-05:00",
+          "Items": [
+            {
+              "Id": "1a6aa603-9a39-4d62-b7fd-359cb4bacf2d",
+              "Text": "Categories.Name is the primary key and identifies a coded field such as ACR (Lot Size) or FS (Food Stamp recipient).",
+              "SortOrder": 0
+            },
+            {
+              "Id": "9eff11ac-f646-41f9-b6f4-723ea797f6eb",
+              "Text": "Codes.CategoryName is a foreign key back to Categories.Name, guaranteeing every code belongs to a defined category.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "9309a118-4272-40f6-8702-ed774d89d391",
+              "Text": "Codes.Name stores the raw coded value (\u0027b\u0027, \u00271\u0027, \u00272\u0027, \u00273\u0027) and Codes.Description stores the human-readable meaning.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "acb34397-4466-4fbe-bacd-0eb410c37cf6",
+              "Text": "This architecture avoids dozens of tiny two-column lookup tables cluttering the database.",
+              "SortOrder": 3
+            },
+            {
+              "Id": "efae02cf-c4e8-4274-97a5-d534c2988180",
+              "Text": "The trade-off is weaker type safety: a single foreign key cannot restrict a column to only one category\u0027s codes.",
+              "SortOrder": 4
+            }
+          ]
+        },
+        {
+          "Id": "c180064d-5fd7-42bc-9652-82b58abc4425",
+          "TopicId": "c859e7db-d4c8-4ea0-b99d-83bfc70cb735",
+          "Title": "The CatCodes Supporting View",
+          "BodyText": "A view flattens the Categories and Codes join into a single readable result set so analysts do not have to repeat the join logic in every query. The CatCodes view exposes code and category names together with both descriptions.",
+          "Notes": "CREATE VIEW CatCodes AS SELECT Codes.Name AS CodeName, Categories.Name AS CategoryName, [Codes].[Description] AS CodeDescription, [Categories].[Description] AS CategoryDescription FROM Categories, Codes WHERE Codes.CategoryName = Categories.Name.",
+          "SortOrder": 1,
+          "CreatedDate": "2026-11-17T05:23:39.7952044-05:00",
+          "ModifiedDate": "2026-11-17T05:23:39.7952044-05:00",
+          "Items": [
+            {
+              "Id": "1fce3554-72f0-423e-b816-50c1fbcacc54",
+              "Text": "The view aliases columns clearly (CodeName, CategoryName, CodeDescription, CategoryDescription) to avoid ambiguity.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "efbf60a1-40fb-4249-a231-3b92e4b730af",
+              "Text": "SELECT * FROM CatCodes quickly verifies that all categories and codes were loaded correctly.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "b78834ee-ed92-4546-a066-c9fb66b1e000",
+              "Text": "Queries against the view join on CatCodes.CodeName and filter on CatCodes.CategoryName = \u0027ACR\u0027.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "46dfe867-0f05-4ee6-b995-bea1f3b21a1f",
+              "Text": "Using the view reduces a three-table join to a two-table join in analysis queries.",
+              "SortOrder": 3
+            },
+            {
+              "Id": "04712cce-8c42-4b7d-88b5-a912f479d96d",
+              "Text": "Views are read-only conveniences here; the underlying Categories and Codes tables remain the source of truth.",
+              "SortOrder": 4
+            }
+          ]
+        },
+        {
+          "Id": "1e5fcf00-f18b-49c0-b41a-b81b3ed48794",
+          "TopicId": "c859e7db-d4c8-4ea0-b99d-83bfc70cb735",
+          "Title": "Stored Procedures for Populating Lookup Data",
+          "BodyText": "Stored procedures standardize how categories and codes are inserted, enforcing business rules in the database rather than in ad-hoc INSERT statements. Two procedures handle the entire population of the lookup system.",
+          "Notes": "EXEC sp_InsertCategory \u0027ACR\u0027, \u0027Lot Size\u0027; EXEC sp_InsertCode \u00271\u0027, \u0027ACR\u0027, \u0027House on less than one acre\u0027.",
+          "SortOrder": 2,
+          "CreatedDate": "2026-11-17T05:23:39.7952044-05:00",
+          "ModifiedDate": "2026-11-17T05:23:39.7952044-05:00",
+          "Items": [
+            {
+              "Id": "0ff10ed9-8f9b-410f-a5a9-eee020a1740d",
+              "Text": "sp_insertCategory takes Name and Description and inserts a single row into Categories.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "f0e4d1ea-dbcf-498e-9960-3cd0a2d16979",
+              "Text": "sp_insertCode takes Name, CategoryName, and Description and inserts a row into Codes.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "75db1932-368f-43c3-b471-0b9e0a034061",
+              "Text": "sp_insertCode must first check whether the category exists and create it automatically if it does not, preventing foreign key violations.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "01d69775-a659-49cb-b32f-4c663e3762a9",
+              "Text": "Scripted EXEC statements make the lookup data reproducible and easy to version-control.",
+              "SortOrder": 3
+            },
+            {
+              "Id": "ed51e3af-398a-4e74-a499-95dccbce0a8c",
+              "Text": "Each coded data type (ACR, FS, and the others) is loaded with the same repeatable pattern.",
+              "SortOrder": 4
+            }
+          ]
+        },
+        {
+          "Id": "4de42312-0d7a-471b-9d25-3215552d9521",
+          "TopicId": "c859e7db-d4c8-4ea0-b99d-83bfc70cb735",
+          "Title": "A Scalar Function to Decode Values",
+          "BodyText": "A user-defined function can translate a raw code into its description inline, which is useful for cross-tabulation and reporting columns. The function accepts both a code name and a category name because codes are only unique within a category.",
+          "Notes": "CREATE FUNCTION func_GetDescription (@CodeName NVARCHAR(50), @CategoryName NVARCHAR(50)) RETURNS NVARCHAR(200) AS BEGIN RETURN (SELECT TOP 1 [Codes].[Description] FROM Codes, Categories WHERE Codes.CategoryName = Categories.Name AND Categories.Name = @CategoryName AND Codes.Name = @CodeName) END.",
+          "SortOrder": 3,
+          "CreatedDate": "2026-11-17T05:23:39.7952044-05:00",
+          "ModifiedDate": "2026-11-17T05:23:39.7952044-05:00",
+          "Items": [
+            {
+              "Id": "e371681e-3916-4c1d-b913-3bdf511c960f",
+              "Text": "Both parameters are required because the code \u00271\u0027 means different things under ACR than under FS.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "e4b438fe-67c3-4776-9979-0a70e6db248a",
+              "Text": "SELECT TOP 1 guarantees a scalar return value even if duplicate code rows exist.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "48597fb2-97bb-4a20-adb1-f52624826b23",
+              "Text": "The function can be called in SELECT lists, CASE expressions, or GROUP BY clauses.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "12634d76-09cb-4778-bc8b-2c7f28b034bf",
+              "Text": "It is especially handy when building the FS columns of a cross-tabulated report.",
+              "SortOrder": 3
+            }
+          ]
+        },
+        {
+          "Id": "874e561f-d44a-4bb9-b5df-eedca40c58de",
+          "TopicId": "c859e7db-d4c8-4ea0-b99d-83bfc70cb735",
+          "Title": "Exploring and Counting Coded PUMS Data",
+          "BodyText": "Before joining lookup tables, inspect the raw Census PUMS data to learn which codes actually appear and how frequently. Simple exploratory queries validate that the lookup tables cover every observed value.",
+          "Notes": "PUMS fields are coded (ACR means Acreage) and their values are coded as well (1 means less than one acre).",
+          "SortOrder": 4,
+          "CreatedDate": "2026-11-17T05:23:39.7952044-05:00",
+          "ModifiedDate": "2026-11-17T05:23:39.7952044-05:00",
+          "Items": [
+            {
+              "Id": "db63315f-4292-4a56-b618-ed10afcfb5ff",
+              "Text": "SELECT DISTINCT(ACR) FROM RawData reveals every code present in the imported column.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "36387aab-168b-4e54-a65b-33a331cfcedf",
+              "Text": "SELECT COUNT(*) FROM RawData WHERE RawData.ACR = \u00271\u0027 confirms the volume behind a single code.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "aba587d3-e0b6-44e3-b92b-b8c3e1415df0",
+              "Text": "Any distinct value not found in Codes signals a missing lookup entry, including the \u0027b\u0027 (N/A) code.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "63d9a7f8-00ef-4eee-897f-e4ea5958c89b",
+              "Text": "Raw PUMS data is imported in its original coded format; decoding happens at query time through joins.",
+              "SortOrder": 3
+            }
+          ]
+        },
+        {
+          "Id": "c78be9b6-4a64-4449-8dc9-3cd35534c733",
+          "TopicId": "c859e7db-d4c8-4ea0-b99d-83bfc70cb735",
+          "Title": "Grouped Counts with a Single Lookup Join",
+          "BodyText": "The payoff of the lookup design is a single query that returns human-readable descriptions alongside aggregate counts. Joining RawData to the lookup structure and grouping by description produces a finished report.",
+          "Notes": "Sample output: House on less than one acre 170745; House on one to less than ten acres 20940; House on ten acres or more 2586.",
+          "SortOrder": 5,
+          "CreatedDate": "2026-11-17T05:23:39.7952044-05:00",
+          "ModifiedDate": "2026-11-17T05:23:39.7952044-05:00",
+          "Items": [
+            {
+              "Id": "30bb5df5-8300-4cbf-8a64-68d1a197c3b6",
+              "Text": "Three-table version: FROM RawData, Codes, Categories WHERE RawData.ACR = Codes.Name AND Codes.CategoryName = \u0027ACR\u0027 AND Categories.Name = Codes.CategoryName GROUP BY [Codes].[Description].",
+              "SortOrder": 0
+            },
+            {
+              "Id": "f5c7c430-6689-47b5-a21a-b618f3676aa5",
+              "Text": "Single-table version using a per-field lookup: FROM RawData, ACR WHERE RawData.ACR = [ACR].[Code] GROUP BY [ACR].[Description].",
+              "SortOrder": 1
+            },
+            {
+              "Id": "e14bd6ab-367f-4e7b-80ca-abbc100dfb99",
+              "Text": "View version: FROM RawData, CatCodes WHERE RawData.ACR = CatCodes.CodeName AND CatCodes.CategoryName = \u0027ACR\u0027 GROUP BY [CatCodes].[CodeDescription].",
+              "SortOrder": 2
+            },
+            {
+              "Id": "8018af44-40aa-424a-96d2-bf1ade43ca45",
+              "Text": "The CategoryName filter is essential; without it, codes from other categories would match and inflate the counts.",
+              "SortOrder": 3
+            },
+            {
+              "Id": "959cc982-ddd6-4941-9ccd-b249f6ffa94d",
+              "Text": "COUNT(*) is aliased (As \u0027Number Units\u0027) so the report column is self-describing.",
+              "SortOrder": 4
+            }
+          ]
+        },
+        {
+          "Id": "6e0926d0-6df6-4baf-abc2-9a6d3bee2e7a",
+          "TopicId": "c859e7db-d4c8-4ea0-b99d-83bfc70cb735",
+          "Title": "Cross-Tabulating Two Coded Variables",
+          "BodyText": "The final analytical step pivots one coded field across the columns while grouping by another, all in a single query. The ACR by FS example breaks acreage categories down by food stamp/SNAP participation.",
+          "Notes": "Target layout: Description | Yes | No | N/A | Total, with one row per ACR description.",
+          "SortOrder": 6,
+          "CreatedDate": "2026-11-17T05:23:39.7952044-05:00",
+          "ModifiedDate": "2026-11-17T05:23:39.7952044-05:00",
+          "Items": [
+            {
+              "Id": "bf945811-0718-4032-b202-9f32d8e7f70a",
+              "Text": "Group by the ACR description to form the row labels in the first column.",
+              "SortOrder": 0
+            },
+            {
+              "Id": "f9b59da4-fec6-49ed-bc87-8af1a15c4440",
+              "Text": "Use conditional aggregation such as SUM(CASE WHEN RawData.FS = \u00271\u0027 THEN 1 ELSE 0 END) to create the Yes, No, and N/A columns.",
+              "SortOrder": 1
+            },
+            {
+              "Id": "24b06c18-b802-4a4c-84f9-a41852063f43",
+              "Text": "Add a Total column with COUNT(*) to validate that the conditional columns sum correctly.",
+              "SortOrder": 2
+            },
+            {
+              "Id": "1135a30a-0879-4e1a-a5cb-eb5977fe3355",
+              "Text": "func_GetDescription or a second join to CatCodes supplies the readable labels for the FS codes.",
+              "SortOrder": 3
+            },
+            {
+              "Id": "cbc938d6-049a-4f1e-a64a-71ce3919ef4d",
+              "Text": "The same pattern generalizes to any two coded PUMS variables for independent analysis.",
+              "SortOrder": 4
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "TotalElementCount": 46
+}
